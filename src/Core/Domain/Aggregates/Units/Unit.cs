@@ -10,29 +10,48 @@ public class Unit : Entity
         // FOR EF!
     }
 
-    public static Unit Create(string title, Unit? parent, decimal ratio = 1m)
+    public static Unit Create(string title, Guid? baseUnitId, decimal ratio = 1m)
     {
-        var unit = new Unit(title, parent, ratio);
+        var unit = new Unit(title, baseUnitId, ratio);
 
-        ValidateRatio(parent, ratio, unit);
+        unit.BaseUnitId = ValidateBaseUnit(baseUnitId);
+        ValidateRatio(baseUnitId, ratio, unit);
 
         return unit;
     }
 
+	public void Update(string title, Guid? baseUnitId, decimal ratio = 1m)
+	{
+		Title = title;
+		BaseUnitId =  ValidateBaseUnit(baseUnitId);
+		Ratio = ratio;
+	}
+
+	private static Guid? ValidateBaseUnit(Guid? baseUnitId)
+    {
+        if (baseUnitId == Guid.Empty)
+        {
+            baseUnitId = null;
+        }
+
+        return baseUnitId;
+    }
+
     public string Title { get; private set; }
-    public Unit? Parent { get; private set; }
+    public Guid? BaseUnitId { get; private set; }
+    public Unit? BaseUnit { get; private set; }
     public decimal Ratio { get; private set; }
 
-    private Unit(string title, Unit? parent, decimal ratio)
+    private Unit(string title, Guid? baseUnitId, decimal ratio)
     {
         Title = title;
-        Parent = parent;
+        BaseUnitId = baseUnitId;
         Ratio = ratio;
     }
 
-    private static void ValidateRatio(Unit? parent, decimal ratio, Unit unit)
+    private static void ValidateRatio(Guid? baseUnitId, decimal ratio, Unit unit)
     {
-        if (parent == null)
+        if (baseUnitId == null || baseUnitId == Guid.Empty)
         {
             unit.Ratio = 1m;
         }

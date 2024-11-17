@@ -1,0 +1,35 @@
+﻿@page "{Id}"
+@model Server.Areas.Admin.Pages.BasicInfo.Units.DeleteModel
+@{
+	var pageTitle =
+	$"{Resources.DataDictionary.DeleteOf} {Resources.DataDictionary.Unit}";
+
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+	<section-form>
+		<fieldset disabled>
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
+
+			@* <partial name="PartialViews/_DisplayPageMessages" /> *@
+			<input hidden asp-for="DeleteViewModel.Id" dir="ltr" />
+
+			<ub-full-input asp-for="DeleteViewModel.Title" />
+
+			<ub-full-select asp-for="DeleteViewModel.BaseUnitId" asp-items="Model.BaseUnitList" />
+
+			<ub-full-input asp-for="DeleteViewModel.Ratio" />
+
+		</fieldset>
+
+		<section-form-buttons>
+			<button-delete />
+		</section-form-buttons>
+
+	</section-form>
+
+</form>

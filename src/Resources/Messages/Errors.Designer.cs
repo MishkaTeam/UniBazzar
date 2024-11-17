@@ -286,11 +286,11 @@ namespace Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to update parent!.
+        ///   Looks up a localized string similar to Unable to update baseUnit!.
         /// </summary>
-        public static string UnableToUpdateParent {
+        public static string UnableToUpdateBaseUnit {
             get {
-                return ResourceManager.GetString("UnableToUpdateParent", resourceCulture);
+                return ResourceManager.GetString("UnableToUpdateBaseUnit", resourceCulture);
             }
         }
         
