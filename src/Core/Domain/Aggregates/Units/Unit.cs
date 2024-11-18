@@ -12,10 +12,11 @@ public class Unit : Entity
 
     public static Unit Create(string title, Guid? baseUnitId, decimal ratio = 1m)
     {
-        var unit = new Unit(title, baseUnitId, ratio);
-
-        unit.BaseUnitId = ValidateBaseUnit(baseUnitId);
-        ValidateRatio(baseUnitId, ratio, unit);
+		var unit = new Unit(title, baseUnitId, ratio)
+		{
+			BaseUnitId = ValidateBaseUnit(baseUnitId)
+		};
+		ValidateRatio(baseUnitId, ratio, unit);
 
         return unit;
     }
