@@ -1,4 +1,5 @@
-﻿using BuildingBlocks.Domain.SeedWork;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using BuildingBlocks.Domain.SeedWork;
 
 namespace BuildingBlocks.Domain.Aggregates;
 
@@ -9,6 +10,7 @@ public class Entity : IEntity
         Id = Guid.NewGuid();
     }
 
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public Guid Id { get; protected set; }
 
     public int Ordering { get; protected set; }
