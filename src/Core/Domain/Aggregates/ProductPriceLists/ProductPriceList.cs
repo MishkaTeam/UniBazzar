@@ -9,7 +9,7 @@ public class ProductPriceList : Entity
 
     public ProductPriceList()
     {
-        
+        // FOR EF!
     }
 
     public static ProductPriceList Create(Guid productid, int price)

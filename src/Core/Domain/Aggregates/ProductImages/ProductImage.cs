@@ -8,7 +8,7 @@ public class ProductImage : Entity
 {
     public ProductImage()
     {
-            
+        // FOR EF!
     }
 
     public static ProductImage Create(Guid productid, string imageurl)
