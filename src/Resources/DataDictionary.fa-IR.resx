@@ -135,6 +135,9 @@
   <data name="Parent" xml:space="preserve">
     <value>والد</value>
   </data>
+  <data name="Price" xml:space="preserve">
+    <value>قیمت</value>
+  </data>
   <data name="ProductId" xml:space="preserve">
     <value>شناسه کالا</value>
   </data>
