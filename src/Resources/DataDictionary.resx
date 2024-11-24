@@ -123,6 +123,9 @@
   <data name="BasicInformation" xml:space="preserve">
     <value>Basic Information</value>
   </data>
+  <data name="CellPhonenumber" xml:space="preserve">
+    <value>CellPhoneNumber</value>
+  </data>
   <data name="CreateOf" xml:space="preserve">
     <value>Create Of</value>
   </data>
