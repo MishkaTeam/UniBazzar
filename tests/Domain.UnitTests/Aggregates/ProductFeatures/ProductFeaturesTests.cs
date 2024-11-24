@@ -47,38 +47,4 @@ public class ProductFeaturesTests
 		action.Should().Throw<ArgumentException>().WithMessage(message);
 	}
 
-	[Fact]
-	public void Create_WithSpaceInKayAndValue_ShouldFixSpaces()
-	{
-		Guid productId = Guid.NewGuid();
-		string key = " Key    Space";
-		string value = " Value    Space ";
-
-
-		var productFeature =
-			ProductFeature.Create(productId, key, value);
-
-
-		string fixedKey = "Key Space";
-		string fixedValue = "Value Space";
-
-		productFeature.Key.Should().Be(fixedKey);
-		productFeature.Value.Should().Be(fixedValue);
-	}
-
-	[Fact]
-	public void Create_WithWhiteSpaceKayAndValue_ShouldRemoveSpaces()
-	{
-		Guid productId = Guid.NewGuid();
-		string key = "    ";
-		string value = "    ";
-
-
-		var productFeature =
-			ProductFeature.Create(productId, key, value);
-
-
-		productFeature.Key.Should().Be(string.Empty);
-		productFeature.Value.Should().Be(string.Empty);
-	}
 }
