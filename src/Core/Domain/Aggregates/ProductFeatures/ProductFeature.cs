@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
+using Framework.DataType;
 using Resources;
 using Resources.Messages;
 
@@ -17,8 +18,8 @@ public class ProductFeature : Entity
 		var productFeature = new ProductFeature(productId, key, value, isPinned, order)
 		{
 			ProductId = ValidateProduct(productId),
-			Key = FixString(key),
-			Value = FixString(value),
+			Key = key.Fix(),
+			Value = value.Fix(),
 		};
 
 		return productFeature;
@@ -26,16 +27,16 @@ public class ProductFeature : Entity
 
 	public void Update(string key, string value, bool isPinned = false, int order = 100)
 	{
-		Key = FixString(key);
-		Value = FixString(value);
+		Key = key.Fix()!;
+		Value = value.Fix()!;
 		IsPinned = isPinned;
 		Order = order;
 	}
 
 	public Guid ProductId { get; protected set; }
 	//public Product Product { get; protected set; }
-	public string Key { get; protected set; }
-	public string Value { get; protected set; }
+	public string? Key { get; protected set; }
+	public string? Value { get; protected set; }
 	public bool IsPinned { get; protected set; }
 	public int Order { get; protected set; }
 
@@ -60,20 +61,4 @@ public class ProductFeature : Entity
 		return productId;
 	}
 
-	private static string FixString(string value)
-	{
-		if (string.IsNullOrWhiteSpace(value))
-		{
-			return string.Empty;
-		}
-
-		value = value.Trim();
-
-		while (value.Contains(value: "  "))
-		{
-			value = value.Replace("  ", " ");
-		}
-
-		return value;
-	}
 }
