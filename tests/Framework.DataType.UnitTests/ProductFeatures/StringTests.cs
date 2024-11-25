@@ -1,9 +1,8 @@
-﻿using Domain.Aggregates.ProductFeature;
-using FluentAssertions;
+﻿using FluentAssertions;
 
 namespace Framework.DataType.UnitTests.ProductFeatures;
 
-public class ProductFeaturesTests
+public class StringTests
 {
 	[Fact]
 	public void Create_WithSpaceInKayAndValue_ShouldFixSpaces()
@@ -12,16 +11,14 @@ public class ProductFeaturesTests
 		string key = " Key    Space";
 		string value = " Value    Space ";
 
-
-		var productFeature =
-			ProductFeature.Create(productId, key, value);
-
+		key = key!.Fix();
+		value = value!.Fix();
 
 		string fixedKey = "Key Space";
 		string fixedValue = "Value Space";
 
-		productFeature.Key.Should().Be(fixedKey);
-		productFeature.Value.Should().Be(fixedValue);
+		key.Should().Be(fixedKey);
+		value.Should().Be(fixedValue);
 	}
 
 	[Fact]
@@ -31,12 +28,10 @@ public class ProductFeaturesTests
 		string key = "    ";
 		string value = "    ";
 
+		key = key!.Fix();
+		value = value!.Fix();
 
-		var productFeature =
-			ProductFeature.Create(productId, key, value);
-
-
-		productFeature.Key.Should().Be(null);
-		productFeature.Value.Should().Be(null);
+		key.Should().Be(null);
+		value.Should().Be(null);
 	}
 }

@@ -18,7 +18,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\Core\Domain\Domain.csproj" />
+	  <ProjectReference Include="..\..\src\Framework\Framework.DataType\Framework.DataType.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
