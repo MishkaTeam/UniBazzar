@@ -10,7 +10,7 @@ public class ProductImageTests
     public void Create_WithProductId_ShouldSetProperties()
     {
         Guid productid = Guid.NewGuid();
-        string imageurl = "C:\\Users\\mdnal\\Desktop\\UniBazzar\\UniBazzar\\src\\Presentation\\Server\\wwwroot\\image\\test.png";
+        string imageurl = "test.png";
 
         var productimage = ProductImage.Create(productid, imageurl);
 
@@ -22,7 +22,7 @@ public class ProductImageTests
     public void Create_WithoutProductId_ShouldThrowArgumentException()
     {
         Guid productid = Guid.Empty;
-        string imageurl = "C:\\Users\\mdnal\\Desktop\\UniBazzar\\UniBazzar\\src\\Presentation\\Server\\wwwroot\\image\\test.png";
+        string imageurl = "test.png";
 
         Action action = () => ProductImage.Create(productid,imageurl);
 
