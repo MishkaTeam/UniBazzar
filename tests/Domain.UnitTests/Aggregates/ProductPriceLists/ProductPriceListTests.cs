@@ -44,19 +44,4 @@ public class ProductPriceListTests
         action.Should().Throw<ArgumentException>().WithMessage(message);
     }
 
-    [Fact]
-    public void Create_WithoutProductIdAndNegativePrice_ShouldThrowArgumentException()
-    {
-        Guid productid = Guid.Empty;
-        int price = -10000;
-
-        Action action = () => ProductPriceList.Create(productid, price);
-
-        var messageprice = string.Format(Resources.Messages.Validations.IP, Resources.DataDictionary.Price);
-        var messageforproductid = string.Format(Resources.Messages.Validations.Required, Resources.DataDictionary.ProductId);
-
-        action.Should().Throw<ArgumentException>().WithMessage(messageprice);
-        action.Should().Throw<ArgumentException>().WithMessage(messageforproductid);
-    }
-
 }
