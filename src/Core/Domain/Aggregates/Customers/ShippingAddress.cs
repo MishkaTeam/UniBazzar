@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Persistence.Aggregates.Customers
+namespace Domain.Aggregates.Customers
 {
-    public class ShippingAddress: Entity
+    public class ShippingAddress : Entity
     {
         public string Country { get; set; }
         public string province { get; set; }
@@ -17,4 +17,3 @@ namespace Persistence.Aggregates.Customers
 
     }
 }
-//کشور - استان - شهر - آدرس - پلاک و کد پستی
