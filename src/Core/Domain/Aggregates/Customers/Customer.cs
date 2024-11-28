@@ -12,20 +12,20 @@ namespace Domain.Aggregates.Customers
     {
         public Customer()
         {
-
+            // FOR EF!
         }
         private Customer()
         {
             shippingAddresses = new List<ShippingAddress>();
         }
 
-        public Customer(string firstName, string lastName, string email, string password)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            Email = email;
-            Password = password;
-        }
+        //public Customer(string firstName, string lastName, string email, string password)
+        //{
+        //    FirstName = firstName;
+        //    LastName = lastName;
+        //    Email = email;
+        //    Password = password;
+        //}
 
         public string FirstName { get; set; }
 
@@ -56,7 +56,7 @@ namespace Domain.Aggregates.Customers
         }
         public void Update(string firstName, string lastName, string email, string password)
         {
-            FirstName = firstName;
+            FirstName = ValidateFirstname(firstName);
             LastName = lastName;
             Email = email;
             Password = password;
@@ -66,11 +66,15 @@ namespace Domain.Aggregates.Customers
         {
             if (string.IsNullOrWhiteSpace(firstname))
             {
-
+                //var message=string.Format(Resources.Messages.Validations.GreaterThan,Resources.DataDictionary.)
                 throw new ArgumentException("Firstname cannot be null or empty.");
             }
 
             return firstname.Trim();
+            //var message = string.Format(
+            //   Resources.Messages.Validations.GreaterThan
+            //   , Resources.DataDictionary.UnitRatio, "0");
+
         }
 
         private Customer(string firstname, string lastName, string email, string password)
