@@ -1,10 +1,4 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
-using Domain.Aggregates.Units;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Aggregates.Customers
 {
@@ -14,51 +8,39 @@ namespace Domain.Aggregates.Customers
         {
             // FOR EF!
         }
-        private Customer()
+
+        public string FirstName { get; private set; }
+
+        public string LastName { get; private set; }
+
+        public List<ShippingAddress> shippingAddresses { get; private set; }
+
+        public string NationalCode { get; private set; }
+
+        public string Mobile { get; private set; }
+
+        public string Email { get; private set; }
+
+        public string IsMobileVerified { get; private set; }
+
+        public string IsEmailVerified { get; private set; }
+
+        public string Password { get; private set; }
+
+        public static Customer register(string firstName, string lastName, string mobile, string password)
         {
-            shippingAddresses = new List<ShippingAddress>();
-        }
-
-        //public Customer(string firstName, string lastName, string email, string password)
-        //{
-        //    FirstName = firstName;
-        //    LastName = lastName;
-        //    Email = email;
-        //    Password = password;
-        //}
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public List<ShippingAddress> shippingAddresses { get; set; }
-
-        public string NationalCode { get; set; }
-
-        public string Mobile { get; set; }
-
-        public string Email { get; set; }
-
-        public string IsMobileVerified { get; set; }
-
-        public string IsEmailVerified { get; set; }
-
-        public string Password { get; set; }
-
-        public static Customer register(string firstName, string lastName, string email, string password)
-        {
-            var customer = new Customer(firstName, lastName, email, password)
+            var customer = new Customer(firstName, lastName, mobile, password)
             {
                 FirstName = ValidateFirstname(firstName),
 
             };
             return customer;
         }
-        public void Update(string firstName, string lastName, string email, string password)
+        public void Update(string firstName, string lastName, string mobile, string password)
         {
             FirstName = ValidateFirstname(firstName);
             LastName = lastName;
-            Email = email;
+            Mobile = mobile;
             Password = password;
 
         }
@@ -71,17 +53,16 @@ namespace Domain.Aggregates.Customers
             }
 
             return firstname.Trim();
-            //var message = string.Format(
-            //   Resources.Messages.Validations.GreaterThan
-            //   , Resources.DataDictionary.UnitRatio, "0");
+           
 
         }
 
-        private Customer(string firstname, string lastName, string email, string password)
+        private Customer(string firstname, string lastName, string mobile, string password)
         {
+            shippingAddresses = new List<ShippingAddress>();
             FirstName = firstname;
             LastName = lastName;
-            Email = email;
+            Mobile = mobile;
             Password = password;
         }
     }
