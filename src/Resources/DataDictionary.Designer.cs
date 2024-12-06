@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CellPhoneNumber.
+        /// </summary>
+        public static string CellPhonenumber {
+            get {
+                return ResourceManager.GetString("CellPhonenumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Of.
         /// </summary>
         public static string CreateOf {
