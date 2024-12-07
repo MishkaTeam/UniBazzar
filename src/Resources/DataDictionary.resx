@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActivePriceListId" xml:space="preserve">
+    <value>Active Price List Id</value>
+  </data>
   <data name="BaseUnit" xml:space="preserve">
     <value>Base Unit</value>
   </data>
   <data name="BasicInformation" xml:space="preserve">
     <value>Basic Information</value>
+  </data>
+  <data name="BrandId" xml:space="preserve">
+    <value>Brand Id</value>
+  </data>
+  <data name="CategoryId" xml:space="preserve">
+    <value>Category Id</value>
   </data>
   <data name="CreateOf" xml:space="preserve">
     <value>Create Of</value>
@@ -141,11 +150,17 @@
   <data name="ProductId" xml:space="preserve">
     <value>Product Id</value>
   </data>
+  <data name="StoreId" xml:space="preserve">
+    <value>Store Id</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Title</value>
   </data>
   <data name="Unit" xml:space="preserve">
     <value>Unit</value>
+  </data>
+  <data name="UnitId" xml:space="preserve">
+    <value>Unit Id</value>
   </data>
   <data name="UnitRatio" xml:space="preserve">
     <value>Unit Ratio </value>
