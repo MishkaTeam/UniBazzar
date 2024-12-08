@@ -110,7 +110,7 @@ namespace Resources {
         /// </summary>
         public static string CellPhonenumber {
             get {
-                return ReourceManager.GetString("CellPhonenumber", resourceCulture);
+                return ResourceManager.GetString("CellPhonenumber", resourceCulture);
             }
         }
         
