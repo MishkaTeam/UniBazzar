@@ -132,6 +132,9 @@
   <data name="CategoryId" xml:space="preserve">
     <value>Category Id</value>
   </data>
+  <data name="CellPhonenumber" xml:space="preserve">
+    <value>CellPhoneNumber</value>
+  </data>
   <data name="CreateOf" xml:space="preserve">
     <value>Create Of</value>
   </data>

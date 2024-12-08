@@ -100,8 +100,17 @@ namespace Resources {
         ///   Looks up a localized string similar to Category Id.
         /// </summary>
         public static string CategoryId {
-            get {
+            get { 
                 return ResourceManager.GetString("CategoryId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CellPhoneNumber.
+        /// </summary>
+        public static string CellPhonenumber {
+            get {
+                return ReourceManager.GetString("CellPhonenumber", resourceCulture);
             }
         }
         
