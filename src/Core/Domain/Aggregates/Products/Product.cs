@@ -1,5 +1,4 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
-using Domain.Aggregates.ProductPriceLists;
 using Domain.Aggregates.Units;
 using Domain.Enumerations;
 using Framework.DataType;
