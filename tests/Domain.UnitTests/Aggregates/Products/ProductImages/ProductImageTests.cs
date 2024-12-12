@@ -1,7 +1,7 @@
-﻿using Domain.Aggregates.ProductImages;
+﻿using Domain.Aggregates.Products.ProductImages;
 using FluentAssertions;
 
-namespace Domain.UnitTests.Aggregates.ProductImages;
+namespace Domain.UnitTests.Aggregates.Products.ProductImages;
 
 public class ProductImageTests
 {
@@ -24,7 +24,7 @@ public class ProductImageTests
         Guid productid = Guid.Empty;
         string imageurl = "test.png";
 
-        Action action = () => ProductImage.Create(productid,imageurl);
+        Action action = () => ProductImage.Create(productid, imageurl);
 
         var message = string.Format(Resources.Messages.Validations.Required, Resources.DataDictionary.ProductId);
 

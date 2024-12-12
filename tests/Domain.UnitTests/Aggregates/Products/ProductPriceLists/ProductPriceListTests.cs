@@ -1,7 +1,7 @@
-﻿using Domain.Aggregates.ProductPriceLists;
+﻿using Domain.Aggregates.Products.ProductPriceLists;
 using FluentAssertions;
 
-namespace Domain.UnitTests.Aggregates.ProductPriceLists;
+namespace Domain.UnitTests.Aggregates.Products.ProductPriceLists;
 
 public class ProductPriceListTests
 {

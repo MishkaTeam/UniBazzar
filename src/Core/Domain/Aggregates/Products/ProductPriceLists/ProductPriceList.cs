@@ -1,8 +1,6 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
-using Domain.Aggregates.ProductImages;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Aggregates.ProductPriceLists;
+namespace Domain.Aggregates.Products.ProductPriceLists;
 
 public class ProductPriceList : Entity
 {

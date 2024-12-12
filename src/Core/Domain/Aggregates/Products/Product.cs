@@ -64,7 +64,7 @@ public class Product : Entity
 	public ProductType ProductType { get; protected set; }
 
 	public Guid ActivePriceListId { get; protected set; }
-	public ProductPriceList ActivePriceList { get; protected set; }
+	//public ProductPriceList ActivePriceList { get; protected set; }
 
 	public Guid UnitId { get; protected set; }
 	public Unit Unit { get; protected set; }
