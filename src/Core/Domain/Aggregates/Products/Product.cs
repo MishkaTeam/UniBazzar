@@ -1,5 +1,4 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
-using Domain.Aggregates.ProductPriceLists;
 using Domain.Aggregates.Units;
 using Domain.Enumerations;
 using Framework.DataType;
@@ -64,7 +63,7 @@ public class Product : Entity
 	public ProductType ProductType { get; protected set; }
 
 	public Guid ActivePriceListId { get; protected set; }
-	public ProductPriceList ActivePriceList { get; protected set; }
+	//public ProductPriceList ActivePriceList { get; protected set; }
 
 	public Guid UnitId { get; protected set; }
 	public Unit Unit { get; protected set; }
