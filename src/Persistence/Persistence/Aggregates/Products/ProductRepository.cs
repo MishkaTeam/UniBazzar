@@ -1,5 +1,6 @@
 ﻿using Domain.Aggregates.Products;
 using Domain.Aggregates.Products.ProductImages;
+using Domain.Aggregates.Products.ProductPriceLists;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Aggregates.Products;
@@ -30,5 +31,34 @@ public class ProductRepository(UniBazzarContext uniBazzarContext) : IProductRepo
     public void Remove(ProductImage productImage)
     {
         uniBazzarContext.ProductImages.Remove(productImage);
+    }
+
+    /*--------------------------------------------------------------------------------------------------------*/
+
+    public void AddProductPriceList(ProductPriceList productPriceList)
+    {
+        uniBazzarContext.Add(productPriceList);
+    }
+
+    public async Task<ProductPriceList> GetProductPriceListAsync(Guid id)
+    {
+        var productpricelist = await uniBazzarContext.ProductPriceLists.FirstOrDefaultAsync(x => x.Id == id);
+        return productpricelist ?? new ProductPriceList();
+    }
+
+    public Task<List<ProductPriceList>> GetAllProductPriceListAsync()
+    {
+        return uniBazzarContext.ProductPriceLists.ToListAsync();
+    }
+
+    public async Task<ProductPriceList> GetPriceByProductId(Guid id)
+    {
+        var productpricelist = await uniBazzarContext.ProductPriceLists.FirstOrDefaultAsync(x => x.ProductId == id);
+        return productpricelist ?? new ProductPriceList();
+    }
+
+    public void Remove(ProductPriceList productPriceList)
+    {
+        uniBazzarContext.ProductPriceLists.Remove(productPriceList);
     }
 }
