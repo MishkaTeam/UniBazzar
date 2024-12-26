@@ -12,7 +12,7 @@ namespace Persistence.Aggregates.Customer
     {
         public void AddCustomer(Domain.Aggregates.Customers.Customer entity)
         {
-           uniBazzarContext.Add(entity);
+            uniBazzarContext.Add(entity);
         }
 
         public Task<List<Domain.Aggregates.Customers.Customer>> GetAllCustomerAsync()
