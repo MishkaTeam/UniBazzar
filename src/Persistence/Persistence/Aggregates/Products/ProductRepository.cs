@@ -84,18 +84,9 @@ public partial class ProductRepository(UniBazzarContext uniBazzarContext) : IPro
 	{
         uniBazzarContext.ProductPriceLists.Remove(productPriceList);
     }
-}
-
-public partial class ProductRepository
-	(UniBazzarContext uniBazzarContext) : IProductRepository
-{
-	public void AddProduct(Product entity)
-	{
-		uniBazzarContext.Add(entity);
-	}
 
 	public void RemoveProduct(Product entity)
 	{
 		uniBazzarContext.Remove(entity);
 	}
-}>>>>>>>>> Temporary merge branch 2
+}
