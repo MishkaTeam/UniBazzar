@@ -141,8 +141,23 @@
   <data name="DeleteOf" xml:space="preserve">
     <value>Delete Of</value>
   </data>
+  <data name="DownloadUrl" xml:space="preserve">
+    <value>Download Url</value>
+  </data>
+  <data name="FullDescription" xml:space="preserve">
+    <value>Full Description</value>
+  </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
+  </data>
+  <data name="IsPinned" xml:space="preserve">
+    <value>Is Pinned</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
   </data>
   <data name="Parent" xml:space="preserve">
     <value>Parent</value>
@@ -152,6 +167,12 @@
   </data>
   <data name="ProductId" xml:space="preserve">
     <value>Product Id</value>
+  </data>
+  <data name="ProductType" xml:space="preserve">
+    <value>Product Type</value>
+  </data>
+  <data name="ShortDescription" xml:space="preserve">
+    <value>Short Description</value>
   </data>
   <data name="StoreId" xml:space="preserve">
     <value>Store Id</value>
@@ -173,5 +194,8 @@
   </data>
   <data name="UpdateOf" xml:space="preserve">
     <value>Update Of</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
   </data>
 </root>

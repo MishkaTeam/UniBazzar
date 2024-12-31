@@ -100,7 +100,7 @@ namespace Resources {
         ///   Looks up a localized string similar to Category Id.
         /// </summary>
         public static string CategoryId {
-            get { 
+            get {
                 return ResourceManager.GetString("CategoryId", resourceCulture);
             }
         }
@@ -133,11 +133,56 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download Url.
+        /// </summary>
+        public static string DownloadUrl {
+            get {
+                return ResourceManager.GetString("DownloadUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full Description.
+        /// </summary>
+        public static string FullDescription {
+            get {
+                return ResourceManager.GetString("FullDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Id.
         /// </summary>
         public static string Id {
             get {
                 return ResourceManager.GetString("Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Pinned.
+        /// </summary>
+        public static string IsPinned {
+            get {
+                return ResourceManager.GetString("IsPinned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order.
+        /// </summary>
+        public static string Order {
+            get {
+                return ResourceManager.GetString("Order", resourceCulture);
             }
         }
         
@@ -165,6 +210,24 @@ namespace Resources {
         public static string ProductId {
             get {
                 return ResourceManager.GetString("ProductId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Type.
+        /// </summary>
+        public static string ProductType {
+            get {
+                return ResourceManager.GetString("ProductType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Short Description.
+        /// </summary>
+        public static string ShortDescription {
+            get {
+                return ResourceManager.GetString("ShortDescription", resourceCulture);
             }
         }
         
@@ -228,6 +291,15 @@ namespace Resources {
         public static string UpdateOf {
             get {
                 return ResourceManager.GetString("UpdateOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string Value {
+            get {
+                return ResourceManager.GetString("Value", resourceCulture);
             }
         }
     }

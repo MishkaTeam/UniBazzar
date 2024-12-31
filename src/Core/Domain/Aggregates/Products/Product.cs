@@ -1,4 +1,7 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
+using Domain.Aggregates.Categories;
+using Domain.Aggregates.Products.ProductPriceLists;
+using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
 using Domain.Enumerations;
 using Framework.DataType;
@@ -63,7 +66,7 @@ public class Product : Entity
 	public ProductType ProductType { get; protected set; }
 
 	public Guid ActivePriceListId { get; protected set; }
-	//public ProductPriceList ActivePriceList { get; protected set; }
+	public ProductPriceList ActivePriceList { get; protected set; }
 
 	public Guid UnitId { get; protected set; }
 	public Unit Unit { get; protected set; }
@@ -72,10 +75,10 @@ public class Product : Entity
 	//public Brand Brand { get; protected set; }
 
 	public Guid CategoryId { get; protected set; }
-	//public Category Category { get; protected set; }
+	public Category Category { get; protected set; }
 
 	public Guid StoreId { get; protected set; }
-	//public Store Store { get; protected set; }
+	public Store Store { get; protected set; }
 
 	private Product(string name, string shortDescription, string fullDescription,
 		Guid storeId, Guid categoryId, Guid brandId, Guid unitId, Guid activePriceListId,
