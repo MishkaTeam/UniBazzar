@@ -1,4 +1,4 @@
-﻿using Domain.Aggregates.Products;
+using Domain.Aggregates.Products;
 using Domain.Aggregates.Products.ProductImages;
 using Domain.Aggregates.Products.ProductPriceLists;
 using Microsoft.EntityFrameworkCore;
@@ -83,10 +83,19 @@ public partial class ProductRepository(UniBazzarContext uniBazzarContext) : IPro
 	public void Remove(ProductPriceList productPriceList)
 	{
         uniBazzarContext.ProductPriceLists.Remove(productPriceList);
+    }
+}
+
+public partial class ProductRepository
+	(UniBazzarContext uniBazzarContext) : IProductRepository
+{
+	public void AddProduct(Product entity)
+	{
+		uniBazzarContext.Add(entity);
 	}
 
 	public void RemoveProduct(Product entity)
 	{
 		uniBazzarContext.Remove(entity);
 	}
-}
+}>>>>>>>>> Temporary merge branch 2

@@ -15,10 +15,9 @@ public class UniBazzarContext : DbContext
     }
 
     public DbSet<Unit> Units { get; set; }
-    public DbSet<Product> Products { get; set; }
-    public DbSet<ProductFeature> ProductFeatures { get; set; }
     public DbSet<ProductImage> ProductImages { get; set; }
     public DbSet<ProductPriceList> ProductPriceLists { get; set; }
-
+    public DbSet<Product> Products { get; set; }
+    public DbSet<ProductFeature> ProductFeatures { get; set; }
 
 }
