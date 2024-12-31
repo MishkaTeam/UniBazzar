@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActivePriceListId" xml:space="preserve">
-    <value>شناسه لیس ‌قیمت فعال</value>
+    <value>شناسه لیست ‌قیمت فعال</value>
   </data>
   <data name="BaseUnit" xml:space="preserve">
     <value>واحد اصلی</value>
@@ -132,14 +132,32 @@
   <data name="CategoryId" xml:space="preserve">
     <value>شناسه دسته‌بندی</value>
   </data>
+  <data name="CellPhonenumber" xml:space="preserve">
+    <value>شماره همراه</value>
+  </data>
   <data name="CreateOf" xml:space="preserve">
     <value>ایجاد</value>
   </data>
   <data name="DeleteOf" xml:space="preserve">
     <value>حذف </value>
   </data>
+  <data name="DownloadUrl" xml:space="preserve">
+    <value>لینک دانلود</value>
+  </data>
+  <data name="FullDescription" xml:space="preserve">
+    <value>توضیحات</value>
+  </data>
   <data name="Id" xml:space="preserve">
     <value>شناسه</value>
+  </data>
+  <data name="IsPinned" xml:space="preserve">
+    <value>سنجاق شده</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>تراز</value>
   </data>
   <data name="Parent" xml:space="preserve">
     <value>والد</value>
@@ -149,6 +167,12 @@
   </data>
   <data name="ProductId" xml:space="preserve">
     <value>شناسه کالا</value>
+  </data>
+  <data name="ProductType" xml:space="preserve">
+    <value>نوع محصول</value>
+  </data>
+  <data name="ShortDescription" xml:space="preserve">
+    <value>خلاصه توضیحات</value>
   </data>
   <data name="StoreId" xml:space="preserve">
     <value>شناسه فروشگاه</value>
@@ -170,5 +194,8 @@
   </data>
   <data name="UpdateOf" xml:space="preserve">
     <value>ویرایش </value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>مقدار</value>
   </data>
 </root>

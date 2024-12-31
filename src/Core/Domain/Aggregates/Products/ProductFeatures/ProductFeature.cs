@@ -34,7 +34,7 @@ public class ProductFeature : Entity
     }
 
     public Guid ProductId { get; protected set; }
-    //public Product Product { get; protected set; }
+    public Product Product { get; protected set; }
     public string? Key { get; protected set; }
     public string? Value { get; protected set; }
     public bool IsPinned { get; protected set; }
