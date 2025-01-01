@@ -1,5 +1,7 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
 using Framework.DataType;
+using System.ComponentModel.DataAnnotations;
+
 namespace Domain.Aggregates.Customers
 {
     public class Customer : Entity
@@ -33,25 +35,29 @@ namespace Domain.Aggregates.Customers
             ShippingAddresses.Add(Adress);
         }
 
-        public static Customer Register(string firstName, string lastName, string mobile, string password)
+        public static Customer Register(string firstName, string lastName, string mobile, string password,string email )
         {
-
-            var Customer = new Customer(firstName, lastName, mobile, password)
+            var Customer = new Customer(firstName, lastName, mobile, password, email)
             {
+                Mobile = mobile.Fix(),
+                Password = password.Fix(),
                 FirstName = firstName.Fix(),
                 LastName = lastName.Fix(),
+                Email = email.Fix(),
             };
             return Customer;
         }
-        public void Update(string firstName, string lastName, string mobile, string password)
+        public void Update(string firstName, string lastName, string mobile, string password,string nationalcode,string email)
         {
             FirstName = firstName.Fix();
             LastName = lastName.Fix();
             Mobile = mobile;
             Password = password;
-
+            NationalCode = nationalcode;
+            Email = email;
         }
-        private Customer(string firstname, string lastName, string mobile, string password)
+
+        private Customer(string firstname, string lastName, string mobile, string password, string email)
         { 
             ShippingAddresses = new List<ShippingAddress>();
             FirstName = firstname;
