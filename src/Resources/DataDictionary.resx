@@ -156,4 +156,22 @@
   <data name="UpdateOf" xml:space="preserve">
     <value>Update Of</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Family" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="NationalCode" xml:space="preserve">
+    <value>National Code</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
 </root>
