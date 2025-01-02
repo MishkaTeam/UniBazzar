@@ -1,6 +1,7 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
 using Framework.DataType;
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 namespace Domain.Aggregates.Customers
 {
@@ -27,7 +28,7 @@ namespace Domain.Aggregates.Customers
         public string IsEmailVerified { get; private set; }
 
         public string Password { get; private set; }
-        
+
         public void AddShippingAddress(string country, string province, string city, string address, string postalCode)
         {
 
@@ -35,10 +36,14 @@ namespace Domain.Aggregates.Customers
             ShippingAddresses.Add(Adress);
         }
 
-        public static Customer Register(string firstName, string lastName, string mobile, string password,string email )
+        public static Customer Register(string firstName, string lastName, string mobile, string password, string email)
         {
+            if (!IsValidEmail(email))
+                throw new ValidationException("Invalid email format.");
+
             var Customer = new Customer(firstName, lastName, mobile, password, email)
             {
+
                 Mobile = mobile.Fix(),
                 Password = password.Fix(),
                 FirstName = firstName.Fix(),
@@ -47,8 +52,12 @@ namespace Domain.Aggregates.Customers
             };
             return Customer;
         }
-        public void Update(string firstName, string lastName, string mobile, string password,string nationalcode,string email)
+        public void Update(string firstName, string lastName, string mobile, string password, string nationalcode, string email)
         {
+            if (!IsValidEmail(email))
+                throw new ValidationException("Invalid email format.");
+
+
             FirstName = firstName.Fix();
             LastName = lastName.Fix();
             Mobile = mobile;
@@ -58,12 +67,22 @@ namespace Domain.Aggregates.Customers
         }
 
         private Customer(string firstname, string lastName, string mobile, string password, string email)
-        { 
+        {
             ShippingAddresses = new List<ShippingAddress>();
             FirstName = firstname;
             LastName = lastName;
             Mobile = mobile;
             Password = password;
         }
+        private static bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            var emailRegex = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, emailRegex);
+        }
+
+
     }
 }
