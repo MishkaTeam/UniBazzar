@@ -1,6 +1,5 @@
-﻿using Domain.Aggregates.Customers;
+﻿
 using System.ComponentModel.DataAnnotations;
-using System.Security.AccessControl;
 namespace Application.Aggregates.Customer
 {
     public class CreateCustomerViewModel

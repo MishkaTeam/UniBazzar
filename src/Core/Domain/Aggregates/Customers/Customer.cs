@@ -11,76 +11,61 @@ namespace Domain.Aggregates.Customers
         {
             // FOR EF!
         }
-        public string FirstName {get; private set; }
+        public string FirstName { get; private set; }
 
-        public string LastName {get; private set; }
+        public string LastName { get; private set; }
 
-        public List<ShippingAddress> ShippingAddresses {get; private set; }
+        public List<ShippingAddress> ShippingAddresses { get; private set; }
 
-        public string NationalCode {get; private set; }
+        public string NationalCode { get; private set; }
 
-        public string Mobile {get; private set; }
+        public string Mobile { get; private set; }
 
-        public string Email {get; private set; }
+        public string Email { get; private set; }
 
-        public string IsMobileVerified {get; private set; }
+        public string IsMobileVerified { get; private set; }
 
-        public string IsEmailVerified {get; private set; }
+        public string IsEmailVerified { get; private set; }
 
-        public string Password {get; private set; }
+        public string Password { get; private set; }
 
-        public void AddShippingAddress(string country,string province,string city,string address,string postalCode)
+        public void AddShippingAddress(string country, string province, string city, string address, string postalCode)
         {
 
             var Adress = ShippingAddress.Create(country, province, city, address, postalCode);
             ShippingAddresses.Add(Adress);
         }
 
-        public static Customer Register(string firstName,string lastName,string mobile,string password,string email)
+        public static Customer Register( string mobile, string password, string email)
         {
-            if (!IsValidEmail(email))
-                throw new ValidationException("Invalid email format.");
+            if (!email.IsValidEmail())
+                throw new ValidationException(Resources.Messages.Validations.EmailAddress);
 
-            var Customer = new Customer(firstName,lastName,mobile,password,email)
+            var Customer = new Customer( mobile, password, email)
             {
-
                 Mobile = mobile.Fix(),
                 Password = password.Fix(),
-                FirstName = firstName.Fix(),
-                LastName = lastName.Fix(),
                 
             };
             return Customer;
         }
-        public void Update(string firstName,string lastName,string mobile,string password,string nationalcode,string email)
+        public void Update(string firstName, string lastName, string mobile, string nationalcode, string email)
         {
-            if (!IsValidEmail(email))
-                throw new ValidationException("Invalid email format.");
+            if (!email.IsValidEmail())
+                throw new ValidationException(Resources.Messages.Validations.EmailAddress);
 
             FirstName = firstName.Fix();
             LastName = lastName.Fix();
             Mobile = mobile;
-            Password = password;
-            NationalCode = nationalcode;   
+            NationalCode = nationalcode;
         }
 
-        private Customer(string firstname,string lastName,string mobile,string password,string email)
+        private Customer( string mobile, string password, string email)
         {
             ShippingAddresses = new List<ShippingAddress>();
-            FirstName = firstname;
-            LastName = lastName;
             Mobile = mobile;
             Password = password;
         }
-        private static bool IsValidEmail(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-                return false;
-
-            var emailRegex = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-            return Regex.IsMatch(email, emailRegex);
-        }
-
-
+       
     }
 }

@@ -4,16 +4,16 @@ using Mapster;
 
 namespace Application.Aggregates.Customer
 {
-    public class CustomerApplication(ICustomerRepository customerRepository, IUnitOfWork unitOfWork )
+    public class CustomerApplication(ICustomerRepository customerRepository, IUnitOfWork unitOfWork)
     {
         public async Task<CreateCustomerViewModel> CreateAsync(CreateCustomerViewModel viewModel)
         {
-            var entity = Domain.Aggregates.Customers.Customer.Register(
-               
+            var entity = Domain.Aggregates.Customers.Customer.Register
+                (
                 viewModel.Mobile,
                 viewModel.Email,
-                viewModel.Password);
-
+                viewModel.Password
+                );
             customerRepository.AddCustomer(entity);
             await unitOfWork.CommitAsync();
             return entity.Adapt<CreateCustomerViewModel>();
@@ -50,8 +50,7 @@ namespace Application.Aggregates.Customer
                 updateViewModel.LastName,
                 updateViewModel.NationalCode,
                 updateViewModel.Mobile,
-                updateViewModel.Email,
-                updateViewModel.Password);
+                updateViewModel.Email);
 
             await unitOfWork.CommitAsync();
             return entity.Adapt<UpdateCustomerViewModel>();

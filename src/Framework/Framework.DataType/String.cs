@@ -1,4 +1,6 @@
-﻿namespace Framework.DataType;
+﻿using System.Text.RegularExpressions;
+
+namespace Framework.DataType;
 
 public static class String : object
 {
@@ -6,7 +8,15 @@ public static class String : object
 	{
 	}
 
-	public static string? Fix(this string? value)
+    public static bool IsValidEmail(this string email)
+    {
+        if (string.IsNullOrWhiteSpace(email))
+            return false;
+
+        var emailRegex = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+        return Regex.IsMatch(email, emailRegex);
+    }
+    public static string? Fix(this string? value)
 	{
 		if (string.IsNullOrWhiteSpace(value: value))
 		{
