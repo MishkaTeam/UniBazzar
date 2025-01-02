@@ -23,22 +23,5 @@ namespace Application.Aggregates.Customer
            Name = nameof(Resources.DataDictionary.Id))]
         public Guid Id { get; protected set; }
 
-        public int Ordering { get; protected set; }
-
-        public Guid InsertedBy { get; protected set; }
-
-        public int Version { get; protected set; }
-
-        public Guid UpdatedBy { get; protected set; }
-
-        public Guid TenantId { get; protected set; }
-
-        public Guid OwnerId { get; protected set; }
-
-        public Guid StoreId { get; protected set; }
-
-        public long InsertDateTime { get; protected set; }
-
-        public long UpdateDateTime { get; protected set; }
     }
 }
