@@ -4,14 +4,9 @@ using Domain.Aggregates.Products.ProductFeatures;
 
 namespace Domain.Aggregates.Products;
 
-public interface IProductRepository : IProductFeatureRepository
+public interface IProductRepository : IProductFeatureRepository,
+                                      IProductImageRepository
 {
-    void AddProductImage(ProductImage productImage);
-    Task<ProductImage> GetProductImageAsync(Guid id);
-    Task<List<ProductImage>> GetAllProductImagesAsync();
-    Task<List<ProductImage>> GetImageByProductIdAsync(Guid id);
-    void Remove(ProductImage productImage);
-
     void AddProductPriceList(ProductPriceList productPriceList);
     Task<ProductPriceList> GetProductPriceListAsync(Guid id);
     Task<List<ProductPriceList>> GetAllProductPriceListAsync();
