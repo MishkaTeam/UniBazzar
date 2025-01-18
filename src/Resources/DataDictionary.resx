@@ -165,14 +165,23 @@
   <data name="Price" xml:space="preserve">
     <value>Price</value>
   </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
   <data name="ProductId" xml:space="preserve">
     <value>Product Id</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
   </data>
   <data name="ProductType" xml:space="preserve">
     <value>Product Type</value>
   </data>
   <data name="ShortDescription" xml:space="preserve">
     <value>Short Description</value>
+  </data>
+  <data name="SKU" xml:space="preserve">
+    <value>SKU</value>
   </data>
   <data name="StoreId" xml:space="preserve">
     <value>Store Id</value>
