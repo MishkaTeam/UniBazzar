@@ -66,6 +66,14 @@
                     </svg> @(Resources.DataDictionary.Units)
                 </a>
             </li>
+            <li class="nav-title">@(Resources.DataDictionary.CustomersInformation)</li>
+            <li class="nav-item">
+                <a class="nav-link" asp-page="/BasicInfo/Customers/Index" asp-area="Admin">
+                    <svg class="nav-icon">
+                        <use xlink:href="/admin/vendors/coreui/icons/svg/free.svg#cil-drop"></use>
+                    </svg> @(Resources.DataDictionary.Customers)
+                </a>
+            </li>
         </ul>
         <div class="sidebar-footer border-top d-none d-md-flex">
             <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>

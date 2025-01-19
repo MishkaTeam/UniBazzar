@@ -10,8 +10,6 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Customers
 	{
 		[BindProperty]
 		public CreateCustomerViewModel CreateViewModel { get; set; }=new();
-		[BindProperty]
-		public List<ShippingAddress> ShippingAddresses { get; set; } = new();
 		public async Task OnGet()
 		{
 			

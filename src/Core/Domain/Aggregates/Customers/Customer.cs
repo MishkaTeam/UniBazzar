@@ -23,9 +23,9 @@ namespace Domain.Aggregates.Customers
 
         public string Email { get; private set; }
 
-        public string IsMobileVerified { get; private set; }
+        public bool IsMobileVerified { get; private set; }
 
-        public string IsEmailVerified { get; private set; }
+        public bool IsEmailVerified { get; private set; }
 
         public string Password { get; private set; }
 

@@ -174,4 +174,10 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="Customers" xml:space="preserve">
+    <value>customer</value>
+  </data>
+  <data name="CustomersInformation" xml:space="preserve">
+    <value>Customer Information</value>
+  </data>
 </root>

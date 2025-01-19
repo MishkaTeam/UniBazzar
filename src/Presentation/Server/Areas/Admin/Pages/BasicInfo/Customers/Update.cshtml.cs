@@ -1,10 +1,7 @@
-using Application.Aggregates.Units.ViewModels;
-using Application.Aggregates.Units;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Application.Aggregates.Customer;
-using Domain.Aggregates.Customers;
+
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Customers
 {
@@ -12,8 +9,6 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Customers
 	{
 		[BindProperty]
 		public UpdateCustomerViewModel UpdateViewModel { get; set; } = new();
-		[BindProperty]
-		public List<ShippingAddress> ShippingAddresses { get; set; } = new();
 		public async Task OnGet(Guid Id)
 		{
 			UpdateViewModel = await customerApplication.GetCustomerAsync(Id);

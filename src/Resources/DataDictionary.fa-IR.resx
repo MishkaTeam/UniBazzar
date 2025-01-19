@@ -174,4 +174,10 @@
   <data name="Password" xml:space="preserve">
     <value>رمز عبور</value>
   </data>
+  <data name="Customers" xml:space="preserve">
+    <value>مشتری ها</value>
+  </data>
+  <data name="CustomersInformation" xml:space="preserve">
+    <value>اطلاعات مشتری ها</value>
+  </data>
 </root>

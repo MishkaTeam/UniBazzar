@@ -18,11 +18,15 @@ namespace Application.Aggregates.Customer
             await unitOfWork.CommitAsync();
             return entity.Adapt<CreateCustomerViewModel>();
         }
-
-        public async Task<List<UpdateCustomerViewModel>> GetCustomersAsync()
+        public async Task<List<CustomerViewModel>> GetAllCustomer()
         {
-            var customers = await customerRepository.GetAllCustomerAsync();
-            return customers.Adapt<List<UpdateCustomerViewModel>>();
+            var customers = await customerRepository.GetAllCustomersAsync();
+            return customers.Adapt<List<CustomerViewModel>>();
+        }
+        public async Task<List<CustomerViewModel>> GetCustomersAsync()
+        {
+            var customers = await customerRepository.GetRootCustomersAsync();
+            return customers.Adapt<List<CustomerViewModel>>();
         }
 
         public async Task<UpdateCustomerViewModel> GetCustomerAsync(Guid id)

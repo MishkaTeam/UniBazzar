@@ -2,15 +2,17 @@
 @model Server.Areas.Admin.Pages.BasicInfo.Customers.IndexModel
 @{
 }
-@* <div class="my-2 float-end">
+<div class="my-2 float-end">
     <a class="btn btn-primary" asp-page="Create" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
 </div>
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">@(Resources.DataDictionary.Title)</th>
-            <th scope="col">@(Resources.DataDictionary.BaseUnit)</th>
-            <th scope="col">@(Resources.DataDictionary.UnitRatio)</th>
+            <th scope="col">@(Resources.DataDictionary.Name)</th>
+            <th scope="col">@(Resources.DataDictionary.Family)</th>
+            <th scope="col">@(Resources.DataDictionary.NationalCode)</th>
+            <th scope="col">@(Resources.DataDictionary.Mobile)</th>
+            
             <th scope="col"></th>
         </tr>
     </thead>
@@ -18,9 +20,10 @@
         @foreach (var model in Model.ViewModel)
         {
             <tr>
-                <td>@(model.Title)</td>
-                <td>@(model.BaseUnit?.Title ?? "---")</td>
-                <td>@(model.Ratio)</td>
+                <td>@(model.FirstName)</td>
+                <td>@(model.LastName)</td>
+                <td>@(model.NationalCode)</td>
+                <td>@(model.Mobile)</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <a asp-page="Update" asp-route-Id="@(model.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
@@ -30,4 +33,4 @@
             </tr>
         }
     </tbody>
-</table> *@
+</table>
