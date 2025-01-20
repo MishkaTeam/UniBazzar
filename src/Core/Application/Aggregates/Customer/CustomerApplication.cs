@@ -23,11 +23,11 @@ namespace Application.Aggregates.Customer
             var customers = await customerRepository.GetAllCustomersAsync();
             return customers.Adapt<List<CustomerViewModel>>();
         }
-        public async Task<List<CustomerViewModel>> GetCustomersAsync()
-        {
-            var customers = await customerRepository.GetRootCustomersAsync();
-            return customers.Adapt<List<CustomerViewModel>>();
-        }
+        //public async Task<List<CustomerViewModel>> GetCustomersAsync()
+        //{
+        //    var customers = await customerRepository.GetRootCustomersAsync();
+        //    return customers.Adapt<List<CustomerViewModel>>();
+        //}
 
         public async Task<UpdateCustomerViewModel> GetCustomerAsync(Guid id)
         {

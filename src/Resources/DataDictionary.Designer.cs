@@ -68,7 +68,13 @@ namespace Resources {
                 return ResourceManager.GetString("BaseUnit", resourceCulture);
             }
         }
-        
+        public static string ConfirmPassword
+        {
+            get
+            {
+                return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
         /// <summary>
         ///   Looks up a localized string similar to Basic Information.
         /// </summary>

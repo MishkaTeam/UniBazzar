@@ -180,4 +180,7 @@
   <data name="CustomersInformation" xml:space="preserve">
     <value>Customer Information</value>
   </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>confirm password</value>
+  </data>
 </root>

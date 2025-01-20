@@ -11,9 +11,9 @@ namespace Persistence.Aggregates.Customer
             uniBazzarContext.Add(entity);
         }
 
-        public Task<List<Domain.Aggregates.Customers.Customer>> GetAllCustomerAsync()
+        public Task<List<Domain.Aggregates.Customers.Customer>> GetAllCustomersAsync()
         {
-           return uniBazzarContext.customers.ToListAsync();
+            return uniBazzarContext.customers.ToListAsync();
         }
 
         public Task<Domain.Aggregates.Customers.Customer> GetCustomerAsync(Guid id)
