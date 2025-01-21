@@ -1,8 +1,6 @@
 using Application.Aggregates.Customer;
-using Domain.Aggregates.Customers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Customers
 {
@@ -11,8 +9,7 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Customers
 		[BindProperty]
 		public CreateCustomerViewModel CreateViewModel { get; set; }=new();
 		public async Task OnGet()
-		{
-			
+		{	
 		}
 		public async Task<IActionResult> OnPost()
 		{

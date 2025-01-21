@@ -1,7 +1,6 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
 using Framework.DataType;
 using System.ComponentModel.DataAnnotations;
-using System.Text.RegularExpressions;
 
 namespace Domain.Aggregates.Customers
 {
@@ -11,6 +10,7 @@ namespace Domain.Aggregates.Customers
         {
             // FOR EF!
         }
+
         public string FirstName { get; private set; }
 
         public string LastName { get; private set; }
@@ -31,41 +31,49 @@ namespace Domain.Aggregates.Customers
 
         public void AddShippingAddress(string country, string province, string city, string address, string postalCode)
         {
-
-            var Adress = ShippingAddress.Create(country, province, city, address, postalCode);
-            ShippingAddresses.Add(Adress);
+            var addressEntity = ShippingAddress.Create(country, province, city, address, postalCode);
+            ShippingAddresses.Add(addressEntity);
         }
 
-        public static Customer Register( string mobile, string password, string email)
+        public static Customer Register(string firstName, string lastName,string nationalcode, string mobile, string password, string email)
         {
+           
+
             if (!email.IsValidEmail())
                 throw new ValidationException(Resources.Messages.Validations.EmailAddress);
 
-            var Customer = new Customer( mobile, password, email)
+            var customer = new Customer(firstName, lastName, nationalcode, mobile, password, email)
             {
                 Mobile = mobile.Fix(),
                 Password = password.Fix(),
-                
             };
-            return Customer;
+
+            return customer;
         }
-        public void Update(string firstName, string lastName, string mobile, string nationalcode, string email)
+
+        public void Update(string firstName, string lastName, string nationalcode, string mobile, string email)
         {
+            
+
             if (!email.IsValidEmail())
                 throw new ValidationException(Resources.Messages.Validations.EmailAddress);
 
             FirstName = firstName.Fix();
             LastName = lastName.Fix();
+            NationalCode = nationalcode.Fix();
             Mobile = mobile;
-            NationalCode = nationalcode;
         }
 
-        private Customer( string mobile, string password, string email)
+        private Customer(string firstName, string lastName, string nationalcode, string mobile, string password, string email)
         {
             ShippingAddresses = new List<ShippingAddress>();
+            FirstName = firstName.Fix();
+            LastName = lastName.Fix();
+            NationalCode = nationalcode.Fix();
             Mobile = mobile;
             Password = password;
+            Email = email;
         }
-       
     }
 }
+

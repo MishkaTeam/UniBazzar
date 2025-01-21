@@ -8,5 +8,6 @@ public interface ICustomerRepository
     //Task<List<Customer>> GetRootCustomersAsync();
     Task<List<Customer>> GetAllCustomersAsync();
     Task<Customer> GetCustomerAsync(Guid id);
+    Task<Customer> GetRootCustomersAsync(Guid id);
     void Remove(Customer entity);
 }

@@ -1,21 +1,19 @@
-﻿
-using Domain.Aggregates.Customers;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 namespace Application.Aggregates.Customer
 {
     public class CreateCustomerViewModel
     {
         [Display(ResourceType = typeof(Resources.DataDictionary),
           Name = nameof(Resources.DataDictionary.Name))]
-        public string FirstName { get; private set; }
+        public string FirstName { get; set; }
 
         [Display(ResourceType = typeof(Resources.DataDictionary),
           Name = nameof(Resources.DataDictionary.Family))]
-        public string LastName { get; private set; }
+        public string LastName { get;set; }
 
         [Display(ResourceType = typeof(Resources.DataDictionary),
           Name = nameof(Resources.DataDictionary.NationalCode))]
-        public string NationalCode { get; private set; }
+        public string NationalCode { get; set; }
 
         [Display(ResourceType = typeof(Resources.DataDictionary),
            Name = nameof(Resources.DataDictionary.Mobile))]
@@ -25,17 +23,16 @@ namespace Application.Aggregates.Customer
            Name = nameof(Resources.DataDictionary.Email))]
         public string Email { get; set; }
 
-       
         [Display(ResourceType = typeof(Resources.DataDictionary),
            Name = nameof(Resources.DataDictionary.Password))]
         public string Password { get; set; }
 
-		[Display(ResourceType = typeof(Resources.DataDictionary),
-				   Name = nameof(Resources.DataDictionary.Id))]
-		public Guid Id { get; protected set; }
-
         [Display(ResourceType = typeof(Resources.DataDictionary),
                    Name = nameof(Resources.DataDictionary.ConfirmPassword))]
         public string ConfirmPassword { get; set; }
+
+		[Display(ResourceType = typeof(Resources.DataDictionary),
+				   Name = nameof(Resources.DataDictionary.Id))]
+		public Guid Id { get; protected set; }
     }
 }

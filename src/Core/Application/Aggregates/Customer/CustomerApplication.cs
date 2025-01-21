@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using Application.Aggregates.Units.ViewModels;
+using Domain;
 using Domain.Aggregates.Customers;
 using Mapster;
 
@@ -10,9 +11,12 @@ namespace Application.Aggregates.Customer
         {
             var entity = Domain.Aggregates.Customers.Customer.Register
                 (
+                viewModel.FirstName,
+                viewModel.LastName,
+                viewModel.NationalCode,
                 viewModel.Mobile,
-                viewModel.Email,
-                viewModel.Password
+                viewModel.Password,
+                viewModel.Email
                 );
             customerRepository.AddCustomer(entity);
             await unitOfWork.CommitAsync();
@@ -23,13 +27,20 @@ namespace Application.Aggregates.Customer
             var customers = await customerRepository.GetAllCustomersAsync();
             return customers.Adapt<List<CustomerViewModel>>();
         }
-        //public async Task<List<CustomerViewModel>> GetCustomersAsync()
-        //{
-        //    var customers = await customerRepository.GetRootCustomersAsync();
-        //    return customers.Adapt<List<CustomerViewModel>>();
-        //}
+       
 
-        public async Task<UpdateCustomerViewModel> GetCustomerAsync(Guid id)
+        public async Task<CustomerViewModel> GetCustomerAsync(Guid id)
+        {
+            var customer = await customerRepository.GetCustomerAsync(id);
+
+            if (customer == null || customer.Id == Guid.Empty)
+            {
+                throw new Exception(Resources.Messages.Errors.NotFound);
+            }
+            return customer.Adapt<CustomerViewModel>();
+        }
+        
+            public async Task<UpdateCustomerViewModel> GetRootCustomersAsync(Guid id)
         {
             var customer = await customerRepository.GetCustomerAsync(id);
 
@@ -72,5 +83,10 @@ namespace Application.Aggregates.Customer
             customerRepository.Remove(entity);
             await unitOfWork.CommitAsync();
         }
+
+        //public async Task UpdateAsync(CustomerViewModel updateViewModel)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

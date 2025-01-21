@@ -7,7 +7,7 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Customers
 	public class DeleteModel(CustomerApplication customerApplication) : PageModel
 	{
 		[BindProperty]
-		public CreateCustomerViewModel DeleteViewModel { get; set; } = new();
+		public CustomerViewModel DeleteViewModel { get; set; } = new();
 
 		public async Task OnGet(Guid Id)
 		{
@@ -15,12 +15,8 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Customers
 		}
 		public async Task<IActionResult> OnPost()
 		{
-			if (ModelState.IsValid)
-			{
-				await customerApplication.DeleteAsync(DeleteViewModel.Id);
-			}
-			return RedirectToPage("Index");
-
+			await customerApplication.DeleteAsync(DeleteViewModel.Id);
+			return RedirectToAction("Index");
 		}
 	}
 }

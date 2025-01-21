@@ -21,6 +21,11 @@ namespace Persistence.Aggregates.Customer
             return uniBazzarContext.customers.FirstOrDefaultAsync(x => x.Id == id); 
         }
 
+        public Task<Domain.Aggregates.Customers.Customer> GetRootCustomersAsync(Guid id)
+        {
+            return uniBazzarContext.customers.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public void Remove(Domain.Aggregates.Customers.Customer entity)
         {
             uniBazzarContext.customers.Remove(entity);
