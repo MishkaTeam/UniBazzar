@@ -16,7 +16,7 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Customers
 		public async Task<IActionResult> OnPost()
 		{
 			await customerApplication.DeleteAsync(DeleteViewModel.Id);
-			return RedirectToAction("Index");
+			return RedirectToPage("Index");
 		}
 	}
 }

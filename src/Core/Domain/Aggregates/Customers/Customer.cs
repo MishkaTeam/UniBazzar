@@ -51,12 +51,11 @@ namespace Domain.Aggregates.Customers
             return customer;
         }
 
-        public void Update(string firstName, string lastName, string nationalcode, string mobile, string email)
+        public void Update(string firstName, string lastName, string nationalcode, string mobile)
         {
             
 
-            if (!email.IsValidEmail())
-                throw new ValidationException(Resources.Messages.Validations.EmailAddress);
+            
 
             FirstName = firstName.Fix();
             LastName = lastName.Fix();

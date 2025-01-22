@@ -19,7 +19,7 @@ namespace Application.Aggregates.Customer
 
         [Display(ResourceType = typeof(Resources.DataDictionary),
            Name = nameof(Resources.DataDictionary.Id))]
-        public Guid Id { get; protected set; }
+        public Guid Id { get;  set; }
 
     }
 }

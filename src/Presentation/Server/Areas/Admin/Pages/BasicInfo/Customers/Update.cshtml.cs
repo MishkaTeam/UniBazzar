@@ -16,7 +16,7 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Customers
 		public async Task<IActionResult> OnPost()
 		{
 			await customerApplication.UpdateAsync(UpdateViewModel);
-			return RedirectToAction("Index");
+			return RedirectToPage("Index");
 		}
 	}
 }

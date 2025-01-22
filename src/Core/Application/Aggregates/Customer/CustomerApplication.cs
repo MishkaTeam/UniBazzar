@@ -64,8 +64,8 @@ namespace Application.Aggregates.Customer
                 updateViewModel.FirstName,
                 updateViewModel.LastName,
                 updateViewModel.NationalCode,
-                updateViewModel.Mobile,
-                updateViewModel.Email);
+                updateViewModel.Mobile
+                );
 
             await unitOfWork.CommitAsync();
             return entity.Adapt<UpdateCustomerViewModel>();
@@ -83,10 +83,5 @@ namespace Application.Aggregates.Customer
             customerRepository.Remove(entity);
             await unitOfWork.CommitAsync();
         }
-
-        //public async Task UpdateAsync(CustomerViewModel updateViewModel)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

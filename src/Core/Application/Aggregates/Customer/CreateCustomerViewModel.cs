@@ -31,8 +31,6 @@ namespace Application.Aggregates.Customer
                    Name = nameof(Resources.DataDictionary.ConfirmPassword))]
         public string ConfirmPassword { get; set; }
 
-		[Display(ResourceType = typeof(Resources.DataDictionary),
-				   Name = nameof(Resources.DataDictionary.Id))]
-		public Guid Id { get; protected set; }
+		
     }
 }
