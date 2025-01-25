@@ -6,6 +6,7 @@ namespace Server.Areas.Admin.Pages.BasicInfo.ShippingAddress
 {
     public class UpdateModel(ShippingAddressApplication shippingAddressApplication) : PageModel
     {
+        [BindProperty]
         public UpdateShippingAddressViewModel UpdateViewModel { get; set; }
         public async Task OnGet(Guid Id)
         {
