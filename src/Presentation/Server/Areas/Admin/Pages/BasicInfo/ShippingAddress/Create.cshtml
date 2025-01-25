@@ -1,0 +1,33 @@
+﻿@page
+@model Server.Areas.Admin.Pages.BasicInfo.ShippingAddress.CreateModel
+@{
+    var pageTitle =
+    $"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.Shippingaddress}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+<form method="post">
+
+    <section-form>
+        <fieldset>
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            @* <partial name="PartialViews/_DisplayPageMessages" /> *@
+            <ub-full-input asp-for="AddressViewModel.Country" />
+            <ub-full-input asp-for="AddressViewModel.Province" />
+            <ub-full-input asp-for="AddressViewModel.City" />
+            <ub-full-input asp-for="AddressViewModel.Address" />
+            <ub-full-input asp-for="AddressViewModel.PostalCode" />
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-create />
+            <button-reset />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>

@@ -1,5 +1,6 @@
 ﻿
 using Domain.Aggregates.Customers;
+using Domain.Aggregates.ShippingAddress;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Aggregates.Customer

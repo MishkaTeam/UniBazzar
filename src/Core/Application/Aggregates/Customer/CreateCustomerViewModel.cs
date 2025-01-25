@@ -31,6 +31,5 @@ namespace Application.Aggregates.Customer
                    Name = nameof(Resources.DataDictionary.ConfirmPassword))]
         public string ConfirmPassword { get; set; }
 
-		
     }
 }

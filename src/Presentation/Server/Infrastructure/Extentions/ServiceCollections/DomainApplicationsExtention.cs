@@ -1,10 +1,13 @@
 ﻿using Application.Aggregates.Customer;
+using Application.Aggregates.ShippingAddress;
 using Application.Aggregates.Units;
 using Domain;
 using Domain.Aggregates.Customers;
+using Domain.Aggregates.ShippingAddress;
 using Domain.Aggregates.Units;
 using Persistence;
 using Persistence.Aggregates.Customer;
+using Persistence.Aggregates.ShippingAddress;
 using Persistence.Aggregates.Units;
 
 namespace Server.Infrastructure.Extentions.ServiceCollections;
@@ -15,6 +18,7 @@ public static class DomainExtensions
 	{
 		services.AddScoped<UnitsApplication>();
 		services.AddScoped<CustomerApplication>();
+		services.AddScoped<ShippingAddressApplication>();
 		return services;
 	}
 
@@ -22,6 +26,7 @@ public static class DomainExtensions
 	{
 		services.AddScoped<IUnitRepository,UnitRepository>();
         services.AddScoped<ICustomerRepository, CustomerRepository>();
+		services.AddScoped<IShippingAddressRepository, ShippingAddressRepository>();
         return services;
 		
 	}

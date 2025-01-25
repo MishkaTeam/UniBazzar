@@ -11,7 +11,7 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Customers
 		public UpdateCustomerViewModel UpdateViewModel { get; set; } = new();
 		public async Task OnGet(Guid Id)
 		{
-			UpdateViewModel = await customerApplication.GetRootCustomersAsync(Id);
+			UpdateViewModel = await customerApplication.GetCustomerAsync(Id);
 		}
 		public async Task<IActionResult> OnPost()
 		{

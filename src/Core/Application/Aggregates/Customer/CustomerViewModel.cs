@@ -4,13 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Application.Aggregates.Customer
 {
-	public class CustomerViewModel : CreateCustomerViewModel
+	public class CustomerViewModel : UpdateCustomerViewModel
     {
        
-        [Display(ResourceType = typeof(Resources.DataDictionary),
-                   Name = nameof(Resources.DataDictionary.Id))]
-        public Guid Id { get; set; }
-
-
+        
     }
 }

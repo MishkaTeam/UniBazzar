@@ -28,7 +28,6 @@ namespace Application.Aggregates.Customer
             return customers.Adapt<List<CustomerViewModel>>();
         }
        
-
         public async Task<CustomerViewModel> GetCustomerAsync(Guid id)
         {
             var customer = await customerRepository.GetCustomerAsync(id);
@@ -39,17 +38,16 @@ namespace Application.Aggregates.Customer
             }
             return customer.Adapt<CustomerViewModel>();
         }
-        
-            public async Task<UpdateCustomerViewModel> GetRootCustomersAsync(Guid id)
-        {
-            var customer = await customerRepository.GetCustomerAsync(id);
 
-            if (customer == null || customer.Id == Guid.Empty)
-            {
-                throw new Exception(Resources.Messages.Errors.NotFound);
-            }
-            return customer.Adapt<UpdateCustomerViewModel>();
-        }
+        //public async Task<ShippingAddress> GetShippingAddressAsync(Guid id)
+        //{
+        //    var adress = await customerRepository.GetShippingAddressAsync(id);
+        //    if(adress == null || adress.Id == Guid.Empty)
+        //    {
+        //        throw new Exception(Resources.Messages.Errors.NotFound);
+        //    }
+        //    return adress.Adapt<ShippingAddress>();
+        //}
 
         public async Task<UpdateCustomerViewModel> UpdateAsync(UpdateCustomerViewModel updateViewModel)
         {
@@ -65,6 +63,7 @@ namespace Application.Aggregates.Customer
                 updateViewModel.LastName,
                 updateViewModel.NationalCode,
                 updateViewModel.Mobile
+                
                 );
 
             await unitOfWork.CommitAsync();

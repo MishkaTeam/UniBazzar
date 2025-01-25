@@ -183,4 +183,25 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>تایید رمز</value>
   </data>
+  <data name="Country" xml:space="preserve">
+    <value>کشور</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>استان</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>آدرس</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>کد پستی</value>
+  </data>
+  <data name="Shippingaddress" xml:space="preserve">
+    <value>آدرس حمل و نقل</value>
+  </data>
+  <data name="AddressInformation" xml:space="preserve">
+    <value>اطلاعات آدرس ها</value>
+  </data>
 </root>

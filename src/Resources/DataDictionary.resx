@@ -183,4 +183,25 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>confirm password</value>
   </data>
+  <data name="Country" xml:space="preserve">
+    <value>country</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>province</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>city</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>address</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>postalCode</value>
+  </data>
+  <data name="Shippingaddress" xml:space="preserve">
+    <value>shipping address</value>
+  </data>
+  <data name="AddressInformation" xml:space="preserve">
+    <value>addressInformation</value>
+  </data>
 </root>

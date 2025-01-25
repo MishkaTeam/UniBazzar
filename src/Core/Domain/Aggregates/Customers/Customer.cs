@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
+using Domain.Aggregates.ShippingAddress;
 using Framework.DataType;
 using System.ComponentModel.DataAnnotations;
 
@@ -15,7 +16,7 @@ namespace Domain.Aggregates.Customers
 
         public string LastName { get; private set; }
 
-        public List<ShippingAddress> ShippingAddresses { get; private set; }
+        
 
         public string NationalCode { get; private set; }
 
@@ -29,11 +30,11 @@ namespace Domain.Aggregates.Customers
 
         public string Password { get; private set; }
 
-        public void AddShippingAddress(string country, string province, string city, string address, string postalCode)
-        {
-            var addressEntity = ShippingAddress.Create(country, province, city, address, postalCode);
-            ShippingAddresses.Add(addressEntity);
-        }
+        //public void AddShippingAddress(string country, string province, string city, string address, string postalCode)
+        //{
+        //    var addressEntity = ShippingAddress.Create(country, province, city, address, postalCode);
+        //    ShippingAddresses.Add(addressEntity);
+        //}
 
         public static Customer Register(string firstName, string lastName,string nationalcode, string mobile, string password, string email)
         {
@@ -53,10 +54,6 @@ namespace Domain.Aggregates.Customers
 
         public void Update(string firstName, string lastName, string nationalcode, string mobile)
         {
-            
-
-            
-
             FirstName = firstName.Fix();
             LastName = lastName.Fix();
             NationalCode = nationalcode.Fix();
@@ -65,7 +62,7 @@ namespace Domain.Aggregates.Customers
 
         private Customer(string firstName, string lastName, string nationalcode, string mobile, string password, string email)
         {
-            ShippingAddresses = new List<ShippingAddress>();
+           
             FirstName = firstName.Fix();
             LastName = lastName.Fix();
             NationalCode = nationalcode.Fix();
