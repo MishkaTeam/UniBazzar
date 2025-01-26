@@ -204,4 +204,7 @@
   <data name="AddressInformation" xml:space="preserve">
     <value>اطلاعات آدرس ها</value>
   </data>
+  <data name="AddressManagement" xml:space="preserve">
+    <value>مدیریت آدرس ها</value>
+  </data>
 </root>

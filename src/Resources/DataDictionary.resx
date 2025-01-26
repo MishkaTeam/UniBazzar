@@ -204,4 +204,7 @@
   <data name="AddressInformation" xml:space="preserve">
     <value>addressInformation</value>
   </data>
+  <data name="AddressManagement" xml:space="preserve">
+    <value>Address management</value>
+  </data>
 </root>

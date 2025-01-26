@@ -39,16 +39,6 @@ namespace Application.Aggregates.Customer
             return customer.Adapt<CustomerViewModel>();
         }
 
-        //public async Task<ShippingAddress> GetShippingAddressAsync(Guid id)
-        //{
-        //    var adress = await customerRepository.GetShippingAddressAsync(id);
-        //    if(adress == null || adress.Id == Guid.Empty)
-        //    {
-        //        throw new Exception(Resources.Messages.Errors.NotFound);
-        //    }
-        //    return adress.Adapt<ShippingAddress>();
-        //}
-
         public async Task<UpdateCustomerViewModel> UpdateAsync(UpdateCustomerViewModel updateViewModel)
         {
             var entity = await customerRepository.GetCustomerAsync(updateViewModel.Id);

@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
 using Framework.DataType;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Aggregates.ShippingAddress
 {
@@ -15,9 +16,11 @@ namespace Domain.Aggregates.ShippingAddress
         public string Address { get; set; }
         public string PostalCode { get; set; }
 
-        
         public static ShippingAddress Create(string country, string province, string city, string address, string postalCode)
         {
+            if (!postalCode.IsValidPostalCode())
+                throw new ValidationException(Resources.Messages.Validations.PostalCode);
+
             var ShippingAddress = new ShippingAddress(country, province, city, address, postalCode)
             {
                 Country = country.Fix(),
@@ -34,7 +37,9 @@ namespace Domain.Aggregates.ShippingAddress
             Province = province.Fix();
             City = city.Fix();
             Address = address.Fix();
-            PostalCode = postalCode.Fix();
+
+            if (!postalCode.IsValidPostalCode())
+                throw new ValidationException(Resources.Messages.Validations.PostalCode);
         }
         private ShippingAddress(string country, string province, string city, string address, string postalCode)
         {
