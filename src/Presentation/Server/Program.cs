@@ -1,10 +1,11 @@
-using Server.Infrastructure.Middleware;
-using Server.Infrastructure.Extentions.ServiceCollections;
-using Persistence;
 using Microsoft.EntityFrameworkCore;
+using Persistence;
+using Server.Infrastructure.Extentions.ServiceCollections;
+using Server.Infrastructure.Middleware;
+
 namespace Server
 {
-    public class Program
+	public class Program
     {
         public static void Main(string[] args)
         {
@@ -16,6 +17,7 @@ namespace Server
             services.AddDomainRepositories();
 			services.AddUnitOfWork();
             services.AddDbContext<UniBazzarContext>(opt => opt.UseSqlite("Data Source=Database.db"));
+
 			var app = builder.Build();
 
             if (!app.Environment.IsDevelopment())
@@ -23,6 +25,7 @@ namespace Server
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCultureHandler();

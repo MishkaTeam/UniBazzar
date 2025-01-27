@@ -1,30 +1,28 @@
 using Domain.Aggregates.Products;
-using Domain.Aggregates.Products.ProductImages;
-using Domain.Aggregates.Products.ProductPriceLists;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Aggregates.Products;
 
 public partial class ProductRepository(UniBazzarContext uniBazzarContext) : IProductRepository
 {
-	public void AddProduct(Product entity)
+	public async Task AddProductAsync(Product entity)
 	{
-		uniBazzarContext.Add(entity);
+		await uniBazzarContext.AddAsync(entity);
 	}
 
-	public Task<List<Product>> GetAllProductsAsync()
-    {
-		return uniBazzarContext.Products
-						   .Include(x => x.ActivePriceList)
-						   .Include(x => x.Unit)
+	public async Task<List<Product>> GetAllProductsAsync()
+	{
+		return await uniBazzarContext.Products
+						   //.Include(x => x.ActivePriceList)
+						   //.Include(x => x.Category)
 						   //.Include(x => x.BrandId)
-						   .Include(x => x.Category)
-						   .Include(x => x.Store)
+						   //.Include(x => x.Store)
+						   .Include(x => x.Unit)
 						   .ToListAsync();
 	}
 
 	public async Task<Product> GetProductAsync(Guid id)
-    {
+	{
 		var product = await uniBazzarContext.Products
 					.FirstOrDefaultAsync(x => x.Id == id);
 		return product ?? new Product();

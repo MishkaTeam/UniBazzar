@@ -22,6 +22,10 @@ public class Product : Entity
 		Guid storeId, Guid categoryId, Guid brandId, Guid unitId, Guid activePriceListId,
 		ProductType productType = ProductType.Product, string? downloadUrl = null)
 	{
+		ValidateRelations(storeId, categoryId, brandId, unitId, activePriceListId);
+
+		downloadUrl = CheckHaveDownloadUrl(productType, downloadUrl);
+
 		var product = new Product(
 			name, shortDescription, fullDescription, storeId,
 			categoryId, brandId, unitId, activePriceListId,
@@ -31,8 +35,6 @@ public class Product : Entity
 			ShortDescription = shortDescription.Fix() ?? "",
 			FullDescription = fullDescription.Fix() ?? "",
 		};
-
-		ValidateRelations(storeId, categoryId, brandId, unitId, activePriceListId);
 
 		return product;
 	}
@@ -54,19 +56,19 @@ public class Product : Entity
 		ActivePriceListId = activePriceListId;
 
 		ProductType = productType;
-		DownloadUrl = downloadUrl;
+		DownloadUrl = CheckHaveDownloadUrl(productType, downloadUrl);
 	}
 
 	public string Name { get; protected set; }
 	public string ShortDescription { get; protected set; }
 	public string FullDescription { get; protected set; }
-	public string SKU { get; }
+	public string SKU { get; private set; }
 	public string? DownloadUrl { get; protected set; }
 
 	public ProductType ProductType { get; protected set; }
 
 	public Guid ActivePriceListId { get; protected set; }
-	public ProductPriceList ActivePriceList { get; protected set; }
+	//public ProductPriceList ActivePriceList { get; protected set; }
 
 	public Guid UnitId { get; protected set; }
 	public Unit Unit { get; protected set; }
@@ -75,10 +77,10 @@ public class Product : Entity
 	//public Brand Brand { get; protected set; }
 
 	public Guid CategoryId { get; protected set; }
-	public Category Category { get; protected set; }
+	//public Category Category { get; protected set; }
 
-	public Guid StoreId { get; protected set; }
-	public Store Store { get; protected set; }
+	//public Guid StoreId { get; protected set; }
+	//public Store Store { get; protected set; }
 
 	private Product(string name, string shortDescription, string fullDescription,
 		Guid storeId, Guid categoryId, Guid brandId, Guid unitId, Guid activePriceListId,
@@ -104,7 +106,7 @@ public class Product : Entity
 
 		var unixTime = DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
 
-		var SKU = $"{constWord}-{constWord}";
+		var SKU = $"{constWord}-{unixTime}";
 
 		return SKU;
 	}
@@ -148,4 +150,13 @@ public class Product : Entity
 		throw new ArgumentException(message);
 	}
 
+	private static string? CheckHaveDownloadUrl(ProductType productType, string? downloadUrl)
+	{
+		if (productType == ProductType.Product)
+		{
+			return null;
+		}
+
+		return downloadUrl;
+	}
 }
