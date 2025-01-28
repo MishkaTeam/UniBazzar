@@ -1,4 +1,4 @@
-﻿using Application.Aggregates.Products.ViewModels.ProductFeatures;
+﻿using Application.Aggregates.Products.ProductFeatures.ViewModels;
 using Domain.Aggregates.Products.ProductFeatures;
 using Mapster;
 using Resources.Messages;

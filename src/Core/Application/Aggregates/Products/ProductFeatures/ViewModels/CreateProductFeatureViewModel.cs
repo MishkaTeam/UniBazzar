@@ -1,9 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Application.Aggregates.Products.ViewModels.ProductFeatures;
+namespace Application.Aggregates.Products.ProductFeatures.ViewModels;
 
 public class CreateProductFeatureViewModel
 {
+	public CreateProductFeatureViewModel()
+	{
+		Order = 10;
+	}
+
+
 	[Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.ProductId))]
