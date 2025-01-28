@@ -8,7 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products;
 
-public class CreateModel(ProductsApplication productsApplication, UnitsApplication unitsApplication) : PageModel
+public class CreateModel
+	(ProductsApplication productsApplication, UnitsApplication unitsApplication) : PageModel
 {
 	[BindProperty]
 	public CreateProductViewModel CreateViewModel { get; set; } = new();

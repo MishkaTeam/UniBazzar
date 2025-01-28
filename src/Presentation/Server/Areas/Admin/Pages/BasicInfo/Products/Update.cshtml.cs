@@ -16,12 +16,19 @@ public class UpdateModel
 	public List<SelectListItem> ProductTypeList { get; set; } = [];
 	public List<SelectListItem> BaseUnitList { get; set; } = [];
 
-	public async Task OnGetAsync(Guid id)
+	public async Task<IActionResult> OnGetAsync(Guid id)
 	{
+		if (id == Guid.Empty)
+		{
+			return RedirectToPage("../Index");
+		}
+
 		UpdateViewModel =
 			await productsApplication.GetProductAsync(id);
 
 		await FillSelectTagAsync();
+
+		return Page();
 	}
 
 	public async Task<IActionResult> OnPostAsync()
