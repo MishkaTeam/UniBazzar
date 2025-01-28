@@ -168,6 +168,9 @@
   <data name="Product" xml:space="preserve">
     <value>کالا</value>
   </data>
+  <data name="Features" xml:space="preserve">
+    <value>ویژگی‌ها</value>
+  </data>
   <data name="ProductId" xml:space="preserve">
     <value>شناسه کالا</value>
   </data>
@@ -206,5 +209,14 @@
   </data>
   <data name="Value" xml:space="preserve">
     <value>مقدار</value>
+  </data>
+  <data name="ProductFeatures" xml:space="preserve">
+    <value>ویژگی های محصول</value>
+  </data>
+  <data name="ProductFeature" xml:space="preserve">
+    <value>ویژگی محصول</value>
+  </data>
+  <data name="FeaturesOf" xml:space="preserve">
+    <value>ویژگی های</value>
   </data>
 </root>

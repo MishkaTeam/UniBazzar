@@ -142,6 +142,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Features.
+        /// </summary>
+        public static string Features {
+            get {
+                return ResourceManager.GetString("Features", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Features of.
+        /// </summary>
+        public static string FeaturesOf {
+            get {
+                return ResourceManager.GetString("FeaturesOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full Description.
         /// </summary>
         public static string FullDescription {
@@ -210,6 +228,24 @@ namespace Resources {
         public static string Product {
             get {
                 return ResourceManager.GetString("Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Feature.
+        /// </summary>
+        public static string ProductFeature {
+            get {
+                return ResourceManager.GetString("ProductFeature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Features.
+        /// </summary>
+        public static string ProductFeatures {
+            get {
+                return ResourceManager.GetString("ProductFeatures", resourceCulture);
             }
         }
         
