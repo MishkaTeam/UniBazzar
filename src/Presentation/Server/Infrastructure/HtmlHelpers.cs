@@ -51,6 +51,40 @@ public static class HtmlHelpers : object
 	//	return td;
 	//}
 
+	public static Microsoft.AspNetCore.Html.IHtmlContent Ub_DisplayStringWithTd
+		(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, string? value)
+	{
+		var td =
+			new Microsoft.AspNetCore.Mvc
+			.Rendering.TagBuilder(tagName: "td");
+
+		td.AddCssClass("align-middle text-center");
+
+		//var innerHtml =
+		//	Ub_DisplayBoolean(html: html, value: value);
+
+		td.InnerHtml.Append(value!);
+
+		return td;
+	}
+
+	public static Microsoft.AspNetCore.Html.IHtmlContent Ub_DisplayStringWithTh
+		(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, string? value)
+	{
+		var td =
+			new Microsoft.AspNetCore.Mvc
+			.Rendering.TagBuilder(tagName: "th");
+
+		td.AddCssClass("align-middle text-center");
+
+		//var innerHtml =
+		//	Ub_DisplayBoolean(html: html, value: value);
+
+		td.InnerHtml.Append(value!);
+
+		return td;
+	}
+
 	public static Microsoft.AspNetCore.Html.IHtmlContent Ub_DisplayBoolean
 		(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, bool? value)
 	{

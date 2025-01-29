@@ -14,9 +14,9 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">@(Resources.DataDictionary.Name)</th>
-            <th scope="col">@(Resources.DataDictionary.ProductType)</th>
-            <th scope="col">@(Resources.DataDictionary.SKU)</th>
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Name))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.ProductType))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.SKU))
             <th scope="col"></th>
         </tr>
     </thead>
@@ -24,9 +24,9 @@
         @foreach (var product in Model.ViewModel)
         {
             <tr>
-                <td>@(product.Name)</td>
-                <td>@(product.ProductType.ToString())</td>
-                <td>@(product.SKU)</td>
+                @(Html.Ub_DisplayStringWithTd(product.Name))
+                @(Html.Ub_DisplayStringWithTd(product.ProductType.ToString()))
+                @(Html.Ub_DisplayStringWithTd(product.SKU))
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <a asp-page="Update" asp-route-Id="@(product.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
