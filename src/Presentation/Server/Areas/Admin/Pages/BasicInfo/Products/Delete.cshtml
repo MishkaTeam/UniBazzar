@@ -1,0 +1,50 @@
+﻿@page "{id:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.Products.DeleteModel
+
+@{
+    var pageTitle =
+        $"{Resources.DataDictionary.DeleteOf} {Resources.DataDictionary.Product}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+    <section-form>
+
+        <fieldset disabled>
+
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            @* <partial name="PartialViews/_DisplayPageMessages" /> *@
+
+            <input hidden asp-for="DeleteViewModel.Id" dir="ltr" />
+
+            <ub-full-input asp-for="DeleteViewModel.Name" />
+
+            <ub-full-input asp-for="DeleteViewModel.SKU" />
+
+            <ub-full-input asp-for="DeleteViewModel.ShortDescription" />
+
+            <ub-full-input asp-for="DeleteViewModel.FullDescription" />
+
+            <ub-full-select asp-for="DeleteViewModel.UnitId" asp-items="Model.BaseUnitList" />
+
+            <ub-full-select asp-for="DeleteViewModel.ProductType" asp-items="Model.ProductTypeList" />
+
+            @if (Model.DeleteViewModel.ProductType == Domain.Enumerations.ProductType.Service)
+            {
+                <ub-full-input asp-for="DeleteViewModel.DownloadUrl" />
+            }
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-delete />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>

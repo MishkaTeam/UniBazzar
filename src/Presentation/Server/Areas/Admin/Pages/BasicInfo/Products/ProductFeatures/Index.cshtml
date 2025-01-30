@@ -1,0 +1,42 @@
+﻿@page "{id:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.Products.ProductFeatures.IndexModel
+
+@{
+    var pageTitle =
+        Resources.DataDictionary.ProductFeatures;
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<div class="row justify-content-between px-2 my-2">
+    <a class="col-auto btn btn-primary" asp-page="../Index" asp-area="Admin">@(Resources.ButtonCaptions.Back)</a>
+    <h5 class="col-auto">@(Resources.DataDictionary.FeaturesOf) "@(Model.ProductViewModel.Name)"</h5>
+    <a class="col-auto btn btn-primary" asp-page="Create" asp-route-Id="@(Request.RouteValues["id"])" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Name))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Order))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.IsPinned))
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var productFeature in Model.ViewModel)
+        {
+            <tr>
+                @(Html.Ub_DisplayStringWithTd(productFeature.Key))
+                @(Html.Ub_DisplayStringWithTd(productFeature.Order.ToString()))
+                @(Html.Ub_DisplayBooleanWithTd(productFeature.IsPinned))
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a asp-page="Update" asp-route-Id="@(productFeature.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
+                        <a asp-page="Delete" asp-route-Id="@(productFeature.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

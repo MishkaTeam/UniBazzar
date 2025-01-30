@@ -1,0 +1,62 @@
+﻿@page "{id:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.Products.UpdateModel
+
+@{
+    var pageTitle =
+        $"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.Product}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+    <section-form>
+
+        <fieldset>
+
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            @* <partial name="PartialViews/_DisplayPageMessages" /> *@
+
+            <input hidden asp-for="UpdateViewModel.Id" />
+
+            <ub-full-input asp-for="UpdateViewModel.Name" />
+
+            <ub-full-input asp-for="UpdateViewModel.ShortDescription" />
+
+            <ub-full-input asp-for="UpdateViewModel.FullDescription" />
+
+            @*
+            <ub-full-input asp-for="CreateViewModel.ActivePriceListId" />
+
+            <ub-full-input asp-for="CreateViewModel.CategoryId" />
+
+            <ub-full-input asp-for="CreateViewModel.BrandId" />
+
+            <ub-full-input asp-for="CreateViewModel.StoreId" />
+            *@
+
+            <ub-full-select asp-for="UpdateViewModel.UnitId" asp-items="Model.BaseUnitList" />
+
+            @* <ub-full-select asp-for="UpdateViewModel.ProductType" asp-items="Model.ProductTypeList" /> *@
+
+            <div class="mb-3">
+                <label asp-for="UpdateViewModel.ProductType" class="form-label"></label>
+                <select asp-for="UpdateViewModel.ProductType" asp-items="Model.ProductTypeList" class="form-select"></select>
+                <span asp-validation-for="UpdateViewModel.ProductType" class="field-validation-valid text-danger"></span>
+            </div>
+
+            <ub-full-input asp-for="UpdateViewModel.DownloadUrl" />
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-save />
+            <button-reset />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>

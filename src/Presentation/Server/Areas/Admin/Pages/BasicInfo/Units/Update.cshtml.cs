@@ -16,12 +16,12 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Units
 		public async Task OnGet(Guid Id)
 		{
 			UpdateViewModel = await unitsApplication.GetUnitAsync(Id);
-			 await FillUnitBaseUnits();
+			 await FillBaseUnits();
 		}
 
 		public async Task<IActionResult> OnPost()
 		{
-			await FillUnitBaseUnits();
+			await FillBaseUnits();
 			if (ModelState.IsValid)
 			{
 				await unitsApplication.UpdateAsync(UpdateViewModel);
@@ -30,7 +30,7 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Units
 
 		}
 
-		private async Task FillUnitBaseUnits()
+		private async Task FillBaseUnits()
 		{
 			var baseUnitList = await unitsApplication.GetUnits();
 

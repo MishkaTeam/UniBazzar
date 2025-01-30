@@ -1,0 +1,44 @@
+﻿@page "{id:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.Products.ProductFeatures.UpdateModel
+
+@{
+    var pageTitle =
+        $"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.ProductFeature}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+    <section-form>
+
+        <fieldset>
+
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            @* <partial name="PartialViews/_DisplayPageMessages" /> *@
+
+            <input hidden asp-for="UpdateViewModel.Id" />
+
+            <input hidden asp-for="UpdateViewModel.ProductId" />
+
+            <ub-full-input asp-for="UpdateViewModel.Key" />
+
+            <ub-full-input asp-for="UpdateViewModel.Value" />
+
+            <ub-full-input asp-for="UpdateViewModel.Order" />
+
+            <ub-full-checkbox asp-for="UpdateViewModel.IsPinned" />
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-save />
+            <button-reset />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>
