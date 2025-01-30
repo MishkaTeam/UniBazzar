@@ -293,16 +293,7 @@ namespace Resources {
                 return ResourceManager.GetString("Mobile", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to First Name.
-        /// </summary>
-        public static string Name {
-            get {
-                return ResourceManager.GetString("Name", resourceCulture);
-            }
-        }
-        
+                
         /// <summary>
         ///   Looks up a localized string similar to National Code.
         /// </summary>
