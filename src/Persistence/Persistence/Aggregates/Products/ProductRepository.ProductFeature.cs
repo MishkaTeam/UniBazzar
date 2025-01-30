@@ -21,6 +21,7 @@ public partial class ProductRepository
 	public async Task<ProductFeature> GetProductFeatureAsync(Guid id)
 	{
 		var productFeature = await uniBazzarContext.ProductFeatures
+								.Include(x => x.Product)
 								.FirstOrDefaultAsync(x => x.Id == id);
 
 		return productFeature ?? new ProductFeature();

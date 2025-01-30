@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Application.Aggregates.Products.ViewModels.ProductFeatures;
+namespace Application.Aggregates.Products.ViewModels;
 
-public class ProductFeatureViewModel : CreateProductFeatureViewModel
+public class UpdateProductViewModel : CreateProductViewModel
 {
 	[Display
 		(ResourceType = typeof(Resources.DataDictionary),

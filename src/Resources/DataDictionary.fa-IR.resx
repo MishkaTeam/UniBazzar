@@ -165,14 +165,26 @@
   <data name="Price" xml:space="preserve">
     <value>قیمت</value>
   </data>
+  <data name="Product" xml:space="preserve">
+    <value>کالا</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>ویژگی‌ها</value>
+  </data>
   <data name="ProductId" xml:space="preserve">
     <value>شناسه کالا</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>کالاها</value>
   </data>
   <data name="ProductType" xml:space="preserve">
     <value>نوع محصول</value>
   </data>
   <data name="ShortDescription" xml:space="preserve">
     <value>خلاصه توضیحات</value>
+  </data>
+  <data name="SKU" xml:space="preserve">
+    <value>کد کالا</value>
   </data>
   <data name="StoreId" xml:space="preserve">
     <value>شناسه فروشگاه</value>
@@ -197,5 +209,14 @@
   </data>
   <data name="Value" xml:space="preserve">
     <value>مقدار</value>
+  </data>
+  <data name="ProductFeatures" xml:space="preserve">
+    <value>ویژگی های محصول</value>
+  </data>
+  <data name="ProductFeature" xml:space="preserve">
+    <value>ویژگی محصول</value>
+  </data>
+  <data name="FeaturesOf" xml:space="preserve">
+    <value>ویژگی های</value>
   </data>
 </root>

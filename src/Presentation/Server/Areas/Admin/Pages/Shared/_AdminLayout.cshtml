@@ -10,7 +10,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="~/Admin/assets/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <title>CoreUI Free Bootstrap Admin Template</title>
+    <title>@(ViewData[Constants.ViewDataKeyName.PageTitle])</title>
     <link rel="apple-touch-icon" sizes="57x57" href="~/Admin/assets/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="~/Admin/assets/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="~/Admin/assets/favicon/apple-icon-72x72.png">
@@ -25,13 +25,13 @@
     <link rel="icon" type="image/png" sizes="96x96" href="~/Admin/assets/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="~/Admin/assets/favicon/favicon-16x16.png">
     <link rel="manifest" href="~/Admin/assets/favicon/manifest.json">
-	<link href="~/admin/vendors/simplebar/css/simplebar.css" rel="stylesheet" />
+    <link href="~/admin/vendors/simplebar/css/simplebar.css" rel="stylesheet" />
     <link href="~/Admin/css/style.css" rel="stylesheet">
-	<script src="~/admin/js/config.js"></script>
-	<script src="~/admin/js/color-modes.js"></script>
-	<link href="~/admin/vendors/coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet" />
-	<link href="~/admin/fonts/vazir/vazirmatn-ui-fd-font-face.css" rel="stylesheet" />
-	<link href="~/admin/css/site.css" rel="stylesheet" />
+    <script src="~/admin/js/config.js"></script>
+    <script src="~/admin/js/color-modes.js"></script>
+    <link href="~/admin/vendors/coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet" />
+    <link href="~/admin/fonts/vazir/vazirmatn-ui-fd-font-face.css" rel="stylesheet" />
+    <link href="~/admin/css/site.css" rel="stylesheet" />
     <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="~/Server.styles.css" asp-append-version="true" />
@@ -64,6 +64,12 @@
                     <svg class="nav-icon">
                         <use xlink:href="/admin/vendors/coreui/icons/svg/free.svg#cil-drop"></use>
                     </svg> @(Resources.DataDictionary.Units)
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-page="/BasicInfo/Products/Index" asp-area="Admin">
+                    <i class="nav-icon bi bi-bag"></i>
+                    @(Resources.DataDictionary.Products)
                 </a>
             </li>
         </ul>
@@ -221,7 +227,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/admin/vendors/coreui/coreui/js/coreui.bundle.min.js"></script>
-	<script src="~/admin/vendors/simplebar/js/simplebar.min.js"></script>
+    <script src="~/admin/vendors/simplebar/js/simplebar.min.js"></script>
     <script>
         const header = document.querySelector('header.header');
 
@@ -230,11 +236,11 @@
                 header.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0);
             }
         });
-	</script>
-	<script src="~/admin/vendors/chart.js/js/chart.umd.js"></script>
-	<script src="~/admin/vendors/coreui/chartjs/js/coreui-chartjs.js"></script>
-	<script src="~/admin/vendors/coreui/utils/js/index.js"></script>
-	<script src="~/js/autodirection.js"></script>
+    </script>
+    <script src="~/admin/vendors/chart.js/js/chart.umd.js"></script>
+    <script src="~/admin/vendors/coreui/chartjs/js/coreui-chartjs.js"></script>
+    <script src="~/admin/vendors/coreui/utils/js/index.js"></script>
+    <script src="~/js/autodirection.js"></script>
     <script>
     </script>
 

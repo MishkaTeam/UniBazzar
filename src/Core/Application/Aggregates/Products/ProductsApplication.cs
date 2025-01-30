@@ -18,7 +18,7 @@ public partial class ProductsApplication
 									viewModel.StoreId, viewModel.CategoryId, viewModel.BrandId, viewModel.UnitId, viewModel.ActivePriceListId,
 									viewModel.ProductType, viewModel.DownloadUrl);
 
-		productRepository.AddProduct(product);
+		await productRepository.AddProductAsync(product);
 		await unitOfWork.CommitAsync();
 		return product.Adapt<ProductViewModel>();
 	}
@@ -39,7 +39,7 @@ public partial class ProductsApplication
 		return product.Adapt<ProductViewModel>();
 	}
 
-	public async Task<ProductViewModel> UpdateProductAsync(ProductViewModel updateViewModel)
+	public async Task<ProductViewModel> UpdateProductAsync(UpdateProductViewModel updateViewModel)
 	{
 		var productForUpdate =
 			await productRepository.GetProductAsync(updateViewModel.Id);
@@ -49,9 +49,9 @@ public partial class ProductsApplication
 			throw new Exception(Errors.NotFound);
 		}
 
-		productForUpdate.Update(productForUpdate.Name, productForUpdate.ShortDescription, productForUpdate.FullDescription,
-								productForUpdate.StoreId, productForUpdate.CategoryId, productForUpdate.BrandId, productForUpdate.UnitId, productForUpdate.ActivePriceListId,
-								productForUpdate.ProductType, productForUpdate.DownloadUrl);
+		productForUpdate.Update(updateViewModel.Name, updateViewModel.ShortDescription, updateViewModel.FullDescription,
+								updateViewModel.StoreId, updateViewModel.CategoryId, updateViewModel.BrandId, updateViewModel.UnitId, updateViewModel.ActivePriceListId,
+								updateViewModel.ProductType, updateViewModel.DownloadUrl);
 
 		await unitOfWork.CommitAsync();
 		return productForUpdate.Adapt<ProductViewModel>();

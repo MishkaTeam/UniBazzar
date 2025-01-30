@@ -1,0 +1,42 @@
+﻿@page "{id:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.Products.ProductFeatures.CreateModel
+
+@{
+    var pageTitle =
+        $"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.ProductFeature}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+    <section-form>
+
+        <fieldset>
+
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            @* <partial name="PartialViews/_DisplayPageMessages" /> *@
+
+            <input hidden asp-for="CreateViewModel.ProductId" />
+
+            <ub-full-input asp-for="CreateViewModel.Key" />
+
+            <ub-full-input asp-for="CreateViewModel.Value" />
+
+            <ub-full-input asp-for="CreateViewModel.Order" />
+
+            <ub-full-checkbox asp-for="CreateViewModel.IsPinned" />
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-create />
+            <button-reset />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>

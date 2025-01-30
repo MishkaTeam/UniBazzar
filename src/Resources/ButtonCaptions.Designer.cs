@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actions.
+        /// </summary>
+        public static string Actions {
+            get {
+                return ResourceManager.GetString("Actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string Back {
@@ -201,6 +210,15 @@ namespace Resources {
         public static string LoginWithGoogle {
             get {
                 return ResourceManager.GetString("LoginWithGoogle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage of.
+        /// </summary>
+        public static string ManageOf {
+            get {
+                return ResourceManager.GetString("ManageOf", resourceCulture);
             }
         }
         
