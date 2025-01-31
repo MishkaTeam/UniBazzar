@@ -12,5 +12,5 @@ public class CreateProductPriceListViewModel
     [Display
         (ResourceType = typeof(Resources.DataDictionary),
         Name = nameof(Resources.DataDictionary.Price))]
-    public string Price { get; set; }
+    public int Price { get; set; }
 }
