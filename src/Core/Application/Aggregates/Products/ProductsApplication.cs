@@ -2,6 +2,8 @@
 using Domain;
 using Domain.Aggregates.Products;
 using Domain.Aggregates.Products.ProductFeatures;
+using Domain.Aggregates.Products.ProductImages;
+using Domain.Aggregates.Products.ProductPriceLists;
 using Mapster;
 using Resources.Messages;
 
@@ -10,6 +12,8 @@ namespace Application.Aggregates.Products;
 public partial class ProductsApplication
 	(IProductRepository productRepository, 
 	IProductFeatureRepository productFeatureRepository,
+	IProductImageRepository productImageRepository,
+	IProductPriceListRepository productPriceListRepository,
 	IUnitOfWork unitOfWork)
 {
 	public async Task<ProductViewModel> CreateProductAsync(CreateProductViewModel viewModel)
