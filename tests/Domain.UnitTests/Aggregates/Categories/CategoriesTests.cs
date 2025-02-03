@@ -16,7 +16,7 @@ public class CategoriesTests
 
         category.Name.Should().Be(name);
         category.ParentId.Should().Be(parentid);
-        category.ImageUrl.Should().Be(imageurl);
+        category.IconClass.Should().Be(imageurl);
     }
 
     [Fact]
@@ -30,6 +30,6 @@ public class CategoriesTests
 
         category.Name.Should().Be(name);
         category.ParentId.Should().BeNull();
-        category.ImageUrl.Should().Be(imageurl);
+        category.IconClass.Should().Be(imageurl);
     }
 }
