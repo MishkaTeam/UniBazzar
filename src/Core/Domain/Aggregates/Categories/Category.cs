@@ -5,49 +5,53 @@ namespace Domain.Aggregates.Categories;
 
 public class Category : Entity
 {
+	public Category()
+	{
+		// FOR EF!
+	}
 
-    public Category()
-    {
-        // FOR EF!
-    }
 
-    public static Category Create(string name, Guid? parentId, string imageUrl)
-    {
-        var category = new Category(name, parentId, imageUrl)
-        {
-            Name = name.Fix(),
-            ImageUrl = imageUrl,
-            ParentId = ValidateParentId(parentId),
-        };
+	public static Category Create
+		(string name, Guid? parentId, string iconClass)
+	{
+		var category = new Category(name, parentId, iconClass)
+		{
+			Name = name.Fix() ?? "",
+			ParentId = ValidateParentId(parentId),
+			IconClass = iconClass,
+		};
 
-        return category;
-    }
+		return category;
+	}
 
-    public void Update(string name, Guid? parentId, string imageUrl)
-    {
-        Name = name.Fix();
-        ImageUrl = imageUrl;
-        ParentId = ValidateParentId(parentId);
-    }
+	public void Update
+		(string name, Guid? parentId, string imageUrl)
+	{
+		Name = name.Fix() ?? "";
+		ParentId = ValidateParentId(parentId);
+		IconClass = imageUrl;
+	}
 
-    private static Guid? ValidateParentId(Guid? parentId)
-    {
-        if (parentId == Guid.Empty)
-        {
-            parentId = null;
-        }
 
-        return parentId;
-    }
+	public string Name { get; private set; }
+	public Guid? ParentId { get; private set; }
+	public string IconClass { get; private set; }
 
-    public string Name { get; set; }
-    public Guid? ParentId { get; set; }
-    public string ImageUrl { get; private set; }
+	private Category
+		(string name, Guid? parentId, string iconClass)
+	{
+		Name = name;
+		ParentId = parentId;
+		IconClass = iconClass;
+	}
 
-    private Category(string name, Guid? parentId, string imageUrl)
-    {
-        Name = name;
-        ParentId = parentId;
-        ImageUrl = imageUrl;
-    }
+	private static Guid? ValidateParentId(Guid? parentId)
+	{
+		if (parentId == Guid.Empty)
+		{
+			parentId = null;
+		}
+
+		return parentId;
+	}
 }
