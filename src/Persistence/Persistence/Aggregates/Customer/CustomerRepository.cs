@@ -1,10 +1,7 @@
 ﻿
 using Domain.Aggregates.Customers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Domain.Aggregates.ShippingAddress;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Aggregates.Customer
 {
@@ -15,19 +12,24 @@ namespace Persistence.Aggregates.Customer
             uniBazzarContext.Add(entity);
         }
 
-        public Task<List<Domain.Aggregates.Customers.Customer>> GetAllCustomerAsync()
+        public Task<List<Domain.Aggregates.Customers.Customer>> GetAllCustomersAsync()
         {
-            throw new NotImplementedException();
+            return uniBazzarContext.customers.ToListAsync();
         }
 
         public Task<Domain.Aggregates.Customers.Customer> GetCustomerAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return uniBazzarContext.customers.FirstOrDefaultAsync(x => x.Id == id); 
+        }
+
+        public Task<Domain.Aggregates.Customers.Customer> GetRootCustomersAsync(Guid id)
+        {
+            return uniBazzarContext.customers.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public void Remove(Domain.Aggregates.Customers.Customer entity)
         {
-            throw new NotImplementedException();
+            uniBazzarContext.customers.Remove(entity);
         }
     }
 }

@@ -1,11 +1,10 @@
-﻿using Domain.Aggregates.Units;
-
-namespace Domain.Aggregates.Customers;
+﻿namespace Domain.Aggregates.Customers;
 
 public interface ICustomerRepository
 {
     void AddCustomer(Customer entity);
-    Task<List<Customer>> GetAllCustomerAsync();
+    Task<List<Customer>> GetAllCustomersAsync();
     Task<Customer> GetCustomerAsync(Guid id);
-    void Remove(Customer entity);
+    Task<Customer> GetRootCustomersAsync(Guid id);
+    void Remove(Customer entity); 
 }

@@ -207,6 +207,57 @@
   <data name="UpdateOf" xml:space="preserve">
     <value>ویرایش </value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="Family" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="NationalCode" xml:space="preserve">
+    <value>کد ملی</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>شماره همراه</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>رمز عبور</value>
+  </data>
+  <data name="Customers" xml:space="preserve">
+    <value>مشتری ها</value>
+  </data>
+  <data name="CustomersInformation" xml:space="preserve">
+    <value>اطلاعات مشتری ها</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>تایید رمز</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>کشور</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>استان</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>آدرس</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>کد پستی</value>
+  </data>
+  <data name="Shippingaddress" xml:space="preserve">
+    <value>آدرس حمل و نقل</value>
+  </data>
+  <data name="AddressInformation" xml:space="preserve">
+    <value>اطلاعات آدرس ها</value>
+  </data>
+  <data name="AddressManagement" xml:space="preserve">
+    <value>مدیریت آدرس ها</value>
+  </data>
   <data name="Value" xml:space="preserve">
     <value>مقدار</value>
   </data>

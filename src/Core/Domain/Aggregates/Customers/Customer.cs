@@ -1,5 +1,8 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
+using Domain.Aggregates.ShippingAddress;
 using Framework.DataType;
+using System.ComponentModel.DataAnnotations;
+
 namespace Domain.Aggregates.Customers
 {
     public class Customer : Entity
@@ -12,52 +15,61 @@ namespace Domain.Aggregates.Customers
 
         public string LastName { get; private set; }
 
-        public List<ShippingAddress> ShippingAddresses { get; private set; }
-
         public string NationalCode { get; private set; }
 
         public string Mobile { get; private set; }
 
         public string Email { get; private set; }
 
-        public string IsMobileVerified { get; private set; }
+        public bool IsMobileVerified { get; private set; }
 
-        public string IsEmailVerified { get; private set; }
+        public bool IsEmailVerified { get; private set; }
 
         public string Password { get; private set; }
-        
-        public void AddShippingAddress(string country, string province, string city, string address, string postalCode)
+
+        public static Customer Register(string firstName, string lastName, string nationalcode, string mobile, string password, string email)
         {
+            if (!email.IsValidEmail())
+                throw new ValidationException(Resources.Messages.Validations.EmailAddress);
 
-            var Adress = ShippingAddress.Create(country, province, city, address, postalCode);
-            ShippingAddresses.Add(Adress);
-        }
+            if (!nationalcode.IsValidNationalCode())
+                throw new ValidationException(Resources.Messages.Validations.NationalCode);
 
-        public static Customer Register(string firstName, string lastName, string mobile, string password)
-        {
+            if (!mobile.IsValidMobile())
+                throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
 
-            var Customer = new Customer(firstName, lastName, mobile, password)
+            if (!password.IsValidPassword())
+                throw new ValidationException(Resources.Messages.Validations.Password);
+
+            var customer = new Customer(firstName, lastName, nationalcode, mobile, password, email)
             {
-                FirstName = firstName.Fix(),
-                LastName = lastName.Fix(),
+                Mobile = mobile.Fix(),
+                Password = password.Fix(),
             };
-            return Customer;
+            return customer;
         }
-        public void Update(string firstName, string lastName, string mobile, string password)
+
+        public void Update(string firstName, string lastName, string nationalcode, string mobile)
         {
             FirstName = firstName.Fix();
             LastName = lastName.Fix();
-            Mobile = mobile;
-            Password = password;
 
+            if (!nationalcode.IsValidNationalCode())
+                throw new ValidationException(Resources.Messages.Validations.NationalCode);
+
+            if (!mobile.IsValidMobile())
+                throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
         }
-        private Customer(string firstname, string lastName, string mobile, string password)
-        { 
-            ShippingAddresses = new List<ShippingAddress>();
-            FirstName = firstname;
-            LastName = lastName;
+
+        private Customer(string firstName, string lastName, string nationalcode, string mobile, string password, string email)
+        {
+            FirstName = firstName.Fix();
+            LastName = lastName.Fix();
+            NationalCode = nationalcode.Fix();
             Mobile = mobile;
             Password = password;
+            Email = email;
         }
     }
 }
+

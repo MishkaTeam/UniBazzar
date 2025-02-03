@@ -1,0 +1,37 @@
+﻿@page "{Id}"
+@model Server.Areas.Admin.Pages.BasicInfo.Customers.UpdateModel
+@{
+	var pageTitle =
+	$"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.Customers}";
+
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+<form method="post">
+
+	<section-form>
+		<fieldset>
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
+
+			@* <partial name="PartialViews/_DisplayPageMessages" /> *@
+			<input hidden asp-for="UpdateViewModel.Id" dir="ltr" />
+
+			<ub-full-input asp-for="UpdateViewModel.FirstName" />
+
+			<ub-full-input asp-for="UpdateViewModel.LastName" />
+
+			<ub-full-input asp-for="UpdateViewModel.NationalCode" />
+
+			<ub-full-input asp-for="UpdateViewModel.Mobile" />
+		</fieldset>
+
+		<section-form-buttons>
+			<button-save />
+			<button-reset />
+		</section-form-buttons>
+
+	</section-form>
+
+</form>
+

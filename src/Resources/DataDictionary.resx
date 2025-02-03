@@ -207,6 +207,57 @@
   <data name="UpdateOf" xml:space="preserve">
     <value>Update Of</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Family" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="NationalCode" xml:space="preserve">
+    <value>National Code</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Customers" xml:space="preserve">
+    <value>customer</value>
+  </data>
+  <data name="CustomersInformation" xml:space="preserve">
+    <value>Customer Information</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>confirm password</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>country</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>province</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>city</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>address</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>postalCode</value>
+  </data>
+  <data name="Shippingaddress" xml:space="preserve">
+    <value>shipping address</value>
+  </data>
+  <data name="AddressInformation" xml:space="preserve">
+    <value>addressInformation</value>
+  </data>
+  <data name="AddressManagement" xml:space="preserve">
+    <value>Address management</value>
+  </data>
   <data name="Value" xml:space="preserve">
     <value>Value</value>
   </data>
