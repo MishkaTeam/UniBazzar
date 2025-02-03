@@ -66,26 +66,32 @@
                     </svg> @(Resources.DataDictionary.Units)
                 </a>
             </li>
-            <li class="nav-title">@(Resources.DataDictionary.CustomersInformation)</li>
+            @* <li class="nav-title">@(Resources.DataDictionary.CustomersInformation)</li> *@
             <li class="nav-item">
                 <a class="nav-link" asp-page="/BasicInfo/Customers/Index" asp-area="Admin">
                     <svg class="nav-icon">
                         <use xlink:href="/admin/vendors/coreui/icons/svg/free.svg#cil-drop"></use>
-                    </svg> @(Resources.DataDictionary.Customers)
+                    </svg> @* @(Resources.DataDictionary.Customers) *@
                 </a>
             </li>
-            <li class="nav-title">@(Resources.DataDictionary.AddressInformation)</li>
+            @* <li class="nav-title">@(Resources.DataDictionary.AddressInformation)</li> *@
             <li class="nav-item">
                 <a class="nav-link" asp-page="/BasicInfo/ShippingAddress/Index" asp-area="Admin">
                     <svg class="nav-icon">
                         <use xlink:href="/admin/vendors/coreui/icons/svg/free.svg#cil-drop"></use>
-                    </svg> @(Resources.DataDictionary.Shippingaddress)
+                    </svg> @* @(Resources.DataDictionary.Shippingaddress) *@
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-page="/BasicInfo/Products/Index" asp-area="Admin">
                     <i class="nav-icon bi bi-bag"></i>
                     @(Resources.DataDictionary.Products)
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-page="/BasicInfo/Categories/Index" asp-area="Admin">
+                    <i class="nav-icon bi bi-bag"></i>
+                    @(Resources.DataDictionary.Categories)
                 </a>
             </li>
         </ul>
