@@ -175,7 +175,7 @@
     <value>شناسه کالا</value>
   </data>
   <data name="Products" xml:space="preserve">
-    <value>کالاها</value>
+    <value>کالا ها</value>
   </data>
   <data name="ProductType" xml:space="preserve">
     <value>نوع محصول</value>
@@ -207,8 +207,17 @@
   <data name="UpdateOf" xml:space="preserve">
     <value>ویرایش </value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>نام</value>
+  <data name="Value" xml:space="preserve">
+    <value>مقدار</value>
+  </data>
+  <data name="ProductFeatures" xml:space="preserve">
+    <value>ویژگی های محصول</value>
+  </data>
+  <data name="ProductFeature" xml:space="preserve">
+    <value>ویژگی محصول</value>
+  </data>
+  <data name="FeaturesOf" xml:space="preserve">
+    <value>ویژگی های</value>
   </data>
   <data name="Family" xml:space="preserve">
     <value>نام خانوادگی</value>
@@ -258,16 +267,13 @@
   <data name="AddressManagement" xml:space="preserve">
     <value>مدیریت آدرس ها</value>
   </data>
-  <data name="Value" xml:space="preserve">
-    <value>مقدار</value>
+  <data name="IconClass" xml:space="preserve">
+    <value>کلاس آیکون</value>
   </data>
-  <data name="ProductFeatures" xml:space="preserve">
-    <value>ویژگی های محصول</value>
+  <data name="SubCategories" xml:space="preserve">
+    <value>زیر دسته‌بندی ها</value>
   </data>
-  <data name="ProductFeature" xml:space="preserve">
-    <value>ویژگی محصول</value>
-  </data>
-  <data name="FeaturesOf" xml:space="preserve">
-    <value>ویژگی های</value>
+  <data name="Categories" xml:space="preserve">
+    <value>دسته‌بندی ها</value>
   </data>
 </root>
