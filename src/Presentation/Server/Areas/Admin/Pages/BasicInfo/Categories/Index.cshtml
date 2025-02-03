@@ -1,0 +1,38 @@
+﻿@page "{parentId:guid?}"
+@model Server.Areas.Admin.Pages.BasicInfo.Categories.IndexModel
+
+@{
+    var pageTitle =
+        Resources.DataDictionary.Categories;
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<div class="my-2 float-end">
+    <a class="btn btn-primary" asp-page="Create" asp-route-Id="@(Request.RouteValues["parentId"])" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Name))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.IconClass))
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model.ViewModel)
+        {
+            <tr>
+                @(Html.Ub_DisplayStringWithTd(category.Name))
+                @(Html.Ub_DisplayStringWithTd(category.IconClass))
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a asp-page="Update" asp-route-Id="@(category.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
+                        <a asp-page="Delete" asp-route-Id="@(category.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+                        <a asp-page="Index" asp-route-Id="@(category.Id)" type="button" class="btn btn-info">@(Resources.ButtonCaptions.ManageOf) @(Resources.DataDictionary.SubCategories)</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
