@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
+using Domain.Aggregates.Customers;
 using Framework.DataType;
 using System.ComponentModel.DataAnnotations;
 
@@ -15,38 +16,41 @@ namespace Domain.Aggregates.ShippingAddress
         public string City { get; set; }
         public string Address { get; set; }
         public string PostalCode { get; set; }
-
-        public static ShippingAddress Create(string country, string province, string city, string address, string postalCode)
+        public Customer Customers { get; set; }
+        public Guid CustomerId { get; set; }
+        public static ShippingAddress Create(string country, string province, string city, string address, string postalCode, Guid customerid)
         {
             if (!postalCode.IsValidPostalCode())
                 throw new ValidationException(Resources.Messages.Validations.PostalCode);
 
-            var ShippingAddress = new ShippingAddress(country, province, city, address, postalCode)
+            var ShippingAddress = new ShippingAddress(country, province, city, address, postalCode, customerid)
             {
                 Country = country.Fix(),
-                Province = country.Fix(),
+                Province = province.Fix(),
                 City = city.Fix(),
-                PostalCode=postalCode.Fix(),
+                PostalCode = postalCode.Fix(),
+                CustomerId = customerid,
                 Address = address.Fix(),
             };
             return ShippingAddress;
         }
-        public void Update(string country, string province, string city, string address, string postalCode)
+        public void Update(string country, string province, string city, string address, string postalCode, Guid customerid)
         {
             Country = country.Fix();
             Province = province.Fix();
             City = city.Fix();
             Address = address.Fix();
-
+            CustomerId = customerid;
             if (!postalCode.IsValidPostalCode())
                 throw new ValidationException(Resources.Messages.Validations.PostalCode);
         }
-        private ShippingAddress(string country, string province, string city, string address, string postalCode)
+        private ShippingAddress(string country, string province, string city, string address, string postalCode, Guid customerid)
         {
             Country = country;
             Province = province;
             City = city;
             Address = address;
+            CustomerId = customerid;
             PostalCode = postalCode;
         }
     }

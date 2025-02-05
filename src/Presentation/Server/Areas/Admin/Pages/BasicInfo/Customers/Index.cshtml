@@ -25,11 +25,16 @@
                 <td>@(model.NationalCode)</td>
                 <td>@(model.Mobile)</td>
                 <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <a asp-page="Update" asp-route-Id="@(model.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
-                        <a asp-page="Delete" asp-route-Id="@(model.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            عملیات
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a asp-page="Update" asp-route-Id="@(model.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a></li>
+                            <li><a asp-page="Delete" asp-route-Id="@(model.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a></li>
+                            <li><a asp-page="/BasicInfo/ShippingAddress/Index" asp-route-CustomerId="@(model.Id)" type="button" class="btn btn-info">@(Resources.ButtonCaptions.AddressManagement)</a></li>
+                        </ul>
                     </div>
-
                 </td>
             </tr>
         }

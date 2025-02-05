@@ -9,7 +9,8 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Customers
 		[BindProperty]
 		public CreateCustomerViewModel CreateViewModel { get; set; }=new();
 		public async Task OnGet()
-		{	
+		{
+			
 		}
 		public async Task<IActionResult> OnPost()
 		{

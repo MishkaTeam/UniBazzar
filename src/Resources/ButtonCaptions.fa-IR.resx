@@ -207,4 +207,7 @@
   <data name="UpdateOf" xml:space="preserve">
     <value>ویرایش</value>
   </data>
+  <data name="AddressManagement" xml:space="preserve">
+    <value>مدیریت آدرس ها</value>
+  </data>
 </root>

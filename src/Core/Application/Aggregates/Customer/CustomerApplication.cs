@@ -22,13 +22,13 @@ namespace Application.Aggregates.Customer
             await unitOfWork.CommitAsync();
             return entity.Adapt<CreateCustomerViewModel>();
         }
-        public async Task<List<CustomerViewModel>> GetAllCustomer()
+        public async Task<List<UpdateCustomerViewModel>> GetAllCustomer()
         {
             var customers = await customerRepository.GetAllCustomersAsync();
-            return customers.Adapt<List<CustomerViewModel>>();
+            return customers.Adapt<List<UpdateCustomerViewModel>>();
         }
-       
-        public async Task<CustomerViewModel> GetCustomerAsync(Guid id)
+
+        public async Task<UpdateCustomerViewModel> GetCustomerAsync(Guid id)
         {
             var customer = await customerRepository.GetCustomerAsync(id);
 
@@ -36,7 +36,7 @@ namespace Application.Aggregates.Customer
             {
                 throw new Exception(Resources.Messages.Errors.NotFound);
             }
-            return customer.Adapt<CustomerViewModel>();
+            return customer.Adapt<UpdateCustomerViewModel>();
         }
 
         public async Task<UpdateCustomerViewModel> UpdateAsync(UpdateCustomerViewModel updateViewModel)
@@ -53,7 +53,6 @@ namespace Application.Aggregates.Customer
                 updateViewModel.LastName,
                 updateViewModel.NationalCode,
                 updateViewModel.Mobile
-                
                 );
 
             await unitOfWork.CommitAsync();

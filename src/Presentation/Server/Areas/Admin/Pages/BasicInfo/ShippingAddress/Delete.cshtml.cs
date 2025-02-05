@@ -15,7 +15,7 @@ namespace Server.Areas.Admin.Pages.BasicInfo.ShippingAddress
         public async Task<IActionResult> OnPost()
         {
             await shippingAddressApplication.DeleteAsync(DeleteViewModel.Id);
-            return RedirectToPage("Index");
+            return RedirectToPage("Index", new { customerId = DeleteViewModel.CustomerId.ToString() });
         }
     }
 }

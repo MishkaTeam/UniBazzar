@@ -1,9 +1,9 @@
-﻿@page
+﻿@page "{customerId}"
 @model Server.Areas.Admin.Pages.BasicInfo.ShippingAddress.IndexModel
 @{
 }
 <div class="my-2 float-end">
-    <a class="btn btn-primary" asp-page="Create" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
+    <a class="btn btn-primary" asp-page="Create"  asp-route-CustomerId="@(Model.CustomerId)" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
 </div>
 <table class="table table-hover">
     <thead>
@@ -27,7 +27,10 @@
                         <a asp-page="Delete" asp-route-Id="@(model.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
                     </div>
                 </td>
+
             </tr>
         }
     </tbody>
 </table>
+
+

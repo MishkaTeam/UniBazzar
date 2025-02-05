@@ -1,4 +1,5 @@
-﻿using Domain.Aggregates.ShippingAddress;
+﻿using Domain.Aggregates.Customers;
+using Domain.Aggregates.ShippingAddress;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,9 @@ namespace Persistence.Aggregates.ShippingAddress
             uniBazzarContext.Add(entity);
         }
 
-        public Task<List<Domain.Aggregates.ShippingAddress.ShippingAddress>> GetAllShippingAddressAsync()
+        public Task<List<Domain.Aggregates.ShippingAddress.ShippingAddress>> GetAllShippingAddressAsync(Guid CustomerId)
         {
-            return uniBazzarContext.shippingAddresses.ToListAsync();
+            return uniBazzarContext.shippingAddresses.Where(x=> x.CustomerId == CustomerId).ToListAsync();
         }
 
         public Task<Domain.Aggregates.ShippingAddress.ShippingAddress> GetShippingAddressAsync(Guid id)

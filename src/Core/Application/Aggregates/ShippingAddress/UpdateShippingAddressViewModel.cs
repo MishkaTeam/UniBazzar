@@ -24,6 +24,8 @@ namespace Application.Aggregates.ShippingAddress
          Name = nameof(Resources.DataDictionary.PostalCode))]
         public string PostalCode { get; set; }
 
+        public Guid CustomerId { get; set; }
+
         public Guid Id { get; set; }
     }
 }

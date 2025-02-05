@@ -1,6 +1,7 @@
 ﻿using Domain;
 using Mapster;
 using Domain.Aggregates.ShippingAddress;
+using Domain.Aggregates.Customers;
 
 namespace Application.Aggregates.ShippingAddress
 {
@@ -14,16 +15,17 @@ namespace Application.Aggregates.ShippingAddress
                 ViewModel.Province,
                 ViewModel.City,
                 ViewModel.Address,
-                ViewModel.PostalCode
+                ViewModel.PostalCode,
+                ViewModel.CustomerId
                 );
-            shippingAddressRepository.AddShippingAddress ( entity );
-            await unitOfWork.CommitAsync ();
+            shippingAddressRepository.AddShippingAddress(entity);
+            await unitOfWork.CommitAsync();
             return entity.Adapt<CreateShippingAddressViewModel>();
         }
-        public async Task<List<UpdateShippingAddressViewModel>> GetAllAddress()
+        public async Task<List<UpdateShippingAddressViewModel>> GetAllAddress(Guid CustomerId)
         {
-            var adress = await shippingAddressRepository.GetAllShippingAddressAsync();
-            return adress.Adapt<List<UpdateShippingAddressViewModel>> ();
+            var adress = await shippingAddressRepository.GetAllShippingAddressAsync(CustomerId);
+            return adress.Adapt<List<UpdateShippingAddressViewModel>>();
         }
         public async Task<UpdateShippingAddressViewModel> GetAddress(Guid id)
         {
@@ -47,8 +49,9 @@ namespace Application.Aggregates.ShippingAddress
                 UpdateViewModel.Province,
                 UpdateViewModel.City,
                 UpdateViewModel.Address,
-                UpdateViewModel.PostalCode
-                );
+                UpdateViewModel.PostalCode,
+                UpdateViewModel.CustomerId
+                   );
             await unitOfWork.CommitAsync();
             return entity.Adapt<UpdateShippingAddressViewModel>();
 
@@ -65,7 +68,5 @@ namespace Application.Aggregates.ShippingAddress
             shippingAddressRepository.Remove(entity);
             await unitOfWork.CommitAsync();
         }
-
-        
     }
 }

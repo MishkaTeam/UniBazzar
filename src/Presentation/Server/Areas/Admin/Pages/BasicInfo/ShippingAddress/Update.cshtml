@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{Id}"
 @model Server.Areas.Admin.Pages.BasicInfo.ShippingAddress.UpdateModel
 @{
 	var pageTitle =
@@ -16,7 +16,7 @@
 
 			@* <partial name="PartialViews/_DisplayPageMessages" /> *@
 			<input hidden asp-for="UpdateViewModel.Id" dir="ltr" />
-
+			<input hidden asp-for="UpdateViewModel.CustomerId" dir="ltr" />
 			<ub-full-input asp-for="UpdateViewModel.Country" />
 
 			<ub-full-input asp-for="UpdateViewModel.Province" />
