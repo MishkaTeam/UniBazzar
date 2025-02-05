@@ -25,7 +25,6 @@ public class CreateModel
 	{
 		if (ModelState.IsValid)
 		{
-			CreateViewModel.ActivePriceListId = Guid.NewGuid();
 			CreateViewModel.CategoryId = Guid.NewGuid();
 			CreateViewModel.StoreId = Guid.NewGuid();
 			CreateViewModel.BrandId = Guid.NewGuid();

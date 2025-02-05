@@ -12,18 +12,18 @@ public class IndexModel
 	public ProductViewModel ProductViewModel { get; set; } = new();
 	public List<ProductFeatureViewModel> ViewModel { get; set; } = [];
 
-	public async Task<IActionResult> OnGetAsync(Guid id)
+	public async Task<IActionResult> OnGetAsync(Guid productId)
 	{
-		if (id == Guid.Empty)
+		if (productId == Guid.Empty)
 		{
 			return RedirectToPage("../Index");
 		}
 
 		ProductViewModel = 
-			await productsApplication.GetProductAsync(id);
+			await productsApplication.GetProductAsync(productId);
 
 		ViewModel =
-			await productsApplication.GetProductFeatures(id);
+			await productsApplication.GetProductFeatures(productId);
 
 		ViewModel = ViewModel.OrderByDescending(x => x.IsPinned)
 							 .ThenBy(x => x.Order)

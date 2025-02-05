@@ -11,14 +11,14 @@ public class CreateModel
 	[BindProperty]
 	public CreateProductFeatureViewModel CreateViewModel { get; set; } = new();
 
-	public IActionResult OnGet(Guid id)
+	public IActionResult OnGet(Guid productId)
 	{
-		if (id == Guid.Empty)
+		if (productId == Guid.Empty)
 		{
 			return RedirectToPage("../Index");
 		}
 
-		CreateViewModel.ProductId = id;
+		CreateViewModel.ProductId = productId;
 
 		return Page();
 	}

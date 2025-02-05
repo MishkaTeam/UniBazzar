@@ -35,7 +35,6 @@ public class UpdateModel
 	{
 		if (ModelState.IsValid)
 		{
-			UpdateViewModel.ActivePriceListId = Guid.NewGuid();
 			UpdateViewModel.CategoryId = Guid.NewGuid();
 			UpdateViewModel.StoreId = Guid.NewGuid();
 			UpdateViewModel.BrandId = Guid.NewGuid();
