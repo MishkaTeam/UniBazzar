@@ -15,11 +15,12 @@ public partial class ProductsApplication
 	public async Task<ProductViewModel> CreateProductAsync(CreateProductViewModel viewModel)
 	{
 		var product = Product.Create(viewModel.Name, viewModel.ShortDescription, viewModel.FullDescription,
-									viewModel.StoreId, viewModel.CategoryId, viewModel.BrandId, viewModel.UnitId, viewModel.ActivePriceListId,
+									viewModel.StoreId, viewModel.CategoryId, viewModel.BrandId, viewModel.UnitId,
 									viewModel.ProductType, viewModel.DownloadUrl);
 
 		await productRepository.AddProductAsync(product);
 		await unitOfWork.CommitAsync();
+
 		return product.Adapt<ProductViewModel>();
 	}
 
@@ -46,11 +47,14 @@ public partial class ProductsApplication
 
 		if (productForUpdate == null || productForUpdate.Id == Guid.Empty)
 		{
-			throw new Exception(Errors.NotFound);
+			var message =
+				string.Format(Errors.NotFound, Resources.DataDictionary.Product);
+
+			throw new Exception(message);
 		}
 
 		productForUpdate.Update(updateViewModel.Name, updateViewModel.ShortDescription, updateViewModel.FullDescription,
-								updateViewModel.StoreId, updateViewModel.CategoryId, updateViewModel.BrandId, updateViewModel.UnitId, updateViewModel.ActivePriceListId,
+								updateViewModel.StoreId, updateViewModel.CategoryId, updateViewModel.BrandId, updateViewModel.UnitId,
 								updateViewModel.ProductType, updateViewModel.DownloadUrl);
 
 		await unitOfWork.CommitAsync();

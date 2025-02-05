@@ -15,7 +15,10 @@ public partial class ProductsApplication
 
 		productRepository.AddProductFeature(productFeature);
 		await unitOfWork.CommitAsync();
-		return productFeature.Adapt<ProductFeatureViewModel>();
+
+		var a = productFeature.Adapt<ProductFeatureViewModel>();
+
+		return a;
 	}
 
 	public async Task<List<ProductFeatureViewModel>> GetProductFeatures(Guid productId)
@@ -41,7 +44,10 @@ public partial class ProductsApplication
 
 		if (productFeatureForUpdate == null || productFeatureForUpdate.Id == Guid.Empty)
 		{
-			throw new Exception(Errors.NotFound);
+			var message =
+				string.Format(Errors.NotFound, Resources.DataDictionary.ProductFeature);
+
+			throw new Exception(message);
 		}
 
 		productFeatureForUpdate.Update(
