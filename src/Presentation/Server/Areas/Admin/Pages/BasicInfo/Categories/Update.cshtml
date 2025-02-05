@@ -1,9 +1,9 @@
-﻿@page "{parentId:guid?}"
-@model Server.Areas.Admin.Pages.BasicInfo.Categories.CreateModel
+﻿@page "{id:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.Categories.UpdateModel
 
 @{
     var pageTitle =
-        $"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.Category}";
+        $"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.Category}";
 
     ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 }
@@ -20,16 +20,18 @@
 
             @* <partial name="PartialViews/_DisplayPageMessages" /> *@
 
-            <input hidden asp-for="CreateViewModel.ParentId" />
+            <input hidden asp-for="UpdateViewModel.Id" />
 
-            <ub-full-input asp-for="CreateViewModel.Name" />
+            <input hidden asp-for="UpdateViewModel.ParentId" />
 
-            <ub-full-input asp-for="CreateViewModel.IconClass" />
+            <ub-full-input asp-for="UpdateViewModel.Name" />
+
+            <ub-full-input asp-for="UpdateViewModel.IconClass" />
 
         </fieldset>
 
         <section-form-buttons>
-            <button-create />
+            <button-save />
             <button-reset />
         </section-form-buttons>
 

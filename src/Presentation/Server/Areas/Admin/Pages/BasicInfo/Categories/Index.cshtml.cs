@@ -8,20 +8,25 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Categories;
 public class IndexModel
 	(CategoriesApplication categoriesApplication) : PageModel
 {
-	[BindProperty]
 	public List<CategoryViewModel> ViewModel { get; set; } = [];
+	public CategoryViewModel? ParentViewModel { get; set; } = new();
 
 	public async Task OnGetAsync(Guid? parentId)
 	{
 		if (parentId.HasValue == false || parentId == null)
 		{
 			ViewModel =
-				await categoriesApplication.GetCategoriesAsync();
+				await categoriesApplication.GetRootCategoriesAsync();
+
+			ParentViewModel = null;
 		}
 		else
 		{
 			ViewModel =
 				await categoriesApplication.GetSubCategoriesAsync(parentId.Value);
+
+			ParentViewModel =
+				await categoriesApplication.GetCategoryAsync(parentId.Value);
 		}
 	}
 }
