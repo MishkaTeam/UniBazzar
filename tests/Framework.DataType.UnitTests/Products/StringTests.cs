@@ -22,7 +22,7 @@ public class StringTests
 
 		var product = Product.Create(
 			name, shortDescription, fullDescription,
-			storeId, categoryId, brandId, unitId, activePriceListId,
+			storeId, categoryId, brandId, unitId,
 			productType, downloadUrl);
 
 		var fixedName = "Product Name";
@@ -46,7 +46,7 @@ public class StringTests
 
 		var product = Product.Create(
 			name, shortDescription, fullDescription,
-			storeId, categoryId, brandId, unitId, activePriceListId,
+			storeId, categoryId, brandId, unitId,
 			productType, downloadUrl);
 
 		var fixedFullDescription = "";
