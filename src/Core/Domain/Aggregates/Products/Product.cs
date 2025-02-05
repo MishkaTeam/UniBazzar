@@ -1,5 +1,7 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
 using Domain.Aggregates.Categories;
+using Domain.Aggregates.Products.ProductPriceLists;
+using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
 using Domain.Enumerations;
 using Framework.DataType;
@@ -17,16 +19,16 @@ public class Product : Entity
 
 
 	public static Product Create(string name, string shortDescription, string fullDescription,
-		Guid storeId, Guid categoryId, Guid brandId, Guid unitId,
+		Guid storeId, Guid categoryId, Guid brandId, Guid unitId, Guid activePriceListId,
 		ProductType productType = ProductType.Product, string? downloadUrl = null)
 	{
-		ValidateRelations(storeId, categoryId, brandId, unitId);
+		ValidateRelations(storeId, categoryId, brandId, unitId, activePriceListId);
 
 		downloadUrl = CheckHaveDownloadUrl(productType, downloadUrl);
 
 		var product = new Product(
 			name, shortDescription, fullDescription, storeId,
-			categoryId, brandId, unitId,
+			categoryId, brandId, unitId, activePriceListId,
 			productType, downloadUrl)
 		{
 			Name = name.Fix() ?? "",
@@ -38,46 +40,50 @@ public class Product : Entity
 	}
 
 	public void Update(string name, string shortDescription, string fullDescription,
-		Guid storeId, Guid categoryId, Guid brandId, Guid unitId,
+		Guid storeId, Guid categoryId, Guid brandId, Guid unitId, Guid activePriceListId,
 		ProductType productType = ProductType.Product, string? downloadUrl = null)
 	{
 		Name = name.Fix() ?? "";
 		ShortDescription = shortDescription.Fix() ?? "";
 		FullDescription = fullDescription.Fix() ?? "";
 
-		ValidateRelations(storeId, categoryId, brandId, unitId);
+		ValidateRelations(storeId, categoryId, brandId, unitId, activePriceListId);
 
 		StoreId = storeId;
 		CategoryId = categoryId;
 		BrandId = brandId;
 		UnitId = unitId;
+		ActivePriceListId = activePriceListId;
 
 		ProductType = productType;
 		DownloadUrl = CheckHaveDownloadUrl(productType, downloadUrl);
 	}
 
-	public string Name { get; private set; }
-	public string ShortDescription { get; private set; }
-	public string FullDescription { get; private set; }
+	public string Name { get; protected set; }
+	public string ShortDescription { get; protected set; }
+	public string FullDescription { get; protected set; }
 	public string SKU { get; private set; }
-	public string? DownloadUrl { get; private set; }
+	public string? DownloadUrl { get; protected set; }
 
-	public ProductType ProductType { get; private set; }
+	public ProductType ProductType { get; protected set; }
 
-	public Guid UnitId { get; private set; }
-	public Unit Unit { get; private set; }
+	public Guid ActivePriceListId { get; protected set; }
+	//public ProductPriceList ActivePriceList { get; protected set; }
 
-	public Guid BrandId { get; private set; }
-	//public Brand Brand { get; private set; }
+	public Guid UnitId { get; protected set; }
+	public Unit Unit { get; protected set; }
 
-	public Guid CategoryId { get; private set; }
-	public Category Category { get; private set; }
+	public Guid BrandId { get; protected set; }
+	//public Brand Brand { get; protected set; }
 
-	//public Guid StoreId { get; private set; }
-	//public Store Store { get; private set; }
+	public Guid CategoryId { get; protected set; }
+	//public Category Category { get; protected set; }
+
+	//public Guid StoreId { get; protected set; }
+	//public Store Store { get; protected set; }
 
 	private Product(string name, string shortDescription, string fullDescription,
-		Guid storeId, Guid categoryId, Guid brandId, Guid unitId,
+		Guid storeId, Guid categoryId, Guid brandId, Guid unitId, Guid activePriceListId,
 		ProductType productType = ProductType.Product, string? downloadUrl = null)
 	{
 		Name = name;
@@ -87,6 +93,7 @@ public class Product : Entity
 		CategoryId = categoryId;
 		BrandId = brandId;
 		UnitId = unitId;
+		ActivePriceListId = activePriceListId;
 		ProductType = productType;
 		DownloadUrl = downloadUrl;
 
@@ -105,8 +112,8 @@ public class Product : Entity
 	}
 
 	private static void ValidateRelations(
-		Guid storeId, Guid categoryId,
-		Guid brandId, Guid unitId)
+		Guid storeId, Guid categoryId, Guid brandId,
+		Guid unitId, Guid activePriceListId)
 	{
 		string? message = null;
 
@@ -129,6 +136,11 @@ public class Product : Entity
 		{
 			message = string.Format(
 				Validations.Required, DataDictionary.UnitId);
+		}
+		else if (activePriceListId == Guid.Empty)
+		{
+			message = string.Format(
+				Validations.Required, DataDictionary.ActivePriceListId);
 		}
 		else
 		{
