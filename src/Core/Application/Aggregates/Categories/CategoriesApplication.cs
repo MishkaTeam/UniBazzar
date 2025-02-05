@@ -21,12 +21,46 @@ public class CategoriesApplication
 		return category.Adapt<CategoryViewModel>();
 	}
 
+	public async Task<CategoryViewModel> UpdateCategoryAsync(CategoryViewModel updateViewModel)
+	{
+		var categoryForUpdate =
+			await categoryRepository.GetCategoryAsync(updateViewModel.Id);
+
+		if (categoryForUpdate == null || categoryForUpdate.Id == Guid.Empty)
+		{
+			var message =
+				string.Format(Errors.NotFound, Resources.DataDictionary.Category);
+
+			throw new Exception(message);
+		}
+
+		categoryForUpdate.Update(updateViewModel.Name,
+			updateViewModel.ParentId, updateViewModel.IconClass);
+
+		await unitOfWork.CommitAsync();
+		return categoryForUpdate.Adapt<CategoryViewModel>();
+	}
+
 	public async Task<List<CategoryViewModel>> GetCategoriesAsync()
 	{
 		var categories =
 			await categoryRepository.GetAllCategoriesAsync();
 
 		return categories.Adapt<List<CategoryViewModel>>();
+	}
+
+	public async Task<List<CategoryViewModel>> GetRootCategoriesAsync()
+	{
+		var categories =
+			await categoryRepository.GetRootCategoriesAsync();
+
+		var categoryViewModels =
+			categories.Adapt<List<CategoryViewModel>>();
+
+		categoryViewModels =
+			await SetSubCategoriesCount(categoryViewModels);
+
+		return categoryViewModels;
 	}
 
 	public async Task<CategoryViewModel> GetCategoryAsync(Guid id)
@@ -42,7 +76,13 @@ public class CategoriesApplication
 		var subCategories =
 			await categoryRepository.GetSubCategoriesAsync(parentId: parentId);
 
-		return subCategories.Adapt<List<CategoryViewModel>>();
+		var subCategoryViewModels =
+			subCategories.Adapt<List<CategoryViewModel>>();
+
+		subCategoryViewModels =
+			await SetSubCategoriesCount(subCategoryViewModels);
+
+		return subCategoryViewModels;
 	}
 
 	public async Task DeleteCategoryAsync(Guid id)
@@ -57,5 +97,17 @@ public class CategoriesApplication
 
 		categoryRepository.RemoveCategory(categoryForDelete);
 		await unitOfWork.CommitAsync();
+	}
+
+
+	private async Task<List<CategoryViewModel>> SetSubCategoriesCount(List<CategoryViewModel> categories)
+	{
+		foreach (var category in categories)
+		{
+			category.SubCategoriesCount =
+				await categoryRepository.GetSubCategoriesCountAsync(category.Id);
+		}
+
+		return categories;
 	}
 }
