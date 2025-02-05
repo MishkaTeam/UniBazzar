@@ -276,4 +276,13 @@
   <data name="Categories" xml:space="preserve">
     <value>دسته‌بندی ها</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>دسته‌بندی</value>
+  </data>
+  <data name="SubCategoriesOf" xml:space="preserve">
+    <value>زیر دسته‌بندی های</value>
+  </data>
+  <data name="SubCategoriesCount" xml:space="preserve">
+    <value>تعداد زیر دسته‌بندی ها</value>
+  </data>
 </root>

@@ -133,6 +133,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        public static string Category {
+            get {
+                return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category Id.
         /// </summary>
         public static string CategoryId {
@@ -471,6 +480,24 @@ namespace Resources {
         public static string SubCategories {
             get {
                 return ResourceManager.GetString("SubCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub Categories Count.
+        /// </summary>
+        public static string SubCategoriesCount {
+            get {
+                return ResourceManager.GetString("SubCategoriesCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub Categories of.
+        /// </summary>
+        public static string SubCategoriesOf {
+            get {
+                return ResourceManager.GetString("SubCategoriesOf", resourceCulture);
             }
         }
         

@@ -276,4 +276,13 @@
   <data name="Categories" xml:space="preserve">
     <value>Categories</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="SubCategoriesOf" xml:space="preserve">
+    <value>Sub Categories of</value>
+  </data>
+  <data name="SubCategoriesCount" xml:space="preserve">
+    <value>Sub Categories Count</value>
+  </data>
 </root>
