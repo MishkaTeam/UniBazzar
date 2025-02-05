@@ -13,22 +13,42 @@ public class CategoryRepository
 
 	public async Task<List<Category>> GetAllCategoriesAsync()
 	{
-		return await uniBazzarContext.Categories.ToListAsync();
+		return await uniBazzarContext.Categories
+					.Include(x => x.Parent)
+					.ToListAsync();
 	}
 
-	public async Task<Category> GetCategoryAsync(Guid id)
+	public async Task<List<Category>> GetRootCategoriesAsync()
+	{
+		return await uniBazzarContext.Categories
+					.Where(x => x.ParentId == null || x.ParentId == Guid.Empty)
+					.ToListAsync();
+	}
+
+	public async Task<Category?> GetCategoryAsync(Guid id)
 	{
 		var category = await uniBazzarContext.Categories
-						.FirstOrDefaultAsync(x => x.Id == id);
+					.Include(x => x.Parent)
+					.Include(x => x.Parent!.Parent)
+					.Include(x => x.Parent!.Parent!.Parent)
+					.FirstOrDefaultAsync(x => x.Id == id);
 
-		return category ?? new Category();
+		return category;
 	}
 
 	public async Task<List<Category>> GetSubCategoriesAsync(Guid parentId)
 	{
 		return await uniBazzarContext.Categories
+					.Include(x => x.Parent)
 					.Where(x => x.ParentId == parentId)
 					.ToListAsync();
+	}
+
+	public async Task<int> GetSubCategoriesCountAsync(Guid parentId)
+	{
+		return await uniBazzarContext.Categories
+					.Where(x => x.ParentId == parentId)
+					.CountAsync();
 	}
 
 	public void RemoveCategory(Category entity)
