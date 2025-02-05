@@ -10,6 +10,6 @@ public interface IProductRepository : IProductFeatureRepository,
 {
 	Task AddProductAsync(Product entity);
 	Task<List<Product>> GetAllProductsAsync();
-	Task<Product> GetProductAsync(Guid id);
+	Task<Product?> GetProductAsync(Guid id);
 	void RemoveProduct(Product entity);
 }
