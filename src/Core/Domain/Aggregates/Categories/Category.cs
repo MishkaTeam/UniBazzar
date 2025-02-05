@@ -18,24 +18,26 @@ public class Category : Entity
 		{
 			Name = name.Fix() ?? "",
 			ParentId = ValidateParentId(parentId),
-			IconClass = iconClass,
+			IconClass = iconClass.Fix() ?? "",
 		};
 
 		return category;
 	}
 
 	public void Update
-		(string name, Guid? parentId, string imageUrl)
+		(string name, Guid? parentId, string iconClass)
 	{
 		Name = name.Fix() ?? "";
 		ParentId = ValidateParentId(parentId);
-		IconClass = imageUrl;
+		IconClass = iconClass.Fix() ?? "";
 	}
 
 
 	public string Name { get; private set; }
-	public Guid? ParentId { get; private set; }
 	public string IconClass { get; private set; }
+
+	public Guid? ParentId { get; private set; }
+	public Category? Parent { get; private set; }
 
 	private Category
 		(string name, Guid? parentId, string iconClass)
