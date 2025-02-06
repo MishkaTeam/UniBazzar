@@ -222,4 +222,7 @@
   <data name="Image" xml:space="preserve">
     <value>Image</value>
   </data>
+  <data name="ProductPriceList" xml:space="preserve">
+    <value>Product Price List</value>
+  </data>
 </root>

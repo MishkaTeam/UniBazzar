@@ -222,4 +222,7 @@
   <data name="Image" xml:space="preserve">
     <value>تصویر</value>
   </data>
+  <data name="ProductPriceList" xml:space="preserve">
+    <value>لیست قیمت کالا</value>
+  </data>
 </root>

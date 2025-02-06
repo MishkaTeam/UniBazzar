@@ -35,7 +35,9 @@
                             <a class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">عملیات</a>
                             <ul class="dropdown-menu">
                                 <li><a asp-page="ProductFeatures/Index" asp-route-Id="@(product.Id)" class="dropdown-item">@(Resources.ButtonCaptions.ManageOf) @(Resources.DataDictionary.Features)</a></li>
+                                <li><a asp-page="ProductPriceLists/Index" asp-route-Id="@(product.Id)" class="dropdown-item">@(Resources.ButtonCaptions.ManageOf) @(Resources.DataDictionary.Price)</a></li>
                             </ul>
+
                         </div>
                     </div>
                 </td>
