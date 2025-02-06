@@ -6,5 +6,6 @@ public interface IProductPriceListRepository
     Task<ProductPriceList> GetProductPriceListAsync(Guid id);
     Task<List<ProductPriceList>> GetAllProductPriceListAsync();
     Task<ProductPriceList> GetPriceByProductId(Guid id);
+    Task<List<ProductPriceList>> GetPriceListByProductId(Guid id);
     void Remove(ProductPriceList priceList);
 }

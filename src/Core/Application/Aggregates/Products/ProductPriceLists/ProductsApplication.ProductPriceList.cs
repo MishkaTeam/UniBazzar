@@ -31,6 +31,13 @@ public partial class ProductsApplication
         return productPricelist.Adapt<ProductPriceListViewModel>();
     }
 
+    public async Task<List<ProductPriceListViewModel>> GetPriceListByProductId(Guid id)
+    {
+        var productPricelist = productPriceListRepository.GetPriceListByProductId(id);
+
+        return productPricelist.Adapt<List<ProductPriceListViewModel>>();
+    }
+
     public async Task<List<ProductPriceListViewModel>> GetAllProductPriceListAsync()
     {
         var productPricelist = productPriceListRepository.GetAllProductPriceListAsync();

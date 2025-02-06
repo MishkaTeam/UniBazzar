@@ -29,6 +29,11 @@ public partial class ProductRepository
         return productpricelist ?? new ProductPriceList();
     }
 
+    public async Task<List<ProductPriceList>> GetPriceListByProductId(Guid id)
+    {
+        return await uniBazzarContext.ProductPriceLists.Where(x => x.ProductId == id).ToListAsync();
+    }
+
     public void Remove(ProductPriceList productPriceList)
     {
         uniBazzarContext.ProductPriceLists.Remove(productPriceList);
