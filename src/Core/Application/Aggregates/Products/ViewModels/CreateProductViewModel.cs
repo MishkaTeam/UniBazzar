@@ -37,7 +37,7 @@ public class CreateProductViewModel
 
 	[Display
 		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.UnitId))]
+		Name = nameof(Resources.DataDictionary.Unit))]
 	public Guid UnitId { get; set; }
 
 	[Display
