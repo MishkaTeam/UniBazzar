@@ -7,7 +7,8 @@ namespace Server.Areas.Admin.Pages.BasicInfo.ShippingAddress
     public class DeleteModel(ShippingAddressApplication shippingAddressApplication) : PageModel
     {
         [BindProperty]
-        public UpdateShippingAddressViewModel DeleteViewModel { get; set; }
+        public UpdateShippingAddressViewModel DeleteViewModel { get; set; } = new();
+
         public async Task OnGet(Guid Id)
         {
             DeleteViewModel = await shippingAddressApplication.GetAddress(Id);

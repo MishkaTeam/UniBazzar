@@ -24,7 +24,8 @@
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <a asp-page="Update" asp-route-Id="@(model.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
-                        <a asp-page="Delete" asp-route-Id="@(model.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+                        <a asp-page="Delete" asp-route-CustomerId="@(model.CustomerId)" asp-route-Id="@(model.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+
                     </div>
                 </td>
 
