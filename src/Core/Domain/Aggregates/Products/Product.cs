@@ -67,7 +67,7 @@ public class Product : Entity
 	public Unit Unit { get; private set; }
 
 	public Guid CategoryId { get; private set; }
-	public Category Category { get; private set; }
+	//public Category Category { get; private set; }
 
 	//public Guid StoreId { get; private set; }
 	//public Store Store { get; private set; }
