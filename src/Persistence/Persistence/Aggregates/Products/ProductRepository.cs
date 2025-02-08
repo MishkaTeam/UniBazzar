@@ -14,7 +14,6 @@ public partial class ProductRepository
 	public async Task<List<Product>> GetAllProductsAsync()
 	{
 		return await uniBazzarContext.Products
-					//.Include(x => x.BrandId)
 					//.Include(x => x.Store)
 					//.Include(x => x.Category)
 					.Include(x => x.Unit)

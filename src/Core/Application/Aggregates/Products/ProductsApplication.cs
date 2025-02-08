@@ -15,7 +15,7 @@ public partial class ProductsApplication
 	public async Task<ProductViewModel> CreateProductAsync(CreateProductViewModel viewModel)
 	{
 		var product = Product.Create(viewModel.Name, viewModel.ShortDescription, viewModel.FullDescription,
-									viewModel.StoreId, viewModel.CategoryId, viewModel.BrandId, viewModel.UnitId,
+									viewModel.StoreId, viewModel.CategoryId, viewModel.UnitId,
 									viewModel.ProductType, viewModel.DownloadUrl);
 
 		await productRepository.AddProductAsync(product);
@@ -54,7 +54,7 @@ public partial class ProductsApplication
 		}
 
 		productForUpdate.Update(updateViewModel.Name, updateViewModel.ShortDescription, updateViewModel.FullDescription,
-								updateViewModel.StoreId, updateViewModel.CategoryId, updateViewModel.BrandId, updateViewModel.UnitId,
+								updateViewModel.StoreId, updateViewModel.CategoryId, updateViewModel.UnitId,
 								updateViewModel.ProductType, updateViewModel.DownloadUrl);
 
 		await unitOfWork.CommitAsync();

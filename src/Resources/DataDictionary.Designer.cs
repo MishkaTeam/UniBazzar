@@ -115,15 +115,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Brand Id.
-        /// </summary>
-        public static string BrandId {
-            get {
-                return ResourceManager.GetString("BrandId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Categories.
         /// </summary>
         public static string Categories {

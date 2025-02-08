@@ -126,9 +126,6 @@
   <data name="BasicInformation" xml:space="preserve">
     <value>اطلاعات پایه</value>
   </data>
-  <data name="BrandId" xml:space="preserve">
-    <value>شناسه نام تجاری</value>
-  </data>
   <data name="CategoryId" xml:space="preserve">
     <value>شناسه دسته‌بندی</value>
   </data>

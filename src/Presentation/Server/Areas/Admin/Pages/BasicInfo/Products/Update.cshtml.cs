@@ -37,7 +37,6 @@ public class UpdateModel
 		{
 			UpdateViewModel.CategoryId = Guid.NewGuid();
 			UpdateViewModel.StoreId = Guid.NewGuid();
-			UpdateViewModel.BrandId = Guid.NewGuid();
 
 			await productsApplication.UpdateProductAsync(UpdateViewModel);
 		}

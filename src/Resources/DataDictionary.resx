@@ -126,9 +126,6 @@
   <data name="BasicInformation" xml:space="preserve">
     <value>Basic Information</value>
   </data>
-  <data name="BrandId" xml:space="preserve">
-    <value>Brand Id</value>
-  </data>
   <data name="CategoryId" xml:space="preserve">
     <value>Category Id</value>
   </data>

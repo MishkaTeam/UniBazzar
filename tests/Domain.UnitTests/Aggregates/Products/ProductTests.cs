@@ -14,7 +14,6 @@ public class ProductTests
 		string fullDescription = "Full Description";
 		Guid storeId = Guid.NewGuid();
 		Guid categoryId = Guid.NewGuid();
-		Guid brandId = Guid.NewGuid();
 		Guid unitId = Guid.NewGuid();
 		Guid activePriceListId = Guid.NewGuid();
 		ProductType productType = ProductType.Product;
@@ -22,7 +21,7 @@ public class ProductTests
 
 		var product = Product.Create(
 			name, shortDescription, fullDescription,
-			storeId, categoryId, brandId, unitId,
+			storeId, categoryId, unitId,
 			productType, downloadUrl);
 
 		product.Name.Should().Be(name);
@@ -30,7 +29,6 @@ public class ProductTests
 		product.FullDescription.Should().Be(fullDescription);
 		product.StoreId.Should().Be(storeId);
 		product.CategoryId.Should().Be(categoryId);
-		product.BrandId.Should().Be(brandId);
 		product.UnitId.Should().Be(unitId);
 	}
 }

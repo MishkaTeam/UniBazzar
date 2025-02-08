@@ -17,16 +17,16 @@ public class Product : Entity
 
 
 	public static Product Create(string name, string shortDescription, string fullDescription,
-		Guid storeId, Guid categoryId, Guid brandId, Guid unitId,
+		Guid storeId, Guid categoryId, Guid unitId,
 		ProductType productType = ProductType.Product, string? downloadUrl = null)
 	{
-		ValidateRelations(storeId, categoryId, brandId, unitId);
+		ValidateRelations(storeId, categoryId, unitId);
 
 		downloadUrl = CheckHaveDownloadUrl(productType, downloadUrl);
 
 		var product = new Product(
 			name, shortDescription, fullDescription, storeId,
-			categoryId, brandId, unitId,
+			categoryId, unitId,
 			productType, downloadUrl)
 		{
 			Name = name.Fix() ?? "",
@@ -38,18 +38,17 @@ public class Product : Entity
 	}
 
 	public void Update(string name, string shortDescription, string fullDescription,
-		Guid storeId, Guid categoryId, Guid brandId, Guid unitId,
+		Guid storeId, Guid categoryId, Guid unitId,
 		ProductType productType = ProductType.Product, string? downloadUrl = null)
 	{
 		Name = name.Fix() ?? "";
 		ShortDescription = shortDescription.Fix() ?? "";
 		FullDescription = fullDescription.Fix() ?? "";
 
-		ValidateRelations(storeId, categoryId, brandId, unitId);
+		ValidateRelations(storeId, categoryId, unitId);
 
 		StoreId = storeId;
 		CategoryId = categoryId;
-		BrandId = brandId;
 		UnitId = unitId;
 
 		ProductType = productType;
@@ -67,9 +66,6 @@ public class Product : Entity
 	public Guid UnitId { get; private set; }
 	public Unit Unit { get; private set; }
 
-	public Guid BrandId { get; private set; }
-	//public Brand Brand { get; private set; }
-
 	public Guid CategoryId { get; private set; }
 	public Category Category { get; private set; }
 
@@ -77,7 +73,7 @@ public class Product : Entity
 	//public Store Store { get; private set; }
 
 	private Product(string name, string shortDescription, string fullDescription,
-		Guid storeId, Guid categoryId, Guid brandId, Guid unitId,
+		Guid storeId, Guid categoryId, Guid unitId,
 		ProductType productType = ProductType.Product, string? downloadUrl = null)
 	{
 		Name = name;
@@ -85,7 +81,6 @@ public class Product : Entity
 		FullDescription = fullDescription;
 		StoreId = storeId;
 		CategoryId = categoryId;
-		BrandId = brandId;
 		UnitId = unitId;
 		ProductType = productType;
 		DownloadUrl = downloadUrl;
@@ -105,8 +100,7 @@ public class Product : Entity
 	}
 
 	private static void ValidateRelations(
-		Guid storeId, Guid categoryId,
-		Guid brandId, Guid unitId)
+		Guid storeId, Guid categoryId, Guid unitId)
 	{
 		string? message = null;
 
@@ -119,11 +113,6 @@ public class Product : Entity
 		{
 			message = string.Format(
 				Validations.Required, DataDictionary.CategoryId);
-		}
-		else if (brandId == Guid.Empty)
-		{
-			message = string.Format(
-				Validations.Required, DataDictionary.BrandId);
 		}
 		else if (unitId == Guid.Empty)
 		{
