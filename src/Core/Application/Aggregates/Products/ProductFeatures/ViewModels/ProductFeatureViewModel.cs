@@ -10,8 +10,5 @@ public class ProductFeatureViewModel : CreateProductFeatureViewModel
 		Name = nameof(Resources.DataDictionary.Id))]
 	public Guid Id { get; set; }
 
-	[Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.Product))]
 	public ProductViewModel? Product { get; set; }
 }
