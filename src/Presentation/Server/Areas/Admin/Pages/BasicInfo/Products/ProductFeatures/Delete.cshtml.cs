@@ -29,6 +29,6 @@ public class DeleteModel
 		await productsApplication.DeleteProductFeatureAsync(DeleteViewModel.Id);
 
 		return RedirectToPage("Index",
-			new { id = DeleteViewModel.ProductId.ToString() });
+			new { productId = DeleteViewModel.ProductId.ToString() });
 	}
 }

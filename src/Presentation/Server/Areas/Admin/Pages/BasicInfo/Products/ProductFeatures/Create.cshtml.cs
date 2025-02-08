@@ -31,6 +31,6 @@ public class CreateModel
 		}
 
 		return RedirectToPage("Index",
-			new { id = CreateViewModel.ProductId.ToString() });
+			new { productId = CreateViewModel.ProductId.ToString() });
 	}
 }

@@ -32,6 +32,6 @@ public class UpdateModel
 		}
 
 		return RedirectToPage("Index",
-			new { id = UpdateViewModel.ProductId });
+			new { productId = UpdateViewModel.ProductId });
 	}
 }
