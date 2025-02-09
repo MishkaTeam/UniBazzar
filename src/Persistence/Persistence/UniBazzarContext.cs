@@ -27,7 +27,7 @@ public class UniBazzarContext : DbContext
 
 	public DbSet<Category> Categories { get; set; }
 
-	public DbSet<Customer> customers { get; set; }
-	public DbSet<ShippingAddress> shippingAddresses { get; set; }
+	public DbSet<Customer> Customers { get; set; }
+	public DbSet<ShippingAddress> ShippingAddresses { get; set; }
 
 }
