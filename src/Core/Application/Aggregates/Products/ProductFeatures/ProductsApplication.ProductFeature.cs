@@ -7,7 +7,7 @@ namespace Application.Aggregates.Products;
 
 public partial class ProductsApplication
 {
-	public async Task<ProductFeatureViewModel> CreateProductFeatureAsync(CreateProductFeatureViewModel viewModel)
+	public async Task CreateProductFeatureAsync(CreateProductFeatureViewModel viewModel)
 	{
 		var productFeature = ProductFeature.Create(
 				viewModel.ProductId, viewModel.Key,
@@ -15,7 +15,6 @@ public partial class ProductsApplication
 
 		productRepository.AddProductFeature(productFeature);
 		await unitOfWork.CommitAsync();
-		return productFeature.Adapt<ProductFeatureViewModel>();
 	}
 
 	public async Task<List<ProductFeatureViewModel>> GetProductFeatures(Guid productId)
@@ -41,7 +40,10 @@ public partial class ProductsApplication
 
 		if (productFeatureForUpdate == null || productFeatureForUpdate.Id == Guid.Empty)
 		{
-			throw new Exception(Errors.NotFound);
+			var message =
+				string.Format(Errors.NotFound, Resources.DataDictionary.ProductFeature);
+
+			throw new Exception(message);
 		}
 
 		productFeatureForUpdate.Update(

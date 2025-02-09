@@ -126,9 +126,6 @@
   <data name="BasicInformation" xml:space="preserve">
     <value>Basic Information</value>
   </data>
-  <data name="BrandId" xml:space="preserve">
-    <value>Brand Id</value>
-  </data>
   <data name="CategoryId" xml:space="preserve">
     <value>Category Id</value>
   </data>
@@ -154,7 +151,7 @@
     <value>Is Pinned</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>First Name</value>
   </data>
   <data name="Order" xml:space="preserve">
     <value>Order</value>
@@ -207,8 +204,17 @@
   <data name="UpdateOf" xml:space="preserve">
     <value>Update Of</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>First Name</value>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="ProductFeatures" xml:space="preserve">
+    <value>Product Features</value>
+  </data>
+  <data name="ProductFeature" xml:space="preserve">
+    <value>Product Feature</value>
+  </data>
+  <data name="FeaturesOf" xml:space="preserve">
+    <value>Features of</value>
   </data>
   <data name="Family" xml:space="preserve">
     <value>Last Name</value>
@@ -258,16 +264,22 @@
   <data name="AddressManagement" xml:space="preserve">
     <value>Address management</value>
   </data>
-  <data name="Value" xml:space="preserve">
-    <value>Value</value>
+  <data name="IconClass" xml:space="preserve">
+    <value>Icon Class</value>
   </data>
-  <data name="ProductFeatures" xml:space="preserve">
-    <value>Product Features</value>
+  <data name="SubCategories" xml:space="preserve">
+    <value>Sub Categories</value>
   </data>
-  <data name="ProductFeature" xml:space="preserve">
-    <value>Product Feature</value>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
   </data>
-  <data name="FeaturesOf" xml:space="preserve">
-    <value>Features of</value>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="SubCategoriesOf" xml:space="preserve">
+    <value>Sub Categories of</value>
+  </data>
+  <data name="SubCategoriesCount" xml:space="preserve">
+    <value>Sub Categories Count</value>
   </data>
 </root>

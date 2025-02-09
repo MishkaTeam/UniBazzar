@@ -32,18 +32,8 @@ public class CreateProductViewModel
 
 	[Display
 		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.BrandId))]
-	public Guid BrandId { get; set; }
-
-	[Display
-		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.Unit))]
 	public Guid UnitId { get; set; }
-
-	[Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.ActivePriceListId))]
-	public Guid ActivePriceListId { get; set; }
 
 	[Display
 		(ResourceType = typeof(Resources.DataDictionary),

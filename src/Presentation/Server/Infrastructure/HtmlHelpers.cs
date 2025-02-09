@@ -16,22 +16,22 @@ public static class HtmlHelpers : object
 		}
 	}
 
-	//public static Microsoft.AspNetCore.Html.IHtmlContent Ub_DisplayInteger
-	//	(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, long? value)
-	//{
-	//	if (value.HasValue == false)
-	//	{
-	//		return html.Raw(value: DefaultValue);
-	//	}
+	public static Microsoft.AspNetCore.Html.IHtmlContent Ub_DisplayInteger
+		(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, long? value)
+	{
+		if (value.HasValue == false)
+		{
+			return html.Raw(value: DefaultValue);
+		}
 
-	//	var result =
-	//		value.Value.ToString(format: "#,##0");
+		var result =
+			value.Value.ToString(format: "#,##0");
 
-	//	result =
-	//		Convert.DigitsToUnicode(value: result);
+		//result =
+		//	Convert.DigitsToUnicode(value: result);
 
-	//	return html.Raw(value: result);
-	//}
+		return html.Raw(value: result);
+	}
 
 	//public static Microsoft.AspNetCore.Html
 	//	.IHtmlContent Ub_DisplayRowNumberWithTd
@@ -60,9 +60,6 @@ public static class HtmlHelpers : object
 
 		td.AddCssClass("align-middle text-center");
 
-		//var innerHtml =
-		//	Ub_DisplayBoolean(html: html, value: value);
-
 		td.InnerHtml.Append(value!);
 
 		return td;
@@ -76,9 +73,6 @@ public static class HtmlHelpers : object
 			.Rendering.TagBuilder(tagName: "th");
 
 		td.AddCssClass("align-middle text-center");
-
-		//var innerHtml =
-		//	Ub_DisplayBoolean(html: html, value: value);
 
 		td.InnerHtml.Append(value!);
 
@@ -140,23 +134,25 @@ public static class HtmlHelpers : object
 		return td;
 	}
 
-	//public static Microsoft.AspNetCore.Html.IHtmlContent Ub_DisplayIntegerWithTd
-	//	(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, long? value)
-	//{
-	//	var td =
-	//		new Microsoft.AspNetCore.Mvc
-	//		.Rendering.TagBuilder(tagName: "td");
+	public static Microsoft.AspNetCore.Html.IHtmlContent Ub_DisplayIntegerWithTd
+		(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, long? value)
+	{
+		var td =
+			new Microsoft.AspNetCore.Mvc
+			.Rendering.TagBuilder(tagName: "td");
 
-	//	td.Attributes.Add
-	//		(key: "dir", value: "ltr");
+		td.Attributes.Add
+			(key: "dir", value: "ltr");
 
-	//	var innerHtml =
-	//		Ub_DisplayInteger(html: html, value: value);
+		var innerHtml =
+			Ub_DisplayInteger(html: html, value: value);
 
-	//	td.InnerHtml.AppendHtml(content: innerHtml);
+		td.AddCssClass("align-middle text-center");
 
-	//	return td;
-	//}
+		td.InnerHtml.AppendHtml(content: innerHtml);
+
+		return td;
+	}
 
 	//public static Microsoft.AspNetCore.Html.IHtmlContent Ub_DisplayDateTime
 	//	(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, System.DateTime? value)

@@ -54,11 +54,12 @@ namespace Domain.Aggregates.Stores
             Logo = logo;
             IsActivce=isActive;
 
-        }
+			SetUpdateDateTime();
+		}
 
-      
 
-        public void SetUpdateBy(Guid Id)
+
+		public void SetUpdateBy(Guid Id)
         {
             UpdatedBy = Id; 
 

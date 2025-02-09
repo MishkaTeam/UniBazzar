@@ -14,7 +14,6 @@ public class StringTests
 		string fullDescription = "Full Description";
 		Guid storeId = Guid.NewGuid();
 		Guid categoryId = Guid.NewGuid();
-		Guid brandId = Guid.NewGuid();
 		Guid unitId = Guid.NewGuid();
 		Guid activePriceListId = Guid.NewGuid();
 		ProductType productType = ProductType.Product;
@@ -22,7 +21,7 @@ public class StringTests
 
 		var product = Product.Create(
 			name, shortDescription, fullDescription,
-			storeId, categoryId, brandId, unitId, activePriceListId,
+			storeId, categoryId, unitId,
 			productType, downloadUrl);
 
 		var fixedName = "Product Name";
@@ -38,7 +37,6 @@ public class StringTests
 		string fullDescription = "    ";
 		Guid storeId = Guid.NewGuid();
 		Guid categoryId = Guid.NewGuid();
-		Guid brandId = Guid.NewGuid();
 		Guid unitId = Guid.NewGuid();
 		Guid activePriceListId = Guid.NewGuid();
 		ProductType productType = ProductType.Product;
@@ -46,7 +44,7 @@ public class StringTests
 
 		var product = Product.Create(
 			name, shortDescription, fullDescription,
-			storeId, categoryId, brandId, unitId, activePriceListId,
+			storeId, categoryId, unitId,
 			productType, downloadUrl);
 
 		var fixedFullDescription = "";

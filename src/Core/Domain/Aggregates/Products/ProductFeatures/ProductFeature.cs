@@ -7,58 +7,67 @@ namespace Domain.Aggregates.Products.ProductFeatures;
 
 public class ProductFeature : Entity
 {
-    public ProductFeature()
-    {
-        // FOR EF!
-    }
+	public ProductFeature()
+	{
+		// FOR EF!
+	}
 
 
-    public static ProductFeature Create(Guid productId, string key, string value, bool isPinned = false, int order = 100)
-    {
-        var productFeature = new ProductFeature(productId, key, value, isPinned, order)
-        {
-            ProductId = ValidateProduct(productId),
-            Key = key.Fix(),
-            Value = value.Fix(),
-        };
+	public static ProductFeature Create
+		(Guid productId, string key, string value,
+		bool isPinned = false, int order = 100)
+	{
+		var productFeature = new ProductFeature(productId, key, value, isPinned, order)
+		{
+			ProductId = ValidateProduct(productId),
+			Key = key.Fix(),
+			Value = value.Fix(),
+		};
 
-        return productFeature;
-    }
+		return productFeature;
+	}
 
-    public void Update(string key, string value, bool isPinned = false, int order = 100)
-    {
-        Key = key.Fix()!;
-        Value = value.Fix()!;
-        IsPinned = isPinned;
-        Order = order;
-    }
+	public void Update
+		(string key, string value,
+		bool isPinned = false, int order = 100)
+	{
+		Key = key.Fix()!;
+		Value = value.Fix()!;
+		IsPinned = isPinned;
+		Order = order;
 
-    public Guid ProductId { get; protected set; }
-    public Product Product { get; protected set; }
-    public string? Key { get; protected set; }
-    public string? Value { get; protected set; }
-    public bool IsPinned { get; protected set; }
-    public int Order { get; protected set; }
+		SetUpdateDateTime();
+	}
 
-    private ProductFeature(Guid productId, string key, string value, bool isPinned, int order)
-    {
-        ProductId = productId;
-        Key = key;
-        Value = value;
-        IsPinned = isPinned;
-        Order = order;
-    }
+	public string? Key { get; private set; }
+	public string? Value { get; private set; }
+	public bool IsPinned { get; private set; }
+	public int Order { get; private set; }
 
-    private static Guid ValidateProduct(Guid productId)
-    {
-        if (productId == Guid.Empty)
-        {
-            var message = string.Format(Validations.Required, DataDictionary.ProductId);
+	public Guid ProductId { get; private set; }
+	public Product Product { get; private set; }
 
-            throw new ArgumentException(message);
-        }
+	private ProductFeature
+		(Guid productId, string key, string value,
+		bool isPinned, int order)
+	{
+		ProductId = productId;
+		Key = key;
+		Value = value;
+		IsPinned = isPinned;
+		Order = order;
+	}
 
-        return productId;
-    }
+	private static Guid ValidateProduct(Guid productId)
+	{
+		if (productId == Guid.Empty)
+		{
+			var message =
+				string.Format(Validations.Required, DataDictionary.ProductId);
 
+			throw new ArgumentException(message);
+		}
+
+		return productId;
+	}
 }

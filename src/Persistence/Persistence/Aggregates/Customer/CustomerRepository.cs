@@ -14,22 +14,22 @@ namespace Persistence.Aggregates.Customer
 
         public Task<List<Domain.Aggregates.Customers.Customer>> GetAllCustomersAsync()
         {
-            return uniBazzarContext.customers.ToListAsync();
+            return uniBazzarContext.Customers.ToListAsync();
         }
 
         public Task<Domain.Aggregates.Customers.Customer> GetCustomerAsync(Guid id)
         {
-            return uniBazzarContext.customers.FirstOrDefaultAsync(x => x.Id == id); 
+            return uniBazzarContext.Customers.FirstOrDefaultAsync(x => x.Id == id); 
         }
 
         public Task<Domain.Aggregates.Customers.Customer> GetRootCustomersAsync(Guid id)
         {
-            return uniBazzarContext.customers.FirstOrDefaultAsync(x => x.Id == id);
+            return uniBazzarContext.Customers.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public void Remove(Domain.Aggregates.Customers.Customer entity)
         {
-            uniBazzarContext.customers.Remove(entity);
+            uniBazzarContext.Customers.Remove(entity);
         }
     }
 }
