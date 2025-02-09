@@ -53,6 +53,8 @@ public class Product : Entity
 
 		ProductType = productType;
 		DownloadUrl = CheckHaveDownloadUrl(productType, downloadUrl);
+
+		SetUpdateDateTime();
 	}
 
 	public string Name { get; private set; }

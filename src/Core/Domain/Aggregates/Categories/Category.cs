@@ -30,6 +30,8 @@ public class Category : Entity
 		Name = name.Fix() ?? "";
 		ParentId = ValidateParentId(parentId);
 		IconClass = iconClass.Fix() ?? "";
+
+		SetUpdateDateTime();
 	}
 
 

@@ -24,9 +24,11 @@ public class ProductImage : Entity
     {
         ImageUrl = imageurl;
         ProductId = ValidateProduct(productid);
-    }
 
-    private static Guid ValidateProduct(Guid productid)
+		SetUpdateDateTime();
+	}
+
+	private static Guid ValidateProduct(Guid productid)
     {
         if (productid == Guid.Empty)
         {

@@ -26,6 +26,8 @@ public class Unit : Entity
 		Title = title;
 		BaseUnitId = ValidateBaseUnit(baseUnitId);
 		Ratio = ratio;
+
+		SetUpdateDateTime();
 	}
 
 	private static Guid? ValidateBaseUnit(Guid? baseUnitId)

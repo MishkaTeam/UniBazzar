@@ -40,8 +40,10 @@ namespace Domain.Aggregates.ShippingAddress
 
             if (!postalCode.IsValidPostalCode())
                 throw new ValidationException(Resources.Messages.Validations.PostalCode);
-        }
-        private ShippingAddress(string country, string province, string city, string address, string postalCode)
+
+			SetUpdateDateTime();
+		}
+		private ShippingAddress(string country, string province, string city, string address, string postalCode)
         {
             Country = country;
             Province = province;

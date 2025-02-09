@@ -25,9 +25,11 @@ public class ProductPriceList : Entity
     {
         Price = ValidatePrice(price);
         ProductId = ValidateProduct(productid);
-    }
 
-    private static int ValidatePrice(int price)
+		SetUpdateDateTime();
+	}
+
+	private static int ValidatePrice(int price)
     {
         if (price < 0)
         {

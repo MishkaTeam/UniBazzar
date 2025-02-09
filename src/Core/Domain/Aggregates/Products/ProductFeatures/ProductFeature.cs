@@ -35,6 +35,8 @@ public class ProductFeature : Entity
 		Value = value.Fix()!;
 		IsPinned = isPinned;
 		Order = order;
+
+		SetUpdateDateTime();
 	}
 
 	public string? Key { get; private set; }
