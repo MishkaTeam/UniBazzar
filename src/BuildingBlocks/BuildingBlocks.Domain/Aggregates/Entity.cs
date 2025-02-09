@@ -10,7 +10,6 @@ public class Entity : IEntity
 		Id = Guid.NewGuid();
 
 		SetInsertDateTime();
-		UpdateDateTime = InsertDateTime;
 	}
 
 	[DatabaseGenerated
