@@ -1,0 +1,22 @@
+﻿
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/admin/vendors/coreui/coreui/js/coreui.bundle.min.js"></script>
+<script src="~/admin/vendors/simplebar/js/simplebar.min.js"></script>
+<script>
+    const header = document.querySelector('header.header');
+
+    document.addEventListener('scroll', () => {
+        if (header) {
+            header.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0);
+        }
+    });
+</script>
+<script src="~/admin/vendors/chart.js/js/chart.umd.js"></script>
+<script src="~/admin/vendors/coreui/chartjs/js/coreui-chartjs.js"></script>
+<script src="~/admin/vendors/coreui/utils/js/index.js"></script>
+<script src="~/js/autodirection.js"></script>
+
