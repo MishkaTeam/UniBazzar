@@ -39,7 +39,7 @@ public class Category : Entity
 	public string IconClass { get; private set; }
 
 	public Guid? ParentId { get; private set; }
-	public Category? Parent { get; private set; }
+	public virtual Category? Parent { get; private set; }
 
 	private Category
 		(string name, Guid? parentId, string iconClass)

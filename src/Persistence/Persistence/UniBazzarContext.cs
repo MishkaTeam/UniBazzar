@@ -12,9 +12,17 @@ namespace Persistence;
 
 public class UniBazzarContext : DbContext
 {
-	public UniBazzarContext(DbContextOptions options) : base(options)
+	public UniBazzarContext
+		(DbContextOptions options) : base(options)
 	{
 		Database.EnsureCreated();
+	}
+
+	protected override void OnConfiguring
+		(DbContextOptionsBuilder optionsBuilder)
+	{
+		optionsBuilder.UseLazyLoadingProxies
+			(options => options.IgnoreNonVirtualNavigations(true));
 	}
 
 
