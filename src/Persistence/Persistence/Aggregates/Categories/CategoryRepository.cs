@@ -28,9 +28,6 @@ public class CategoryRepository
 	public async Task<Category?> GetCategoryAsync(Guid id)
 	{
 		var category = await uniBazzarContext.Categories
-					.Include(x => x.Parent)
-					.Include(x => x.Parent!.Parent)
-					.Include(x => x.Parent!.Parent!.Parent)
 					.FirstOrDefaultAsync(x => x.Id == id);
 
 		return category;
