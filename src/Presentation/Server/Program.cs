@@ -15,7 +15,8 @@ namespace Server
             var services = builder.Services;
 
 			services.AddRazorPages();
-            services.AddDomainApplications();
+			services.AddServerSideBlazor();
+			services.AddDomainApplications();
             services.AddDomainRepositories();
 			services.AddUnitOfWork();
             services.AddDbContext<UniBazzarContext>(opt => opt.UseSqlite("Data Source=Database.db"));
@@ -37,8 +38,9 @@ namespace Server
             app.UseAuthorization();
 
             app.MapRazorPages();
+			app.MapBlazorHub();
 
-            app.Run();
+			app.Run();
         }
     }
 }

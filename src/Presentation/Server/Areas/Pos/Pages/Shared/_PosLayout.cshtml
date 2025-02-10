@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+	<base href="~/" />
+	<component type="typeof(Microsoft.AspNetCore.Components.Web.HeadOutlet)"
+			   render-mode="ServerPrerendered" />
+	<title>@(ViewData[Constants.ViewDataKeyName.PageTitle])</title>
+	<link rel="stylesheet" href="~/Server.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+	<div class="wrapper d-flex flex-column min-vh-100">
+		<div class="body flex-grow-1">
+			<div class="container-lg px-4">
+				@RenderBody()
+			</div>
+		</div>
+	</div>
+	<script src="_framework/blazor.server.js"></script>
+</body>
+</html>
