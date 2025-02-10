@@ -46,7 +46,7 @@ namespace Domain.Aggregates.ShippingAddress
 
 			SetUpdateDateTime();
 		}
-		private ShippingAddress(string country, string province, string city, string address, string postalCode)
+		private ShippingAddress(string country, string province, string city, string address, string postalCode, Guid customerid)
         {
             Country = country;
             Province = province;

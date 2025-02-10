@@ -18,7 +18,7 @@ namespace Persistence.Aggregates.ShippingAddress
 
         public Task<List<Domain.Aggregates.ShippingAddress.ShippingAddress>> GetAllShippingAddressAsync(Guid CustomerId)
         {
-            return uniBazzarContext.shippingAddresses.Where(x=> x.CustomerId == CustomerId).ToListAsync();
+            return uniBazzarContext.ShippingAddresses.Where(x=> x.CustomerId == CustomerId).ToListAsync();
         }
 
         public Task<Domain.Aggregates.ShippingAddress.ShippingAddress> GetShippingAddressAsync(Guid id)
