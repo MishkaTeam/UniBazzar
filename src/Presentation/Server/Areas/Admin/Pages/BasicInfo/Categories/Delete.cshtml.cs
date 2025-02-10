@@ -1,13 +1,14 @@
 using Application.Aggregates.Categories;
 using Application.Aggregates.Categories.ViewModels;
 using Application.Aggregates.Products;
+using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Categories;
 
 public class DeleteModel
-	(CategoriesApplication categoriesApplication) : PageModel
+	(CategoriesApplication categoriesApplication) : BasePageModel
 {
 	[BindProperty]
 	public CategoryViewModel DeleteViewModel { get; set; } = new();

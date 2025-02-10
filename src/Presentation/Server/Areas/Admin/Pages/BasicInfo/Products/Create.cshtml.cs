@@ -1,7 +1,8 @@
-using Application.Aggregates.Products;
+﻿using Application.Aggregates.Products;
 using Application.Aggregates.Products.ViewModels;
 using Application.Aggregates.Units;
 using Domain.Enumerations;
+using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Server.Areas.Admin.Pages.BasicInfo.Products;
 
 public class CreateModel
-	(ProductsApplication productsApplication, UnitsApplication unitsApplication) : PageModel
+	(ProductsApplication productsApplication, UnitsApplication unitsApplication) : BasePageModel
 {
 	[BindProperty]
 	public CreateProductViewModel CreateViewModel { get; set; } = new();

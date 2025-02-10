@@ -1,12 +1,13 @@
 using Application.Aggregates.Categories;
 using Application.Aggregates.Categories.ViewModels;
+using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Categories;
 
 public class UpdateModel
-	(CategoriesApplication categoriesApplication) : PageModel
+	(CategoriesApplication categoriesApplication) : BasePageModel
 {
 	[BindProperty]
 	public CategoryViewModel UpdateViewModel { get; set; } = new();

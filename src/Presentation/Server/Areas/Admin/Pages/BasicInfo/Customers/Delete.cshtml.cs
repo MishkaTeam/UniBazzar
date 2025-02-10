@@ -1,11 +1,12 @@
 using Application.Aggregates.Customer;
+using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Customers
 {
-	public class DeleteModel(CustomerApplication customerApplication) : PageModel
-	{
+	public class DeleteModel(CustomerApplication customerApplication) : BasePageModel
+    {
 		[BindProperty]
 		public CustomerViewModel DeleteViewModel { get; set; } = new();
 

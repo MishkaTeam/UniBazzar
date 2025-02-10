@@ -17,7 +17,7 @@ using Persistence.Aggregates.Products;
 using Persistence.Aggregates.ShippingAddress;
 using Persistence.Aggregates.Units;
 
-namespace Server.Infrastructure.Extentions.ServiceCollections;
+namespace Server.Infrastructure.Extensions.ServiceCollections;
 
 public static class DomainExtensions
 {

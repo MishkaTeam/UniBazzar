@@ -1,6 +1,7 @@
 using Application.Aggregates.Products;
 using Application.Aggregates.Products.ViewModels;
 using Application.Aggregates.Units;
+using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Server.Areas.Admin.Pages.BasicInfo.Products;
 
 public class DeleteModel
-	(ProductsApplication productsApplication, UnitsApplication unitsApplication) : PageModel
+	(ProductsApplication productsApplication, UnitsApplication unitsApplication) : BasePageModel
 {
 	[BindProperty]
 	public ProductViewModel DeleteViewModel { get; set; } = new();
@@ -32,6 +33,14 @@ public class DeleteModel
 
 	public async Task<IActionResult> OnPostAsync()
 	{
+		if (DeleteViewModel.Id == Guid.Empty)
+		{
+			AddToastError
+				(message: Resources.Messages.Errors.IdIsNull);
+
+			return RedirectToPage(pageName: "Index");
+
+		}
 		await productsApplication.DeleteProductAsync(DeleteViewModel.Id);
 
 		return RedirectToPage("Index");

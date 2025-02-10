@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Persistence;
-using Server.Infrastructure.Extentions.ServiceCollections;
+using Server.Infrastructure.Extensions.ServiceCollections;
 using Server.Infrastructure.Middleware;
 
 namespace Server
@@ -10,7 +10,9 @@ namespace Server
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-			var services = builder.Services;
+            builder.AddConfiguration();
+
+            var services = builder.Services;
 
 			services.AddRazorPages();
             services.AddDomainApplications();

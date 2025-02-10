@@ -1,12 +1,13 @@
 using Application.Aggregates.Products;
 using Application.Aggregates.Products.ProductFeatures.ViewModels;
+using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductFeatures;
 
 public class DeleteModel
-	(ProductsApplication productsApplication) : PageModel
+	(ProductsApplication productsApplication) : BasePageModel
 {
 	[BindProperty]
 	public ProductFeatureViewModel DeleteViewModel { get; set; } = new();

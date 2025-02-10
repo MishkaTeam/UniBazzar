@@ -1,10 +1,11 @@
 using Application.Aggregates.ShippingAddress;
+using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.ShippingAddress
 {
-    public class CreateModel(ShippingAddressApplication shippingAddressApplication) : PageModel
+    public class CreateModel(ShippingAddressApplication shippingAddressApplication) : BasePageModel
     {
         [BindProperty]
         public CreateShippingAddressViewModel AddressViewModel { get; set; } = new();

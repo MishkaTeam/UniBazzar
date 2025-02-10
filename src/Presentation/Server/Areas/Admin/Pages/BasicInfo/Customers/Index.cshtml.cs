@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Application.Aggregates.Customer;
+using Infrastructure;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Customers
 {
-    public class IndexModel(CustomerApplication customerApplication) : PageModel
+    public class IndexModel(CustomerApplication customerApplication) : BasePageModel
     {
         public List<CustomerViewModel> ViewModel { get; set; } = [];
         public async Task OnGet()
