@@ -1,47 +1,25 @@
 ﻿<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
-    <meta name="author" content="Łukasz Holeczek">
-    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="~/Admin/assets/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-    <title>@(ViewData[Constants.ViewDataKeyName.PageTitle])</title>
-    <link rel="apple-touch-icon" sizes="57x57" href="~/Admin/assets/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="~/Admin/assets/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="~/Admin/assets/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="~/Admin/assets/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="~/Admin/assets/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="~/Admin/assets/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="~/Admin/assets/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="~/Admin/assets/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="~/Admin/assets/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="~/Admin/assets/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="~/Admin/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="~/Admin/assets/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="~/Admin/assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="~/Admin/assets/favicon/manifest.json">
-    <link href="~/admin/vendors/simplebar/css/simplebar.css" rel="stylesheet" />
-    <link href="~/Admin/css/style.css" rel="stylesheet">
-    <script src="~/admin/js/config.js"></script>
-    <script src="~/admin/js/color-modes.js"></script>
-    <link href="~/admin/vendors/coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet" />
-    <link href="~/admin/fonts/vazir/vazirmatn-ui-fd-font-face.css" rel="stylesheet" />
-    <link href="~/admin/css/site.css" rel="stylesheet" />
-    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
-
-    <link rel="stylesheet" href="~/Server.styles.css" asp-append-version="true" />
+	<partial name="PartialViews/_MetaTags" />
+	<title>@(ViewData[Constants.ViewDataKeyName.PageTitle])</title>
+	<partial name="PartialViews/_Favicon" />
+	<partial name="PartialViews/_CoreUI" />
+	<link rel="stylesheet" href="~/Server.styles.css" asp-append-version="true" />
 </head>
 
 <body>
-    <partial name="PartialViews/_DisplayToastMessages" />
-    <partial name="PartialViews/_NavigationMenu" />
-    <partial name="PartialViews/_ToolbarMenu" />
-    <partial name="PartialViews/_Scripts" />
+	<partial name="PartialViews/_DisplayToastMessages" />
+	<partial name="PartialViews/_NavigationMenu" />
+	<div class="wrapper d-flex flex-column min-vh-100">
+		<partial name="PartialViews/_ToolbarMenu" />
+		<div class="body flex-grow-1">
+			<div class="container-lg px-4">
+				@RenderBody()
+			</div>
+		</div>
+	</div>
+	<partial name="PartialViews/_Scripts" />
 
 </body>
 
