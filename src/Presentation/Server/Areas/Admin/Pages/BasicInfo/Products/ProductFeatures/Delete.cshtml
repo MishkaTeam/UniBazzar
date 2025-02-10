@@ -1,0 +1,42 @@
+﻿@page "{id:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.Products.ProductFeatures.DeleteModel
+
+@{
+    var pageTitle =
+        $"{Resources.DataDictionary.DeleteOf} {Resources.DataDictionary.ProductFeature}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+    <section-form>
+
+        <input hidden asp-for="DeleteViewModel.Id" dir="ltr" />
+        <input hidden asp-for="DeleteViewModel.ProductId" dir="ltr" />
+
+        <fieldset disabled>
+
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+
+            <ub-full-input asp-for="DeleteViewModel.Key" />
+
+            <ub-full-input asp-for="DeleteViewModel.Value" />
+
+            <ub-full-input asp-for="DeleteViewModel.Order" />
+
+            <ub-full-checkbox asp-for="DeleteViewModel.IsPinned" />
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-delete />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>

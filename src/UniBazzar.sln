@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.DataType", "Frame
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence\Persistence.csproj", "{32AD16B4-01EF-480A-895D-CBDD9CE7D88E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.DataType.UnitTests", "..\tests\Framework.DataType.UnitTests\Framework.DataType.UnitTests.csproj", "{1B5DF63A-9670-42CE-9200-38B87BBCC875}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{32AD16B4-01EF-480A-895D-CBDD9CE7D88E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32AD16B4-01EF-480A-895D-CBDD9CE7D88E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32AD16B4-01EF-480A-895D-CBDD9CE7D88E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B5DF63A-9670-42CE-9200-38B87BBCC875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B5DF63A-9670-42CE-9200-38B87BBCC875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B5DF63A-9670-42CE-9200-38B87BBCC875}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B5DF63A-9670-42CE-9200-38B87BBCC875}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{12B3F6F1-B398-44F5-A022-B3C5D6C23B49} = {AEB5DE63-6C0F-4BD1-A716-23474F6E5514}
 		{142650EC-F2F4-4160-A478-8BA9FADB37BF} = {13F33FF1-A8F0-4E2B-A374-224FBEB16F7F}
 		{32AD16B4-01EF-480A-895D-CBDD9CE7D88E} = {7D7C49B5-0ABE-4DCB-898D-356C3007F074}
+		{1B5DF63A-9670-42CE-9200-38B87BBCC875} = {9DA339A1-83E7-4D52-9801-12AA620DE7A7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EA33793-7EFA-42CE-9534-6C1328556A2F}

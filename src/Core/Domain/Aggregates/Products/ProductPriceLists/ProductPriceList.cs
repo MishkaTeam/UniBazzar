@@ -1,8 +1,6 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
-using Domain.Aggregates.ProductImages;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Aggregates.ProductPriceLists;
+namespace Domain.Aggregates.Products.ProductPriceLists;
 
 public class ProductPriceList : Entity
 {
@@ -27,9 +25,11 @@ public class ProductPriceList : Entity
     {
         Price = ValidatePrice(price);
         ProductId = ValidateProduct(productid);
-    }
 
-    private static int ValidatePrice(int price)
+		SetUpdateDateTime();
+	}
+
+	private static int ValidatePrice(int price)
     {
         if (price < 0)
         {

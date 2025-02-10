@@ -23,7 +23,7 @@ namespace Persistence.Aggregates.ShippingAddress
 
         public Task<Domain.Aggregates.ShippingAddress.ShippingAddress> GetShippingAddressAsync(Guid id)
         {
-           return uniBazzarContext.shippingAddresses.FirstOrDefaultAsync(x => x.Id == id);
+           return uniBazzarContext.ShippingAddresses.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public void Remove(Domain.Aggregates.ShippingAddress.ShippingAddress entity)

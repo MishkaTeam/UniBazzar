@@ -1,0 +1,81 @@
+﻿@page "{parentId:guid?}"
+@model Server.Areas.Admin.Pages.BasicInfo.Categories.IndexModel
+
+@using Application.Aggregates.Categories.ViewModels
+
+@{
+    var pageTitle =
+        Resources.DataDictionary.Categories;
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+
+    var parentCategories = Model.ParentViewModel;
+    var routes = new List<CategoryViewModel>();
+
+    while (parentCategories != null)
+    {
+        routes.Add(parentCategories);
+
+        parentCategories = parentCategories?.Parent;
+    }
+
+    routes.Reverse();
+}
+
+@if (Model.ParentViewModel == null)
+{
+    <div class="my-2 float-end">
+        <a class="btn btn-primary" asp-page="Create" asp-route-ParentId="@(Model.ParentViewModel?.Id)" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
+    </div>
+}
+else
+{
+    <div class="row justify-content-between px-2 my-2">
+        <a class="col-auto btn btn-primary" asp-page="Index" asp-route-ParentId="@(Model.ParentViewModel.Parent?.Id)" asp-area="Admin">@(Resources.ButtonCaptions.Back)</a>
+        <h5 class="col-auto">@(Resources.DataDictionary.SubCategoriesOf) "@(Model.ParentViewModel.Name)"</h5>
+        <a class="col-auto btn btn-primary" asp-page="Create" asp-route-ParentId="@(Model.ParentViewModel?.Id)" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
+    </div>
+}
+
+<div class="pb-2">
+    @{
+        if (routes.Count > 0)
+        {
+            <a class="link-offset-2" asp-page="Index" asp-route-ParentId="" asp-area="Admin">@(Resources.ButtonCaptions.Home)</a>
+            <span> > </span>
+        }
+        foreach (var route in routes)
+        {
+            <a class="link-offset-2" asp-page="Index" asp-route-ParentId="@(route.Id)" asp-area="Admin">@(route.Name)</a>
+            <span> > </span>
+        }
+    }
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Name))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.IconClass))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.SubCategoriesCount))
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model.ViewModel)
+        {
+            <tr>
+                @(Html.Ub_DisplayStringWithTd(category.Name))
+                <td class="align-middle text-center">[ @(category.IconClass) ] ~ [ <i class="@(category.IconClass)"></i> ]</td>
+                @(Html.Ub_DisplayIntegerWithTd(category.SubCategoriesCount))
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a asp-page="Update" asp-route-Id="@(category.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
+                        <a asp-page="Delete" asp-route-Id="@(category.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+                        <a asp-page="Index" asp-route-ParentId="@(category.Id)" type="button" class="btn btn-info">@(Resources.DataDictionary.SubCategories)</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

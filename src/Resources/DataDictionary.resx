@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActivePriceListId" xml:space="preserve">
+    <value>Active Price List Id</value>
+  </data>
   <data name="BaseUnit" xml:space="preserve">
     <value>Base Unit</value>
   </data>
   <data name="BasicInformation" xml:space="preserve">
     <value>Basic Information</value>
+  </data>
+  <data name="CategoryId" xml:space="preserve">
+    <value>Category Id</value>
+  </data>
+  <data name="CellPhonenumber" xml:space="preserve">
+    <value>CellPhoneNumber</value>
   </data>
   <data name="CreateOf" xml:space="preserve">
     <value>Create Of</value>
@@ -129,8 +138,23 @@
   <data name="DeleteOf" xml:space="preserve">
     <value>Delete Of</value>
   </data>
+  <data name="DownloadUrl" xml:space="preserve">
+    <value>Download Url</value>
+  </data>
+  <data name="FullDescription" xml:space="preserve">
+    <value>Full Description</value>
+  </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
+  </data>
+  <data name="IsPinned" xml:space="preserve">
+    <value>Is Pinned</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
   </data>
   <data name="Parent" xml:space="preserve">
     <value>Parent</value>
@@ -138,14 +162,38 @@
   <data name="Price" xml:space="preserve">
     <value>Price</value>
   </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>Features</value>
+  </data>
   <data name="ProductId" xml:space="preserve">
     <value>Product Id</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="ProductType" xml:space="preserve">
+    <value>Product Type</value>
+  </data>
+  <data name="ShortDescription" xml:space="preserve">
+    <value>Short Description</value>
+  </data>
+  <data name="SKU" xml:space="preserve">
+    <value>SKU</value>
+  </data>
+  <data name="StoreId" xml:space="preserve">
+    <value>Store Id</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Title</value>
   </data>
   <data name="Unit" xml:space="preserve">
     <value>Unit</value>
+  </data>
+  <data name="UnitId" xml:space="preserve">
+    <value>Unit Id</value>
   </data>
   <data name="UnitRatio" xml:space="preserve">
     <value>Unit Ratio </value>
@@ -156,8 +204,17 @@
   <data name="UpdateOf" xml:space="preserve">
     <value>Update Of</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>First Name</value>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="ProductFeatures" xml:space="preserve">
+    <value>Product Features</value>
+  </data>
+  <data name="ProductFeature" xml:space="preserve">
+    <value>Product Feature</value>
+  </data>
+  <data name="FeaturesOf" xml:space="preserve">
+    <value>Features of</value>
   </data>
   <data name="Family" xml:space="preserve">
     <value>Last Name</value>
@@ -206,5 +263,23 @@
   </data>
   <data name="AddressManagement" xml:space="preserve">
     <value>Address management</value>
+  </data>
+  <data name="IconClass" xml:space="preserve">
+    <value>Icon Class</value>
+  </data>
+  <data name="SubCategories" xml:space="preserve">
+    <value>Sub Categories</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="SubCategoriesOf" xml:space="preserve">
+    <value>Sub Categories of</value>
+  </data>
+  <data name="SubCategoriesCount" xml:space="preserve">
+    <value>Sub Categories Count</value>
   </data>
 </root>
