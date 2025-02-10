@@ -282,4 +282,10 @@
   <data name="SubCategoriesCount" xml:space="preserve">
     <value>Sub Categories Count</value>
   </data>
+  <data name="AdminPanel" xml:space="preserve">
+    <value>Admin Panel</value>
+  </data>
+  <data name="POS" xml:space="preserve">
+    <value>POS</value>
+  </data>
 </root>

@@ -282,4 +282,10 @@
   <data name="SubCategoriesCount" xml:space="preserve">
     <value>تعداد زیر دسته‌بندی ها</value>
   </data>
+  <data name="AdminPanel" xml:space="preserve">
+    <value>پنل مدیریت</value>
+  </data>
+  <data name="POS" xml:space="preserve">
+    <value>فروشگاهی</value>
+  </data>
 </root>
