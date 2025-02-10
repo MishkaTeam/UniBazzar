@@ -1,0 +1,50 @@
+﻿@page
+@model Server.Areas.Admin.Pages.BasicInfo.Products.CreateModel
+
+@{
+    var pageTitle =
+        $"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.Product}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+    <section-form>
+
+        <fieldset>
+
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" /> 
+
+            <ub-full-input asp-for="CreateViewModel.Name" />
+
+            <ub-full-input asp-for="CreateViewModel.ShortDescription" />
+
+            <ub-full-input asp-for="CreateViewModel.FullDescription" />
+
+            @*
+            <ub-full-input asp-for="CreateViewModel.CategoryId" />
+
+            <ub-full-input asp-for="CreateViewModel.StoreId" />
+            *@
+
+            <ub-full-select asp-for="CreateViewModel.UnitId" asp-items="Model.BaseUnitList" />
+
+            <ub-full-select asp-for="CreateViewModel.ProductType" asp-items="Model.ProductTypeList" />
+
+            <ub-full-input asp-for="CreateViewModel.DownloadUrl" />
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-create />
+            <button-reset />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>

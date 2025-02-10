@@ -15,7 +15,12 @@ namespace BuildingBlocks.Domain.SeedWork
 
         public static long GetCurrentUnixUTCTimeSeconds()
         {
-            long unixTimeMilliseconds = new Instant().ToUnixTimeSeconds();
+            //long unixTimeMilliseconds = 
+            //    new Instant().ToUnixTimeSeconds();
+
+            long unixTimeMilliseconds = 
+                DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+
             return unixTimeMilliseconds;
         }
 

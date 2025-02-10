@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Resources;
+using Infrastructure;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Units
 {
-    public class UpdateModel(UnitsApplication unitsApplication) : PageModel
+    public class UpdateModel(UnitsApplication unitsApplication) : BasePageModel
     {
 		[BindProperty]
 		public UnitViewModel UpdateViewModel { get; set; } = new();
@@ -16,12 +17,12 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Units
 		public async Task OnGet(Guid Id)
 		{
 			UpdateViewModel = await unitsApplication.GetUnitAsync(Id);
-			 await FillUnitBaseUnits();
+			 await FillBaseUnits();
 		}
 
 		public async Task<IActionResult> OnPost()
 		{
-			await FillUnitBaseUnits();
+			await FillBaseUnits();
 			if (ModelState.IsValid)
 			{
 				await unitsApplication.UpdateAsync(UpdateViewModel);
@@ -30,7 +31,7 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Units
 
 		}
 
-		private async Task FillUnitBaseUnits()
+		private async Task FillBaseUnits()
 		{
 			var baseUnitList = await unitsApplication.GetUnits();
 

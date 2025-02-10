@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography.Xml;
 using Application.Aggregates.Units;
 using Application.Aggregates.Units.ViewModels;
+using Infrastructure;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,7 +10,7 @@ using Resources;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Units;
 
-public class CreateModel(UnitsApplication unitsApplication) : PageModel
+public class CreateModel(UnitsApplication unitsApplication) : BasePageModel
 {
 	[BindProperty]
 	public CreateUnitViewModel CreateViewModel { get; set; } = new();

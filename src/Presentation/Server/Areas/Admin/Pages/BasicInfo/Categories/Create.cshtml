@@ -1,0 +1,38 @@
+﻿@page "{parentId:guid?}"
+@model Server.Areas.Admin.Pages.BasicInfo.Categories.CreateModel
+
+@{
+    var pageTitle =
+        $"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.Category}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+    <section-form>
+
+        <fieldset>
+
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+
+            <input hidden asp-for="CreateViewModel.ParentId" />
+
+            <ub-full-input asp-for="CreateViewModel.Name" />
+
+            <ub-full-input asp-for="CreateViewModel.IconClass" />
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-create />
+            <button-reset />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>

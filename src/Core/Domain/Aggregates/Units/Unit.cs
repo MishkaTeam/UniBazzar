@@ -24,8 +24,10 @@ public class Unit : Entity
 	public void Update(string title, Guid? baseUnitId, decimal ratio = 1m)
 	{
 		Title = title;
-		BaseUnitId =  ValidateBaseUnit(baseUnitId);
+		BaseUnitId = ValidateBaseUnit(baseUnitId);
 		Ratio = ratio;
+
+		SetUpdateDateTime();
 	}
 
 	private static Guid? ValidateBaseUnit(Guid? baseUnitId)

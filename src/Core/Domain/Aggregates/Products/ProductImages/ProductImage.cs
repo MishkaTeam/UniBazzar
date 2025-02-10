@@ -1,8 +1,6 @@
-﻿using Ardalis.GuardClauses;
-using BuildingBlocks.Domain.Aggregates;
-using Domain.Aggregates.Units;
+﻿using BuildingBlocks.Domain.Aggregates;
 
-namespace Domain.Aggregates.ProductImages;
+namespace Domain.Aggregates.Products.ProductImages;
 
 public class ProductImage : Entity
 {
@@ -22,13 +20,15 @@ public class ProductImage : Entity
         return productimage;
     }
 
-    public void Update (Guid productid, string imageurl)
+    public void Update(Guid productid, string imageurl)
     {
         ImageUrl = imageurl;
         ProductId = ValidateProduct(productid);
-    }
 
-    private static Guid ValidateProduct(Guid productid)
+		SetUpdateDateTime();
+	}
+
+	private static Guid ValidateProduct(Guid productid)
     {
         if (productid == Guid.Empty)
         {
