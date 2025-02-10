@@ -8,7 +8,7 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Customers
 	public class DeleteModel(CustomerApplication customerApplication) : BasePageModel
     {
 		[BindProperty]
-		public CustomerViewModel DeleteViewModel { get; set; } = new();
+		public UpdateCustomerViewModel DeleteViewModel { get; set; } = new();
 
 		public async Task OnGet(Guid Id)
 		{

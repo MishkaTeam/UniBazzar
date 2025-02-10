@@ -213,4 +213,7 @@
   <data name="UpdateOf" xml:space="preserve">
     <value>Update of</value>
   </data>
+  <data name="AddressManagement" xml:space="preserve">
+    <value>addressmanagement</value>
+  </data>
 </root>

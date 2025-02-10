@@ -9,8 +9,14 @@ namespace Server.Areas.Admin.Pages.BasicInfo.ShippingAddress
     {
         [BindProperty]
         public CreateShippingAddressViewModel AddressViewModel { get; set; } = new();
-        public async Task OnGet()
+        public IActionResult OnGet(Guid customerId)
         {
+            if (customerId == Guid.Empty)
+            {
+                return RedirectToPage("Index", new { customerId = AddressViewModel.CustomerId.ToString() });
+            }
+            AddressViewModel.CustomerId = customerId;
+            return Page();
         }
         public async Task<IActionResult> OnPost()
         {
@@ -18,7 +24,7 @@ namespace Server.Areas.Admin.Pages.BasicInfo.ShippingAddress
             {
                 await shippingAddressApplication.CreateAsync(AddressViewModel);
             }
-            return RedirectToPage("Index");
+            return RedirectToPage("Index", new { customerId = AddressViewModel.CustomerId.ToString() });
         }
     }
 }

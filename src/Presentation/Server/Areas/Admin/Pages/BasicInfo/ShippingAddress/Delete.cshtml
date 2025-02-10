@@ -1,4 +1,5 @@
-﻿@page
+﻿
+@page "{Id}/{CustomerId}"
 @model Server.Areas.Admin.Pages.BasicInfo.ShippingAddress.DeleteModel
 @{
 	var pageTitle =
@@ -17,7 +18,7 @@
 
 			<partial name="PartialViews/_DisplayPageMessages" />
 			<input hidden asp-for="DeleteViewModel.Id" dir="ltr" />
-
+			<input hidden asp-for="DeleteViewModel.CustomerId" dir="ltr" />
 			<ub-full-input asp-for="DeleteViewModel.City" />
 
 			<ub-full-input asp-for="DeleteViewModel.Address" />

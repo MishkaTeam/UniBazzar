@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Aggregates.Customers;
+using System.ComponentModel.DataAnnotations;
 
 namespace Application.Aggregates.ShippingAddress
 {
@@ -24,6 +25,7 @@ namespace Application.Aggregates.ShippingAddress
          Name = nameof(Resources.DataDictionary.PostalCode))]
         public string PostalCode { get; set; }
 
+        public Guid CustomerId { get; set; }
         
     }
 }

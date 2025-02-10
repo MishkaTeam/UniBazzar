@@ -1,5 +1,4 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
-using Domain.Aggregates.ShippingAddress;
 using Framework.DataType;
 using System.ComponentModel.DataAnnotations;
 

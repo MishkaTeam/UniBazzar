@@ -8,7 +8,8 @@ namespace Server.Areas.Admin.Pages.BasicInfo.ShippingAddress
     public class DeleteModel(ShippingAddressApplication shippingAddressApplication) : BasePageModel
     {
         [BindProperty]
-        public UpdateShippingAddressViewModel DeleteViewModel { get; set; }
+        public UpdateShippingAddressViewModel DeleteViewModel { get; set; } = new();
+
         public async Task OnGet(Guid Id)
         {
             DeleteViewModel = await shippingAddressApplication.GetAddress(Id);
@@ -16,7 +17,7 @@ namespace Server.Areas.Admin.Pages.BasicInfo.ShippingAddress
         public async Task<IActionResult> OnPost()
         {
             await shippingAddressApplication.DeleteAsync(DeleteViewModel.Id);
-            return RedirectToPage("Index");
+            return RedirectToPage("Index", new { customerId = DeleteViewModel.CustomerId.ToString() });
         }
     }
 }

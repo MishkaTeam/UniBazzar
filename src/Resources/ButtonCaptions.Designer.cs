@@ -131,7 +131,13 @@ namespace Resources {
                 return ResourceManager.GetString("Delete", resourceCulture);
             }
         }
-        
+        public static string AddressManagement
+        {
+            get
+            {
+                return ResourceManager.GetString("AddressManagement", resourceCulture);
+            }
+        }
         /// <summary>
         ///   Looks up a localized string similar to Details.
         /// </summary>
