@@ -1,0 +1,10 @@
+﻿@page "/pos/{**segment}"
+
+@namespace Server.Areas.Pos.Pages
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_PosLayout";
+}
+
+<component type="typeof(Server.Areas.Pos.App)" render-mode="ServerPrerendered" />

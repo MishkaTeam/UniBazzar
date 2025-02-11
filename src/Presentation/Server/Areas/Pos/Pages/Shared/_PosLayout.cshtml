@@ -1,11 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Components.Web
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 	<base href="~/" />
-	<component type="typeof(Microsoft.AspNetCore.Components.Web.HeadOutlet)"
-			   render-mode="ServerPrerendered" />
 	<title>@(ViewData[Constants.ViewDataKeyName.PageTitle])</title>
 	<link rel="stylesheet" href="~/Server.styles.css" asp-append-version="true" />
+	<component type="typeof(Microsoft.AspNetCore.Components.Web.HeadOutlet)"
+			   render-mode="Server" />
+
 </head>
 
 <body>

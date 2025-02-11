@@ -15,7 +15,8 @@ namespace Server
             var services = builder.Services;
 
 			services.AddRazorPages();
-			services.AddServerSideBlazor();
+			services.AddServerSideBlazor()
+            .AddInteractiveServerComponents();
 			services.AddDomainApplications();
             services.AddDomainRepositories();
 			services.AddUnitOfWork();
@@ -37,10 +38,10 @@ namespace Server
 
             app.UseAuthorization();
 
-            app.MapRazorPages();
 			app.MapBlazorHub();
+            app.MapRazorPages();
 
-			app.Run();
+            app.Run();
         }
     }
 }
