@@ -10,10 +10,16 @@
             <a class="nav-link" asp-page="/Index" asp-area="Admin">
                 <svg class="nav-icon">
                     <use xlink:href="/admin/vendors/coreui/icons/svg/free.svg#cil-speedometer"></use>
-                </svg> Dashboard<span class="badge badge-sm bg-info ms-auto">NEW</span>
+                </svg>@(Resources.DataDictionary.Dashboard)<span class="badge badge-sm bg-info ms-auto">NEW</span>
             </a>
         </li>
         <li class="nav-title">@(Resources.DataDictionary.BasicInformation)</li>
+        <li class="nav-item">
+            <a class="nav-link" asp-page="/BasicInfo/Stores/Index" asp-area="Admin">
+                <i class="nav-icon bi bi-cart2"></i>
+                @(Resources.DataDictionary.Stores)
+            </a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" asp-page="/BasicInfo/Units/Index" asp-area="Admin">
                 <svg class="nav-icon">
