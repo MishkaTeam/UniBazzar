@@ -1,5 +1,4 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
-using Domain.Aggregates.Categories;
 using Domain.Aggregates.Units;
 using Domain.Enumerations;
 using Framework.DataType;
@@ -25,8 +24,8 @@ public class Product : Entity
 		downloadUrl = CheckHaveDownloadUrl(productType, downloadUrl);
 
 		var product = new Product(
-			name, shortDescription, fullDescription, storeId,
-			categoryId, unitId,
+			name, shortDescription, fullDescription,
+			storeId, categoryId, unitId,
 			productType, downloadUrl)
 		{
 			Name = name.Fix() ?? "",
@@ -71,7 +70,6 @@ public class Product : Entity
 	public Guid CategoryId { get; private set; }
 	//public Category Category { get; private set; }
 
-	//public Guid StoreId { get; private set; }
 	//public Store Store { get; private set; }
 
 	private Product(string name, string shortDescription, string fullDescription,

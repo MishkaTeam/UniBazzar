@@ -41,6 +41,8 @@ public class Category : Entity
 	public Guid? ParentId { get; private set; }
 	public virtual Category? Parent { get; private set; }
 
+	//public Store Store { get; private set; }
+
 	private Category
 		(string name, Guid? parentId, string iconClass)
 	{

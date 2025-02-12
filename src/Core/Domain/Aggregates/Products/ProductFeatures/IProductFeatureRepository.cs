@@ -2,8 +2,8 @@
 
 public interface IProductFeatureRepository
 {
-	void AddProductFeature(ProductFeature entity);
+	Task AddProductFeature(ProductFeature entity);
 	Task<List<ProductFeature>> GetAllProductFeaturesAsync(Guid productId);
-	Task<ProductFeature> GetProductFeatureAsync(Guid id);
+	Task<ProductFeature?> GetProductFeatureAsync(Guid id);
 	void RemoveProductFeature(ProductFeature entity);
 }

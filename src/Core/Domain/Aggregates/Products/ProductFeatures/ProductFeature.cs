@@ -47,6 +47,8 @@ public class ProductFeature : Entity
 	public Guid ProductId { get; private set; }
 	public Product Product { get; private set; }
 
+	//public Store Store { get; private set; }
+
 	private ProductFeature
 		(Guid productId, string key, string value,
 		bool isPinned, int order)
