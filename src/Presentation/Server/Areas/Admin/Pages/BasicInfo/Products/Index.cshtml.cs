@@ -1,7 +1,6 @@
 using Application.Aggregates.Products;
 using Application.Aggregates.Products.ViewModels;
 using Infrastructure;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products;
 
