@@ -8,7 +8,7 @@ using Resources.Messages;
 namespace Application.Aggregates.Products;
 
 public partial class ProductsApplication
-	(IProductRepository productRepository, 
+	(IProductRepository productRepository,
 	IProductFeatureRepository productFeatureRepository,
 	IUnitOfWork unitOfWork)
 {
@@ -68,7 +68,10 @@ public partial class ProductsApplication
 
 		if (productForDelete == null || productForDelete.Id == Guid.Empty)
 		{
-			throw new Exception(Errors.NotFound);
+			var message =
+				string.Format(Errors.NotFound, Resources.DataDictionary.Product);
+
+			throw new Exception(message);
 		}
 
 		productRepository.RemoveProduct(productForDelete);
