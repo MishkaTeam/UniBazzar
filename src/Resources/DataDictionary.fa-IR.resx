@@ -288,4 +288,22 @@
   <data name="POS" xml:space="preserve">
     <value>فروشگاهی</value>
   </data>
+  <data name="Logo" xml:space="preserve">
+    <value>لوگو</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+  <data name="Store" xml:space="preserve">
+    <value>فروشگاه</value>
+  </data>
+  <data name="culture" xml:space="preserve">
+    <value>زبان</value>
+  </data>
+  <data name="Stores" xml:space="preserve">
+    <value>فروشگاه ها</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>داشبورد</value>
+  </data>
 </root>
