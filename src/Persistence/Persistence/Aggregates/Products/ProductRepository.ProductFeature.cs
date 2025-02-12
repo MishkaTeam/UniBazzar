@@ -5,26 +5,26 @@ namespace Persistence.Aggregates.Products;
 
 public partial class ProductRepository
 {
-	public void AddProductFeature(ProductFeature entity)
+	public async Task AddProductFeature(ProductFeature entity)
 	{
-		uniBazzarContext.Add(entity);
+		await uniBazzarContext.AddAsync(entity);
 	}
 
-	public Task<List<ProductFeature>> GetAllProductFeaturesAsync(Guid productId)
+	public async Task<List<ProductFeature>> GetAllProductFeaturesAsync(Guid productId)
 	{
-		return uniBazzarContext.ProductFeatures
+		return await uniBazzarContext.ProductFeatures
 							   .Include(x => x.Product)
 							   .Where(x => x.ProductId == productId)
 							   .ToListAsync();
 	}
 
-	public async Task<ProductFeature> GetProductFeatureAsync(Guid id)
+	public async Task<ProductFeature?> GetProductFeatureAsync(Guid id)
 	{
 		var productFeature = await uniBazzarContext.ProductFeatures
 								.Include(x => x.Product)
 								.FirstOrDefaultAsync(x => x.Id == id);
 
-		return productFeature ?? new ProductFeature();
+		return productFeature;
 	}
 
 	public void RemoveProductFeature(ProductFeature entity)
