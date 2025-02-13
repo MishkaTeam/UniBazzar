@@ -1,0 +1,41 @@
+﻿@page
+@model Server.Areas.Admin.Pages.BasicInfo.Stores.IndexModel
+
+@{
+    var pageTitle =
+        Resources.DataDictionary.Stores;
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<div class="my-2 float-end">
+    <a class="btn btn-primary" asp-page="Create" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Name))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.CellPhonenumber))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.culture))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.IsActive))
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var store in Model.ViewModel)
+        {
+            <tr>
+                @(Html.Ub_DisplayStringWithTd(store.Name))
+                @(Html.Ub_DisplayStringWithTd(store.PhoneNumber))
+                @(Html.Ub_DisplayStringWithTd(store.Culture))
+                @(Html.Ub_DisplayBooleanWithTd(store.IsActive))
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a asp-page="Update" asp-route-Id="@(store.Id)" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
+                        <a asp-page="Delete" asp-route-Id="@(store.Id)" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

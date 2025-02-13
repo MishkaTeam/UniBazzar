@@ -5,6 +5,7 @@ using Domain.Aggregates.Products.ProductFeatures;
 using Domain.Aggregates.Products.ProductImages;
 using Domain.Aggregates.Products.ProductPriceLists;
 using Domain.Aggregates.ShippingAddress;
+using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,12 +27,14 @@ public class UniBazzarContext : DbContext
 	}
 
 
-	public DbSet<Unit> Units { get; set; }
+	public DbSet<Store> Stores { get; set; }
 
 	public DbSet<Product> Products { get; set; }
 	public DbSet<ProductImage> ProductImages { get; set; }
 	public DbSet<ProductFeature> ProductFeatures { get; set; }
 	public DbSet<ProductPriceList> ProductPriceLists { get; set; }
+
+	public DbSet<Unit> Units { get; set; }
 
 	public DbSet<Category> Categories { get; set; }
 
