@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.Domain.SeedWork;
 using Framework.DataType;
+using Resources.Messages;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Aggregates.Stores;
@@ -62,13 +63,15 @@ public class Store :
 		(string name, string? description, string phoneNumber,
 		string address, string? culture, string? logoUrl, bool isActive)
 	{
+		ValidatePhoneNumber(phoneNumber);
+
 		var store =
 			new Store(name, description, phoneNumber,
 			address, culture, logoUrl, isActive)
 			{
 				Name = name.Fix() ?? "",
 				Description = description.Fix() ?? "",
-				PhoneNumber = phoneNumber.Fix() ?? "",
+				PhoneNumber = phoneNumber,
 				Address = address.Fix() ?? "",
 				Culture = culture.Fix() ?? "",
 				LogoUrl = logoUrl.Fix() ?? ""
@@ -81,15 +84,29 @@ public class Store :
 		(string name, string? description, string phoneNumber,
 		string address, string? culture, string? logoUrl, bool isActive)
 	{
+		ValidatePhoneNumber(phoneNumber);
+
 		Name = name.Fix() ?? "";
 		Description = description.Fix() ?? "";
-		PhoneNumber = phoneNumber.Fix() ?? "";
+		PhoneNumber = phoneNumber;
 		Address = address.Fix() ?? "";
 		Culture = culture.Fix() ?? "";
 		LogoUrl = logoUrl.Fix() ?? "";
 		IsActive = isActive;
 
 		SetUpdateDateTime();
+	}
+
+
+	private static void ValidatePhoneNumber(string phoneNumber)
+	{
+		if (phoneNumber.IsValidMobile() == false)
+		{
+			var message =
+				string.Format(Errors.Invalid, Resources.DataDictionary.CellPhonenumber);
+
+			throw new InvalidDataException(message);
+		}
 	}
 
 	#region [ Methods ]
