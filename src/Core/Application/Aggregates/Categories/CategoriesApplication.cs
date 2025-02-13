@@ -92,7 +92,10 @@ public class CategoriesApplication
 
 		if (categoryForDelete == null || categoryForDelete.Id == Guid.Empty)
 		{
-			throw new Exception(Errors.NotFound);
+			var message =
+				string.Format(Errors.NotFound, Resources.DataDictionary.Category);
+
+			throw new Exception(message);
 		}
 
 		categoryRepository.RemoveCategory(categoryForDelete);

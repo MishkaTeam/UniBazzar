@@ -1,14 +1,13 @@
-using Application.Aggregates.Units.ViewModels;
 using Application.Aggregates.Units;
+using Application.Aggregates.Units.ViewModels;
+using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Resources;
-using Infrastructure;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Units
 {
-    public class UpdateModel(UnitsApplication unitsApplication) : BasePageModel
+	public class UpdateModel(UnitsApplication unitsApplication) : BasePageModel
     {
 		[BindProperty]
 		public UnitViewModel UpdateViewModel { get; set; } = new();

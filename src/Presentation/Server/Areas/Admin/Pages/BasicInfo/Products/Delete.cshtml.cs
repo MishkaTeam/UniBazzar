@@ -3,7 +3,6 @@ using Application.Aggregates.Products.ViewModels;
 using Application.Aggregates.Units;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products;

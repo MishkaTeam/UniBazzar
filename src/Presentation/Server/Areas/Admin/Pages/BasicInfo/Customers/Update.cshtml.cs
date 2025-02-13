@@ -1,7 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Application.Aggregates.Customer;
 using Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Customers

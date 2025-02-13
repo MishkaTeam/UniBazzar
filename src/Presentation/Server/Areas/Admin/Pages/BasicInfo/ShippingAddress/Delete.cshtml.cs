@@ -1,11 +1,10 @@
 using Application.Aggregates.ShippingAddress;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.ShippingAddress
 {
-    public class DeleteModel(ShippingAddressApplication shippingAddressApplication) : BasePageModel
+	public class DeleteModel(ShippingAddressApplication shippingAddressApplication) : BasePageModel
     {
         [BindProperty]
         public UpdateShippingAddressViewModel DeleteViewModel { get; set; } = new();

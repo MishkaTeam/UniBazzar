@@ -1,7 +1,6 @@
 using Application.Aggregates.Units;
 using Application.Aggregates.Units.ViewModels;
 using Infrastructure;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Units
 {

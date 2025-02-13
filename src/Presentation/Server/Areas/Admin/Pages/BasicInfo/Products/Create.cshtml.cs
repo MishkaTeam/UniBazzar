@@ -4,7 +4,6 @@ using Application.Aggregates.Units;
 using Domain.Enumerations;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products;

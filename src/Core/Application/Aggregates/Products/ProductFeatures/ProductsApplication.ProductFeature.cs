@@ -13,7 +13,7 @@ public partial class ProductsApplication
 				viewModel.ProductId, viewModel.Key,
 				viewModel.Value, viewModel.IsPinned, viewModel.Order);
 
-		productRepository.AddProductFeature(productFeature);
+		await productRepository.AddProductFeature(productFeature);
 		await unitOfWork.CommitAsync();
 	}
 
