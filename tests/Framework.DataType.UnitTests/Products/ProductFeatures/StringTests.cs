@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 
-namespace Framework.DataType.UnitTests.ProductFeatures;
+namespace Framework.DataType.UnitTests.Products.ProductFeatures;
 
 public class StringTests
 {

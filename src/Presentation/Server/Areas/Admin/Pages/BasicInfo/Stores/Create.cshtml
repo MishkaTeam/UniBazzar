@@ -28,7 +28,11 @@
             
             <ub-full-input asp-for="CreateViewModel.Address" />
             
-            <ub-full-input asp-for="CreateViewModel.Culture" />
+            <div class="mb-3">
+                <label asp-for="CreateViewModel.Culture" class="form-label"></label>
+                <select asp-for="CreateViewModel.Culture" asp-items="Model.CultureList" class="form-select"></select>
+                <span asp-validation-for="CreateViewModel.Culture" class="field-validation-valid text-danger"></span>
+            </div>
 
             <ub-full-input asp-for="CreateViewModel.LogoUrl" />
 

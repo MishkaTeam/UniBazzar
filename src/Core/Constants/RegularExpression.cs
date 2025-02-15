@@ -12,12 +12,12 @@ public static class RegularExpression : object
 	public const string NationalCode = @"^\d{10}$";
 	//public const string NationalCode = @"^\d{10,12}$";
 
-	//public const string CellPhoneNumber = @"^09\d{9}";
+	public const string CellPhoneNumber = @"^09\d{9}";
 	//public const string CellPhoneNumber = @"^076\d{7}"; // برای سوئد
 
 	// 0046762122002	: 13
 	// 00989121087461	: 14
-	public const string CellPhoneNumber = @"^00\d{11,12}$"; // برای سایت‌های چند ملیتی
+	/*public const string CellPhoneNumber = @"^00\d{11,12}$";*/ // برای سایت‌های چند ملیتی
 
 	public const string Username = @"^[a-zA-Z0-9_]{6,20}$";
 	public const string Password = @"^[a-zA-Z0-9_]{8,20}$";

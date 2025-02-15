@@ -24,6 +24,8 @@ public class CreateStoreViewModel
 	[Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.CellPhonenumber))]
+	[RegularExpression
+		(Constants.RegularExpression.CellPhoneNumber)]
 	public string PhoneNumber { get; set; }
 
 	[Display
