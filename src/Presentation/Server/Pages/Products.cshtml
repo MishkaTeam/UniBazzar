@@ -9,9 +9,9 @@
             <div class="row">
                 <div class="col-8 d-none d-md-block">
                     <ul>
-                        <li><a href="index.html">صفحه نخست</a></li>
-                        <li><a href="about.html">درباره ما</a></li>
-                        <li><a href="contact.html">تماس با ما</a></li>
+                        <li><a asp-page="/Index">صفحه نخست</a></li>
+                        <li><a asp-page="/About">درباره ما</a></li>
+                        <li><a asp-page="/Contact">تماس با ما</a></li>
                     </ul>
                 </div>
                 <div class="col-12 col-md-4 text-center text-md-end" id="encrypt2321">
@@ -26,7 +26,7 @@
         <div class="container pt-1">
             <div class="row py-3 align-content-center">
                 <div class="col-12 col-md-3 col-xl-2 text-center text-md-start pb-2" id="encrypt231432-logo">
-                    <a href="index.html">
+                    <a asp-page="/Index">
                         <img src="assets/images/logo.png" alt=""> روبیک مارکت
                     </a>
                 </div>
@@ -39,11 +39,11 @@
                 <div class="col-12 col-md-4">
                     <div class="row">
                         <div class="col-12 col-md-7 col-lg-6 text-center" id="encrypt23235444">
-                            <a href="login.html">ورود</a> /
-                            <a href="register.html">عضویت</a>
+                            <a asp-page="/Login">ورود</a> /
+                            <a asp-page="/Register">عضویت</a>
                         </div>
                         <div class="col-12 col-md-5 col-lg-6">
-                            <a href="cart.html">
+                            <a asp-page="/Cart">
                                 <div class="btn btn-warning w-100"><i class="fa fa-shopping-cart"></i>&nbsp;<span class="d-md-none d-lg-inline-block">سبد خرید</span> (2)</div>
                             </a>
                         </div>
@@ -283,56 +283,56 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li><a href="about.html">درباره ما<em class="encrypt2344"></em></a></li>
+                                            <li><a asp-page="/About">درباره ما<em class="encrypt2344"></em></a></li>
                                             <li class="encrypt233211244" aria-haspopup="true">
                                                 <a asp-page="/Products" aria-expanded="false">صفحات فروشگاه<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
                                                 <ul style="">
                                                     <li><a asp-page="/Products">محصولات <sup>(کاشی کاری)</sup></a></li>
-                                                    <li><a href="products-list.html">محصولات <sup>(لیست)</sup></a></li>
+                                                    <li><a asp-page="/Products-list">محصولات <sup>(لیست)</sup></a></li>
                                                     <li><a asp-page="/Products">جزئیات محصول</a></li>
                                                 </ul>
                                             </li>
                                             <li class="encrypt233211244" aria-haspopup="true">
-                                                <a href="contact.html" aria-expanded="false">تماس با فروشگاه<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
+                                                <a asp-page="/Contact" aria-expanded="false">تماس با فروشگاه<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
                                                 <ul style="">
-                                                    <li><a href="faq.html">سوالات متداول</a></li>
-                                                    <li><a href="contact.html">تماس با ما</a></li>
+                                                    <li><a asp-page="/Faq">سوالات متداول</a></li>
+                                                    <li><a asp-page="/Contact">تماس با ما</a></li>
                                                 </ul>
                                             </li>
                                             <li class="encrypt233211244" aria-haspopup="true">
-                                                <a href="blog.html" aria-expanded="false">بلاگ آموزشی<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
+                                                <a asp-page="/Blog" aria-expanded="false">بلاگ آموزشی<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
                                                 <ul style="">
-                                                    <li><a href="blog.html">آرشیو مطالب</a></li>
-                                                    <li><a href="blog-post.html">داخلی بلاگ</a></li>
+                                                    <li><a asp-page="/Blog">آرشیو مطالب</a></li>
+                                                    <li><a asp-page="/Blog-Post">داخلی بلاگ</a></li>
                                                 </ul>
                                             </li>
                                             <li class="encrypt233211244" aria-haspopup="true">
                                                 <a href="#" aria-expanded="false">سایر صفحات<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
                                                 <ul style="">
                                                     <li><a asp-page="/Compare">مقایسه محصول</a></li>
-                                                    <li><a href="cart.html">سبد خرید</a></li>
-                                                    <li><a href="checkout.html">پیش فاکتور</a></li>
-                                                    <li><a href="thankyou.html">پرداخت موفق</a></li>
+                                                    <li><a asp-page="/Cart">سبد خرید</a></li>
+                                                    <li><a asp-page="/Checkout">پیش فاکتور</a></li>
+                                                    <li><a asp-page="/Thankyou">پرداخت موفق</a></li>
                                                     <li class="dm-bottom-separator"></li>
-                                                    <li><a href="login.html">ورود به سایت</a></li>
-                                                    <li><a href="register.html">عضویت در سایت</a></li>
-                                                    <li><a href="reset-password.html">بازگردانی رمز عبور</a></li>
+                                                    <li><a asp-page="/Login">ورود به سایت</a></li>
+                                                    <li><a asp-page="/Register">عضویت در سایت</a></li>
+                                                    <li><a asp-page="/Reset-Password">بازگردانی رمز عبور</a></li>
                                                     <li class="dm-bottom-separator"></li>
                                                     <li><a href="error-404.html">خطای 404</a></li>
                                                 </ul>
                                             </li>
                                             <li class="encrypt233211244" aria-haspopup="true">
-                                                <a href="profile/personal-info.html" aria-expanded="false">پروفایل کاربری<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
+                                                <a asp-page="/Profile/Personal-Info" aria-expanded="false">پروفایل کاربری<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
                                                 <ul style="">
-                                                    <li><a href="register.html">عضویت در سایت</a></li>
-                                                    <li><a href="login.html">ورود به سایت</a></li>
-                                                    <li><a href="forget-password.html">بازنشانی رمز عبور</a></li>
+                                                    <li><a asp-page="/Register">عضویت در سایت</a></li>
+                                                    <li><a asp-page="/Login">ورود به سایت</a></li>
+                                                    <li><a asp-page="/Forget-Password">بازنشانی رمز عبور</a></li>
                                                     <li class="dm-bottom-separator"></li>
-                                                    <li><a href="profile/personal-info.html">مشخصات کاربری</a></li>
-                                                    <li><a href="profile/factors.html">سفارشات</a></li>
-                                                    <li><a href="profile/factor-view.html">مشاهده فاکتور</a></li>
-                                                    <li><a href="profile/addresses.html">آدرس ها</a></li>
-                                                    <li><a href="profile/favorites.html">علاقه مندی ها</a></li>
+                                                    <li><a asp-page="/Profile/Personal-Info">مشخصات کاربری</a></li>
+                                                    <li><a asp-page="/Profile/Factors">سفارشات</a></li>
+                                                    <li><a asp-page="/Profile/Factor-View">مشاهده فاکتور</a></li>
+                                                    <li><a asp-page="/Profile/Addresses">آدرس ها</a></li>
+                                                    <li><a asp-page="/Profile/Favorites">علاقه مندی ها</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -361,7 +361,7 @@
                             <p>هر آنچه نیاز دارید در این فروشگاه موجود است</p>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">صفحه نخست</a></li>
+                                    <li class="breadcrumb-item"><a asp-page="/Index">صفحه نخست</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">محصولات</li>
                                 </ol>
                             </nav>
@@ -483,7 +483,7 @@
                                             <div class="row">
                                                 <!-- Side Product -->
                                                 <div class="col-12 col-md-4 col-lg-12 px-0 mt-2">
-                                                    <a href="product.html">
+                                                    <a asp-page="/Product">
                                                         <div class="side-product">
                                                             <div class="row pl-3">
                                                                 <div class="col-3 pl-2">
@@ -507,7 +507,7 @@
                                                 <!-- Side Product -->
                                                 <!-- Side Product -->
                                                 <div class="col-12 col-md-4 col-lg-12 px-0 mt-2">
-                                                    <a href="product.html">
+                                                    <a asp-page="/Product">
                                                         <div class="side-product">
                                                             <div class="row pl-3">
                                                                 <div class="col-3 pl-2">
@@ -531,7 +531,7 @@
                                                 <!-- Side Product -->
                                                 <!-- Side Product -->
                                                 <div class="col-12 col-md-4 col-lg-12 px-0 mt-2">
-                                                    <a href="product.html">
+                                                    <a asp-page="/Product">
                                                         <div class="side-product">
                                                             <div class="row pl-3">
                                                                 <div class="col-3 pl-2">
@@ -574,7 +574,7 @@
                                         </div>
                                         <div class="col-12 col-sm-2 pt-1 text-end">
                                             <span>
-                                                <a href="products-list.html" class="products-view-type"><i class="fa fa-th-list"></i></a>
+                                                <a asp-page="/Products-list" class="products-view-type"><i class="fa fa-th-list"></i></a>
                                                 <a asp-page="/Products" class="products-view-type active"><i class="fa fa-th"></i></a>
                                             </span>
                                             &nbsp;|&nbsp;
@@ -591,14 +591,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p100.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p100.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>گوشی موبایل سامسونگ مدل Galaxy A51 دو سیم کارت</h2></a>
+                                                    <a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A51 دو سیم کارت</h2></a>
                                                     <div class="price">6.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -615,14 +615,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p400.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p400.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>دوربین دیجیتال کانن مدل EOS 2000D به همراه لنز 18-55 میلی متر DC III</h2></a>
+                                                    <a asp-page="/Product"><h2>دوربین دیجیتال کانن مدل EOS 2000D به همراه لنز 18-55 میلی متر DC III</h2></a>
                                                     <div class="price">6.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -639,14 +639,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p103.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p103.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>گوشی موبایل شیائومی مدل POCO X3 M2007J20CG دو سیم‌ کارت</h2></a>
+                                                    <a asp-page="/Product"><h2>گوشی موبایل شیائومی مدل POCO X3 M2007J20CG دو سیم‌ کارت</h2></a>
                                                     <div class="price">3.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -663,14 +663,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p102.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p102.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>گوشی موبایل سامسونگ مدل Galaxy A12 SM-A125F/DS دو سیم کارت</h2></a>
+                                                    <a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A12 SM-A125F/DS دو سیم کارت</h2></a>
                                                     <div class="price">4.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -687,14 +687,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p301.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p301.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>هدفون بلوتوثی مدل P39 2021</h2></a>
+                                                    <a asp-page="/Product"><h2>هدفون بلوتوثی مدل P39 2021</h2></a>
                                                     <div class="price">5.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -711,14 +711,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p101.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p101.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>گوشی موبایل شیائومی مدل POCO M3 M2010J19CG دو سیم‌ کارت</h2></a>
+                                                    <a asp-page="/Product"><h2>گوشی موبایل شیائومی مدل POCO M3 M2010J19CG دو سیم‌ کارت</h2></a>
                                                     <div class="price">5.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -735,14 +735,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p300.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p300.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>هدفون بی سیم سامسونگ مدل Galaxy Buds Live</h2></a>
+                                                    <a asp-page="/Product"><h2>هدفون بی سیم سامسونگ مدل Galaxy Buds Live</h2></a>
                                                     <div class="price">6.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -759,14 +759,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p100.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p100.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>گوشی موبایل سامسونگ مدل Galaxy A51 دو سیم کارت</h2></a>
+                                                    <a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A51 دو سیم کارت</h2></a>
                                                     <div class="price">6.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -783,14 +783,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p200.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p200.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>لپ تاپ 15 اینچی ایسوس مدل VivoBook X543MA-DM905</h2></a>
+                                                    <a asp-page="/Product"><h2>لپ تاپ 15 اینچی ایسوس مدل VivoBook X543MA-DM905</h2></a>
                                                     <div class="price">6.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -807,14 +807,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p104.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p104.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت</h2></a>
+                                                    <a asp-page="/Product"><h2>گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت</h2></a>
                                                     <div class="price">6.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -831,14 +831,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p201.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p201.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>لپ تاپ 14 اینچی ایسوس مدل ZenBook UM433IQ - A5023</h2></a>
+                                                    <a asp-page="/Product"><h2>لپ تاپ 14 اینچی ایسوس مدل ZenBook UM433IQ - A5023</h2></a>
                                                     <div class="price">5.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -855,14 +855,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p202.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p202.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>لپ تاپ 15.6 اینچی ایسوس مدل R565JF-BQ078</h2></a>
+                                                    <a asp-page="/Product"><h2>لپ تاپ 15.6 اینچی ایسوس مدل R565JF-BQ078</h2></a>
                                                     <div class="price">4.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -879,14 +879,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p203.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p203.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>لپ تاپ 15 اینچی ایسوس مدل VivoBook X543MA - A</h2></a>
+                                                    <a asp-page="/Product"><h2>لپ تاپ 15 اینچی ایسوس مدل VivoBook X543MA - A</h2></a>
                                                     <div class="price">3.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -903,14 +903,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p204.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p204.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>لپ تاپ 15 اینچی لنوو مدل Lenovo Ideapad 330 - E</h2></a>
+                                                    <a asp-page="/Product"><h2>لپ تاپ 15 اینچی لنوو مدل Lenovo Ideapad 330 - E</h2></a>
                                                     <div class="price">6.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -927,14 +927,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p203.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p203.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>لپ تاپ 15 اینچی ایسوس مدل VivoBook X543MA - A</h2></a>
+                                                    <a asp-page="/Product"><h2>لپ تاپ 15 اینچی ایسوس مدل VivoBook X543MA - A</h2></a>
                                                     <div class="price">3.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -951,14 +951,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p201.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p201.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>لپ تاپ 14 اینچی ایسوس مدل ZenBook UM433IQ - A5023</h2></a>
+                                                    <a asp-page="/Product"><h2>لپ تاپ 14 اینچی ایسوس مدل ZenBook UM433IQ - A5023</h2></a>
                                                     <div class="price">5.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -975,14 +975,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p202.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p202.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>لپ تاپ 15.6 اینچی ایسوس مدل R565JF-BQ078</h2></a>
+                                                    <a asp-page="/Product"><h2>لپ تاپ 15.6 اینچی ایسوس مدل R565JF-BQ078</h2></a>
                                                     <div class="price">4.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -999,14 +999,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p101.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p101.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>گوشی موبایل شیائومی مدل POCO M3 M2010J19CG دو سیم‌ کارت</h2></a>
+                                                    <a asp-page="/Product"><h2>گوشی موبایل شیائومی مدل POCO M3 M2010J19CG دو سیم‌ کارت</h2></a>
                                                     <div class="price">5.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -1023,14 +1023,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p401.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p401.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>دوربین دیجیتال آکسون مدل AX6062</h2></a>
+                                                    <a asp-page="/Product"><h2>دوربین دیجیتال آکسون مدل AX6062</h2></a>
                                                     <div class="price">5.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -1047,14 +1047,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p402.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p402.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>دوربین دیجیتال نیکون مدل D3500 به همراه لنز 18-55 میلی متر VR AF-P</h2></a>
+                                                    <a asp-page="/Product"><h2>دوربین دیجیتال نیکون مدل D3500 به همراه لنز 18-55 میلی متر VR AF-P</h2></a>
                                                     <div class="price">4.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -1071,14 +1071,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p102.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p102.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>گوشی موبایل سامسونگ مدل Galaxy A12 SM-A125F/DS دو سیم کارت</h2></a>
+                                                    <a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A12 SM-A125F/DS دو سیم کارت</h2></a>
                                                     <div class="price">4.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -1095,14 +1095,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p302.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p302.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>اسپیکر بلوتوثی قابل حمل تی اند جی مدل Tg-113</h2></a>
+                                                    <a asp-page="/Product"><h2>اسپیکر بلوتوثی قابل حمل تی اند جی مدل Tg-113</h2></a>
                                                     <div class="price">4.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -1119,14 +1119,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p303.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p303.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>مودم روتر ADSL2 Plus بی‌ سیم N300 دی-لینک مدل DSL-2740U</h2></a>
+                                                    <a asp-page="/Product"><h2>مودم روتر ADSL2 Plus بی‌ سیم N300 دی-لینک مدل DSL-2740U</h2></a>
                                                     <div class="price">3.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -1143,14 +1143,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p304.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p304.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>ماوس تسکو مدل TM2018N</h2></a>
+                                                    <a asp-page="/Product"><h2>ماوس تسکو مدل TM2018N</h2></a>
                                                     <div class="price">6.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -1167,14 +1167,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p300.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p300.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>هدفون بی سیم سامسونگ مدل Galaxy Buds Live</h2></a>
+                                                    <a asp-page="/Product"><h2>هدفون بی سیم سامسونگ مدل Galaxy Buds Live</h2></a>
                                                     <div class="price">6.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -1191,14 +1191,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p301.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p301.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>هدفون بلوتوثی مدل P39 2021</h2></a>
+                                                    <a asp-page="/Product"><h2>هدفون بلوتوثی مدل P39 2021</h2></a>
                                                     <div class="price">5.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -1215,14 +1215,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p302.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p302.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>اسپیکر بلوتوثی قابل حمل تی اند جی مدل Tg-113</h2></a>
+                                                    <a asp-page="/Product"><h2>اسپیکر بلوتوثی قابل حمل تی اند جی مدل Tg-113</h2></a>
                                                     <div class="price">4.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -1239,14 +1239,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p403.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p403.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>دوربین دیجیتال مدل AX6065</h2></a>
+                                                    <a asp-page="/Product"><h2>دوربین دیجیتال مدل AX6065</h2></a>
                                                     <div class="price">3.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -1263,14 +1263,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p404.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p404.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>دوربین دیجیتال سونی مدل Cyber-shot DSC-W800</h2></a>
+                                                    <a asp-page="/Product"><h2>دوربین دیجیتال سونی مدل Cyber-shot DSC-W800</h2></a>
                                                     <div class="price">6.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -1287,14 +1287,14 @@
                                         <div class="col">
                                             <!-- Product Box -->
                                             <div class="encrypt263156">
-                                                <a href="product.html"><div class="image" style="background-image: url('assets/images/products/p400.png')"></div></a>
+                                                <a asp-page="/Product"><div class="image" style="background-image: url('assets/images/products/p400.png')"></div></a>
                                                 <div class="details p-3">
                                                     <div class="category">
                                                         <a asp-page="/Products">گوشی موبایل</a>
                                                         &nbsp;/&nbsp;
                                                         <a asp-page="/Products">سامسونگ</a>
                                                     </div>
-                                                    <a href="product.html"><h2>دوربین دیجیتال کانن مدل EOS 2000D به همراه لنز 18-55 میلی متر DC III</h2></a>
+                                                    <a asp-page="/Product"><h2>دوربین دیجیتال کانن مدل EOS 2000D به همراه لنز 18-55 میلی متر DC III</h2></a>
                                                     <div class="price">6.000.000 تومان</div>
                                                     <div class="rate">
                                                         <i class="fa fa-star-half-alt"></i>
@@ -1336,13 +1336,13 @@
             <div class="col-6 col-sm-4 col-lg-2">
                 <div class="title">دسترسی سریع</div>
                 <ul>
-                    <li><a href="blog.html">بلاگ آموزشی</a></li>
-                    <li><a href="faq.html">راهنمای خرید</a></li>
-                    <li><a href="faq.html">شیوه های پرداخت</a></li>
-                    <li><a href="contact.html">پیگیری سفارش</a></li>
-                    <li><a href="faq.html">سوالات متداول</a></li>
-                    <li><a href="about.html">درباره ما</a></li>
-                    <li><a href="contact.html">تماس با ما</a></li>
+                    <li><a asp-page="/Blog">بلاگ آموزشی</a></li>
+                    <li><a asp-page="/Faq">راهنمای خرید</a></li>
+                    <li><a asp-page="/Faq">شیوه های پرداخت</a></li>
+                    <li><a asp-page="/Contact">پیگیری سفارش</a></li>
+                    <li><a asp-page="/Faq">سوالات متداول</a></li>
+                    <li><a asp-page="/About">درباره ما</a></li>
+                    <li><a asp-page="/Contact">تماس با ما</a></li>
                 </ul>
             </div>
             <div class="col-6 col-sm-4 col-lg-2">
@@ -1360,11 +1360,11 @@
             <div class="col-6 col-sm-4 col-lg-2 d-none d-sm-inline-block">
                 <div class="title">ناحیه کاربری</div>
                 <ul>
-                    <li><a href="login.html">ورود به سایت</a></li>
-                    <li><a href="register.html">عضویت در سایت</a></li>
-                    <li><a href="reset-password.html">بازیابی رمز عبور</a></li>
-                    <li><a href="cart.html">سبد خرید</a></li>
-                    <li><a href="checkout.html">پیش فاکتور</a></li>
+                    <li><a asp-page="/Login">ورود به سایت</a></li>
+                    <li><a asp-page="/Register">عضویت در سایت</a></li>
+                    <li><a asp-page="/Reset-Password">بازیابی رمز عبور</a></li>
+                    <li><a asp-page="/Cart">سبد خرید</a></li>
+                    <li><a asp-page="/Checkout">پیش فاکتور</a></li>
                 </ul>
             </div>
             <div class="col-12 col-md-12 col-lg-6">

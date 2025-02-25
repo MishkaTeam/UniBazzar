@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-8 d-none d-md-block">
                     <ul>
-                        <li><a href="index.html">صفحه نخست</a></li>
-                        <li><a href="about.html">درباره ما</a></li>
+                        <li><a asp-page="/Index">صفحه نخست</a></li>
+                        <li><a asp-page="/About">درباره ما</a></li>
                         <li><a asp-page="/Contact">تماس با ما</a></li>
                     </ul>
                 </div>
@@ -26,7 +26,7 @@
         <div class="container pt-1">
             <div class="row py-3 align-content-center">
                 <div class="col-12 col-md-3 col-xl-2 text-center text-md-start pb-2" id="encrypt231432-logo">
-                    <a href="index.html">
+                    <a asp-page="/Index">
                         <img src="assets/images/logo.png" alt=""> روبیک مارکت
                     </a>
                 </div>
@@ -283,7 +283,7 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li><a href="about.html">درباره ما<em class="encrypt2344"></em></a></li>
+                                            <li><a asp-page="/About">درباره ما<em class="encrypt2344"></em></a></li>
                                             <li class="encrypt233211244" aria-haspopup="true">
                                                 <a asp-page="/Products" aria-expanded="false">صفحات فروشگاه<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
                                                 <ul style="">
@@ -295,7 +295,7 @@
                                             <li class="encrypt233211244" aria-haspopup="true">
                                                 <a asp-page="/Contact" aria-expanded="false">تماس با فروشگاه<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
                                                 <ul style="">
-                                                    <li><a href="faq.html">سوالات متداول</a></li>
+                                                    <li><a asp-page="/Faq">سوالات متداول</a></li>
                                                     <li><a asp-page="/Contact">تماس با ما</a></li>
                                                 </ul>
                                             </li>
@@ -303,7 +303,7 @@
                                                 <a asp-page="/Blog-post" aria-expanded="false">بلاگ آموزشی<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
                                                 <ul style="">
                                                     <li><a asp-page="/Blog-post">آرشیو مطالب</a></li>
-                                                    <li><a href="blog-post.html">داخلی بلاگ</a></li>
+                                                    <li><a asp-page="/Blog-Post">داخلی بلاگ</a></li>
                                                 </ul>
                                             </li>
                                             <li class="encrypt233211244" aria-haspopup="true">
@@ -312,7 +312,7 @@
                                                     <li><a asp-page="/Compare">مقایسه محصول</a></li>
                                                     <li><a asp-page="/Cart">سبد خرید</a></li>
                                                     <li><a asp-page="/Checkout">پیش فاکتور</a></li>
-                                                    <li><a href="thankyou.html">پرداخت موفق</a></li>
+                                                    <li><a asp-page="/Thankyou">پرداخت موفق</a></li>
                                                     <li class="dm-bottom-separator"></li>
                                                     <li><a asp-page="/Login">ورود به سایت</a></li>
                                                     <li><a asp-page="/Register">عضویت در سایت</a></li>
@@ -322,17 +322,17 @@
                                                 </ul>
                                             </li>
                                             <li class="encrypt233211244" aria-haspopup="true">
-                                                <a href="profile/personal-info.html" aria-expanded="false">پروفایل کاربری<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
+                                                <a asp-page="/Profile/Personal-Info" aria-expanded="false">پروفایل کاربری<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
                                                 <ul style="">
                                                     <li><a asp-page="/Register">عضویت در سایت</a></li>
                                                     <li><a asp-page="/Login">ورود به سایت</a></li>
                                                     <li><a asp-page="/Forget-Password">بازنشانی رمز عبور</a></li>
                                                     <li class="dm-bottom-separator"></li>
-                                                    <li><a href="profile/personal-info.html">مشخصات کاربری</a></li>
-                                                    <li><a href="profile/factors.html">سفارشات</a></li>
-                                                    <li><a href="profile/factor-view.html">مشاهده فاکتور</a></li>
-                                                    <li><a href="profile/addresses.html">آدرس ها</a></li>
-                                                    <li><a href="profile/favorites.html">علاقه مندی ها</a></li>
+                                                    <li><a asp-page="/Profile/Personal-Info">مشخصات کاربری</a></li>
+                                                    <li><a asp-page="/Profile/Factors">سفارشات</a></li>
+                                                    <li><a asp-page="/Profile/Factor-View">مشاهده فاکتور</a></li>
+                                                    <li><a asp-page="/Profile/Addresses">آدرس ها</a></li>
+                                                    <li><a asp-page="/Profile/Favorites">علاقه مندی ها</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -361,7 +361,7 @@
                             <p>بلاگ آموزشی روبیک مارکت</p>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">صفحه نخست</a></li>
+                                    <li class="breadcrumb-item"><a asp-page="/Index">صفحه نخست</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">بلاگ آموزشی</li>
                                 </ol>
                             </nav>
@@ -389,16 +389,16 @@
                                                 <!-- Blog Post -->
                                                 <div class="col">
                                                     <div class="encrypt471213921256" data-aos="fade-up" data-aos-duration="1000">
-                                                        <a href="blog-post.html"><div class="post-image" style="background-image: url('assets/images/blog/post100.jpg')"></div></a>
+                                                        <a asp-page="/Blog-Post"><div class="post-image" style="background-image: url('assets/images/blog/post100.jpg')"></div></a>
                                                         <div class="details py-3 px-4">
                                                             <div class="post-date">ارسال شده در 30 خرداد 1400</div>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <h2 class="post-title">بررسی آیفون 12 پرو مکس اپل</h2>
                                                             </a>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <div class="encrypt213921256">آیفون ۱۲ پرو مکس با ابعاد غول‌پیکر، دوربین توانمندتر و باتری حجمیش، تمام‌عیارترین پرچم‌دار کنونی اپل به‌حساب می‌آید.</div>
                                                             </a>
-                                                            <div class="read-more"><a href="blog-post.html" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
+                                                            <div class="read-more"><a asp-page="/Blog-Post" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -406,16 +406,16 @@
                                                 <!-- /Blog Post -->
                                                 <div class="col">
                                                     <div class="encrypt471213921256" data-aos="fade-up" data-aos-duration="1000">
-                                                        <a href="blog-post.html"><div class="post-image" style="background-image: url('assets/images/blog/post101.jpg')"></div></a>
+                                                        <a asp-page="/Blog-Post"><div class="post-image" style="background-image: url('assets/images/blog/post101.jpg')"></div></a>
                                                         <div class="details py-3 px-4">
                                                             <div class="post-date">ارسال شده در 30 خرداد 1400</div>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <h2 class="post-title">سامسونگ گلکسی S21 اولترا 5G</h2>
                                                             </a>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <div class="encrypt213921256">سامسونگ برای گوشی پرچم‌دارش، یعنی گلکسی S21 اولترا 5G، علاوه‌بر رنگ‌های قبلی، رنگ جدید سرمه‌ای را معرفی کرد.</div>
                                                             </a>
-                                                            <div class="read-more"><a href="blog-post.html" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
+                                                            <div class="read-more"><a asp-page="/Blog-Post" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -423,16 +423,16 @@
                                                 <!-- /Blog Post -->
                                                 <div class="col">
                                                     <div class="encrypt471213921256" data-aos="fade-up" data-aos-duration="1000">
-                                                        <a href="blog-post.html"><div class="post-image" style="background-image: url('assets/images/blog/post102.jpg')"></div></a>
+                                                        <a asp-page="/Blog-Post"><div class="post-image" style="background-image: url('assets/images/blog/post102.jpg')"></div></a>
                                                         <div class="details py-3 px-4">
                                                             <div class="post-date">ارسال شده در 30 خرداد 1400</div>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <h2 class="post-title">دریافت گواهی بلوتوث گلکسی A03s سامسونگ</h2>
                                                             </a>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <div class="encrypt213921256">ماه گذشته، برای اولین‌بار اطلاعاتی از گلکسی A03s فاش شد و اکنون با دریافت گواهی بلوتوث، به زمان رونمایی این گوشی نزدیک شده‌ایم.</div>
                                                             </a>
-                                                            <div class="read-more"><a href="blog-post.html" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
+                                                            <div class="read-more"><a asp-page="/Blog-Post" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -440,16 +440,16 @@
                                                 <!-- /Blog Post -->
                                                 <div class="col">
                                                     <div class="encrypt471213921256" data-aos="fade-up" data-aos-duration="1000">
-                                                        <a href="blog-post.html"><div class="post-image" style="background-image: url('assets/images/blog/post103.jpg')"></div></a>
+                                                        <a asp-page="/Blog-Post"><div class="post-image" style="background-image: url('assets/images/blog/post103.jpg')"></div></a>
                                                         <div class="details py-3 px-4">
                                                             <div class="post-date">ارسال شده در 30 خرداد 1400</div>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <h2 class="post-title">خرابی بی‌دلیل نمایشگرهای سری گلکسی S20</h2>
                                                             </a>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <div class="encrypt213921256">ماه گذشته، برای اولین‌بار اطلاعاتی از گلکسی A03s فاش شد و اکنون با دریافت گواهی بلوتوث، به زمان رونمایی این گوشی نزدیک شده‌ایم.</div>
                                                             </a>
-                                                            <div class="read-more"><a href="blog-post.html" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
+                                                            <div class="read-more"><a asp-page="/Blog-Post" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -457,16 +457,16 @@
                                                 <!-- Blog Post -->
                                                 <div class="col">
                                                     <div class="encrypt471213921256" data-aos="fade-up" data-aos-duration="1000">
-                                                        <a href="blog-post.html"><div class="post-image" style="background-image: url('assets/images/blog/post100.jpg')"></div></a>
+                                                        <a asp-page="/Blog-Post"><div class="post-image" style="background-image: url('assets/images/blog/post100.jpg')"></div></a>
                                                         <div class="details py-3 px-4">
                                                             <div class="post-date">ارسال شده در 30 خرداد 1400</div>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <h2 class="post-title">بررسی آیفون 12 پرو مکس اپل</h2>
                                                             </a>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <div class="encrypt213921256">آیفون ۱۲ پرو مکس با ابعاد غول‌پیکر، دوربین توانمندتر و باتری حجمیش، تمام‌عیارترین پرچم‌دار کنونی اپل به‌حساب می‌آید.</div>
                                                             </a>
-                                                            <div class="read-more"><a href="blog-post.html" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
+                                                            <div class="read-more"><a asp-page="/Blog-Post" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -474,16 +474,16 @@
                                                 <!-- /Blog Post -->
                                                 <div class="col">
                                                     <div class="encrypt471213921256" data-aos="fade-up" data-aos-duration="1000">
-                                                        <a href="blog-post.html"><div class="post-image" style="background-image: url('assets/images/blog/post101.jpg')"></div></a>
+                                                        <a asp-page="/Blog-Post"><div class="post-image" style="background-image: url('assets/images/blog/post101.jpg')"></div></a>
                                                         <div class="details py-3 px-4">
                                                             <div class="post-date">ارسال شده در 30 خرداد 1400</div>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <h2 class="post-title">سامسونگ گلکسی S21 اولترا 5G</h2>
                                                             </a>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <div class="encrypt213921256">سامسونگ برای گوشی پرچم‌دارش، یعنی گلکسی S21 اولترا 5G، علاوه‌بر رنگ‌های قبلی، رنگ جدید سرمه‌ای را معرفی کرد.</div>
                                                             </a>
-                                                            <div class="read-more"><a href="blog-post.html" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
+                                                            <div class="read-more"><a asp-page="/Blog-Post" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -491,16 +491,16 @@
                                                 <!-- /Blog Post -->
                                                 <div class="col">
                                                     <div class="encrypt471213921256" data-aos="fade-up" data-aos-duration="1000">
-                                                        <a href="blog-post.html"><div class="post-image" style="background-image: url('assets/images/blog/post102.jpg')"></div></a>
+                                                        <a asp-page="/Blog-Post"><div class="post-image" style="background-image: url('assets/images/blog/post102.jpg')"></div></a>
                                                         <div class="details py-3 px-4">
                                                             <div class="post-date">ارسال شده در 30 خرداد 1400</div>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <h2 class="post-title">دریافت گواهی بلوتوث گلکسی A03s سامسونگ</h2>
                                                             </a>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <div class="encrypt213921256">ماه گذشته، برای اولین‌بار اطلاعاتی از گلکسی A03s فاش شد و اکنون با دریافت گواهی بلوتوث، به زمان رونمایی این گوشی نزدیک شده‌ایم.</div>
                                                             </a>
-                                                            <div class="read-more"><a href="blog-post.html" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
+                                                            <div class="read-more"><a asp-page="/Blog-Post" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -508,16 +508,16 @@
                                                 <!-- /Blog Post -->
                                                 <div class="col">
                                                     <div class="encrypt471213921256" data-aos="fade-up" data-aos-duration="1000">
-                                                        <a href="blog-post.html"><div class="post-image" style="background-image: url('assets/images/blog/post103.jpg')"></div></a>
+                                                        <a asp-page="/Blog-Post"><div class="post-image" style="background-image: url('assets/images/blog/post103.jpg')"></div></a>
                                                         <div class="details py-3 px-4">
                                                             <div class="post-date">ارسال شده در 30 خرداد 1400</div>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <h2 class="post-title">خرابی بی‌دلیل نمایشگرهای سری گلکسی S20</h2>
                                                             </a>
-                                                            <a href="blog-post.html">
+                                                            <a asp-page="/Blog-Post">
                                                                 <div class="encrypt213921256">ماه گذشته، برای اولین‌بار اطلاعاتی از گلکسی A03s فاش شد و اکنون با دریافت گواهی بلوتوث، به زمان رونمایی این گوشی نزدیک شده‌ایم.</div>
                                                             </a>
-                                                            <div class="read-more"><a href="blog-post.html" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
+                                                            <div class="read-more"><a asp-page="/Blog-Post" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -640,10 +640,10 @@
                                                     <div class="side-blog-post">
                                                         <div class="row pl-3">
                                                             <div class="col-4 pl-2">
-                                                                <a href="blog-post.html"><div class="image" style="background-image: url(assets/images/blog/post100.jpg)"></div></a>
+                                                                <a asp-page="/Blog-Post"><div class="image" style="background-image: url(assets/images/blog/post100.jpg)"></div></a>
                                                             </div>
                                                             <div class="col-8 px-0">
-                                                                <a href="blog-post.html"><h2>بررسی آیفون 12 پرو مکس اپل</h2></a>
+                                                                <a asp-page="/Blog-Post"><h2>بررسی آیفون 12 پرو مکس اپل</h2></a>
                                                                 <div class="row">
                                                                     <div class="col-12 col-xl-6 pl-0">
                                                                         <span class="category">دسته بندی: <a asp-page="/Blog-post">اخبار</a></span>
@@ -662,10 +662,10 @@
                                                     <div class="side-blog-post">
                                                         <div class="row pl-3">
                                                             <div class="col-4 pl-2">
-                                                                <a href="blog-post.html"><div class="image" style="background-image: url(assets/images/blog/post101.jpg)"></div></a>
+                                                                <a asp-page="/Blog-Post"><div class="image" style="background-image: url(assets/images/blog/post101.jpg)"></div></a>
                                                             </div>
                                                             <div class="col-8 px-0">
-                                                                <a href="blog-post.html"><h2>سامسونگ گلکسی S21 اولترا 5G</h2></a>
+                                                                <a asp-page="/Blog-Post"><h2>سامسونگ گلکسی S21 اولترا 5G</h2></a>
                                                                 <div class="row">
                                                                     <div class="col-12 col-xl-6 pl-0">
                                                                         <span class="category">دسته بندی: <a asp-page="/Blog-post">اخبار</a></span>
@@ -684,10 +684,10 @@
                                                     <div class="side-blog-post">
                                                         <div class="row pl-3">
                                                             <div class="col-4 pl-2">
-                                                                <a href="blog-post.html"><div class="image" style="background-image: url(assets/images/blog/post102.jpg)"></div></a>
+                                                                <a asp-page="/Blog-Post"><div class="image" style="background-image: url(assets/images/blog/post102.jpg)"></div></a>
                                                             </div>
                                                             <div class="col-8 px-0">
-                                                                <a href="blog-post.html"><h2>دریافت گواهی بلوتوث گلکسی A03s سامسونگ</h2></a>
+                                                                <a asp-page="/Blog-Post"><h2>دریافت گواهی بلوتوث گلکسی A03s سامسونگ</h2></a>
                                                                 <div class="row">
                                                                     <div class="col-12 col-xl-6 pl-0">
                                                                         <span class="category">دسته بندی: <a asp-page="/Blog-post">اخبار</a></span>
@@ -706,10 +706,10 @@
                                                     <div class="side-blog-post">
                                                         <div class="row pl-3">
                                                             <div class="col-4 pl-2">
-                                                                <a href="blog-post.html"><div class="image" style="background-image: url(assets/images/blog/post103.jpg)"></div></a>
+                                                                <a asp-page="/Blog-Post"><div class="image" style="background-image: url(assets/images/blog/post103.jpg)"></div></a>
                                                             </div>
                                                             <div class="col-8 px-0">
-                                                                <a href="blog-post.html"><h2>خرابی نمایشگرهای سری گلکسی S20</h2></a>
+                                                                <a asp-page="/Blog-Post"><h2>خرابی نمایشگرهای سری گلکسی S20</h2></a>
                                                                 <div class="row">
                                                                     <div class="col-12 col-xl-6 pl-0">
                                                                         <span class="category">دسته بندی: <a asp-page="/Blog-post">اخبار</a></span>
@@ -745,11 +745,11 @@
                 <div class="title">دسترسی سریع</div>
                 <ul>
                     <li><a asp-page="/Blog-post">بلاگ آموزشی</a></li>
-                    <li><a href="faq.html">راهنمای خرید</a></li>
-                    <li><a href="faq.html">شیوه های پرداخت</a></li>
+                    <li><a asp-page="/Faq">راهنمای خرید</a></li>
+                    <li><a asp-page="/Faq">شیوه های پرداخت</a></li>
                     <li><a asp-page="/Contact">پیگیری سفارش</a></li>
-                    <li><a href="faq.html">سوالات متداول</a></li>
-                    <li><a href="about.html">درباره ما</a></li>
+                    <li><a asp-page="/Faq">سوالات متداول</a></li>
+                    <li><a asp-page="/About">درباره ما</a></li>
                     <li><a asp-page="/Contact">تماس با ما</a></li>
                 </ul>
             </div>

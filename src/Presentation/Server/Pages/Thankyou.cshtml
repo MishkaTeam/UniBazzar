@@ -1,5 +1,5 @@
 ﻿@page
-@model Server.Pages.Forget_PasswordModel
+@model Server.Pages.ThankyouModel
 @{
 }
 <section id="encrypt231432">
@@ -350,19 +350,19 @@
 </section>
 <!-- /encrypt231432 -->
 
-<section class="inner-page" id="contact-page">
+<section class="inner-page" id="checkout-page">
     <div class="container-fluid" id="page-hero">
         <div class="row">
             <div class="col-12">
                 <div class="container">
                     <div class="row">
                         <div class="col-12 px-0">
-                            <h1>بازنشانی رمز عبور</h1>
-                            <p>در صورت فراموشی رمز عبور مب توانید رمز خود را بازنشانی کنید.</p>
+                            <h1>پرداخت موفق</h1>
+                            <p>پرداخت شما با موفقیت انجام شد.</p>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a asp-page="/Index">صفحه نخست</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">بازنشانی رمز عبور</li>
+                                    <li class="breadcrumb-item active" aria-current="page">پرداخت موفق</li>
                                 </ol>
                             </nav>
                         </div>
@@ -372,24 +372,91 @@
         </div>
     </div>
 
-    <div class="container py-2 py-md-5">
+    <div class="container">
         <div class="row">
-            <div class="col-12 col-sm-10 offset-sm-1">
+            <div class="col-12">
                 <div class="content">
                     <div class="row">
-                        <div class="col-12 col-lg-5 text-center">
-                            <img src="assets/images/login.png" alt="">
-                        </div>
-                        <div class="col-12 col-lg-7 pt-5 pt-md-0 align-self-center">
-                            <div class="title">بازنشانی رمز عبور</div>
-                            <p>برای بازنشانی رمز عبور، ایمیل خود را وارد کنید.</p>
-                            <div class="form-group">
-                                <label for="email">پست الکترونیک :</label>
-                                <input type="email" class="form-control" id="email">
-                            </div>
-                            <div class="form-group">
-                                <a asp-page="/Profile/Personal-Info"><input type="submit" value="ارسال ایمیل بازنشانی" class="btn btn-success"></a>
-                            </div>
+                        <div class="col-12">
+                            <!-- Choose Address -->
+                            <section id="choose-address">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12 py-3">
+                                            <div class="pb-1 fs-5 title text-success">پرداخت شما با موفقیت انجام شد.</div>
+                                            <div class="pb-1 small text-black-50">سفارش شما در حال انجام می باشد. تغییر وضعیت سفارش از طریق پیامک خدمت شما اطلاع داده خواهد شد.</div>
+                                            <div class="row">
+                                                <div class="col-12 pl-0" id="address-detail">
+                                                    <div class="p-3 ml-3 mb-2 mb-md-0 ml-md-0 mt-2 address-to-send bg-info bg-opacity-10">
+                                                        <div class="title text-primary">جزئیات سفارش</div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-12 col-md-4 my-1">شماره پیگیری: <strong>1234564</strong></div>
+                                                            <div class="col-12 col-md-4 my-1">تاریخ ثبت: <strong>01 فروردین 1403 22:10</strong></div>
+                                                            <div class="col-12 col-md-4 my-1">وضعیت سفارش: <strong>در حال انجام</strong></div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-12 col-md-3 my-1">مبلغ پرداختی: <strong>300,000,000 تومان</strong></div>
+                                                            <div class="col-12 col-md-9 my-1">پرداخت اینترنتی توسط درگاه ملت</div>
+                                                            <div class="col-12 col-md-3 my-1">جمع تخفیف: <strong>100,000 تومان</strong></div>
+                                                            <div class="col-12 col-md-3 my-1">هزینه ارسال: <strong>30,000 تومان</strong></div>
+                                                        </div>
+                                                        <hr>
+                                                        <span>ارسال به:</span>
+                                                        <div class="address-title">
+                                                            <span id="province-title">تهران</span>،
+                                                            <span id="city-title">خیابان انقلاب</span>،
+                                                            <span id="address">خیابان 12 فروردین، کوچه 1، پلاک 1</span>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12 col-md-4">کدپستی: <strong>123456789</strong></div>
+                                                            <div class="col-12 col-md-8">تحویل گیرنده: <strong>مصطفی کیانی (09121234567)</strong></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 pl-0 mt-3">
+                                                    <div class="p-3 ml-3 mb-2 mb-md-0 ml-md-0">
+                                                        <div class="title text-primary">محصولات خریداری شده</div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <!-- Order Product Record -->
+                                                            <span class="col-6 col-sm-4 col-lg-3 px-0 mx-2">
+                                                                <a asp-page="/Product" target="_blank">
+                                                                    <div class="encrypt263156">
+                                                                        <div class="image" style="background-image: url(assets/images/products/p100.png)"></div>
+                                                                        <div class="text-center px-1 px-sm-3">
+                                                                            <a asp-page="/Product" target="_blank"><h2>گوشی موبایل سامسونگ مدل Galaxy A51 دو سیم کارت</h2></a>
+                                                                            <div class="number">تعداد: 1 عدد</div>
+                                                                            <div class="price text-dark">200,000,000 تومان</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </span>
+                                                            <!-- /Order Product Record -->
+                                                            <!-- Order Product Record -->
+                                                            <span class="col-6 col-sm-4 col-lg-3 px-0 mx-2">
+                                                                <a asp-page="/Product" target="_blank">
+                                                                    <div class="encrypt263156">
+                                                                        <div class="image" style="background-image: url(assets/images/products/p200.png)"></div>
+                                                                        <div class="text-center px-1 px-sm-3">
+                                                                            <a asp-page="/Product" target="_blank"><h2>لپ تاپ 15 اینچی ایسوس مدل VivoBook X543MA-DM905</h2></a>
+                                                                            <div class="number">تعداد: 1 عدد</div>
+                                                                            <div class="price text-dark">100,000,000 تومان</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </span>
+                                                            <!-- /Order Product Record -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- /Choose Address -->
                         </div>
                     </div>
                 </div>

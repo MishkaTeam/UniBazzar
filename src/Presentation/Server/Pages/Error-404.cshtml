@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-8 d-none d-md-block">
                     <ul>
-                        <li><a href="index.html">صفحه نخست</a></li>
-                        <li><a href="about.html">درباره ما</a></li>
+                        <li><a asp-page="/Index">صفحه نخست</a></li>
+                        <li><a asp-page="/About">درباره ما</a></li>
                         <li><a asp-page="/Contact">تماس با ما</a></li>
                     </ul>
                 </div>
@@ -26,7 +26,7 @@
         <div class="container pt-1">
             <div class="row py-3 align-content-center">
                 <div class="col-12 col-md-3 col-xl-2 text-center text-md-start pb-2" id="encrypt231432-logo">
-                    <a href="index.html">
+                    <a asp-page="/Index">
                         <img src="assets/images/logo.png" alt=""> روبیک مارکت
                     </a>
                 </div>
@@ -283,7 +283,7 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li><a href="about.html">درباره ما<em class="encrypt2344"></em></a></li>
+                                            <li><a asp-page="/About">درباره ما<em class="encrypt2344"></em></a></li>
                                             <li class="encrypt233211244" aria-haspopup="true">
                                                 <a asp-page="/Products" aria-expanded="false">صفحات فروشگاه<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
                                                 <ul style="">
@@ -295,7 +295,7 @@
                                             <li class="encrypt233211244" aria-haspopup="true">
                                                 <a asp-page="/Contact" aria-expanded="false">تماس با فروشگاه<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
                                                 <ul style="">
-                                                    <li><a href="faq.html">سوالات متداول</a></li>
+                                                    <li><a asp-page="/Faq">سوالات متداول</a></li>
                                                     <li><a asp-page="/Contact">تماس با ما</a></li>
                                                 </ul>
                                             </li>
@@ -312,7 +312,7 @@
                                                     <li><a asp-page="/Compare">مقایسه محصول</a></li>
                                                     <li><a asp-page="/Cart">سبد خرید</a></li>
                                                     <li><a asp-page="/Checkout">پیش فاکتور</a></li>
-                                                    <li><a href="thankyou.html">پرداخت موفق</a></li>
+                                                    <li><a asp-page="/Thankyou">پرداخت موفق</a></li>
                                                     <li class="dm-bottom-separator"></li>
                                                     <li><a asp-page="/Login">ورود به سایت</a></li>
                                                     <li><a asp-page="/Register">عضویت در سایت</a></li>
@@ -322,17 +322,17 @@
                                                 </ul>
                                             </li>
                                             <li class="encrypt233211244" aria-haspopup="true">
-                                                <a href="profile/personal-info.html" aria-expanded="false">پروفایل کاربری<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
+                                                <a asp-page="/Profile/Personal-Info" aria-expanded="false">پروفایل کاربری<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
                                                 <ul style="">
                                                     <li><a asp-page="/Register">عضویت در سایت</a></li>
                                                     <li><a asp-page="/Login">ورود به سایت</a></li>
                                                     <li><a asp-page="/Forget-Password">بازنشانی رمز عبور</a></li>
                                                     <li class="dm-bottom-separator"></li>
-                                                    <li><a href="profile/personal-info.html">مشخصات کاربری</a></li>
-                                                    <li><a href="profile/factors.html">سفارشات</a></li>
-                                                    <li><a href="profile/factor-view.html">مشاهده فاکتور</a></li>
-                                                    <li><a href="profile/addresses.html">آدرس ها</a></li>
-                                                    <li><a href="profile/favorites.html">علاقه مندی ها</a></li>
+                                                    <li><a asp-page="/Profile/Personal-Info">مشخصات کاربری</a></li>
+                                                    <li><a asp-page="/Profile/Factors">سفارشات</a></li>
+                                                    <li><a asp-page="/Profile/Factor-View">مشاهده فاکتور</a></li>
+                                                    <li><a asp-page="/Profile/Addresses">آدرس ها</a></li>
+                                                    <li><a asp-page="/Profile/Favorites">علاقه مندی ها</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -361,7 +361,7 @@
                             <p>صفحه مورد نظر شما حذف شده یا اصلا وجود نداشته است!</p>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">صفحه نخست</a></li>
+                                    <li class="breadcrumb-item"><a asp-page="/Index">صفحه نخست</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">خطای 404</li>
                                 </ol>
                             </nav>
@@ -391,7 +391,7 @@
                                     </div>
                                     <h2>صفحه مورد نظر یافت نشد!</h2>
                                     <p>احتمالا صفحه مورد نظر شما حذف یا تغییر نام داده شده است.</p>
-                                    <a href="index.html">بازگشت به صفحه اصلی</a>
+                                    <a asp-page="/Index">بازگشت به صفحه اصلی</a>
                                     <div class="notfound-social">
                                         <a href="#"><img src="assets/images/social/twitter.png" alt="توئیتر" width="18px"></a>
                                         <a href="#"><img src="assets/images/social/insta.png" alt="اینستاگرام" width="18px"></a>
@@ -416,11 +416,11 @@
                 <div class="title">دسترسی سریع</div>
                 <ul>
                     <li><a asp-page="/Blog">بلاگ آموزشی</a></li>
-                    <li><a href="faq.html">راهنمای خرید</a></li>
-                    <li><a href="faq.html">شیوه های پرداخت</a></li>
+                    <li><a asp-page="/Faq">راهنمای خرید</a></li>
+                    <li><a asp-page="/Faq">شیوه های پرداخت</a></li>
                     <li><a asp-page="/Contact">پیگیری سفارش</a></li>
-                    <li><a href="faq.html">سوالات متداول</a></li>
-                    <li><a href="about.html">درباره ما</a></li>
+                    <li><a asp-page="/Faq">سوالات متداول</a></li>
+                    <li><a asp-page="/About">درباره ما</a></li>
                     <li><a asp-page="/Contact">تماس با ما</a></li>
                 </ul>
             </div>
