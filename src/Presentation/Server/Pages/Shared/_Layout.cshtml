@@ -1,51 +1,54 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿<!doctype html>
+<html lang="fa" dir="rtl">
+
+<!-- Mirrored from rubik-market-html.wbrk.ir/preview/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 22 Feb 2025 18:51:23 GMT -->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Server</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Server.styles.css" asp-append-version="true" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>قالب فروشگاهی روبیک مارکت</title>
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="css/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="plugins/aos-master/dist/aos.css">
+    <link rel="stylesheet" href="plugins/hover-master/css/hover-min.css">
+    <link rel="stylesheet" href="css/css/ionicons.css">
+    <link rel="stylesheet" href="css/css/droopmenu.css">
+    <link rel="stylesheet" href="css/css/highlight.css">
+    <link rel="stylesheet" href="css/css/nouislider.min.css">
+    <link rel="stylesheet" href="css/css/style.css">
+    <!-- /CSS Styles -->
+    
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Server</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+@RenderBody()
+<!-- Copyright -->
+<section class="py-2" id="copyright">
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Server - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        <div class="row">
+            <div class="col-12 col-sm-6" id="encrypt1368569">
+                <span>ما را دنبال کنید</span>
+                <a href="#"><img src="images/social/insta.png" alt=""></a>
+                <a href="#"><img src="images/social/facebook.png" alt=""></a>
+                <a href="#"><img src="images/social/linkedin.png" alt=""></a>
+                <a href="#"><img src="images/social/twitter.png" alt=""></a>
+                <a href="#"><img src="images/social/youtube.png" alt=""></a>
+            </div>
+            <div class="col-12 col-sm-6 text-sm-end pt-2 pt-sm-0">
+                <span>کلیه حقوق و مادی معنوی محفوط است.</span>
+            </div>
         </div>
-    </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
+    </div>
+</section>
+<!-- Copyright -->
+<!-- Scripts -->
+<script src="js/js/jquery.min.js"></script>
+<script src="js/js/bootstrap.bundle.min.js"></script>
+<script src="plugins/fontawesome/js/all.min.js"></script>
+<script src="plugins/aos-master/dist/aos.js"></script>
+<script src="js/js/droopmenu.js"></script>
+<script src="js/js/nouislider.min.js"></script>
+<script src="js/js/pagination.js"></script>
+<script src="js/js/scripts.js"></script>
+<!-- /Scripts -->
+<!-- Mirrored from rubik-market-html.wbrk.ir/preview/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 22 Feb 2025 18:53:11 GMT -->
 </html>
