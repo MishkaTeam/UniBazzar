@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Application.Aggregates.Products.ProductImage.ViewModel;
+namespace Application.Aggregates.Products.ProductImages.ViewModel;
 
 public class CreateProductImageViewModel
 {
