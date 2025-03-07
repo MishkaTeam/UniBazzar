@@ -36,6 +36,7 @@
                             <ul class="dropdown-menu">
                                 <li><a asp-page="ProductFeatures/Index" asp-route-ProductId="@(product.Id)" class="dropdown-item">@(Resources.ButtonCaptions.ManageOf) @(Resources.DataDictionary.Features)</a></li>
                                 <li><a asp-page="ProductImages/Index" asp-route-ProductId="@(product.Id)" class="dropdown-item">@(Resources.ButtonCaptions.ManageOf) @(Resources.DataDictionary.Pictures)</a></li>
+                                <li><a asp-page="ProductPriceLists/Index" asp-route-ProductId="@(product.Id)" class="dropdown-item">@(Resources.ButtonCaptions.ManageOf) @(Resources.DataDictionary.PriceLists)</a></li>
                             </ul>
                         </div>
                     </div>

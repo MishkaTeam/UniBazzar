@@ -318,4 +318,10 @@
   <data name="PicturesOf" xml:space="preserve">
     <value>PicturesOf</value>
   </data>
+  <data name="PriceLists" xml:space="preserve">
+    <value>PriceLists</value>
+  </data>
+  <data name="PriceListsOf" xml:space="preserve">
+    <value>PriceListsOf</value>
+  </data>
 </root>

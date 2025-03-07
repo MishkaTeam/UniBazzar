@@ -1,0 +1,37 @@
+﻿@page "{productId:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.Products.ProductPriceLists.IndexModel
+@{
+    var pageTitle =
+        Resources.DataDictionary.PriceLists;
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<div class="row justify-content-between px-2 my-2">
+    <a class="col-auto btn btn-primary" asp-page="../Index" asp-area="Admin">@(Resources.ButtonCaptions.Back)</a>
+    <h5 class="col-auto">@(Resources.DataDictionary.PriceListsOf) "@(Model.ProductViewModel.Name)"</h5>
+    <a class="col-auto btn btn-primary" asp-page="Create" asp-route-ProductId="@(Model.ProductViewModel.Id)" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Price))
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var productImage in Model.ViewModel)
+        {
+            <tr>
+                @(Html.Ub_DisplayIntegerWithTd(productImage.Price))
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a asp-page="Update" asp-route-Id="@(productImage.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
+                        <a asp-page="Delete" asp-route-Id="@(productImage.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -318,4 +318,10 @@
   <data name="PicturesOf" xml:space="preserve">
     <value>عکس های</value>
   </data>
+  <data name="PriceLists" xml:space="preserve">
+    <value>لیست قیمت ها</value>
+  </data>
+  <data name="PriceListsOf" xml:space="preserve">
+    <value>لیست قیمت های</value>
+  </data>
 </root>

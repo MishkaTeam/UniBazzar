@@ -448,6 +448,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PriceLists.
+        /// </summary>
+        public static string PriceLists {
+            get {
+                return ResourceManager.GetString("PriceLists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PriceListsOf.
+        /// </summary>
+        public static string PriceListsOf {
+            get {
+                return ResourceManager.GetString("PriceListsOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product.
         /// </summary>
         public static string Product {
