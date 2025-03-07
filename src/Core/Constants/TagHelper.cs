@@ -1,6 +1,6 @@
 ﻿namespace Constants;
 
-public static class TagHelper : object
+public static class TagHelper 
 {
 	static TagHelper()
 	{

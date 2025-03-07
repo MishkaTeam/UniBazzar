@@ -1,6 +1,6 @@
 ﻿namespace Constants;
 
-public static class ViewDataKeyName : object
+public static class ViewDataKeyName 
 {
 	static ViewDataKeyName()
 	{

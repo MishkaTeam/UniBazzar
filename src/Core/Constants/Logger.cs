@@ -1,6 +1,6 @@
 ﻿namespace Constants;
 
-public static class Logger : object
+public static class Logger 
 {
 	static Logger()
 	{

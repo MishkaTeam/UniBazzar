@@ -2,7 +2,7 @@
 
 namespace Infrastructure.TagHelpers;
 
-public static class Utility : object
+public static class Utility
 {
 	static Utility()
 	{

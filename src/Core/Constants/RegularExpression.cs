@@ -3,7 +3,7 @@
 /// <summary>
 /// https://regex101.com/
 /// </summary>
-public static class RegularExpression : object
+public static class RegularExpression 
 {
 	static RegularExpression()
 	{

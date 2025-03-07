@@ -1,6 +1,6 @@
 ﻿namespace Constants;
 
-public static class CommonRouting : object
+public static class CommonRouting 
 {
 	static CommonRouting()
 	{

@@ -1,6 +1,6 @@
 ﻿namespace Infrastructure;
 
-public static class HtmlHelpers : object
+public static class HtmlHelpers
 {
 	static HtmlHelpers()
 	{

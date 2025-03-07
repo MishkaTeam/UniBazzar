@@ -1,6 +1,6 @@
 ﻿namespace Constants;
 
-public static class Format : object
+public static class Format 
 {
 	static Format()
 	{

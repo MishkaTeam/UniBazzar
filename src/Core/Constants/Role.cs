@@ -3,7 +3,7 @@
 /// <summary>
 /// TODO: بعد از داینامیک کردن سیستم، باید حذف شود
 /// </summary>
-public static class Role : object
+public static class Role 
 {
 	static Role()
 	{

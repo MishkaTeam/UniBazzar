@@ -1,6 +1,6 @@
 ﻿namespace Constants;
 
-public static class MaxLength : object
+public static class MaxLength 
 {
 	static MaxLength()
 	{

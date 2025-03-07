@@ -1,6 +1,6 @@
 ﻿namespace Constants;
 
-public static class MinLength : object
+public static class MinLength 
 {
 	static MinLength()
 	{

@@ -2,7 +2,7 @@
 
 namespace Framework.DataType;
 
-public static class String : object
+public static class String 
 {
     static String()
     {

@@ -1,6 +1,6 @@
 ﻿namespace Constants;
 
-public static class FixedLength : object
+public static class FixedLength 
 {
 	static FixedLength()
 	{
