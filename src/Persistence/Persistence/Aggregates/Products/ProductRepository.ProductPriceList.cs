@@ -5,9 +5,9 @@ namespace Persistence.Aggregates.Products;
 
 public partial class ProductRepository
 {
-    public void AddProductPriceList(ProductPriceList productPriceList)
+    public async Task AddProductPriceList(ProductPriceList productPriceList)
     {
-        uniBazzarContext.Add(productPriceList);
+        await uniBazzarContext.AddAsync(productPriceList);
     }
 
     public async Task<ProductPriceList> GetProductPriceListAsync(Guid id)
@@ -29,7 +29,12 @@ public partial class ProductRepository
         return productpricelist ?? new ProductPriceList();
     }
 
-    public void Remove(ProductPriceList productPriceList)
+    public async Task<List<ProductPriceList>> GetPriceListByProductId(Guid id)
+    {
+        return await uniBazzarContext.ProductPriceLists.Where(x => x.ProductId == id).ToListAsync();
+    }
+
+    public void RemovePriceList(ProductPriceList productPriceList)
     {
         uniBazzarContext.ProductPriceLists.Remove(productPriceList);
     }

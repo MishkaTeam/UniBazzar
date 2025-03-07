@@ -394,6 +394,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Picture.
+        /// </summary>
+        public static string Picture {
+            get {
+                return ResourceManager.GetString("Picture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pictures.
+        /// </summary>
+        public static string Pictures {
+            get {
+                return ResourceManager.GetString("Pictures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PicturesOf.
+        /// </summary>
+        public static string PicturesOf {
+            get {
+                return ResourceManager.GetString("PicturesOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to POS.
         /// </summary>
         public static string POS {
@@ -417,6 +444,24 @@ namespace Resources {
         public static string Price {
             get {
                 return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PriceLists.
+        /// </summary>
+        public static string PriceLists {
+            get {
+                return ResourceManager.GetString("PriceLists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PriceListsOf.
+        /// </summary>
+        public static string PriceListsOf {
+            get {
+                return ResourceManager.GetString("PriceListsOf", resourceCulture);
             }
         }
         
@@ -453,6 +498,15 @@ namespace Resources {
         public static string ProductId {
             get {
                 return ResourceManager.GetString("ProductId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProductImage.
+        /// </summary>
+        public static string ProductImage {
+            get {
+                return ResourceManager.GetString("ProductImage", resourceCulture);
             }
         }
         

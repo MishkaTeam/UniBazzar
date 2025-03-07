@@ -1,0 +1,38 @@
+﻿@page "{id:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.Products.ProductImages.UpdateModel
+@{
+    var pageTitle =
+        $"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.ProductImage}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<form method="post" enctype="multipart/form-data">
+
+    <section-form>
+
+        <fieldset>
+
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+
+            <input hidden asp-for="ViewModel.Id" />
+
+            <input hidden asp-for="ViewModel.ProductId" />
+            <input hidden asp-for="ViewModel.ImageUrl" />
+
+            <input class="m-2" asp-for="UplodImage" />
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-save />
+            <button-reset />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>
