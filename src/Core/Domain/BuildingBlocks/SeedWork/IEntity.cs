@@ -1,9 +1,8 @@
-﻿namespace BuildingBlocks.Domain.SeedWork;
+﻿namespace Domain.BuildingBlocks.SeedWork;
 
 public interface IEntity :
      IsEntityHasVersionControl
      , IEntityHasUpdateInfo
-     , IEntityHasTenant
      , IEntityHasOwner
      , IEntityHasStore
 
@@ -14,4 +13,6 @@ public interface IEntity :
     public Guid InsertedBy { get; }
     void SetInsertDateTime();
     void SetInsertBy(Guid Id);
+    void IncreaseVersion();
+    void SetVersionAndIncrease(int oldVersion);
 }

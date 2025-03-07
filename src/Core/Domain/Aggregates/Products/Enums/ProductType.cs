@@ -1,4 +1,4 @@
-﻿namespace Domain.Enumerations;
+﻿namespace Domain.Aggregates.Products.Enums;
 
 public enum ProductType : byte
 {

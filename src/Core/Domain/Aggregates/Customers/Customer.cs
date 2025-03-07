@@ -1,6 +1,6 @@
-﻿using BuildingBlocks.Domain.Aggregates;
-using Framework.DataType;
+﻿using Framework.DataType;
 using System.ComponentModel.DataAnnotations;
+using Entity = Domain.BuildingBlocks.Aggregates.Entity;
 
 namespace Domain.Aggregates.Customers
 {

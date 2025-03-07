@@ -1,4 +1,5 @@
 ﻿@page "{id:guid}"
+@using Domain.Aggregates.Products.Enums
 @model Server.Areas.Admin.Pages.BasicInfo.Products.DeleteModel
 
 @{
@@ -34,7 +35,7 @@
 
             <ub-full-select asp-for="DeleteViewModel.ProductType" asp-items="Model.ProductTypeList" />
 
-            @if (Model.DeleteViewModel.ProductType == Domain.Enumerations.ProductType.Service)
+            @if (Model.DeleteViewModel.ProductType == ProductType.Service)
             {
                 <ub-full-input asp-for="DeleteViewModel.DownloadUrl" />
             }

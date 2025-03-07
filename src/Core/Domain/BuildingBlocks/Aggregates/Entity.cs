@@ -1,7 +1,7 @@
-﻿using BuildingBlocks.Domain.SeedWork;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Domain.BuildingBlocks.SeedWork;
 
-namespace BuildingBlocks.Domain.Aggregates;
+namespace Domain.BuildingBlocks.Aggregates;
 
 public class Entity : IEntity
 {
@@ -21,7 +21,6 @@ public class Entity : IEntity
 
 	public Guid StoreId { get; protected set; }
 	public Guid OwnerId { get; protected set; }
-	public Guid TenantId { get; protected set; }
 
 	public Guid InsertedBy { get; protected set; }
 	public Guid UpdatedBy { get; protected set; }
@@ -34,24 +33,29 @@ public class Entity : IEntity
 		return OwnerId;
 	}
 
-	public Guid GetTenant()
+	public Guid GetStore()
 	{
-		return TenantId;
+		return StoreId;
 	}
-
+	
+	public void SetStore(Guid StoreId)
+	{
+		StoreId = StoreId;
+	}
+	
 	public void SetOwner(Guid ownerId)
 	{
 		OwnerId = ownerId;
 	}
-
-	public void SetTenant(Guid tenantId)
-	{
-		TenantId = tenantId;
-	}
-
+	
 	public void SetInsertBy(Guid Id)
 	{
 		InsertedBy = Id;
+	}
+
+	public void IncreaseVersion()
+	{
+		Version++;
 	}
 
 	public void SetInsertDateTime()
@@ -70,5 +74,11 @@ public class Entity : IEntity
 		UpdateDateTime =
 			DateTimeUtility.GetCurrentUnixUTCTimeSeconds();
 	}
+	public void SetVersionAndIncrease(int oldVersion)
+	{
+		Version = oldVersion;
+		IncreaseVersion();
+	}
+
 
 }

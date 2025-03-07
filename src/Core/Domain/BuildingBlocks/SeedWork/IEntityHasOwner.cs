@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.Domain.SeedWork;
+﻿namespace Domain.BuildingBlocks.SeedWork;
 
 public interface IEntityHasOwner
 {
