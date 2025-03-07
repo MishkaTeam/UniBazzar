@@ -5,9 +5,9 @@ namespace Persistence.Aggregates.Products;
 
 public partial class ProductRepository
 {
-    public void AddProductPriceList(ProductPriceList productPriceList)
+    public async Task AddProductPriceList(ProductPriceList productPriceList)
     {
-        uniBazzarContext.Add(productPriceList);
+        await uniBazzarContext.AddAsync(productPriceList);
     }
 
     public async Task<ProductPriceList> GetProductPriceListAsync(Guid id)

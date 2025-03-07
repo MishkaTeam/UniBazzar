@@ -5,9 +5,9 @@ namespace Persistence.Aggregates.Products;
 
 public partial class ProductRepository
 {
-    public void AddProductImage(ProductImage productImage)
+    public async Task AddProductImage(ProductImage productImage)
     {
-        uniBazzarContext.Add(productImage);
+        await uniBazzarContext.AddAsync(productImage);
     }
 
     public Task<List<ProductImage>> GetAllProductImagesAsync()
@@ -26,7 +26,7 @@ public partial class ProductRepository
         return productimage ?? new ProductImage();
     }
 
-    public void Remove(ProductImage productImage)
+    public void RemoveImage(ProductImage productImage)
     {
         uniBazzarContext.ProductImages.Remove(productImage);
     }
