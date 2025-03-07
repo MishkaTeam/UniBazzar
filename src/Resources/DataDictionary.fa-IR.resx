@@ -306,4 +306,7 @@
   <data name="Dashboard" xml:space="preserve">
     <value>داشبورد</value>
   </data>
+  <data name="Picture" xml:space="preserve">
+    <value>تصویر</value>
+  </data>
 </root>
