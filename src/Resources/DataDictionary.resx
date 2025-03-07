@@ -309,4 +309,13 @@
   <data name="Picture" xml:space="preserve">
     <value>Picture</value>
   </data>
+  <data name="ProductImage" xml:space="preserve">
+    <value>ProductImage</value>
+  </data>
+  <data name="Pictures" xml:space="preserve">
+    <value>Pictures</value>
+  </data>
+  <data name="PicturesOf" xml:space="preserve">
+    <value>PicturesOf</value>
+  </data>
 </root>

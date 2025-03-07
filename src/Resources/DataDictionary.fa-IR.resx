@@ -309,4 +309,13 @@
   <data name="Picture" xml:space="preserve">
     <value>تصویر</value>
   </data>
+  <data name="ProductImage" xml:space="preserve">
+    <value>عکس کالا</value>
+  </data>
+  <data name="Pictures" xml:space="preserve">
+    <value>عکس ها</value>
+  </data>
+  <data name="PicturesOf" xml:space="preserve">
+    <value>عکس های</value>
+  </data>
 </root>

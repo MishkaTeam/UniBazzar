@@ -13,5 +13,5 @@ public class CreateProductImageViewModel
     [Display
         (ResourceType = typeof(Resources.DataDictionary),
         Name = nameof(Resources.DataDictionary.Picture))]
-    public string ImageUrl { get; set; }
+    public string? ImageUrl { get; set; }
 }

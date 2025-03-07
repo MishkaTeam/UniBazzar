@@ -10,14 +10,14 @@ public partial class ProductRepository
         await uniBazzarContext.AddAsync(productImage);
     }
 
-    public Task<List<ProductImage>> GetAllProductImagesAsync()
+    public async Task<List<ProductImage>> GetAllProductImagesAsync()
     {
-        return uniBazzarContext.ProductImages.ToListAsync();
+        return await uniBazzarContext.ProductImages.ToListAsync();
     }
 
-    public Task<List<ProductImage>> GetImageByProductIdAsync(Guid id)
+    public async Task<List<ProductImage>> GetImageByProductIdAsync(Guid id)
     {
-        return uniBazzarContext.ProductImages.Where(x => x.ProductId == id).ToListAsync();
+        return await uniBazzarContext.ProductImages.Where(x => x.ProductId == id).ToListAsync();
     }
 
     public async Task<ProductImage> GetProductImageAsync(Guid id)

@@ -1,0 +1,35 @@
+﻿@page "{id:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.Products.ProductImages.DeleteModel
+@{
+    var pageTitle =
+        $"{Resources.DataDictionary.DeleteOf} {Resources.DataDictionary.ProductImage}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+    <section-form>
+
+        <input hidden asp-for="ViewModel.Id" dir="ltr" />
+        <input hidden asp-for="ViewModel.ProductId" dir="ltr" />
+
+        <fieldset disabled>
+
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+
+            <img src="/ProductImage/@(Model.ViewModel.ImageUrl)" class="w-100 mb-2 rounded-2" />
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-delete />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>
