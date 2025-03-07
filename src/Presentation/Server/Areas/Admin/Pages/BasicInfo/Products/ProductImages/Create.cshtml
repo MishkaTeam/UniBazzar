@@ -1,0 +1,35 @@
+﻿@page "{productId:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.Products.ProductImages.CreateModel
+@{
+    var pageTitle =
+        $"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.ProductImage}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<form method="post" enctype="multipart/form-data">
+
+    <section-form>
+
+        <fieldset>
+
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+
+            <input hidden asp-for="ViewModel.ProductId" />
+
+            <input class="m-2" asp-for="UplodImage" />
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-create />
+            <button-reset />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>

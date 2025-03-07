@@ -5,19 +5,19 @@ namespace Persistence.Aggregates.Products;
 
 public partial class ProductRepository
 {
-    public void AddProductImage(ProductImage productImage)
+    public async Task AddProductImage(ProductImage productImage)
     {
-        uniBazzarContext.Add(productImage);
+        await uniBazzarContext.AddAsync(productImage);
     }
 
-    public Task<List<ProductImage>> GetAllProductImagesAsync()
+    public async Task<List<ProductImage>> GetAllProductImagesAsync()
     {
-        return uniBazzarContext.ProductImages.ToListAsync();
+        return await uniBazzarContext.ProductImages.ToListAsync();
     }
 
-    public Task<List<ProductImage>> GetImageByProductIdAsync(Guid id)
+    public async Task<List<ProductImage>> GetImageByProductIdAsync(Guid id)
     {
-        return uniBazzarContext.ProductImages.Where(x => x.ProductId == id).ToListAsync();
+        return await uniBazzarContext.ProductImages.Where(x => x.ProductId == id).ToListAsync();
     }
 
     public async Task<ProductImage> GetProductImageAsync(Guid id)
@@ -26,7 +26,7 @@ public partial class ProductRepository
         return productimage ?? new ProductImage();
     }
 
-    public void Remove(ProductImage productImage)
+    public void RemoveImage(ProductImage productImage)
     {
         uniBazzarContext.ProductImages.Remove(productImage);
     }
