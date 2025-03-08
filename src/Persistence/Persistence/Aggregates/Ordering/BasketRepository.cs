@@ -11,11 +11,6 @@ public class BasketRepository(
     IExecutionContextAccessor executionContext)
     : RepositoryBase<Basket>(context, executionContext), IBasketRepository
 {
-    public Task AddItemToBasket(BasketItem basketItem)
-    {
-        throw new NotImplementedException();
-    }
-
     public async Task<Basket?> GetWithItemsByIdAsync(Guid requestBasketId)
     {
         var basket = await DbSet
