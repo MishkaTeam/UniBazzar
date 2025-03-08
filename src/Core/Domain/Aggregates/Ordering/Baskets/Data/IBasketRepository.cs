@@ -4,5 +4,5 @@ namespace Domain.Aggregates.Ordering.Baskets.Data;
 
 public interface IBasketRepository : IRepositoryBase<Basket>
 {
-    Task AddItemToBasket(BasketItem basketItem);
+    Task<Basket?> GetWithItemsByIdAsync(Guid requestBasketId);
 }

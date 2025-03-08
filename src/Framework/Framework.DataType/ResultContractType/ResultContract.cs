@@ -41,6 +41,13 @@ public class ResultContract
         else
             return new ResultContract(false);
     }
+
+    public static implicit operator ResultContract(Exception? exception)
+    {
+        var result = new ResultContract(false);
+        result.ErrorMessage = new ErrorMessage(exception?.Message ?? "", ErrorType.InternalError,exception);
+        return result;
+    }
 }
 
 public class ResultContract<TData> : ResultContract

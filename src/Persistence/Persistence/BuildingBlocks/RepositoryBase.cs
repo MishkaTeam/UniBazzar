@@ -11,7 +11,7 @@ namespace BuildingBlocks.Persistence;
 public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> 
 	where TEntity : class, IEntity
 	{
-		public RepositoryBase(DbContext context, IExecutionContextAccessor executionContext)
+		public RepositoryBase(UniBazzarContext context, IExecutionContextAccessor executionContext)
 		{
 			DatabaseContext = context ?? throw new ArgumentNullException("databaseContext");
 			ExecutionContext = executionContext;

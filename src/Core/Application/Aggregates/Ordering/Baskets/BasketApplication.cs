@@ -22,7 +22,7 @@ public class BasketApplication(IBasketRepository basketRepository, IUnitOfWork u
     {
         var basket = await basketRepository.GetByIdAsync(basketItemRequest.BasketId);
         var basketItem = BasketItem.Create(basket.Id, basket.ReferenceNumber,basketItemRequest.Product, basketItemRequest.Quantity);
-        await basketRepository.AddItemToBasket(basketItem);
+        basket.AddItem(basketItem);
         await unitOfWork.CommitAsync();
         return basketItem.Adapt<BasketItemViewModel>(); 
     }
