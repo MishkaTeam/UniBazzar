@@ -1,0 +1,23 @@
+﻿<a href="@(Link)">
+    <div class="menu-item @(IsActive ? "active " : "")d-flex align-items-center bg-light text-dark rounded-3 my-2 p-2-5">
+        <i class="d-flex bg-gray p-2 rounded-circle @(Icon)"></i>
+        <span class="ps-2">@(Title)</span>
+    </div>
+</a>
+
+
+@code {
+
+    [Parameter]
+    public string? Link { get; set; } = "#";
+
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public string? Icon { get; set; } = "bi bi-box-fill";
+
+    [Parameter]
+    public bool IsActive { get; set; }
+
+}
