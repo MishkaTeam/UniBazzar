@@ -8,7 +8,7 @@ public class BasketItem : Entity
     public long BasketReferenceNumber { get; private set; }
     public long Quantity { get; private set; }
 
-    public BasketItem(Guid basketId, long basketReferenceNumber, long quantity)
+    private BasketItem(Guid basketId, long basketReferenceNumber, long quantity)
     {
         BasketId = basketId;
         BasketReferenceNumber = basketReferenceNumber;

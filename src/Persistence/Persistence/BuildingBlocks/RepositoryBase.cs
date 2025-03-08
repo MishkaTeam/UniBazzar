@@ -140,7 +140,6 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
 		{
 			return await DbSet
 				.StoreFilter<TEntity>(tenantId: ExecutionContext.StoreId)
-				.AsNoTracking()
 				.FirstOrDefaultAsync(x => x.Id.Equals(id), cancellationToken);
 		}
 

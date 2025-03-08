@@ -8,9 +8,9 @@ public class Basket : Entity
     public long ReferenceNumber { get; private set; }
     public BasketStatus BasketStatus { get; private set; }
     public Platform PlatForm { get; private set; }
-
     public List<BasketItem> BasketItems  { get; private set; }
-    public Basket(Platform platForm)
+    
+    private Basket(Platform platForm)
     {
         PlatForm = platForm;
         BasketItems = new List<BasketItem>();
@@ -27,6 +27,10 @@ public class Basket : Entity
     {
         BasketItems.Add(basketItem);
     }
-    
-    
+
+
+    public void Checkout()
+    {
+        BasketStatus = BasketStatus.CHECKOUT;
+    }
 }
