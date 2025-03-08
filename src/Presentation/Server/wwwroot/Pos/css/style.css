@@ -1,0 +1,42 @@
+@import url(../fonts/vazir/Vazirmatn-font-face.css);
+
+.vazir-font {
+    font-family: Vazirmatn, 'Segoe UI';
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.btn-check:checked + .btn {
+    background-color: #858585 !important;
+    color: #fff;
+    font-weight: 400;
+    border: none;
+    transition: .4s;
+}
+
+.bg-gray {
+    background-color: #ececec !important;
+}
+
+.border-gray {
+    border-color: #b5b5b5 !important;
+}
+
+.p-2-5 {
+    padding: .7rem !important
+}
+
+.blur {
+    backdrop-filter: blur(7px);
+}
+
+.menu-item.active {
+    background-color: #858585 !important;
+    color: #fff !important;
+}
+.menu-item.active > i {
+    background-color: #ececec !important;
+    color: #000000 !important;
+}

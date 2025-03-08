@@ -1,0 +1,76 @@
+﻿@inherits LayoutComponentBase
+
+@using Server.Areas.Pos.Pages.Shared.Components.Pos
+@using Server.Areas.Pos.Pages.Shared.Layouts.Pos.Components
+
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <MetaTags />
+    <StyleSheets />
+
+    <PageTitle>Pos - Layout</PageTitle>
+
+    <base href="/pos/" />
+    <HeadOutlet @rendermode="new InteractiveServerRenderMode(true)" />
+</head>
+
+<body class="bg-gray vazir-font" dir="rtl">
+
+    <main class="container-fluid">
+
+        <div class="row">
+
+            <section class="col-2"></section>
+
+            <section class="col pt-3">
+
+                <div class="row m-0 pb-2">
+                    <a class="col btn btn-primary">فاکتور جدید</a>
+                    <a class="col btn btn-primary ms-1">فاکتور های امروز</a>
+                    <a class="col btn btn-primary mx-1">در انتظار پرداخت</a>
+                    <a class="col btn btn-primary">مدیریت</a>
+                </div>
+
+                @(Body)
+
+            </section>
+
+            <section class="col-2 fixed-top bg-white h-100">
+                <div class="h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="row bg-gray rounded-pill p-1 m-0 mt-2">
+                            <div class="col-2 p-0">
+                                <img style="width: 50px; height: 50px;" class="rounded-circle" src="/Pos/img/profile.jpg" alt="">
+                            </div>
+                            <div class="col">
+                                <div class="text-dark fw-bold px-2">آتوسا لطیفی</div>
+                                <div class="text-dark fw-light px-2">صندوق دار</div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div>
+                            <MenuItem Link="#" Title="فاکتور جدید" Icon="bi bi-plus-circle" IsActive="true" />
+                            <MenuItem Link="#" Title="فاکتور ها" Icon="bi bi bi-collection" />
+                            <MenuItem Link="#" Title="فروش های اخیر" Icon="bi bi bi-clock-history" />
+                            <MenuItem Link="#" Title="در انتظار پرداخت" Icon="bi bi bi-activity" />
+                            <MenuItem Link="#" Title="فروش سایت" Icon="bi bi bi-globe" />
+                        </div>
+                    </div>
+                    <div>
+                        <MenuItem Link="#" Title="تنظیمات" Icon="bi bi-gear" />
+                        <MenuItem Link="/" Title="خروج از حساب" Icon="bi bi-box-arrow-right" />
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <Scripts />
+
+</body>
+
+</html>
