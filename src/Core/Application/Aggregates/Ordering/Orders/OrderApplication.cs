@@ -1,3 +1,4 @@
+using Application.Aggregates.Ordering.Orders.Data;
 using Application.Aggregates.Ordering.Orders.ProcessOrder;
 using Domain;
 using Domain.Aggregates.Ordering.Baskets.Data;
@@ -15,5 +16,6 @@ public class OrderApplication(
     {
         var basket = await basketRepository.GetWithItemsByIdAsync(request.BasketId);
         var order = Order.CreateFromBasket(basket);
+        throw new Exception();
     }
 }
