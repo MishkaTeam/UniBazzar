@@ -34,5 +34,4 @@ public class ProductAmount : IEquatable<ProductAmount>
 
     public override int GetHashCode() => HashCode.Combine(Quantity, BasePrice);
 
-    public override string ToString() => $"{Quantity} x {BasePrice:C} = {TotalPrice:C}";
 }

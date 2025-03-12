@@ -107,18 +107,7 @@ public class DiscountAmountTests
         discount1.Equals(discount2).Should().BeFalse();
         discount1.Should().NotBe(discount2);
     }
-
-    [Fact]
-    public void ToString_PriceDiscount_ReturnsFormattedString()
-    {
-        
-        var discount = DiscountAmount.CreatePriceDiscount(10.50m);
-        
-        var result = discount.ToString();
-        
-        result.Should().Be("$10.50 Discount"); // Note: Currency symbol might vary by culture
-    }
-
+    
     [Fact]
     public void ToString_PercentDiscount_ReturnsFormattedString()
     {

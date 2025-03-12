@@ -105,20 +105,7 @@ public class ProductAmountTests
          
         amount.Equals(null).Should().BeFalse();
     }
-
-    [Fact]
-    public void ToString_ReturnsFormattedString()
-    {
-        
-        var amount = ProductAmount.Create(2, 10.50m);
-
-        
-        var result = amount.ToString();
-
-        
-        result.Should().Be("2 x $10.50 = $21.00"); // Note: Currency format may vary by culture
-    }
-
+    
     [Fact]
     public void GetHashCode_SameValues_ReturnsSameHash()
     {
