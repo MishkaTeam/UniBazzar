@@ -1,4 +1,4 @@
-namespace Domain.Aggregates.Ordering.Baskets.ValueObjects;
+namespace Domain.Aggregates.Ordering.ValueObjects;
 
 public class ProductType 
 {

@@ -1,6 +1,6 @@
 using Domain.Aggregates.Ordering.Baskets;
 using Domain.Aggregates.Ordering.Baskets.Enums;
-using Domain.Aggregates.Ordering.Baskets.ValueObjects;
+using Domain.Aggregates.Ordering.ValueObjects;
 using FluentAssertions;
 
 namespace Domain.UnitTests.Aggregates.Ordering.BasketTests;

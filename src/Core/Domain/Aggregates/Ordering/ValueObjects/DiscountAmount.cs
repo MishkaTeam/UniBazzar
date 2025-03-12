@@ -1,6 +1,6 @@
 using Domain.Aggregates.Ordering.Baskets.Enums;
 
-namespace Domain.Aggregates.Ordering.Baskets.ValueObjects;
+namespace Domain.Aggregates.Ordering.ValueObjects;
 
 public class DiscountAmount : IEquatable<DiscountAmount>
 {

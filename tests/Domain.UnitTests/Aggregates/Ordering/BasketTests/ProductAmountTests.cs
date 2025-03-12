@@ -1,5 +1,4 @@
-
-using Domain.Aggregates.Ordering.Baskets.ValueObjects;
+using Domain.Aggregates.Ordering.ValueObjects;
 using FluentAssertions;
 using Xunit;
 

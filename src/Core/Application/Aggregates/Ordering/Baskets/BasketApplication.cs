@@ -3,7 +3,7 @@ using Application.Aggregates.Orders.ViewModels.BasketItems;
 using Domain;
 using Domain.Aggregates.Ordering.Baskets;
 using Domain.Aggregates.Ordering.Baskets.Data;
-using Domain.Aggregates.Ordering.Baskets.ValueObjects;
+using Domain.Aggregates.Ordering.ValueObjects;
 using Framework.DataType;
 using Mapster;
 

@@ -1,4 +1,4 @@
-using Domain.Aggregates.Ordering.Baskets.ValueObjects;
+using Domain.Aggregates.Ordering.ValueObjects;
 
 namespace Domain.UnitTests.Aggregates.Ordering.BasketTests;
 using FluentAssertions;

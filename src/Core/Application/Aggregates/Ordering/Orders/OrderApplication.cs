@@ -1,8 +1,8 @@
-using Application.Aggregates.Ordering.Orders.Data;
 using Application.Aggregates.Ordering.Orders.ProcessOrder;
 using Domain;
 using Domain.Aggregates.Ordering.Baskets.Data;
 using Domain.Aggregates.Ordering.Orders;
+using Domain.Aggregates.Ordering.Orders.Data;
 using Framework.DataType;
 
 namespace Application.Aggregates.Ordering.Orders;
@@ -16,6 +16,12 @@ public class OrderApplication(
     {
         var basket = await basketRepository.GetWithItemsByIdAsync(request.BasketId);
         var order = Order.CreateFromBasket(basket);
-        throw new Exception();
+        await orderRepository.AddAsync(order);
+        await unitOfWork.CommitAsync();
+        return new ProcessOrderResponseModel
+        {
+            OrderId = order.Id,
+            OrderReferenceNumber = order.ReferenceNumber,
+        };
     }
 }
