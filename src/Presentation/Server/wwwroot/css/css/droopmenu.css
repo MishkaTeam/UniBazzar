@@ -1353,14 +1353,14 @@
     display: block
 }
 
-.droopmenu .encrypt234324311 {
+.droopmenu .unibazzar-main {
     border-bottom: 1px solid #E3E9ED;
     padding: 20px 30px;
     background: #fff;
     display: none
 }
 
-.droopmenu .encrypt234324311.droopmenu-tab-active {
+.droopmenu .unibazzar-main.droopmenu-tab-active {
     display: block
 }
 
@@ -1917,7 +1917,7 @@
         z-index: 5
     }
 
-    .droopmenu .encrypt234324311 {
+    .droopmenu .unibazzar-main {
         padding: 30px 40px;
         border-bottom: 0
     }
@@ -1927,7 +1927,7 @@
         border-top: 0
     }
 
-    .droopmenu .encrypt111212132.droopmenu-tab-active, .droopmenu .encrypt111212132.droopmenu-tab-active .encrypt234324311 {
+    .droopmenu .encrypt111212132.droopmenu-tab-active, .droopmenu .encrypt111212132.droopmenu-tab-active .unibazzar-main {
         display: block
     }
 
