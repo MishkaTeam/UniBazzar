@@ -1,19 +1,22 @@
+using Application.Aggregates.Categories;
+using Application.Aggregates.Products.ProductImages.ViewModel;
+using Application.Aggregates.Products.ProductPriceLists.ViewModels;
+using Application.Aggregates.Products.ViewModels;
+using Application.Aggregates.Products;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Application.Aggregates.Categories.ViewModels;
 
 namespace Server.Pages
 {
-    public class IndexModel : PageModel
+    public class IndexModel (CategoriesApplication categoriesApplication ) : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public List<MenuCategoryViewModel> MenuCategory { get; set; } = [];
+       
+
+        public async Task OnGetAsync()
         {
-            _logger = logger;
-        }
-
-        public void OnGet()
-        {
-
+            MenuCategory = await categoriesApplication.GetMenuCategoriesAsync();
         }
     }
 }

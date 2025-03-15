@@ -1,4 +1,4 @@
-﻿<!-- Main NavBar -->
+﻿@model Server.Pages.IndexModel
 <div id="main-nav">
     <div class="container">
         <div class="row">
@@ -18,213 +18,33 @@
                                             <a href="#" aria-expanded="false"><i class="fa fa-bars"></i>&nbsp;&nbsp;گروه های محصولات<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
                                             <ul class="droopmenu-grid droopmenu-grid-9">
                                                 <li class="droopmenu-tabs droopmenu-tabs-vertical">
-                                                    <div class="encrypt111212132 droopmenu-tab-active" id="droopmenutab10">
-                                                        <a class="droopmenu-tabencrypt231432" href="#">کالای دیجیتال</a>
-                                                        <div class="unibazzar-main">
-                                                            <div class="droopmenu-row">
-                                                                <ul class="droopmenu-col droopmenu-col4">
-                                                                    <li><h4>صوت</h4></li>
-                                                                    <li><a asp-page="/Products">رادیو دیجیتال</a></li>
-                                                                    <li><a asp-page="/Products">ضبط صوت</a></li>
-                                                                    <li><a asp-page="/Products">اسپیکر</a></li>
-                                                                    <li><a asp-page="/Products">هدفون</a></li>
-                                                                    <li><a asp-page="/Products">میکروفن</a></li>
-                                                                    <li><h4>گوشی موبایل</h4></li>
-                                                                    <li><a asp-page="/Products">گوشی موبایل</a></li>
-                                                                    <li><a asp-page="/Products">تبلت</a></li>
-                                                                    <li><a asp-page="/Products">کیف و کاور</a></li>
-                                                                    <li><a asp-page="/Products">جانبی موبایل</a></li>
-                                                                </ul>
-                                                                <ul class="droopmenu-col droopmenu-col4">
-                                                                    <li><h4>تصویر</h4></li>
-                                                                    <li><a asp-page="/Products">ال سی دی</a></li>
-                                                                    <li><a asp-page="/Products">تلویزیون</a></li>
-                                                                    <li><a asp-page="/Products">گیرنده دیجیتال</a></li>
-                                                                    <li><h4>کنسول بازی</h4></li>
-                                                                    <li><a asp-page="/Products">پلی استیشن 4</a></li>
-                                                                    <li><a asp-page="/Products">پلی استیشن 3</a></li>
-                                                                    <li><a asp-page="/Products">پلی استیشن 2</a></li>
-                                                                    <li><a asp-page="/Products">ایکس باکس 360</a></li>
-                                                                    <li><a asp-page="/Products">نینتندو</a></li>
-                                                                    <li><a asp-page="/Products">بازی کامپیوتری</a></li>
-                                                                </ul>
-                                                                <ul class="droopmenu-col droopmenu-col4 d-none d-lg-inline-block">
-                                                                    <li><img src="/images/megamenu/megamenu-image1.png" alt=""></li>
-                                                                </ul>
+                                                    @foreach (var item in Model.MenuCategory)
+                                                    {
+                                                        <div class="encrypt111212132" id="droopmenutab12">
+                                                            <a class="droopmenu-tabencrypt231432" href="#">@(item.Name)</a>
+                                                            <div class="unibazzar-main">
+                                                                <div class="droopmenu-row">
+                                                                    @* تقسیم دسته‌های فرزند به گروه‌های ۴تایی *@
+                                                                    @foreach (var chunk in item.ChildCategories.Chunk(3))
+                                                                    {
+                                                                        <ul class="droopmenu-col droopmenu-col4">
+                                                                            @foreach (var item1 in chunk)
+                                                                            {
+                                                                                <li><h4>@(item1.Name)</h4></li>
+                                                                                @foreach (var item2 in item1.ChildCategories)
+                                                                                {
+                                                                                    <li><a asp-page="/Products">@(item2.Name)</a></li>
+                                                                                }
+                                                                            }
+                                                                        </ul>
+                                                                    }
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    }
 
-                                                    <div class="encrypt111212132" id="droopmenutab11">
-                                                        <a class="droopmenu-tabencrypt231432" href="#">لوازم منزل</a>
-                                                        <div class="unibazzar-main">
-                                                            <div class="droopmenu-row">
-                                                                <ul class="droopmenu-col droopmenu-col4">
-                                                                    <li><h4>مبلمان</h4></li>
-                                                                    <li><a asp-page="/Products">مبلمان اتاق</a></li>
-                                                                    <li><a asp-page="/Products">مبل تکی</a></li>
-                                                                    <li><a asp-page="/Products">مبلمان کودک</a></li>
-                                                                    <li><a asp-page="/Products">میز ناهارخوری</a></li>
-                                                                    <li><a asp-page="/Products">مبلمان اداری</a></li>
-                                                                    <li><a asp-page="/Products">مبل تخت شو</a></li>
-                                                                    <li><a asp-page="/Products">مبلمان راحتی</a></li>
-                                                                    <li><a asp-page="/Products">گل میز</a></li>
-                                                                </ul>
-                                                                <ul class="droopmenu-col droopmenu-col4">
-                                                                    <li><h4>دکوراسیون</h4></li>
-                                                                    <li><a asp-page="/Products">تابلوهای دکوری</a></li>
-                                                                    <li><a asp-page="/Products">استیکر</a></li>
-                                                                    <li><a asp-page="/Products">دیوارپوش</a></li>
-                                                                    <li><a asp-page="/Products">کاغذ دیواری</a></li>
-                                                                    <li><a asp-page="/Products">کفپوش</a></li>
-                                                                    <li><a asp-page="/Products">موکت</a></li>
-                                                                    <li><a asp-page="/Products">لوستر</a></li>
-                                                                    <li><a asp-page="/Products">لوازم دکوری</a></li>
-                                                                </ul>
-                                                                <ul class="droopmenu-col droopmenu-col4 d-none d-lg-inline-block">
-                                                                    <li><img src="/images/megamenu/megamenu-image2.png" alt=""></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    
 
-                                                    <div class="encrypt111212132" id="droopmenutab12">
-                                                        <a class="droopmenu-tabencrypt231432" href="#">مد  و پوشاک</a>
-                                                        <div class="unibazzar-main">
-                                                            <div class="droopmenu-row">
-                                                                <ul class="droopmenu-col droopmenu-col4">
-                                                                    <li><h4>مردانه</h4></li>
-                                                                    <li><a asp-page="/Products">شلوار</a></li>
-                                                                    <li><a asp-page="/Products">پیراهن</a></li>
-                                                                    <li><a asp-page="/Products">تیشرت</a></li>
-                                                                    <li><a asp-page="/Products">کفش</a></li>
-                                                                    <li><a asp-page="/Products">کلاه</a></li>
-                                                                    <li><a asp-page="/Products">کمربند</a></li>
-                                                                    <li><a asp-page="/Products">عینک</a></li>
-                                                                    <li><a asp-page="/Products">ساعت</a></li>
-                                                                    <li><a asp-page="/Products">لباس زیر</a></li>
-                                                                </ul>
-                                                                <ul class="droopmenu-col droopmenu-col4">
-                                                                    <li><h4>زنانه</h4></li>
-                                                                    <li><a asp-page="/Products">روسری</a></li>
-                                                                    <li><a asp-page="/Products">چادر</a></li>
-                                                                    <li><a asp-page="/Products">مانتو</a></li>
-                                                                    <li><a asp-page="/Products">شلوار</a></li>
-                                                                    <li><a asp-page="/Products">ساپورت</a></li>
-                                                                    <li><a asp-page="/Products">تی شرت</a></li>
-                                                                    <li><a asp-page="/Products">عینک</a></li>
-                                                                    <li><a asp-page="/Products">ساعت</a></li>
-                                                                    <li><a asp-page="/Products">لباس زیر</a></li>
-                                                                </ul>
-                                                                <ul class="droopmenu-col droopmenu-col4 d-none d-lg-inline-block">
-                                                                    <li><img src="/images/megamenu/megamenu-image3.png" alt=""></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="encrypt111212132" id="droopmenutab13">
-                                                        <a class="droopmenu-tabencrypt231432" href="#">فرهنگ و هنر</a>
-                                                        <div class="unibazzar-main">
-                                                            <div class="droopmenu-row">
-                                                                <ul class="droopmenu-col droopmenu-col4">
-                                                                    <li><h4>آلات موسیقی</h4></li>
-                                                                    <li><a asp-page="/Products">گیتار</a></li>
-                                                                    <li><a asp-page="/Products">ویالون</a></li>
-                                                                    <li><a asp-page="/Products">ارگ</a></li>
-                                                                    <li><a asp-page="/Products">پیانو</a></li>
-                                                                    <li><a asp-page="/Products">سنتور</a> </li>
-                                                                    <li><a asp-page="/Products">ساز دهنی</a></li>
-                                                                    <li><a asp-page="/Products">گیتار برقی</a></li>
-                                                                    <li><a asp-page="/Products">درام</a></li>
-                                                                    <li><a asp-page="/Products">تجهیزات استدیو</a></li>
-                                                                    <li><a asp-page="/Products">جانبی موسیقی</a></li>
-                                                                </ul>
-                                                                <ul class="droopmenu-col droopmenu-col4">
-                                                                    <li><h4>صنایع دستی</h4></li>
-                                                                    <li><a asp-page="/Products">کالاهای مسی</a></li>
-                                                                    <li><a asp-page="/Products">معرق</a></li>
-                                                                    <li><a asp-page="/Products">سفال</a></li>
-                                                                    <li><a asp-page="/Products">لعلینه</a> </li>
-                                                                    <li><a asp-page="/Products">محصولات چرمی</a></li>
-                                                                    <li><a asp-page="/Products">تابلو و ساعت</a></li>
-                                                                    <li><a asp-page="/Products">میناکاری</a></li>
-                                                                    <li><a asp-page="/Products">سوزن دوزی</a></li>
-                                                                    <li><a asp-page="/Products">فیروزه کوبی</a></li>
-                                                                    <li><a asp-page="/Products">خاتم و منبت</a></li>
-                                                                </ul>
-                                                                <ul class="droopmenu-col droopmenu-col4 d-none d-lg-inline-block">
-                                                                    <li><img src="/images/megamenu/megamenu-image4.png" alt=""></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="encrypt111212132" id="droopmenutab14">
-                                                        <a class="droopmenu-tabencrypt231432" href="#">سلامت و زیبایی</a>
-                                                        <div class="unibazzar-main">
-                                                            <div class="droopmenu-row">
-                                                                <ul class="droopmenu-col droopmenu-col4">
-                                                                    <li><h4>محصولات</h4></li>
-                                                                    <li><a asp-page="/Products">لوازم آرایشی</a></li>
-                                                                    <li><a asp-page="/Products">شامپو</a></li>
-                                                                    <li><a asp-page="/Products">نرم کننده</a></li>
-                                                                    <li><a asp-page="/Products">برس و شانه</a></li>
-                                                                    <li><a asp-page="/Products">انواع ماسک</a></li>
-                                                                    <li><a asp-page="/Products">تقویت کننده مو</a></li>
-                                                                    <li><a asp-page="/Products">رنگ مو</a></li>
-                                                                    <li><a asp-page="/Products">دستمال کاغذی</a></li>
-                                                                    <li><a asp-page="/Products">سایر محصولات</a></li>
-                                                                </ul>
-                                                                <ul class="droopmenu-col droopmenu-col4">
-                                                                    <li><h4>برند ها</h4></li>
-                                                                    <li><a asp-page="/Products">صحت</a></li>
-                                                                    <li><a asp-page="/Products">پرژک</a></li>
-                                                                    <li><a asp-page="/Products">داروگر</a></li>
-                                                                    <li><a asp-page="/Products">طبیعت</a></li>
-                                                                    <li><a asp-page="/Products">گلرنگ</a></li>
-                                                                    <li><a asp-page="/Products">گلنار</a></li>
-                                                                    <li><a asp-page="/Products">کلیر</a></li>
-                                                                    <li><a asp-page="/Products">شبنم</a></li>
-                                                                    <li><a asp-page="/Products">آیسان</a></li>
-                                                                </ul>
-                                                                <ul class="droopmenu-col droopmenu-col4 d-none d-lg-inline-block">
-                                                                    <li><img src="/images/megamenu/megamenu-image5.png" alt=""></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="encrypt111212132" id="droopmenutab15">
-                                                        <a class="droopmenu-tabencrypt231432" href="#">جواهرات</a>
-                                                        <div class="unibazzar-main">
-                                                            <div class="droopmenu-row">
-                                                                <ul class="droopmenu-col droopmenu-col4">
-                                                                    <li><h4>زنانه</h4></li>
-                                                                    <li><a asp-page="/Products">حلقه ازدواج</a></li>
-                                                                    <li><a asp-page="/Products">ساعت</a></li>
-                                                                    <li><a asp-page="/Products">گردنبند</a></li>
-                                                                    <li><a asp-page="/Products">ساعت</a></li>
-                                                                    <li><a asp-page="/Products">النگو</a></li>
-                                                                    <li><a asp-page="/Products">انگشتر</a></li>
-                                                                    <li><a asp-page="/Products">دستبند</a></li>
-                                                                    <li><a asp-page="/Products">سایر</a></li>
-                                                                </ul>
-                                                                <ul class="droopmenu-col droopmenu-col4">
-                                                                    <li><h4>مرانه</h4></li>
-                                                                    <li><a asp-page="/Products">ساعت</a></li>
-                                                                    <li><a asp-page="/Products">دستبند</a></li>
-                                                                    <li><a asp-page="/Products">گردنبند</a></li>
-                                                                    <li><a asp-page="/Products">انگشتر</a></li>
-                                                                    <li><a asp-page="/Products">عینک</a></li>
-                                                                    <li><a asp-page="/Products">سایر</a></li>
-                                                                </ul>
-                                                                <ul class="droopmenu-col droopmenu-col4 d-none d-lg-inline-block">
-                                                                    <li><img src="/images/megamenu/megamenu-image6.png" alt=""></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </li>
                                             </ul>
                                         </li>
