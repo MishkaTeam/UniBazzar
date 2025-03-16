@@ -14,6 +14,8 @@ public class IndexModel
 	{
 		if (parentId.HasValue == false || parentId == null)
 		{
+
+			var res = await categoriesApplication.GetMenuCategoriesAsync();
 			ViewModel =
 				await categoriesApplication.GetRootCategoriesAsync();
 

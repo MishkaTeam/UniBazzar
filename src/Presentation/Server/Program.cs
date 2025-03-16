@@ -20,7 +20,11 @@ namespace Server
 			services.AddDomainApplications();
             services.AddDomainRepositories();
 			services.AddUnitOfWork();
-            services.AddDbContext<UniBazzarContext>(opt => opt.UseSqlite("Data Source=Database.db"));
+            services.AddDbContext<UniBazzarContext>(opt =>
+            {
+                opt.UseSqlite("Data Source=Database.db");
+                opt.EnableSensitiveDataLogging();
+            });
 
 			var app = builder.Build();
 

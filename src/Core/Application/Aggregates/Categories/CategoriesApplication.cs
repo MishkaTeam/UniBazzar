@@ -7,110 +7,134 @@ using Resources.Messages;
 namespace Application.Aggregates.Categories;
 
 public class CategoriesApplication
-	(ICategoryRepository categoryRepository,
-	IUnitOfWork unitOfWork)
+    (ICategoryRepository categoryRepository,
+    IUnitOfWork unitOfWork)
 {
-	public async Task<CategoryViewModel> CreateCategoryAsync(CreateCategoryViewModel viewModel)
-	{
-		var category = Category.Create
-			(viewModel.Name, viewModel.ParentId, viewModel.IconClass);
+    public async Task<CategoryViewModel> CreateCategoryAsync(CreateCategoryViewModel viewModel)
+    {
+        var category = Category.Create
+            (viewModel.Name, viewModel.ParentId, viewModel.IconClass);
 
-		await categoryRepository.AddCategoryAsync(category);
-		await unitOfWork.CommitAsync();
+        await categoryRepository.AddCategoryAsync(category);
+        await unitOfWork.CommitAsync();
 
-		return category.Adapt<CategoryViewModel>();
-	}
+        return category.Adapt<CategoryViewModel>();
+    }
 
-	public async Task<CategoryViewModel> UpdateCategoryAsync(CategoryViewModel updateViewModel)
-	{
-		var categoryForUpdate =
-			await categoryRepository.GetCategoryAsync(updateViewModel.Id);
+    public async Task<CategoryViewModel> UpdateCategoryAsync(CategoryViewModel updateViewModel)
+    {
+        var categoryForUpdate =
+            await categoryRepository.GetCategoryAsync(updateViewModel.Id);
 
-		if (categoryForUpdate == null || categoryForUpdate.Id == Guid.Empty)
-		{
-			var message =
-				string.Format(Errors.NotFound, Resources.DataDictionary.Category);
+        if (categoryForUpdate == null || categoryForUpdate.Id == Guid.Empty)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.Category);
 
-			throw new Exception(message);
-		}
+            throw new Exception(message);
+        }
 
-		categoryForUpdate.Update(updateViewModel.Name,
-			updateViewModel.ParentId, updateViewModel.IconClass);
+        categoryForUpdate.Update(updateViewModel.Name,
+            updateViewModel.ParentId, updateViewModel.IconClass);
 
-		await unitOfWork.CommitAsync();
-		return categoryForUpdate.Adapt<CategoryViewModel>();
-	}
+        await unitOfWork.CommitAsync();
+        return categoryForUpdate.Adapt<CategoryViewModel>();
+    }
 
-	public async Task<List<CategoryViewModel>> GetCategoriesAsync()
-	{
-		var categories =
-			await categoryRepository.GetAllCategoriesAsync();
+    public async Task<List<CategoryViewModel>> GetCategoriesAsync()
+    {
+        var categories =
+            await categoryRepository.GetAllCategoriesAsync();
 
-		return categories.Adapt<List<CategoryViewModel>>();
-	}
+        return categories.Adapt<List<CategoryViewModel>>();
+    }
 
-	public async Task<List<CategoryViewModel>> GetRootCategoriesAsync()
-	{
-		var categories =
-			await categoryRepository.GetRootCategoriesAsync();
+    public async Task<List<CategoryViewModel>> GetRootCategoriesAsync()
+    {
+        var categories =
+            await categoryRepository.GetRootCategoriesAsync();
 
-		var categoryViewModels =
-			categories.Adapt<List<CategoryViewModel>>();
+        var categoryViewModels =
+            categories.Adapt<List<CategoryViewModel>>();
 
-		categoryViewModels =
-			await SetSubCategoriesCount(categoryViewModels);
+        categoryViewModels =
+            await SetSubCategoriesCount(categoryViewModels);
 
-		return categoryViewModels;
-	}
+        return categoryViewModels;
+    }
 
-	public async Task<CategoryViewModel> GetCategoryAsync(Guid id)
-	{
-		var category =
-			await categoryRepository.GetCategoryAsync(id);
+    public async Task<CategoryViewModel> GetCategoryAsync(Guid id)
+    {
+        var category =
+            await categoryRepository.GetCategoryAsync(id);
 
-		return category.Adapt<CategoryViewModel>();
-	}
+        return category?.Adapt<CategoryViewModel>();
+    }
 
-	public async Task<List<CategoryViewModel>> GetSubCategoriesAsync(Guid parentId)
-	{
-		var subCategories =
-			await categoryRepository.GetSubCategoriesAsync(parentId: parentId);
+    public async Task<List<CategoryViewModel>> GetSubCategoriesAsync(Guid parentId)
+    {
+        var subCategories =
+            await categoryRepository.GetSubCategoriesAsync(parentId);
 
-		var subCategoryViewModels =
-			subCategories.Adapt<List<CategoryViewModel>>();
+        var subCategoryViewModels =
+            subCategories.Adapt<List<CategoryViewModel>>();
 
-		subCategoryViewModels =
-			await SetSubCategoriesCount(subCategoryViewModels);
+        subCategoryViewModels =
+            await SetSubCategoriesCount(subCategoryViewModels);
 
-		return subCategoryViewModels;
-	}
+        return subCategoryViewModels;
+    }
 
-	public async Task DeleteCategoryAsync(Guid id)
-	{
-		var categoryForDelete =
-			await categoryRepository.GetCategoryAsync(id);
+    public async Task DeleteCategoryAsync(Guid id)
+    {
+        var categoryForDelete =
+            await categoryRepository.GetCategoryAsync(id);
 
-		if (categoryForDelete == null || categoryForDelete.Id == Guid.Empty)
-		{
-			var message =
-				string.Format(Errors.NotFound, Resources.DataDictionary.Category);
+        if (categoryForDelete == null || categoryForDelete.Id == Guid.Empty)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.Category);
 
-			throw new Exception(message);
-		}
+            throw new Exception(message);
+        }
 
-		categoryRepository.RemoveCategory(categoryForDelete);
-		await unitOfWork.CommitAsync();
-	}
+        categoryRepository.RemoveCategory(categoryForDelete);
+        await unitOfWork.CommitAsync();
+    }
 
+    public async Task<List<MenuCategoryViewModel>> GetMenuCategoriesAsync()
+    {
+        var rootCategories = await categoryRepository.GetRootCategoriesAsync();
+        return await MapToMenuViewModel(rootCategories);
+    }
 
-	private async Task<List<CategoryViewModel>> SetSubCategoriesCount(List<CategoryViewModel> categories)
-	{
-		foreach (var category in categories)
-		{
-			category.SubCategoriesCount =
-				await categoryRepository.GetSubCategoriesCountAsync(category.Id);
-		}
+    private async Task<List<MenuCategoryViewModel>> MapToMenuViewModel(List<Category> categories)
+    {
+        var viewModels = new List<MenuCategoryViewModel>();
 
-		return categories;
-	}
+        foreach (var category in categories)
+        {
+            var ChildCategories = await categoryRepository.GetSubCategoriesAsync(category.Id);
+            var viewModel = new MenuCategoryViewModel
+            {
+                Id = category.Id,
+                Name = category.Name,
+                ChildCategories = await MapToMenuViewModel(ChildCategories)
+            };
+            viewModels.Add(viewModel);
+        }
+
+        return viewModels;
+    }
+
+    private async Task<List<CategoryViewModel>> SetSubCategoriesCount(List<CategoryViewModel> categories)
+    {
+        foreach (var category in categories)
+        {
+            category.SubCategoriesCount =
+                await categoryRepository.GetSubCategoriesCountAsync(category.Id);
+        }
+
+        return categories;
+    }
 }

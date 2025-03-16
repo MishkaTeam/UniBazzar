@@ -34,7 +34,10 @@ public static class DomainExtensions
 
 		services.AddScoped<CategoriesApplication>();
 
+		services.AddScoped<CategoryRepository>();
+		
 		services.AddScoped<CustomerApplication>();
+		
 		services.AddScoped<ShippingAddressApplication>();
 
 		return services;
@@ -45,6 +48,7 @@ public static class DomainExtensions
 		services.AddScoped<IStoreRepository, StoreRepository>();
 
 		services.AddScoped<IProductRepository, ProductRepository>();
+		
 		services.AddScoped<IProductFeatureRepository, ProductRepository>();
 
 		services.AddScoped<IUnitRepository, UnitRepository>();
@@ -52,6 +56,7 @@ public static class DomainExtensions
 		services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 		services.AddScoped<ICustomerRepository, CustomerRepository>();
+		
 		services.AddScoped<IShippingAddressRepository, ShippingAddressRepository>();
 
 		return services;
