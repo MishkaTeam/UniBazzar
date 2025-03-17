@@ -1,5 +1,5 @@
-﻿using Domain.Enumerations;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Domain.Aggregates.Products.Enums;
 
 namespace Application.Aggregates.Products.ViewModels;
 

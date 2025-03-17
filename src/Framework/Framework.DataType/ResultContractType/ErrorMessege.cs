@@ -2,6 +2,13 @@ namespace Framework.DataType;
 
 public class ErrorMessage
 {
+    public ErrorMessage(string message, ErrorType errorType, Exception? exception)
+    {
+        Message = message;
+        ErrorType = errorType;
+        Exception = exception;
+    }
+
     public string Message { get; set; }
     public ErrorType ErrorType { get; set; }
     public Exception? Exception { get; set; }
@@ -21,6 +28,7 @@ public enum ErrorType
     Timeout = 6,
     ResourceNotFound = 7,
     InvalidState = 8,
+    InternalError = 9,
 
     // Network Errors
     NetworkUnavailable = 100,
@@ -69,6 +77,5 @@ public enum ErrorType
     OutOfMemory = 800,
     StackOverflow = 801,
     DiskSpaceLow = 802,
-    UnhandledException = 803
-    
+    UnhandledException = 803,
 }
