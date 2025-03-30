@@ -1,4 +1,5 @@
-﻿using Domain.Aggregates.Categories;
+﻿using Domain.Aggregates.Branches;
+using Domain.Aggregates.Categories;
 using Domain.Aggregates.Customers;
 using Domain.Aggregates.Products;
 using Domain.Aggregates.Products.ProductFeatures;
@@ -40,5 +41,5 @@ public class UniBazzarContext : DbContext
 
 	public DbSet<Customer> Customers { get; set; }
 	public DbSet<ShippingAddress> ShippingAddresses { get; set; }
-
+	public DbSet<Branch> Branches { get; set; }
 }
