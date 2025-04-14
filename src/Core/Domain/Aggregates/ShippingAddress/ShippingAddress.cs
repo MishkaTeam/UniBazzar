@@ -19,46 +19,41 @@ namespace Domain.Aggregates.ShippingAddress
         public string PostalCode { get; set; }
         public Customer Customers { get; set; }
         public Guid CustomerId { get; set; }
-        public User Users {  get; set; }   
-        public Guid UserId { get; set; }
-        public static ShippingAddress Create(string country, string province, string city, string address, string postalCode, Guid customerid,Guid userid)
+        public static ShippingAddress Create(string country, string province, string city, string address, string postalCode, Guid customerid)
         {
             if (!postalCode.IsValidPostalCode())
                 throw new ValidationException(Resources.Messages.Validations.PostalCode);
 
-            var ShippingAddress = new ShippingAddress(country, province, city, address, postalCode, customerid,userid)
+            var ShippingAddress = new ShippingAddress(country, province, city, address, postalCode, customerid)
             {
                 Country = country.Fix(),
                 Province = province.Fix(),
                 City = city.Fix(),
                 PostalCode = postalCode.Fix(),
                 CustomerId = customerid,
-                UserId=userid,
                 Address = address.Fix(),
             };
             return ShippingAddress;
         }
-        public void Update(string country, string province, string city, string address, string postalCode, Guid customerid, Guid userid)
+        public void Update(string country, string province, string city, string address, string postalCode, Guid customerid)
         {
             Country = country.Fix();
             Province = province.Fix();
             City = city.Fix();
             Address = address.Fix();
             CustomerId = customerid;
-            UserId = userid;
             if (!postalCode.IsValidPostalCode())
                 throw new ValidationException(Resources.Messages.Validations.PostalCode);
 
 			SetUpdateDateTime();
 		}
-		private ShippingAddress(string country, string province, string city, string address, string postalCode, Guid customerid, Guid userid)
+		private ShippingAddress(string country, string province, string city, string address, string postalCode, Guid customerid)
         {
             Country = country;
             Province = province;
             City = city;
             Address = address;
             CustomerId = customerid;
-            UserId=userid;
             PostalCode = postalCode;
         }
     }

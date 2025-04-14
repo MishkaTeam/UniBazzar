@@ -16,8 +16,7 @@ namespace Application.Aggregates.ShippingAddress
                 ViewModel.City,
                 ViewModel.Address,
                 ViewModel.PostalCode,
-                ViewModel.CustomerId,
-                ViewModel.UserId
+                ViewModel.CustomerId
                 );
             shippingAddressRepository.AddShippingAddress(entity);
             await unitOfWork.CommitAsync();
@@ -51,8 +50,7 @@ namespace Application.Aggregates.ShippingAddress
                 UpdateViewModel.City,
                 UpdateViewModel.Address,
                 UpdateViewModel.PostalCode,
-                UpdateViewModel.CustomerId,
-                UpdateViewModel.UserId
+                UpdateViewModel.CustomerId
                    );
             await unitOfWork.CommitAsync();
             return entity.Adapt<UpdateShippingAddressViewModel>();

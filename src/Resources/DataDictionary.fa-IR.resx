@@ -327,4 +327,7 @@
   <data name="User" xml:space="preserve">
     <value>کاربر</value>
   </data>
+  <data name="UserName" xml:space="preserve">
+    <value>نام کاربری</value>
+  </data>
 </root>

@@ -1,7 +1,7 @@
 ﻿using Domain.Aggregates.Users;
 using Microsoft.EntityFrameworkCore;
 
-namespace Persistence.Aggregates.User
+namespace Persistence.Aggregates.Users
 {
     public class UserRepository(UniBazzarContext uniBazzarContext) : IUserRepository
     {

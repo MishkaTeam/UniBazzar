@@ -1,4 +1,4 @@
-using Application.Aggregates.User;
+using Application.Aggregates.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

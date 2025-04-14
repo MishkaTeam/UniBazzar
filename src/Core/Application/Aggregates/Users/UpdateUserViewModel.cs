@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Aggregates.User
+namespace Application.Aggregates.Users
 {
     public class UpdateUserViewModel:CreateUserViewModel
     {
@@ -17,9 +17,6 @@ namespace Application.Aggregates.User
            Name = nameof(Resources.DataDictionary.Family))]
         public string LastName { get; set; }
 
-        [Display(ResourceType = typeof(Resources.DataDictionary),
-           Name = nameof(Resources.DataDictionary.NationalCode))]
-        public string NationalCode { get; set; }
 
         [Display(ResourceType = typeof(Resources.DataDictionary),
            Name = nameof(Resources.DataDictionary.Id))]

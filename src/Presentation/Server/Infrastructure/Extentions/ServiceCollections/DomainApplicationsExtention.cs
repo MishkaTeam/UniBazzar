@@ -4,7 +4,7 @@ using Application.Aggregates.Products;
 using Application.Aggregates.ShippingAddress;
 using Application.Aggregates.Stores;
 using Application.Aggregates.Units;
-using Application.Aggregates.User;
+using Application.Aggregates.Users;
 using Domain;
 using Domain.Aggregates.Categories;
 using Domain.Aggregates.Customers;
@@ -21,7 +21,7 @@ using Persistence.Aggregates.Products;
 using Persistence.Aggregates.ShippingAddress;
 using Persistence.Aggregates.Stores;
 using Persistence.Aggregates.Units;
-using Persistence.Aggregates.User;
+using Persistence.Aggregates.Users;
 
 namespace Server.Infrastructure.Extensions.ServiceCollections;
 

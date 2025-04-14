@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Aggregates.User
+namespace Application.Aggregates.Users
 {
     public class UserApplication(IUserRepository userRepository,IUnitOfWork unitOfWork)
     {
@@ -18,10 +18,9 @@ namespace Application.Aggregates.User
                 (
                 viewModel.FirstName,
                 viewModel.LastName,
-                viewModel.NationalCode,
                 viewModel.Mobile,
                 viewModel.Password,
-                viewModel.Email
+                viewModel.UserName
                 );
             userRepository.AddUser(entity);
             await unitOfWork.CommitAsync();
@@ -57,8 +56,8 @@ namespace Application.Aggregates.User
             entity.Update(
                 updateViewModel.FirstName,
                 updateViewModel.LastName,
-                updateViewModel.NationalCode,
-                updateViewModel.Mobile
+                updateViewModel.Mobile,
+                updateViewModel.UserName
                 );
 
             await unitOfWork.CommitAsync();
