@@ -95,11 +95,17 @@ namespace Resources {
                 return ResourceManager.GetString("AddressManagement", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Admin Panel.
-        /// </summary>
-        public static string AdminPanel {
+		public static string User
+		{
+			get
+			{
+				return ResourceManager.GetString("User", resourceCulture);
+			}
+		}
+		/// <summary>
+		///   Looks up a localized string similar to Admin Panel.
+		/// </summary>
+		public static string AdminPanel {
             get {
                 return ResourceManager.GetString("AdminPanel", resourceCulture);
             }

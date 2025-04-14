@@ -324,4 +324,7 @@
   <data name="PriceListsOf" xml:space="preserve">
     <value>PriceListsOf</value>
   </data>
+  <data name="User" xml:space="preserve">
+    <value>user</value>
+  </data>
 </root>
