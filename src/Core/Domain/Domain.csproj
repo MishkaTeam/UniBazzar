@@ -11,9 +11,12 @@
 	</ItemGroup>
    
 	<ItemGroup>
-		<ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.Domain\BuildingBlocks.Domain.csproj" />
 		<ProjectReference Include="..\..\Framework\Framework.DataType\Framework.DataType.csproj" />
 		<ProjectReference Include="..\..\Resources\Resources.csproj" />
+	</ItemGroup>
+   
+	<ItemGroup>
+	  <Folder Include="BuildingBlocks\" />
 	</ItemGroup>
    
 </Project>

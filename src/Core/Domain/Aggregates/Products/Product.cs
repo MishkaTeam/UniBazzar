@@ -1,9 +1,9 @@
-﻿using BuildingBlocks.Domain.Aggregates;
+﻿using Domain.Aggregates.Products.Enums;
 using Domain.Aggregates.Units;
-using Domain.Enumerations;
 using Framework.DataType;
 using Resources;
 using Resources.Messages;
+using Entity = Domain.BuildingBlocks.Aggregates.Entity;
 
 namespace Domain.Aggregates.Products;
 

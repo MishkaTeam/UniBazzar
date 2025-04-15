@@ -1,14 +1,16 @@
-﻿using BuildingBlocks.Domain.SeedWork;
-using Framework.DataType;
+﻿using Framework.DataType;
 using Resources.Messages;
 using System.ComponentModel.DataAnnotations.Schema;
+using DateTimeUtility = Domain.BuildingBlocks.SeedWork.DateTimeUtility;
+using IEntityHasOwner = Domain.BuildingBlocks.SeedWork.IEntityHasOwner;
+using IEntityHasUpdateInfo = Domain.BuildingBlocks.SeedWork.IEntityHasUpdateInfo;
+using IsEntityHasVersionControl = Domain.BuildingBlocks.SeedWork.IsEntityHasVersionControl;
 
 namespace Domain.Aggregates.Stores;
 
 public class Store :
 	IsEntityHasVersionControl,
 	IEntityHasUpdateInfo,
-	IEntityHasTenant,
 	IEntityHasOwner
 
 {
@@ -51,8 +53,6 @@ public class Store :
 	public int Ordering { get; private set; }
 
 	public Guid OwnerId { get; private set; }
-	public Guid TenantId { get; private set; }
-
 	public Guid InsertedBy { get; private set; }
 	public Guid UpdatedBy { get; private set; }
 
@@ -119,17 +119,7 @@ public class Store :
 	{
 		return OwnerId;
 	}
-
-	public void SetTenant(Guid tenantId)
-	{
-		TenantId = tenantId;
-	}
-
-	public Guid GetTenant()
-	{
-		return TenantId;
-	}
-
+	
 	public void SetInsertBy(Guid Id)
 	{
 		InsertedBy = Id;
