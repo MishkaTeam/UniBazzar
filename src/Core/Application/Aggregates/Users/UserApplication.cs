@@ -56,8 +56,9 @@ namespace Application.Aggregates.Users
             entity.Update(
                 updateViewModel.FirstName,
                 updateViewModel.LastName,
-                updateViewModel.Mobile,
-                updateViewModel.UserName
+                updateViewModel.UserName,
+                updateViewModel.Password,
+                updateViewModel.Mobile
                 );
 
             await unitOfWork.CommitAsync();

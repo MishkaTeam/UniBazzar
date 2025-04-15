@@ -32,7 +32,6 @@
                         <ul class="dropdown-menu">
                             <li><a asp-page="Update" asp-route-Id="@(model.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a></li>
                             <li><a asp-page="Delete" asp-route-Id="@(model.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a></li>
-                            <li><a asp-page="/BasicInfo/ShippingAddress/Index" asp-route-CustomerId="@(model.Id)" type="button" class="btn btn-info">@(Resources.ButtonCaptions.AddressManagement)</a></li>
                         </ul>
                     </div>
                 </td>

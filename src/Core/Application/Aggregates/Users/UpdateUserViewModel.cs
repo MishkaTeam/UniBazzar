@@ -17,8 +17,10 @@ namespace Application.Aggregates.Users
            Name = nameof(Resources.DataDictionary.Family))]
         public string LastName { get; set; }
 
+		
 
-        [Display(ResourceType = typeof(Resources.DataDictionary),
+
+		[Display(ResourceType = typeof(Resources.DataDictionary),
            Name = nameof(Resources.DataDictionary.Id))]
         public Guid Id { get; set; }
 

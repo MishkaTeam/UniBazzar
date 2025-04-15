@@ -42,11 +42,14 @@ namespace Domain.Aggregates.Users
             };
             return user;
         }
-        public void Update(string firstName, string lastName, string mobile, string username)
+        public void Update(string firstName, string lastName, string username ,string password, string mobile)
         {
             FirstName = firstName.Fix();
             LastName = lastName.Fix();
-
+            Mobile = mobile.Fix();
+            UserName = username;
+            Password = password.Fix();
+           
             if (!mobile.IsValidMobile())
                 throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
         }
