@@ -1,17 +1,10 @@
-﻿using BuildingBlocks.Domain.Aggregates;
-using Domain.Aggregates.Customers;
+﻿using Domain.BuildingBlocks.Aggregates;
 using Framework.DataType;
-using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Aggregates.Users
 {
-    public class User:Entity
+	public class User : Entity
     {
         public User() 
         {
