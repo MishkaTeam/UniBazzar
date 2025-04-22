@@ -26,6 +26,6 @@ namespace Application.Aggregates.ShippingAddress
         public string PostalCode { get; set; }
 
         public Guid CustomerId { get; set; }
-        public Guid UserId { get; set; }
+       
     }
 }
