@@ -7,7 +7,6 @@ using Domain.Aggregates.Products.ProductPriceLists;
 using Domain.Aggregates.ShippingAddress;
 using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
-using Domain.Aggregates.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence;
@@ -38,7 +37,7 @@ public class UniBazzarContext : DbContext
 	public DbSet<Unit> Units { get; set; }
 
 	public DbSet<Category> Categories { get; set; }
-	public DbSet<User> Users { get; set; }
+
 	public DbSet<Customer> Customers { get; set; }
 	public DbSet<ShippingAddress> ShippingAddresses { get; set; }
 

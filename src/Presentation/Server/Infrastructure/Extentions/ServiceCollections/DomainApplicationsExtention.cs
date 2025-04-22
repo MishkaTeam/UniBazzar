@@ -4,7 +4,6 @@ using Application.Aggregates.Products;
 using Application.Aggregates.ShippingAddress;
 using Application.Aggregates.Stores;
 using Application.Aggregates.Units;
-using Application.Aggregates.Users;
 using Domain;
 using Domain.Aggregates.Categories;
 using Domain.Aggregates.Customers;
@@ -13,7 +12,6 @@ using Domain.Aggregates.Products.ProductFeatures;
 using Domain.Aggregates.ShippingAddress;
 using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
-using Domain.Aggregates.Users;
 using Persistence;
 using Persistence.Aggregates.Categories;
 using Persistence.Aggregates.Customer;
@@ -21,7 +19,6 @@ using Persistence.Aggregates.Products;
 using Persistence.Aggregates.ShippingAddress;
 using Persistence.Aggregates.Stores;
 using Persistence.Aggregates.Units;
-using Persistence.Aggregates.Users;
 
 namespace Server.Infrastructure.Extensions.ServiceCollections;
 
@@ -43,7 +40,6 @@ public static class DomainExtensions
 		
 		services.AddScoped<ShippingAddressApplication>();
 
-		services.AddScoped<UserApplication>();
 		return services;
 	}
 
@@ -62,8 +58,6 @@ public static class DomainExtensions
 		services.AddScoped<ICustomerRepository, CustomerRepository>();
 		
 		services.AddScoped<IShippingAddressRepository, ShippingAddressRepository>();
-
-		services.AddScoped<IUserRepository, UserRepository>();
 
 		return services;
 	}
