@@ -1,8 +1,7 @@
-﻿using BuildingBlocks.Domain.Aggregates;
-using Domain.Aggregates.Customers;
-using Domain.Aggregates.Users;
+﻿using Domain.Aggregates.Customers;
 using Framework.DataType;
 using System.ComponentModel.DataAnnotations;
+using Entity = Domain.BuildingBlocks.Aggregates.Entity;
 
 namespace Domain.Aggregates.ShippingAddress
 {

@@ -1,7 +1,7 @@
 using Application.Aggregates.Products;
 using Application.Aggregates.Products.ViewModels;
 using Application.Aggregates.Units;
-using Domain.Enumerations;
+using Domain.Aggregates.Products.Enums;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;

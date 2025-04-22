@@ -1,7 +1,7 @@
-﻿using BuildingBlocks.Domain.Aggregates;
-using Framework.DataType;
+﻿using Framework.DataType;
 using Resources;
 using Resources.Messages;
+using Entity = Domain.BuildingBlocks.Aggregates.Entity;
 
 namespace Domain.Aggregates.Products.ProductFeatures;
 

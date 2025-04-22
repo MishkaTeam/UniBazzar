@@ -1,5 +1,5 @@
 ﻿using Domain.Aggregates.Products;
-using Domain.Enumerations;
+using Domain.Aggregates.Products.Enums;
 using FluentAssertions;
 
 namespace Domain.UnitTests.Aggregates.Products;
