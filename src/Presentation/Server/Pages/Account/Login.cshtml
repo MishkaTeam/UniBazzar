@@ -1,25 +1,12 @@
-﻿<section class="inner-page" id="contact-page">
-    <div class="container-fluid" id="page-hero">
-        <div class="row">
-            <div class="col-12">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 px-0">
-                            <h1>ورود به ناحیه کاربری</h1>
-                            <p>وارد ناحیه کاربری خود در یونی بازار شوید.</p>
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a asp-page="/Index">صفحه نخست</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">ورود</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+﻿@page
+@model Server.Pages.Account.LoginModel
 
+@{
+    Layout = "_Security";
+}
+
+
+<section class="inner-page mx-auto my-auto" id="contact-page">
     <div class="container py-2 py-md-5">
         <div class="row">
             <div class="col-12 col-sm-10 offset-sm-1">

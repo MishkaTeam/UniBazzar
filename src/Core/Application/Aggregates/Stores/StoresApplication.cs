@@ -50,8 +50,8 @@ public class StoresApplication
 		}
 
 		storeForUpdate.Update(updateViewModel.Name, updateViewModel.Description,
-			updateViewModel.PhoneNumber, updateViewModel.Address, updateViewModel.Culture,
-			updateViewModel.LogoUrl, updateViewModel.IsActive);
+			updateViewModel.PhoneNumber, updateViewModel.Culture,
+			updateViewModel.LogoUrl);
 
 		await unitOfWork.CommitAsync();
 		return storeForUpdate.Adapt<StoreViewModel>();
