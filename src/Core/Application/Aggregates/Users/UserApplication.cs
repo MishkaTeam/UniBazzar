@@ -1,6 +1,8 @@
 ﻿using Application.Aggregates.Customer;
+using Application.Aggregates.Users.Authentication;
 using Domain;
 using Domain.Aggregates.Users;
+using Framework.DataType;
 using Mapster;
 using System;
 using System.Collections.Generic;
@@ -76,5 +78,34 @@ namespace Application.Aggregates.Users
             userRepository.Remove(entity);
             await unitOfWork.CommitAsync();
         }
+
+        public async Task<ResultContract<UserViewModel>> LoginWithMobileAsync(LoginViewModel model)
+        {
+            var user = await userRepository.GetUserWithMobile(model.UserName);
+            return LoginAsync(model, user);
+        }
+
+        public async Task<ResultContract<UserViewModel>> LoginWithUserNameAsync(LoginViewModel model)
+        {
+            var user = await userRepository.GetUserWithUserName(model.UserName);
+            return LoginAsync(model, user);
+        }
+
+        private static ResultContract<UserViewModel> LoginAsync(LoginViewModel model, User user)
+        {
+            if (user == null || user.Id == Guid.Empty)
+            {
+                return (ErrorType.NotFound, Resources.Messages.Errors.NotFound);
+            }
+
+            if (user.Password != model.Password) // Encryption
+            {
+                return (ErrorType.InvalidCredentials, Resources.Messages.Validations.Password);
+            }
+
+            return user.Adapt<UserViewModel>();
+        }
+
+
     }
 }

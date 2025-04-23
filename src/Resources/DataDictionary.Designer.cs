@@ -77,13 +77,7 @@ namespace Resources {
                 return ResourceManager.GetString("Address", resourceCulture);
             }
         }
-        public static string UserName
-        {
-            get
-            {
-                return ResourceManager.GetString("UserName", resourceCulture);
-            }
-        }
+        
         /// <summary>
         ///   Looks up a localized string similar to addressInformation.
         /// </summary>
@@ -101,17 +95,11 @@ namespace Resources {
                 return ResourceManager.GetString("AddressManagement", resourceCulture);
             }
         }
-		public static string User
-		{
-			get
-			{
-				return ResourceManager.GetString("User", resourceCulture);
-			}
-		}
-		/// <summary>
-		///   Looks up a localized string similar to Admin Panel.
-		/// </summary>
-		public static string AdminPanel {
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin Panel.
+        /// </summary>
+        public static string AdminPanel {
             get {
                 return ResourceManager.GetString("AdminPanel", resourceCulture);
             }
@@ -267,6 +255,15 @@ namespace Resources {
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email Or Mobile.
+        /// </summary>
+        public static string EmailOrMobile {
+            get {
+                return ResourceManager.GetString("EmailOrMobile", resourceCulture);
             }
         }
         
@@ -681,6 +678,24 @@ namespace Resources {
         public static string UpdateOf {
             get {
                 return ResourceManager.GetString("UpdateOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to user.
+        /// </summary>
+        public static string User {
+            get {
+                return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to username.
+        /// </summary>
+        public static string UserName {
+            get {
+                return ResourceManager.GetString("UserName", resourceCulture);
             }
         }
         

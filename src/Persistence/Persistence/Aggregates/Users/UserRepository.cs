@@ -26,6 +26,16 @@ namespace Persistence.Aggregates.Users
             return uniBazzarContext.Users.FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public Task<User> GetUserWithMobile(string userName)
+        {
+            return uniBazzarContext.Users.FirstOrDefaultAsync(x => x.Mobile == userName || x.UserName == userName);
+        }
+
+        public Task<User> GetUserWithUserName(string userName)
+        {
+            return uniBazzarContext.Users.FirstOrDefaultAsync(x => x.UserName == userName);
+        }
+
         public void Remove(Domain.Aggregates.Users.User entity)
         {
             uniBazzarContext.Users.Remove(entity);

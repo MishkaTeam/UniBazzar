@@ -3,6 +3,10 @@ using Microsoft.Extensions.Options;
 
 namespace Server.Infrastructure.Extentions.ServiceCollections;
 
+public class AuthenticationConstant
+{
+    public const string AUTHENTICATION_SCHEME = "UniCookie";
+}
 public static class AuthenticationExtensions
 {
     private const string LOGIN_PAGE_PATH = "/account/login";
@@ -13,8 +17,8 @@ public static class AuthenticationExtensions
 
     public static IServiceCollection AddAuthenticationCookie(this IServiceCollection services)
     {
-        services.AddAuthentication("Cookies")
-            .AddCookie("Cookies", options =>
+        services.AddAuthentication(AuthenticationConstant.AUTHENTICATION_SCHEME)
+            .AddCookie(AuthenticationConstant.AUTHENTICATION_SCHEME, options =>
             {
                 options.LoginPath = LOGIN_PAGE_PATH;
                 options.LogoutPath = LOGOUT_PAGE_PATH;

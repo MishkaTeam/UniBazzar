@@ -10,5 +10,8 @@ namespace Domain.Aggregates.Users
         Task<User> GetUserAsync(Guid id);
         Task<User> GetRootUsersAsync(Guid id);
         void Remove(User entity);
+        Task<User> GetUserWithMobile(string userName);
+        Task<User> GetUserWithUserName(string userName);
+
     }
 }

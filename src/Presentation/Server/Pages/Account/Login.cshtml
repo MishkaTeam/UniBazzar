@@ -12,11 +12,39 @@
             <div class="col-12 col-sm-10 offset-sm-1">
                 <div class="content">
                     <div class="row">
-                        <div class="col-12 col-lg-5 text-center">
-                            <img src="/images/login.png" alt="">
-                        </div>
-                        <div class="col-12 col-lg-7 pt-5 pt-md-0 align-self-center">
-                            <div class="title">وارد شوید</div>
+ 
+                        <form method="post">
+
+                            <section-form>
+
+                                <fieldset>
+
+                                    <section-form-header>
+                                        وارد شوید
+                                    </section-form-header>
+
+                                    <div class="col-12 col-lg-5 text-center m-auto">
+                                        <img class="m-auto" src="/images/login.png" alt="">
+                                    </div>
+
+                                    <partial name="PartialViews/_DisplayPageMessages" />
+
+                                    <ub-full-input asp-for="Model.UserName" />
+
+                                    <ub-full-input asp-for="Model.Password" />
+
+                                </fieldset>
+
+                                <section-form-buttons>
+                                    <button-create />
+                                    <button-reset />
+                                </section-form-buttons>
+
+                            </section-form>
+
+                        </form>
+@*                         <div class="col-12 col-lg-7 pt-5 pt-md-0 align-self-center">
+                            <div class="title"></div>
                             <p>با عضویت در سایت از همه امکانات سایت بهره مند شوید.</p>
                             <div class="form-group">
                                 <label for="email">پست الکترونیک :</label>
@@ -29,7 +57,7 @@
                             <div class="form-group">
                                 <a asp-page="/Profile/Personal-Info"><input type="submit" value="ورود به ناحیه کاربری" class="btn btn-success"></a>
                             </div>
-                        </div>
+                        </div> *@
                     </div>
                 </div>
             </div>

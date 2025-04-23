@@ -18,6 +18,7 @@ namespace Server.Pages
 
         public async Task OnGetAsync()
         {
+            var sss = executionContextAccessor.UserId;
             var s = executionContextAccessor.StoreId;
             MenuCategory = await categoriesApplication.GetMenuCategoriesAsync();
         }

@@ -330,4 +330,7 @@
   <data name="UserName" xml:space="preserve">
     <value>نام کاربری</value>
   </data>
+  <data name="EmailOrMobile" xml:space="preserve">
+    <value>ایمیل یا شماره همراه</value>
+  </data>
 </root>

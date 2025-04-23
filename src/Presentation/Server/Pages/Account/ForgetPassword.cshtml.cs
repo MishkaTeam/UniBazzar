@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Server.Pages
+namespace Server.Pages.Account
 {
-    public class Forget_PasswordModel : PageModel
+    public class ForgetPasswordModel : PageModel
     {
         public void OnGet()
         {
