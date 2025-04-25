@@ -17,7 +17,6 @@ public class UniBazzarContext : DbContext
 	public UniBazzarContext
 		(DbContextOptions options) : base(options)
 	{
-		Database.EnsureCreated();
 	}
 
 	protected override void OnConfiguring
