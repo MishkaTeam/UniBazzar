@@ -28,7 +28,7 @@ public class StringTests
 
 		store.Name.Should().Be(fixedName);
 		store.Description.Should().Be(fixedDescription);
-		store.Address.Should().Be(fixedAddress);
+		store.HostUrl.Should().Be(fixedAddress);
 	}
 
 	[Fact]
@@ -54,6 +54,6 @@ public class StringTests
 
 		store.Name.Should().Be(fixedName);
 		store.Description.Should().Be(fixedDescription);
-		store.Address.Should().Be(fixedAddress);
+		store.HostUrl.Should().Be(fixedAddress);
 	}
 }

@@ -27,7 +27,7 @@ public class StoreTests
 		store.Name.Should().Be(name);
 		store.Description.Should().Be(description);
 		store.PhoneNumber.Should().Be(phoneNumber);
-		store.Address.Should().Be(address);
+		store.HostUrl.Should().Be(address);
 		store.Culture.Should().Be(culture);
 		store.LogoUrl.Should().Be(logoUrl);
 		store.IsActive.Should().Be(isActive);

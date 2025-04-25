@@ -77,13 +77,7 @@ namespace Resources {
                 return ResourceManager.GetString("Address", resourceCulture);
             }
         }
-        public static string UserName
-        {
-            get
-            {
-                return ResourceManager.GetString("UserName", resourceCulture);
-            }
-        }
+        
         /// <summary>
         ///   Looks up a localized string similar to addressInformation.
         /// </summary>
@@ -101,17 +95,11 @@ namespace Resources {
                 return ResourceManager.GetString("AddressManagement", resourceCulture);
             }
         }
-		public static string User
-		{
-			get
-			{
-				return ResourceManager.GetString("User", resourceCulture);
-			}
-		}
-		/// <summary>
-		///   Looks up a localized string similar to Admin Panel.
-		/// </summary>
-		public static string AdminPanel {
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin Panel.
+        /// </summary>
+        public static string AdminPanel {
             get {
                 return ResourceManager.GetString("AdminPanel", resourceCulture);
             }
@@ -271,6 +259,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email Or Mobile.
+        /// </summary>
+        public static string EmailOrMobile {
+            get {
+                return ResourceManager.GetString("EmailOrMobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Name.
         /// </summary>
         public static string Family {
@@ -339,6 +336,15 @@ namespace Resources {
         public static string IsPinned {
             get {
                 return ResourceManager.GetString("IsPinned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LogIn.
+        /// </summary>
+        public static string LogIn {
+            get {
+                return ResourceManager.GetString("LogIn", resourceCulture);
             }
         }
         
@@ -550,6 +556,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to shipping address.
         /// </summary>
         public static string Shippingaddress {
@@ -681,6 +696,24 @@ namespace Resources {
         public static string UpdateOf {
             get {
                 return ResourceManager.GetString("UpdateOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to user.
+        /// </summary>
+        public static string User {
+            get {
+                return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to username.
+        /// </summary>
+        public static string UserName {
+            get {
+                return ResourceManager.GetString("UserName", resourceCulture);
             }
         }
         

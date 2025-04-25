@@ -6,4 +6,6 @@ public interface IStoreRepository
 	Task<List<Store>> GetAllStoresAsync();
 	Task<Store?> GetStoreAsync(Guid id);
 	void RemoveStore(Store entity);
+	Task<Guid> GetStoreByHostUrlAsync(string hostUrl);
+    Guid GetStoreByHostUrl(string hostUrl);
 }

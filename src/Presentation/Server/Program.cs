@@ -1,11 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Persistence;
+using Server.Infrastructure;
 using Server.Infrastructure.Extensions.ServiceCollections;
+using Server.Infrastructure.Extentions.ServiceCollections;
 using Server.Infrastructure.Middleware;
 
 namespace Server
 {
-	public class Program
+    public class Program
     {
         public static void Main(string[] args)
         {
@@ -14,19 +16,22 @@ namespace Server
 
             var services = builder.Services;
 
-			services.AddRazorPages();
-			services.AddServerSideBlazor()
+            services.AddRazorPagesWithAuth();
+            services.AddServerSideBlazor()
             .AddInteractiveServerComponents();
-			services.AddDomainApplications();
+            services.AddAuthenticationCookie();
+            services.AddDomainApplications();
+            services.AddHttpContextAccessor();
+            services.AddScoped<IExecutionContextAccessor, ExecutionContextAccessor>();
             services.AddDomainRepositories();
-			services.AddUnitOfWork();
+            services.AddUnitOfWork();
             services.AddDbContext<UniBazzarContext>(opt =>
             {
                 opt.UseSqlite("Data Source=Database.db");
                 opt.EnableSensitiveDataLogging();
             });
 
-			var app = builder.Build();
+            var app = builder.Build();
 
             if (!app.Environment.IsDevelopment())
             {
@@ -40,9 +45,10 @@ namespace Server
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
-			app.MapBlazorHub();
+            app.MapBlazorHub();
             app.MapRazorPages();
 
             app.Run();

@@ -330,4 +330,13 @@
   <data name="UserName" xml:space="preserve">
     <value>username</value>
   </data>
+  <data name="EmailOrMobile" xml:space="preserve">
+    <value>Email Or Mobile</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>LogIn</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
 </root>

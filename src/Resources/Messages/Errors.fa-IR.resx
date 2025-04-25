@@ -138,6 +138,9 @@
   <data name="IdIsNull" xml:space="preserve">
     <value>شناسه اطلاعات باید مشخص شده باشد!</value>
   </data>
+  <data name="InternalError" xml:space="preserve">
+    <value>خطایی داخلی رخ داده، تیم ما از این خطا مطلع شده است</value>
+  </data>
   <data name="Invalid" xml:space="preserve">
     <value>{0} معتبر نمی باشد!</value>
   </data>

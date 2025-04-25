@@ -10,22 +10,39 @@ namespace Domain.Aggregates.Customers
         {
             // FOR EF!
         }
-        public string FirstName { get; private set; }
+        public string? FirstName { get; private set; }
 
-        public string LastName { get; private set; }
+        public string? LastName { get; private set; }
 
-        public string NationalCode { get; private set; }
+        public string? NationalCode { get; private set; }
 
         public string Mobile { get; private set; }
 
-        public string Email { get; private set; }
+        public string? Email { get; private set; }
 
         public bool IsMobileVerified { get; private set; }
 
         public bool IsEmailVerified { get; private set; }
 
-        public string Password { get; private set; }
+        public string? Password { get; private set; }
 
+
+        public static Customer Register(string mobile, string password)
+        {
+            if (!mobile.IsValidMobile())
+                throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
+
+            if (!password.IsValidPassword())
+                throw new ValidationException(Resources.Messages.Validations.Password);
+
+            var customer = new Customer(mobile, password)
+            {
+                Mobile = mobile.Fix(),
+                Password = password.Fix(),
+            };
+            return customer;
+
+        }
         public static Customer Register(string firstName, string lastName, string nationalcode, string mobile, string password, string email)
         {
             if (!email.IsValidEmail())
@@ -58,6 +75,19 @@ namespace Domain.Aggregates.Customers
 
             if (!mobile.IsValidMobile())
                 throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
+        }
+
+        private Customer(string mobile, string password)
+        {
+            if (!mobile.IsValidMobile())
+                throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
+
+            if (!password.IsValidPassword())
+                throw new ValidationException(Resources.Messages.Validations.Password);
+
+
+            Mobile = mobile;
+            Password = password;
         }
 
         private Customer(string firstName, string lastName, string nationalcode, string mobile, string password, string email)

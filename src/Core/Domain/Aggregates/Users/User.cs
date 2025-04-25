@@ -37,14 +37,15 @@ namespace Domain.Aggregates.Users
         }
         public void Update(string firstName, string lastName, string username ,string password, string mobile)
         {
+            if (!mobile.IsValidMobile())
+                throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
+
             FirstName = firstName.Fix();
             LastName = lastName.Fix();
             Mobile = mobile.Fix();
             UserName = username;
             Password = password.Fix();
            
-            if (!mobile.IsValidMobile())
-                throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
         }
 
         private User(string firstName, string lastName, string mobile, string password, string username)

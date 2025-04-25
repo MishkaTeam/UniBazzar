@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Server.Pages
+namespace Server.Pages.Shared
 {
-    public class Forget_PasswordModel : PageModel
+    public class _SecurityModel : PageModel
     {
         public void OnGet()
         {

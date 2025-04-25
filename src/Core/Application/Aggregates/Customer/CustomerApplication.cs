@@ -1,13 +1,17 @@
 ﻿using Application.Aggregates.Units.ViewModels;
+using Application.Aggregates.Users;
 using Domain;
 using Domain.Aggregates.Customers;
+using Framework.DataType;
 using Mapster;
+using Application.ViewModels.Authentication;
+using Domain.Aggregates.Users;
 
 namespace Application.Aggregates.Customer
 {
     public class CustomerApplication(ICustomerRepository customerRepository, IUnitOfWork unitOfWork)
     {
-        public async Task<CreateCustomerViewModel> CreateAsync(CreateCustomerViewModel viewModel)
+        public async Task<CustomerViewModel> CreateAsync(CreateCustomerViewModel viewModel)
         {
             var entity = Domain.Aggregates.Customers.Customer.Register
                 (
@@ -20,7 +24,14 @@ namespace Application.Aggregates.Customer
                 );
             customerRepository.AddCustomer(entity);
             await unitOfWork.CommitAsync();
-            return entity.Adapt<CreateCustomerViewModel>();
+            return entity.Adapt<CustomerViewModel>();
+        }
+        public async Task<CustomerViewModel> CreateAsync(string mobile, string password)
+        {
+            var entity = Domain.Aggregates.Customers.Customer.Register(mobile, password);
+            customerRepository.AddCustomer(entity);
+            await unitOfWork.CommitAsync();
+            return entity.Adapt<CustomerViewModel>();
         }
         public async Task<List<UpdateCustomerViewModel>> GetAllCustomer()
         {
@@ -71,5 +82,24 @@ namespace Application.Aggregates.Customer
             customerRepository.Remove(entity);
             await unitOfWork.CommitAsync();
         }
+
+        public async Task<ResultContract<CustomerViewModel>> LoginWithMobileAsync(LoginViewModel model)
+        {
+            var user = await customerRepository.GetWithMobile(model.UserName);
+
+            if (user == null || user.Id == Guid.Empty)
+            {
+                return (ErrorType.NotFound,
+                    string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.User));
+            }
+
+            if (user.Password != model.Password) // Encryption
+            {
+                return (ErrorType.InvalidCredentials, Resources.Messages.Validations.Password);
+            }
+
+            return user.Adapt<CustomerViewModel>();
+        }
+
     }
 }

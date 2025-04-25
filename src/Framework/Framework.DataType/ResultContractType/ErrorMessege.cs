@@ -2,7 +2,7 @@ namespace Framework.DataType;
 
 public class ErrorMessage
 {
-    public ErrorMessage(string message, ErrorType errorType, Exception? exception)
+    public ErrorMessage(string message, ErrorType errorType, Exception? exception = null)
     {
         Message = message;
         ErrorType = errorType;
@@ -78,4 +78,6 @@ public enum ErrorType
     StackOverflow = 801,
     DiskSpaceLow = 802,
     UnhandledException = 803,
+    NotFound = 804,
+
 }
