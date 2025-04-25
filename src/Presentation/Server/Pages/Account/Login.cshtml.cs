@@ -1,5 +1,6 @@
-﻿using Application.Aggregates.Users;
-using Application.Aggregates.Users.Authentication;
+﻿using Application.Aggregates.Customer;
+using Application.Aggregates.Users;
+using Application.ViewModels.Authentication;
 using Framework.DataType;
 using Infrastructure;
 using Microsoft.AspNetCore.Authentication;
@@ -10,7 +11,7 @@ using System.Security.Claims;
 
 namespace Server.Pages.Account;
 
-public class LoginModel(UserApplication userApplication) : BasePageModel
+public class LoginModel(CustomerApplication customerApplication) : BasePageModel
 {
     [BindProperty]
     public LoginViewModel Model { get; set; } = new();
@@ -25,14 +26,10 @@ public class LoginModel(UserApplication userApplication) : BasePageModel
             return Page();
 
         var isMobile = Model.UserName.IsValidMobile();
-        ResultContract<UserViewModel> userResult = default!; 
-        UserViewModel? user = default;
+        ResultContract<CustomerViewModel> userResult = default!;
+        CustomerViewModel? customer = default;
 
-        if (isMobile)
-            userResult = await userApplication.LoginWithMobileAsync(Model);
-        else
-            userResult = await userApplication.LoginWithUserNameAsync(Model);
-        
+        userResult = await customerApplication.LoginWithMobileAsync(Model);
 
         if (!userResult.IsSuccessful)
         {
@@ -40,9 +37,9 @@ public class LoginModel(UserApplication userApplication) : BasePageModel
             return Page();
         }
 
-        user = userResult.Data;
+        customer = userResult.Data;
 
-        if (user == null || user.Id == Guid.Empty)
+        if (customer == null || customer.Id == Guid.Empty)
         {
             AddPageError("کاربر یافت نشد");
             return Page();
@@ -50,9 +47,11 @@ public class LoginModel(UserApplication userApplication) : BasePageModel
 
         var claims = new List<Claim>
             {
-                new(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
-                new(ClaimTypes.Sid, user.Id.ToString()),
-                new(ClaimTypes.NameIdentifier, user.UserName)
+                new(ClaimTypes.Name, $"{customer.FirstName} {customer.LastName}"),
+                new(ClaimTypes.Sid, customer.Id.ToString()),
+                new(ClaimTypes.NameIdentifier, customer.Mobile),
+                new(ClaimTypes.GroupSid, customer.StoreId.ToString()),
+
             };
 
         var claimsIdentity = new ClaimsIdentity(claims, AuthenticationConstant.AUTHENTICATION_SCHEME);

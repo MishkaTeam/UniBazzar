@@ -124,6 +124,15 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An internal server error has occurred. Our team has been notified..
+        /// </summary>
+        public static string InternalError {
+            get {
+                return ResourceManager.GetString("InternalError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is not valid!.
         /// </summary>
         public static string Invalid {
@@ -286,11 +295,11 @@ namespace Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to update baseUnit!.
+        ///   Looks up a localized string similar to Unable to update parent!.
         /// </summary>
-        public static string UnableToUpdateBaseUnit {
+        public static string UnableToUpdateParent {
             get {
-                return ResourceManager.GetString("UnableToUpdateBaseUnit", resourceCulture);
+                return ResourceManager.GetString("UnableToUpdateParent", resourceCulture);
             }
         }
         

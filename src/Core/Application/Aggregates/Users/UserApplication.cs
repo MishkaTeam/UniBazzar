@@ -1,18 +1,13 @@
-﻿using Application.Aggregates.Customer;
-using Application.Aggregates.Users.Authentication;
+﻿using Application.ViewModels.Authentication;
 using Domain;
 using Domain.Aggregates.Users;
 using Framework.DataType;
 using Mapster;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Resources;
 
 namespace Application.Aggregates.Users
 {
-    public class UserApplication(IUserRepository userRepository,IUnitOfWork unitOfWork)
+    public class UserApplication(IUserRepository userRepository, IUnitOfWork unitOfWork)
     {
         public async Task<CreateUserViewModel> CreateAsync(CreateUserViewModel viewModel)
         {
@@ -29,9 +24,9 @@ namespace Application.Aggregates.Users
             return entity.Adapt<CreateUserViewModel>();
         }
 
-        public async Task<List<UpdateUserViewModel>> GetAllUser ()
+        public async Task<List<UpdateUserViewModel>> GetAllUser()
         {
-            var users= await userRepository.GetAllUsersAsync();
+            var users = await userRepository.GetAllUsersAsync();
             return users.Adapt<List<UpdateUserViewModel>>();
         }
 
@@ -95,7 +90,8 @@ namespace Application.Aggregates.Users
         {
             if (user == null || user.Id == Guid.Empty)
             {
-                return (ErrorType.NotFound, Resources.Messages.Errors.NotFound);
+                return (ErrorType.NotFound, 
+                    string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.User));
             }
 
             if (user.Password != model.Password) // Encryption

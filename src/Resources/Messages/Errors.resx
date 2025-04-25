@@ -138,6 +138,9 @@
   <data name="IdIsNull" xml:space="preserve">
     <value>Id is null!</value>
   </data>
+  <data name="InternalError" xml:space="preserve">
+    <value>An internal server error has occurred. Our team has been notified.</value>
+  </data>
   <data name="Invalid" xml:space="preserve">
     <value>{0} is not valid!</value>
   </data>

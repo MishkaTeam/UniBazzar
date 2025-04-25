@@ -333,4 +333,10 @@
   <data name="EmailOrMobile" xml:space="preserve">
     <value>ایمیل یا شماره همراه</value>
   </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>ورود</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>ثبت نام</value>
+  </data>
 </root>

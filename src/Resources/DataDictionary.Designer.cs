@@ -340,6 +340,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LogIn.
+        /// </summary>
+        public static string LogIn {
+            get {
+                return ResourceManager.GetString("LogIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logo.
         /// </summary>
         public static string Logo {
@@ -543,6 +552,15 @@ namespace Resources {
         public static string Province {
             get {
                 return ResourceManager.GetString("Province", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
             }
         }
         
