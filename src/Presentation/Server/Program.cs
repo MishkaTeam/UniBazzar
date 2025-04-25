@@ -5,6 +5,7 @@ using Server.Infrastructure.Extensions.ServiceCollections;
 using Server.Infrastructure.Extentions.ServiceCollections;
 using Server.Infrastructure.Middleware;
 
+
 namespace Server
 {
     public class Program
@@ -27,7 +28,8 @@ namespace Server
             services.AddUnitOfWork();
             services.AddDbContext<UniBazzarContext>(opt =>
             {
-                opt.UseSqlite("Data Source=Database.db");
+                var connection = builder.Configuration.GetConnectionString("DefaultConnection");
+                opt.UseNpgsql(connection);
                 opt.EnableSensitiveDataLogging();
             });
 
