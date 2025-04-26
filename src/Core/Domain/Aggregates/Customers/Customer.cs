@@ -2,73 +2,69 @@
 using System.ComponentModel.DataAnnotations;
 using Entity = Domain.BuildingBlocks.Aggregates.Entity;
 
-namespace Domain.Aggregates.Customers
+namespace Domain.Aggregates.Customers;
+
+public class Customer : Entity
 {
-    public class Customer : Entity
-    {
-        public Customer()
-        {
-            // FOR EF!
-        }
-        public string FirstName { get; private set; }
+	public Customer()
+	{
+		// FOR EF!
+	}
 
-        public string LastName { get; private set; }
 
-        public string NationalCode { get; private set; }
+	public string? FirstName { get; private set; }
+	public string LastName { get; private set; }
+	public string? NationalCode { get; private set; }
+	public string Mobile { get; private set; }
+	public string? Email { get; private set; }
 
-        public string Mobile { get; private set; }
+	public bool IsMobileVerified { get; private set; }
+	public bool IsEmailVerified { get; private set; }
 
-        public string Email { get; private set; }
+	public string? Password { get; private set; }
 
-        public bool IsMobileVerified { get; private set; }
 
-        public bool IsEmailVerified { get; private set; }
+	public static Customer Register(string? firstName, string lastName, string? nationalcode, string mobile, string? password, string? email)
+	{
+		if (mobile.IsValidMobile() == false)
+			throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
 
-        public string Password { get; private set; }
+		if (email.IsValidEmail() == false && email != null)
+			throw new ValidationException(Resources.Messages.Validations.EmailAddress);
 
-        public static Customer Register(string firstName, string lastName, string nationalcode, string mobile, string password, string email)
-        {
-            if (!email.IsValidEmail())
-                throw new ValidationException(Resources.Messages.Validations.EmailAddress);
+		if (nationalcode.IsValidNationalCode() == false && nationalcode != null)
+			throw new ValidationException(Resources.Messages.Validations.NationalCode);
 
-            if (!nationalcode.IsValidNationalCode())
-                throw new ValidationException(Resources.Messages.Validations.NationalCode);
+		if (!password.IsValidPassword() && password != null)
+			throw new ValidationException(Resources.Messages.Validations.Password);
 
-            if (!mobile.IsValidMobile())
-                throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
+		var customer = new Customer(firstName, lastName, nationalcode, mobile, password, email)
+		{
+			Mobile = mobile.Fix(),
+			Password = password.Fix(),
+		};
+		return customer;
+	}
 
-            if (!password.IsValidPassword())
-                throw new ValidationException(Resources.Messages.Validations.Password);
+	public void Update(string? firstName, string lastName, string? nationalcode, string mobile)
+	{
+		FirstName = firstName.Fix();
+		LastName = lastName.Fix();
 
-            var customer = new Customer(firstName, lastName, nationalcode, mobile, password, email)
-            {
-                Mobile = mobile.Fix(),
-                Password = password.Fix(),
-            };
-            return customer;
-        }
+		if (!nationalcode.IsValidNationalCode() && nationalcode != null)
+			throw new ValidationException(Resources.Messages.Validations.NationalCode);
 
-        public void Update(string firstName, string lastName, string nationalcode, string mobile)
-        {
-            FirstName = firstName.Fix();
-            LastName = lastName.Fix();
+		if (!mobile.IsValidMobile() && mobile != null)
+			throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
+	}
 
-            if (!nationalcode.IsValidNationalCode())
-                throw new ValidationException(Resources.Messages.Validations.NationalCode);
-
-            if (!mobile.IsValidMobile())
-                throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
-        }
-
-        private Customer(string firstName, string lastName, string nationalcode, string mobile, string password, string email)
-        {
-            FirstName = firstName.Fix();
-            LastName = lastName.Fix();
-            NationalCode = nationalcode.Fix();
-            Mobile = mobile;
-            Password = password;
-            Email = email;
-        }
-    }
+	private Customer(string? firstName, string lastName, string? nationalcode, string mobile, string? password, string? email)
+	{
+		FirstName = firstName.Fix();
+		LastName = lastName.Fix();
+		NationalCode = nationalcode.Fix();
+		Mobile = mobile;
+		Password = password;
+		Email = email;
+	}
 }
-
