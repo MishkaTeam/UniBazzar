@@ -1,6 +1,6 @@
 ﻿using Domain.Aggregates.Customers;
 
-namespace Domain.Aggregates.ShippingAddress
+namespace Domain.Aggregates.Customers.ShippingAddress
 {
    public  interface IShippingAddressRepository
     {

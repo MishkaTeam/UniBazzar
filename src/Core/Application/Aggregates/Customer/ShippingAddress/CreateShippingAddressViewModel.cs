@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Aggregates.Customers;
+using System.ComponentModel.DataAnnotations;
 
-namespace Application.Aggregates.ShippingAddress
+namespace Application.Aggregates.Customer.ShippingAddress
 {
-    public class UpdateShippingAddressViewModel 
+    public class CreateShippingAddressViewModel
     {
         [Display(ResourceType = typeof(Resources.DataDictionary),
-        Name = nameof(Resources.DataDictionary.Country))]
+         Name = nameof(Resources.DataDictionary.Country))]
         public string Country { get; set; }
 
         [Display(ResourceType = typeof(Resources.DataDictionary),
@@ -26,6 +27,5 @@ namespace Application.Aggregates.ShippingAddress
 
         public Guid CustomerId { get; set; }
        
-        public Guid Id { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-using Application.Aggregates.ShippingAddress;
+using Application.Aggregates.Customer.ShippingAddress;
 using Infrastructure;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.ShippingAddress

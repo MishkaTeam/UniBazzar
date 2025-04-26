@@ -1,10 +1,10 @@
 ﻿using Domain.Aggregates.Categories;
 using Domain.Aggregates.Customers;
+using Domain.Aggregates.Customers.ShippingAddress;
 using Domain.Aggregates.Products;
 using Domain.Aggregates.Products.ProductFeatures;
 using Domain.Aggregates.Products.ProductImages;
 using Domain.Aggregates.Products.ProductPriceLists;
-using Domain.Aggregates.ShippingAddress;
 using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
 using Domain.Aggregates.Users;

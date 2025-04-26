@@ -1,15 +1,15 @@
 ﻿using Domain;
 using Mapster;
-using Domain.Aggregates.ShippingAddress;
 using Domain.Aggregates.Customers;
+using Domain.Aggregates.Customers.ShippingAddress;
 
-namespace Application.Aggregates.ShippingAddress
+namespace Application.Aggregates.Customer.ShippingAddress
 {
     public class ShippingAddressApplication(IShippingAddressRepository shippingAddressRepository, IUnitOfWork unitOfWork)
     {
         public async Task<CreateShippingAddressViewModel> CreateAsync(CreateShippingAddressViewModel ViewModel)
         {
-            var entity = Domain.Aggregates.ShippingAddress.ShippingAddress.Create
+            var entity = Domain.Aggregates.Customers.ShippingAddress.ShippingAddress.Create
                 (
                 ViewModel.Country,
                 ViewModel.Province,

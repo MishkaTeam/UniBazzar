@@ -3,7 +3,7 @@ using Framework.DataType;
 using System.ComponentModel.DataAnnotations;
 using Entity = Domain.BuildingBlocks.Aggregates.Entity;
 
-namespace Domain.Aggregates.ShippingAddress
+namespace Domain.Aggregates.Customers.ShippingAddress
 {
     public class ShippingAddress : Entity
     {
