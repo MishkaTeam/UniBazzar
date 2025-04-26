@@ -1,4 +1,4 @@
-﻿<a href="@(Link)">
+﻿<a href="@(Link)" @onclick="() => Click()">
     <div class="menu-item @(IsActive ? "active " : "")d-flex align-items-center bg-light text-dark rounded-3 my-2 p-2-5">
         <i class="d-flex bg-gray p-2 rounded-circle @(Icon)"></i>
         <span class="ps-2">@(Title)</span>
@@ -19,5 +19,10 @@
 
     [Parameter]
     public bool IsActive { get; set; }
+
+    private void Click()
+    {
+        // IsActive = true;
+    }
 
 }
