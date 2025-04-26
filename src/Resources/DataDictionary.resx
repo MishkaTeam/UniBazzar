@@ -324,6 +324,9 @@
   <data name="PriceListsOf" xml:space="preserve">
     <value>PriceListsOf</value>
   </data>
+  <data name="Sellers" xml:space="preserve">
+    <value>Sellers</value>
+  </data>
   <data name="User" xml:space="preserve">
     <value>user</value>
   </data>

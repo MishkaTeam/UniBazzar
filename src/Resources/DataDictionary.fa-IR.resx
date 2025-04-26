@@ -342,4 +342,7 @@
   <data name="Role" xml:space="preserve">
     <value>نقش</value>
   </data>
+  <data name="Sellers" xml:space="preserve">
+    <value>فروشنده ها</value>
+  </data>
 </root>
