@@ -538,6 +538,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sellers.
+        /// </summary>
+        public static string Sellers {
+            get {
+                return ResourceManager.GetString("Sellers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to shipping address.
         /// </summary>
         public static string Shippingaddress {

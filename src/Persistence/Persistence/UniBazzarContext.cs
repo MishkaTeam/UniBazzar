@@ -8,6 +8,7 @@ using Domain.Aggregates.ShippingAddress;
 using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Aggregates.CheckoutCounter;
 
 namespace Persistence;
 
@@ -40,5 +41,6 @@ public class UniBazzarContext : DbContext
 
 	public DbSet<Customer> Customers { get; set; }
 	public DbSet<ShippingAddress> ShippingAddresses { get; set; }
+	public DbSet<CheckoutCounterRepository> CheckoutCounter { get; set; }
 
 }

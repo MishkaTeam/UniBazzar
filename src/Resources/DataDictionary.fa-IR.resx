@@ -324,4 +324,7 @@
   <data name="PriceListsOf" xml:space="preserve">
     <value>لیست قیمت های</value>
   </data>
+  <data name="Sellers" xml:space="preserve">
+    <value>فروشنده ها</value>
+  </data>
 </root>
