@@ -324,6 +324,24 @@
   <data name="PriceListsOf" xml:space="preserve">
     <value>PriceListsOf</value>
   </data>
+  <data name="User" xml:space="preserve">
+    <value>user</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>username</value>
+  </data>
+  <data name="EmailOrMobile" xml:space="preserve">
+    <value>Email Or Mobile</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>LogIn</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
   <data name="Customer" xml:space="preserve">
     <value>Customer</value>
   </data>

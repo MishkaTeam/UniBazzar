@@ -1,12 +1,13 @@
 ﻿using Domain.Aggregates.Categories;
 using Domain.Aggregates.Customers;
+using Domain.Aggregates.Customers.ShippingAddress;
 using Domain.Aggregates.Products;
 using Domain.Aggregates.Products.ProductFeatures;
 using Domain.Aggregates.Products.ProductImages;
 using Domain.Aggregates.Products.ProductPriceLists;
-using Domain.Aggregates.ShippingAddress;
 using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
+using Domain.Aggregates.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence;
@@ -16,7 +17,6 @@ public class UniBazzarContext : DbContext
 	public UniBazzarContext
 		(DbContextOptions options) : base(options)
 	{
-		Database.EnsureCreated();
 	}
 
 	protected override void OnConfiguring
@@ -37,7 +37,7 @@ public class UniBazzarContext : DbContext
 	public DbSet<Unit> Units { get; set; }
 
 	public DbSet<Category> Categories { get; set; }
-
+	public DbSet<User> Users { get; set; }
 	public DbSet<Customer> Customers { get; set; }
 	public DbSet<ShippingAddress> ShippingAddresses { get; set; }
 

@@ -24,6 +24,23 @@ public class Customer : Entity
 	public string? Password { get; private set; }
 
 
+	public static Customer Register(string mobile, string password)
+	{
+		if (!mobile.IsValidMobile())
+			throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
+
+		if (!password.IsValidPassword())
+			throw new ValidationException(Resources.Messages.Validations.Password);
+
+		var customer = new Customer(mobile, password)
+		{
+			Mobile = mobile.Fix(),
+			Password = password.Fix(),
+		};
+		return customer;
+	}
+
+
 	public static Customer Register(string? firstName, string lastName, string? nationalcode, string mobile, string? password, string? email)
 	{
 		if (mobile.IsValidMobile() == false)
@@ -54,8 +71,21 @@ public class Customer : Entity
 		if (!nationalcode.IsValidNationalCode() && nationalcode != null)
 			throw new ValidationException(Resources.Messages.Validations.NationalCode);
 
-		if (!mobile.IsValidMobile() && mobile != null)
+		if (!mobile.IsValidMobile())
 			throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
+	}
+
+	private Customer(string mobile, string password)
+	{
+		if (!mobile.IsValidMobile())
+			throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
+
+		if (!password.IsValidPassword())
+			throw new ValidationException(Resources.Messages.Validations.Password);
+
+
+		Mobile = mobile;
+		Password = password;
 	}
 
 	private Customer(string? firstName, string lastName, string? nationalcode, string mobile, string? password, string? email)

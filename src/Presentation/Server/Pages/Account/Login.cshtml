@@ -1,0 +1,48 @@
+﻿@page
+@model Server.Pages.Account.LoginModel
+
+@{
+    Layout = "_Security";
+}
+
+
+<section class="inner-page mx-auto my-auto" id="contact-page">
+    <div class="container py-2 py-md-5">
+        <div class="row">
+            <div class="col-12 col-sm-10 offset-sm-1">
+                <div class="content">
+                    <div class="row">
+                        <form method="post">
+                            <section-form>
+
+                                <fieldset>
+
+                                    <section-form-header>
+                                        وارد شوید
+                                    </section-form-header>
+
+                                    <div class="col-12 col-lg-5 text-center m-auto">
+                                        <img class="m-auto" src="/images/login.png" alt="">
+                                    </div>
+
+                                    <partial name="PartialViews/_DisplayPageMessages" />
+
+                                    <ub-full-input asp-for="Model.UserName" />
+
+                                    <ub-full-password-input asp-for="Model.Password" />
+
+                                </fieldset>
+
+                                <section-form-buttons>
+                                    <uni-button label="@(Resources.DataDictionary.LogIn)" />
+                                </section-form-buttons>
+
+                            </section-form>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

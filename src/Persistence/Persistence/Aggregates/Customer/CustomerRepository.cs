@@ -1,6 +1,5 @@
-﻿
-using Domain.Aggregates.Customers;
-using Domain.Aggregates.ShippingAddress;
+﻿using Domain.Aggregates.Customers;
+using Domain.Aggregates.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Aggregates.Customer
@@ -30,6 +29,16 @@ namespace Persistence.Aggregates.Customer
         public void Remove(Domain.Aggregates.Customers.Customer entity)
         {
             uniBazzarContext.Customers.Remove(entity);
+        }
+
+        public Task<Domain.Aggregates.Customers.Customer> GetWithMobile(string userName)
+        {
+            return uniBazzarContext.Customers.FirstOrDefaultAsync(x => x.Mobile == userName);
+        }
+
+        public Task<Domain.Aggregates.Customers.Customer> GetWithEmail(string userName)
+        {
+            return uniBazzarContext.Customers.FirstOrDefaultAsync(x => x.Email == userName);
         }
     }
 }

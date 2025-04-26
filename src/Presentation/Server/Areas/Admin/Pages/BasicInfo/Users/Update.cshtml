@@ -1,0 +1,41 @@
+﻿@page
+@model Server.Areas.Admin.Pages.BasicInfo.Users.UpdateModel
+@{
+	var pageTitle =
+	$"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.User}";
+
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+<form method="post">
+
+	<section-form>
+		<fieldset>
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
+
+			<partial name="PartialViews/_DisplayPageMessages" />
+			<input hidden asp-for="UpdateViewModel.Id" dir="ltr" />
+
+			<ub-full-input asp-for="UpdateViewModel.FirstName" />
+
+			<ub-full-input asp-for="UpdateViewModel.LastName" />
+
+			<ub-full-input asp-for="UpdateViewModel.UserName" />
+
+			<ub-full-input asp-for="UpdateViewModel.Password" />
+			
+			<ub-full-input asp-for="UpdateViewModel.Mobile" />
+
+			<ub-full-select asp-for="UpdateViewModel.Role" asp-items="Model.Roles" />
+
+		</fieldset>
+
+		<section-form-buttons>
+			<button-save />
+			<button-reset />
+		</section-form-buttons>
+
+	</section-form>
+
+</form>
