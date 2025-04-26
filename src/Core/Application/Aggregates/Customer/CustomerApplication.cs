@@ -1,12 +1,9 @@
 ﻿using Application.Aggregates.Customer.ViewModels;
-using Application.Aggregates.Units.ViewModels;
-using Application.Aggregates.Users;
+using Application.ViewModels.Authentication;
 using Domain;
 using Domain.Aggregates.Customers;
 using Framework.DataType;
 using Mapster;
-using Application.ViewModels.Authentication;
-using Domain.Aggregates.Users;
 
 namespace Application.Aggregates.Customer;
 
@@ -36,12 +33,6 @@ public class CustomerApplication(ICustomerRepository customerRepository, IUnitOf
 		return entity.Adapt<CustomerViewModel>();
 	}
 
-	public async Task<List<UpdateCustomerViewModel>> GetAllCustomer()
-	{
-		var customers = await customerRepository.GetAllCustomersAsync();
-		return customers.Adapt<List<UpdateCustomerViewModel>>();
-	}
-
 	public async Task<CreateCustomerViewModelPos> CreateAsync(CreateCustomerViewModelPos viewModel)
 	{
 		var customer = Domain.Aggregates.Customers.Customer.Register(
@@ -57,6 +48,12 @@ public class CustomerApplication(ICustomerRepository customerRepository, IUnitOf
 		await unitOfWork.CommitAsync();
 
 		return customer.Adapt<CreateCustomerViewModelPos>();
+	}
+
+	public async Task<List<UpdateCustomerViewModel>> GetAllCustomer()
+	{
+		var customers = await customerRepository.GetAllCustomersAsync();
+		return customers.Adapt<List<UpdateCustomerViewModel>>();
 	}
 
 	public async Task<UpdateCustomerViewModel> GetCustomerAsync(Guid id)
