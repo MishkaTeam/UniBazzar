@@ -1,4 +1,5 @@
 ﻿using Application.Aggregates.Categories;
+using Application.Aggregates.CheckoutCounter;
 using Application.Aggregates.Customer;
 using Application.Aggregates.Customer.ShippingAddress;
 using Application.Aggregates.Products;
@@ -7,6 +8,7 @@ using Application.Aggregates.Units;
 using Application.Aggregates.Users;
 using Domain;
 using Domain.Aggregates.Categories;
+using Domain.Aggregates.CheckoutCounter;
 using Domain.Aggregates.Customers;
 using Domain.Aggregates.Customers.ShippingAddress;
 using Domain.Aggregates.Products;
@@ -16,6 +18,7 @@ using Domain.Aggregates.Units;
 using Domain.Aggregates.Users;
 using Persistence;
 using Persistence.Aggregates.Categories;
+using Persistence.Aggregates.CheckoutCounters;
 using Persistence.Aggregates.Customer;
 using Persistence.Aggregates.Products;
 using Persistence.Aggregates.ShippingAddress;
@@ -44,6 +47,9 @@ public static class DomainExtensions
 		services.AddScoped<ShippingAddressApplication>();
 
 		services.AddScoped<UserApplication>();
+
+		services.AddScoped<CheckoutCounterApplication>();
+
 		return services;
 	}
 
@@ -65,7 +71,9 @@ public static class DomainExtensions
 
 		services.AddScoped<IUserRepository, UserRepository>();
 
-		return services;
+        services.AddScoped<ICheckoutCounterRepository, CheckoutCounterRepository>();
+
+        return services;
 	}
 
 	public static IServiceCollection AddUnitOfWork(this IServiceCollection services)

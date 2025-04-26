@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.CheckoutCounter
 {
-    public class IndexModel(Application.Aggregates.CheckoutCounter.CheckoutApplications checkoutCounter) : BasePageModel
+    public class IndexModel(Application.Aggregates.CheckoutCounter.CheckoutCounterApplication checkoutCounter) : BasePageModel
     {
         public List<CheckoutCounterViewModels> ViewModels { get; set; } = [];
         public async Task OnGet()

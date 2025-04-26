@@ -13,10 +13,5 @@ namespace Application.Aggregates.CheckoutCounter.ViewModels
             (ResourceType = typeof(Resources.DataDictionary),
             Name = nameof(Resources.DataDictionary.Id))]
         public Guid Id { get; set; }
-
-        [System.ComponentModel.DataAnnotations.Display
-            (ResourceType =typeof(Resources.DataDictionary),
-            Name =nameof(Resources.DataDictionary.BasicInformation))]
-        public CheckoutCounterViewModels? BasicInformation {  get; set; }
     }
 }
