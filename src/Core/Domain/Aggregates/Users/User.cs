@@ -1,4 +1,5 @@
-﻿using Domain.BuildingBlocks.Aggregates;
+﻿using Domain.Aggregates.Users.Enums;
+using Domain.BuildingBlocks.Aggregates;
 using Framework.DataType;
 using System.ComponentModel.DataAnnotations;
 
@@ -20,6 +21,7 @@ namespace Domain.Aggregates.Users
 
         public string Password { get; private set; }
 
+        public Guid Role { get; private  set; }
         public static User Register(string firstName, string lastName, string mobile, string password,string username)
         {
             if (!mobile.IsValidMobile())
@@ -55,6 +57,17 @@ namespace Domain.Aggregates.Users
             Mobile = mobile;
             Password = password;
             UserName = username;
+        }
+
+
+        public void SetUserRole(Guid roleType)
+        {
+            if(!RoleType.Contains(roleType))
+            {
+                throw new InvalidDataException("Please use proper RoleType!");
+            }
+
+            Role = roleType;
         }
     }
 }

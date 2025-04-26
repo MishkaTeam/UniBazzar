@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Aggregates.Users.Enums;
 
 namespace Application.Aggregates.Users
 {
@@ -32,5 +33,9 @@ namespace Application.Aggregates.Users
         [Display(ResourceType = typeof(Resources.DataDictionary),
             Name = nameof(Resources.DataDictionary.ConfirmPassword))]
         public string ConfirmPassword { get; set; }
+
+        [Display(ResourceType = typeof(Resources.DataDictionary),
+              Name = nameof(Resources.DataDictionary.Role))]
+        public Guid Role { get; set; }
     }
 }

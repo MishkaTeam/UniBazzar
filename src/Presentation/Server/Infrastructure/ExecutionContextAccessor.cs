@@ -7,6 +7,25 @@ namespace Server.Infrastructure
 {
     public class ExecutionContextAccessor(IHttpContextAccessor httpContextAccessor, IStoreRepository storeRepository) : IExecutionContextAccessor
     {
+
+        public string Role
+        {
+            get
+            {
+
+                var user = httpContextAccessor.HttpContext?.User;
+
+                if (user?.Identity is { IsAuthenticated: true })
+                {
+                    var roleIdClaim = user.FindFirst(ClaimTypes.Role)?.Value;
+
+                    return roleIdClaim ?? "";
+                }
+
+                return "";
+
+            }
+        }
         public Guid? UserId
         {
             get

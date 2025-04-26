@@ -339,4 +339,7 @@
   <data name="Register" xml:space="preserve">
     <value>ثبت نام</value>
   </data>
+  <data name="Role" xml:space="preserve">
+    <value>نقش</value>
+  </data>
 </root>

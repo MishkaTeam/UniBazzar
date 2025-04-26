@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Domain.Aggregates.Users.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 
 namespace Server.Infrastructure.Extentions.ServiceCollections;
@@ -9,7 +10,10 @@ public class AuthenticationConstant
     public const string LOGIN_PAGE_PATH = "/account/login";
     public const string REGISTER_PAGE_PATH = "/account/register";
     public const string LOGOUT_PAGE_PATH = "/account/logout";
-    public const string ACCESS_DENIED_PATH = "/account/access-denied";
+    public const string ACCESS_DENIED_PATH = "/account/accessdenied";
+
+    public const string ADMIN_POLICY_NAME = "Admin";
+    public const string POS_POLICY_NAME = "Pos";
 
 }
 public static class AuthenticationExtensions
@@ -25,7 +29,17 @@ public static class AuthenticationExtensions
                 options.AccessDeniedPath = AuthenticationConstant.ACCESS_DENIED_PATH;
             });
 
-        services.AddAuthorization();
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy(AuthenticationConstant.ADMIN_POLICY_NAME, policy =>
+            {
+                policy.RequireRole(RoleType.GetAdminRoles());
+            });
+            options.AddPolicy(AuthenticationConstant.POS_POLICY_NAME, policy =>
+            {
+                policy.RequireRole(RoleType.GetPosRoles());
+            });
+        });
         return services;
     }
 
@@ -33,8 +47,8 @@ public static class AuthenticationExtensions
     {
         services.AddRazorPages(opt =>
         {
-            opt.Conventions.AuthorizeAreaFolder("Admin", "/");
-            opt.Conventions.AuthorizeAreaFolder("Pos", "/");
+            opt.Conventions.AuthorizeAreaFolder("Admin", "/", AuthenticationConstant.ADMIN_POLICY_NAME);
+            opt.Conventions.AuthorizeAreaFolder("Pos", "/", AuthenticationConstant.POS_POLICY_NAME);
 
             opt.Conventions.AllowAnonymousToPage(AuthenticationConstant.LOGIN_PAGE_PATH);
             opt.Conventions.AllowAnonymousToPage(AuthenticationConstant.ACCESS_DENIED_PATH);

@@ -1,6 +1,7 @@
 ﻿using Application.ViewModels.Authentication;
 using Domain;
 using Domain.Aggregates.Users;
+using Domain.Aggregates.Users.Enums;
 using Framework.DataType;
 using Mapster;
 using Resources;
@@ -19,6 +20,9 @@ namespace Application.Aggregates.Users
                 viewModel.Password,
                 viewModel.UserName
                 );
+
+            entity.SetUserRole(viewModel.Role);
+
             userRepository.AddUser(entity);
             await unitOfWork.CommitAsync();
             return entity.Adapt<CreateUserViewModel>();
@@ -57,6 +61,8 @@ namespace Application.Aggregates.Users
                 updateViewModel.Password,
                 updateViewModel.Mobile
                 );
+
+            entity.SetUserRole(updateViewModel.Role);
 
             await unitOfWork.CommitAsync();
             return entity.Adapt<UpdateUserViewModel>();
