@@ -90,6 +90,11 @@
             return;
         }
 
+        if (string.IsNullOrWhiteSpace(CreateViewModel.NationalCode) == true)
+        {
+            CreateViewModel.NationalCode = null;
+        }
+
         nationalCodeIsValid = true;
     }
 
