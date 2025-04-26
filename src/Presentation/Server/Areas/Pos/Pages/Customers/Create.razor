@@ -1,0 +1,107 @@
+﻿@page "/Pos/Customers/Create"
+@layout PosLayout
+
+@using Application.Aggregates.Customer
+@using Application.Aggregates.Customer.ViewModels
+@using Framework.DataType
+@using Resources
+@using Resources.Messages
+@using Server.Areas.Pos.Pages.Shared.Layouts.Pos
+
+@inject CustomerApplication CustomerApplication
+@inject NavigationManager NavigationManager
+
+
+<PageTitle>@(Resources.DataDictionary.CreateOf) @(Resources.DataDictionary.Customer)</PageTitle>
+
+<EditForm EditContext="Context" OnValidSubmit="() => OnValidSubmit()" on>
+    <DataAnnotationsValidator />
+
+    <div class="row my-0 my-sm-3 my-md-5">
+        <div class="col col-12 bg-light rounded-3 border border-2 p-3 col-md-8 offset-md-2 p-md-4">
+
+            <fieldset>
+                <legend class="text-center">
+                    @(Resources.DataDictionary.CreateOf) @(Resources.DataDictionary.Customer)
+                </legend>
+
+                <hr class="mt-4">
+
+                <div class="mb-3">
+                    <label class="form-label" for="@(nameof(CreateViewModel.LastName))">@(Resources.DataDictionary.Family)</label>
+                    <InputText class="form-control" id="@(nameof(CreateViewModel.LastName))" @bind-Value="CreateViewModel.LastName" />
+                    <ValidationMessage class="text-danger" For="() => CreateViewModel.LastName" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="@(nameof(CreateViewModel.Mobile))">@(Resources.DataDictionary.Mobile)</label>
+                    <InputText class="form-control" id="@(nameof(CreateViewModel.Mobile))" @bind-Value="CreateViewModel.Mobile" />
+                    <ValidationMessage class="text-danger" For="() => CreateViewModel.Mobile" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="@(nameof(CreateViewModel.NationalCode))">@(Resources.DataDictionary.NationalCode)</label>
+                    <InputText class="form-control" id="@(nameof(CreateViewModel.NationalCode))" @bind-Value="CreateViewModel.NationalCode" />
+                    <ValidationMessage class="text-danger" For="() => CreateViewModel.NationalCode" />
+                </div>
+            </fieldset>
+
+            <div class="mb-3">
+                <button @onclick="() => OnSubmit()" class="btn btn-primary" type="submit"><i class="mx-1 bi bi-plus-square"></i>@(Resources.ButtonCaptions.Create)</button>
+                <button class="btn btn-secondary" type="reset"><i class="mx-1 bi bi-repeat"></i>@(Resources.ButtonCaptions.Reset)</button>
+            </div>
+
+        </div>
+    </div>
+</EditForm>
+
+
+@code {
+
+    private CreateCustomerViewModelPos CreateViewModel { get; set; } = new();
+
+    private EditContext Context { get; set; }
+    private ValidationMessageStore MessageStore { get; set; }
+
+    private bool nationalCodeIsValid = true;
+
+    protected override void OnInitialized()
+    {
+        Context = new EditContext(CreateViewModel);
+        MessageStore = new ValidationMessageStore(Context);
+    }
+
+    private void OnSubmit()
+    {
+        MessageStore.Clear();
+
+        // Can't use Regex for validate [NationalCode] field.
+        if (CreateViewModel.NationalCode?.IsValidNationalCode() == false &&
+            CreateViewModel.NationalCode.Length == Constants.FixedLength.NationalCode)
+        {
+            var message = 
+                string.Format(Validations.NationalCode, DataDictionary.NationalCode);
+
+            MessageStore.Add(() => CreateViewModel.NationalCode, message);
+            Context.NotifyValidationStateChanged();
+
+            nationalCodeIsValid = false;
+
+            return;
+        }
+
+        nationalCodeIsValid = true;
+    }
+
+    private async Task OnValidSubmit()
+    {
+        if (nationalCodeIsValid == false)
+        {
+            return;
+        }
+
+        await CustomerApplication.CreateAsync(CreateViewModel);
+
+        NavigationManager.NavigateTo("/pos/customers");
+    }
+}
