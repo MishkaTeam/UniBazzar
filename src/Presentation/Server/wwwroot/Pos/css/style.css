@@ -32,6 +32,10 @@ a {
     backdrop-filter: blur(7px);
 }
 
+.menu-item {
+    cursor: pointer;
+}
+
 .menu-item.active {
     background-color: #858585 !important;
     color: #fff !important;

@@ -232,7 +232,7 @@
     <value>Password</value>
   </data>
   <data name="Customers" xml:space="preserve">
-    <value>customer</value>
+    <value>Customers</value>
   </data>
   <data name="CustomersInformation" xml:space="preserve">
     <value>Customer Information</value>
@@ -341,5 +341,8 @@
   </data>
   <data name="Role" xml:space="preserve">
     <value>Role</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Customer</value>
   </data>
 </root>

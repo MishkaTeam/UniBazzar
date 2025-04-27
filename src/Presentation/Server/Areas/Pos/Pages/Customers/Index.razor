@@ -1,0 +1,58 @@
+﻿@page "/Pos/Customers"
+@layout PosLayout
+
+@using Application.Aggregates.Customer
+@using Server.Areas.Pos.Pages.Shared.Layouts.Pos
+
+@inject CustomerApplication CustomerApplication
+
+
+<PageTitle>Customers</PageTitle>
+
+<div style="heght: 580px; overlow-y: scroll;" class="row m-0 pt-2">
+    @if (ViewModel == null)
+    {
+        <text>درحال بارگذاری...</text>
+    }
+    else
+    {
+        <table style="margin-bottom: 200px;" class="table overflow-hidden rounded-3">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">@(Resources.DataDictionary.Family)</th>
+                    <th scope="col">@(Resources.DataDictionary.CellPhonenumber)</th>
+                    <th scope="col">@(Resources.DataDictionary.NationalCode)</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @for (int index = 0; index < ViewModel.Count; index++)
+                {
+                    var customer = ViewModel[index];
+
+                    <tr>
+                        <th scope="row">@(index + 1)</th>
+                        <td>@(customer.LastName)</td>
+                        <td>@(customer.Mobile)</td>
+                        <td>@(customer.NationalCode)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+
+@code {
+
+    List<UpdateCustomerViewModel>? ViewModel = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Test loading text
+        await Task.Run(() => Thread.Sleep(2000));
+
+        ViewModel = await CustomerApplication.GetAllCustomer();
+    }
+
+}
