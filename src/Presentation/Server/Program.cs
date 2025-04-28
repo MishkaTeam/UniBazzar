@@ -21,6 +21,7 @@ namespace Server
             services.AddServerSideBlazor()
             .AddInteractiveServerComponents();
             services.AddAuthenticationCookie();
+            services.AddHttpClient();
             services.AddDomainApplications();
             services.AddHttpContextAccessor();
             services.AddScoped<IExecutionContextAccessor, ExecutionContextAccessor>();

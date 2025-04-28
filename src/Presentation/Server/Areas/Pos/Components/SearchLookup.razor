@@ -1,6 +1,7 @@
 ﻿@using System.Text.RegularExpressions
 @inject IJSRuntime JS
-
+@inject IHttpClientFactory factory
+@inject IHttpContextAccessor contextAccessor
 
 <div class="search-box position-relative my-3 w-100 ">
     <input class="form-control"

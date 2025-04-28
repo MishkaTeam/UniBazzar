@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Net.Http;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
@@ -19,7 +20,11 @@ namespace Server.Areas.Pos.Components
 
         protected override void OnInitialized()
         {
-            httpClient.BaseAddress = new Uri("https://localhost:7078");
+            var host = contextAccessor.HttpContext?.Request.Host.Value ?? "";
+            var schema = contextAccessor.HttpContext?.Request.Scheme ?? "";
+
+            httpClient = factory.CreateClient();
+            httpClient.BaseAddress = new Uri($"{schema}://{host}");
         }
         private async Task OnInputChanged(ChangeEventArgs e)
         {
