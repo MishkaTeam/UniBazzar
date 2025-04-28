@@ -1,0 +1,49 @@
+﻿@using System.Text.RegularExpressions
+@inject IJSRuntime JS
+
+
+<div class="search-box position-relative my-3 w-100 ">
+    <input class="form-control"
+           value="@searchText"
+           @oninput="OnInputChanged"
+           @onkeydown="HandleKeyDown"
+           @onfocus="ShowSuggestions"
+           placeholder="جستجوی کالا..." />
+
+    @if (showSuggestions)
+    {
+        <div class="search-suggestions shadow-sm p-2" style="animation: fadeIn 0.3s ease;">
+            @if (isLoading)
+            {
+                <div class="text-center py-3">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">در حال جستجو...</span>
+                    </div>
+                </div>
+            }
+            else if (suggestions.Count == 0)
+            {
+                <div class="text-center py-3 text-muted">موردی پیدا نشد</div>
+            }
+            else
+            {
+                @foreach (var item in suggestions.Select((value, index) => new { value, index }))
+                {
+                    <div class="suggestion-item @(selectedIndex == item.index ? "bg-light" : "")"
+                         @onclick="@(() => SelectSuggestion(item.index))">
+                        <div class="suggestion-text">
+                            <span class="suggestion-title">@((MarkupString)Highlight(item.value.Title))</span>
+                            @if (!string.IsNullOrWhiteSpace(item.value.Category))
+                            {
+                                <span class="suggestion-category">@item.value.Category</span>
+                            }
+                        </div>
+                        <i class="bi @(item.value.IsCategory ? "bi-arrow-left-short" : "bi-search") fs-5 text-secondary"></i>
+                    </div>
+                }
+            }
+        </div>
+    }
+</div>
+
+
