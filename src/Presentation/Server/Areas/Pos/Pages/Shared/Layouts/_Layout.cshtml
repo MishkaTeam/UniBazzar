@@ -28,6 +28,17 @@
 
     <script src="_framework/blazor.server.js"></script>
 
+        <script>
+        window.addOutsideClickListener = function (dotNetHelper) {
+            document.addEventListener('click', function (e) {
+                const searchBox = document.querySelector('.search-box');
+                if (searchBox && !searchBox.contains(e.target)) {
+                    dotNetHelper.invokeMethodAsync('HideSuggestions');
+                }
+            });
+        };
+
+    </script>
 </body>
 
 </html>
