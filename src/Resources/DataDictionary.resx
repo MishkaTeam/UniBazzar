@@ -345,4 +345,13 @@
   <data name="Customer" xml:space="preserve">
     <value>Customer</value>
   </data>
+  <data name="NothingFound" xml:space="preserve">
+    <value>Nothing Found</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Searching</value>
+  </data>
+  <data name="ProductSearch" xml:space="preserve">
+    <value>Search In Products ...</value>
+  </data>
 </root>

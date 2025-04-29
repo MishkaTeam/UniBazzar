@@ -1,7 +1,10 @@
 ﻿@using System.Text.RegularExpressions
+@using Application.Aggregates.Products
+@using Application.ProductSearch
 @inject IJSRuntime JS
 @inject IHttpClientFactory factory
 @inject IHttpContextAccessor contextAccessor
+@inject ProductSearchApplication productApplication
 
 <div class="search-box position-relative my-3 w-100 ">
     <input class="form-control"
@@ -9,7 +12,7 @@
            @oninput="OnInputChanged"
            @onkeydown="HandleKeyDown"
            @onfocus="ShowSuggestions"
-           placeholder="جستجوی کالا..." />
+           placeholder="@(Resources.DataDictionary.Searching)" />
 
     @if (showSuggestions)
     {
@@ -18,13 +21,13 @@
             {
                 <div class="text-center py-3">
                     <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">در حال جستجو...</span>
+                        <span class="visually-hidden">@(Resources.DataDictionary.Searching)</span>
                     </div>
                 </div>
             }
             else if (suggestions.Count == 0)
             {
-                <div class="text-center py-3 text-muted">موردی پیدا نشد</div>
+                <div class="text-center py-3 text-muted">@(Resources.DataDictionary.NothingFound)</div>
             }
             else
             {
@@ -33,7 +36,7 @@
                     <div class="suggestion-item @(selectedIndex == item.index ? "bg-light" : "")"
                          @onclick="@(() => SelectSuggestion(item.index))">
                         <div class="suggestion-text">
-                            <span class="suggestion-title">@((MarkupString)Highlight(item.value.Title))</span>
+                            <span class="suggestion-title">@((MarkupString)Highlight(item.value.ProductTitle))</span>
                             @if (!string.IsNullOrWhiteSpace(item.value.Category))
                             {
                                 <span class="suggestion-category">@item.value.Category</span>

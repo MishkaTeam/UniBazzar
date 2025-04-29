@@ -1,9 +1,8 @@
-﻿using System.Net.Http;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
+using Domain.ProductSearch;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
-using static System.Net.WebRequestMethods;
 
 namespace Server.Areas.Pos.Components
 {
@@ -16,16 +15,8 @@ namespace Server.Areas.Pos.Components
         private List<SuggestionItem> suggestions = new();
         private CancellationTokenSource? debounceCts;
         private bool _disposed;
-        HttpClient httpClient = new HttpClient();
 
-        protected override void OnInitialized()
-        {
-            var host = contextAccessor.HttpContext?.Request.Host.Value ?? "";
-            var schema = contextAccessor.HttpContext?.Request.Scheme ?? "";
 
-            httpClient = factory.CreateClient();
-            httpClient.BaseAddress = new Uri($"{schema}://{host}");
-        }
         private async Task OnInputChanged(ChangeEventArgs e)
         {
             searchText = e.Value?.ToString() ?? "";
@@ -62,8 +53,8 @@ namespace Server.Areas.Pos.Components
 
             try
             {
-                var result = await httpClient.GetFromJsonAsync<List<SuggestionItem>>($"/api/Search?q={searchText}");
-
+                
+                var result = await productApplication.SuggestAsync(searchText);
                 if (_disposed) return; // 🔥 خیلی مهم!!
 
                 suggestions = result ?? new();
@@ -99,7 +90,7 @@ namespace Server.Areas.Pos.Components
 
         private void SelectSuggestion(int index)
         {
-            searchText = suggestions[index].Title;
+            searchText = suggestions[index].ProductTitle;
             showSuggestions = false;
         }
 
@@ -130,13 +121,6 @@ namespace Server.Areas.Pos.Components
         public void Dispose()
         {
             _disposed = true;
-        }
-
-        public class SuggestionItem
-        {
-            public string Title { get; set; } = "";
-            public string? Category { get; set; }
-            public bool IsCategory { get; set; } = false;
         }
 
 
