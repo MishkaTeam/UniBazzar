@@ -1,4 +1,5 @@
-﻿using Domain.Aggregates.Products.Enums;
+﻿using Domain.Aggregates.Categories;
+using Domain.Aggregates.Products.Enums;
 using Domain.Aggregates.Units;
 using Framework.DataType;
 using Resources;
@@ -68,9 +69,7 @@ public class Product : Entity
 	public Unit Unit { get; private set; }
 
 	public Guid CategoryId { get; private set; }
-	//public Category Category { get; private set; }
-
-	//public Store Store { get; private set; }
+	public Category Category { get; private set; }
 
 	private Product(string name, string shortDescription, string fullDescription,
 		Guid storeId, Guid categoryId, Guid unitId,
