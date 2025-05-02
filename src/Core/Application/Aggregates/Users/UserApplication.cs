@@ -1,10 +1,8 @@
 ﻿using Application.ViewModels.Authentication;
 using Domain;
 using Domain.Aggregates.Users;
-using Domain.Aggregates.Users.Enums;
 using Framework.DataType;
 using Mapster;
-using Resources;
 
 namespace Application.Aggregates.Users
 {
@@ -12,7 +10,7 @@ namespace Application.Aggregates.Users
     {
         public async Task<CreateUserViewModel> CreateAsync(CreateUserViewModel viewModel)
         {
-            var entity = Domain.Aggregates.Users.User.Register
+            var user = User.Register
                 (
                 viewModel.FirstName,
                 viewModel.LastName,
@@ -21,22 +19,24 @@ namespace Application.Aggregates.Users
                 viewModel.UserName
                 );
 
-            entity.SetUserRole(viewModel.Role);
+            user.SetUserRole(viewModel.Role);
 
-            userRepository.AddUser(entity);
+            userRepository.AddAsync(user);
+
             await unitOfWork.CommitAsync();
-            return entity.Adapt<CreateUserViewModel>();
+
+            return user.Adapt<CreateUserViewModel>();
         }
 
         public async Task<List<UpdateUserViewModel>> GetAllUser()
         {
-            var users = await userRepository.GetAllUsersAsync();
+            var users = await userRepository.GetAllAsync();
             return users.Adapt<List<UpdateUserViewModel>>();
         }
 
         public async Task<UpdateUserViewModel> GetUserAsync(Guid id)
         {
-            var user = await userRepository.GetUserAsync(id);
+            var user = await userRepository.GetByIdAsync(id);
 
             if (user == null || user.Id == Guid.Empty)
             {
@@ -47,14 +47,14 @@ namespace Application.Aggregates.Users
 
         public async Task<UpdateUserViewModel> UpdateAsync(UpdateUserViewModel updateViewModel)
         {
-            var entity = await userRepository.GetUserAsync(updateViewModel.Id);
+            var user = await userRepository.GetByIdAsync(updateViewModel.Id);
 
-            if (entity == null || entity.Id == Guid.Empty)
+            if (user == null || user.Id == Guid.Empty)
             {
                 throw new Exception(Resources.Messages.Errors.NotFound);
             }
 
-            entity.Update(
+            user.Update(
                 updateViewModel.FirstName,
                 updateViewModel.LastName,
                 updateViewModel.UserName,
@@ -62,21 +62,21 @@ namespace Application.Aggregates.Users
                 updateViewModel.Mobile
                 );
 
-            entity.SetUserRole(updateViewModel.Role);
+            user.SetUserRole(updateViewModel.Role);
 
             await unitOfWork.CommitAsync();
-            return entity.Adapt<UpdateUserViewModel>();
+            return user.Adapt<UpdateUserViewModel>();
         }
         public async Task DeleteAsync(Guid id)
         {
-            var entity = await userRepository.GetUserAsync(id);
+            var user = await userRepository.GetByIdAsync(id);
 
-            if (entity == null || entity.Id == Guid.Empty)
+            if (user == null || user.Id == Guid.Empty)
             {
                 throw new Exception(Resources.Messages.Errors.NotFound);
             }
 
-            userRepository.Remove(entity);
+            await userRepository.RemoveAsync(user);
             await unitOfWork.CommitAsync();
         }
 
@@ -96,7 +96,7 @@ namespace Application.Aggregates.Users
         {
             if (user == null || user.Id == Guid.Empty)
             {
-                return (ErrorType.NotFound, 
+                return (ErrorType.NotFound,
                     string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.User));
             }
 

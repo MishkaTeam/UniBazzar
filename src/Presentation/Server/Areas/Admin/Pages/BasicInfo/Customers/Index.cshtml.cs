@@ -1,4 +1,4 @@
-using Application.Aggregates.Customer;
+using Application.Aggregates.Customers;
 using Infrastructure;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Customers

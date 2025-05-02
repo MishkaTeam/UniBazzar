@@ -1,18 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata;
 
-namespace Application.Aggregates.Customer;
+namespace Application.Aggregates.Customers.ViewModels;
 
-public class CreateCustomerViewModel
+public class CreateCustomerViewModelPos
 {
-	public CreateCustomerViewModel()
+	public CreateCustomerViewModelPos()
 	{	
 	}
 
-
-	[Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.Name))]
-	public string? FirstName { get; set; }
 
 	[Display
 		(ResourceType = typeof(Resources.DataDictionary),
@@ -44,25 +40,4 @@ public class CreateCustomerViewModel
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.CellPhoneNumber))]
 	public string Mobile { get; set; }
-
-	[Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.Email))]
-	public string? Email { get; set; }
-
-	[Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.Password))]
-	public string? Password { get; set; }
-
-	[Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.ConfirmPassword))]
-	[Compare
-			(otherProperty: nameof(Password),
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Compare))]
-	[DataType
-			(dataType: DataType.Password)]
-	public string? ConfirmPassword { get; set; }
 }

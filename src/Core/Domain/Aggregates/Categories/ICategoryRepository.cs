@@ -1,13 +1,11 @@
-﻿namespace Domain.Aggregates.Categories;
+﻿using Domain.BuildingBlocks.Data;
 
-public interface ICategoryRepository
+namespace Domain.Aggregates.Categories;
+
+public interface ICategoryRepository : IRepositoryBase<Category>
 {
-    Task AddCategoryAsync(Category entity);
-    Task<Category?> GetCategoryAsync(Guid id);
-    Task<List<Category>> GetAllCategoriesAsync();
+    Task<List<Category>> GetAllWithIncludeAsync();
     Task<List<Category>> GetRootCategoriesAsync();
-    //Task<List<Category>> GetMenuCategoriesAsync();
     Task<List<Category>> GetSubCategoriesAsync(Guid parentId);
     Task<int> GetSubCategoriesCountAsync(Guid parentId);
-    void RemoveCategory(Category entity);
 }
