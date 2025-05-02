@@ -1,1 +1,44 @@
-﻿@RenderBody()
+﻿@using Microsoft.AspNetCore.Components.Web
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@* 
+    - Important
+        Don't change [href] value in <base /> tag in <HEAD/> tag !!!
+        Don't move/re-use </HTML>, </HEAD>, </BODY> tags from this file or in other file's !!!
+        Don't move/re-use [_framework/blazor.server.js] script from this file or in other file's !!!
+*@
+
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <partial name="PartialViews/_MetaTags" />
+    <partial name="PartialViews/_StyleSheets" />
+
+    <base href="/" />
+
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+</head>
+
+<body dir="rtl" class="bg-gray vazir-font">
+
+    @RenderBody()
+
+    <partial name="PartialViews/_Scripts" />
+
+    <script src="_framework/blazor.server.js"></script>
+
+        <script>
+        window.addOutsideClickListener = function (dotNetHelper) {
+            document.addEventListener('click', function (e) {
+                const searchBox = document.querySelector('.search-box');
+                if (searchBox && !searchBox.contains(e.target)) {
+                    dotNetHelper.invokeMethodAsync('HideSuggestions');
+                }
+            });
+        };
+
+    </script>
+</body>
+
+</html>

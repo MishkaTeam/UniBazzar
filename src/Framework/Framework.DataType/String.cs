@@ -71,9 +71,15 @@ public static class String
 
         return value;
     }
-    public static bool IsValidMobile(this string mobile)
+    public static bool IsValidMobile(this string? mobile)
     {
-        var mobileRegex = @"^09\d{9}$";
+		if (string.IsNullOrWhiteSpace(mobile) == true)
+		{
+            return false;
+		}
+
+		var mobileRegex = @"^09\d{9}$";
+
         return Regex.IsMatch(mobile, mobileRegex);
     }
     public static bool IsValidPassword(this string password)

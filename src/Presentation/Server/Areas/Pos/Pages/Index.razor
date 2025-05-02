@@ -7,91 +7,89 @@
 <PageTitle>Pos</PageTitle>
 
 <div class="sticky-top row blur m-0">
-    <div class="input-group p-0">
-        <button class="btn btn-secondary" type="button">برو</button>
-        <input class="form-control form-control-lg" type="text" placeholder="جستجو...">
-        <!-- <button class="btn btn-secondary" type="button">منو</button> -->
-    </div>
+	<div class="input-group p-0">
+		<Server.Areas.Pos.Components.SearchLookup />
+	</div>
 </div>
 
 <div style="heght: 580px; overlow-y: scroll;" class="row m-0 pt-2">
-    <table style="margin-bottom: 200px;" class="table overflow-hidden rounded-3">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">نام</th>
-                <th scope="col">تعداد</th>
-                <th scope="col">قیمت</th>
-            </tr>
-        </thead>
-        <tbody class="table-group-divider">
-            @for (int i = 0; i < 5; i++)
-            {
-                <tr>
-                    <th scope="row">@(i + 1)</th>
-                    <td>گل</td>
-                    <td>
-                        <div class="d-flex justify-content-between bg-primary rounded-5 w-50">
-                            <button class="btn btn-light rounded-circle p-0 px-2 m-1">+</button>
-                            <span class="d-flex justify-content-between align-items-center text-white">2</span>
-                            <button class="btn btn-light rounded-circle p-0 px-2 m-1">-</button>
-                        </div>
-                    </td>
-                    <td>5000</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+	<table style="margin-bottom: 200px;" class="table overflow-hidden rounded-3">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">نام</th>
+				<th scope="col">تعداد</th>
+				<th scope="col">قیمت</th>
+			</tr>
+		</thead>
+		<tbody class="table-group-divider">
+			@for (int i = 0; i < 5; i++)
+			{
+				<tr>
+					<th scope="row">@(i + 1)</th>
+					<td>گل</td>
+					<td>
+						<div class="d-flex justify-content-between bg-primary rounded-5 w-50">
+							<button class="btn btn-light rounded-circle p-0 px-2 m-1">+</button>
+							<span class="d-flex justify-content-between align-items-center text-white">2</span>
+							<button class="btn btn-light rounded-circle p-0 px-2 m-1">-</button>
+						</div>
+					</td>
+					<td>5000</td>
+				</tr>
+			}
+		</tbody>
+	</table>
 </div>
 
 <div class="fixed-bottom row m-0">
-    <div class="row m-0">
-        <div class="col-2"></div>
-        <div class="col row blur m-0 p-0 pb-2">
+	<div class="row m-0">
+		<div class="col-2"></div>
+		<div class="col row blur m-0 p-0 pb-2">
 
-            <div class="col-8 ps-0">
-                <div class="bg-light rounded-3 border border-1 border-gray p-2">
+			<div class="col-8 ps-0">
+				<div class="bg-light rounded-3 border border-1 border-gray p-2">
 
-                    <textarea class="form-control" placeholder="توضیحات..." rows="2"></textarea>
+					<textarea class="form-control" placeholder="توضیحات..." rows="2"></textarea>
 
-                    <div class="row bg-light rounded-3 border border-1 p-0 py-1 m-0 my-2 ">
-                        <div class="col ps-1">
-                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
-                            <label class="btn w-100" for="option1">کارتخوان</label>
-                        </div>
-                        <div class="col">
-                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                            <label class="btn w-100" for="option2">درگاه</label>
-                        </div>
-                        <div class="col pe-1">
-                            <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
-                            <label class="btn w-100" for="option3">نقد</label>
-                        </div>
-                    </div>
+					<div class="row bg-light rounded-3 border border-1 p-0 py-1 m-0 my-2 ">
+						<div class="col ps-1">
+							<input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+							<label class="btn w-100" for="option1">کارتخوان</label>
+						</div>
+						<div class="col">
+							<input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+							<label class="btn w-100" for="option2">درگاه</label>
+						</div>
+						<div class="col pe-1">
+							<input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
+							<label class="btn w-100" for="option3">نقد</label>
+						</div>
+					</div>
 
-                    <button class="btn btn-primary w-100">اضافه کردن در انتظار پرداخت</button>
+					<button class="btn btn-primary w-100">اضافه کردن در انتظار پرداخت</button>
 
-                </div>
-            </div>
+				</div>
+			</div>
 
-            <div class="col-4 d-flex justify-content-center align-items-center bg-light rounded-3 border border-1 border-gray p-2 px-4">
-                <div class="w-100">
-                    <div class="d-flex justify-content-between py-2">
-                        <span>قیمت کل</span>
-                        <span>35,000</span>
-                    </div>
-                    <div class="d-flex justify-content-between py-2">
-                        <span>تخفیف</span>
-                        <span>3,000</span>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between py-2">
-                        <span>قیمت نهایی</span>
-                        <span>32,000</span>
-                    </div>
-                </div>
-            </div>
+			<div class="col-4 d-flex justify-content-center align-items-center bg-light rounded-3 border border-1 border-gray p-2 px-4">
+				<div class="w-100">
+					<div class="d-flex justify-content-between py-2">
+						<span>قیمت کل</span>
+						<span>35,000</span>
+					</div>
+					<div class="d-flex justify-content-between py-2">
+						<span>تخفیف</span>
+						<span>3,000</span>
+					</div>
+					<hr>
+					<div class="d-flex justify-content-between py-2">
+						<span>قیمت نهایی</span>
+						<span>32,000</span>
+					</div>
+				</div>
+			</div>
 
-        </div>
-    </div>
+		</div>
+	</div>
 </div>

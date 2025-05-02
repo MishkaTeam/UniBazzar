@@ -342,6 +342,18 @@
   <data name="Role" xml:space="preserve">
     <value>نقش</value>
   </data>
+  <data name="Customer" xml:space="preserve">
+    <value>مشتری</value>
+  </data>
+  <data name="NothingFound" xml:space="preserve">
+    <value>هیج موردی پیدا نشد...</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>در حال جستجو...</value>
+  </data>
+  <data name="ProductSearch" xml:space="preserve">
+    <value>جستجو در کالا ها</value>
+  </data>
   <data name="Sellers" xml:space="preserve">
     <value>فروشنده ها</value>
   </data>

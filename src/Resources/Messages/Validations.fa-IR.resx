@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CellPhoneNumber" xml:space="preserve">
-    <value>شماره تلفن همراه معتبر نمی‌باشد! شماره تلفن همراه باید دقیقا چهارده رقمی بوده و باید با دو صفر نهصد و هشت و نه آغاز شده و تمامی ارقام باید انگلیسی باشند.</value>
+    <value>{0} باید دقیقا یازده رقمی بوده و باید با 09 آغاز شده باشد!</value>
   </data>
   <data name="Compare" xml:space="preserve">
     <value>مقدار فیلد {0} باید با مقدار فیلد {1} یکسان باشد!</value>
@@ -166,7 +166,7 @@
     <value>طول متن فیلد '{0}' باید حداقل '{1}' کاراکتر باشد!</value>
   </data>
   <data name="NationalCode" xml:space="preserve">
-    <value>کد ملی معتبر نمی‌باشد! کد ملی باید دقیقا از ده رقم انگلیسی تشکیل شود!</value>
+    <value>{0} معتبر نمی باشد!</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>{0} یافت نشد!</value>
