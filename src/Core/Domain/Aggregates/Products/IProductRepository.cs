@@ -1,15 +1,7 @@
-﻿using Domain.Aggregates.Products.ProductImages;
-using Domain.Aggregates.Products.ProductPriceLists;
-using Domain.Aggregates.Products.ProductFeatures;
+﻿using Domain.BuildingBlocks.Data;
 
 namespace Domain.Aggregates.Products;
 
-public interface IProductRepository : IProductFeatureRepository,
-									  IProductPriceListRepository,
-									  IProductImageRepository
+public interface IProductRepository : IRepositoryBase<Product>
 {
-	Task AddProductAsync(Product entity);
-	Task<List<Product>> GetAllProductsAsync();
-	Task<Product?> GetProductAsync(Guid id);
-	void RemoveProduct(Product entity);
 }

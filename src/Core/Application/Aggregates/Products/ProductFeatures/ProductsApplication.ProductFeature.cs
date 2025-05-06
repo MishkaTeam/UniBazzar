@@ -1,11 +1,12 @@
 ﻿using Application.Aggregates.Products.ProductFeatures.ViewModels;
+using Domain;
 using Domain.Aggregates.Products.ProductFeatures;
 using Mapster;
 using Resources.Messages;
 
 namespace Application.Aggregates.Products;
 
-public partial class ProductsApplication
+public class ProductFeaturesApplication(IProductFeatureRepository productFeatureRepository ,IUnitOfWork unitOfWork)
 {
 	public async Task CreateProductFeatureAsync(CreateProductFeatureViewModel viewModel)
 	{
@@ -13,7 +14,7 @@ public partial class ProductsApplication
 				viewModel.ProductId, viewModel.Key,
 				viewModel.Value, viewModel.IsPinned, viewModel.Order);
 
-		await productRepository.AddProductFeature(productFeature);
+		await productFeatureRepository.AddAsync(productFeature);
 		await unitOfWork.CommitAsync();
 	}
 
@@ -64,7 +65,7 @@ public partial class ProductsApplication
 			throw new Exception(Errors.NotFound);
 		}
 
-		productFeatureRepository.RemoveProductFeature(productFeatureForDelete);
+		productFeatureRepository.RemoveAsync(productFeatureForDelete);
 		await unitOfWork.CommitAsync();
 	}
 }

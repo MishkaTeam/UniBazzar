@@ -5,11 +5,12 @@ using Domain.Aggregates.Products.Enums;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Persistence;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products;
 
 public class UpdateModel
-	(ProductsApplication productsApplication, UnitsApplication unitsApplication) : BasePageModel
+	(ProductsApplication productsApplication, UnitsApplication unitsApplication, IExecutionContextAccessor execution) : BasePageModel
 {
 	[BindProperty]
 	public UpdateProductViewModel UpdateViewModel { get; set; } = new();
@@ -36,7 +37,7 @@ public class UpdateModel
 		if (ModelState.IsValid)
 		{
 			UpdateViewModel.CategoryId = Guid.NewGuid();
-			UpdateViewModel.StoreId = Guid.NewGuid();
+			UpdateViewModel.StoreId = execution.StoreId;
 
 			await productsApplication.UpdateProductAsync(UpdateViewModel);
 		}

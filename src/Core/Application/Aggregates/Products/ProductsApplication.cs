@@ -9,7 +9,6 @@ namespace Application.Aggregates.Products;
 
 public partial class ProductsApplication
 	(IProductRepository productRepository,
-	IProductFeatureRepository productFeatureRepository,
 	IUnitOfWork unitOfWork)
 {
 	public async Task<ProductViewModel> CreateProductAsync(CreateProductViewModel viewModel)
@@ -18,7 +17,7 @@ public partial class ProductsApplication
 									viewModel.StoreId, viewModel.CategoryId, viewModel.UnitId,
 									viewModel.ProductType, viewModel.DownloadUrl);
 
-		await productRepository.AddProductAsync(product);
+		await productRepository.AddAsync(product);
 		await unitOfWork.CommitAsync();
 
 		return product.Adapt<ProductViewModel>();
@@ -27,7 +26,7 @@ public partial class ProductsApplication
 	public async Task<List<ProductViewModel>> GetProducts()
 	{
 		var products =
-			await productRepository.GetAllProductsAsync();
+			await productRepository.GetAllAsync();
 
 		return products.Adapt<List<ProductViewModel>>();
 	}
@@ -35,7 +34,7 @@ public partial class ProductsApplication
 	public async Task<ProductViewModel> GetProductAsync(Guid id)
 	{
 		var product =
-			await productRepository.GetProductAsync(id);
+			await productRepository.GetByIdAsync(id);
 
 		return product.Adapt<ProductViewModel>();
 	}
@@ -43,7 +42,7 @@ public partial class ProductsApplication
 	public async Task<ProductViewModel> UpdateProductAsync(UpdateProductViewModel updateViewModel)
 	{
 		var productForUpdate =
-			await productRepository.GetProductAsync(updateViewModel.Id);
+			await productRepository.GetByIdAsync(updateViewModel.Id);
 
 		if (productForUpdate == null || productForUpdate.Id == Guid.Empty)
 		{
@@ -64,7 +63,7 @@ public partial class ProductsApplication
 	public async Task DeleteProductAsync(Guid id)
 	{
 		var productForDelete =
-			await productRepository.GetProductAsync(id);
+			await productRepository.GetByIdAsync(id);
 
 		if (productForDelete == null || productForDelete.Id == Guid.Empty)
 		{
@@ -74,7 +73,7 @@ public partial class ProductsApplication
 			throw new Exception(message);
 		}
 
-		productRepository.RemoveProduct(productForDelete);
+		productRepository.RemoveAsync(productForDelete);
 		await unitOfWork.CommitAsync();
 	}
 }

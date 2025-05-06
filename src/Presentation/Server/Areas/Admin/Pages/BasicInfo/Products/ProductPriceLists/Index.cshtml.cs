@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductPriceLists;
 
-public class IndexModel(ProductsApplication productsApplication) : BasePageModel
+public class IndexModel(ProductsApplication productsApplication, ProductPriceListsApplication productPriceListsApplication) : BasePageModel
 {
     public ProductViewModel ProductViewModel { get; set; } = new();
 
@@ -23,7 +23,7 @@ public class IndexModel(ProductsApplication productsApplication) : BasePageModel
 
         ProductViewModel = await productsApplication.GetProductAsync(productId);
 
-        ViewModel = await productsApplication.GetPriceListByProductId(productId);
+        ViewModel = await productPriceListsApplication.GetPriceListByProductId(productId);
 
         return Page();
     }

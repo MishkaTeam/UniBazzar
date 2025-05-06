@@ -1,11 +1,9 @@
-﻿namespace Domain.Aggregates.Products.ProductPriceLists;
+﻿using Domain.BuildingBlocks.Data;
 
-public interface IProductPriceListRepository
+namespace Domain.Aggregates.Products.ProductPriceLists;
+
+public interface IProductPriceListRepository : IRepositoryBase<ProductPriceList>
 {
-    Task AddProductPriceList(ProductPriceList productPriceList);
-    Task<ProductPriceList> GetProductPriceListAsync(Guid id);
-    Task<List<ProductPriceList>> GetAllProductPriceListAsync();
-    Task<ProductPriceList> GetPriceByProductId(Guid id);
+    Task<ProductPriceList> GetPriceByProductId(Guid productid);
     Task<List<ProductPriceList>> GetPriceListByProductId(Guid productid);
-    void RemovePriceList(ProductPriceList priceList);
 }
