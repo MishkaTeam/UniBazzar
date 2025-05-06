@@ -1,45 +1,41 @@
 ﻿using Application.Aggregates.Products.ProductImages.ViewModel;
+using Domain;
 using Domain.Aggregates.Products.ProductImages;
 using Mapster;
 using Resources.Messages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Aggregates.Products;
 
-public partial class ProductsApplication
+public class ProductImagesApplication(IProductImageRepository productImageRepository, IUnitOfWork unitOfWork)
 {
     public async Task CreateProductImage(CreateProductImageViewModel viewModel)
     {
         var productImage = ProductImage.Create(viewModel.ProductId, viewModel.ImageUrl);
-        await productRepository.AddProductImage(productImage);
+        await productImageRepository.AddAsync(productImage);
         await unitOfWork.CommitAsync();
     }
 
     public async Task<ProductImageViewModel> GetProductImageAsync(Guid id)
     {
-        var productImage = await productRepository.GetProductImageAsync(id);
+        var productImage = await productImageRepository.GetByIdAsync(id);
         return productImage.Adapt<ProductImageViewModel>();
     }
 
     public async Task<List<ProductImageViewModel>> GetAllProductImagesAsync()
     {
-        var productImage = await productRepository.GetAllProductImagesAsync();
+        var productImage = await productImageRepository.GetAllAsync();
         return productImage.Adapt<List<ProductImageViewModel>>();
     }
 
     public async Task<List<ProductImageViewModel>> GetImageByProductIdAsync(Guid productid)
     {
-        var productImage = await productRepository.GetImageByProductIdAsync(productid);
+        var productImage = await productImageRepository.GetImageByProductIdAsync(productid);
         return productImage.Adapt<List<ProductImageViewModel>>();
     }
 
     public async Task<ProductImageViewModel> UpdateProductImage(ProductImageViewModel viewModel)
     {
-        var productImageForUpdate = await productRepository.GetProductImageAsync(viewModel.Id);
+        var productImageForUpdate = await productImageRepository.GetByIdAsync(viewModel.Id);
 
         if (productImageForUpdate == null || productImageForUpdate.Id == Guid.Empty)
         {
@@ -58,14 +54,14 @@ public partial class ProductsApplication
 
     public async Task DeleteImage(Guid id)
     {
-        var productImageForDelete = await productRepository.GetProductImageAsync(id);
+        var productImageForDelete = await productImageRepository.GetByIdAsync(id);
 
         if (productImageForDelete == null || productImageForDelete.Id == Guid.Empty)
         {
             throw new Exception(Errors.NotFound);
         }
 
-        productRepository.RemoveImage(productImageForDelete);
+        productImageRepository.RemoveAsync(productImageForDelete);
 
         await unitOfWork.CommitAsync();
     }

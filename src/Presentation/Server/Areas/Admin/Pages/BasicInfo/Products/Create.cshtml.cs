@@ -5,11 +5,12 @@ using Domain.Aggregates.Products.Enums;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Persistence;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products;
 
 public class CreateModel
-	(ProductsApplication productsApplication, UnitsApplication unitsApplication) : BasePageModel
+	(ProductsApplication productsApplication, UnitsApplication unitsApplication, IExecutionContextAccessor execution) : BasePageModel
 {
 	[BindProperty]
 	public CreateProductViewModel CreateViewModel { get; set; } = new();
@@ -26,7 +27,7 @@ public class CreateModel
 		if (ModelState.IsValid)
 		{
 			CreateViewModel.CategoryId = Guid.NewGuid();
-			CreateViewModel.StoreId = Guid.NewGuid();
+			CreateViewModel.StoreId = execution.StoreId;
 
 			await productsApplication.CreateProductAsync(CreateViewModel);
 		}

@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Pages
 {
-    public class ProductsModel(ProductsApplication productsApplication) : PageModel
+    public class ProductsModel(ProductsApplication productsApplication,
+                               ProductImagesApplication productImagesApplication, 
+                               ProductPriceListsApplication productPriceListsApplication) : PageModel
     {
         public List<ProductViewModel> ProductsViewModel { get; set; } = [];
         public List<ProductImageViewModel> ProductImageViewModel { get; set; } = [];
@@ -17,9 +19,9 @@ namespace Server.Pages
         {
             ProductsViewModel = await productsApplication.GetProducts();
 
-            ProductImageViewModel = await productsApplication.GetAllProductImagesAsync();
+            ProductImageViewModel = await productImagesApplication.GetAllProductImagesAsync();
 
-            ProductPriceListViewModel = await productsApplication.GetAllProductPriceListAsync();
+            ProductPriceListViewModel = await productPriceListsApplication.GetAllProductPriceListAsync();
         }
     }
 }

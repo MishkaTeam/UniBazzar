@@ -1,10 +1,8 @@
-﻿namespace Domain.Aggregates.Products.ProductImages;
+﻿using Domain.BuildingBlocks.Data;
 
-public interface IProductImageRepository
+namespace Domain.Aggregates.Products.ProductImages;
+
+public interface IProductImageRepository : IRepositoryBase<ProductImage>
 {
-    Task AddProductImage(ProductImage productImage);
-    Task<ProductImage> GetProductImageAsync(Guid id);
-    Task<List<ProductImage>> GetAllProductImagesAsync();
-    Task<List<ProductImage>> GetImageByProductIdAsync(Guid id);
-    void RemoveImage(ProductImage productImage);
+    Task<List<ProductImage>> GetImageByProductIdAsync(Guid productid);
 }

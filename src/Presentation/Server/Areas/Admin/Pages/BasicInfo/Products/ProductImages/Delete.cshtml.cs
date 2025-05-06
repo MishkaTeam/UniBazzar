@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductImages;
 
-public class DeleteModel(ProductsApplication productsApplication) : BasePageModel
+public class DeleteModel(ProductImagesApplication productsApplication) : BasePageModel
 {
     [BindProperty]
     public ProductImageViewModel ViewModel { get; set; }

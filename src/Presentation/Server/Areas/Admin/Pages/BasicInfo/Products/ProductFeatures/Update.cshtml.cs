@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductFeatures;
 
 public class UpdateModel
-	(ProductsApplication productsApplication) : BasePageModel
+	(ProductFeaturesApplication productsApplication) : BasePageModel
 {
 	[BindProperty]
 	public ProductFeatureViewModel UpdateViewModel { get; set; } = new();
