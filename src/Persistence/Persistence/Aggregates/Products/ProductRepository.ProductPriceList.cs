@@ -1,41 +1,27 @@
-﻿using Domain.Aggregates.Products.ProductPriceLists;
+﻿using BuildingBlocks.Persistence;
+using Domain.Aggregates.Products.ProductPriceLists;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Aggregates.Products;
 
-public partial class ProductRepository
+public class ProductPriceListsRepository : RepositoryBase<ProductPriceList> ,IProductPriceListRepository
 {
-    public async Task AddProductPriceList(ProductPriceList productPriceList)
+
+    private readonly UniBazzarContext _context;
+
+    public ProductPriceListsRepository(UniBazzarContext context, IExecutionContextAccessor execution) : base(context, execution)
     {
-        await uniBazzarContext.AddAsync(productPriceList);
+        _context = context;
     }
 
-    public async Task<ProductPriceList> GetProductPriceListAsync(Guid id)
+    public async Task<ProductPriceList> GetPriceByProductId(Guid productid)
     {
-
-        var productpricelist = await uniBazzarContext.ProductPriceLists.FirstOrDefaultAsync(x => x.Id == id);
+        var productpricelist = await _context.ProductPriceLists.FirstOrDefaultAsync(x => x.ProductId == productid);
         return productpricelist ?? new ProductPriceList();
     }
 
-    public Task<List<ProductPriceList>> GetAllProductPriceListAsync()
+    public async Task<List<ProductPriceList>> GetPriceListByProductId(Guid productid)
     {
-
-        return uniBazzarContext.ProductPriceLists.ToListAsync();
-    }
-
-    public async Task<ProductPriceList> GetPriceByProductId(Guid id)
-    {
-        var productpricelist = await uniBazzarContext.ProductPriceLists.FirstOrDefaultAsync(x => x.ProductId == id);
-        return productpricelist ?? new ProductPriceList();
-    }
-
-    public async Task<List<ProductPriceList>> GetPriceListByProductId(Guid id)
-    {
-        return await uniBazzarContext.ProductPriceLists.Where(x => x.ProductId == id).ToListAsync();
-    }
-
-    public void RemovePriceList(ProductPriceList productPriceList)
-    {
-        uniBazzarContext.ProductPriceLists.Remove(productPriceList);
+        return await _context.ProductPriceLists.Where(x => x.ProductId == productid).ToListAsync();
     }
 }

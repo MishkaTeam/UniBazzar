@@ -12,6 +12,8 @@ using Domain.Aggregates.Customers;
 using Domain.Aggregates.Customers.ShippingAddress;
 using Domain.Aggregates.Products;
 using Domain.Aggregates.Products.ProductFeatures;
+using Domain.Aggregates.Products.ProductImages;
+using Domain.Aggregates.Products.ProductPriceLists;
 using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
 using Domain.Aggregates.Users;
@@ -35,6 +37,9 @@ public static class DomainExtensions
         services.AddScoped<StoresApplication>();
 
         services.AddScoped<ProductsApplication>();
+        services.AddScoped<ProductImagesApplication>();
+        services.AddScoped<ProductFeaturesApplication>();
+        services.AddScoped<ProductPriceListsApplication>();
 
         services.AddScoped<UnitsApplication>();
 
@@ -58,7 +63,11 @@ public static class DomainExtensions
 
         services.AddScoped<IProductRepository, ProductRepository>();
 
-        services.AddScoped<IProductFeatureRepository, ProductRepository>();
+        services.AddScoped<IProductFeatureRepository, ProductFeaturesRepository>();
+
+        services.AddScoped<IProductPriceListRepository, ProductPriceListsRepository>();
+
+        services.AddScoped<IProductImageRepository, ProductImagesRepository>();
 
         services.AddScoped<IUnitRepository, UnitRepository>();
 

@@ -1,33 +1,21 @@
-﻿using Domain.Aggregates.Products.ProductImages;
+﻿using BuildingBlocks.Persistence;
+using Domain.Aggregates.Products.ProductImages;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Aggregates.Products;
 
-public partial class ProductRepository
+public class ProductImagesRepository : RepositoryBase<ProductImage> ,IProductImageRepository
 {
-    public async Task AddProductImage(ProductImage productImage)
+
+    private readonly UniBazzarContext _context;
+
+    public ProductImagesRepository(UniBazzarContext context, IExecutionContextAccessor execution) : base(context, execution)
     {
-        await uniBazzarContext.AddAsync(productImage);
+        _context = context;
     }
 
-    public async Task<List<ProductImage>> GetAllProductImagesAsync()
+    public async Task<List<ProductImage>> GetImageByProductIdAsync(Guid productid)
     {
-        return await uniBazzarContext.ProductImages.ToListAsync();
-    }
-
-    public async Task<List<ProductImage>> GetImageByProductIdAsync(Guid id)
-    {
-        return await uniBazzarContext.ProductImages.Where(x => x.ProductId == id).ToListAsync();
-    }
-
-    public async Task<ProductImage> GetProductImageAsync(Guid id)
-    {
-        var productimage = await uniBazzarContext.ProductImages.FirstOrDefaultAsync(x => x.Id == id);
-        return productimage ?? new ProductImage();
-    }
-
-    public void RemoveImage(ProductImage productImage)
-    {
-        uniBazzarContext.ProductImages.Remove(productImage);
+        return await _context.ProductImages.Where(x => x.ProductId == productid).ToListAsync();
     }
 }

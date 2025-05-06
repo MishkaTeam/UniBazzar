@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductPriceLists
 {
-    public class UpdateModel(ProductsApplication productsApplication) : BasePageModel
+    public class UpdateModel(ProductPriceListsApplication productsApplication) : BasePageModel
     {
         [BindProperty]
         public ProductPriceListViewModel ViewModel { get; set; } = new();

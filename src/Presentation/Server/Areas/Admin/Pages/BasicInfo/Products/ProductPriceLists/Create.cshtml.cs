@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductPriceLists;
 
-public class CreateModel(ProductsApplication productsApplication) : BasePageModel
+public class CreateModel(ProductPriceListsApplication productsApplication) : BasePageModel
 {
 
     [BindProperty]
