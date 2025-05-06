@@ -16,6 +16,8 @@ namespace Server.Areas.Pos.Components
         private CancellationTokenSource? debounceCts;
         private bool _disposed;
 
+        [Parameter]
+        public Func<Guid, Task> onSelection { get; set; } 
 
         private async Task OnInputChanged(ChangeEventArgs e)
         {
@@ -53,7 +55,7 @@ namespace Server.Areas.Pos.Components
 
             try
             {
-                
+
                 var result = await productApplication.SuggestAsync(searchText);
                 if (_disposed) return; // 🔥 خیلی مهم!!
 
@@ -91,6 +93,7 @@ namespace Server.Areas.Pos.Components
         private void SelectSuggestion(int index)
         {
             searchText = suggestions[index].ProductTitle;
+            onSelection?.Invoke(suggestions[index].ProductId);
             showSuggestions = false;
         }
 
@@ -124,6 +127,6 @@ namespace Server.Areas.Pos.Components
         }
 
 
-         
+
     }
 }
