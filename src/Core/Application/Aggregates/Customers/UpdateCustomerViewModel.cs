@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Application.Aggregates.Customer;
+namespace Application.Aggregates.Customers;
 
 public class UpdateCustomerViewModel : CreateCustomerViewModel
 {

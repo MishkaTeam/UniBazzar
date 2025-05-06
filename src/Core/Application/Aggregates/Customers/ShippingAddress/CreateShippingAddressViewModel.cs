@@ -1,7 +1,7 @@
 ﻿using Domain.Aggregates.Customers;
 using System.ComponentModel.DataAnnotations;
 
-namespace Application.Aggregates.Customer.ShippingAddress
+namespace Application.Aggregates.Customers.ShippingAddresses
 {
     public class CreateShippingAddressViewModel
     {

@@ -1,4 +1,4 @@
-using Application.Aggregates.Customer;
+using Application.Aggregates.Customers;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 

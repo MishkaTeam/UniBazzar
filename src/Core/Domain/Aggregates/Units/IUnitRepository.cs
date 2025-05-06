@@ -1,11 +1,8 @@
 ﻿
+using Domain.BuildingBlocks.Data;
+
 namespace Domain.Aggregates.Units;
 
-public interface IUnitRepository
+public interface IUnitRepository : IRepositoryBase<Unit>
 {
-    void AddUnit(Unit entity);
-	Task<List<Unit>> GetRootUnitsAsync();
-	Task<List<Unit>> GetAllUnitsAsync();
-	Task<Unit> GetUnitAsync(Guid id);
-	void Remove(Unit entity);
 }

@@ -1,4 +1,4 @@
-﻿using Application.Aggregates.Customer;
+﻿using Application.Aggregates.Customers;
 using Application.Aggregates.Users;
 using Application.ViewModels.Authentication;
 using Domain.Aggregates.Users.Enums;
