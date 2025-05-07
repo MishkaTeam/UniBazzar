@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
+@using Server.Areas.Pos.Components
 @using Server.Areas.Pos.Pages.Shared.Components.Pos
 
 
@@ -12,7 +13,8 @@
         <section class="col pt-3">
 
             <div class="row m-0">
-                <a href="pos/customers/create" class="col btn btn-primary">@(Resources.DataDictionary.CreateOf) @(Resources.DataDictionary.Customer)</a>
+
+                <CreateCustomer />
                 <a class="col btn btn-primary ms-1">فاکتور جدید</a>
                 <a class="col btn btn-primary mx-1">فاکتور های امروز</a>
                 <a class="col btn btn-primary">مدیریت</a>
