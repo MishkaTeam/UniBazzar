@@ -26,11 +26,15 @@ public class CreateCustomerViewModel
 	[Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.NationalCode))]
+    [Required
+        (AllowEmptyStrings = false,
+        ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+        ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 	[RegularExpression
 		(Constants.RegularExpression.NationalCode,
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.NationalCode))]
-	public string? NationalCode { get; set; }
+    public string? NationalCode { get; set; }
 
 	[Display
 		(ResourceType = typeof(Resources.DataDictionary),
@@ -53,7 +57,11 @@ public class CreateCustomerViewModel
 	[Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.Password))]
-	public string? Password { get; set; }
+    [Required
+        (AllowEmptyStrings = false,
+        ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+        ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+    public string? Password { get; set; }
 
 	[Display
 		(ResourceType = typeof(Resources.DataDictionary),
