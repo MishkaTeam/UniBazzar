@@ -214,11 +214,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer Information.
+        /// </summary>
+        public static string CustomerInformation {
+            get {
+                return ResourceManager.GetString("CustomerInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customers.
         /// </summary>
         public static string Customers {
             get {
                 return ResourceManager.GetString("Customers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Search....
+        /// </summary>
+        public static string CustomerSearch {
+            get {
+                return ResourceManager.GetString("CustomerSearch", resourceCulture);
             }
         }
         

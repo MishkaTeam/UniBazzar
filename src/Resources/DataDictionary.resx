@@ -354,4 +354,10 @@
   <data name="ProductSearch" xml:space="preserve">
     <value>Search In Products ...</value>
   </data>
+  <data name="CustomerSearch" xml:space="preserve">
+    <value>Customer Search...</value>
+  </data>
+  <data name="CustomerInformation" xml:space="preserve">
+    <value>Customer Information</value>
+  </data>
 </root>

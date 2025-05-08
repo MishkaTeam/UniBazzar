@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
+@using Server.Areas.Pos.Components
 @using Server.Areas.Pos.Pages.Shared.Components.Pos
 
 
@@ -12,9 +13,10 @@
         <section class="col pt-3">
 
             <div class="row m-0">
-                <a href="pos/customers/create" class="col btn btn-primary">@(Resources.DataDictionary.CreateOf) @(Resources.DataDictionary.Customer)</a>
+
+                <CreateCustomer />
                 <a class="col btn btn-primary ms-1">فاکتور جدید</a>
-                <a class="col btn btn-primary mx-1">فاکتور های امروز</a>
+                <a class="col btn btn-primary mx-1">فاکتور ها</a>
                 <a class="col btn btn-primary">مدیریت</a>
             </div>
 
@@ -36,13 +38,16 @@
                     </div>
                     <hr>
                     <div>
-                        @* <MenuItem Link="pos/#" Title="پیشخوان" Icon="bi bi-grid" IsActive="true" /> *@
+                     @* <MenuItem Link="pos/#" Title="پیشخوان" Icon="bi bi-grid" IsActive="true" />
                         <MenuItem Link="pos/#" Title="فاکتور جدید" Icon="bi bi-plus-circle" IsActive="true" />
                         <MenuItem Link="pos/customers" Title="@(Resources.DataDictionary.Customers)" Icon="bi bi bi-person" />
                         <MenuItem Link="pos/#" Title="فاکتور ها" Icon="bi bi bi-collection" />
                         <MenuItem Link="pos/#" Title="فروش های اخیر" Icon="bi bi bi-clock-history" />
                         <MenuItem Link="pos/#" Title="در انتظار پرداخت" Icon="bi bi bi-activity" />
-                        <MenuItem Link="pos/#" Title="فروش سایت" Icon="bi bi bi-globe" />
+                        <MenuItem Link="pos/#" Title="فروش سایت" Icon="bi bi bi-globe" /> *@
+
+                        <SearchCustomer />
+
                     </div>
                 </div>
                 <div>

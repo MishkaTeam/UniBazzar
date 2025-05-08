@@ -5,6 +5,7 @@ using Application.Aggregates.Products;
 using Application.Aggregates.Stores;
 using Application.Aggregates.Units;
 using Application.Aggregates.Users;
+using Application.CustomerSearch;
 using Application.ProductSearch;
 using Domain;
 using Domain.Aggregates.Categories;
@@ -17,6 +18,7 @@ using Domain.Aggregates.Products.ProductPriceLists;
 using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
 using Domain.Aggregates.Users;
+using Domain.CustomerSearch.Data;
 using Domain.ProductSearch.Data;
 using Persistence;
 using Persistence.Aggregates.Categories;
@@ -26,6 +28,7 @@ using Persistence.Aggregates.ShippingAddresses;
 using Persistence.Aggregates.Stores;
 using Persistence.Aggregates.Units;
 using Persistence.Aggregates.Users;
+using Persistence.CustomerSearch;
 using Persistence.ProductSearch;
 
 namespace Server.Infrastructure.Extensions.ServiceCollections;
@@ -47,14 +50,16 @@ public static class DomainExtensions
 
         services.AddScoped<CategoryRepository>();
 
-		    services.AddScoped<UserApplication>();
+        services.AddScoped<UserApplication>();
 
         services.AddScoped<CustomerApplication>();
 
         services.AddScoped<ShippingAddressApplication>();
 
         services.AddScoped<UserApplication>();
+
         services.AddScoped<ProductSearchApplication>();
+        services.AddScoped<CustomerSearchApplication>();
 
         return services;
     }
@@ -82,6 +87,8 @@ public static class DomainExtensions
         services.AddScoped<IUserRepository, UserRepository>();
 
         services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
+        services.AddScoped<ICustomerSearchRepository, CustomerSearchRepository>();
+
         return services;
     }
 

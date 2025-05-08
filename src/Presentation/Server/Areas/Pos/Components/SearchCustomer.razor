@@ -1,0 +1,50 @@
+﻿@using Application.CustomerSearch
+@using Domain.CustomerSearch
+@inject CustomerSearchApplication customerApplication
+@inject IJSRuntime JS
+
+
+<div class="search-box position-relative my-3 w-100 px-1">
+
+	<input class="form-control customer-search-box"
+		   value="@searchMobile"
+		   @oninput="OnInputChanged"
+		   @onfocus="ShowSuggestions"
+		   placeholder="@(Resources.DataDictionary.CustomerSearch)" />
+
+
+	@if (showSuggestions)
+	{
+		@if (suggestion == null &&
+				searchMobile.Length == Constants.FixedLength.CellPhoneNumberIran)
+		{
+			<div class="search-suggestions shadow-sm p-2" style="animation: fadeIn 0.3s ease;">
+				<div class="text-center py-2 text-muted">@(Resources.DataDictionary.NothingFound)</div>
+			</div>
+		}
+	}
+
+	<div class="mt-4">
+		<fieldset>
+			<legend class="m-0">@(Resources.DataDictionary.CustomerInformation)</legend>
+		</fieldset>
+
+		<hr class="my-2" />
+
+		<div class="mt-2">
+			<label class="form-label">@(Resources.DataDictionary.Family)</label>
+			<input class="form-control" value="@(suggestion?.LastName)" disabled />
+		</div>
+
+		<div class="mt-2">
+			<label class="form-label">@(Resources.DataDictionary.Mobile)</label>
+			<input class="form-control" value="@(suggestion?.Mobile)" disabled />
+		</div>
+
+		<div class="mt-2">
+			<label class="form-label">@(Resources.DataDictionary.NationalCode)</label>
+			<input class="form-control" value="@(suggestion?.NationalCode)" disabled />
+		</div>
+	</div>
+
+</div>

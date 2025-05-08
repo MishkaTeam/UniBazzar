@@ -354,4 +354,10 @@
   <data name="ProductSearch" xml:space="preserve">
     <value>جستجو در کالا ها</value>
   </data>
+  <data name="CustomerSearch" xml:space="preserve">
+    <value>جستجوی مشتری...</value>
+  </data>
+  <data name="CustomerInformation" xml:space="preserve">
+    <value>اطلاعات مشتری</value>
+  </data>
 </root>

@@ -1,11 +1,10 @@
-namespace Server.Areas.Pos.Pages
+namespace Server.Areas.Pos.Pages;
+
+public partial class Index
 {
-    public partial class Index
+    public Task onProductSelection(Guid productId)
     {
-        public Task onProductSelection(Guid productId)
-        {
-            Console.WriteLine(productId);
-            return Task.CompletedTask;
-        }
+        Console.WriteLine(productId);
+        return Task.CompletedTask;
     }
 }
