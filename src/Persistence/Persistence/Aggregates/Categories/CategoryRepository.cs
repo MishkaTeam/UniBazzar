@@ -1,6 +1,5 @@
 ﻿using BuildingBlocks.Persistence;
 using Domain.Aggregates.Categories;
-using Domain.Aggregates.Customers;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Extensions;
 
@@ -12,12 +11,11 @@ public class CategoryRepository
 {
     public async Task<List<Category>> GetAllWithIncludeAsync()
     {
-        return await 
-            uniBazzarContext.Categories
-            .StoreFilter(contextAccessor.StoreId)
-            .AsNoTracking()
-            .Include(x => x.Parent)
-            .ToListAsync();
+        return await uniBazzarContext.Categories
+                    .StoreFilter(contextAccessor.StoreId)
+                    .AsNoTracking()
+                    .Include(x => x.Parent)
+                    .ToListAsync();
     }
 
     public async Task<List<Category>> GetRootCategoriesAsync()
@@ -26,7 +24,9 @@ public class CategoryRepository
         var store = contextAccessor.StoreId;
 
         return await uniBazzarContext.Categories
+                    .StoreFilter(contextAccessor.StoreId)
                     .Where(x => x.ParentId == null || x.ParentId == Guid.Empty)
+                    .AsNoTracking()
                     .ToListAsync();
     }
 
