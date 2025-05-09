@@ -363,4 +363,7 @@
   <data name="CustomerInformation" xml:space="preserve">
     <value>Customer Information</value>
   </data>
+  <data name="CheckoutCounters" xml:space="preserve">
+    <value>Checkout Counters</value>
+  </data>
 </root>

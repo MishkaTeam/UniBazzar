@@ -324,6 +324,9 @@
   <data name="PriceListsOf" xml:space="preserve">
     <value>لیست قیمت های</value>
   </data>
+  <data name="Sellers" xml:space="preserve">
+    <value>فروشنده ها</value>
+  </data>
   <data name="User" xml:space="preserve">
     <value>کاربر</value>
   </data>
@@ -360,7 +363,7 @@
   <data name="CustomerInformation" xml:space="preserve">
     <value>اطلاعات مشتری</value>
   </data>
-  <data name="Sellers" xml:space="preserve">
+  <data name="CheckoutCounters" xml:space="preserve">
     <value>فروشنده ها</value>
   </data>
 </root>

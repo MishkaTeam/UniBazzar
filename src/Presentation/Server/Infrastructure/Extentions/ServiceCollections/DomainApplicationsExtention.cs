@@ -1,7 +1,7 @@
 ﻿using Application.Aggregates.Categories;
 using Application.Aggregates.CheckoutCounter;
-using Application.Aggregates.Customer;
-using Application.Aggregates.Customer.ShippingAddress;
+using Application.Aggregates.Customers;
+using Application.Aggregates.Customers.ShippingAddresses;
 using Application.Aggregates.Products;
 using Application.Aggregates.Stores;
 using Application.Aggregates.Units;
@@ -25,7 +25,7 @@ using Domain.ProductSearch.Data;
 using Persistence;
 using Persistence.Aggregates.Categories;
 using Persistence.Aggregates.CheckoutCounters;
-using Persistence.Aggregates.Customer;
+using Persistence.Aggregates.Customers;
 using Persistence.Aggregates.Products;
 using Persistence.Aggregates.ShippingAddresses;
 using Persistence.Aggregates.Stores;
