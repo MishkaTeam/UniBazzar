@@ -7,30 +7,37 @@ namespace Server.Areas.Pos.Components;
 public partial class SearchCustomer
 {
     private string searchMobile = string.Empty;
-    private bool showSuggestions = false;
+    private bool isFocus = false;
+    private bool isLoading = false;
 
     private SuggestionItem suggestion = new();
-
 
 
     private async Task OnInputChanged(ChangeEventArgs e)
     {
         searchMobile = e.Value?.ToString() ?? "";
 
-        if (searchMobile.Length == Constants.FixedLength.CellPhoneNumberIran)
+        if (searchMobile.Length != Constants.FixedLength.CellPhoneNumberIran)
         {
-            suggestion = 
-                await customerApplication.SuggestAsync(searchMobile);
-
-            if (suggestion is not null)
-            {
-                searchMobile = string.Empty;
-            }
+            suggestion = null;
 
             return;
         }
 
-        suggestion = null;
+        isLoading = true;
+
+        // Test for loading section
+        await Task.Delay(2000);
+
+        suggestion =
+            await customerApplication.SuggestAsync(searchMobile);
+
+        if (suggestion is not null)
+        {
+            searchMobile = string.Empty;
+        }
+
+        isLoading = false;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -41,15 +48,15 @@ public partial class SearchCustomer
         }
     }
 
-    private void ShowSuggestions()
+    private void OnFocus()
     {
-        showSuggestions = true;
+        isFocus = true;
     }
 
     [JSInvokable]
-    public void HideSuggestions()
+    public void LeaveFocus()
     {
-        showSuggestions = false;
+        isFocus = false;
         InvokeAsync(StateHasChanged);
     }
 
