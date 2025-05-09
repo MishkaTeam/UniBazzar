@@ -1,9 +1,9 @@
-﻿namespace Domain.Aggregates.Products.ProductFeatures;
+﻿using Domain.BuildingBlocks.Data;
 
-public interface IProductFeatureRepository
+namespace Domain.Aggregates.Products.ProductFeatures;
+
+public interface IProductFeatureRepository : IRepositoryBase<ProductFeature>
 {
-	Task AddProductFeature(ProductFeature entity);
-	Task<List<ProductFeature>> GetAllProductFeaturesAsync(Guid productId);
-	Task<ProductFeature?> GetProductFeatureAsync(Guid id);
-	void RemoveProductFeature(ProductFeature entity);
+    Task<List<ProductFeature>> GetAllProductFeaturesAsync(Guid productId);
+    Task<ProductFeature?> GetProductFeatureAsync(Guid id);
 }

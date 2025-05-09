@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductImages;
 
-public class IndexModel(ProductsApplication productsApplication) : BasePageModel
+public class IndexModel(ProductsApplication productsApplication, ProductImagesApplication productImagesApplication) : BasePageModel
 {
     public ProductViewModel ProductViewModel { get; set; } = new();
 
@@ -23,7 +23,7 @@ public class IndexModel(ProductsApplication productsApplication) : BasePageModel
 
         ProductViewModel = await productsApplication.GetProductAsync(productId);
 
-        ViewModel = await productsApplication.GetImageByProductIdAsync(productId);
+        ViewModel = await productImagesApplication.GetImageByProductIdAsync(productId);
 
         return Page();
     }

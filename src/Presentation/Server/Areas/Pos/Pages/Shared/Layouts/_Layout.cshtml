@@ -12,22 +12,41 @@
 <html lang="fa">
 
 <head>
-    <partial name="PartialViews/_MetaTags" />
-    <partial name="PartialViews/_StyleSheets" />
+	<partial name="PartialViews/_MetaTags" />
+	<partial name="PartialViews/_StyleSheets" />
 
-    <base href="/" />
+	<base href="/" />
 
-    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+	<component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
 </head>
 
 <body dir="rtl" class="bg-gray vazir-font">
 
-    @RenderBody()
+	@RenderBody()
 
-    <partial name="PartialViews/_Scripts" />
+	<partial name="PartialViews/_Scripts" />
 
-    <script src="_framework/blazor.server.js"></script>
+	<script src="_framework/blazor.server.js"></script>
 
+	<script>
+		window.addOutsideClickListener = function (dotNetHelper) {
+			document.addEventListener('click', function (e) {
+				const searchBox = document.querySelector('.search-box');
+				if (searchBox && !searchBox.contains(e.target)) {
+					dotNetHelper.invokeMethodAsync('HideSuggestions');
+				}
+			});
+		};
+
+		window.addOutsideClickListenerCustomerSearch = function (dotNetHelper) {
+			document.addEventListener('click', function (e) {
+				const searchBox = document.querySelector('.customer-search-box');
+				if (searchBox && !searchBox.contains(e.target)) {
+					dotNetHelper.invokeMethodAsync('LeaveFocus');
+				}
+			});
+		};
+	</script>
 </body>
 
 </html>

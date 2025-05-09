@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductPriceLists;
 
-public class DeleteModel(ProductsApplication productsApplication) : BasePageModel
+public class DeleteModel(ProductPriceListsApplication productsApplication) : BasePageModel
 {
     [BindProperty]
     public ProductPriceListViewModel ViewModel { get; set; } = new();

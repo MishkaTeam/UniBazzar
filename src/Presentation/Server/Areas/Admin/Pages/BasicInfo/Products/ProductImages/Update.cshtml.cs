@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductImages;
 
-public class UpdateModel(ProductsApplication productsApplication,
+public class UpdateModel(ProductImagesApplication productsApplication,
                          IWebHostEnvironment webHostEnvironment) : BasePageModel
 {
 

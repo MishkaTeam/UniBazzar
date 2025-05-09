@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductFeatures;
 
 public class IndexModel
-	(ProductsApplication productsApplication) : BasePageModel
+	(ProductsApplication productsApplication, ProductFeaturesApplication productFeaturesApplication) : BasePageModel
 {
 	public ProductViewModel ProductViewModel { get; set; } = new();
 	public List<ProductFeatureViewModel> ViewModel { get; set; } = [];
@@ -23,7 +23,7 @@ public class IndexModel
 			await productsApplication.GetProductAsync(productId);
 
 		ViewModel =
-			await productsApplication.GetProductFeatures(productId);
+			await productFeaturesApplication.GetProductFeatures(productId);
 
 		ViewModel = ViewModel.OrderByDescending(x => x.IsPinned)
 							 .ThenBy(x => x.Order)

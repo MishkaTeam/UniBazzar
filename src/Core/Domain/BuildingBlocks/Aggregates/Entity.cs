@@ -38,9 +38,9 @@ public class Entity : IEntity
 		return StoreId;
 	}
 	
-	public void SetStore(Guid StoreId)
+	public void SetStore(Guid storeId)
 	{
-		StoreId = StoreId;
+		StoreId = storeId;
 	}
 	
 	public void SetOwner(Guid ownerId)

@@ -353,5 +353,19 @@
   </data>
   <data name="User" xml:space="preserve">
     <value>User</value>
+  <data name="NothingFound" xml:space="preserve">
+    <value>Nothing Found</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Searching</value>
+  </data>
+  <data name="ProductSearch" xml:space="preserve">
+    <value>Search In Products ...</value>
+  </data>
+  <data name="CustomerSearch" xml:space="preserve">
+    <value>Customer Search...</value>
+  </data>
+  <data name="CustomerInformation" xml:space="preserve">
+    <value>Customer Information</value>
   </data>
 </root>
