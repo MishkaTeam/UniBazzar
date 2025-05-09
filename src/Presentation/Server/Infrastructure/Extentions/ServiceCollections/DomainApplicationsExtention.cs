@@ -1,4 +1,5 @@
-﻿using Application.Aggregates.Categories;
+﻿using Application.Aggregates.Branches;
+using Application.Aggregates.Categories;
 using Application.Aggregates.Customers;
 using Application.Aggregates.Customers.ShippingAddresses;
 using Application.Aggregates.Products;
@@ -6,6 +7,7 @@ using Application.Aggregates.Stores;
 using Application.Aggregates.Units;
 using Application.Aggregates.Users;
 using Domain;
+using Domain.Aggregates.branches;
 using Domain.Aggregates.Categories;
 using Domain.Aggregates.Customers;
 using Domain.Aggregates.Customers.ShippingAddresses;
@@ -15,6 +17,7 @@ using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
 using Domain.Aggregates.Users;
 using Persistence;
+using Persistence.Aggregates.Branches;
 using Persistence.Aggregates.Categories;
 using Persistence.Aggregates.Customers;
 using Persistence.Aggregates.Products;
@@ -45,6 +48,8 @@ public static class DomainExtensions
 
 		services.AddScoped<UserApplication>();
 
+		services.AddScoped<BranchesApplication>();
+
 		return services;
 	}
 
@@ -65,6 +70,8 @@ public static class DomainExtensions
 		services.AddScoped<IShippingAddressRepository, ShippingAddressRepository>();
 
 		services.AddScoped<IUserRepository, UserRepository>();
+
+		services.AddScoped<IbranchRepository, BranchRepository>();
 
 		return services;
 	}
