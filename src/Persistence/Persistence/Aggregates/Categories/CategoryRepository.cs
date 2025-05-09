@@ -1,6 +1,5 @@
 ﻿using BuildingBlocks.Persistence;
 using Domain.Aggregates.Categories;
-using Domain.Aggregates.Customers;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Extensions;
 
