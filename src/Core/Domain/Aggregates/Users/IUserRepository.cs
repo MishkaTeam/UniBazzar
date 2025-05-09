@@ -1,17 +1,12 @@
 ﻿
 using Domain.Aggregates.Customers;
+using Domain.BuildingBlocks.Data;
 
 namespace Domain.Aggregates.Users
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepositoryBase<User>
     {
-        void AddUser(User entity);
-        Task<List<User>> GetAllUsersAsync();
-        Task<User> GetUserAsync(Guid id);
-        Task<User> GetRootUsersAsync(Guid id);
-        void Remove(User entity);
         Task<User> GetUserWithMobile(string userName);
         Task<User> GetUserWithUserName(string userName);
-
     }
 }

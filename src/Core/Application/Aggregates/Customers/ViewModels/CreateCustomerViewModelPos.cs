@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Reflection.Metadata;
 
-namespace Application.Aggregates.Customer.ViewModels;
+namespace Application.Aggregates.Customers.ViewModels;
 
 public class CreateCustomerViewModelPos
 {

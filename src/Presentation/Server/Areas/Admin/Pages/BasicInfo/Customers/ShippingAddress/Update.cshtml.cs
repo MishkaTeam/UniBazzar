@@ -1,4 +1,4 @@
-using Application.Aggregates.Customer.ShippingAddress;
+using Application.Aggregates.Customers.ShippingAddresses;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 

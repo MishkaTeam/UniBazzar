@@ -15,7 +15,7 @@ public class CategoriesApplication
         var category = Category.Create
             (viewModel.Name, viewModel.ParentId, viewModel.IconClass);
 
-        await categoryRepository.AddCategoryAsync(category);
+        await categoryRepository.AddAsync(category);
         await unitOfWork.CommitAsync();
 
         return category.Adapt<CategoryViewModel>();
@@ -24,7 +24,7 @@ public class CategoriesApplication
     public async Task<CategoryViewModel> UpdateCategoryAsync(CategoryViewModel updateViewModel)
     {
         var categoryForUpdate =
-            await categoryRepository.GetCategoryAsync(updateViewModel.Id);
+            await categoryRepository.GetByIdAsync(updateViewModel.Id);
 
         if (categoryForUpdate == null || categoryForUpdate.Id == Guid.Empty)
         {
@@ -44,7 +44,7 @@ public class CategoriesApplication
     public async Task<List<CategoryViewModel>> GetCategoriesAsync()
     {
         var categories =
-            await categoryRepository.GetAllCategoriesAsync();
+            await categoryRepository.GetAllWithIncludeAsync();
 
         return categories.Adapt<List<CategoryViewModel>>();
     }
@@ -66,7 +66,7 @@ public class CategoriesApplication
     public async Task<CategoryViewModel> GetCategoryAsync(Guid id)
     {
         var category =
-            await categoryRepository.GetCategoryAsync(id);
+            await categoryRepository.GetByIdAsync(id);
 
         return category?.Adapt<CategoryViewModel>();
     }
@@ -88,7 +88,7 @@ public class CategoriesApplication
     public async Task DeleteCategoryAsync(Guid id)
     {
         var categoryForDelete =
-            await categoryRepository.GetCategoryAsync(id);
+            await categoryRepository.GetByIdAsync(id);
 
         if (categoryForDelete == null || categoryForDelete.Id == Guid.Empty)
         {
@@ -98,7 +98,7 @@ public class CategoriesApplication
             throw new Exception(message);
         }
 
-        categoryRepository.RemoveCategory(categoryForDelete);
+        await categoryRepository.RemoveAsync(categoryForDelete);
         await unitOfWork.CommitAsync();
     }
 
@@ -108,6 +108,7 @@ public class CategoriesApplication
         return await MapToMenuViewModel(rootCategories);
     }
 
+    
     private async Task<List<MenuCategoryViewModel>> MapToMenuViewModel(List<Category> categories)
     {
         var viewModels = new List<MenuCategoryViewModel>();

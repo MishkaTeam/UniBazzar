@@ -1,7 +1,7 @@
 ﻿using Domain.Aggregates.Categories;
 using Domain.Aggregates.CheckoutCounter;
 using Domain.Aggregates.Customers;
-using Domain.Aggregates.Customers.ShippingAddress;
+using Domain.Aggregates.Customers.ShippingAddresses;
 using Domain.Aggregates.Products;
 using Domain.Aggregates.Products.ProductFeatures;
 using Domain.Aggregates.Products.ProductImages;

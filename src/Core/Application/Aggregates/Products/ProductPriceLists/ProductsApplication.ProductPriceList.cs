@@ -1,46 +1,47 @@
 ﻿using Application.Aggregates.Products.ProductPriceLists.ViewModels;
+using Domain;
 using Domain.Aggregates.Products.ProductPriceLists;
 using Mapster;
 using Resources.Messages;
 
 namespace Application.Aggregates.Products;
 
-public partial class ProductsApplication
+public class ProductPriceListsApplication(IProductPriceListRepository productPriceList ,IUnitOfWork unitOfWork)
 {
     public async Task CreateProductPriceList(CreateProductPriceListViewModel viewModel)
     {
         var productpricelist = ProductPriceList.Create(viewModel.ProductId, viewModel.Price);
-        await productRepository.AddProductPriceList(productpricelist);
+        await productPriceList.AddAsync(productpricelist);
         await unitOfWork.CommitAsync();
     }
 
     public async Task<ProductPriceListViewModel> GetProductPriceListAsync(Guid id)
     {
-        var productpricelist = await productRepository.GetProductPriceListAsync(id);
+        var productpricelist = await productPriceList.GetByIdAsync(id);
         return productpricelist.Adapt<ProductPriceListViewModel>();
     }
 
     public async Task<List<ProductPriceListViewModel>> GetAllProductPriceListAsync()
     {
-        var productpricelist = await productRepository.GetAllProductPriceListAsync();
+        var productpricelist = await productPriceList.GetAllAsync();
         return productpricelist.Adapt<List<ProductPriceListViewModel>>();
     }
 
     public async Task<ProductPriceListViewModel> GetPriceByProductId(Guid productid)
     {
-        var productpricelist = await productRepository.GetPriceByProductId(productid);
+        var productpricelist = await productPriceList.GetPriceByProductId(productid);
         return productpricelist.Adapt<ProductPriceListViewModel>();
     }
 
     public async Task<List<ProductPriceListViewModel>> GetPriceListByProductId(Guid productid)
     {
-        var productpricelist = await productRepository.GetPriceListByProductId(productid);
+        var productpricelist = await productPriceList.GetPriceListByProductId(productid);
         return productpricelist.Adapt<List<ProductPriceListViewModel>>();
     }
 
     public async Task<ProductPriceListViewModel> UpdatePriceList(ProductPriceListViewModel model)
     {
-        var productpricelistForUpdate = await productRepository.GetProductPriceListAsync(model.Id);
+        var productpricelistForUpdate = await productPriceList.GetByIdAsync(model.Id);
 
         if (productpricelistForUpdate == null || productpricelistForUpdate.Id == Guid.Empty)
         {
@@ -60,14 +61,14 @@ public partial class ProductsApplication
 
     public async Task DeleteProductPriceList(Guid id)
     {
-        var productpricelistForDelete = await productRepository.GetProductPriceListAsync(id);
+        var productpricelistForDelete = await productPriceList.GetByIdAsync(id);
 
         if (productpricelistForDelete == null || productpricelistForDelete.Id == Guid.Empty)
         {
             throw new Exception(Errors.NotFound);
         }
 
-        productRepository.RemovePriceList(productpricelistForDelete);
+        productPriceList.RemoveAsync(productpricelistForDelete);
 
         await unitOfWork.CommitAsync();
     }

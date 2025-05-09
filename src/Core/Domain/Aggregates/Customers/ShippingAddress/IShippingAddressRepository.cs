@@ -1,12 +1,8 @@
-﻿using Domain.Aggregates.Customers;
+﻿using Domain.BuildingBlocks.Data;
 
-namespace Domain.Aggregates.Customers.ShippingAddress
+namespace Domain.Aggregates.Customers.ShippingAddresses;
+
+public interface IShippingAddressRepository : IRepositoryBase<ShippingAddress>
 {
-   public  interface IShippingAddressRepository
-    {
-        void AddShippingAddress(ShippingAddress entity);
         Task<List<ShippingAddress>> GetAllShippingAddressAsync(Guid customerId);
-        Task<ShippingAddress> GetShippingAddressAsync(Guid id);
-        void Remove(ShippingAddress entity);
-    }
 }
