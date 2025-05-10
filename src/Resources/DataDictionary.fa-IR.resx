@@ -324,8 +324,8 @@
   <data name="PriceListsOf" xml:space="preserve">
     <value>لیست قیمت های</value>
   </data>
-  <data name="User" xml:space="preserve">
-    <value>کاربر</value>
+  <data name="Users" xml:space="preserve">
+    <value>کاربرها</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>نام کاربری</value>
@@ -344,6 +344,15 @@
   </data>
   <data name="Customer" xml:space="preserve">
     <value>مشتری</value>
+  </data>
+  <data name="Branch" xml:space="preserve">
+    <value>شعبه</value>
+  </data>
+  <data name="Branches" xml:space="preserve">
+    <value>شعبه ها</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>کاربر</value>
   </data>
   <data name="NothingFound" xml:space="preserve">
     <value>هیج موردی پیدا نشد...</value>

@@ -178,13 +178,13 @@
     <value>Update in offline mode is not avaliable</value>
   </data>
   <data name="OptimisticConcurrency" xml:space="preserve">
-    <value>Your changes have not been saved. Another user has updated the data since you retrieved it. Please refresh and try again.</value>
+    <value>Your changes have not been saved. Another User has updated the data since you retrieved it. Please refresh and try again.</value>
   </data>
   <data name="TenantIdNotFound" xml:space="preserve">
     <value>Tenant Id Not Found!</value>
   </data>
   <data name="TenantIsNotMultiUser" xml:space="preserve">
-    <value>Tenant Is not multi user!</value>
+    <value>Tenant Is not multi User!</value>
   </data>
   <data name="ThereIsNotAnyDataWithThisId" xml:space="preserve">
     <value>There is not any data with this id!</value>

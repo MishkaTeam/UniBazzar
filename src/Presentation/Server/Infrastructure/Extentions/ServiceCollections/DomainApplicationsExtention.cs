@@ -1,4 +1,5 @@
-﻿using Application.Aggregates.Categories;
+using Application.Aggregates.Branches;
+using Application.Aggregates.Categories;
 using Application.Aggregates.Customers;
 using Application.Aggregates.Customers.ShippingAddresses;
 using Application.Aggregates.Products;
@@ -8,6 +9,7 @@ using Application.Aggregates.Users;
 using Application.CustomerSearch;
 using Application.ProductSearch;
 using Domain;
+using Domain.Aggregates.branches;
 using Domain.Aggregates.Categories;
 using Domain.Aggregates.Customers;
 using Domain.Aggregates.Customers.ShippingAddresses;
@@ -21,6 +23,7 @@ using Domain.Aggregates.Users;
 using Domain.CustomerSearch.Data;
 using Domain.ProductSearch.Data;
 using Persistence;
+using Persistence.Aggregates.Branches;
 using Persistence.Aggregates.Categories;
 using Persistence.Aggregates.Customers;
 using Persistence.Aggregates.Products;
@@ -37,7 +40,13 @@ public static class DomainExtensions
 {
     public static IServiceCollection AddDomainApplications(this IServiceCollection services)
     {
+        services.AddScoped<UserApplication>();
+
         services.AddScoped<StoresApplication>();
+        services.AddScoped<BranchesApplication>();
+
+        services.AddScoped<CustomerApplication>();
+        services.AddScoped<ShippingAddressApplication>();
 
         services.AddScoped<ProductsApplication>();
         services.AddScoped<ProductImagesApplication>();
@@ -50,13 +59,6 @@ public static class DomainExtensions
 
         services.AddScoped<CategoryRepository>();
 
-        services.AddScoped<UserApplication>();
-
-        services.AddScoped<CustomerApplication>();
-
-        services.AddScoped<ShippingAddressApplication>();
-
-        services.AddScoped<UserApplication>();
 
         services.AddScoped<ProductSearchApplication>();
         services.AddScoped<CustomerSearchApplication>();
@@ -66,25 +68,23 @@ public static class DomainExtensions
 
     public static IServiceCollection AddDomainRepositories(this IServiceCollection services)
     {
+        services.AddScoped<IUserRepository, UserRepository>();
+
         services.AddScoped<IStoreRepository, StoreRepository>();
+        services.AddScoped<IbranchRepository, BranchRepository>();
+
+        services.AddScoped<ICustomerRepository, CustomerRepository>();
+        services.AddScoped<IShippingAddressRepository, ShippingAddressRepository>();
 
         services.AddScoped<IProductRepository, ProductRepository>();
-
         services.AddScoped<IProductFeatureRepository, ProductFeaturesRepository>();
-
         services.AddScoped<IProductPriceListRepository, ProductPriceListsRepository>();
-
         services.AddScoped<IProductImageRepository, ProductImagesRepository>();
 
         services.AddScoped<IUnitRepository, UnitRepository>();
 
         services.AddScoped<ICategoryRepository, CategoryRepository>();
 
-        services.AddScoped<ICustomerRepository, CustomerRepository>();
-
-        services.AddScoped<IShippingAddressRepository, ShippingAddressRepository>();
-
-        services.AddScoped<IUserRepository, UserRepository>();
 
         services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
         services.AddScoped<ICustomerSearchRepository, CustomerSearchRepository>();

@@ -124,6 +124,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to branch.
+        /// </summary>
+        public static string Branch {
+            get {
+                return ResourceManager.GetString("Branch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to branches.
+        /// </summary>
+        public static string Branches {
+            get {
+                return ResourceManager.GetString("Branches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categories.
         /// </summary>
         public static string Categories {
@@ -763,7 +781,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to user.
+        ///   Looks up a localized string similar to User.
         /// </summary>
         public static string User {
             get {
@@ -772,11 +790,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to username.
+        ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string UserName {
             get {
                 return ResourceManager.GetString("UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users.
+        /// </summary>
+        public static string Users {
+            get {
+                return ResourceManager.GetString("Users", resourceCulture);
             }
         }
         
