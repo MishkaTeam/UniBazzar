@@ -36,6 +36,19 @@
 
             <ub-full-select asp-for="CreateViewModel.ProductType" asp-items="Model.ProductTypeList" />
 
+            <label class="form-label">@(Resources.DataDictionary.Category)</label>
+            <select class="form-control mb-3">
+                <optgroup label="1">
+                    <option>asd</option>
+                </optgroup>
+                <optgroup label="2">
+                    <option>fds</option>
+                </optgroup>
+                <optgroup label="3">
+                    <option>rs</option>
+                </optgroup>
+            </select>
+
             <ub-full-input asp-for="CreateViewModel.DownloadUrl" />
 
         </fieldset>
