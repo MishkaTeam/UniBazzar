@@ -26,13 +26,18 @@
 
                         var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
 
-                        decimal price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
+                        decimal price = 0;
+
+                        if (pricelist is not null)
+                        {
+                            price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
+                        }
                     }
 
                     @* //Products *@
                     <div class="col">
                         @* ProductBox *@ 
-                                <div class="encrypt263156">
+                                    <div class="encrypt263156">
                             @if (image != null)
                             {
                                 <a asp-page="/Product" asp-route-id="@(item.Id)"><div class="image" style="background-image: url('/ProductImage/@(image.ImageUrl)')"></div></a>
@@ -76,8 +81,12 @@
                         var image = Model.ProductImageViewModel.FirstOrDefault(x => x.ProductId == item.Id);
 
                         var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
+                        decimal price = 0;
 
-                        decimal price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
+                        if (pricelist is not null)
+                        {
+                            price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
+                        }
                     }
                     <div class="encrypt263156">
                         @if (image != null)
@@ -88,7 +97,7 @@
                         {
                             <a asp-page="/Product" asp-route-id="@(item.Id)"><div class="image" style="background-image: url('/images/download.png')"></div></a>
                         }
-                       
+
                         <div class="details p-3">
                             <div class="category">
                                 <a asp-page="/Products">گوشی موبایل</a>
@@ -121,8 +130,12 @@
                         var image = Model.ProductImageViewModel.FirstOrDefault(x => x.ProductId == item.Id);
 
                         var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
+                        decimal price = 0;
 
-                        decimal price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
+                        if (pricelist is not null)
+                        {
+                            price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
+                        }
                     }
                     <div class="encrypt263156">
                         @if (image != null)
