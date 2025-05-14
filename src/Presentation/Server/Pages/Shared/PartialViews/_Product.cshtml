@@ -106,8 +106,7 @@
                                 @{
                                     decimal price = decimal.Parse(Model.ViewModelProductPrice.Price.ToString(), System.Globalization.NumberStyles.Currency);
                                 }
-                                <span class="price">@(price.ToString("#,#")) <span>تومان</span></span>
-                                <div class="badge badge-danger font-weight-light m-1 py-1 px-2">10%</div>
+                                <span class="price">@(price.ToString("#,#")) <span>تومان</span></span> 
                             </div>
                             <p>
                                 @(Model.ViewModelProduct.ShortDescription)

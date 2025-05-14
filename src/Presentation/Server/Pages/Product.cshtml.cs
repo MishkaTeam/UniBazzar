@@ -3,6 +3,7 @@ using Application.Aggregates.Products.ProductFeatures.ViewModels;
 using Application.Aggregates.Products.ProductImages.ViewModel;
 using Application.Aggregates.Products.ProductPriceLists.ViewModels;
 using Application.Aggregates.Products.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Pages;
@@ -18,14 +19,21 @@ public class ProductModel(ProductsApplication productsApplication,
     public List<ProductFeatureViewModel> ViewModelProductFeature { get; set; }
     public ProductPriceListViewModel ViewModelProductPrice { get; set; }
 
-    public async Task OnGetAsync(Guid id)
+    public async Task<IActionResult> OnGetAsync(Guid? id)
     {
-        ViewModelProduct = await productsApplication.GetProductAsync(id);
+        if (id.HasValue == false || id.Value == Guid.Empty)
+        {
+            return RedirectToPage("Index");
+        }
 
-        ViewModelProductImage = await productImagesApplication.GetImageByProductIdAsync(id);
+        ViewModelProduct = await productsApplication.GetProductAsync(id.Value);
 
-        ViewModelProductFeature = await productFeaturesApplication.GetProductFeatures(id);
+        ViewModelProductImage = await productImagesApplication.GetImageByProductIdAsync(id.Value);
 
-        ViewModelProductPrice = await productPriceListsApplication.GetPriceByProductId(id);
+        ViewModelProductFeature = await productFeaturesApplication.GetProductFeatures(id.Value);
+
+        ViewModelProductPrice = await productPriceListsApplication.GetPriceByProductId(id.Value);
+
+        return Page();
     }
 }
