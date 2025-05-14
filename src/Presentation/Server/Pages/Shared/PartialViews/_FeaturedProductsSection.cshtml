@@ -37,10 +37,18 @@
                     @* //Products *@
                     <div class="col">
                         @* ProductBox *@ 
-                                    <div class="encrypt263156">
+                                            <div class="encrypt263156">
                             @if (image != null)
                             {
-                                <a asp-page="/Product" asp-route-id="@(item.Id)"><div class="image" style="background-image: url('/ProductImage/@(image.ImageUrl)')"></div></a>
+                                <a asp-page="/Product" asp-route-id="@(item.Id)">
+                                    <div class="">
+                                        <div class="overflow-hidden d-flex justify-content-center p-1">
+                                            <div class="overflow-hidden d-flex justify-content-center w-100 rounded-bottom rounded-3 bg-black">
+                                                <img src="/ProductImage/@(image.ImageUrl)" style="height: 200px;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
                             }
                             else
                             {
