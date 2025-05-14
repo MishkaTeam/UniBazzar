@@ -243,7 +243,12 @@
 
                                             var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
 
-                                            decimal price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
+                                            decimal price = 0;
+
+                                            if (pricelist is not null)
+                                            {
+                                                price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
+                                            }
 
                                             //Products
                                             <div class="col">
