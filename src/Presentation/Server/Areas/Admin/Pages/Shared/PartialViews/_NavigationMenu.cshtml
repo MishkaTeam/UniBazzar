@@ -27,6 +27,13 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" asp-page="/BasicInfo/Branch/Index" asp-area="Admin">
+                <svg class="nav-icon">
+                    <use xlink:href="/admin/vendors/coreui/icons/svg/free.svg#cil-drop"></use>
+                </svg> @(Resources.DataDictionary.Branches)
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" asp-page="/BasicInfo/Units/Index" asp-area="Admin">
                 <svg class="nav-icon">
                     <use xlink:href="/admin/vendors/coreui/icons/svg/free.svg#cil-drop"></use>
@@ -54,7 +61,7 @@
         <li class="nav-item">
             <a class="nav-link" asp-page="/BasicInfo/Users/Index" asp-area="Admin">
                 <i class="nav-icon bi bi-person"></i>
-                @(Resources.DataDictionary.User)
+                @(Resources.DataDictionary.Users)
             </a>
         </li>
     </ul>

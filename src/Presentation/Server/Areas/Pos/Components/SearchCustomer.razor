@@ -4,25 +4,39 @@
 @inject IJSRuntime JS
 
 
-<div class="search-box position-relative my-3 w-100 px-1">
+<section>
+	<div class="search-box position-relative my-3 w-100 px-1">
 
-	<input class="form-control customer-search-box"
-		   value="@searchMobile"
-		   @oninput="OnInputChanged"
-		   @onfocus="ShowSuggestions"
-		   placeholder="@(Resources.DataDictionary.CustomerSearch)" />
+		<div class="input-group mb-3">
+			<input class="form-control customer-search-box"
+				   value="@searchMobile"
+				   maxlength="@(Constants.FixedLength.CellPhoneNumberIran)"
+				   placeholder="@(Resources.DataDictionary.CustomerSearch)"
+				   @oninput="OnInputChanged"
+				   @onfocus="OnFocus" />
 
+			@if (isLoading)
+			{
+				<span class="input-group-text">
+					<span class="spinner-border spinner-border-sm text-primary"></span>
+				</span>
+			}
+		</div>
 
-	@if (showSuggestions)
-	{
-		@if (suggestion == null &&
-				searchMobile.Length == Constants.FixedLength.CellPhoneNumberIran)
+		@if (isFocus)
 		{
-			<div class="search-suggestions shadow-sm p-2" style="animation: fadeIn 0.3s ease;">
-				<div class="text-center py-2 text-muted">@(Resources.DataDictionary.NothingFound)</div>
-			</div>
+			@if (isLoading is false &&
+					suggestion == null &&
+					searchMobile.Length == Constants.FixedLength.CellPhoneNumberIran)
+			{
+				<div class="search-suggestions shadow-sm p-2" style="animation: fadeIn 0.3s ease;">
+					<div class="text-center py-2 text-muted">@(Resources.DataDictionary.NothingFound)</div>
+					<CreateCustomer Class="w-100" />
+				</div>
+			}
 		}
-	}
+
+	</div>
 
 	<div class="mt-4">
 		<fieldset>
@@ -46,5 +60,4 @@
 			<input class="form-control" value="@(suggestion?.NationalCode)" disabled />
 		</div>
 	</div>
-
-</div>
+</section>

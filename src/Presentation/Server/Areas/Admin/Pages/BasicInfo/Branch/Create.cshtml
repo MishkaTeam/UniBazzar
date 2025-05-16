@@ -1,0 +1,28 @@
+﻿@page
+@model Server.Areas.Admin.Pages.BasicInfo.Branch.CreateModel
+@{
+    var pageTitle =
+    $"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.Branches}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+<form method="post">
+
+    <section-form>
+        <fieldset>
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+            <ub-full-input asp-for="BranchViewModel.Name" />
+        </fieldset>
+
+        <section-form-buttons>
+            <button-create />
+            <button-reset />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>

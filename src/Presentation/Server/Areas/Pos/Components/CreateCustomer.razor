@@ -9,7 +9,7 @@
 @inject IJSRuntime JS
 
 
-<button type="button" class="col btn btn-primary" data-bs-toggle="modal" data-bs-target="#@(CreateCustomerModelId)">@(Resources.DataDictionary.CreateOf) @(Resources.DataDictionary.Customer)</button>
+<button type="button" class="col btn btn-primary @(Class ?? "")" data-bs-toggle="modal" data-bs-target="#@(CreateCustomerModelId)">@(Resources.DataDictionary.CreateOf) @(Resources.DataDictionary.Customer)</button>
 
 <div class="modal fade" id="@(CreateCustomerModelId)" tabindex="-1" aria-labelledby="createCustomerModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
@@ -54,6 +54,9 @@
 
 
 @code {
+
+	[Parameter]
+	public string? Class { get; set; }
 
 	private CreateCustomerViewModelPos CreateViewModel { get; set; } = new();
 
@@ -114,6 +117,8 @@
 
 	private async Task CloseModalAsync()
 	{
+		CreateViewModel = new();
+
 		await JS.InvokeVoidAsync("hideModal", CreateCustomerModelId);
 	}
 

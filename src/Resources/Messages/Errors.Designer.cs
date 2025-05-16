@@ -241,7 +241,7 @@ namespace Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your changes have not been saved. Another user has updated the data since you retrieved it. Please refresh and try again..
+        ///   Looks up a localized string similar to Your changes have not been saved. Another User has updated the data since you retrieved it. Please refresh and try again..
         /// </summary>
         public static string OptimisticConcurrency {
             get {
@@ -259,7 +259,7 @@ namespace Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tenant Is not multi user!.
+        ///   Looks up a localized string similar to Tenant Is not multi User!.
         /// </summary>
         public static string TenantIsNotMultiUser {
             get {

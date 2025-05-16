@@ -42,7 +42,7 @@
 			document.addEventListener('click', function (e) {
 				const searchBox = document.querySelector('.customer-search-box');
 				if (searchBox && !searchBox.contains(e.target)) {
-					dotNetHelper.invokeMethodAsync('HideSuggestions');
+					dotNetHelper.invokeMethodAsync('LeaveFocus');
 				}
 			});
 		};
