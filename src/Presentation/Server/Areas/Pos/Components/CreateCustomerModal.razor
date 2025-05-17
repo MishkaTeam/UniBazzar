@@ -1,0 +1,114 @@
+﻿@using Application.Aggregates.Customers
+@using Application.Aggregates.Customers.ViewModels
+@using Framework.DataType
+@using Resources
+@using Resources.Messages
+
+@inject CustomerApplication CustomerApplication
+
+
+<EditForm EditContext="Context" OnValidSubmit="() => OnValidSubmit()">
+	<DataAnnotationsValidator />
+
+	<div class="modal-body">
+		<div class="">
+
+			<div class="mb-3">
+				<label class="form-label" for="@(nameof(CreateViewModel.LastName))">@(Resources.DataDictionary.Family)</label>
+				<InputText class="form-control" id="@(nameof(CreateViewModel.LastName))" @bind-Value="CreateViewModel.LastName" />
+				<ValidationMessage class="text-danger" For="() => CreateViewModel.LastName" />
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label" for="@(nameof(CreateViewModel.Mobile))">@(Resources.DataDictionary.Mobile)</label>
+				<InputText class="form-control" id="@(nameof(CreateViewModel.Mobile))" @bind-Value="CreateViewModel.Mobile" />
+				<ValidationMessage class="text-danger" For="() => CreateViewModel.Mobile" />
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label" for="@(nameof(CreateViewModel.NationalCode))">@(Resources.DataDictionary.NationalCode)</label>
+				<InputText class="form-control" id="@(nameof(CreateViewModel.NationalCode))" @bind-Value="CreateViewModel.NationalCode" />
+				<ValidationMessage class="text-danger" For="() => CreateViewModel.NationalCode" />
+			</div>
+
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button @onclick="() => OnSubmit()" class="btn btn-primary" type="submit"><i class="mx-1 bi bi-plus-square"></i>@(Resources.ButtonCaptions.Create)</button>
+		<button class="btn btn-secondary" type="reset"><i class="mx-1 bi bi-repeat"></i>@(Resources.ButtonCaptions.Reset)</button>
+	</div>
+
+</EditForm>
+
+
+@code {
+
+	[Parameter]
+	public string? Mobile { get; set; }
+
+	[Parameter]
+	public EventCallback<string> OnValidSubmitCallback { get; set; }
+
+	private CreateCustomerViewModelPos CreateViewModel { get; set; }
+	private EditContext Context { get; set; }
+	private ValidationMessageStore MessageStore { get; set; }
+
+	private bool nationalCodeIsValid = true;
+
+
+	protected override void OnParametersSet()
+	{
+		ResetForm();
+
+		CreateViewModel.Mobile = Mobile!;
+	}
+
+	private void OnSubmit()
+	{
+		MessageStore.Clear();
+
+		// Can't use Regex for validate [NationalCode] field.
+		if (CreateViewModel.NationalCode?.IsValidNationalCode() == false &&
+			CreateViewModel.NationalCode.Length == Constants.FixedLength.NationalCode)
+		{
+			var message =
+				string.Format(Validations.NationalCode, DataDictionary.NationalCode);
+
+			MessageStore.Add(() => CreateViewModel.NationalCode, message);
+			Context.NotifyValidationStateChanged();
+
+			nationalCodeIsValid = false;
+
+			return;
+		}
+
+		if (string.IsNullOrWhiteSpace(CreateViewModel.NationalCode) == true)
+		{
+			CreateViewModel.NationalCode = null;
+		}
+
+		nationalCodeIsValid = true;
+	}
+
+	private async Task OnValidSubmit()
+	{
+		if (nationalCodeIsValid == false)
+		{
+			return;
+		}
+
+		await CustomerApplication.CreateAsync(CreateViewModel);
+
+		await OnValidSubmitCallback.InvokeAsync(CreateViewModel.Mobile);
+
+		ResetForm();
+	}
+
+	private void ResetForm()
+	{
+		CreateViewModel = new();
+		Context = new(CreateViewModel);
+		MessageStore = new(Context);
+	}
+
+}

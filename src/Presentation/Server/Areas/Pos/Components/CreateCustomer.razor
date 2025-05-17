@@ -14,7 +14,7 @@
 <div class="modal fade" id="@(CreateCustomerModelId)" tabindex="-1" aria-labelledby="createCustomerModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<EditForm EditContext="Context" OnValidSubmit="() => OnValidSubmit()" on>
+			<EditForm EditContext="Context" OnValidSubmit="() => OnValidSubmit()">
 				<DataAnnotationsValidator />
 				<div class="modal-header">
 					<h1 class="modal-title fs-5" id="createCustomerModalLabel">@(Resources.DataDictionary.CreateOf) @(Resources.DataDictionary.Customer)</h1>
