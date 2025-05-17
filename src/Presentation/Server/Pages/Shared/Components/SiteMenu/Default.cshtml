@@ -1,0 +1,31 @@
+﻿@using Application.Aggregates.Categories.ViewModels
+@model List<MenuCategoryViewModel>
+
+@{
+}
+
+
+@foreach (var item in Model)
+{
+	<div class="encrypt111212132" id="droopmenutab12">
+		<a class="droopmenu-tabencrypt231432" href="#">@(item.Name)</a>
+		<div class="unibazzar-main">
+			<div class="droopmenu-row">
+
+				@foreach (var chunk in item.ChildCategories.Chunk(3))
+				{
+					<ul class="droopmenu-col droopmenu-col4">
+						@foreach (var item1 in chunk)
+						{
+							<li><h4>@(item1.Name)</h4></li>
+							@foreach (var item2 in item1.ChildCategories)
+							{
+								<li><a asp-page="/Products">@(item2.Name)</a></li>
+							}
+						}
+					</ul>
+				}
+			</div>
+		</div>
+	</div>
+}

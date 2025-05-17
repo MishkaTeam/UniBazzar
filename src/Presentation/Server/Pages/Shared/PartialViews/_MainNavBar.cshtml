@@ -18,33 +18,7 @@
                                             <a href="#" aria-expanded="false"><i class="fa fa-bars"></i>&nbsp;&nbsp;گروه های محصولات<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
                                             <ul class="droopmenu-grid droopmenu-grid-9">
                                                 <li class="droopmenu-tabs droopmenu-tabs-vertical">
-                                                    @* @foreach (var item in Model.MenuCategory)
-                                                    {
-                                                        <div class="encrypt111212132" id="droopmenutab12">
-                                                            <a class="droopmenu-tabencrypt231432" href="#">@(item.Name)</a>
-                                                            <div class="unibazzar-main">
-                                                                <div class="droopmenu-row">
-                                                                    
-                                                                    @foreach (var chunk in item.ChildCategories.Chunk(3))
-                                                                    {
-                                                                        <ul class="droopmenu-col droopmenu-col4">
-                                                                            @foreach (var item1 in chunk)
-                                                                            {
-                                                                                <li><h4>@(item1.Name)</h4></li>
-                                                                                @foreach (var item2 in item1.ChildCategories)
-                                                                                {
-                                                                                    <li><a asp-page="/Products">@(item2.Name)</a></li>
-                                                                                }
-                                                                            }
-                                                                        </ul>
-                                                                    }
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    } *@
-
-                                                    
-
+                                                    @await Component.InvokeAsync("SiteMenu")                                                  
                                                 </li>
                                             </ul>
                                         </li>
