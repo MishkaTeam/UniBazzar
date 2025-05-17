@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Server.Pages
+namespace Server.Pages.Blog
 {
-    public class CompareModel : PageModel
+    public class BlogModel : PageModel
     {
         public void OnGet()
         {
