@@ -243,19 +243,24 @@
 
                                             var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
 
-                                            decimal price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
+                                            decimal price = 0;
 
-                                            @* Products *@
+                                            if (pricelist is not null)
+                                            {
+                                                price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
+                                            }
+
+                                            //Products
                                             <div class="col">
-                                                @* Product Box *@
+                                                @* ProductBox *@ 
                                                 <div class="encrypt263156">
                                                     @if (image != null)
                                                     {
-                                                        <a asp-page="/Product"><div class="image" style="background-image: url('/ProductImage/@(image.ImageUrl)')"></div></a>
+                                                        <a asp-page="/Product" asp-route-id="@(item.Id)" ><div class="image" style="background-image: url('/ProductImage/@(image.ImageUrl)')"></div></a>
                                                     }
                                                     else
                                                     {
-                                                        <a asp-page="/Product"><div class="image" style="background-image: url('/images/download.png')"></div></a>
+                                                        <a asp-page="/Product" asp-route-id="@(item.Id)"><div class="image" style="background-image: url('/images/download.png')"></div></a>
                                                     }
                                                     <div class="details p-3">
                                                         <div class="category">
@@ -275,9 +280,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @* /Product Box *@
+                                                @* // /Product Box *@
                                             </div>
-                                            @* /Products *@
+                                            // /Products
                                         }
                                     </div>
                                 </div>

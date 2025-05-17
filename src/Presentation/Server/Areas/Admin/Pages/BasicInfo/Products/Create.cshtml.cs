@@ -1,4 +1,5 @@
-﻿using Application.Aggregates.Products;
+﻿using Application.Aggregates.Categories;
+using Application.Aggregates.Products;
 using Application.Aggregates.Products.ViewModels;
 using Application.Aggregates.Units;
 using Domain.Aggregates.Products.Enums;
@@ -10,7 +11,10 @@ using Persistence;
 namespace Server.Areas.Admin.Pages.BasicInfo.Products;
 
 public class CreateModel
-	(ProductsApplication productsApplication, UnitsApplication unitsApplication, IExecutionContextAccessor execution) : BasePageModel
+	(ProductsApplication productsApplication,
+	 UnitsApplication unitsApplication,
+	 IExecutionContextAccessor execution,
+	 CategoriesApplication categoriesApplication) : BasePageModel
 {
 	[BindProperty]
 	public CreateProductViewModel CreateViewModel { get; set; } = new();
@@ -19,6 +23,8 @@ public class CreateModel
 
 	public async Task OnGetAsync()
 	{
+
+
 		await FillSelectTagAsync();
 	}
 

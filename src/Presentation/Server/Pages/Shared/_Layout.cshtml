@@ -1,14 +1,14 @@
-﻿<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>قالب فروشگاهی یونی بازار</title>
+    <title>@(ViewData[Constants.ViewDataKeyName.PageTitle])</title>
     <!-- CSS Styles -->
     <link rel="stylesheet" href="~/css/css/bootstrap.rtl.min.css">
-	<link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/plugins/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="~/plugins/aos-master/dist/aos.css">
     <link rel="stylesheet" href="~/plugins/hover-master/css/hover-min.css">
@@ -21,25 +21,17 @@
 
 </head>
 <body>
+    <section id="encrypt231432">
+        <partial name="PartialViews/_TopNavBar" />
+        <partial name="PartialViews/_SearchNavBar" />
+        <partial name="PartialViews/_MainNavBar" />
+    </section>
+
     @RenderBody()
+
+    <partial name="PartialViews/_Footer" />
+    <partial name="PartialViews/_Copyright" />
 </body>
-<section class="py-2" id="copyright">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-sm-6" id="encrypt1368569">
-                <span>ما را دنبال کنید</span>
-                <a href="#"><img src="images/social/insta.png" alt=""></a>
-                <a href="#"><img src="images/social/facebook.png" alt=""></a>
-                <a href="#"><img src="images/social/linkedin.png" alt=""></a>
-                <a href="#"><img src="images/social/twitter.png" alt=""></a>
-                <a href="#"><img src="images/social/youtube.png" alt=""></a>
-            </div>
-            <div class="col-12 col-sm-6 text-sm-end pt-2 pt-sm-0">
-                <span>کلیه حقوق و مادی معنوی محفوط است.</span>
-            </div>
-        </div>
-    </div>
-</section>
 
 
 
@@ -51,5 +43,8 @@
 <script src="~/js/js/nouislider.min.js"></script>
 <script src="~/js/js/pagination.js"></script>
 <script src="~/js/js/scripts.js"></script>
-
+<script src="~/js/js/product-gallery.js"></script>
+<script src="~/js/js/nav-tabs.js"></script>
+<script src="~/js/js/owl.carousel.min.js"></script>
+<script src="~/js/js/swiper-bundle.min.js"></script>
 </html>
