@@ -25,11 +25,11 @@
             <tr>
                 @(Html.Ub_DisplayStringWithTd(discount.Title))
                 @(Html.Ub_DisplayStringWithTd(discount.DiscountCode))
-                @(Html.Ub_DisplayBoolean(discount.IsActive))
+                @(Html.Ub_DisplayBooleanWithTd(discount.IsActive))
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a asp-page="Update" asp-route-Id="@(discount.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
-                        <a asp-page="Delete" asp-route-Id="@(discount.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+                        <a asp-page="Update" asp-route-id="@(discount.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
+                        <a asp-page="Delete" asp-route-id="@(discount.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
                     </div>
                 </td>
             </tr>

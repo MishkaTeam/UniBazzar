@@ -28,6 +28,7 @@ public class Discount : Entity, IEntityHasIsActive
     public void Update(string title, string discountCode, bool isActive)
     {
         Title = title.Fix();
+        IsActive = isActive;
         DiscountCode = discountCode;
 
          SetUpdateDateTime();
