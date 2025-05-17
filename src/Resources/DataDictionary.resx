@@ -326,6 +326,12 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Users</value>
+  </data>	  
+  <data name="Sellers" xml:space="preserve">
+    <value>Sellers</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>user</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Username</value>
@@ -368,5 +374,8 @@
   </data>
   <data name="CustomerInformation" xml:space="preserve">
     <value>Customer Information</value>
+  </data>
+  <data name="CheckoutCounters" xml:space="preserve">
+    <value>Checkout Counters</value>
   </data>
 </root>

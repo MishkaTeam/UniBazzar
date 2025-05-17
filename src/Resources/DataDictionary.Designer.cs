@@ -178,6 +178,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Checkout Counters.
+        /// </summary>
+        public static string CheckoutCounters {
+            get {
+                return ResourceManager.GetString("CheckoutCounters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to city.
         /// </summary>
         public static string City {
@@ -642,6 +651,15 @@ namespace Resources {
         public static string Searching {
             get {
                 return ResourceManager.GetString("Searching", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sellers.
+        /// </summary>
+        public static string Sellers {
+            get {
+                return ResourceManager.GetString("Sellers", resourceCulture);
             }
         }
         

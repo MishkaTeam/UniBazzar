@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Persistence;
@@ -11,9 +12,11 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(UniBazzarContext))]
-    partial class UniBazzarContextModelSnapshot : ModelSnapshot
+    [Migration("20250426181546_AddCheckOutCounter")]
+    partial class AddCheckOutCounter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -134,7 +137,6 @@ namespace Persistence.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Mobile")
@@ -170,7 +172,7 @@ namespace Persistence.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("Domain.Aggregates.Customers.ShippingAddresses.ShippingAddress", b =>
+            modelBuilder.Entity("Domain.Aggregates.Customers.ShippingAddress.ShippingAddress", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
@@ -583,44 +585,6 @@ namespace Persistence.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Domain.Aggregates.branches.Branch", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<long>("InsertDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("InsertedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("Ordering")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("OwnerId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("StoreId")
-                        .HasColumnType("uuid");
-
-                    b.Property<long>("UpdateDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Version")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Branches");
-                });
-
             modelBuilder.Entity("Domain.Aggregates.Categories.Category", b =>
                 {
                     b.HasOne("Domain.Aggregates.Categories.Category", "Parent")
@@ -630,7 +594,7 @@ namespace Persistence.Migrations
                     b.Navigation("Parent");
                 });
 
-            modelBuilder.Entity("Domain.Aggregates.Customers.ShippingAddresses.ShippingAddress", b =>
+            modelBuilder.Entity("Domain.Aggregates.Customers.ShippingAddress.ShippingAddress", b =>
                 {
                     b.HasOne("Domain.Aggregates.Customers.Customer", "Customers")
                         .WithMany()
