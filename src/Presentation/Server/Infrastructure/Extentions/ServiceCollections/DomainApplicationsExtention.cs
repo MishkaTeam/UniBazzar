@@ -1,5 +1,6 @@
 using Application.Aggregates.Branches;
 using Application.Aggregates.Categories;
+using Application.Aggregates.CheckoutCounter;
 using Application.Aggregates.Customers;
 using Application.Aggregates.Customers.ShippingAddresses;
 using Application.Aggregates.Products;
@@ -11,6 +12,7 @@ using Application.ProductSearch;
 using Domain;
 using Domain.Aggregates.branches;
 using Domain.Aggregates.Categories;
+using Domain.Aggregates.CheckoutCounter;
 using Domain.Aggregates.Customers;
 using Domain.Aggregates.Customers.ShippingAddresses;
 using Domain.Aggregates.Products;
@@ -25,6 +27,7 @@ using Domain.ProductSearch.Data;
 using Persistence;
 using Persistence.Aggregates.Branches;
 using Persistence.Aggregates.Categories;
+using Persistence.Aggregates.CheckoutCounters;
 using Persistence.Aggregates.Customers;
 using Persistence.Aggregates.Products;
 using Persistence.Aggregates.ShippingAddresses;
@@ -63,8 +66,12 @@ public static class DomainExtensions
         services.AddScoped<ProductSearchApplication>();
         services.AddScoped<CustomerSearchApplication>();
 
-        return services;
-    }
+		services.AddScoped<UserApplication>();
+
+		services.AddScoped<CheckoutCounterApplication>();
+
+		return services;
+	}
 
     public static IServiceCollection AddDomainRepositories(this IServiceCollection services)
     {
@@ -87,10 +94,13 @@ public static class DomainExtensions
 
 
         services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
+
+        services.AddScoped<ICheckoutCounterRepository, CheckoutCounterRepository>();
+
         services.AddScoped<ICustomerSearchRepository, CustomerSearchRepository>();
 
         return services;
-    }
+	}
 
     public static IServiceCollection AddUnitOfWork(this IServiceCollection services)
     {

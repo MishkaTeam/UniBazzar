@@ -1,12 +1,14 @@
-﻿<section class="inner-page" id="product-page">
+﻿@model Server.Pages.ProductModel
+
+<section class="inner-page" id="product-page">
     <div class="container-fluid" id="page-hero">
         <div class="row">
             <div class="col-12">
                 <div class="container">
                     <div class="row">
                         <div class="col-12 px-0">
-                            <h1>گوشی موبایل سامسونگ مدل Galaxy A21s</h1>
-                            <p>دارای قابلیت دو سیم کارته و حافظه 128 گیگا بایت</p>
+                            <h1>@(Model.ViewModelProduct.Name)</h1>
+                            <p>@(Model.ViewModelProduct.ShortDescription)</p>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a asp-page="/Index">صفحه نخست</a></li>
@@ -31,26 +33,14 @@
                                 <!-- Additional required wrapper -->
                                 <ul class="swiper-wrapper">
                                     <!-- Slides -->
-                                    <li id="1" class="swiper-slide">
-                                        <a href="/images/products/p100.png" itemprop="contentUrl" data-size="900x710">
-                                            <img src="/images/products/p100.png" itemprop="thumbnail" alt="گوشی موبایل سامسونگ مدل Galaxy A21s" />
-                                        </a>
-                                    </li>
-                                    <li id="1" class="swiper-slide">
-                                        <a href="/images/products/p101.png" itemprop="contentUrl" data-size="900x710">
-                                            <img src="/images/products/p101.png" itemprop="thumbnail" alt="گوشی موبایل سامسونگ مدل Galaxy A21s" />
-                                        </a>
-                                    </li>
-                                    <li id="1" class="swiper-slide">
-                                        <a href="/images/products/p102.png" itemprop="contentUrl" data-size="900x710">
-                                            <img src="/images/products/p102.png" itemprop="thumbnail" alt="گوشی موبایل سامسونگ مدل Galaxy A21s" />
-                                        </a>
-                                    </li>
-                                    <li id="1" class="swiper-slide">
-                                        <a href="/images/products/p103.png" itemprop="contentUrl" data-size="900x710">
-                                            <img src="/images/products/p103.png" itemprop="thumbnail" alt="گوشی موبایل سامسونگ مدل Galaxy A21s" />
-                                        </a>
-                                    </li>
+                                    @foreach (var item in Model.ViewModelProductImage)
+                                    {
+                                        <li id="1" class="swiper-slide">
+                                            <a href="/ProductImage/@(item.ImageUrl)" itemprop="contentUrl" data-size="900x710">
+                                                <img src="/ProductImage/@(item.ImageUrl)" itemprop="thumbnail" alt="@(Model.ViewModelProduct.Name)" />
+                                            </a>
+                                        </li>
+                                    }
                                     <!-- /Slides -->
                                 </ul>
                                 <!-- If we need navigation buttons -->
@@ -61,10 +51,10 @@
                             <!-- Swiper -->
                             <div class="swiper-container gallery-thumbs">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide" style="background-image:url('/images/products/p100.png')"></div>
-                                    <div class="swiper-slide" style="background-image:url('/images/products/p101.png')"></div>
-                                    <div class="swiper-slide" style="background-image:url('/images/products/p102.png')"></div>
-                                    <div class="swiper-slide" style="background-image:url('/images/products/p103.png')"></div>
+                                    @foreach(var item in Model.ViewModelProductImage)
+                                    {
+                                        <div class="swiper-slide" style="background-image:url('/ProductImage/@(item.ImageUrl)')"></div>
+                                    }
                                 </div>
                             </div>
 
@@ -101,7 +91,7 @@
                         </div>
                         <div class="col-12 col-lg-7 mt-5 mt-lg-0 pl-lg-0" id="product-intro">
                             <a asp-page="/Product">
-                                <h1>گوشی موبایل سامسونگ مدل Galaxy A21s</h1>
+                                <h1>@(Model.ViewModelProduct.Name)</h1>
                             </a>
                             <div class="stars-container">
                                 <i class="fa fa-star"></i>
@@ -112,13 +102,14 @@
                                 <a href="#tabs-panel"><span>(نقد و بررسی)</span></a>
                             </div>
                             <div class="price-container py-2">
-                                <span class="pre-price">4.000.000</span>
-                                <span class="price">3.500.000 <span>تومان</span></span>
-                                <div class="badge badge-danger font-weight-light m-1 py-1 px-2">10%</div>
+                                @* <span class="pre-price">4.000.000</span> *@
+                                @{
+                                    decimal price = decimal.Parse(Model.ViewModelProductPrice.Price.ToString(), System.Globalization.NumberStyles.Currency);
+                                }
+                                <span class="price">@(price.ToString("#,#")) <span>تومان</span></span> 
                             </div>
                             <p>
-                                این یک متن آزمایشی است که به زودی توسط نویسنده این سایت، تکمیل یا حذف خواهد شد. اگر شما نویسنده‌ی این سایت هستید، برای حذف یا ویرایش این صفحه، کافی است از طریق مرکز مدیریت سایت خود وارد بخش مربوطه شده و محتوای این صفحه را ویرایش یا حذف کنید.<br>
-                                صفحات و محتوای آزمایشی همیشه بخشی از محتوای پیش‌نمایش قالب و افزونه های وب هستند که شما بتوانید ارتباط درستی با پیش نمایش قالب گرفته و تصمیم مناسبی بگیرید.
+                                @(Model.ViewModelProduct.ShortDescription)
                             </p>
                             <hr>
                             <div class="variables">
@@ -192,56 +183,31 @@
                                         <div class="col-12 pt-2 px-2 px-lg-0">
                                             <!-- HTML Tab -->
                                             <div id="html-tab" class="tabs-container text-justify p-0 p-md-3">
-                                                <p>این یک متن آزمایشی است که به زودی توسط نویسنده این سایت، تکمیل یا حذف خواهد شد. اگر شما نویسنده‌ی این سایت هستید، برای حذف یا ویرایش این صفحه، کافی است از طریق مرکز مدیریت سایت خود وارد بخش مربوطه شده و محتوای این صفحه را ویرایش یا حذف کنید.</p>
-                                                <p>صفحات و محتوای آزمایشی همیشه بخشی از محتوای پیش‌نمایش قالب و افزونه های وب هستند که شما بتوانید ارتباط درستی با پیش نمایش قالب گرفته و تصمیم مناسبی بگیرید. این صفحات معمولا برای اطلاعات کلی در مورد سایت مثل «درباره ما»، «تماس با ما»، «فهرست» یا «نظرات شما» مفید هستند.</p>
-                                                <p>بنابراین نگران ویرایش و بروزرسانی محتوای این نوع صفحات نباشید. شما می‌توانید به سادگی و تنها با چند کلیک وارد ناحیه مدیریت وب‌سایت خود شده و مطلب مربوطه را ویرایش کنید.</p>
-                                                <p>این یک متن آزمایشی است که به زودی توسط نویسنده این سایت، تکمیل یا حذف خواهد شد. اگر شما نویسنده‌ی این سایت هستید، برای حذف یا ویرایش این صفحه، کافی است از طریق مرکز مدیریت سایت خود وارد بخش مربوطه شده و محتوای این صفحه را ویرایش یا حذف کنید. صفحات و محتوای آزمایشی همیشه بخشی از محتوای پیش‌نمایش قالب و افزونه های وب هستند که شما بتوانید ارتباط درستی با پیش نمایش قالب گرفته و تصمیم مناسبی بگیرید. این صفحات معمولا برای اطلاعات کلی در مورد سایت مثل «درباره ما»، «تماس با ما»، «فهرست» یا «نظرات شما» مفید هستند.</p>
+                                                @(Model.ViewModelProduct.FullDescription)
                                             </div>
                                             <!-- /HTML Tab -->
                                             <!-- Details Tab -->
                                             <div id="details-tab" class="tabs-container px-0 px-md-3 pb-0 pb-md-3" style="display:none">
                                                 <!-- Detail Section -->
-                                                <div class="row">
+                                                @* <div class="row">
                                                     <div class="col-12 my-2">
                                                         <span class="detail-title"><i class="fa fa-chevron-left small"></i> مشخصات کلی</span>
                                                     </div>
-                                                </div>
-                                                <div class="row mb-2">
-                                                    <div class="col-12 col-md-3 font-weight-bold"><div class="bg-light p-2">طول</div></div>
-                                                    <div class="col-12 col-md-9 pr-md-0"><div class="bg-light p-2">32 سانتی متر</div></div>
-                                                </div>
-                                                <div class="row mb-2">
-                                                    <div class="col-12 col-md-3 font-weight-bold"><div class="bg-light p-2">عرض</div></div>
-                                                    <div class="col-12 col-md-9 pr-md-0"><div class="bg-light p-2">15 سانتی متر</div></div>
-                                                </div>
-                                                <div class="row mb-2">
-                                                    <div class="col-12 col-md-3 font-weight-bold"><div class="bg-light p-2">ارتفاع</div></div>
-                                                    <div class="col-12 col-md-9 pr-md-0"><div class="bg-light p-2">25 سانتی متر</div></div>
-                                                </div>
-                                                <!-- /Detail Section -->
+                                                </div> *@
+                                                @foreach (var item in Model.ViewModelProductFeature)
+                                                {
+                                                    <div class="row mb-2">
+                                                        <div class="col-12 col-md-3 font-weight-bold"><div class="bg-light p-2">@(item.Key)</div></div>
+                                                        <div class="col-12 col-md-9 pr-md-0"><div class="bg-light p-2">@(item.Value)</div></div>
+                                                    </div>
+                                                }
+
                                                 <!-- Detail Section -->
-                                                <div class="row">
+                                                @* <div class="row">
                                                     <div class="col-12 my-2">
                                                         <span class="detail-title"><i class="fa fa-chevron-left small"></i> صفحه نمایش</span>
                                                     </div>
-                                                </div>
-                                                <div class="row mb-2">
-                                                    <div class="col-12 col-md-3 font-weight-bold"><div class="bg-light p-2">صفحه نمایش رنگی</div></div>
-                                                    <div class="col-12 col-md-9 pr-md-0"><div class="bg-light p-2">بله</div></div>
-                                                </div>
-                                                <div class="row mb-2">
-                                                    <div class="col-12 col-md-3 font-weight-bold"><div class="bg-light p-2">صفحه نمایش لمسی</div></div>
-                                                    <div class="col-12 col-md-9 pr-md-0"><div class="bg-light p-2">بله</div></div>
-                                                </div>
-                                                <div class="row mb-2">
-                                                    <div class="col-12 col-md-3 font-weight-bold"><div class="bg-light p-2">بازه‌ی اندازه صفحه نمایش</div></div>
-                                                    <div class="col-12 col-md-9 pr-md-0"><div class="bg-light p-2">6.0 اینچ و بزرگتر</div></div>
-                                                </div>
-                                                <div class="row mb-2">
-                                                    <div class="col-12 col-md-3 font-weight-bold"><div class="bg-light p-2">نسبت صفحه‌نمایش به بدنه</div></div>
-                                                    <div class="col-12 col-md-9 pr-md-0"><div class="bg-light p-2">87.4 درصد</div></div>
-                                                </div>
-                                                <!-- /Detail Section -->
+                                                </div> *@
                                             </div>
                                             <!-- /Details Tab -->
                                             <!-- Comments Tab -->

@@ -1,4 +1,5 @@
-﻿using Framework.DataType;
+﻿using Domain.Aggregates.Customers.ShippingAddresses;
+using Framework.DataType;
 using System.ComponentModel.DataAnnotations;
 using Entity = Domain.BuildingBlocks.Aggregates.Entity;
 
@@ -23,8 +24,9 @@ public class Customer : Entity
 
 	public string? Password { get; private set; }
 
+    public ICollection<ShippingAddress> ShippingAddresses { get; set; }
 
-	public static Customer Register(string mobile, string password)
+    public static Customer Register(string mobile, string password)
 	{
 		if (!mobile.IsValidMobile())
 			throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
