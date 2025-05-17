@@ -25,7 +25,7 @@ public class ProductFeaturesTests
         productFeature.Key.Should().Be(key);
         productFeature.Value.Should().Be(value);
         productFeature.IsPinned.Should().Be(isPinned);
-        productFeature.Order.Should().Be(order);
+        productFeature.Ordering.Should().Be(order);
     }
 
     [Fact]

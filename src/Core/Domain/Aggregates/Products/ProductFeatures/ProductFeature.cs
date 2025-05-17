@@ -34,15 +34,14 @@ public class ProductFeature : Entity
 		Key = key.Fix()!;
 		Value = value.Fix()!;
 		IsPinned = isPinned;
-		Order = order;
+		Ordering = order;
 
 		SetUpdateDateTime();
 	}
 
-	public string? Key { get; private set; }
-	public string? Value { get; private set; }
+	public string Key { get; private set; }
+	public string Value { get; private set; }
 	public bool IsPinned { get; private set; }
-	public int Order { get; private set; }
 
 	public Guid ProductId { get; private set; }
 	public Product Product { get; private set; }
@@ -57,7 +56,7 @@ public class ProductFeature : Entity
 		Key = key;
 		Value = value;
 		IsPinned = isPinned;
-		Order = order;
+		Ordering = order;
 	}
 
 	private static Guid ValidateProduct(Guid productId)
