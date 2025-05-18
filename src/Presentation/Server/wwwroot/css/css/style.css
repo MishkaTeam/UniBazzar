@@ -95,7 +95,6 @@ section#encrypt231432 #encrypt23231432 #encrypt2321 {
 }
 section#encrypt231432 #encrypt232344 {
   min-height: 85px;
-  border-bottom: 2px solid #ebebeb;
 }
 section#encrypt231432 #encrypt232344 #encrypt231432-logo a {
   font-family: "vazir-bold-fd";
@@ -582,22 +581,25 @@ section.inner-page#product-page .swiper-container {
   margin-left: auto;
   margin-right: auto;
 }
-section.inner-page#product-page .swiper-container img {
-  width: 80%;
-  height: auto;
-  margin-right: 11.5%;
-}
+    section.inner-page#product-page .swiper-container img {
+        width: 80%;
+        height: auto;
+        margin-right: 0 !important;
+        margin-left: 0 !important
+    }
 @media screen and (max-width: 1199px) {
-  section.inner-page#product-page .swiper-container img {
-    width: 100%;
-    margin-right: 0;
-  }
+    section.inner-page#product-page .swiper-container img {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-left: 0 !important
+    }
 }
 @media screen and (max-width: 991px) {
-  section.inner-page#product-page .swiper-container img {
-    width: 100%;
-    margin-right: 0;
-  }
+    section.inner-page#product-page .swiper-container img {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-left: 0 !important
+    }
 }
 section.inner-page#product-page .swiper-container.gallery-top {
   height: 80%;
@@ -635,7 +637,6 @@ section.inner-page#product-page .swiper-container.gallery-thumbs .swiper-slide-t
 }
 section.inner-page#product-page .swiper-container .swiper-slide {
   height: 560px;
-  background-color: #f8f8f8;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

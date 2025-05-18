@@ -37,6 +37,10 @@
 		{
 			"library": "prism@9000.0.1",
 			"destination": "wwwroot/lib/prism/"
+		},
+		{
+			"library": "photoswipe@5.4.4",
+			"destination": "wwwroot/lib/photoswipe/"
 		}
 	]
 }

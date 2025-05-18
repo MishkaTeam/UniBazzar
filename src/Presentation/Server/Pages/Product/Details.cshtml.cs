@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Pages;
 
-public class ProductModel(ProductsApplication productsApplication,
+public class DetailModel(ProductsApplication productsApplication,
                           ProductImagesApplication productImagesApplication,
                           ProductFeaturesApplication productFeaturesApplication,
                           ProductPriceListsApplication productPriceListsApplication) : PageModel
@@ -19,20 +19,20 @@ public class ProductModel(ProductsApplication productsApplication,
     public List<ProductFeatureViewModel> ViewModelProductFeature { get; set; }
     public ProductPriceListViewModel ViewModelProductPrice { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(Guid? id)
+    public async Task<IActionResult> OnGetAsync(string sku, string slug)
     {
-        if (id.HasValue == false || id.Value == Guid.Empty)
+        if (string.IsNullOrWhiteSpace(sku))
         {
-            return RedirectToPage("Index");
+            return RedirectToPage("Error/Error404");
         }
+    
+        ViewModelProduct = await productsApplication.GetProductAsync(sku);
 
-        ViewModelProduct = await productsApplication.GetProductAsync(id.Value);
+        ViewModelProductImage = await productImagesApplication.GetImageByProductIdAsync(ViewModelProduct.Id);
 
-        ViewModelProductImage = await productImagesApplication.GetImageByProductIdAsync(id.Value);
+        ViewModelProductFeature = await productFeaturesApplication.GetProductFeatures(ViewModelProduct.Id);
 
-        ViewModelProductFeature = await productFeaturesApplication.GetProductFeatures(id.Value);
-
-        ViewModelProductPrice = await productPriceListsApplication.GetPriceByProductId(id.Value);
+        ViewModelProductPrice = await productPriceListsApplication.GetPriceByProductId(ViewModelProduct.Id);
 
         return Page();
     }

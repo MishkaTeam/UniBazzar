@@ -1,0 +1,40 @@
+﻿@using Application.Aggregates.Products.ViewModels
+
+@model ProductCardViewModel
+@{
+
+}
+
+<a asp-page="/Product/Details" target="_blank" asp-route-sku="@(Model.SKU)" asp-route-slug="@(Model.Slug)">
+	<div class="encrypt263156">
+		@if (Model.ImageUrl != null)
+		{
+			<div class="image" style="background-image: url('/ProductImage/@(Model.ImageUrl)')"></div>
+
+		}
+		else
+		{
+			<div class="image" style="background-image: url('/images/download.png')">
+			</div>
+		}
+		<div class="details p-3">
+			<div class="category">
+				<a asp-page="/Products">گوشی موبایل</a>
+				&nbsp;/&nbsp;
+				<a asp-page="/Products">سامسونگ</a>
+			</div>
+			<a asp-page="/Product/Details" target="_blank" asp-route-sku="@(Model.SKU)" asp-route-slug="@(Model.Slug)">
+				<h2>@(Model.Name)</h2>
+			</a>
+			<div class="price">@(Model.Price.ToString("#,#")) تومان</div>
+			<div class="rate">
+				<i class="fa fa-star-half-alt"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<span class="encrypt89312423451">(@(Model.TotalVoters) رای دهنده)</span>
+			</div>
+		</div>
+	</div>
+</a>

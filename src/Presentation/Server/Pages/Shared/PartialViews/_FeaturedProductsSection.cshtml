@@ -1,182 +1,119 @@
-﻿@model Server.Pages.IndexModel
+﻿@using Application.Aggregates.Products.ViewModels
+@using Server.Pages.Shared.Components.ProductCard
+@model Server.Pages.IndexModel
 
 <!-- Featured Products Section -->
 <section id="encrypt231212189" class="my-5">
-    <div class="container">
-        <!-- Tabs -->
-        <div class="row pb-2 pb-sm-4">
-            <div class="col-12 text-center">
-                <div class="btn-group" role="group" id="encrypt231212189-nav">
-                    <button type="button" class="btn active featured-categories" data-val="featured">محصولات منتخب</button>
-                    <button type="button" class="btn featured-categories" data-val="encrypt456">تخفیف خورده</button>
-                    <button type="button" class="btn featured-categories" data-val="most-visited">پربازدیدترین</button>
-                </div>
-            </div>
-        </div>
-        <!-- /Tabs -->
-        <!-- Products -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 encrypt89345 featured" data-aos="fade-up" data-aos-duration="1000">
-            <!-- Product Box -->
-            @foreach (var item in Model.ProductsViewModel)
-            {
-                <div class="col">
-                    @{
+	<div class="container">
+		<!-- Tabs -->
+		<div class="row pb-2 pb-sm-4">
+			<div class="col-12 text-center">
+				<div class="btn-group" role="group" id="encrypt231212189-nav">
+					<button type="button" class="btn active featured-categories" data-val="featured">محصولات منتخب</button>
+					<button type="button" class="btn featured-categories" data-val="encrypt456">تخفیف خورده</button>
+					<button type="button" class="btn featured-categories" data-val="most-visited">پربازدیدترین</button>
+				</div>
+			</div>
+		</div>
+		<!-- /Tabs -->
+		<!-- Products -->
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 encrypt89345 featured" data-aos="fade-up" data-aos-duration="1000">
+			<!-- Product Box -->
+			@foreach (var item in Model.ProductsViewModel)
+			{
+				<div class="col">
+					@{
 
-                        var image = Model.ProductImageViewModel.FirstOrDefault(x => x.ProductId == item.Id);
+						var image = Model.ProductImageViewModel.FirstOrDefault(x => x.ProductId == item.Id);
 
-                        var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
+						var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
 
-                        decimal price = 0;
+						decimal price = 0;
 
-                        if (pricelist is not null)
-                        {
-                            price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
-                        }
-                    }
+						if (pricelist is not null)
+						{
+							price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
+						}
 
-                    @* //Products *@
-                    <div class="col">
-                        @* ProductBox *@ 
-                                            <div class="encrypt263156">
-                            @if (image != null)
-                            {
-                                <a asp-page="/Product" asp-route-id="@(item.Id)">
-                                    <div class="">
-                                        <div class="overflow-hidden d-flex justify-content-center p-1">
-                                            <div class="overflow-hidden d-flex justify-content-center w-100 rounded-bottom rounded-3 bg-black">
-                                                <img src="/ProductImage/@(image.ImageUrl)" style="height: 200px;" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            }
-                            else
-                            {
-                                <a asp-page="/Product" asp-route-id="@(item.Id)"><div class="image" style="background-image: url('/images/download.png')"></div></a>
-                            }
-                            <div class="details p-3">
-                                <div class="category">
-                                    <a asp-page="/Products">گوشی موبایل</a>
-                                    &nbsp;/&nbsp;
-                                    <a asp-page="/Products">سامسونگ</a>
-                                </div>
-                                <a asp-page="/Product"><h2>@(item.Name)</h2></a>
-                                <div class="price">@(price.ToString("#,#")) تومان</div>
-                                <div class="rate">
-                                    <i class="fa fa-star-half-alt"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <span class="encrypt89312423451">(14 رای دهنده)</span>
-                                </div>
-                            </div>
-                        </div>
-                        @* // /Product Box *@
-                    </div>
+						var card = new ProductCardViewModel
+				{
+					Slug = "Slug",
+					TotalVoters = 14,
+					SKU = item.SKU,
+					Price = price,
+					Name = item.Name,
+					ImageUrl = image?.ImageUrl
+				};
+					}
 
-                </div>
-            }
-            <!-- /Product Box -->
-        </div>
+					@await Component.InvokeAsync(ProductCardViewComponent.KEY, card)
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 encrypt89345 encrypt456">
-            @foreach (var item in Model.ProductsViewModel)
-            {
 
-                <div class="col">
-                    @{
-                        var image = Model.ProductImageViewModel.FirstOrDefault(x => x.ProductId == item.Id);
+				</div>
+			}
+		</div>
 
-                        var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
-                        decimal price = 0;
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 encrypt89345 encrypt456">
+			@foreach (var item in Model.ProductsViewModel)
+			{
 
-                        if (pricelist is not null)
-                        {
-                            price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
-                        }
-                    }
-                    <div class="encrypt263156">
-                        @if (image != null)
-                        {
-                            <a asp-page="/Product" asp-route-id="@(item.Id)"><div class="image" style="background-image: url('/ProductImage/@(image.ImageUrl)')"></div></a>
-                        }
-                        else
-                        {
-                            <a asp-page="/Product" asp-route-id="@(item.Id)"><div class="image" style="background-image: url('/images/download.png')"></div></a>
-                        }
+				<div class="col">
+					@{
+						var image = Model.ProductImageViewModel.FirstOrDefault(x => x.ProductId == item.Id);
 
-                        <div class="details p-3">
-                            <div class="category">
-                                <a asp-page="/Products">گوشی موبایل</a>
-                                &nbsp;/&nbsp;
-                                <a asp-page="/Products">سامسونگ</a>
-                            </div>
-                            <a asp-page="/Product"><h2>@(item.Name)</h2></a>
-                            <span class="price">@(price.ToString("#,#")) تومان</span>
-                            <div class="rate">
-                                <i class="fa fa-star-half-alt"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <span class="encrypt89312423451">(14 رای دهنده)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-            <!-- /Product Box -->
-        </div>
+						var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
+						decimal price = 0;
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 encrypt89345 most-visited">
-            @foreach (var item in Model.ProductsViewModel)
-            {
+						if (pricelist is not null)
+						{
+							price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
+						}
+						var card = new ProductCardViewModel
+							{
+								Slug = "Slug",
+								TotalVoters = 14,
+								SKU = item.SKU,
+								Price = price,
+								Name = item.Name,
+								ImageUrl = image?.ImageUrl
+							};
+					}
+					@await Component.InvokeAsync(ProductCardViewComponent.KEY, card)
+				</div>
+			}
+			<!-- /Product Box -->
+		</div>
 
-                <div class="col">
-                    @{
-                        var image = Model.ProductImageViewModel.FirstOrDefault(x => x.ProductId == item.Id);
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 encrypt89345 most-visited">
+			@foreach (var item in Model.ProductsViewModel)
+			{
 
-                        var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
-                        decimal price = 0;
+				<div class="col">
+					@{
+						var image = Model.ProductImageViewModel.FirstOrDefault(x => x.ProductId == item.Id);
 
-                        if (pricelist is not null)
-                        {
-                            price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
-                        }
-                    }
-                    <div class="encrypt263156">
-                        @if (image != null)
-                        {
-                            <a asp-page="/Product" asp-route-id="@(item.Id)"><div class="image" style="background-image: url('/ProductImage/@(image.ImageUrl)')"></div></a>
-                        }
-                        else
-                        {
-                            <a asp-page="/Product" asp-route-id="@(item.Id)"><div class="image" style="background-image: url('/images/download.png')"></div></a>
-                        }
+						var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
+						decimal price = 0;
 
-                        <div class="details p-3">
-                            <div class="category">
-                                <a asp-page="/Products">گوشی موبایل</a>
-                                &nbsp;/&nbsp;
-                                <a asp-page="/Products">سامسونگ</a>
-                            </div>
-                            <a asp-page="/Product"><h2>@(item.Name)</h2></a>
-                            <span class="price">@(price.ToString("#,#")) تومان</span>
-                            <div class="rate">
-                                <i class="fa fa-star-half-alt"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <span class="encrypt89312423451">(14 رای دهنده)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-        <!-- /Products -->
-    </div>
+						if (pricelist is not null)
+						{
+							price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
+						}
+						var card = new ProductCardViewModel
+							{
+								Slug = "Slug",
+								TotalVoters = 14,
+								SKU = item.SKU,
+								Price = price,
+								Name = item.Name,
+								ImageUrl = image?.ImageUrl
+							};
+					}
+					@await Component.InvokeAsync(ProductCardViewComponent.KEY, card)
+				</div>
+			}
+		</div>
+		<!-- /Products -->
+	</div>
 </section>
 <!-- /Featured Products Section -->

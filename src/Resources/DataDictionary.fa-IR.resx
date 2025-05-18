@@ -357,9 +357,6 @@
   <data name="Branches" xml:space="preserve">
     <value>شعبه ها</value>
   </data>
-  <data name="User" xml:space="preserve">
-    <value>کاربر</value>
-  </data>
   <data name="NothingFound" xml:space="preserve">
     <value>هیج موردی پیدا نشد...</value>
   </data>
@@ -377,5 +374,8 @@
   </data>
   <data name="CheckoutCounters" xml:space="preserve">
     <value>صندوقدار ها</value>
+  </data>
+  <data name="Slug" xml:space="preserve">
+    <value>Slug</value>
   </data>
 </root>

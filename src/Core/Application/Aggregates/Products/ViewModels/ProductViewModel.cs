@@ -8,4 +8,9 @@ public class ProductViewModel : UpdateProductViewModel
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.SKU))]
 	public string SKU { get; set; }
+
+    [Display
+    (ResourceType = typeof(Resources.DataDictionary),
+    Name = nameof(Resources.DataDictionary.Slug))]
+    public string Slug { get; set; }
 }

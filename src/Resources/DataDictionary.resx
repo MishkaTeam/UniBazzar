@@ -326,12 +326,12 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Users</value>
-  </data>	  
+  </data>
   <data name="Sellers" xml:space="preserve">
     <value>Sellers</value>
   </data>
   <data name="User" xml:space="preserve">
-    <value>user</value>
+    <value>User</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Username</value>
@@ -357,9 +357,6 @@
   <data name="Branches" xml:space="preserve">
     <value>branches</value>
   </data>
-  <data name="User" xml:space="preserve">
-    <value>User</value>
-  </data>
   <data name="NothingFound" xml:space="preserve">
     <value>Nothing Found</value>
   </data>
@@ -377,5 +374,8 @@
   </data>
   <data name="CheckoutCounters" xml:space="preserve">
     <value>Checkout Counters</value>
+  </data>
+  <data name="Slug" xml:space="preserve">
+    <value>Slug</value>
   </data>
 </root>
