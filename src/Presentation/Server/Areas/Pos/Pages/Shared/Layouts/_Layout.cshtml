@@ -13,9 +13,11 @@
 
 <head>
 	<partial name="PartialViews/_MetaTags" />
-	<partial name="PartialViews/_StyleSheets" />
 
 	<base href="/" />
+
+	<partial name="PartialViews/_StyleSheets" />
+	<partial name="PartialViews/_BlazorBootstrapStyleSheets" />
 
 	<component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
 </head>
@@ -25,6 +27,7 @@
 	@RenderBody()
 
 	<partial name="PartialViews/_Scripts" />
+	<partial name="PartialViews/_BlazorBootstrapScripts" />
 
 	<script src="_framework/blazor.server.js"></script>
 
@@ -47,6 +50,7 @@
 			});
 		};
 	</script>
+
 </body>
 
 </html>

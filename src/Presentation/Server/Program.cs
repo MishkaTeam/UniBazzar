@@ -20,6 +20,7 @@ namespace Server
             services.AddRazorPagesWithAuth();
             services.AddServerSideBlazor()
             .AddInteractiveServerComponents();
+            services.AddBlazorBootstrap();
             services.AddAuthenticationCookie();
             services.AddHttpClient();
             services.AddDomainApplications();

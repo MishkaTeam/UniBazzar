@@ -1,6 +1,7 @@
 ﻿@page "/pos"
 @layout PosLayout
 
+@using Server.Areas.Pos.Components
 @using Server.Areas.Pos.Pages.Shared.Layouts.Pos
 
 
@@ -8,7 +9,7 @@
 
 <div class="sticky-top row blur m-0">
 	<div class="input-group p-0">
-		<Server.Areas.Pos.Components.SearchLookup onSelection="onProductSelection" />
+		<SearchLookup onSelection="onProductSelection" />
 	</div>
 </div>
 
@@ -93,4 +94,3 @@
 		</div>
 	</div>
 </div>
-

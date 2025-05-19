@@ -8,7 +8,7 @@
 	<div class="search-box position-relative my-3 w-100 px-1">
 
 		<div class="input-group mb-3">
-			<input class="form-control customer-search-box"
+			<input class="form-control customer-search-box text-center"
 				   value="@searchMobile"
 				   maxlength="@(Constants.FixedLength.CellPhoneNumberIran)"
 				   placeholder="@(Resources.DataDictionary.CustomerSearch)"
@@ -31,7 +31,10 @@
 			{
 				<div class="search-suggestions shadow-sm p-2" style="animation: fadeIn 0.3s ease;">
 					<div class="text-center py-2 text-muted">@(Resources.DataDictionary.NothingFound)</div>
-					<CreateCustomer Class="w-100" />
+
+					<Button Class="col btn btn-primary w-100" @onclick="CreateCustomerClick">
+						@(Resources.DataDictionary.CreateOf) @(Resources.DataDictionary.Customer)
+					</Button>
 				</div>
 			}
 		}
