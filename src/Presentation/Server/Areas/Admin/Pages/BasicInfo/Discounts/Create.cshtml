@@ -1,0 +1,35 @@
+﻿@page
+@model Server.Areas.Admin.Pages.BasicInfo.Discounts.CreateModel
+@{
+	var pageTitle =
+	$"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.DiscountCode}";
+
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+	<section-form>
+		<fieldset>
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
+
+			<partial name="PartialViews/_DisplayPageMessages" />
+
+			<ub-full-input asp-for="ViewModel.Title" />
+
+			<ub-full-input asp-for="ViewModel.DiscountCode" />
+
+			<ub-full-checkbox asp-for="ViewModel.IsActive" />
+
+		</fieldset>
+
+		<section-form-buttons>
+			<button-create />
+			<button-reset />
+		</section-form-buttons>
+
+	</section-form>
+
+</form>
