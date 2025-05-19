@@ -375,6 +375,30 @@
   <data name="CheckoutCounters" xml:space="preserve">
     <value>Checkout Counters</value>
   </data>
+  <data name="Discount" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="DiscountCode" xml:space="preserve">
+    <value>DiscountCode</value>
+  </data>
+  <data name="InsertDateTime" xml:space="preserve">
+    <value>InsertDateTime</value>
+  </data>
+  <data name="InsertedBy" xml:space="preserve">
+    <value>InsertedBy</value>
+  </data>
+  <data name="OwnerId" xml:space="preserve">
+    <value>OwnerId</value>
+  </data>
+  <data name="UpdateDateTime" xml:space="preserve">
+    <value>UpdateDateTime</value>
+  </data>
+  <data name="UpdatedBy" xml:space="preserve">
+    <value>UpdatedBy</value>
+  </data>
+  <data name="DiscountCodes" xml:space="preserve">
+    <value>DiscountCodes</value>
+  </data>
   <data name="Slug" xml:space="preserve">
     <value>Slug</value>
   </data>
