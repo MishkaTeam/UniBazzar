@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Server.Pages
+namespace Server.Pages.Blog
 {
-    public class BlogModel : PageModel
+    public class BlogPostModel : PageModel
     {
         public void OnGet()
         {
