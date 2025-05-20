@@ -399,4 +399,7 @@
   <data name="DiscountCodes" xml:space="preserve">
     <value>DiscountCodes</value>
   </data>
+  <data name="Slug" xml:space="preserve">
+    <value>Slug</value>
+  </data>
 </root>

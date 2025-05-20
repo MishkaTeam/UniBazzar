@@ -38,6 +38,13 @@ public partial class ProductsApplication
 
 		return product.Adapt<ProductViewModel>();
 	}
+		public async Task<ProductViewModel> GetProductAsync(string Sku)
+	{
+		var product =
+			await productRepository.GetAsync(x => x.SKU == Sku);
+
+		return product.Adapt<ProductViewModel>();
+	}
 
 	public async Task<ProductViewModel> UpdateProductAsync(UpdateProductViewModel updateViewModel)
 	{
