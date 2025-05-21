@@ -1,5 +1,6 @@
 ﻿using Domain.Aggregates.branches;
 using Domain.Aggregates.Categories;
+using Domain.Aggregates.Comments;
 using Domain.Aggregates.CheckoutCounter;
 using Domain.Aggregates.Customers;
 using Domain.Aggregates.Customers.ShippingAddresses;
@@ -47,4 +48,5 @@ public class UniBazzarContext : DbContext
 	public DbSet<ShippingAddress> ShippingAddresses { get; set; }
 	public DbSet<CheckoutCounter> CheckoutCounters { get; set; }
 
+    public DbSet<Comment> Comments { get; set; }
 }

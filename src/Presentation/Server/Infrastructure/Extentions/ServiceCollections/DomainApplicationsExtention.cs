@@ -26,6 +26,7 @@ using Domain.Aggregates.Units;
 using Domain.Aggregates.Users;
 using Domain.CustomerSearch.Data;
 using Domain.ProductSearch.Data;
+using Domain.Aggregates.Comments;
 using Persistence;
 using Persistence.Aggregates.Branches;
 using Persistence.Aggregates.Categories;
@@ -39,6 +40,8 @@ using Persistence.Aggregates.Units;
 using Persistence.Aggregates.Users;
 using Persistence.CustomerSearch;
 using Persistence.ProductSearch;
+using Persistence.Aggregates.Comments;
+using Application.Aggregates.Comments;
 
 namespace Server.Infrastructure.Extensions.ServiceCollections;
 
@@ -75,8 +78,10 @@ public static class DomainExtensions
 
 		services.AddScoped<CheckoutCounterApplication>();
 
-		return services;
-	}
+        services.AddScoped<CommentApplication>();
+
+        return services;
+    }
 
     public static IServiceCollection AddDomainRepositories(this IServiceCollection services)
     {
@@ -105,6 +110,8 @@ public static class DomainExtensions
         services.AddScoped<ICheckoutCounterRepository, CheckoutCounterRepository>();
 
         services.AddScoped<ICustomerSearchRepository, CustomerSearchRepository>();
+
+        services.AddScoped<ICommentRepository, CommentRepository>();
 
         return services;
 	}

@@ -402,4 +402,10 @@
   <data name="DiscountCodes" xml:space="preserve">
     <value>کد های تخفیف</value>
   </data>
+  <data name="Text" xml:space="preserve">
+    <value>متن</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>نظر دادن</value>
+  </data>
 </root>
