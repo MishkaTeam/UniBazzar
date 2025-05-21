@@ -295,6 +295,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discount.
+        /// </summary>
+        public static string Discount {
+            get {
+                return ResourceManager.GetString("Discount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DiscountCode.
+        /// </summary>
+        public static string DiscountCode {
+            get {
+                return ResourceManager.GetString("DiscountCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DiscountCodes.
+        /// </summary>
+        public static string DiscountCodes {
+            get {
+                return ResourceManager.GetString("DiscountCodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download Url.
         /// </summary>
         public static string DownloadUrl {
@@ -376,6 +403,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to InsertDateTime.
+        /// </summary>
+        public static string InsertDateTime {
+            get {
+                return ResourceManager.GetString("InsertDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InsertedBy.
+        /// </summary>
+        public static string InsertedBy {
+            get {
+                return ResourceManager.GetString("InsertedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active.
         /// </summary>
         public static string IsActive {
@@ -453,6 +498,15 @@ namespace Resources {
         public static string Order {
             get {
                 return ResourceManager.GetString("Order", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OwnerId.
+        /// </summary>
+        public static string OwnerId {
+            get {
+                return ResourceManager.GetString("OwnerId", resourceCulture);
             }
         }
         
@@ -691,6 +745,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Slug.
+        /// </summary>
+        public static string Slug {
+            get {
+                return ResourceManager.GetString("Slug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Store.
         /// </summary>
         public static string Store {
@@ -786,6 +849,24 @@ namespace Resources {
         public static string Units {
             get {
                 return ResourceManager.GetString("Units", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UpdateDateTime.
+        /// </summary>
+        public static string UpdateDateTime {
+            get {
+                return ResourceManager.GetString("UpdateDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UpdatedBy.
+        /// </summary>
+        public static string UpdatedBy {
+            get {
+                return ResourceManager.GetString("UpdatedBy", resourceCulture);
             }
         }
         
