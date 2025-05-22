@@ -25,7 +25,7 @@ public class BasketTests
     {
         var basket = Basket.Initialize(Platform.POS);
         var product = ProductType.Create(Guid.NewGuid(), "Test Product");
-        var basketItem = BasketItem.Create(Guid.NewGuid(), 123456, product, ProductAmount.Create(1, 100), DiscountAmount.Create(10, DiscountType.Price));
+        var basketItem = BasketItem.Create(Guid.NewGuid(), "123456", product, ProductAmount.Create(1, 100), DiscountAmount.Create(10, DiscountType.Price));
         
         basket.AddItem(basketItem);
         
@@ -50,7 +50,7 @@ public class BasketItemTests
     public void Create_ShouldInitializeBasketItemCorrectly()
     {
         var basketId = Guid.NewGuid();
-        long referenceNumber = 123456;
+        string referenceNumber = "123456";
         var product = ProductType.Create(Guid.NewGuid(), "Sample Product");
         var productAmount = ProductAmount.Create(2, 50);
         var discountAmount = DiscountAmount.Create(5, DiscountType.Percent);

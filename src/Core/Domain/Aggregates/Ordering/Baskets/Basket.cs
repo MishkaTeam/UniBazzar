@@ -5,11 +5,16 @@ namespace Domain.Aggregates.Ordering.Baskets;
 
 public class Basket : Entity
 {
-    public long ReferenceNumber { get; private set; }
+    public string ReferenceNumber { get; private set; }
     public BasketStatus BasketStatus { get; private set; }
     public Platform PlatForm { get; private set; }
     public List<BasketItem> BasketItems  { get; private set; }
-    
+
+    private Basket()
+    {
+        // FOR EF!
+    }
+
     private Basket(Platform platForm)
     {
         PlatForm = platForm;

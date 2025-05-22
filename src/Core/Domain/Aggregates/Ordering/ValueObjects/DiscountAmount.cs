@@ -4,8 +4,8 @@ namespace Domain.Aggregates.Ordering.ValueObjects;
 
 public class DiscountAmount : IEquatable<DiscountAmount>
 {
-    public decimal Value { get; }
-    public DiscountType DiscountType { get; }
+    public decimal Value { get; private set; }
+    public DiscountType DiscountType { get; private set; }
 
     private DiscountAmount(decimal value, DiscountType discountType)
     {

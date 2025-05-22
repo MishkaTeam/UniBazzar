@@ -7,14 +7,19 @@ namespace Domain.Aggregates.Ordering.Baskets;
 public class BasketItem : Entity
 {
     public Guid BasketId { get; private set; }
-    public long BasketReferenceNumber { get; private set; }
+    public string BasketReferenceNumber { get; private set; }
     public ProductType Product { get; private set; }
     public ProductAmount ProductAmount { get; private set; }
     public DiscountAmount DiscountAmount { get; private set; }
 
 
+    private BasketItem()
+    {
+        //FOR EF!
+    }
+
     private BasketItem(Guid basketId,
-        long basketReferenceNumber,
+        string basketReferenceNumber,
         ProductType product,
         ProductAmount productAmount,
         DiscountAmount discountAmount)
@@ -27,7 +32,7 @@ public class BasketItem : Entity
     }
 
     public static BasketItem Create(Guid basketId,
-        long basketReferenceNumber,
+        string basketReferenceNumber,
         ProductType product,
         ProductAmount productAmount,
         DiscountAmount discountAmount)
