@@ -4,6 +4,7 @@ using Application.Aggregates.CheckoutCounter;
 using Application.Aggregates.Customers;
 using Application.Aggregates.Customers.ShippingAddresses;
 using Application.Aggregates.Discounts;
+using Application.Aggregates.Orders;
 using Application.Aggregates.Products;
 using Application.Aggregates.Stores;
 using Application.Aggregates.Units;
@@ -17,6 +18,7 @@ using Domain.Aggregates.CheckoutCounter;
 using Domain.Aggregates.Customers;
 using Domain.Aggregates.Customers.ShippingAddresses;
 using Domain.Aggregates.Discounts;
+using Domain.Aggregates.Ordering.Baskets.Data;
 using Domain.Aggregates.Products;
 using Domain.Aggregates.Products.ProductFeatures;
 using Domain.Aggregates.Products.ProductImages;
@@ -32,6 +34,7 @@ using Persistence.Aggregates.Categories;
 using Persistence.Aggregates.CheckoutCounters;
 using Persistence.Aggregates.Customers;
 using Persistence.Aggregates.Discounts;
+using Persistence.Aggregates.Ordering;
 using Persistence.Aggregates.Products;
 using Persistence.Aggregates.ShippingAddresses;
 using Persistence.Aggregates.Stores;
@@ -50,9 +53,12 @@ public static class DomainExtensions
 
         services.AddScoped<StoresApplication>();
         services.AddScoped<BranchesApplication>();
+        services.AddScoped<CheckoutCounterApplication>();
 
         services.AddScoped<CustomerApplication>();
         services.AddScoped<ShippingAddressApplication>();
+
+        services.AddScoped<BasketApplication>();
 
         services.AddScoped<ProductsApplication>();
         services.AddScoped<ProductImagesApplication>();
@@ -60,10 +66,7 @@ public static class DomainExtensions
         services.AddScoped<ProductPriceListsApplication>();
 
         services.AddScoped<UnitsApplication>();
-
         services.AddScoped<CategoriesApplication>();
-
-        services.AddScoped<CategoryRepository>();
 
         services.AddScoped<DiscountApplication>();
 
@@ -71,12 +74,8 @@ public static class DomainExtensions
         services.AddScoped<ProductSearchApplication>();
         services.AddScoped<CustomerSearchApplication>();
 
-		services.AddScoped<UserApplication>();
-
-		services.AddScoped<CheckoutCounterApplication>();
-
-		return services;
-	}
+        return services;
+    }
 
     public static IServiceCollection AddDomainRepositories(this IServiceCollection services)
     {
@@ -84,30 +83,29 @@ public static class DomainExtensions
 
         services.AddScoped<IStoreRepository, StoreRepository>();
         services.AddScoped<IbranchRepository, BranchRepository>();
+        services.AddScoped<ICheckoutCounterRepository, CheckoutCounterRepository>();
 
         services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<IShippingAddressRepository, ShippingAddressRepository>();
 
+        services.AddScoped<IBasketRepository, BasketRepository>();
+
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IProductImageRepository, ProductImagesRepository>();
         services.AddScoped<IProductFeatureRepository, ProductFeaturesRepository>();
         services.AddScoped<IProductPriceListRepository, ProductPriceListsRepository>();
-        services.AddScoped<IProductImageRepository, ProductImagesRepository>();
 
         services.AddScoped<IUnitRepository, UnitRepository>();
-
         services.AddScoped<ICategoryRepository, CategoryRepository>();
 
         services.AddScoped<IDiscountRepository, DiscountRepository>();
 
 
         services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
-
-        services.AddScoped<ICheckoutCounterRepository, CheckoutCounterRepository>();
-
         services.AddScoped<ICustomerSearchRepository, CustomerSearchRepository>();
 
         return services;
-	}
+    }
 
     public static IServiceCollection AddUnitOfWork(this IServiceCollection services)
     {

@@ -4,6 +4,7 @@ using Domain.Aggregates.CheckoutCounter;
 using Domain.Aggregates.Customers;
 using Domain.Aggregates.Customers.ShippingAddresses;
 using Domain.Aggregates.Discounts;
+using Domain.Aggregates.Ordering.Baskets;
 using Domain.Aggregates.Products;
 using Domain.Aggregates.Products.ProductFeatures;
 using Domain.Aggregates.Products.ProductImages;
@@ -30,8 +31,17 @@ public class UniBazzarContext : DbContext
     }
 
 
+    public DbSet<User> Users { get; set; }
+
     public DbSet<Store> Stores { get; set; }
     public DbSet<Branch> Branches { get; set; }
+	public DbSet<CheckoutCounter> CheckoutCounters { get; set; }
+
+	public DbSet<Customer> Customers { get; set; }
+	public DbSet<ShippingAddress> ShippingAddresses { get; set; }
+
+    public DbSet<Basket> Baskets { get; set; }
+    public DbSet<BasketItem> BasketItems { get; set; }
 
     public DbSet<Product> Products { get; set; }
     public DbSet<ProductImage> ProductImages { get; set; }
@@ -42,9 +52,5 @@ public class UniBazzarContext : DbContext
 
 	public DbSet<Category> Categories { get; set; }
     public DbSet<Discount> Discounts { get; set; }
-	public DbSet<User> Users { get; set; }
-	public DbSet<Customer> Customers { get; set; }
-	public DbSet<ShippingAddress> ShippingAddresses { get; set; }
-	public DbSet<CheckoutCounter> CheckoutCounters { get; set; }
 
 }
