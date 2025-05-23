@@ -1,3 +1,4 @@
+using Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
 using Application.Aggregates.Orders.ViewModels;
 using Application.Aggregates.Orders.ViewModels.BasketItems;
 using Domain;
@@ -37,5 +38,11 @@ public class BasketApplication(IBasketRepository basketRepository, IUnitOfWork u
         basket.Checkout();
         await unitOfWork.CommitAsync();
         return true;
+    }
+
+    public async Task<ResultContract<BasketViewModel>> GetByReferenceNumber(string referenceNumber)
+    {
+        var basket = await basketRepository.GetWithItemsByReferenceNumberAsync(referenceNumber);
+        return basket.Adapt<BasketViewModel>();
     }
 }

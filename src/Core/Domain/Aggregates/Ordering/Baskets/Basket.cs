@@ -20,6 +20,9 @@ public class Basket : Entity
         PlatForm = platForm;
         BasketItems = new List<BasketItem>();
         BasketStatus = BasketStatus.INITIAL;
+
+        // For test
+        ReferenceNumber = Guid.NewGuid().ToString();
     }
 
     public static Basket Initialize(Platform platForm)
