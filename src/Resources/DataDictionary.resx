@@ -402,4 +402,7 @@
   <data name="Slug" xml:space="preserve">
     <value>Slug</value>
   </data>
+  <data name="Basket" xml:space="preserve">
+    <value>Basket</value>
+  </data>
 </root>

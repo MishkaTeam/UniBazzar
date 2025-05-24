@@ -375,9 +375,6 @@
   <data name="CheckoutCounters" xml:space="preserve">
     <value>صندوقدار ها</value>
   </data>
-  <data name="Slug" xml:space="preserve">
-    <value>Slug</value>
-  </data>
   <data name="Discount" xml:space="preserve">
     <value>تخفیف</value>
   </data>
@@ -401,5 +398,11 @@
   </data>
   <data name="DiscountCodes" xml:space="preserve">
     <value>کد های تخفیف</value>
+  </data>
+  <data name="Slug" xml:space="preserve">
+    <value>Slug</value>
+  </data>
+  <data name="Basket" xml:space="preserve">
+    <value>سبد خرید</value>
   </data>
 </root>
