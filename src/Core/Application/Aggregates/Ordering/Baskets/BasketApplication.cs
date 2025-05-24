@@ -42,7 +42,65 @@ public class BasketApplication(IBasketRepository basketRepository, IUnitOfWork u
 
     public async Task<ResultContract<BasketViewModel>> GetByReferenceNumber(string referenceNumber)
     {
-        var basket = await basketRepository.GetWithItemsByReferenceNumberAsync(referenceNumber);
-        return basket.Adapt<BasketViewModel>();
+        var basket =
+            await basketRepository.GetWithItemsByReferenceNumberAsync(referenceNumber);
+
+        if (basket == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        return new BasketViewModel
+        {
+            Id = basket.Id,
+            Platform = basket.PlatForm,
+            BasketStatus = basket.BasketStatus,
+            ReferenceNumber = basket.ReferenceNumber,
+            BasketItems = basket.BasketItems.Select(x => new BasketItemViewModel
+            {
+                ProductId = x.Product.ProductId,
+                ProductName = x.Product.ProductName,
+                Quantity = x.ProductAmount.Quantity,
+                BasePrice = x.ProductAmount.BasePrice,
+                TotalPrice = x.ProductAmount.TotalPrice,
+                DiscountValue = x.DiscountAmount.Value,
+                DiscountType = x.DiscountAmount.DiscountType,
+            }).ToList()
+        };
+    }
+
+    public async Task<ResultContract<BasketViewModel>> GetBasket(Guid basketId)
+    {
+        var basket =
+            await basketRepository.GetByIdAsync(basketId);
+
+        if (basket == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        return new BasketViewModel
+        {
+            Id = basket.Id,
+            Platform = basket.PlatForm,
+            BasketStatus = basket.BasketStatus,
+            ReferenceNumber = basket.ReferenceNumber,
+            BasketItems = basket.BasketItems.Select(x => new BasketItemViewModel
+            {
+                ProductId = x.Product.ProductId,
+                ProductName = x.Product.ProductName,
+                Quantity = x.ProductAmount.Quantity,
+                BasePrice = x.ProductAmount.BasePrice,
+                TotalPrice = x.ProductAmount.TotalPrice,
+                DiscountValue = x.DiscountAmount.Value,
+                DiscountType = x.DiscountAmount.DiscountType,
+            }).ToList()
+        };
     }
 }

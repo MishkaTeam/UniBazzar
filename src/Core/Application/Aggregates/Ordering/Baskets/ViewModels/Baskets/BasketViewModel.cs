@@ -6,9 +6,11 @@ namespace Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
 
 public class BasketViewModel
 {
+
+    public Guid Id { get; set; }
     public string ReferenceNumber { get; set; }
     public BasketStatus BasketStatus { get; set; }
-    public Platform PlatForm { get; set; }
-    public List<BasketItemViewModel> BasketItems { get; private set; }
+    public Platform Platform { get; set; }
+    public List<BasketItemViewModel> BasketItems { get; set; }
 
 }

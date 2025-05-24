@@ -11,6 +11,6 @@ public class BasketItemViewModel
     public decimal BasePrice { get; set; }
     public decimal TotalPrice { get; set; }
 
-    public decimal Value { get; set; }
+    public decimal DiscountValue { get; set; }
     public DiscountType DiscountType { get; set; }
 }
