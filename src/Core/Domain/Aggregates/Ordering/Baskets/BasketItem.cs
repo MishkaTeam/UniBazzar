@@ -13,7 +13,7 @@ public class BasketItem : Entity
     public DiscountAmount DiscountAmount { get; private set; }
 
 
-    private BasketItem()
+    protected BasketItem()
     {
         //FOR EF!
     }

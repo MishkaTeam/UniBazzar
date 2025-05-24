@@ -6,6 +6,11 @@ public class ProductAmount : IEquatable<ProductAmount>
     public decimal BasePrice { get; private set; }
     public decimal TotalPrice { get; private set; }
 
+
+    protected ProductAmount()
+    {
+    }
+
     private ProductAmount(long quantity, decimal basePrice)
     {
         if (quantity <= 0)

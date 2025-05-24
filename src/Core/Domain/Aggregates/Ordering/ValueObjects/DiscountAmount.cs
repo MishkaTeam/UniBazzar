@@ -7,6 +7,11 @@ public class DiscountAmount : IEquatable<DiscountAmount>
     public decimal Value { get; private set; }
     public DiscountType DiscountType { get; private set; }
 
+
+    protected DiscountAmount()
+    {
+    }
+
     private DiscountAmount(decimal value, DiscountType discountType)
     {
         if (value < 0)

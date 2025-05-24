@@ -10,7 +10,8 @@ public class Basket : Entity
     public Platform PlatForm { get; private set; }
     public List<BasketItem> BasketItems  { get; private set; }
 
-    private Basket()
+
+    protected Basket()
     {
         // FOR EF!
     }
