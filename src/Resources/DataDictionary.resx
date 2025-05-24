@@ -402,4 +402,10 @@
   <data name="Slug" xml:space="preserve">
     <value>Slug</value>
   </data>
+  <data name="Catalog" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>

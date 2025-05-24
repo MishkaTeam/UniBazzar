@@ -84,7 +84,8 @@
 							<div class="price-container py-2">
 								@* <span class="pre-price">4.000.000</span> *@
 								@{
-									decimal price = decimal.Parse(Model.ViewModelProductPrice.Price.ToString(), System.Globalization.NumberStyles.Currency);
+									decimal price = 16000000;
+									// decimal price = decimal.Parse(Model.ViewModelProductPrice.Price.ToString(), System.Globalization.NumberStyles.Currency);
 								}
 								<span class="price">@(price.ToString("#,#")) <span>تومان</span></span>
 							</div>

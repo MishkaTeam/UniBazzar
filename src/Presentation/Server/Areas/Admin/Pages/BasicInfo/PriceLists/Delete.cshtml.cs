@@ -1,17 +1,14 @@
-using Application.Aggregates.Products;
-using Application.Aggregates.Products.ProductFeatures.ViewModels;
-using Application.Aggregates.Products.ProductImages.ViewModel;
-using Application.Aggregates.Products.ProductPriceLists.ViewModels;
+using Application.Aggregates.PriceLists;
+using Application.Aggregates.PriceLists.ViewModels.PriceList;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductPriceLists;
 
-public class DeleteModel(ProductPriceListsApplication productsApplication) : BasePageModel
+public class DeleteModel(PriceListsApplication application) : BasePageModel
 {
     [BindProperty]
-    public ProductPriceListViewModel ViewModel { get; set; } = new();
+    public PriceListViewModel ViewModel { get; set; } = new();
 
     public async Task<IActionResult> OnGetAsync(Guid id)
     {
@@ -20,8 +17,8 @@ public class DeleteModel(ProductPriceListsApplication productsApplication) : Bas
             return RedirectToPage("../Index");
         }
 
-        ViewModel =
-            await productsApplication.GetProductPriceListAsync(id);
+        //ViewModel =
+        //    await application.GetProductPriceListAsync(id);
 
         if (ViewModel == null)
         {
@@ -33,7 +30,7 @@ public class DeleteModel(ProductPriceListsApplication productsApplication) : Bas
 
     public async Task<IActionResult> OnPostAsync()
     {
-        await productsApplication.DeleteProductPriceList(ViewModel.Id);
+        //await application.DeleteProductPriceList(ViewModel.Id);
 
         return RedirectToPage("Index",
             new { productId = ViewModel.ProductId.ToString() });

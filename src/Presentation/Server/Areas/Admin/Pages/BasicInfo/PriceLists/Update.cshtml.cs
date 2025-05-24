@@ -1,16 +1,14 @@
-using Application.Aggregates.Products;
-using Application.Aggregates.Products.ProductFeatures.ViewModels;
-using Application.Aggregates.Products.ProductPriceLists.ViewModels;
+using Application.Aggregates.PriceLists;
+using Application.Aggregates.PriceLists.ViewModels.PriceList;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductPriceLists
 {
-    public class UpdateModel(ProductPriceListsApplication productsApplication) : BasePageModel
+    public class UpdateModel(PriceListsApplication application) : BasePageModel
     {
         [BindProperty]
-        public ProductPriceListViewModel ViewModel { get; set; } = new();
+        public PriceListViewModel ViewModel { get; set; } = new();
 
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
@@ -19,8 +17,8 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductPriceLists
                 return RedirectToPage("../Index");
             }
 
-            ViewModel =
-                await productsApplication.GetProductPriceListAsync(id);
+            //ViewModel =
+            //    await application.GetProductPriceListAsync(id);
 
             if (ViewModel == null)
             {
@@ -34,7 +32,7 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductPriceLists
         {
             if (ModelState.IsValid)
             {
-                await productsApplication.UpdatePriceList(ViewModel);
+                //await application.UpdatePriceList(ViewModel);
             }
 
             return RedirectToPage("Index",

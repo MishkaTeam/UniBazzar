@@ -169,15 +169,6 @@ namespace Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; is not valid!.
-        /// </summary>
-        public static string IP {
-            get {
-                return ResourceManager.GetString("IP", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Maximum Count of {0} is {1} !.
         /// </summary>
         public static string MaxCount {
@@ -219,6 +210,15 @@ namespace Resources.Messages {
         public static string NotFound {
             get {
                 return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is not valid!.
+        /// </summary>
+        public static string NotValid {
+            get {
+                return ResourceManager.GetString("NotValid", resourceCulture);
             }
         }
         
