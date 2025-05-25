@@ -408,4 +408,7 @@
   <data name="Catalog" xml:space="preserve">
     <value>Catalog</value>
   </data>
+  <data name="Basket" xml:space="preserve">
+    <value>Basket</value>
+  </data>
 </root>

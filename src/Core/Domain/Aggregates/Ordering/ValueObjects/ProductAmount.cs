@@ -2,9 +2,14 @@ namespace Domain.Aggregates.Ordering.ValueObjects;
 
 public class ProductAmount : IEquatable<ProductAmount>
 {
-    public long Quantity { get; }
-    public decimal BasePrice { get; }
-    public decimal TotalPrice => Quantity * BasePrice;
+    public long Quantity { get; private set; }
+    public decimal BasePrice { get; private set; }
+    public decimal TotalPrice { get; private set; }
+
+
+    protected ProductAmount()
+    {
+    }
 
     private ProductAmount(long quantity, decimal basePrice)
     {
@@ -16,6 +21,8 @@ public class ProductAmount : IEquatable<ProductAmount>
 
         Quantity = quantity;
         BasePrice = basePrice;
+        TotalPrice = quantity * basePrice;
+
     }
 
     public static ProductAmount Create(long quantity, decimal basePrice)

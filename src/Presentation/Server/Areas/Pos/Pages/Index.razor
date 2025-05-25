@@ -1,8 +1,12 @@
 ﻿@page "/pos"
 @layout PosLayout
 
+@using Application.Aggregates.Orders
 @using Server.Areas.Pos.Components
 @using Server.Areas.Pos.Pages.Shared.Layouts.Pos
+
+@inject BasketApplication basketApplication
+@inject ILocalStorageService localStorage
 
 
 <PageTitle>Pos</PageTitle>
