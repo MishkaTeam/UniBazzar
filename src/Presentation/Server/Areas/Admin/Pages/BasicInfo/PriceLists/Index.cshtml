@@ -15,19 +15,19 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Price))
-            <th scope="col"></th>
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Title))
         </tr>
     </thead>
     <tbody>
-        @foreach (var productImage in Model.ViewModel)
+        @foreach (var priceList in Model.ViewModel)
         {
             <tr>
-                @(Html.Ub_DisplayStringWithTd(productImage.Price.ToString()))
+                @(Html.Ub_DisplayStringWithTd(priceList.Title))
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a asp-page="Update" asp-route-Id="@(productImage.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
-                        <a asp-page="Delete" asp-route-Id="@(productImage.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+                        <a asp-page="Products" asp-route-Id="@(priceList.Id)" type="button" class="btn btn-secondary">@(Resources.ButtonCaptions.Details)</a>
+                        <a asp-page="Update" asp-route-Id="@(priceList.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
+                        <a asp-page="Delete" asp-route-Id="@(priceList.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
                     </div>
                 </td>
             </tr>

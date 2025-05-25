@@ -1,8 +1,6 @@
-﻿using Application.Aggregates.PriceLists.ViewModels.PriceListItem;
+﻿namespace Application.Aggregates.PriceLists.ViewModels.PriceList;
 
-namespace Application.Aggregates.PriceLists.ViewModels.PriceList;
-
-public class UpdatePriceListViewModel : CreatePriceListItemViewModel
+public class UpdatePriceListViewModel : CreatePriceListViewModel
 {
 
     public Guid Id { get; set; }

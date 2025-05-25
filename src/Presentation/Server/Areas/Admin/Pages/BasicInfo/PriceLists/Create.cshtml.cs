@@ -9,15 +9,10 @@ public class CreateModel(PriceListsApplication productsApplication) : BasePageMo
 {
 
     [BindProperty]
-    public CreatePriceListViewModel ViewModel { get; set; } = new();
+    public CreatePriceListViewModel CreateViewModel { get; set; } = new();
 
-    public IActionResult OnGet(Guid productId)
+    public IActionResult OnGet()
     {
-        if (productId == Guid.Empty)
-        {
-            return RedirectToPage("Index");
-        }
-
         return Page();
     }
 
@@ -25,7 +20,7 @@ public class CreateModel(PriceListsApplication productsApplication) : BasePageMo
     {
         if (ModelState.IsValid)
         {
-            await productsApplication.CreatePriceList(ViewModel);
+            await productsApplication.CreatePriceList(CreateViewModel);
         }
 
         return RedirectToPage("Index");

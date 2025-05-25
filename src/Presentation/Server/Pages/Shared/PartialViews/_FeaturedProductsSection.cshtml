@@ -19,7 +19,7 @@
 		<!-- Products -->
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 encrypt89345 featured" data-aos="fade-up" data-aos-duration="1000">
 			<!-- Product Box -->
-			@foreach (var item in Model.ProductsViewModel)
+@* 			@foreach (var item in Model.ProductsViewModel)
 			{
 				<div class="col">
 					@{
@@ -50,11 +50,11 @@
 
 
 				</div>
-			}
+			} *@
 		</div>
 
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 encrypt89345 encrypt456">
-			@foreach (var item in Model.ProductsViewModel)
+@* 			@foreach (var item in Model.ProductsViewModel)
 			{
 
 				<div class="col">
@@ -80,12 +80,12 @@
 					}
 					@await Component.InvokeAsync(ProductCardViewComponent.KEY, card)
 				</div>
-			}
+			} *@
 			<!-- /Product Box -->
 		</div>
 
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 encrypt89345 most-visited">
-			@foreach (var item in Model.ProductsViewModel)
+@* 			@foreach (var item in Model.ProductsViewModel)
 			{
 
 				<div class="col">
@@ -111,7 +111,7 @@
 					}
 					@await Component.InvokeAsync(ProductCardViewComponent.KEY, card)
 				</div>
-			}
+			} *@
 		</div>
 		<!-- /Products -->
 	</div>

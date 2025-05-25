@@ -33,6 +33,6 @@ public class DeleteModel(PriceListsApplication application) : BasePageModel
         //await application.DeleteProductPriceList(ViewModel.Id);
 
         return RedirectToPage("Index",
-            new { productId = ViewModel.ProductId.ToString() });
+            new { productId = ViewModel.Id });
     }
 }

@@ -1,6 +1,5 @@
 using Application.Aggregates.PriceLists;
 using Application.Aggregates.PriceLists.ViewModels.PriceList;
-using Application.Aggregates.Products.ViewModels;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 

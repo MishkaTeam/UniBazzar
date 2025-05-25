@@ -36,7 +36,7 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductPriceLists
             }
 
             return RedirectToPage("Index",
-                new { productId = ViewModel.ProductId });
+                new { productId = ViewModel.Id });
         }
     }
 }
