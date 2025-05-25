@@ -69,45 +69,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("Domain.Aggregates.CheckoutCounter.CheckoutCounter", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<long>("InsertDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("InsertedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("Ordering")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("OwnerId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("StoreId")
-                        .HasColumnType("uuid");
-
-                    b.Property<long>("UpdateDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Version")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CheckoutCounters");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Customers.Customer", b =>
@@ -167,7 +129,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Customers.ShippingAddresses.ShippingAddress", b =>
@@ -226,94 +188,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("ShippingAddresses");
-                });
-
-            modelBuilder.Entity("Domain.Aggregates.PriceListItems.PriceListItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("CurrencyCode")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<long>("InsertDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("InsertedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Ordering")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("OwnerId")
-                        .HasColumnType("uuid");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
-
-                    b.Property<Guid?>("PriceListId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("StoreId")
-                        .HasColumnType("uuid");
-
-                    b.Property<long>("UpdateDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Version")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PriceListId");
-
-                    b.ToTable("PriceListItem");
-                });
-
-            modelBuilder.Entity("Domain.Aggregates.PriceLists.PriceList", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<long>("InsertDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("InsertedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Ordering")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("OwnerId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("StoreId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<long>("UpdateDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Version")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductPriceLists");
+                    b.ToTable("ShippingAddresses", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Products.Product", b =>
@@ -375,11 +250,9 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.HasIndex("UnitId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Products.ProductFeatures.ProductFeature", b =>
@@ -397,8 +270,10 @@ namespace Persistence.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("Key")
-                        .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("integer");
 
                     b.Property<int>("Ordering")
                         .HasColumnType("integer");
@@ -419,7 +294,6 @@ namespace Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Value")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("Version")
@@ -429,7 +303,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductFeatures");
+                    b.ToTable("ProductFeatures", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Products.ProductImages.ProductImage", b =>
@@ -470,7 +344,47 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductImages");
+                    b.ToTable("ProductImages", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Aggregates.Products.ProductPriceLists.ProductPriceList", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<long>("InsertDateTime")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("InsertedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Ordering")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("StoreId")
+                        .HasColumnType("uuid");
+
+                    b.Property<long>("UpdateDateTime")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Version")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductPriceLists", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Stores.Store", b =>
@@ -525,7 +439,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stores");
+                    b.ToTable("Stores", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Units.Unit", b =>
@@ -571,7 +485,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("BaseUnitId");
 
-                    b.ToTable("Units");
+                    b.ToTable("Units", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Users.User", b =>
@@ -628,7 +542,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.branches.Branch", b =>
@@ -666,7 +580,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Branches");
+                    b.ToTable("Branches", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Categories.Category", b =>
@@ -681,7 +595,7 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Aggregates.Customers.ShippingAddresses.ShippingAddress", b =>
                 {
                     b.HasOne("Domain.Aggregates.Customers.Customer", "Customers")
-                        .WithMany("ShippingAddresses")
+                        .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -689,28 +603,13 @@ namespace Persistence.Migrations
                     b.Navigation("Customers");
                 });
 
-            modelBuilder.Entity("Domain.Aggregates.PriceListItems.PriceListItem", b =>
-                {
-                    b.HasOne("Domain.Aggregates.PriceLists.PriceList", null)
-                        .WithMany("Items")
-                        .HasForeignKey("PriceListId");
-                });
-
             modelBuilder.Entity("Domain.Aggregates.Products.Product", b =>
                 {
-                    b.HasOne("Domain.Aggregates.Categories.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Aggregates.Units.Unit", "Unit")
                         .WithMany()
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Category");
 
                     b.Navigation("Unit");
                 });
@@ -733,16 +632,6 @@ namespace Persistence.Migrations
                         .HasForeignKey("BaseUnitId");
 
                     b.Navigation("BaseUnit");
-                });
-
-            modelBuilder.Entity("Domain.Aggregates.Customers.Customer", b =>
-                {
-                    b.Navigation("ShippingAddresses");
-                });
-
-            modelBuilder.Entity("Domain.Aggregates.PriceLists.PriceList", b =>
-                {
-                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }
