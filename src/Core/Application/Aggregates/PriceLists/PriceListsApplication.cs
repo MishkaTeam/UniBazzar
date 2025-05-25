@@ -22,10 +22,10 @@ public class PriceListsApplication(IPriceListRepository repository ,IUnitOfWork 
         return pricelist.Adapt<PriceListViewModel>();
     }
 
-    public async Task<List<PriceListItemViewModel>> GetAllPriceListAsync()
+    public async Task<List<PriceListViewModel>> GetAllPriceListAsync()
     {
         var pricelist = await repository.GetAllAsync();
-        return pricelist.Adapt<List<PriceListItemViewModel>>();
+        return pricelist.Adapt<List<PriceListViewModel>>();
     }
 
     //public async Task<PriceListItemViewModel> UpdatePriceList(PriceListItemViewModel model)

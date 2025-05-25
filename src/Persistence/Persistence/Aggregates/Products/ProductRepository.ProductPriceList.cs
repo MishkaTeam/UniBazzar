@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Aggregates.Products;
 
-public class ProductPriceListsRepository : RepositoryBase<PriceList> ,IPriceListRepository
+public class PriceListsRepository : RepositoryBase<PriceList> ,IPriceListRepository
 {
 
-    public ProductPriceListsRepository(UniBazzarContext context, IExecutionContextAccessor execution) : base(context, execution)
+    public PriceListsRepository(UniBazzarContext context, IExecutionContextAccessor execution) : base(context, execution)
     {
     }
 }

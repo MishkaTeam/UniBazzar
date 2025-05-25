@@ -9,6 +9,11 @@ public class PriceList : Entity
 
     public List<PriceListItem> Items { get; private set; }
 
+    protected PriceList()
+    {
+        //FOR EF!
+        //
+    }
 
     private PriceList(string title)
     {
@@ -21,7 +26,7 @@ public class PriceList : Entity
         return res;
     }
 
-    public void AddItem(Guid productId,decimal Price, string CurrencyCode)
+    public void AddItem(Guid productId, decimal Price, string CurrencyCode)
     {
         var priceListItem = PriceListItem.Create(productId, Price, CurrencyCode);
         Items.Add(priceListItem);

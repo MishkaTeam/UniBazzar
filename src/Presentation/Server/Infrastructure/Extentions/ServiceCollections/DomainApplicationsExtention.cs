@@ -96,14 +96,13 @@ public static class DomainExtensions
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IProductImageRepository, ProductImagesRepository>();
         services.AddScoped<IProductFeatureRepository, ProductFeaturesRepository>();
-        services.AddScoped<IProductPriceListRepository, ProductPriceListsRepository>();
-        services.AddScoped<IPriceListRepository, ProductPriceListsRepository>();
+        services.AddScoped<IPriceListRepository, PriceListsRepository>();
         services.AddScoped<IProductImageRepository, ProductImagesRepository>();
 
         services.AddScoped<IUnitRepository, UnitRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
 
-
+        services.AddScoped<IDiscountRepository, DiscountRepository>();
         services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
         services.AddScoped<ICustomerSearchRepository, CustomerSearchRepository>();
 

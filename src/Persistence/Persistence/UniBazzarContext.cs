@@ -60,9 +60,5 @@ public class UniBazzarContext : DbContext
 
 	public DbSet<Category> Categories { get; set; }
     public DbSet<Discount> Discounts { get; set; }
-	public DbSet<User> Users { get; set; }
-	public DbSet<Customer> Customers { get; set; }
-	public DbSet<ShippingAddress> ShippingAddresses { get; set; }
-	public DbSet<CheckoutCounter> CheckoutCounters { get; set; }
 
 }

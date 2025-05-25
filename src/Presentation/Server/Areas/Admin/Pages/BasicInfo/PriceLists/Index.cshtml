@@ -17,6 +17,7 @@
         <tr>
             @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Title))
         </tr>
+        <th>@(Resources.DataDictionary.Actions)</th>
     </thead>
     <tbody>
         @foreach (var priceList in Model.ViewModel)
@@ -25,7 +26,7 @@
                 @(Html.Ub_DisplayStringWithTd(priceList.Title))
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a asp-page="Products" asp-route-Id="@(priceList.Id)" type="button" class="btn btn-secondary">@(Resources.ButtonCaptions.Details)</a>
+                        <a asp-page="Products" asp-route-Id="@(priceList.Id)" type="button" class="btn btn-secondary">@(Resources.DataDictionary.Products)</a>
                         <a asp-page="Update" asp-route-Id="@(priceList.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
                         <a asp-page="Delete" asp-route-Id="@(priceList.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
                     </div>

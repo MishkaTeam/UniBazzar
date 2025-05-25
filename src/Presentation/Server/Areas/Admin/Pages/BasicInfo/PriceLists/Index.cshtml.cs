@@ -11,6 +11,7 @@ public class IndexModel(PriceListsApplication application) : BasePageModel
 
     public async Task<IActionResult> OnGetAsync()
     {
+        ViewModel = await application.GetAllPriceListAsync();
         return Page();
     }
 }
