@@ -2,8 +2,13 @@ namespace Domain.Aggregates.Ordering.ValueObjects;
 
 public class ProductType 
 {
-    public string ProductName { get; }
-    public Guid ProductId { get; }
+    public string ProductName { get; private set; }
+    public Guid ProductId { get; private set; }
+
+
+    protected ProductType()
+    {    
+    }
 
     private ProductType(Guid productId, string productName)
     {

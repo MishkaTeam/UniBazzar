@@ -42,17 +42,4 @@ public class ProductTypeTests
         act.Should().Throw<ArgumentException>();
     }
 
-    [Fact]
-    public void Properties_AreReadOnly()
-    {
-        var productId = Guid.NewGuid();
-        string productName = "Test Product";
-        var productType = ProductType.Create(productId, productName);
-
-        var productIdProperty = typeof(ProductType).GetProperty(nameof(ProductType.ProductId));
-        var productNameProperty = typeof(ProductType).GetProperty(nameof(ProductType.ProductName));
-
-        productIdProperty!.GetSetMethod(true).Should().BeNull("ProductId should be read-only");
-        productNameProperty!.GetSetMethod(true).Should().BeNull("ProductName should be read-only");
-    }
 }

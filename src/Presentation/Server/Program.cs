@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Server.Infrastructure;
@@ -21,6 +22,7 @@ namespace Server
             services.AddServerSideBlazor()
             .AddInteractiveServerComponents();
             services.AddBlazorBootstrap();
+            services.AddBlazoredLocalStorage();
             services.AddAuthenticationCookie();
             services.AddHttpClient();
             services.AddDomainApplications();

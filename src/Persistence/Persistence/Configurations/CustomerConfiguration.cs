@@ -20,11 +20,11 @@ internal class CustomerConfiguration : BaseConfiguration<Customer>
                .HasMaxLength(100);
 
         builder.Property(u => u.NationalCode)
-               .HasMaxLength(10);
+               .HasMaxLength(15);
 
         builder.HasIndex(u => u.NationalCode)
                .IsUnique()
-               .HasFilter("[NationalCode] IS NOT NULL"); 
+               .HasFilter("\"NationalCode\" IS NOT NULL");
 
         builder.Property(u => u.Mobile)
                .IsRequired()
@@ -38,7 +38,7 @@ internal class CustomerConfiguration : BaseConfiguration<Customer>
 
         builder.HasIndex(u => u.Email)
                .IsUnique()
-               .HasFilter("[Email] IS NOT NULL");
+               .HasFilter("\"Email\" IS NOT NULL");
 
         builder.Property(u => u.IsMobileVerified)
                .IsRequired()

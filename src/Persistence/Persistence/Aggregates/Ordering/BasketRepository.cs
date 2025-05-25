@@ -17,6 +17,17 @@ public class BasketRepository(
             .Include(x => x.BasketItems)
             .StoreFilter(executionContext.StoreId)
             .FirstOrDefaultAsync(b => b.Id == requestBasketId);
+
+        return basket;
+    }
+
+    public async Task<Basket?> GetWithItemsByReferenceNumberAsync(string referenceNumber)
+    {
+        var basket = await DbSet
+            .Include(x => x.BasketItems)
+            .StoreFilter(executionContext.StoreId)
+            .FirstOrDefaultAsync(b => b.ReferenceNumber == referenceNumber);
+
         return basket;
     }
 }

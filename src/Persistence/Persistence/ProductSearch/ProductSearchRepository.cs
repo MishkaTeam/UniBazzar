@@ -7,21 +7,21 @@ namespace Persistence.ProductSearch;
 public class ProductSearchRepository
     (UniBazzarContext context, IExecutionContextAccessor executionContextAccessor) : IProductSearchRepository
 {
-    public Task<List<SuggestionItem>> SuggestAsync(string searchText)
+    public async Task<List<SuggestionItem>> SuggestAsync(string searchText)
     {
-        var query = context.Products
-                           .Include(x => x.Category)
+        var query = await context.Products
+                           //.Include(x => x.Category)
                            .Select(x => new SuggestionItem
                            {
-                               Category = x.Category.Name,
+                               //Category = x.Category.Name,
                                IsCategory = false, // 
                                ProductId = x.Id,
                                ProductTitle = x.Name,
                                StoreId = x.StoreId,
                            })
                            .Where(x => x.ProductTitle.Contains(searchText))
-                           .Where(x => x.StoreId == executionContextAccessor.StoreId);
+                           .Where(x => x.StoreId == executionContextAccessor.StoreId).ToListAsync();
 
-        return query.ToListAsync();
+        return query;
     }
 }

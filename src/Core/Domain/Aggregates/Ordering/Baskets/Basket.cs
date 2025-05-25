@@ -5,16 +5,25 @@ namespace Domain.Aggregates.Ordering.Baskets;
 
 public class Basket : Entity
 {
-    public long ReferenceNumber { get; private set; }
+    public string ReferenceNumber { get; private set; }
     public BasketStatus BasketStatus { get; private set; }
     public Platform PlatForm { get; private set; }
     public List<BasketItem> BasketItems  { get; private set; }
-    
+
+
+    protected Basket()
+    {
+        // FOR EF!
+    }
+
     private Basket(Platform platForm)
     {
         PlatForm = platForm;
         BasketItems = new List<BasketItem>();
         BasketStatus = BasketStatus.INITIAL;
+
+        // For test
+        ReferenceNumber = Guid.NewGuid().ToString();
     }
 
     public static Basket Initialize(Platform platForm)
