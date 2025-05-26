@@ -12,7 +12,8 @@ public class DiscountApplication(IDiscountRepository discountRepository, IUnitOf
 
     public async Task<CreateDiscountViewModel> CreateDiscount(CreateDiscountViewModel viewModel)
     {
-        var discount = Discount.Create(viewModel.Title, viewModel.DiscountCode, viewModel.IsActive);
+        var discount = Discount.Create(viewModel.Title, viewModel.DiscountCode, viewModel.IsActive, viewModel.Type, viewModel.Minimum,
+                                       viewModel.Maximum, viewModel.Start, viewModel.End, viewModel.Amount);
 
         await discountRepository.AddAsync(discount);
         await unitOfWork.CommitAsync();
@@ -48,7 +49,8 @@ public class DiscountApplication(IDiscountRepository discountRepository, IUnitOf
             throw new Exception(message);
         }
 
-        discountForUpdate.Update(updateViewModel.Title, updateViewModel.DiscountCode, updateViewModel.IsActive);
+        discountForUpdate.Update(updateViewModel.Title, updateViewModel.DiscountCode, updateViewModel.IsActive, updateViewModel.Type, updateViewModel.Minimum,
+							     updateViewModel.Maximum, updateViewModel.Start, updateViewModel.End, updateViewModel.Amount);
 
         await unitOfWork.CommitAsync();
         return discountForUpdate.Adapt<DiscountViewModel>();
