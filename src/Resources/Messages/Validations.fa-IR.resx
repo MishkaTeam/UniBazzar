@@ -195,4 +195,7 @@
   <data name="PostalCode" xml:space="preserve">
     <value>کد پستی معتبر نمی‌باشد! کد پستی باید دقیقا از ده رقم انگلیسی تشکیل شود!</value>
   </data>
+  <data name="InvalidModelState" xml:space="preserve">
+    <value>اطلاعات ورودی معتبر نمیباشد، لطفا اطلاعات خود را بررسی فرمایید</value>
+  </data>
 </root>

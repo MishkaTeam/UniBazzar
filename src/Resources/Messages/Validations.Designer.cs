@@ -169,6 +169,15 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Input data is not valid.
+        /// </summary>
+        public static string InvalidModelState {
+            get {
+                return ResourceManager.GetString("InvalidModelState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maximum Count of {0} is {1} !.
         /// </summary>
         public static string MaxCount {

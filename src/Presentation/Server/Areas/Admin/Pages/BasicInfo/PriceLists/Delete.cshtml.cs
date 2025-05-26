@@ -14,15 +14,15 @@ public class DeleteModel(PriceListsApplication application) : BasePageModel
     {
         if (id == Guid.Empty)
         {
-            return RedirectToPage("../Index");
+            return RedirectToPage("Index");
         }
 
-        //ViewModel =
-        //    await application.GetProductPriceListAsync(id);
+        ViewModel =
+           await application.GetPriceListAsync(id);
 
         if (ViewModel == null)
         {
-            return RedirectToPage("../Index");
+            return RedirectToPage("Index");
         }
 
         return Page();
@@ -30,9 +30,14 @@ public class DeleteModel(PriceListsApplication application) : BasePageModel
 
     public async Task<IActionResult> OnPostAsync()
     {
-        //await application.DeleteProductPriceList(ViewModel.Id);
+        var res = await application.DeletePriceList(ViewModel.Id);
 
-        return RedirectToPage("Index",
-            new { productId = ViewModel.Id });
+        if (res.IsSuccessful)
+        {
+            return RedirectToPage("Index", new { productId = ViewModel.Id });
+        }
+
+        AddToastError(res.ErrorMessage?.Message ?? Resources.Messages.Errors.InternalError);
+        return Page();
     }
 }

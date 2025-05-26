@@ -31,4 +31,9 @@ public class PriceList : Entity
         var priceListItem = PriceListItem.Create(productId, Price, CurrencyCode);
         Items.Add(priceListItem);
     }
+
+    public void Update(string title)
+    {
+        Title = title;
+    }
 }

@@ -8,21 +8,21 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductPriceLists
     public class UpdateModel(PriceListsApplication application) : BasePageModel
     {
         [BindProperty]
-        public PriceListViewModel ViewModel { get; set; } = new();
+        public UpdatePriceListViewModel ViewModel { get; set; } = new();
 
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
             if (id == Guid.Empty)
             {
-                return RedirectToPage("../Index");
+                return RedirectToPage("Index");
             }
 
-            //ViewModel =
-            //    await application.GetProductPriceListAsync(id);
+            ViewModel =
+                await application.GetPriceListAsync(id);
 
             if (ViewModel == null)
             {
-                return RedirectToPage("../Index");
+                return RedirectToPage("Index");
             }
 
             return Page();
@@ -32,11 +32,18 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductPriceLists
         {
             if (ModelState.IsValid)
             {
-                //await application.UpdatePriceList(ViewModel);
-            }
+                var res = await application.UpdatePriceList(ViewModel);
 
-            return RedirectToPage("Index",
-                new { productId = ViewModel.Id });
+                if (res.IsSuccessful)
+                {
+                    return RedirectToPage("Index", new { productId = ViewModel.Id });
+                }
+
+                AddToastError(res.ErrorMessage?.Message ?? Resources.Messages.Errors.InternalError);
+                return Page();
+            }
+            AddToastError(Resources.Messages.Validations.InvalidModelState);
+            return Page();
         }
     }
 }

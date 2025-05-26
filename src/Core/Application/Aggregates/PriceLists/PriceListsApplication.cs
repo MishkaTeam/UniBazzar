@@ -2,12 +2,13 @@
 using Application.Aggregates.PriceLists.ViewModels.PriceListItem;
 using Domain;
 using Domain.Aggregates.PriceLists;
+using Framework.DataType;
 using Mapster;
 using Resources.Messages;
 
 namespace Application.Aggregates.PriceLists;
 
-public class PriceListsApplication(IPriceListRepository repository ,IUnitOfWork unitOfWork)
+public class PriceListsApplication(IPriceListRepository repository, IUnitOfWork unitOfWork)
 {
     public async Task CreatePriceList(CreatePriceListViewModel viewModel)
     {
@@ -28,38 +29,41 @@ public class PriceListsApplication(IPriceListRepository repository ,IUnitOfWork 
         return pricelist.Adapt<List<PriceListViewModel>>();
     }
 
-    //public async Task<PriceListItemViewModel> UpdatePriceList(PriceListItemViewModel model)
-    //{
-    //    var productpricelistForUpdate = await productPriceList.GetByIdAsync(model.Id);
 
-    //    if (productpricelistForUpdate == null || productpricelistForUpdate.Id == Guid.Empty)
-    //    {
-    //        var message =
-    //            string.Format(Errors.NotFound, Resources.DataDictionary.ProductFeature);
+    public async Task<ResultContract<PriceListItemViewModel>> UpdatePriceList(UpdatePriceListViewModel model)
+    {
+        var priceList = await repository.GetByIdAsync(model.Id);
 
-    //        throw new Exception(message);
-    //    }
+        if (priceList == null || priceList.Id == Guid.Empty)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.ProductFeature);
 
-    //    productpricelistForUpdate.Update(model.ProductId, model.Price);
+            return (ErrorType.NotFound, message);
+        }
 
-    //    await unitOfWork.CommitAsync();
+        priceList.Update(model.Title);
 
-    //    return productpricelistForUpdate.Adapt<PriceListItemViewModel>();
+        await unitOfWork.CommitAsync();
 
-    //}
+        return priceList.Adapt<PriceListItemViewModel>();
 
-    //public async Task DeletePriceList(Guid id)
-    //{
-    //    var productpricelistForDelete = await productPriceList.GetByIdAsync(id);
+    }
 
-    //    if (productpricelistForDelete == null || productpricelistForDelete.Id == Guid.Empty)
-    //    {
-    //        throw new Exception(Errors.NotFound);
-    //    }
+    public async Task<ResultContract> DeletePriceList(Guid id)
+    {
+        var priceList = await repository.GetByIdAsync(id);
 
-    //    productPriceList.RemoveAsync(productpricelistForDelete);
+        if (priceList == null || priceList.Id == Guid.Empty)
+        {
+            return (ErrorType.NotFound, Errors.NotFound);
+        }
 
-    //    await unitOfWork.CommitAsync();
-    //}
+        await repository.RemoveAsync(priceList);
+
+        await unitOfWork.CommitAsync();
+
+        return true;
+    }
 
 }

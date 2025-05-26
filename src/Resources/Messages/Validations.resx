@@ -195,4 +195,7 @@
   <data name="PostalCode" xml:space="preserve">
     <value>postalcode</value>
   </data>
+  <data name="InvalidModelState" xml:space="preserve">
+    <value>Input data is not valid</value>
+  </data>
 </root>
