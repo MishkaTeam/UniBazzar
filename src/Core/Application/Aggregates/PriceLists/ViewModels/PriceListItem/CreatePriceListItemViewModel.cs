@@ -4,6 +4,9 @@ namespace Application.Aggregates.PriceLists.ViewModels.PriceListItem;
 
 public class CreatePriceListItemViewModel
 {
+
+    public Guid PriceListId { get; set; }
+
     [Display
         (ResourceType = typeof(Resources.DataDictionary),
         Name = nameof(Resources.DataDictionary.ProductId))]

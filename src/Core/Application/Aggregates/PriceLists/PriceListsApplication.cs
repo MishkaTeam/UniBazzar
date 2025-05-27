@@ -66,4 +66,37 @@ public class PriceListsApplication(IPriceListRepository repository, IUnitOfWork 
         return true;
     }
 
+    public async Task<ResultContract> AddPricelistItem(CreatePriceListItemViewModel model)
+    {
+        try
+        {
+            var priceList = await repository.GetByIdAsync(model.PriceListId);
+            priceList.AddItem(model.ProductId, model.Price, "IRR");
+            await unitOfWork.CommitAsync();
+            return true;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
+
+    public async Task<ResultContract<List<PriceListItemViewModel>>> GetPriceListItems(Guid id)
+    {
+        var res = await repository.GetPriceListItems(id);
+
+        if (res == null)
+        {
+            return (ErrorType.NotFound, Resources.DataDictionary.NothingFound);
+        }
+
+        return res.Items.Select(x => new PriceListItemViewModel
+        {
+            Id = x.Id,
+            Price = x.Price,
+            PriceListId = res.Id,
+            ProductId = x.ProductId,    
+            ProductName = x.Product.Name,
+        }).ToList();
+    }
 }

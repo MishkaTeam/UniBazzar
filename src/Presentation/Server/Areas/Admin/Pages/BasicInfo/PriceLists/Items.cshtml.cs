@@ -1,18 +1,34 @@
+using Application.Aggregates.PriceLists;
+using Application.Aggregates.PriceLists.ViewModels.PriceList;
 using Application.Aggregates.PriceLists.ViewModels.PriceListItem;
+using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Server.Areas.Admin.Pages.BasicInfo.PriceLists
+namespace Server.Areas.Admin.Pages.BasicInfo.PriceLists;
+
+
+public class ItemsModel(PriceListsApplication application) : BasePageModel
 {
 
-    public class ItemsModel : PageModel
+    [BindProperty]
+    public CreatePriceListItemViewModel CreatePriceListItem { get; set; } = new();
+
+    public List<PriceListItemViewModel> Items { get; set; } = [];
+    public async Task OnGet(Guid Id)
+    {
+        CreatePriceListItem.PriceListId = Id;
+        Items = (await application.GetPriceListItems(Id)).Data ?? [];
+    }
+
+    public async Task<IActionResult> OnPost()
     {
 
-        [BindProperty]
-        public CreatePriceListItemViewModel CreatePriceListItem { get; set; } = new();
-
-        public void OnGet()
+        var res = await application.AddPricelistItem(CreatePriceListItem);
+        if (res.IsSuccessful)
         {
+            return Page();
         }
+        AddToastError(res.ErrorMessage?.Message ?? Resources.Messages.Errors.InternalError);
+        return Page();
     }
 }

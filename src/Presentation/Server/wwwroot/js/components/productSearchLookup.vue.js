@@ -1,8 +1,9 @@
 ﻿const SearchLookup = {
     emits: ['selected'],
     template: `
-    <div class="search-box position-relative my-3 w-100">
-      <input class="form-control"
+    <div class="search-box position-relative w-100">
+      <label class="form-label" for="product-search">کالا</label>
+      <input id="product-search" class="form-control"
              v-model="searchText"
              @input="onInputChanged"
              @keydown.down.prevent="moveSelection(1)"
@@ -71,8 +72,18 @@
             this.searchText = item.productTitle
             this.searchId = item.productId
             this.showSuggestions = false
-            this.$emit('selected', item) 
-
+            this.$emit('selected', item)
+        },
+        handleClickOutside(event) {
+            if (!this.$el.contains(event.target)) {
+                this.showSuggestions = false
+            }
         }
+    },
+    mounted() {
+        document.addEventListener('click', this.handleClickOutside)
+    },
+    unmounted() {
+        document.removeEventListener('click', this.handleClickOutside)
     }
 }

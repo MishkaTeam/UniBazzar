@@ -1,19 +1,22 @@
-﻿using Entity = Domain.BuildingBlocks.Aggregates.Entity;
+﻿using Domain.Aggregates.Products;
+using Entity = Domain.BuildingBlocks.Aggregates.Entity;
 
 namespace Domain.Aggregates.PriceListItems;
 
 public class PriceListItem : Entity
 {
 
-    private PriceListItem()
+    protected PriceListItem()
     {
         // FOR EF!
     }
+
 
     public Guid ProductId { get; set; }
     public decimal Price { get; private set; }
     public string CurrencyCode { get; set; }
 
+    public Product Product { get; set; }
     private PriceListItem(Guid productid, decimal price, string currencyCode)
     {
         Price = price;

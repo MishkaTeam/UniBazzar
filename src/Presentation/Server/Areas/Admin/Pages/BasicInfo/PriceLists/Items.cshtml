@@ -4,7 +4,6 @@
 	var pageTitle =
 			Resources.DataDictionary.PriceLists;
 }
-
 <style>
 
 	.search-box {
@@ -17,8 +16,8 @@
 		right: 0;
 		left: 0;
 		z-index: 1000;
-		background: #fff;
 		border: 1px solid #dee2e6;
+		background: var(--cui-body-bg);
 		border-radius: 12px;
 		margin-top: 5px;
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -59,6 +58,7 @@
 		background-color: #e9ecef;
 		margin: 8px 0;
 	}
+
 </style>
 
 <form method="post">
@@ -66,6 +66,8 @@
 	<section-form>
 
 		<fieldset>
+			<input hidden id="productId" asp-for="CreatePriceListItem.ProductId" />
+			<input hidden asp-for="CreatePriceListItem.PriceListId" />
 
 			<section-form-header>
 				@(pageTitle)
@@ -73,8 +75,13 @@
 
 			<partial name="PartialViews/_DisplayPageMessages" />
 
-			<div id="lookupApp">
-				<search-lookup v-on:selected="onItemSelected"></search-lookup>
+			<div class="row">
+				<div class="col-md-9" id="lookupApp">
+					<search-lookup v-on:selected="onItemSelected"></search-lookup>
+				</div>
+				<div class="col-md-3">
+					<ub-full-input asp-for="CreatePriceListItem.Price" />
+				</div>
 			</div>
 
 
@@ -89,6 +96,31 @@
 
 </form>
 
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">@(Resources.DataDictionary.Title)</th>
+			<th scope="col">@(Resources.DataDictionary.Price)</th>
+			<th scope="col"></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var model in Model.Items)
+		{
+			<tr>
+				<td>@(model.ProductName)</td>
+				<td>@(model.Price)</td>
+				<td>
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<a asp-page="Update" asp-route-Id="@(model.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
+						<a asp-page="Delete" asp-route-Id="@(model.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+					</div>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
 @section Scripts {
 	<script src="~/js/components/productsearchlookup.vue.js"></script>
 	<script type="module">
@@ -100,6 +132,7 @@
 
 			function onItemSelected(item) {
 			  console.log("آیتم انتخاب شد:", item)
+			  document.getElementById("productId").value = item.productId;
 			  selectedItem.value = item
 			}
 
@@ -112,4 +145,5 @@
 		app.component('search-lookup', SearchLookup);
 		app.mount('#lookupApp');
 	</script>
+
 }
