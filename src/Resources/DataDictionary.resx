@@ -432,4 +432,10 @@
   <data name="Type" xml:space="preserve">
     <value>Type</value>
   </data>
+  <data name="DiscountFixed" xml:space="preserve">
+    <value>Discount Fixed</value>
+  </data>
+  <data name="DiscountPercentage" xml:space="preserve">
+    <value>Discount Percentage</value>
+  </data>
 </root>

@@ -20,3 +20,59 @@
 <script src="~/admin/vendors/coreui/utils/js/index.js"></script>
 <script src="~/js/autodirection.js"></script>
 
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<script>
+    function openTab(evt, TabName) {
+        var i, tabcontent, tablinks;
+
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        document.getElementById(TabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    openTab(event, 'DiscountCode');
+</script>
+
+<script>
+    const PercentageRadio = document.getElementById("Percentage");
+    const FixedRadio = document.getElementById("Fixed");
+    const extraInputWrapper = document.getElementById("extraInputWrapper");
+
+    FixedRadio.checked = true;
+
+    function updateExtraInputVisibility() {
+        if (PercentageRadio.checked) {
+            extraInputWrapper.classList.remove("d-none");
+        } else {
+            extraInputWrapper.classList.add("d-none");
+        }
+    }
+
+    PercentageRadio.addEventListener("change", updateExtraInputVisibility);
+    FixedRadio.addEventListener("change", updateExtraInputVisibility);
+
+</script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    isTrue: 'false',
+                };
+            }
+        }).mount('#DiscountCode');
+    });
+</script>
