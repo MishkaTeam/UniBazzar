@@ -38,7 +38,7 @@ public class CreateDiscountViewModel
 	[Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.Type))]
-	public string Type { get; set; }
+	public string? Type { get; set; }
 
 	[Display
 		(ResourceType = typeof(Resources.DataDictionary),

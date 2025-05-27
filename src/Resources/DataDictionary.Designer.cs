@@ -349,6 +349,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discount Fixed.
+        /// </summary>
+        public static string DiscountFixed {
+            get {
+                return ResourceManager.GetString("DiscountFixed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discount Percentage.
+        /// </summary>
+        public static string DiscountPercentage {
+            get {
+                return ResourceManager.GetString("DiscountPercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Discount Type.
         /// </summary>
         public static string DiscountType {

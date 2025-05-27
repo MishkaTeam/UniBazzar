@@ -432,4 +432,10 @@
   <data name="Type" xml:space="preserve">
     <value>نوع</value>
   </data>
+  <data name="DiscountFixed" xml:space="preserve">
+    <value>تخفیف مبلغی</value>
+  </data>
+  <data name="DiscountPercentage" xml:space="preserve">
+    <value>تخفیف درصدی</value>
+  </data>
 </root>

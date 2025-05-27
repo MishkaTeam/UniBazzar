@@ -15,6 +15,10 @@
         <tr>
             @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Title))
             @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.DiscountCode))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Type))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Amount))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Start))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.End))
             @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.IsActive))
             <th scope="col"></th>
         </tr>
@@ -25,6 +29,10 @@
             <tr>
                 @(Html.Ub_DisplayStringWithTd(discount.Title))
                 @(Html.Ub_DisplayStringWithTd(discount.DiscountCode))
+                @(Html.Ub_DisplayStringWithTd(discount.Type))
+                @(Html.Ub_DisplayIntegerWithTd(discount.Amount))
+                @(Html.Ub_DisplayStringWithTd(discount.Start.ToString()));
+                @(Html.Ub_DisplayStringWithTd(discount.End.ToString()));
                 @(Html.Ub_DisplayBooleanWithTd(discount.IsActive))
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
