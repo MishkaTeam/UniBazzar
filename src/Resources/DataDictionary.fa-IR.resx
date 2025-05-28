@@ -408,10 +408,16 @@
   <data name="Catalog" xml:space="preserve">
     <value>کاتالوگ</value>
   </data>
-  <data name="Slug" xml:space="preserve">
-    <value>Slug</value>
-  </data>
   <data name="Basket" xml:space="preserve">
     <value>سبد خرید</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>عملیات</value>
+  </data>
+  <data name="PriceList" xml:space="preserve">
+    <value>لیست قیمت</value>
+  </data>
+  <data name="Addto" xml:space="preserve">
+    <value>افزودن به</value>
   </data>
 </root>

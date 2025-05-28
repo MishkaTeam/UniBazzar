@@ -19,6 +19,7 @@ namespace Server
             var services = builder.Services;
 
             services.AddRazorPagesWithAuth();
+            services.AddControllers();
             services.AddServerSideBlazor()
             .AddInteractiveServerComponents();
             services.AddBlazorBootstrap();
@@ -55,6 +56,8 @@ namespace Server
             app.UseAuthorization();
 
             app.MapBlazorHub();
+
+            app.MapControllers();
             app.MapRazorPages();
 
             app.Run();

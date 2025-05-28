@@ -138,4 +138,5 @@ public class CategoriesApplication
 
         return categories;
     }
+
 }
