@@ -20,10 +20,25 @@ public class ItemsModel(PriceListsApplication application) : BasePageModel
         Items = (await application.GetPriceListItems(Id)).Data ?? [];
     }
 
-    public async Task<IActionResult> OnPost()
+    public async Task<IActionResult> OnPost(Guid Id)
     {
 
         var res = await application.AddPricelistItem(CreatePriceListItem);
+        Items = (await application.GetPriceListItems(Id)).Data ?? [];
+
+        if (res.IsSuccessful)
+        {
+            return Page();
+        }
+        AddToastError(res.ErrorMessage?.Message ?? Resources.Messages.Errors.InternalError);
+        return Page();
+    }
+
+    public async Task<IActionResult> OnPostDelete(Guid Id, Guid ItemId)
+    {
+        var res = await application.RemovePricelistItem(Id,ItemId);
+        Items = (await application.GetPriceListItems(Id)).Data ?? [];
+
         if (res.IsSuccessful)
         {
             return Page();

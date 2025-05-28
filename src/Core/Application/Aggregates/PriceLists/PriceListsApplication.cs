@@ -4,6 +4,7 @@ using Domain;
 using Domain.Aggregates.PriceLists;
 using Framework.DataType;
 using Mapster;
+using Resources;
 using Resources.Messages;
 
 namespace Application.Aggregates.PriceLists;
@@ -71,6 +72,10 @@ public class PriceListsApplication(IPriceListRepository repository, IUnitOfWork 
         try
         {
             var priceList = await repository.GetByIdAsync(model.PriceListId);
+
+            if (priceList.Exists(model.ProductId))
+                return (ErrorType.DuplicateRecord, string.Format(Errors.AlreadyExists, DataDictionary.Product));
+
             priceList.AddItem(model.ProductId, model.Price, "IRR");
             await unitOfWork.CommitAsync();
             return true;
@@ -95,8 +100,22 @@ public class PriceListsApplication(IPriceListRepository repository, IUnitOfWork 
             Id = x.Id,
             Price = x.Price,
             PriceListId = res.Id,
-            ProductId = x.ProductId,    
+            ProductId = x.ProductId,
             ProductName = x.Product.Name,
         }).ToList();
+    }
+
+    public async Task<ResultContract> RemovePricelistItem(Guid priceListId, Guid priceListItemId)
+    {
+        var res = await repository.GetPriceListItems(priceListId);
+        if (res == null)
+        {
+            return (ErrorType.NotFound, Resources.DataDictionary.NothingFound);
+        }
+
+        res.RemoveItem(priceListItemId);
+        await unitOfWork.CommitAsync();
+
+        return true;
     }
 }

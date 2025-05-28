@@ -106,6 +106,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add to.
+        /// </summary>
+        public static string Addto {
+            get {
+                return ResourceManager.GetString("Addto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Admin Panel.
         /// </summary>
         public static string AdminPanel {
@@ -606,6 +615,15 @@ namespace Resources {
         public static string Price {
             get {
                 return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PriceList.
+        /// </summary>
+        public static string PriceList {
+            get {
+                return ResourceManager.GetString("PriceList", resourceCulture);
             }
         }
         

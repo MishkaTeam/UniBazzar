@@ -36,4 +36,16 @@ public class PriceList : Entity
     {
         Title = title;
     }
+
+    public bool Exists(Guid productId)
+    {
+        return Items.Any(x => x.ProductId == productId);
+    }
+
+    public void RemoveItem(Guid priceListItemId)
+    {
+        var item = Items.FirstOrDefault(x => x.Id == priceListItemId);
+        if (item != null)
+            Items.Remove(item);
+    }
 }

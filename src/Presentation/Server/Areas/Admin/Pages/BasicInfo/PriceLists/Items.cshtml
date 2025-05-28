@@ -2,7 +2,7 @@
 @model Server.Areas.Admin.Pages.BasicInfo.PriceLists.ItemsModel
 @{
 	var pageTitle =
-			Resources.DataDictionary.PriceLists;
+		$"{Resources.DataDictionary.Addto} {Resources.DataDictionary.PriceList}";
 }
 <style>
 
@@ -61,7 +61,7 @@
 
 </style>
 
-<form method="post">
+<form asp-page-handler="post" method="post">
 
 	<section-form>
 
@@ -95,31 +95,39 @@
 	</section-form>
 
 </form>
+<section-form>
+	<fieldset>
 
-<table class="table table-hover">
-	<thead>
-		<tr>
-			<th scope="col">@(Resources.DataDictionary.Title)</th>
-			<th scope="col">@(Resources.DataDictionary.Price)</th>
-			<th scope="col"></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var model in Model.Items)
-		{
-			<tr>
-				<td>@(model.ProductName)</td>
-				<td>@(model.Price)</td>
-				<td>
-					<div class="btn-group" role="group" aria-label="Basic example">
-						<a asp-page="Update" asp-route-Id="@(model.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
-						<a asp-page="Delete" asp-route-Id="@(model.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
-					</div>
-				</td>
-			</tr>
-		}
-	</tbody>
-</table>
+		<section-form-header>
+			@(Resources.DataDictionary.Products)
+		</section-form-header>
+		<table class="table table-hover text-center">
+			<thead>
+				<tr>
+					<th scope="col">@(Resources.DataDictionary.Title)</th>
+					<th scope="col">@(Resources.DataDictionary.Price)</th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var model in Model.Items)
+				{
+					<tr>
+						<td>@(model.ProductName)</td>
+						<td>@(model.Price)</td>
+						<td>
+							<form asp-page-handler="delete" asp-route-ItemId="@(model.Id)" method="post">
+								<div class="btn-group" role="group" aria-label="Basic example">
+									<button type="submit" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</button>
+								</div>
+							</form>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</fieldset>
+</section-form>
 
 @section Scripts {
 	<script src="~/js/components/productsearchlookup.vue.js"></script>

@@ -12,6 +12,17 @@ public class PriceListsRepository : RepositoryBase<PriceList> ,IPriceListReposit
     {
     }
 
+    public async Task<List<(Guid productId, decimal price)>> GetPrice(List<Guid> guids)
+    {
+        var prices = await DbSet
+            .SelectMany(p => p.Items)
+            .Where(item => guids.Contains(item.ProductId))
+            .Select(item => new { item.ProductId, item.Price })
+            .ToListAsync(); // از EF به LINQ to Objects سوییچ می‌کنیم
+
+        return [.. prices.Select(x => (x.ProductId, x.Price))];
+    }
+
     public Task<PriceList> GetPriceListItems(Guid id)
     {
         return DbSet

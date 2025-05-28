@@ -414,4 +414,10 @@
   <data name="Actions" xml:space="preserve">
     <value>Actions</value>
   </data>
+  <data name="PriceList" xml:space="preserve">
+    <value>PriceList</value>
+  </data>
+  <data name="Addto" xml:space="preserve">
+    <value>Add to</value>
+  </data>
 </root>

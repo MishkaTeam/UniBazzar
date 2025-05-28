@@ -14,7 +14,7 @@
 							<div class="swiper-container gallery-top">
 								<ul class="swiper-wrapper" style="list-style: none">
 
-									@foreach (var item in Model.ViewModelProductImage)
+									@foreach (var item in Model.ProductDetail.Images)
 									{
 										<li id="@(item.Id)" class="swiper-slide">
 											<a  class="h-100 w-100" href="/ProductImage/@(item.ImageUrl)" itemprop="contentUrl" data-size="900x710">
@@ -29,7 +29,7 @@
 
 							<div class="swiper-container gallery-thumbs">
 								<div class="swiper-wrapper">
-									@foreach (var item in Model.ViewModelProductImage)
+									@foreach (var item in Model.ProductDetail.Images)
 									{
 
 										<div class="swiper-slide" style="background-image:url('/ProductImage/@(item.ImageUrl)')"></div>
@@ -71,7 +71,7 @@
 						</div>
 						<div class="col-12 col-lg-7 mt-5 mt-lg-0 pl-lg-0" id="product-intro">
 							<a asp-page="/Product">
-								<h1>@(Model.ViewModelProduct.Name)</h1>
+								<h1>@(Model.ProductDetail.Name)</h1>
 							</a>
 							<div class="stars-container">
 								<i class="fa fa-star"></i>
@@ -84,13 +84,13 @@
 							<div class="price-container py-2">
 								@* <span class="pre-price">4.000.000</span> *@
 								@{
-									decimal price = 16000000;
+									decimal price = Model.ProductDetail.Price;
 									// decimal price = decimal.Parse(Model.ViewModelProductPrice.Price.ToString(), System.Globalization.NumberStyles.Currency);
 								}
 								<span class="price">@(price.ToString("#,#")) <span>تومان</span></span>
 							</div>
 							<p>
-								@(Model.ViewModelProduct.ShortDescription)
+								@(Model.ProductDetail.ShortDescription)
 							</p>
 							<hr>
 							<div class="variables">
@@ -164,7 +164,7 @@
 										<div class="col-12 pt-2 px-2 px-lg-0">
 											<!-- HTML Tab -->
 											<div id="html-tab" class="tabs-container text-justify p-0 p-md-3">
-												@(Model.ViewModelProduct.FullDescription)
+												@(Model.ProductDetail.FullDescription)
 											</div>
 											<!-- /HTML Tab -->
 											<!-- Details Tab -->
@@ -175,7 +175,7 @@
                                                         <span class="detail-title"><i class="fa fa-chevron-left small"></i> مشخصات کلی</span>
                                                     </div>
                                                 </div> *@
-												@foreach (var item in Model.ViewModelProductFeature)
+												@foreach (var item in Model.ProductDetail.ProductFeatures)
 												{
 													<div class="row mb-2">
 														<div class="col-12 col-md-3 font-weight-bold"><div class="bg-light p-2">@(item.Key)</div></div>

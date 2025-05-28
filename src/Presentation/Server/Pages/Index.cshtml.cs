@@ -12,15 +12,10 @@ namespace Server.Pages
                              ProductImagesApplication productImagesApplication,
                              PriceListsApplication productPriceListsApplication) : PageModel
     {
-        public List<ProductViewModel> ProductsViewModel { get; set; } = [];
-        public List<ProductImageViewModel> ProductImageViewModel { get; set; } = [];
-        public List<PriceListViewModel> ProductPriceListViewModel { get; set; } = [];
-
+        public List<ProductCardViewModel> ProductsViewModel { get; set; } = [];
         public async Task OnGetAsync()
         {
-            ProductsViewModel = await productsApplication.GetProducts();
-            ProductImageViewModel = await productImagesApplication.GetAllProductImagesAsync();
-            //ProductPriceListViewModel = await productPriceListsApplication.GetAllProductPriceListAsync();
+            ProductsViewModel = await productsApplication.GetIndexProducts();
         }
     }
 }
