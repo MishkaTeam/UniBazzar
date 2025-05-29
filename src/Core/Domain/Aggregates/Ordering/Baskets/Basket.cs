@@ -16,19 +16,23 @@ public class Basket : Entity
         // FOR EF!
     }
 
-    private Basket(Platform platForm)
+    private Basket(Platform platForm, Guid ownerId)
     {
         PlatForm = platForm;
-        BasketItems = new List<BasketItem>();
         BasketStatus = BasketStatus.INITIAL;
+        BasketItems = new List<BasketItem>();
+
+        SetOwner(ownerId);
 
         // For test
         ReferenceNumber = Guid.NewGuid().ToString();
     }
 
-    public static Basket Initialize(Platform platForm)
+    public static Basket Initialize(Platform platForm, Guid ownerId)
     {
-        var basket = new Basket(platForm);
+        var basket =
+            new Basket(platForm, ownerId);
+
         return basket;
     }
 
