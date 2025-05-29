@@ -9,7 +9,7 @@ namespace Server.Areas.Pos.Pages;
 public partial class Index
 {
     public static string LocalBasketKey { get; } = "Basket";
-    public BasketViewModel? Basket { get; private set; }
+    private BasketViewModel? Basket { get; set; }
 
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -17,6 +17,12 @@ public partial class Index
         if (firstRender)
         {
             await LoadBasketAsync();
+
+            if (Basket == null)
+            {
+                Basket = new();
+            }
+
             await InvokeAsync(StateHasChanged);
         }
     }
@@ -113,7 +119,7 @@ public partial class Index
         return publicCustomerId;
     }
 
-    public async Task onProductSelection(Guid productId)
+    private async Task onProductSelection(Guid productId)
     {
         var localBasket =
             await localStorage.GetItemAsync<InitializeBasketViewModel>(LocalBasketKey);
