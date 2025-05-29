@@ -437,5 +437,13 @@
   </data>
   <data name="DiscountPercentage" xml:space="preserve">
     <value>تخفیف درصدی</value>
+  <data name="Actions" xml:space="preserve">
+    <value>عملیات</value>
+  </data>
+  <data name="PriceList" xml:space="preserve">
+    <value>لیست قیمت</value>
+  </data>
+  <data name="Addto" xml:space="preserve">
+    <value>افزودن به</value>
   </data>
 </root>

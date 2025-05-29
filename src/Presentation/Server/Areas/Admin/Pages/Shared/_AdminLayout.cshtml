@@ -9,16 +9,21 @@
 </head>
 
 <body>
-	<partial name="PartialViews/_DisplayToastMessages" />
 	<partial name="PartialViews/_NavigationMenu" />
 	<div class="wrapper d-flex flex-column min-vh-100">
 		<partial name="PartialViews/_ToolbarMenu" />
 		<div class="body flex-grow-1">
 			<div class="container-lg px-4">
+				<partial name="PartialViews/_DisplayToastMessages" />
+
 				@RenderBody()
 			</div>
 		</div>
-	</div>
+	</div>	
 	<partial name="PartialViews/_Scripts" />
+
+	<script src="~/lib/vue/vue.global.prod.min.js"></script>
+	@RenderSection("Scripts", required: false)
+
 </body>
 </html>

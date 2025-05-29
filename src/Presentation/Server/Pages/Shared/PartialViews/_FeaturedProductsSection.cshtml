@@ -22,94 +22,25 @@
 			@foreach (var item in Model.ProductsViewModel)
 			{
 				<div class="col">
-					@{
-
-						var image = Model.ProductImageViewModel.FirstOrDefault(x => x.ProductId == item.Id);
-
-						var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
-
-						decimal price = 0;
-
-						if (pricelist is not null)
-						{
-							price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
-						}
-
-						var card = new ProductCardViewModel
-				{
-					Slug = "Slug",
-					TotalVoters = 14,
-					SKU = item.SKU,
-					Price = price,
-					Name = item.Name,
-					ImageUrl = image?.ImageUrl
-				};
-					}
-
-					@await Component.InvokeAsync(ProductCardViewComponent.KEY, card)
-
-
+					@await Component.InvokeAsync(ProductCardViewComponent.KEY, item)
 				</div>
-			}
+			} 
 		</div>
 
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 encrypt89345 encrypt456">
 			@foreach (var item in Model.ProductsViewModel)
 			{
-
 				<div class="col">
-					@{
-						var image = Model.ProductImageViewModel.FirstOrDefault(x => x.ProductId == item.Id);
-
-						var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
-						decimal price = 0;
-
-						if (pricelist is not null)
-						{
-							price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
-						}
-						var card = new ProductCardViewModel
-							{
-								Slug = "Slug",
-								TotalVoters = 14,
-								SKU = item.SKU,
-								Price = price,
-								Name = item.Name,
-								ImageUrl = image?.ImageUrl
-							};
-					}
-					@await Component.InvokeAsync(ProductCardViewComponent.KEY, card)
+					@await Component.InvokeAsync(ProductCardViewComponent.KEY, item)
 				</div>
 			}
-			<!-- /Product Box -->
 		</div>
 
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 encrypt89345 most-visited">
 			@foreach (var item in Model.ProductsViewModel)
 			{
-
 				<div class="col">
-					@{
-						var image = Model.ProductImageViewModel.FirstOrDefault(x => x.ProductId == item.Id);
-
-						var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
-						decimal price = 0;
-
-						if (pricelist is not null)
-						{
-							price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
-						}
-						var card = new ProductCardViewModel
-							{
-								Slug = "Slug",
-								TotalVoters = 14,
-								SKU = item.SKU,
-								Price = price,
-								Name = item.Name,
-								ImageUrl = image?.ImageUrl
-							};
-					}
-					@await Component.InvokeAsync(ProductCardViewComponent.KEY, card)
+					@await Component.InvokeAsync(ProductCardViewComponent.KEY, item)
 				</div>
 			}
 		</div>

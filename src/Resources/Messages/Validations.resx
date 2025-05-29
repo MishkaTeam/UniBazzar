@@ -153,7 +153,7 @@
   <data name="InvalidCode" xml:space="preserve">
     <value>Invalid Code : {0}</value>
   </data>
-  <data name="IP" xml:space="preserve">
+  <data name="NotValid" xml:space="preserve">
     <value>'{0}' is not valid!</value>
   </data>
   <data name="MaxCount" xml:space="preserve">
@@ -194,5 +194,8 @@
   </data>
   <data name="PostalCode" xml:space="preserve">
     <value>postalcode</value>
+  </data>
+  <data name="InvalidModelState" xml:space="preserve">
+    <value>Input data is not valid</value>
   </data>
 </root>

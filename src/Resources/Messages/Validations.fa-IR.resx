@@ -153,7 +153,7 @@
   <data name="InvalidCode" xml:space="preserve">
     <value>کد {0} صحیح نمی‌باشد!</value>
   </data>
-  <data name="IP" xml:space="preserve">
+  <data name="NotValid" xml:space="preserve">
     <value>'{0}' معتبر نمی‌باشد!</value>
   </data>
   <data name="MaxCount" xml:space="preserve">
@@ -194,5 +194,8 @@
   </data>
   <data name="PostalCode" xml:space="preserve">
     <value>کد پستی معتبر نمی‌باشد! کد پستی باید دقیقا از ده رقم انگلیسی تشکیل شود!</value>
+  </data>
+  <data name="InvalidModelState" xml:space="preserve">
+    <value>اطلاعات ورودی معتبر نمیباشد، لطفا اطلاعات خود را بررسی فرمایید</value>
   </data>
 </root>

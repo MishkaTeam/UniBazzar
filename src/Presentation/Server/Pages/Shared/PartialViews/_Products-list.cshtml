@@ -220,9 +220,9 @@
 
                                                 var image = Model.ProductImageViewModel.FirstOrDefault(x => x.ProductId == item.Id);
 
-                                                var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
+                                                @* var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(); *@
 
-                                                decimal price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
+                                                decimal price = 0;//decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
 
                                                 <!-- Product Box -->
                                                 <div class="encrypt263156-row">

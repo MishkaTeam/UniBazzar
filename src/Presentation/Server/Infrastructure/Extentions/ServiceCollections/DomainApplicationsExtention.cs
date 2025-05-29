@@ -5,6 +5,7 @@ using Application.Aggregates.Customers;
 using Application.Aggregates.Customers.ShippingAddresses;
 using Application.Aggregates.Discounts;
 using Application.Aggregates.Orders;
+using Application.Aggregates.PriceLists;
 using Application.Aggregates.Products;
 using Application.Aggregates.Stores;
 using Application.Aggregates.Units;
@@ -19,10 +20,10 @@ using Domain.Aggregates.Customers;
 using Domain.Aggregates.Customers.ShippingAddresses;
 using Domain.Aggregates.Discounts;
 using Domain.Aggregates.Ordering.Baskets.Data;
+using Domain.Aggregates.PriceLists;
 using Domain.Aggregates.Products;
 using Domain.Aggregates.Products.ProductFeatures;
 using Domain.Aggregates.Products.ProductImages;
-using Domain.Aggregates.Products.ProductPriceLists;
 using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
 using Domain.Aggregates.Users;
@@ -63,12 +64,14 @@ public static class DomainExtensions
         services.AddScoped<ProductsApplication>();
         services.AddScoped<ProductImagesApplication>();
         services.AddScoped<ProductFeaturesApplication>();
-        services.AddScoped<ProductPriceListsApplication>();
+        services.AddScoped<PriceListsApplication>();
 
         services.AddScoped<UnitsApplication>();
         services.AddScoped<CategoriesApplication>();
 
         services.AddScoped<DiscountApplication>();
+
+        services.AddScoped<CategoryRepository>();
 
 
         services.AddScoped<ProductSearchApplication>();
@@ -93,14 +96,13 @@ public static class DomainExtensions
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IProductImageRepository, ProductImagesRepository>();
         services.AddScoped<IProductFeatureRepository, ProductFeaturesRepository>();
-        services.AddScoped<IProductPriceListRepository, ProductPriceListsRepository>();
+        services.AddScoped<IPriceListRepository, PriceListsRepository>();
+        services.AddScoped<IProductImageRepository, ProductImagesRepository>();
 
         services.AddScoped<IUnitRepository, UnitRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
 
         services.AddScoped<IDiscountRepository, DiscountRepository>();
-
-
         services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
         services.AddScoped<ICustomerSearchRepository, CustomerSearchRepository>();
 

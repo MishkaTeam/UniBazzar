@@ -1,8 +1,8 @@
-﻿@page "{productId:guid}"
-@model Server.Areas.Admin.Pages.BasicInfo.Products.ProductPriceLists.CreateModel
+﻿@page "{id:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.Products.ProductPriceLists.UpdateModel
 @{
     var pageTitle =
-        $"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.Price}";
+        $"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.Price}";
 
     ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 }
@@ -19,14 +19,14 @@
 
             <partial name="PartialViews/_DisplayPageMessages" />
 
-            <input hidden asp-for="ViewModel.ProductId" />
+            <input hidden asp-for="ViewModel.Id" />
 
-            <ub-full-input asp-for="ViewModel.Price" />
+            <ub-full-input asp-for="ViewModel.Title" />
 
         </fieldset>
 
         <section-form-buttons>
-            <button-create />
+            <button-save />
             <button-reset />
         </section-form-buttons>
 

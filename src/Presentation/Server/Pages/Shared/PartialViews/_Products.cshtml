@@ -241,14 +241,14 @@
                                         {
                                             var image = Model.ProductImageViewModel.FirstOrDefault(x => x.ProductId == item.Id);
 
-                                            var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id);
+                                            @* var pricelist = Model.ProductPriceListViewModel.FirstOrDefault(x => x.ProductId == item.Id); *@
 
                                             decimal price = 0;
 
-                                            if (pricelist is not null)
+            @*                                 if (pricelist is not null)
                                             {
                                                 price = decimal.Parse(pricelist.Price.ToString(), System.Globalization.NumberStyles.Currency);
-                                            }
+                                            } *@
 
                                             //Products
                                             <div class="col">

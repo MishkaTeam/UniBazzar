@@ -1,6 +1,7 @@
+using Application.Aggregates.PriceLists;
+using Application.Aggregates.PriceLists.ViewModels.PriceList;
 using Application.Aggregates.Products;
 using Application.Aggregates.Products.ProductImages.ViewModel;
-using Application.Aggregates.Products.ProductPriceLists.ViewModels;
 using Application.Aggregates.Products.ViewModels;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -8,12 +9,12 @@ namespace Server.Pages
 {
     public class Products_listModel(ProductsApplication productsApplication,
                            ProductImagesApplication productImagesApplication,
-                           ProductPriceListsApplication productPriceListsApplication) : PageModel
+                           PriceListsApplication productPriceListsApplication) : PageModel
     {
 
         public List<ProductViewModel> ProductsViewModel { get; set; } = [];
         public List<ProductImageViewModel> ProductImageViewModel { get; set; } = [];
-        public List<ProductPriceListViewModel> ProductPriceListViewModel { get; set; } = [];
+        public List<PriceListViewModel> ProductPriceListViewModel { get; set; } = [];
 
         public async Task OnGetAsync()
         {
@@ -21,7 +22,7 @@ namespace Server.Pages
 
             ProductImageViewModel = await productImagesApplication.GetAllProductImagesAsync();
 
-            ProductPriceListViewModel = await productPriceListsApplication.GetAllProductPriceListAsync();
+            //ProductPriceListViewModel = await productPriceListsApplication.GetAllProductPriceListAsync();
         }
     }
 }

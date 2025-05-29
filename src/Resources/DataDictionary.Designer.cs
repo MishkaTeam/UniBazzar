@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actions.
+        /// </summary>
+        public static string Actions {
+            get {
+                return ResourceManager.GetString("Actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active Price List Id.
         /// </summary>
         public static string ActivePriceListId {
@@ -93,6 +102,15 @@ namespace Resources {
         public static string AddressManagement {
             get {
                 return ResourceManager.GetString("AddressManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add to.
+        /// </summary>
+        public static string Addto {
+            get {
+                return ResourceManager.GetString("Addto", resourceCulture);
             }
         }
         
@@ -660,6 +678,15 @@ namespace Resources {
         public static string Price {
             get {
                 return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PriceList.
+        /// </summary>
+        public static string PriceList {
+            get {
+                return ResourceManager.GetString("PriceList", resourceCulture);
             }
         }
         
