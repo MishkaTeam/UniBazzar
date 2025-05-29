@@ -169,11 +169,11 @@ namespace Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; is not valid!.
+        ///   Looks up a localized string similar to Input data is not valid.
         /// </summary>
-        public static string IP {
+        public static string InvalidModelState {
             get {
-                return ResourceManager.GetString("IP", resourceCulture);
+                return ResourceManager.GetString("InvalidModelState", resourceCulture);
             }
         }
         
@@ -219,6 +219,15 @@ namespace Resources.Messages {
         public static string NotFound {
             get {
                 return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is not valid!.
+        /// </summary>
+        public static string NotValid {
+            get {
+                return ResourceManager.GetString("NotValid", resourceCulture);
             }
         }
         

@@ -1,27 +1,35 @@
 ﻿using BuildingBlocks.Persistence;
-using Domain.Aggregates.Products.ProductPriceLists;
+using Domain.Aggregates.PriceLists;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Extensions;
 
 namespace Persistence.Aggregates.Products;
 
-public class ProductPriceListsRepository : RepositoryBase<ProductPriceList> ,IProductPriceListRepository
+public class PriceListsRepository : RepositoryBase<PriceList> ,IPriceListRepository
 {
 
-    private readonly UniBazzarContext _context;
-
-    public ProductPriceListsRepository(UniBazzarContext context, IExecutionContextAccessor execution) : base(context, execution)
+    public PriceListsRepository(UniBazzarContext context, IExecutionContextAccessor execution) : base(context, execution)
     {
-        _context = context;
     }
 
-    public async Task<ProductPriceList> GetPriceByProductId(Guid productid)
+    public async Task<List<(Guid productId, decimal price)>> GetPrice(List<Guid> guids)
     {
-        var productpricelist = await _context.ProductPriceLists.FirstOrDefaultAsync(x => x.ProductId == productid);
-        return productpricelist ?? new ProductPriceList();
+        var prices = await DbSet
+            .SelectMany(p => p.Items)
+            .Where(item => guids.Contains(item.ProductId))
+            .Select(item => new { item.ProductId, item.Price })
+            .ToListAsync(); // از EF به LINQ to Objects سوییچ می‌کنیم
+
+        return [.. prices.Select(x => (x.ProductId, x.Price))];
     }
 
-    public async Task<List<ProductPriceList>> GetPriceListByProductId(Guid productid)
+    public Task<PriceList> GetPriceListItems(Guid id)
     {
-        return await _context.ProductPriceLists.Where(x => x.ProductId == productid).ToListAsync();
+        return DbSet
+               .Include(x => x.Items)
+               .ThenInclude(x => x.Product)
+               .Where(x => x.Id == id)
+               .StoreFilter(ExecutionContext.StoreId)
+               .FirstOrDefaultAsync();
     }
 }

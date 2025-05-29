@@ -1,4 +1,5 @@
 ﻿using Application.Aggregates.Categories;
+using Application.Aggregates.Categories.ViewModels;
 using Application.Aggregates.Products;
 using Application.Aggregates.Products.ViewModels;
 using Application.Aggregates.Units;
@@ -21,20 +22,19 @@ public class CreateModel
 	public List<SelectListItem> ProductTypeList { get; set; } = [];
 	public List<SelectListItem> BaseUnitList { get; set; } = [];
 
+	public List<MenuCategoryViewModel> Categories { get; set; } = [];
+
 	public async Task OnGetAsync()
 	{
-
-
-		await FillSelectTagAsync();
+		Categories = await categoriesApplication.GetMenuCategoriesAsync();
+        await FillSelectTagAsync();
 	}
 
 	public async Task<IActionResult> OnPostAsync()
 	{
 		if (ModelState.IsValid)
 		{
-			CreateViewModel.CategoryId = Guid.NewGuid();
 			CreateViewModel.StoreId = execution.StoreId;
-
 			await productsApplication.CreateProductAsync(CreateViewModel);
 		}
 		else
