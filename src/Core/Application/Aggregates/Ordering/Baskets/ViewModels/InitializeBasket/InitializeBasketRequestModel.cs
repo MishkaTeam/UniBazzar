@@ -4,5 +4,6 @@ namespace Application.Aggregates.Orders.ViewModels;
 
 public class InitializeBasketRequestModel
 {
-    public Platform platform { get; set; }
+    public Platform Platform { get; set; }
+    public Guid OwnerId { get; set; }
 }
