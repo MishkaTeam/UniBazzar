@@ -411,6 +411,33 @@
   <data name="Basket" xml:space="preserve">
     <value>سبد خرید</value>
   </data>
+  <data name="Amount" xml:space="preserve">
+    <value>هزینه</value>
+  </data>
+  <data name="DiscountType" xml:space="preserve">
+    <value>نوع تخفیف</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>پایان</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>حداکثر</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>حداقل</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>شروع</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>نوع</value>
+  </data>
+  <data name="DiscountFixed" xml:space="preserve">
+    <value>تخفیف مبلغی</value>
+  </data>
+	<data name="DiscountPercentage" xml:space="preserve">
+    <value>تخفیف درصدی</value>
+   </data>
   <data name="Actions" xml:space="preserve">
     <value>عملیات</value>
   </data>

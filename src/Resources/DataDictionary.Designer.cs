@@ -124,6 +124,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string Amount {
+            get {
+                return ResourceManager.GetString("Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Base Unit.
         /// </summary>
         public static string BaseUnit {
@@ -358,6 +367,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discount Fixed.
+        /// </summary>
+        public static string DiscountFixed {
+            get {
+                return ResourceManager.GetString("DiscountFixed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discount Percentage.
+        /// </summary>
+        public static string DiscountPercentage {
+            get {
+                return ResourceManager.GetString("DiscountPercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discount Type.
+        /// </summary>
+        public static string DiscountType {
+            get {
+                return ResourceManager.GetString("DiscountType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download Url.
         /// </summary>
         public static string DownloadUrl {
@@ -381,6 +417,15 @@ namespace Resources {
         public static string EmailOrMobile {
             get {
                 return ResourceManager.GetString("EmailOrMobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End.
+        /// </summary>
+        public static string End {
+            get {
+                return ResourceManager.GetString("End", resourceCulture);
             }
         }
         
@@ -489,6 +534,24 @@ namespace Resources {
         public static string Logo {
             get {
                 return ResourceManager.GetString("Logo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum.
+        /// </summary>
+        public static string Maximum {
+            get {
+                return ResourceManager.GetString("Maximum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum.
+        /// </summary>
+        public static string Minimum {
+            get {
+                return ResourceManager.GetString("Minimum", resourceCulture);
             }
         }
         
@@ -808,6 +871,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        public static string Start {
+            get {
+                return ResourceManager.GetString("Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Store.
         /// </summary>
         public static string Store {
@@ -867,6 +939,15 @@ namespace Resources {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
         
