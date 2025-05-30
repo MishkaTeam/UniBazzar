@@ -10,6 +10,7 @@ public class Order : Entity
     public Guid BasketId { get; private set; }
     public string BasketReferenceNumber { get; private set; }
 
+
     public List<OrderItem> OrderItems { get; private set; }
 
     private Order()

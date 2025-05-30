@@ -1,4 +1,5 @@
 using Domain.Aggregates.Ordering.Baskets.Enums;
+using Domain.Aggregates.Ordering.ValueObjects;
 using Entity = Domain.BuildingBlocks.Aggregates.Entity;
 
 namespace Domain.Aggregates.Ordering.Baskets;
@@ -8,8 +9,29 @@ public class Basket : Entity
     public string ReferenceNumber { get; private set; }
     public BasketStatus BasketStatus { get; private set; }
     public Platform PlatForm { get; private set; }
+    public string? Description { get; private set; }
+    public DiscountAmount TotalDiscountAmount { get; private set; }
+
     public List<BasketItem> BasketItems  { get; private set; }
 
+
+    public decimal TotalBeforeDiscount
+    {
+        get
+        {
+            return BasketItems.Sum(x => x.TotalPrice);
+        }
+    }
+
+    public decimal Total
+    {
+        get
+        {
+            TotalDiscountAmount ??= DiscountAmount.CreateNoDiscount();
+
+            return TotalDiscountAmount.ApplyDiscount(TotalBeforeDiscount);
+        }
+    }
 
     protected Basket()
     {
@@ -37,6 +59,8 @@ public class Basket : Entity
         BasketItems.Add(basketItem);
     }
 
+    public void SetDescription(string description) => Description = description;
+    public void SetTotalDiscount(decimal amount, DiscountType type) => TotalDiscountAmount = DiscountAmount.Create(amount, type);
 
     public void Checkout()
     {

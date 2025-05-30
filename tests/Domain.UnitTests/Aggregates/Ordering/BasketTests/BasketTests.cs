@@ -1,4 +1,4 @@
-using Domain.Aggregates.Ordering.Baskets;
+﻿using Domain.Aggregates.Ordering.Baskets;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 using Domain.Aggregates.Ordering.ValueObjects;
 using FluentAssertions;
@@ -19,20 +19,38 @@ public class BasketTests
         basket.BasketStatus.Should().Be(BasketStatus.INITIAL);
         basket.BasketItems.Should().BeEmpty();
     }
-    
-    [Fact]
-    public void AddItem_ShouldAddBasketItemToBasket()
+
+    [Theory]
+    [InlineData(1, 100, DiscountType.Price, 10, 90)]     // تخفیف مبلغی 10 تومانی
+    [InlineData(2, 200, DiscountType.Percent, 25, 300)]  // 25% تخفیف روی 400 = 100 تخفیف، مبلغ نهایی: 300
+    [InlineData(3, 150, DiscountType.None, 0, 450)]      // بدون تخفیف
+    public void AddItem_ShouldCalculateCorrectLineTotal(
+        int quantity,
+        decimal unitPrice,
+        DiscountType discountType,
+        decimal discountValue,
+        decimal expectedLineTotal)
     {
         var basket = Basket.Initialize(Platform.POS);
         var product = ProductType.Create(Guid.NewGuid(), "Test Product");
-        var basketItem = BasketItem.Create(Guid.NewGuid(), "123456", product, ProductAmount.Create(1, 100), DiscountAmount.Create(10, DiscountType.Price));
-        
+
+        var basketItem = BasketItem.Create(
+            Guid.NewGuid(),
+            "123456",
+            product,
+            ProductAmount.Create(quantity, unitPrice),
+            DiscountAmount.Create(discountValue, discountType)
+        );
+
         basket.AddItem(basketItem);
-        
+
         basket.BasketItems.Should().ContainSingle();
-        basket.BasketItems.Should().Contain(basketItem);
+
+        var item = basket.BasketItems.First();
+        item.TotalPrice.Should().Be(expectedLineTotal);
     }
-    
+
+
     [Fact]
     public void Checkout_ShouldChangeBasketStatusToCheckout()
     {
