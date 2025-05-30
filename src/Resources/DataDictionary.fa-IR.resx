@@ -435,8 +435,9 @@
   <data name="DiscountFixed" xml:space="preserve">
     <value>تخفیف مبلغی</value>
   </data>
-  <data name="DiscountPercentage" xml:space="preserve">
+	<data name="DiscountPercentage" xml:space="preserve">
     <value>تخفیف درصدی</value>
+   </data>
   <data name="Actions" xml:space="preserve">
     <value>عملیات</value>
   </data>
