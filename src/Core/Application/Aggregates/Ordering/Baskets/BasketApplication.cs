@@ -14,10 +14,10 @@ public class BasketApplication(IBasketRepository basketRepository, IUnitOfWork u
 {
     public async Task<ResultContract<InitializeBasketViewModel>> InitializeBasket(InitializeBasketRequestModel request)
     {
-        var basket = Basket.Initialize(request.platform);
+        var basket = Basket.Initialize(request.Platform, request.OwnerId);
         await basketRepository.AddAsync(basket);
         await unitOfWork.CommitAsync();
-        return new InitializeBasketViewModel(basket.ReferenceNumber);
+        return new InitializeBasketViewModel(basket.Id, basket.OwnerId);
     }
 
     public async Task<ResultContract<BasketItemViewModel>> AddItem(AddBasketItemRequestModel basketItemRequest)
@@ -56,6 +56,7 @@ public class BasketApplication(IBasketRepository basketRepository, IUnitOfWork u
         return new BasketViewModel
         {
             Id = basket.Id,
+            OwnerId = basket.OwnerId,
             Platform = basket.PlatForm,
             BasketStatus = basket.BasketStatus,
             ReferenceNumber = basket.ReferenceNumber,
@@ -88,6 +89,7 @@ public class BasketApplication(IBasketRepository basketRepository, IUnitOfWork u
         return new BasketViewModel
         {
             Id = basket.Id,
+            OwnerId = basket.OwnerId,
             Platform = basket.PlatForm,
             BasketStatus = basket.BasketStatus,
             ReferenceNumber = basket.ReferenceNumber,
@@ -102,5 +104,25 @@ public class BasketApplication(IBasketRepository basketRepository, IUnitOfWork u
                 DiscountType = x.DiscountAmount.DiscountType,
             }).ToList()
         };
+    }
+
+    public async Task<ResultContract<BasketViewModel>> ChangeOwnerAsync(Guid basketId, Guid ownerId)
+    {
+        var basket =
+            await basketRepository.GetByIdAsync(basketId);
+
+        basket.SetOwner(ownerId);
+
+        await unitOfWork.CommitAsync();
+
+        return basket.Adapt<BasketViewModel>();
+    }
+
+    public async Task<ResultContract<bool>> Exist(Guid id)
+    {
+        var basket =
+            await basketRepository.GetByIdAsync(id);
+
+        return basket != null;
     }
 }

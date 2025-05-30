@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Domain.CustomerSearch;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -17,6 +16,8 @@ public partial class SearchCustomer
 
     private SuggestionItem suggestion = new();
 
+    public static string LocalCustomerKey { get; } = "Customer";
+
 
     private async Task OnInputChanged(ChangeEventArgs e)
     {
@@ -32,17 +33,26 @@ public partial class SearchCustomer
         isLoading = true;
 
         // Test for loading section
-        //await Task.Delay(2000);
+        await Task.Delay(500);
 
-        suggestion =
-            await customerApplication.SuggestAsync(searchMobile);
-
-        if (suggestion is not null)
-        {
-            searchMobile = string.Empty;
-        }
+        await LoadSuggestion();
 
         isLoading = false;
+    }
+
+    private async Task LoadSuggestion()
+    {
+        suggestion =
+            await customerSearchApplication.SuggestAsync(searchMobile);
+
+        if (suggestion == null)
+        {
+            return;
+        }
+
+        await localStorage.SetItemAsync(LocalCustomerKey, suggestion.CustomerId);
+
+        searchMobile = string.Empty;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -50,6 +60,18 @@ public partial class SearchCustomer
         if (firstRender)
         {
             await JS.InvokeVoidAsync("addOutsideClickListenerCustomerSearch", DotNetObjectReference.Create(this));
+
+            // Show local customer in CustomerInformation [ Have Error ]
+            //var customerId =
+            //    await localStorage.GetItemAsync<Guid?>(LocalCustomerKey);
+
+            //if (customerId.HasValue)
+            //{
+            //    var customer =
+            //        await customerapplication.GetCustomerAsync(customerId.Value);
+
+            //    await SetCustomerAsync(customer.Mobile);
+            //}
         }
     }
 

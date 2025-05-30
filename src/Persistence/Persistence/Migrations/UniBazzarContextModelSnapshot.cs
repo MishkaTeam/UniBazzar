@@ -300,7 +300,9 @@ namespace Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("Ordering")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
@@ -313,7 +315,8 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("Type")
                         .IsRequired()

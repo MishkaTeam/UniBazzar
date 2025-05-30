@@ -447,4 +447,7 @@
   <data name="Addto" xml:space="preserve">
     <value>افزودن به</value>
   </data>
+  <data name="Slug" xml:space="preserve">
+    <value>Slug</value>
+  </data>
 </root>

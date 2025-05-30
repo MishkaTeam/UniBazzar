@@ -1,11 +1,15 @@
 ﻿@page "/pos"
 @layout PosLayout
 
+@using Application.Aggregates.Customers
 @using Application.Aggregates.Orders
+@using Application.Aggregates.Products
 @using Server.Areas.Pos.Components
 @using Server.Areas.Pos.Pages.Shared.Layouts.Pos
 
 @inject BasketApplication basketApplication
+@inject CustomerApplication customerApplication
+@inject ProductsApplication productApplication
 @inject ILocalStorageService localStorage
 
 
@@ -18,29 +22,48 @@
 </div>
 
 <div style="heght: 580px; overlow-y: scroll;" class="row m-0 pt-2">
-	<table style="margin-bottom: 200px;" class="table overflow-hidden rounded-3">
+	<table style="margin-bottom: 200px;" class="table overflow-hidden align-middle rounded-3">
 		<thead>
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col">نام</th>
 				<th scope="col">تعداد</th>
 				<th scope="col">قیمت</th>
+				<th scope="col">تخفیف</th>
+				<th scope="col">کل</th>
 			</tr>
 		</thead>
 		<tbody class="table-group-divider">
-			@for (int i = 0; i < 5; i++)
+			@if (Basket != null)
+			{
+				@for (int i = 0; i < Basket?.BasketItems.Count; i++)
+				{
+					var basketItem = Basket.BasketItems[i];
+
+					<tr>
+						<th scope="row">@(i + 1)</th>
+						<td>@(basketItem.ProductName)</td>
+						<td>
+							<div class="d-flex justify-content-between bg-primary rounded-5 w-50">
+								<button class="btn btn-light rounded-circle p-0 px-2 m-1">+</button>
+								<span class="d-flex justify-content-between align-items-center text-white">@(basketItem.Quantity)</span>
+								<button class="btn btn-light rounded-circle p-0 px-2 m-1">-</button>
+							</div>
+						</td>
+						<td>@(basketItem.BasePrice)</td>
+						<td>@(basketItem.DiscountValue)</td>
+						<td>@(basketItem.TotalPrice)</td>
+					</tr>
+				}
+			}
+			else
 			{
 				<tr>
-					<th scope="row">@(i + 1)</th>
-					<td>گل</td>
 					<td>
-						<div class="d-flex justify-content-between bg-primary rounded-5 w-50">
-							<button class="btn btn-light rounded-circle p-0 px-2 m-1">+</button>
-							<span class="d-flex justify-content-between align-items-center text-white">2</span>
-							<button class="btn btn-light rounded-circle p-0 px-2 m-1">-</button>
+						<div class="spinner-border mt-2" style="width: 2rem; height: 2rem;" role="status">
+							<span class="visually-hidden"></span>
 						</div>
 					</td>
-					<td>5000</td>
 				</tr>
 			}
 		</tbody>
@@ -53,22 +76,22 @@
 		<div class="col row blur m-0 p-0 pb-2">
 
 			<div class="col-8 ps-0">
-				<div class="bg-light rounded-3 border border-1 border-gray p-2">
+				<div class="bg-light h-100 d-flex flex-column justify-content-between rounded-3 border border-1 border-gray p-2">
 
-					<textarea class="form-control" placeholder="توضیحات..." rows="2"></textarea>
+					<textarea class="form-control" placeholder="توضیحات..." rows="3"></textarea>
 
-					<div class="row bg-light rounded-3 border border-1 p-0 py-1 m-0 my-2 ">
-						<div class="col ps-1">
-							<input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+					<div class="row align-items-center bg-light rounded-3 border border-1 p-0 py-1 m-0 my-2">
+						<div class="col px-1">
+							<input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" checked>
+							<label class="btn w-100" for="option3">نقد</label>
+						</div>
+						<div class="col mx-5">
+							<input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" disabled>
 							<label class="btn w-100" for="option1">کارتخوان</label>
 						</div>
-						<div class="col">
-							<input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+						<div class="col px-1">
+							<input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" disabled>
 							<label class="btn w-100" for="option2">درگاه</label>
-						</div>
-						<div class="col pe-1">
-							<input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
-							<label class="btn w-100" for="option3">نقد</label>
 						</div>
 					</div>
 
@@ -86,6 +109,10 @@
 					<div class="d-flex justify-content-between py-2">
 						<span>تخفیف</span>
 						<span>3,000</span>
+					</div>
+					<div class="d-flex justify-content-between py-2">
+						<span>مالیات</span>
+						<span>2,000</span>
 					</div>
 					<hr>
 					<div class="d-flex justify-content-between py-2">
