@@ -22,7 +22,7 @@ public class ItemsModel(PriceListsApplication application) : BasePageModel
 
     public async Task<IActionResult> OnPost(Guid Id)
     {
-
+        CreatePriceListItem.PriceListId = Id;
         var res = await application.AddPricelistItem(CreatePriceListItem);
         Items = (await application.GetPriceListItems(Id)).Data ?? [];
 
