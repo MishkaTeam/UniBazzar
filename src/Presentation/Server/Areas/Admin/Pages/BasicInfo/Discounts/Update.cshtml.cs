@@ -10,16 +10,30 @@ public class UpdateModel(DiscountApplication application) : BasePageModel
 	[BindProperty]
 	public DiscountViewModel ViewModel { get; set; } = new();
 
-	public async Task OnGetAsync(Guid id)
+    [BindProperty]
+    public bool DiscountType { get; set; }
+
+    public async Task OnGetAsync(Guid id)
 	{
 		ViewModel = await application.GetDiscountAsync(id);
 	}
 
 	public async Task<IActionResult> OnPostAsync()
 	{
-		if (ModelState.IsValid)
+        if (DiscountType)
+        {
+            ViewModel.Type = Resources.DataDictionary.DiscountPercentage;
+        }
+        else
+        {
+            ViewModel.Type = Resources.DataDictionary.DiscountFixed;
+        }
+
+        if (ModelState.IsValid)
 		{
-			await application.UpdateDiscountAsync(ViewModel);
+            ViewModel.Start = ViewModel.Start.ToUniversalTime();
+            ViewModel.End = ViewModel.End.ToUniversalTime();
+            await application.UpdateDiscountAsync(ViewModel);
 		}
 		return RedirectToPage("Index");
 	}
