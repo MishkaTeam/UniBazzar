@@ -1,6 +1,7 @@
 using Blazored.LocalStorage;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
+using Persistence.Extensions;
 using Server.Infrastructure;
 using Server.Infrastructure.Extensions.ServiceCollections;
 using Server.Infrastructure.Extentions.ServiceCollections;
@@ -30,6 +31,8 @@ namespace Server
             services.AddHttpContextAccessor();
             services.AddScoped<IExecutionContextAccessor, ExecutionContextAccessor>();
             services.AddDomainRepositories();
+            services.AddAuditing();
+
             services.AddUnitOfWork();
             services.AddDbContext<UniBazzarContext>(opt =>
             {
@@ -49,6 +52,7 @@ namespace Server
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCultureHandler();
+            app.UseTenantResolution();
 
             app.UseRouting();
 

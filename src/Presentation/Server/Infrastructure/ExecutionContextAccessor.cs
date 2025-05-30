@@ -5,7 +5,7 @@ using System.Security.Claims;
 
 namespace Server.Infrastructure
 {
-    public class ExecutionContextAccessor(IHttpContextAccessor httpContextAccessor, IStoreRepository storeRepository) : IExecutionContextAccessor
+    public class ExecutionContextAccessor(IHttpContextAccessor httpContextAccessor) : IExecutionContextAccessor
     {
 
         public string Role
@@ -45,20 +45,8 @@ namespace Server.Infrastructure
                 return null;
             }
         }
-        public Guid StoreId
-        {
-            get
-            {
-
-                var hostUrl = httpContextAccessor.HttpContext?.Request.Host.Value;
-                if (hostUrl is null)
-                    throw new Exception("Host URL is null");
-
-                //if (hostUrl == "localhost:7052")
-                //    return Guid.Parse("00000000-0000-0000-0000-000000000001");
-
-                return storeRepository.GetStoreByHostUrl(hostUrl);
-            }
-        }
+        public Guid StoreId =>
+                      Guid.Parse(httpContextAccessor.HttpContext?.Items["TenantId"]?.ToString() ??
+                      "00000000-0000-0000-0000-000000000000");
     }
 }
