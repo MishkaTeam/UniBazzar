@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Domain.BuildingBlocks.SeedWork;
+using BuildingBlocks.Domain.SeedWork;
 
-namespace Domain.BuildingBlocks.Aggregates;
+namespace BuildingBlocks.Domain.Aggregates;
 
 public class Entity : IEntity
 {

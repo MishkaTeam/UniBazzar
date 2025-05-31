@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace Domain.BuildingBlocks.Data;
+namespace BuildingBlocks.Domain.Data;
 
 public interface IRepositoryBase<TEntity>
 {

@@ -1,4 +1,4 @@
-﻿using Domain.BuildingBlocks.Aggregates;
+﻿using BuildingBlocks.Domain.Aggregates;
 using Framework.DataType;
 
 namespace Domain.Aggregates.branches

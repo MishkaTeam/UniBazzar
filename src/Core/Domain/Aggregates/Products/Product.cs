@@ -7,7 +7,7 @@ using Domain.Aggregates.Units;
 using Framework.DataType;
 using Resources;
 using Resources.Messages;
-using Entity = Domain.BuildingBlocks.Aggregates.Entity;
+using Entity = BuildingBlocks.Domain.Aggregates.Entity;
 
 namespace Domain.Aggregates.Products;
 

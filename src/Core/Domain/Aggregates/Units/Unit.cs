@@ -1,5 +1,5 @@
 ﻿using Ardalis.GuardClauses;
-using Entity = Domain.BuildingBlocks.Aggregates.Entity;
+using Entity = BuildingBlocks.Domain.Aggregates.Entity;
 
 namespace Domain.Aggregates.Units;
 

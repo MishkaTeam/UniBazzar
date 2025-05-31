@@ -1,4 +1,4 @@
-﻿namespace Domain.BuildingBlocks.SeedWork;
+﻿namespace BuildingBlocks.Domain.SeedWork;
 
 public interface IEntityHasIsUpdatable
 {

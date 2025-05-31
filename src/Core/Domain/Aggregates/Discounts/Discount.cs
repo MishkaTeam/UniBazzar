@@ -1,5 +1,5 @@
-﻿using Domain.BuildingBlocks.Aggregates;
-using Domain.BuildingBlocks.SeedWork;
+﻿using BuildingBlocks.Domain.Aggregates;
+using BuildingBlocks.Domain.SeedWork;
 using Framework.DataType;
 
 namespace Domain.Aggregates.Discounts;

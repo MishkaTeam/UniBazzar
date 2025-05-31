@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
-using Domain.BuildingBlocks.Data;
-using Domain.BuildingBlocks.SeedWork;
+using BuildingBlocks.Domain.Data;
+using BuildingBlocks.Domain.SeedWork;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Persistence.Exceptions;

@@ -1,4 +1,4 @@
-﻿using Domain.BuildingBlocks.SeedWork;
+﻿using BuildingBlocks.Domain.SeedWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

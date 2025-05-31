@@ -1,4 +1,4 @@
-using Domain.BuildingBlocks.Data;
+using BuildingBlocks.Domain.Data;
 
 namespace Domain.Aggregates.Ordering.Baskets.Data;
 

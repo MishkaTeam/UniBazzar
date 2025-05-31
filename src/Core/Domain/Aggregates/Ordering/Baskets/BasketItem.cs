@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 using Domain.Aggregates.Ordering.ValueObjects;
-using Domain.BuildingBlocks.Aggregates;
+using BuildingBlocks.Domain.Aggregates;
 
 namespace Domain.Aggregates.Ordering.Baskets;
 
