@@ -105,7 +105,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         return new BasketViewModel
         {
             Id = basket.Id,
-            Platform = basket.PlatForm,
+            Platform = basket.Platform,
             BasketStatus = basket.BasketStatus,
             ReferenceNumber = basket.ReferenceNumber,
             BasketItems = basket.BasketItems.Select(x => new BasketItemViewModel
@@ -137,7 +137,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         return new BasketViewModel
         {
             Id = basket.Id,
-            Platform = basket.PlatForm,
+            Platform = basket.Platform,
             BasketStatus = basket.BasketStatus,
             ReferenceNumber = basket.ReferenceNumber,
             BasketItems = basket.BasketItems.Select(x => new BasketItemViewModel

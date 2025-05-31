@@ -8,7 +8,7 @@ public class Basket : Entity
 {
     public string ReferenceNumber { get; private set; }
     public BasketStatus BasketStatus { get; private set; }
-    public Platform PlatForm { get; private set; }
+    public Platform Platform { get; private set; }
     public string? Description { get; private set; }
     public DiscountAmount TotalDiscountAmount { get; private set; }
 
@@ -38,9 +38,9 @@ public class Basket : Entity
         // FOR EF!
     }
 
-    private Basket(Platform platForm)
+    private Basket(Platform platform)
     {
-        PlatForm = platForm;
+        Platform = platform;
         BasketItems = new List<BasketItem>();
         BasketStatus = BasketStatus.INITIAL;
 
@@ -48,9 +48,9 @@ public class Basket : Entity
         ReferenceNumber = Guid.NewGuid().ToString();
     }
 
-    public static Basket Initialize(Platform platForm)
+    public static Basket Initialize(Platform platform)
     {
-        var basket = new Basket(platForm);
+        var basket = new Basket(platform);
         return basket;
     }
 

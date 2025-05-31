@@ -29,7 +29,7 @@ public class BasketViewModel
             TotalDiscountType = basket.TotalDiscountAmount.DiscountType,
             TotalDiscountAmount = basket.TotalDiscountAmount.Value,
             Description = basket.Description,
-            Platform = basket.PlatForm,
+            Platform = basket.Platform,
             BasketTotal = basket.Total,
             SubtotalBeforeBasketDiscount = basket.TotalBeforeDiscount,
             BasketItems = basket.BasketItems.Select(x => new BasketItemViewModel

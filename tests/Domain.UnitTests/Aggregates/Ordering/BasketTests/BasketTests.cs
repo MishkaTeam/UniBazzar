@@ -15,7 +15,7 @@ public class BasketTests
         var basket = Basket.Initialize(platform);
 
         basket.Should().NotBeNull();
-        basket.PlatForm.Should().Be(platform);
+        basket.Platform.Should().Be(platform);
         basket.BasketStatus.Should().Be(BasketStatus.INITIAL);
         basket.BasketItems.Should().BeEmpty();
     }
