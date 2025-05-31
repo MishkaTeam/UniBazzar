@@ -1,4 +1,4 @@
-namespace Persistence.Exceptions;
+namespace BuildingBlocks.Persistence.Exceptions;
 
 public class InvalidEntityVersionException : Exception
 {

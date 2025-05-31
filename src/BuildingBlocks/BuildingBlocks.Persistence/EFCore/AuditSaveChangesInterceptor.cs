@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
+using BuildingBlocks.Persistence.Auditing;
+using BuildingBlocks.Persistence.Auditing.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Persistence.Auditing;
-using Persistence.Auditing.Enums;
 
-namespace Persistence.EFCore;
+namespace BuildingBlocks.Persistence.EFCore;
 
 public class AuditSaveChangesInterceptor : SaveChangesInterceptor
 {

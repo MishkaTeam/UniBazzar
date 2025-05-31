@@ -3,11 +3,11 @@ using Application.Aggregates.Categories.ViewModels;
 using Application.Aggregates.Products;
 using Application.Aggregates.Products.ViewModels;
 using Application.Aggregates.Units;
+using BuildingBlocks.Persistence;
 using Domain.Aggregates.Products.Enums;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Persistence;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products;
 

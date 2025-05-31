@@ -1,4 +1,4 @@
-﻿namespace Persistence.Auditing.Enums;
+﻿namespace BuildingBlocks.Persistence.Auditing.Enums;
 
 public enum ActionType
 {

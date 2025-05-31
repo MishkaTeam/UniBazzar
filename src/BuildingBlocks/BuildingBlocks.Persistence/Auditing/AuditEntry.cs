@@ -1,8 +1,8 @@
 ﻿using System.Text.Json;
+using BuildingBlocks.Persistence.Auditing.Enums;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Persistence.Auditing.Enums;
 
-namespace Persistence.Auditing;
+namespace BuildingBlocks.Persistence.Auditing;
 
 internal class AuditEntry
 {

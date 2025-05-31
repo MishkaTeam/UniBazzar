@@ -1,4 +1,5 @@
-﻿using Domain.CustomerSearch;
+﻿using BuildingBlocks.Persistence;
+using Domain.CustomerSearch;
 using Domain.CustomerSearch.Data;
 using Microsoft.EntityFrameworkCore;
 

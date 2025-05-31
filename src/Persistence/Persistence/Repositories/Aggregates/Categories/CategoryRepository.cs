@@ -1,7 +1,7 @@
 ﻿using BuildingBlocks.Persistence;
 using Domain.Aggregates.Categories;
 using Microsoft.EntityFrameworkCore;
-using Persistence.Extensions;
+using BuildingBlocks.Persistence.Extensions;
 
 namespace Persistence.Repositories.Aggregates.Categories;
 

@@ -1,8 +1,7 @@
 ﻿using Framework.DataType;
 using Modules.Treasury.Api.TreasuryAbstraction;
-using Modules.Treasury.Application.Aggregatesl;
+using Modules.Treasury.Application.Aggregates;
 using Modules.Treasury.Application.Contracts;
-using Modules.Treasury.Domain.Aggregates.Receipts;
 namespace Modules.Treasury.Api.TreasuryApi;
 
 internal class ReceiptsApi(ReceiptsApplication receiptsApplication) : IReceiptsApi

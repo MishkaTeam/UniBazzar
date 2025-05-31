@@ -1,6 +1,6 @@
 using BuildingBlocks.Domain.SeedWork;
 
-namespace Persistence.Extensions;
+namespace BuildingBlocks.Persistence.Extensions;
 
 public static class DBContextExtensions
 {

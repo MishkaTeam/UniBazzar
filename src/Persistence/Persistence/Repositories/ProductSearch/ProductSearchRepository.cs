@@ -1,4 +1,5 @@
-﻿using Domain.ProductSearch;
+﻿using BuildingBlocks.Persistence;
+using Domain.ProductSearch;
 using Domain.ProductSearch.Data;
 using Microsoft.EntityFrameworkCore;
 

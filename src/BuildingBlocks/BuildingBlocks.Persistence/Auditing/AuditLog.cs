@@ -1,6 +1,6 @@
-﻿using Persistence.Auditing.Enums;
+﻿using BuildingBlocks.Persistence.Auditing.Enums;
 
-namespace Persistence.Auditing;
+namespace BuildingBlocks.Persistence.Auditing;
 
 public class AuditLog
 {

@@ -1,6 +1,5 @@
 ﻿using BuildingBlocks.Persistence;
 using Domain.Aggregates.Units;
-using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repositories.Aggregates.Units;
 

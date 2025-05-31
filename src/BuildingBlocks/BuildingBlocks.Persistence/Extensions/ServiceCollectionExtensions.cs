@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Persistence.EFCore;
+﻿using BuildingBlocks.Persistence.EFCore;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Persistence.Extensions;
+namespace BuildingBlocks.Persistence.Extensions;
 
 public static class ServiceCollectionExtensions
 {
