@@ -5,5 +5,5 @@ namespace Modules.Treasury.Api.TreasuryAbstraction;
 
 public interface IReceiptsApi
 {
-    Task<ResultContract<Guid>> CreateAsync(Customer customer, CancellationToken cancellationToken);
+    Task<ResultContract<Guid>> CreateCashReceiptAsync(ReceiptCustomer customer, decimal price, CancellationToken cancellationToken);
 }

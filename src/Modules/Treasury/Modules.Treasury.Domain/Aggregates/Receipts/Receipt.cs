@@ -1,25 +1,25 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
+using Modules.Treasury.Domain.Aggregates.Counterparties;
 
 namespace Modules.Treasury.Domain.Aggregates.Receipts;
 
 public class Receipt : Entity
 {
-    public Guid CustomerId { get; private init; }
+    public Counterparty CounterpartyId { get; private init; }
     private readonly List<CashReceipt> _receipts = new();
 
     public IReadOnlyList<CashReceipt> AllReceipts => _receipts.AsReadOnly();
 
-    private Receipt(Guid customerId)
+    private Receipt(Counterparty counterpartyId)
     {
-        if (customerId == Guid.Empty) throw new ArgumentException("CustomerId cannot be empty.");
-        CustomerId = customerId;
+        CounterpartyId = counterpartyId;
     }
 
-    public static Receipt Create(Guid customerId) => new(customerId);
+    public static Receipt Create(Counterparty customerId) => new(customerId);
 
-    public void AddReceipt(Guid id, DateTime receivedDate, string description, decimal amount, string currency)
+    public void AddCashReceipt(long receivedDate, decimal amount, string currency, string? description = null)
     {
-        var receipt = CashReceipt.Create(id, receivedDate, description, amount, currency);
+        var receipt = CashReceipt.Create(receivedDate, description!, amount, currency);
         _receipts.Add(receipt);
     }
 
