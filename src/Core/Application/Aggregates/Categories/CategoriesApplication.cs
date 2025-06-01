@@ -16,7 +16,7 @@ public class CategoriesApplication
             (viewModel.Name, viewModel.ParentId, viewModel.IconClass);
 
         await categoryRepository.AddAsync(category);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return category.Adapt<CategoryViewModel>();
     }
@@ -37,7 +37,7 @@ public class CategoriesApplication
         categoryForUpdate.Update(updateViewModel.Name,
             updateViewModel.ParentId, updateViewModel.IconClass);
 
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
         return categoryForUpdate.Adapt<CategoryViewModel>();
     }
 
@@ -99,7 +99,7 @@ public class CategoriesApplication
         }
 
         await categoryRepository.RemoveAsync(categoryForDelete);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
     }
 
     public async Task<List<MenuCategoryViewModel>> GetMenuCategoriesAsync()

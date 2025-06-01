@@ -20,7 +20,7 @@ public partial class ProductsApplication
 									viewModel.ProductType, viewModel.DownloadUrl);
 
 		await productRepository.AddAsync(product);
-		await unitOfWork.CommitAsync();
+		await unitOfWork.SaveChangesAsync();
 
 		return product.Adapt<ProductViewModel>();
 	}
@@ -65,7 +65,7 @@ public partial class ProductsApplication
 								updateViewModel.StoreId, updateViewModel.CategoryId, updateViewModel.UnitId,
 								updateViewModel.ProductType, updateViewModel.DownloadUrl);
 
-		await unitOfWork.CommitAsync();
+		await unitOfWork.SaveChangesAsync();
 		return productForUpdate.Adapt<ProductViewModel>();
 	}
 
@@ -83,7 +83,7 @@ public partial class ProductsApplication
 		}
 
 		await productRepository.RemoveAsync(productForDelete);
-		await unitOfWork.CommitAsync();
+		await unitOfWork.SaveChangesAsync();
 	}
 
     public async Task<List<ProductCardViewModel>> GetIndexProducts()

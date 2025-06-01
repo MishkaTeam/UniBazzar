@@ -28,7 +28,7 @@ public class OrderApplication(
 
             var order = Order.CreateFromBasket(basket);
             await orderRepository.AddAsync(order, cancellationToken);
-            await unitOfWork.CommitAsync(cancellationToken);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
 
             var customer = await customerApplication.GetCustomerAsync(basket.OwnerId);
             var recCustomer = new ReceiptCustomer(customer.Id, string.Join(customer.FirstName, ' ', customer.LastName));

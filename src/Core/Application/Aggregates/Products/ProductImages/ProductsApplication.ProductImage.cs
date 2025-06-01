@@ -12,7 +12,7 @@ public class ProductImagesApplication(IProductImageRepository productImageReposi
     {
         var productImage = ProductImage.Create(viewModel.ProductId, viewModel.ImageUrl);
         await productImageRepository.AddAsync(productImage);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
     }
 
     public async Task<ProductImageViewModel> GetProductImageAsync(Guid id)
@@ -47,7 +47,7 @@ public class ProductImagesApplication(IProductImageRepository productImageReposi
 
         productImageForUpdate.Update(viewModel.ProductId, viewModel.ImageUrl);
 
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return productImageForUpdate.Adapt<ProductImageViewModel>();
     }
@@ -63,7 +63,7 @@ public class ProductImagesApplication(IProductImageRepository productImageReposi
 
         productImageRepository.RemoveAsync(productImageForDelete);
 
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
     }
 
 }

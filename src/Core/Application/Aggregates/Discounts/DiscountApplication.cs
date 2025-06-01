@@ -16,7 +16,7 @@ public class DiscountApplication(IDiscountRepository discountRepository, IUnitOf
                                        viewModel.Maximum, viewModel.Start, viewModel.End, viewModel.Amount);
 
         await discountRepository.AddAsync(discount);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return discount.Adapt<CreateDiscountViewModel>();
     }
@@ -52,7 +52,7 @@ public class DiscountApplication(IDiscountRepository discountRepository, IUnitOf
         discountForUpdate.Update(updateViewModel.Title, updateViewModel.DiscountCode, updateViewModel.IsActive, updateViewModel.Type, updateViewModel.Minimum,
 							     updateViewModel.Maximum, updateViewModel.Start, updateViewModel.End, updateViewModel.Amount);
 
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
         return discountForUpdate.Adapt<DiscountViewModel>();
     }
 
@@ -70,6 +70,6 @@ public class DiscountApplication(IDiscountRepository discountRepository, IUnitOf
         }
 
         discountRepository.RemoveAsync(discountForDelete);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
     }
 }

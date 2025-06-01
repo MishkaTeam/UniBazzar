@@ -19,7 +19,7 @@ public class ShippingAddressApplication(IShippingAddressRepository shippingAddre
             );
 
         await shippingAddressRepository.AddAsync(shippingAddress);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return shippingAddress.Adapt<CreateShippingAddressViewModel>();
     }
@@ -60,7 +60,7 @@ public class ShippingAddressApplication(IShippingAddressRepository shippingAddre
             UpdateViewModel.CustomerId
                );
 
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return shippingAddress.Adapt<UpdateShippingAddressViewModel>();
     }
@@ -75,6 +75,6 @@ public class ShippingAddressApplication(IShippingAddressRepository shippingAddre
         }
 
         await shippingAddressRepository.RemoveAsync(shippingAddress);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
     }
 }
