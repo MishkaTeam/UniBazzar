@@ -12,13 +12,14 @@ namespace Modules.Treasury.Application.Aggregates;
 public class ReceiptsApplication(IReceiptRepository receiptRepository, IUnitOfWork unitOfWork)
 {
 
-    public async Task<ResultContract<Guid>> CreateCashReceiptAsync(ReceiptCustomer customer, decimal price, CancellationToken cancellationToken)
+    public async Task<ResultContract<Guid>> CreateCashReceiptAsync(Guid orderId, ReceiptCustomer customer, decimal price, CancellationToken cancellationToken)
     {
         var counterParty = Counterparty.CreateFromSales(sourceCustomerID: customer.CustomerId, fullName: customer.CustomerName, counterpartyType: CounterpartyType.Individual);
         var receipt = Receipt.Create(counterParty);
+        receipt.SetOrderId(orderId: orderId);
         receipt.AddCashReceipt(DateTimeUtility.GetCurrentUnixUTCTimeSeconds(), price, "IRR");
-        await receiptRepository.AddAsync(receipt);
-        await unitOfWork.SaveChangesAsync();
+        await receiptRepository.AddAsync(receipt, cancellationToken);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
         return receipt.Id;
     }
 }

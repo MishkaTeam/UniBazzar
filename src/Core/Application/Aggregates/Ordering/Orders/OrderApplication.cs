@@ -32,7 +32,7 @@ public class OrderApplication(
 
             var customer = await customerApplication.GetCustomerAsync(basket.OwnerId);
             var recCustomer = new ReceiptCustomer(customer.Id, string.Join(customer.FirstName, ' ', customer.LastName));
-            var receiptRes = receipts.CreateCashReceiptAsync(recCustomer, basket.Total, cancellationToken);
+            var receiptRes = receipts.CreateCashReceiptAsync(customer: recCustomer, price: basket.Total, orderId: order.Id, cancellationToken: cancellationToken);
 
             return new ProcessOrderResponseModel
             {
@@ -42,8 +42,7 @@ public class OrderApplication(
         }
         catch (Exception ex)
         {
-
-            throw;
+            return (ErrorType.InternalError, ex.Message);
         }
     }
 }

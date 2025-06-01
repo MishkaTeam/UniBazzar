@@ -5,10 +5,12 @@ namespace Modules.Treasury.Domain.Aggregates.Receipts;
 
 public class Receipt : Entity
 {
+    public Guid? OrderId { get; private set; }
     public Counterparty CounterpartyId { get; private init; }
     private readonly List<CashReceipt> _receipts = new();
 
     public IReadOnlyList<CashReceipt> AllReceipts => _receipts.AsReadOnly();
+
 
     private Receipt(Counterparty counterpartyId)
     {
@@ -28,5 +30,10 @@ public class Receipt : Entity
         return _receipts
             .Where(r => r.Amount.Currency == currency)
             .Sum(r => r.Amount.Amount);
+    }
+
+    public void SetOrderId(Guid? orderId)
+    {
+        OrderId = orderId;
     }
 }

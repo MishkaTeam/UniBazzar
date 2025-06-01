@@ -6,8 +6,8 @@ namespace Modules.Treasury.Api.TreasuryApi;
 
 internal class ReceiptsApi(ReceiptsApplication receiptsApplication) : IReceiptsApi
 {
-    public Task<ResultContract<Guid>> CreateCashReceiptAsync(ReceiptCustomer customer, decimal price, CancellationToken cancellationToken)
+    public Task<ResultContract<Guid>> CreateCashReceiptAsync(ReceiptCustomer customer, decimal price, Guid orderId, CancellationToken cancellationToken)
     {
-        return receiptsApplication.CreateCashReceiptAsync(customer, price, cancellationToken);
+        return receiptsApplication.CreateCashReceiptAsync(orderId, customer, price, cancellationToken);
     }
 }
