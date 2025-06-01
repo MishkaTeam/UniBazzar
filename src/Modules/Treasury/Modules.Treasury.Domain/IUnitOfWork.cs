@@ -1,6 +1,5 @@
 ﻿namespace Modules.Treasury.Domain;
 
-public interface IUnitOfWork
+public interface IUnitOfWork : BuildingBlocks.Domain.Data.IUnitOfWork
 {
-    Task<int> SaveChangesAsync(CancellationToken? cancellationToken = null);
 }
