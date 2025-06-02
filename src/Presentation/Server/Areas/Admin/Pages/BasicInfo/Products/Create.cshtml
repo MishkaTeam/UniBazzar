@@ -1,5 +1,6 @@
 ﻿@page
 @model Server.Areas.Admin.Pages.BasicInfo.Products.CreateModel
+@using Application.Aggregates.Categories.ViewModels
 
 @{
 	var pageTitle =
@@ -37,17 +38,30 @@
 			<ub-full-select asp-for="CreateViewModel.ProductType" asp-items="Model.ProductTypeList" />
 
 			<label class="form-label">@(Resources.DataDictionary.Category)</label>
+
 			<select asp-for="CreateViewModel.CategoryId" class="form-control mb-3">
-				@foreach (var parent in Model.Categories)
+				@foreach (var level1 in Model.Categories)
 				{
-					<optgroup label="@(parent.Name)">
-						@foreach (var child in parent.ChildCategories)
+					<option value="@level1.Id">@level1.Name</option>
+
+					if (level1.ChildCategories != null)
+					{
+						foreach (var level2 in level1.ChildCategories)
 						{
-							<option value="@(child.Id)">@(child.Name)</option>
+							<option value="@level2.Id">-- @level2.Name</option>
+
+							if (level2.ChildCategories != null)
+							{
+								foreach (var level3 in level2.ChildCategories)
+								{
+									<option value="@level3.Id">---- @level3.Name</option>
+								}
+							}
 						}
-					</optgroup>
+					}
 				}
 			</select>
+
 
 			<ub-full-input asp-for="CreateViewModel.DownloadUrl" />
 

@@ -65,8 +65,9 @@ public class Product : Entity
 	public string FullDescription { get; private set; }
 	public string SKU { get; private set; }
 	public string? DownloadUrl { get; private set; }
+    public string Slug { get; private set; }
 
-	public ProductType ProductType { get; private set; }
+    public ProductType ProductType { get; private set; }
 
 	public Guid UnitId { get; private set; }
 	public Unit Unit { get; private set; }
@@ -77,11 +78,13 @@ public class Product : Entity
 	public List<ProductImage> ProductImages { get; private set; }
     public List<ProductFeature> ProductFeatures { get; private set; }
 
-    private Product(string name, string shortDescription, string fullDescription,
+	private Product(string name, string shortDescription, string fullDescription,
 		Guid storeId, Guid categoryId, Guid unitId,
-		ProductType productType = ProductType.Product, string? downloadUrl = null)
+		ProductType productType = ProductType.Product, string? downloadUrl = null, string? slug = null)
 	{
-		Name = name;
+        slug ??= name.GenerateSlug();
+
+        Name = name;
 		ShortDescription = shortDescription;
 		FullDescription = fullDescription;
 		StoreId = storeId;
@@ -89,7 +92,7 @@ public class Product : Entity
 		UnitId = unitId;
 		ProductType = productType;
 		DownloadUrl = downloadUrl;
-
+		Slug = slug;
 		SKU = GenerateSKU();
 	}
 

@@ -19,7 +19,7 @@ internal class ProductConfiguration : BaseConfiguration<Product>
 
         builder.Property(p => p.ShortDescription)
                .IsRequired()
-               .HasMaxLength(300);
+               .HasMaxLength(1000);
 
         builder.Property(p => p.FullDescription)
                .IsRequired();

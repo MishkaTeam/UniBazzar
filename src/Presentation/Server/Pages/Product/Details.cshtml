@@ -10,7 +10,7 @@
 			<div class="col-12">
 				<div class="content">
 					<div class="row">
-						<div class="col-12 col-lg-5 px-lg-0">
+						<div class="col-12 col-lg-4 px-lg-0">
 							<div class="swiper-container gallery-top">
 								<ul class="swiper-wrapper" style="list-style: none">
 
@@ -69,7 +69,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-12 col-lg-7 mt-5 mt-lg-0 pl-lg-0" id="product-intro">
+						<div class="col-12 col-lg-5 mt-5 mt-lg-0 pl-lg-0" id="product-intro">
 							<a asp-page="/Product">
 								<h1>@(Model.ProductDetail.Name)</h1>
 							</a>
@@ -93,6 +93,17 @@
 								@(Model.ProductDetail.ShortDescription)
 							</p>
 							<hr>
+							<!-- Share Links -->
+							<div class="pt-5" id="share-links">
+								<span>اشتراک گذاری: </span>
+								<a href="#" target="_blank"><span class="share-link"><img src="/images/social/twitter.png" alt="توئیتر" width="18px"></span></a>
+								<a href="#" target="_blank"><span class="share-link"><img src="/images/social/insta.png" alt="اینستاگرام" width="18px"></span></a>
+								<a href="#" target="_blank"><span class="share-link"><img src="/images/social/linkedin.png" alt="لینکدین" width="18px"></span></a>
+								<a href="#" target="_blank"><span class="share-link"><img src="/images/social/facebook.png" alt="فیس بوک" width="18px"></span></a>
+							</div>
+							<!-- Share Links -->
+						</div>
+						<div class="col-12 col-lg-3 mt-5 mt-lg-0 pl-lg-0 border border-1 bg-secondary bg-gradient bg-opacity-10 rounded rounded-3 border-secondary border-opacity-25">
 							<div class="variables">
 								<div class="title">گزینه های موجود:</div>
 								<div class="row">
@@ -126,26 +137,11 @@
 							<div class="cta-container pt-3 pt-md-5">
 								<div class="row">
 									<div class="col-12">
-										<a asp-page="/Cart">
-											<div class="btn btn-success px-4 px-lg-2 px-xl-4 btn-add-to-basket"><i class="fa fa-shopping-cart"></i> افزودن به سبد خرید</div>
-										</a>
-										<br class="d-sm-none">
-										<div class="btn btn-outline-secondary encrypt8931245 mt-1 mt-sm-0" data-toggle="tooltip" data-placement="top" title="افزودن به علاقه‌مندی"></div>
-										<a href="#"><div class="btn btn-outline-secondary encrypt8931242345 mt-1 mt-sm-0" data-toggle="tooltip" data-placement="top" title="مقایسه"></div></a>
+										<button class="btn btn-success px-4 px-lg-2 px-xl-4 btn-add-to-basket w-100 "><i class="fa fa-shopping-cart"></i> افزودن به سبد خرید</button>
 									</div>
 								</div>
 							</div>
-							<!-- Share Links -->
-							<div class="pt-5" id="share-links">
-								<span>اشتراک گذاری: </span>
-								<a href="#" target="_blank"><span class="share-link"><img src="/images/social/twitter.png" alt="توئیتر" width="18px"></span></a>
-								<a href="#" target="_blank"><span class="share-link"><img src="/images/social/insta.png" alt="اینستاگرام" width="18px"></span></a>
-								<a href="#" target="_blank"><span class="share-link"><img src="/images/social/linkedin.png" alt="لینکدین" width="18px"></span></a>
-								<a href="#" target="_blank"><span class="share-link"><img src="/images/social/facebook.png" alt="فیس بوک" width="18px"></span></a>
-							</div>
-							<!-- Share Links -->
 						</div>
-
 						<!-- Nav Tabs -->
 						<div class="col-12">
 							<div id="product-nav-tabs">

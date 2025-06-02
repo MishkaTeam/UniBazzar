@@ -97,7 +97,7 @@ public partial class ProductsApplication
 			ImageUrl = x.ProductImages.FirstOrDefault()?.ImageUrl,
 			Name = x.Name,
 			SKU = x.SKU,
-			Slug = "Slug",
+			Slug = x.Slug,
 		}).ToList();
     }
     public async Task<ProductDetailViewModel> GetProductDetails(string sku)

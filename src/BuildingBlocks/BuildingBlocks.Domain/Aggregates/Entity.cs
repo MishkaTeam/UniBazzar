@@ -7,7 +7,7 @@ public class Entity : IEntity
 {
 	public Entity()
 	{
-		Id = Guid.NewGuid();
+		Id = Guid.CreateVersion7();
 
 		SetInsertDateTime();
 	}
