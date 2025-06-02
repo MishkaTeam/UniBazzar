@@ -15,7 +15,7 @@ public class ProductFeaturesApplication(IProductFeatureRepository productFeature
 				viewModel.Value, viewModel.IsPinned, viewModel.Order);
 
 		await productFeatureRepository.AddAsync(productFeature);
-		await unitOfWork.CommitAsync();
+		await unitOfWork.SaveChangesAsync();
 	}
 
 	public async Task<List<ProductFeatureViewModel>> GetProductFeatures(Guid productId)
@@ -51,7 +51,7 @@ public class ProductFeaturesApplication(IProductFeatureRepository productFeature
 			updateViewModel.Key, updateViewModel.Value,
 			updateViewModel.IsPinned, updateViewModel.Order);
 
-		await unitOfWork.CommitAsync();
+		await unitOfWork.SaveChangesAsync();
 		return productFeatureForUpdate.Adapt<ProductFeatureViewModel>();
 	}
 
@@ -66,6 +66,6 @@ public class ProductFeaturesApplication(IProductFeatureRepository productFeature
 		}
 
 		productFeatureRepository.RemoveAsync(productFeatureForDelete);
-		await unitOfWork.CommitAsync();
+		await unitOfWork.SaveChangesAsync();
 	}
 }

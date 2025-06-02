@@ -1,4 +1,5 @@
-﻿using System.Reflection.Emit;
+﻿using BuildingBlocks.Persistence;
+using BuildingBlocks.Persistence.EFCore;
 using Domain.Aggregates.branches;
 using Domain.Aggregates.Categories;
 using Domain.Aggregates.CheckoutCounter;
@@ -15,14 +16,11 @@ using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
 using Domain.Aggregates.Users;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Persistence.Auditing;
 using Persistence.Configurations;
-using Persistence.EFCore;
 
 namespace Persistence;
 
-public class UniBazzarContext(DbContextOptions options, AuditSaveChangesInterceptor auditInterceptor) : DbContext(options)
+public class UniBazzarContext(DbContextOptions options, AuditSaveChangesInterceptor auditInterceptor) : BaseDbContext(options)
 {
     protected override void OnConfiguring
         (DbContextOptionsBuilder optionsBuilder)
@@ -37,7 +35,7 @@ public class UniBazzarContext(DbContextOptions options, AuditSaveChangesIntercep
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(BaseConfiguration<>).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(OrderConfiguration).Assembly);
         base.OnModelCreating(modelBuilder);
     }
 
@@ -62,5 +60,4 @@ public class UniBazzarContext(DbContextOptions options, AuditSaveChangesIntercep
 
 	public DbSet<Category> Categories { get; set; }
     public DbSet<Discount> Discounts { get; set; }
-    public DbSet<AuditLog> AuditLogs { get; set; }
 }

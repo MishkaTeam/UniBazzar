@@ -1,6 +1,6 @@
 ﻿using Framework.DataType;
 using System.ComponentModel.DataAnnotations;
-using Entity = Domain.BuildingBlocks.Aggregates.Entity;
+using Entity = BuildingBlocks.Domain.Aggregates.Entity;
 
 namespace Domain.Aggregates.Customers.ShippingAddresses;
 

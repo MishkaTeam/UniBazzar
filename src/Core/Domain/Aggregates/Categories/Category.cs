@@ -1,5 +1,5 @@
-﻿using Framework.DataType;
-using Entity = Domain.BuildingBlocks.Aggregates.Entity;
+﻿using BuildingBlocks.Domain.Aggregates;
+using Framework.DataType;
 
 namespace Domain.Aggregates.Categories;
 

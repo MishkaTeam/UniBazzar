@@ -10,11 +10,11 @@ public class CustomerRepository
 {
     public Task<Customer> GetWithMobile(string userName)
     {
-        return context.Customers.FirstOrDefaultAsync(x => x.Mobile == userName);
+        return DbSet.FirstOrDefaultAsync(x => x.Mobile == userName);
     }
 
     public Task<Customer> GetWithEmail(string userName)
     {
-        return context.Customers.FirstOrDefaultAsync(x => x.Email == userName);
+        return DbSet.FirstOrDefaultAsync(x => x.Email == userName);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Domain.Aggregates.PriceListItems;
-using Entity = Domain.BuildingBlocks.Aggregates.Entity;
+using Entity = BuildingBlocks.Domain.Aggregates.Entity;
 
 namespace Domain.Aggregates.PriceLists;
 

@@ -15,7 +15,7 @@ public class PriceListsApplication(IPriceListRepository repository, IUnitOfWork 
     {
         var pricelist = PriceList.Create(viewModel.Title);
         await repository.AddAsync(pricelist);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
     }
 
     public async Task<PriceListViewModel> GetPriceListAsync(Guid id)
@@ -45,7 +45,7 @@ public class PriceListsApplication(IPriceListRepository repository, IUnitOfWork 
 
         priceList.Update(model.Title);
 
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return priceList.Adapt<PriceListItemViewModel>();
 
@@ -62,7 +62,7 @@ public class PriceListsApplication(IPriceListRepository repository, IUnitOfWork 
 
         await repository.RemoveAsync(priceList);
 
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return true;
     }
@@ -77,7 +77,7 @@ public class PriceListsApplication(IPriceListRepository repository, IUnitOfWork 
                 return (ErrorType.DuplicateRecord, string.Format(Errors.AlreadyExists, DataDictionary.Product));
 
             priceList.AddItem(model.ProductId, model.Price, "IRR");
-            await unitOfWork.CommitAsync();
+            await unitOfWork.SaveChangesAsync();
             return true;
         }
         catch (Exception)
@@ -114,7 +114,7 @@ public class PriceListsApplication(IPriceListRepository repository, IUnitOfWork 
         }
 
         res.RemoveItem(priceListItemId);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return true;
     }

@@ -2,7 +2,7 @@ using BuildingBlocks.Persistence;
 using Domain.Aggregates.Ordering.Baskets;
 using Domain.Aggregates.Ordering.Baskets.Data;
 using Microsoft.EntityFrameworkCore;
-using Persistence.Extensions;
+using BuildingBlocks.Persistence.Extensions;
 
 namespace Persistence.Repositories.Aggregates.Ordering;
 

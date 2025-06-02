@@ -1,6 +1,6 @@
 using Domain.Aggregates.Ordering.Baskets.Enums;
 using Domain.Aggregates.Ordering.ValueObjects;
-using Entity = Domain.BuildingBlocks.Aggregates.Entity;
+using Entity = BuildingBlocks.Domain.Aggregates.Entity;
 
 namespace Domain.Aggregates.Ordering.Baskets;
 

@@ -15,7 +15,7 @@ public class UnitsApplication(IUnitRepository unitRepository, IUnitOfWork unitOf
 
         unitRepository.AddAsync(unit);
 
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return unit.Adapt<UnitViewModel>();
     }
@@ -54,7 +54,7 @@ public class UnitsApplication(IUnitRepository unitRepository, IUnitOfWork unitOf
                 updateViewModel.BaseUnitId,
                 updateViewModel.Ratio);
 
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
         return unit.Adapt<UnitViewModel>();
     }
 
@@ -68,6 +68,6 @@ public class UnitsApplication(IUnitRepository unitRepository, IUnitOfWork unitOf
         }
 
         await unitRepository.RemoveAsync(unit);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
     }
 }

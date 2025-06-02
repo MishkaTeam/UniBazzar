@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Modules\Treasury\Modules.Treasury.Api\Modules.Treasury.Api.csproj" />
     <ProjectReference Include="..\Constants\Constants.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>

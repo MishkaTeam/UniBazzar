@@ -1,4 +1,5 @@
-﻿using Domain.Aggregates.branches;
+﻿using BuildingBlocks.Persistence.Configurations;
+using Domain.Aggregates.branches;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

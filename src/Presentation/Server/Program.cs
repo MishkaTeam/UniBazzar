@@ -1,12 +1,12 @@
 using Blazored.LocalStorage;
+using BuildingBlocks.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
-using Persistence.Extensions;
 using Server.Infrastructure;
 using Server.Infrastructure.Extensions.ServiceCollections;
 using Server.Infrastructure.Extentions.ServiceCollections;
 using Server.Infrastructure.Middleware;
-
+using BuildingBlocks.Persistence.Extensions;
 
 namespace Server
 {

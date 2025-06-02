@@ -25,7 +25,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
             basket.SetTotalDiscount(request.TotalDiscountAmount, request.TotalDiscountType);
 
         await basketRepository.AddAsync(basket);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return new InitializeBasketViewModel(basket.ReferenceNumber);
     }
@@ -42,7 +42,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
             else
                 basket.SetTotalDiscount(0m, DiscountType.None);
 
-            await unitOfWork.CommitAsync();
+            await unitOfWork.SaveChangesAsync();
             return BasketViewModel.FormBasket(basket);
         }
         catch (Exception ex)
@@ -59,7 +59,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         {
             var basket = await basketRepository.GetByIdAsync(basketId);
             basket.SetDescription(description);
-            await unitOfWork.CommitAsync();
+            await unitOfWork.SaveChangesAsync();
             return true;
         }
         catch (Exception ex)
@@ -77,7 +77,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         var discount = DiscountAmount.Create(basketItemRequest.DiscountAmount, basketItemRequest.DiscountType);
         var basketItem = BasketItem.Create(basket.Id, basket.ReferenceNumber, product, amount, discount);
         basket.AddItem(basketItem);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
         return BasketViewModel.FormBasket(basket);
     }
 
@@ -85,7 +85,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
     {
         var basket = await basketRepository.GetByIdAsync(basketId);
         basket.Checkout();
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
         return true;
     }
 

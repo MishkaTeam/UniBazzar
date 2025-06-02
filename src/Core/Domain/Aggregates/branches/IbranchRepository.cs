@@ -1,4 +1,4 @@
-﻿using Domain.BuildingBlocks.Data;
+﻿using BuildingBlocks.Domain.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -15,7 +15,7 @@ public class StoresApplication
 			viewModel.Address, viewModel.Culture, viewModel.LogoUrl, viewModel.IsActive);
 
 		await storeRepository.AddStoreAsync(store);
-		await unitOfWork.CommitAsync();
+		await unitOfWork.SaveChangesAsync();
 
 		return store.Adapt<StoreViewModel>();
 	}
@@ -53,7 +53,7 @@ public class StoresApplication
 			updateViewModel.PhoneNumber, updateViewModel.Culture,
 			updateViewModel.LogoUrl);
 
-		await unitOfWork.CommitAsync();
+		await unitOfWork.SaveChangesAsync();
 		return storeForUpdate.Adapt<StoreViewModel>();
 	}
 
@@ -71,6 +71,6 @@ public class StoresApplication
 		}
 
 		storeRepository.RemoveStore(storeForDelete);
-		await unitOfWork.CommitAsync();
+		await unitOfWork.SaveChangesAsync();
 	}
 }

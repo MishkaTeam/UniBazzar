@@ -1,7 +1,5 @@
-﻿using Domain.Aggregates.Stores;
-using Persistence;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Security.Claims;
+﻿using System.Security.Claims;
+using BuildingBlocks.Persistence;
 
 namespace Server.Infrastructure
 {
