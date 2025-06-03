@@ -1,7 +1,7 @@
 ﻿using BuildingBlocks.Persistence;
+using BuildingBlocks.Persistence.Extensions;
 using Domain.Aggregates.Comments;
 using Microsoft.EntityFrameworkCore;
-using Persistence.Extensions;
 
 namespace Persistence.Aggregates.Comments;
 

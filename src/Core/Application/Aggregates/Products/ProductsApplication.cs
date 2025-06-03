@@ -1,5 +1,6 @@
 ﻿using Application.Aggregates.Products.ViewModels;
 using Domain;
+using Domain.Aggregates.PriceLists;
 using Domain.Aggregates.Products;
 using Domain.Aggregates.Products.ProductFeatures;
 using Mapster;
@@ -9,6 +10,7 @@ namespace Application.Aggregates.Products;
 
 public partial class ProductsApplication
 	(IProductRepository productRepository,
+	IPriceListRepository priceListRepository,
 	IUnitOfWork unitOfWork)
 {
 	public async Task<ProductViewModel> CreateProductAsync(CreateProductViewModel viewModel)
@@ -18,7 +20,7 @@ public partial class ProductsApplication
 									viewModel.ProductType, viewModel.DownloadUrl);
 
 		await productRepository.AddAsync(product);
-		await unitOfWork.CommitAsync();
+		await unitOfWork.SaveChangesAsync();
 
 		return product.Adapt<ProductViewModel>();
 	}
@@ -63,7 +65,7 @@ public partial class ProductsApplication
 								updateViewModel.StoreId, updateViewModel.CategoryId, updateViewModel.UnitId,
 								updateViewModel.ProductType, updateViewModel.DownloadUrl);
 
-		await unitOfWork.CommitAsync();
+		await unitOfWork.SaveChangesAsync();
 		return productForUpdate.Adapt<ProductViewModel>();
 	}
 
@@ -80,7 +82,42 @@ public partial class ProductsApplication
 			throw new Exception(message);
 		}
 
-		productRepository.RemoveAsync(productForDelete);
-		await unitOfWork.CommitAsync();
+		await productRepository.RemoveAsync(productForDelete);
+		await unitOfWork.SaveChangesAsync();
 	}
+
+    public async Task<List<ProductCardViewModel>> GetIndexProducts()
+    {
+        var products = await productRepository.GetFullProductData();
+		var priceLists = await priceListRepository.GetPrice(products.Select(x => x.Id).ToList());
+
+		return products.Select(x => new ProductCardViewModel
+		{
+			Price = priceLists?.FirstOrDefault(p => p.productId == x.Id).price ?? 0,
+			ImageUrl = x.ProductImages.FirstOrDefault()?.ImageUrl,
+			Name = x.Name,
+			SKU = x.SKU,
+			Slug = "Slug",
+		}).ToList();
+    }
+    public async Task<ProductDetailViewModel> GetProductDetails(string sku)
+    {
+        var products = await productRepository.GetFullProductData(sku);
+		if (products == null)
+			throw new Exception();
+
+        var priceLists = await priceListRepository.GetPrice([products.Id]);
+
+		return new ProductDetailViewModel
+        {
+			Price = priceLists?.FirstOrDefault(p => p.productId == products.Id).price ?? 0,
+			Images = products.ProductImages,
+			Name = products.Name,
+			SKU = products.SKU,
+            ShortDescription = products.ShortDescription,
+            FullDescription = products.FullDescription,
+			ProductFeatures = products.ProductFeatures,
+            Slug = "Slug",
+		};
+    }
 }

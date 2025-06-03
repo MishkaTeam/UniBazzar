@@ -1,18 +1,24 @@
 using Domain.Aggregates.Ordering.Baskets;
 using Domain.Aggregates.Ordering.Baskets.Enums;
-using Entity = Domain.BuildingBlocks.Aggregates.Entity;
+using Entity = BuildingBlocks.Domain.Aggregates.Entity;
 
 namespace Domain.Aggregates.Ordering.Orders;
 
 public class Order : Entity
 {
-    public long ReferenceNumber { get; private set; }
+    public string ReferenceNumber { get; private set; }
     public Guid BasketId { get; private set; }
-    public long BasketReferenceNumber { get; private set; }
+    public string BasketReferenceNumber { get; private set; }
+
 
     public List<OrderItem> OrderItems { get; private set; }
 
-    public Order(Guid basketId, long basketReferenceNumber)
+    private Order()
+    {
+        //FOR EF!
+    }
+
+    public Order(Guid basketId, string basketReferenceNumber)
     {
         BasketId = basketId;
         BasketReferenceNumber = basketReferenceNumber;

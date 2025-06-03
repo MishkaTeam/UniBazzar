@@ -1,83 +1,113 @@
 ﻿<div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
-    <div class="sidebar-header border-bottom">
-        <div class="sidebar-brand">
-            <partial name="PartialViews/_ProfileMenu" />
-        </div>
-        <button class="btn-close d-lg-none" type="button" data-coreui-dismiss="offcanvas" data-coreui-theme="dark" aria-label="Close" onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#sidebar&quot;)).toggle()"></button>
-    </div>
-    <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-        <li class="nav-item">
-            <a class="nav-link" asp-page="/Index" asp-area="Admin">
-                <svg class="nav-icon">
-                    <use xlink:href="/admin/vendors/coreui/icons/svg/free.svg#cil-speedometer"></use>
-                </svg>@(Resources.DataDictionary.Dashboard)<span class="badge badge-sm bg-info ms-auto">NEW</span>
-            </a>
-        </li>
-        <li class="nav-title">@(Resources.DataDictionary.BasicInformation)</li>
-        <li class="nav-item">
-            <a class="nav-link" asp-page="/BasicInfo/Stores/Index" asp-area="Admin">
-                <i class="nav-icon bi bi-cart2"></i>
-                @(Resources.DataDictionary.Stores)
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" asp-page="/BasicInfo/CheckoutCounter/Index" asp-area="Admin">
-                <i class="nav-icon bi bi-person"></i>
-                @(Resources.DataDictionary.Sellers)
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" asp-page="/BasicInfo/Branch/Index" asp-area="Admin">
-                <svg class="nav-icon">
-                    <use xlink:href="/admin/vendors/coreui/icons/svg/free.svg#cil-drop"></use>
-                </svg> @(Resources.DataDictionary.Branches)
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" asp-page="/BasicInfo/Units/Index" asp-area="Admin">
-                <svg class="nav-icon">
-                    <use xlink:href="/admin/vendors/coreui/icons/svg/free.svg#cil-drop"></use>
-                </svg> @(Resources.DataDictionary.Units)
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" asp-page="/BasicInfo/Products/Index" asp-area="Admin">
-                <i class="nav-icon bi bi-bag"></i>
-                @(Resources.DataDictionary.Products)
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" asp-page="/BasicInfo/Categories/Index" asp-area="Admin">
-                <i class="nav-icon bi bi-border-all"></i>
-                @(Resources.DataDictionary.Categories)
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" asp-page="/BasicInfo/Customers/Index" asp-area="Admin">
-                <i class="nav-icon bi bi-person"></i>
-                @(Resources.DataDictionary.Customers)
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" asp-page="/BasicInfo/Users/Index" asp-area="Admin">
-                <i class="nav-icon bi bi-person"></i>
-                @(Resources.DataDictionary.Users)
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" asp-page="/BasicInfo/Comments/Index" asp-area="Admin">
-                <i class="nav-icon bi bi-person"></i>
-                @(Resources.DataDictionary.Comment)
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" asp-page="/BasicInfo/Discounts/Index" asp-area="Admin">
-                <i class="nav-icon bi bi-currency-dollar"></i>
-                @(Resources.DataDictionary.DiscountCodes)
-            </a>
-        </li>
-    </ul>
-    <div class="sidebar-footer border-top d-none d-md-flex">
-        <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
-    </div>
+	<div class="sidebar-header border-bottom">
+		<div class="sidebar-brand">
+			<partial name="PartialViews/_ProfileMenu" />
+		</div>
+		<button class="btn-close d-lg-none" type="button" data-coreui-dismiss="offcanvas" data-coreui-theme="dark" aria-label="Close" onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#sidebar&quot;)).toggle()"></button>
+	</div>
+	<ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+		<li class="nav-item">
+			<a class="nav-link" asp-page="/Index" asp-area="Admin">
+				<svg class="nav-icon">
+					<use xlink:href="/admin/vendors/coreui/icons/svg/free.svg#cil-speedometer"></use>
+				</svg>@(Resources.DataDictionary.Dashboard)<span class="badge badge-sm bg-info ms-auto">NEW</span>
+			</a>
+		</li>
+		<li class="nav-item nav-group ">
+			<a class="nav-link nav-group-toggle" href="#">
+				<i class="nav-icon cil-puzzle"></i> @(Resources.DataDictionary.Catalog)
+			</a>
+			<ul class="nav-group-items">
+
+				<li class="nav-item">
+					<a class="nav-link" asp-page="/BasicInfo/Products/Index" asp-area="Admin">
+						<i class="nav-icon bi bi-bag"></i>
+						@(Resources.DataDictionary.Products)
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" asp-page="/BasicInfo/PriceLists/Index" asp-area="Admin">
+						<i class="nav-icon bi bi-bag"></i>
+						@(Resources.DataDictionary.PriceLists)
+					</a>
+				</li>
+
+
+				<li class="nav-item">
+					<a class="nav-link" asp-page="/BasicInfo/Discounts/Index" asp-area="Admin">
+						<i class="nav-icon bi bi-currency-dollar"></i>
+						@(Resources.DataDictionary.DiscountCodes)
+					</a>
+				</li>
+			</ul>
+		</li>
+
+		<li class="nav-item nav-group ">
+			<a class="nav-link nav-group-toggle" href="#">
+				<i class="nav-icon cil-puzzle"></i> @(Resources.DataDictionary.BasicInformation)
+			</a>
+			<ul class="nav-group-items">
+				<li class="nav-item">
+					<a class="nav-link" asp-page="/BasicInfo/Customers/Index" asp-area="Admin">
+						<i class="nav-icon bi bi-person"></i>
+						@(Resources.DataDictionary.Customers)
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" asp-page="/BasicInfo/CheckoutCounter/Index" asp-area="Admin">
+						<i class="nav-icon bi bi-person"></i>
+						@(Resources.DataDictionary.Sellers)
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" asp-page="/BasicInfo/Branch/Index" asp-area="Admin">
+						<i class="nav-icon bi bi-building"></i>
+						@(Resources.DataDictionary.Branches)
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" asp-page="/BasicInfo/Units/Index" asp-area="Admin">
+						<svg class="nav-icon">
+							<use xlink:href="/admin/vendors/coreui/icons/svg/free.svg#cil-drop"></use>
+						</svg> @(Resources.DataDictionary.Units)
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" asp-page="/BasicInfo/Categories/Index" asp-area="Admin">
+						<i class="nav-icon bi bi-border-all"></i>
+						@(Resources.DataDictionary.Categories)
+					</a>
+				</li>
+
+			</ul>
+		</li>
+		<li class="nav-item nav-group ">
+			<a class="nav-link nav-group-toggle" href="#">
+				<i class="nav-icon cil-puzzle"></i> @(Resources.DataDictionary.Settings)
+			</a>
+			<ul class="nav-group-items">
+				<li class="nav-item">
+					<a class="nav-link" asp-page="/BasicInfo/Stores/Index" asp-area="Admin">
+						<i class="nav-icon bi bi-cart2"></i>
+						@(Resources.DataDictionary.Stores)
+					</a>
+				</li>
+
+
+				<li class="nav-item">
+					<a class="nav-link" asp-page="/BasicInfo/Users/Index" asp-area="Admin">
+						<i class="nav-icon bi bi-person"></i>
+						@(Resources.DataDictionary.Users)
+					</a>
+				</li>
+			</ul>
+		</li>
+
+
+
+
+	</ul>
+	<div class="sidebar-footer border-top d-none d-md-flex">
+		<button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+	</div>
 </div>

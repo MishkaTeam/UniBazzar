@@ -4,7 +4,7 @@ namespace Persistence;
 
 public class UnitOfWork(UniBazzarContext uniBazzarContext) : IUnitOfWork
 {
-    public Task<int> CommitAsync(CancellationToken? cancellationToken = null)
+    public Task<int> SaveChangesAsync(CancellationToken? cancellationToken = null)
     {
         if (cancellationToken.HasValue)
             return uniBazzarContext.SaveChangesAsync(cancellationToken.Value);

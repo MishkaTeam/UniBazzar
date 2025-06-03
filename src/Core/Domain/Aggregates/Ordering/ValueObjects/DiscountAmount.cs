@@ -4,8 +4,13 @@ namespace Domain.Aggregates.Ordering.ValueObjects;
 
 public class DiscountAmount : IEquatable<DiscountAmount>
 {
-    public decimal Value { get; }
-    public DiscountType DiscountType { get; }
+    public decimal Value { get; private set; }
+    public DiscountType DiscountType { get; private set; }
+
+
+    protected DiscountAmount()
+    {
+    }
 
     private DiscountAmount(decimal value, DiscountType discountType)
     {
@@ -29,12 +34,19 @@ public class DiscountAmount : IEquatable<DiscountAmount>
         return new DiscountAmount(percentage, DiscountType.Percent);
     }
 
+
+    public static DiscountAmount CreateNoDiscount()
+    {
+        return new DiscountAmount(0, DiscountType.None);
+    }
+
     public decimal ApplyDiscount(decimal originalPrice)
     {
         return DiscountType switch
         {
             DiscountType.Price => Math.Max(0, originalPrice - Value),
             DiscountType.Percent => Math.Max(0, originalPrice * (1 - (Value / 100))),
+            DiscountType.None => originalPrice,
             _ => throw new InvalidOperationException("Unknown discount type.")
         };
     }
@@ -58,7 +70,9 @@ public class DiscountAmount : IEquatable<DiscountAmount>
         {
             DiscountType.Percent => CreatePercentDiscount(amount),
             DiscountType.Price => CreatePriceDiscount(amount),
+            DiscountType.None => CreateNoDiscount(),
             _ => throw new ArgumentOutOfRangeException(nameof(discountType), discountType, null)
         };
     }
+
 }

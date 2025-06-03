@@ -2,10 +2,10 @@ namespace Application.Aggregates.Orders.ViewModels;
 
 public class InitializeBasketViewModel
 {
-    public InitializeBasketViewModel(long referenceNumber)
+    public InitializeBasketViewModel(string referenceNumber)
     {
         ReferenceNumber = referenceNumber;
     }
 
-    public long ReferenceNumber { get; set; }
+    public string ReferenceNumber { get; set; }
 }

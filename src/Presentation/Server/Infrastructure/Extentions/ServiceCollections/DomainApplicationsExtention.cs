@@ -4,6 +4,8 @@ using Application.Aggregates.CheckoutCounter;
 using Application.Aggregates.Customers;
 using Application.Aggregates.Customers.ShippingAddresses;
 using Application.Aggregates.Discounts;
+using Application.Aggregates.Orders;
+using Application.Aggregates.PriceLists;
 using Application.Aggregates.Products;
 using Application.Aggregates.Stores;
 using Application.Aggregates.Units;
@@ -17,10 +19,11 @@ using Domain.Aggregates.CheckoutCounter;
 using Domain.Aggregates.Customers;
 using Domain.Aggregates.Customers.ShippingAddresses;
 using Domain.Aggregates.Discounts;
+using Domain.Aggregates.Ordering.Baskets.Data;
+using Domain.Aggregates.PriceLists;
 using Domain.Aggregates.Products;
 using Domain.Aggregates.Products.ProductFeatures;
 using Domain.Aggregates.Products.ProductImages;
-using Domain.Aggregates.Products.ProductPriceLists;
 using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
 using Domain.Aggregates.Users;
@@ -28,20 +31,20 @@ using Domain.CustomerSearch.Data;
 using Domain.ProductSearch.Data;
 using Domain.Aggregates.Comments;
 using Persistence;
-using Persistence.Aggregates.Branches;
-using Persistence.Aggregates.Categories;
-using Persistence.Aggregates.CheckoutCounters;
-using Persistence.Aggregates.Customers;
-using Persistence.Aggregates.Discounts;
-using Persistence.Aggregates.Products;
-using Persistence.Aggregates.ShippingAddresses;
-using Persistence.Aggregates.Stores;
-using Persistence.Aggregates.Units;
-using Persistence.Aggregates.Users;
-using Persistence.CustomerSearch;
-using Persistence.ProductSearch;
-using Persistence.Aggregates.Comments;
+using Persistence.Repositories.Aggregates.Branches;
+using Persistence.Repositories.Aggregates.Categories;
+using Persistence.Repositories.Aggregates.CheckoutCounters;
+using Persistence.Repositories.Aggregates.Customers;
+using Persistence.Repositories.Aggregates.Discounts;
+using Persistence.Repositories.Aggregates.Ordering;
+using Persistence.Repositories.Aggregates.Products;
+using Persistence.Repositories.Aggregates.Stores;
+using Persistence.Repositories.Aggregates.Units;
+using Persistence.Repositories.Aggregates.Users;
+using Persistence.Repositories.CustomerSearch;
+using Persistence.Repositories.ProductSearch;
 using Application.Aggregates.Comments;
+using Persistence.Aggregates.Comments;
 
 namespace Server.Infrastructure.Extensions.ServiceCollections;
 
@@ -53,30 +56,28 @@ public static class DomainExtensions
 
         services.AddScoped<StoresApplication>();
         services.AddScoped<BranchesApplication>();
+        services.AddScoped<CheckoutCounterApplication>();
 
         services.AddScoped<CustomerApplication>();
         services.AddScoped<ShippingAddressApplication>();
 
+        services.AddScoped<BasketApplication>();
+
         services.AddScoped<ProductsApplication>();
         services.AddScoped<ProductImagesApplication>();
         services.AddScoped<ProductFeaturesApplication>();
-        services.AddScoped<ProductPriceListsApplication>();
+        services.AddScoped<PriceListsApplication>();
 
         services.AddScoped<UnitsApplication>();
-
         services.AddScoped<CategoriesApplication>();
 
-        services.AddScoped<CategoryRepository>();
-
         services.AddScoped<DiscountApplication>();
+
+        services.AddScoped<CategoryRepository>();
 
 
         services.AddScoped<ProductSearchApplication>();
         services.AddScoped<CustomerSearchApplication>();
-
-		services.AddScoped<UserApplication>();
-
-		services.AddScoped<CheckoutCounterApplication>();
 
         services.AddScoped<CommentApplication>();
 
@@ -89,32 +90,30 @@ public static class DomainExtensions
 
         services.AddScoped<IStoreRepository, StoreRepository>();
         services.AddScoped<IbranchRepository, BranchRepository>();
+        services.AddScoped<ICheckoutCounterRepository, CheckoutCounterRepository>();
 
         services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<IShippingAddressRepository, ShippingAddressRepository>();
 
+        services.AddScoped<IBasketRepository, BasketRepository>();
+
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IProductImageRepository, ProductImagesRepository>();
         services.AddScoped<IProductFeatureRepository, ProductFeaturesRepository>();
-        services.AddScoped<IProductPriceListRepository, ProductPriceListsRepository>();
+        services.AddScoped<IPriceListRepository, PriceListsRepository>();
         services.AddScoped<IProductImageRepository, ProductImagesRepository>();
 
         services.AddScoped<IUnitRepository, UnitRepository>();
-
         services.AddScoped<ICategoryRepository, CategoryRepository>();
 
         services.AddScoped<IDiscountRepository, DiscountRepository>();
-
-
         services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
-
-        services.AddScoped<ICheckoutCounterRepository, CheckoutCounterRepository>();
-
         services.AddScoped<ICustomerSearchRepository, CustomerSearchRepository>();
 
         services.AddScoped<ICommentRepository, CommentRepository>();
 
         return services;
-	}
+    }
 
     public static IServiceCollection AddUnitOfWork(this IServiceCollection services)
     {

@@ -11,7 +11,7 @@ namespace Application.Aggregates.CheckoutCounter
         {
             var entity = Domain.Aggregates.CheckoutCounter.CheckoutCounter.Create(viewModel.Name);
             await checkoutCounterRepository.AddAsync(entity);
-            await unitofWork.CommitAsync();
+            await unitofWork.SaveChangesAsync();
             return entity.Adapt<CheckoutCounterViewModels>();
         }
 
@@ -35,13 +35,13 @@ namespace Application.Aggregates.CheckoutCounter
                 throw new Exception(Resources.Messages.Errors.NotFound);
             }
             entity.Update(UpdateViewModel.Name);
-            await unitofWork.CommitAsync();
+            await unitofWork.SaveChangesAsync();
             return entity.Adapt<CheckoutCounterViewModels>();
         }
         public async Task DeleteAsync(Guid id)
         {
             await checkoutCounterRepository.RemoveByIdAsync(id);
-            await unitofWork.CommitAsync();
+            await unitofWork.SaveChangesAsync();
         }
     }
 }

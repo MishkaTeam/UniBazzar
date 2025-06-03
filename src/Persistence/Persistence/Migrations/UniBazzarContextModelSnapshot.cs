@@ -32,7 +32,8 @@ namespace Persistence.Migrations
 
                     b.Property<string>("IconClass")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<long>("InsertDateTime")
                         .HasColumnType("bigint");
@@ -42,10 +43,13 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<int>("Ordering")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
@@ -69,7 +73,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.CheckoutCounter.CheckoutCounter", b =>
@@ -85,10 +89,13 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
                     b.Property<int>("Ordering")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
@@ -167,10 +174,12 @@ namespace Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Email")
-                        .HasColumnType("text");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<long>("InsertDateTime")
                         .HasColumnType("bigint");
@@ -179,30 +188,40 @@ namespace Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<bool>("IsEmailVerified")
-                        .HasColumnType("boolean");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
 
                     b.Property<bool>("IsMobileVerified")
-                        .HasColumnType("boolean");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("Mobile")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)");
 
                     b.Property<string>("NationalCode")
-                        .HasColumnType("text");
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)");
 
                     b.Property<int>("Ordering")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Password")
-                        .HasColumnType("text");
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.Property<Guid>("StoreId")
                         .HasColumnType("uuid");
@@ -218,7 +237,18 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("\"Email\" IS NOT NULL");
+
+                    b.HasIndex("Mobile")
+                        .IsUnique();
+
+                    b.HasIndex("NationalCode")
+                        .IsUnique()
+                        .HasFilter("\"NationalCode\" IS NOT NULL");
+
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Customers.ShippingAddresses.ShippingAddress", b =>
@@ -228,15 +258,18 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("Country")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uuid");
@@ -248,18 +281,22 @@ namespace Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<int>("Ordering")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.Property<string>("Province")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<Guid>("StoreId")
                         .HasColumnType("uuid");
@@ -285,12 +322,18 @@ namespace Persistence.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime?>("DeactivateDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("DiscountCode")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("End")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long>("InsertDateTime")
                         .HasColumnType("bigint");
@@ -301,8 +344,160 @@ namespace Persistence.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
+                    b.Property<int>("Maximum")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Minimum")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Ordering")
                         .HasColumnType("integer");
+
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("StoreId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("UpdateDateTime")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Version")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Discounts");
+                });
+
+            modelBuilder.Entity("Domain.Aggregates.Ordering.Baskets.Basket", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<byte>("BasketStatus")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<long>("InsertDateTime")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("InsertedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Ordering")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
+
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uuid");
+
+                    b.Property<byte>("Platform")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("ReferenceNumber")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<Guid>("StoreId")
+                        .HasColumnType("uuid");
+
+                    b.Property<long>("UpdateDateTime")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Version")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Baskets", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Aggregates.Ordering.Orders.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("BasketId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("BasketReferenceNumber")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<long>("InsertDateTime")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("InsertedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Ordering")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
+
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("ReferenceNumber")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<Guid>("StoreId")
+                        .HasColumnType("uuid");
+
+                    b.Property<long>("UpdateDateTime")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Version")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Aggregates.PriceLists.PriceList", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<long>("InsertDateTime")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("InsertedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Ordering")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
@@ -325,7 +520,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Discounts");
+                    b.ToTable("ProductPriceLists");
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Products.Product", b =>
@@ -337,7 +532,8 @@ namespace Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("DownloadUrl")
-                        .HasColumnType("text");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<string>("FullDescription")
                         .IsRequired()
@@ -351,24 +547,29 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
                     b.Property<int>("Ordering")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
 
-                    b.Property<byte>("ProductType")
-                        .HasColumnType("smallint");
+                    b.Property<int>("ProductType")
+                        .HasColumnType("integer");
 
                     b.Property<string>("SKU")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("ShortDescription")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
 
                     b.Property<Guid>("StoreId")
                         .HasColumnType("uuid");
@@ -391,7 +592,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("UnitId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Products.ProductFeatures.ProductFeature", b =>
@@ -410,10 +611,13 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Key")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
                     b.Property<int>("Ordering")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
@@ -432,7 +636,8 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Value")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
                     b.Property<int>("Version")
                         .HasColumnType("integer");
@@ -441,7 +646,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductFeatures");
+                    b.ToTable("ProductFeatures", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Products.ProductImages.ProductImage", b =>
@@ -451,7 +656,8 @@ namespace Persistence.Migrations
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
 
                     b.Property<long>("InsertDateTime")
                         .HasColumnType("bigint");
@@ -460,7 +666,9 @@ namespace Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<int>("Ordering")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
@@ -482,47 +690,9 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductImages");
-                });
+                    b.HasIndex("ProductId");
 
-            modelBuilder.Entity("Domain.Aggregates.Products.ProductPriceLists.ProductPriceList", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<long>("InsertDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("InsertedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Ordering")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("OwnerId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("StoreId")
-                        .HasColumnType("uuid");
-
-                    b.Property<long>("UpdateDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Version")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductPriceLists");
+                    b.ToTable("ProductImages", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Stores.Store", b =>
@@ -531,14 +701,17 @@ namespace Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Culture")
-                        .HasColumnType("text");
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<string>("HostUrl")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<long>("InsertDateTime")
                         .HasColumnType("bigint");
@@ -550,21 +723,26 @@ namespace Persistence.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("LogoUrl")
-                        .HasColumnType("text");
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<int>("Ordering")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.Property<long>("UpdateDateTime")
                         .HasColumnType("bigint");
@@ -573,11 +751,13 @@ namespace Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<int>("Version")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(1);
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stores");
+                    b.ToTable("Stores", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Units.Unit", b =>
@@ -595,7 +775,9 @@ namespace Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<int>("Ordering")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
@@ -608,7 +790,8 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
                     b.Property<long>("UpdateDateTime")
                         .HasColumnType("bigint");
@@ -623,7 +806,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("BaseUnitId");
 
-                    b.ToTable("Units");
+                    b.ToTable("Units", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Users.User", b =>
@@ -633,7 +816,8 @@ namespace Persistence.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<long>("InsertDateTime")
                         .HasColumnType("bigint");
@@ -643,21 +827,26 @@ namespace Persistence.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("Mobile")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)");
 
                     b.Property<int>("Ordering")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.Property<Guid>("Role")
                         .HasColumnType("uuid");
@@ -673,14 +862,21 @@ namespace Persistence.Migrations
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<int>("Version")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.HasIndex("Mobile")
+                        .IsUnique();
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
+
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Aggregates.branches.Branch", b =>
@@ -696,10 +892,13 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<int>("Ordering")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
@@ -718,14 +917,58 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Branches");
+                    b.ToTable("Branches", (string)null);
+                });
+
+            modelBuilder.Entity("Persistence.Auditing.AuditLog", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Action")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ChangedColumns")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NewValues")
+                        .HasColumnType("text");
+
+                    b.Property<string>("OldValues")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PrimaryKey")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("TableName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid?>("TenantId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("TraceId")
+                        .HasColumnType("text");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AuditLogs");
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Categories.Category", b =>
                 {
                     b.HasOne("Domain.Aggregates.Categories.Category", "Parent")
                         .WithMany()
-                        .HasForeignKey("ParentId");
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Parent");
                 });
@@ -760,6 +1003,360 @@ namespace Persistence.Migrations
                     b.Navigation("Customers");
                 });
 
+            modelBuilder.Entity("Domain.Aggregates.Ordering.Baskets.Basket", b =>
+                {
+                    b.OwnsOne("Domain.Aggregates.Ordering.ValueObjects.DiscountAmount", "TotalDiscountAmount", b1 =>
+                        {
+                            b1.Property<Guid>("BasketId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<byte>("DiscountType")
+                                .HasColumnType("smallint")
+                                .HasColumnName("TotalDiscountType");
+
+                            b1.Property<decimal>("Value")
+                                .HasColumnType("numeric")
+                                .HasColumnName("TotalDiscountAmount");
+
+                            b1.HasKey("BasketId");
+
+                            b1.ToTable("Baskets");
+
+                            b1.WithOwner()
+                                .HasForeignKey("BasketId");
+                        });
+
+                    b.OwnsMany("Domain.Aggregates.Ordering.Baskets.BasketItem", "BasketItems", b1 =>
+                        {
+                            b1.Property<Guid>("Id")
+                                .HasColumnType("uuid");
+
+                            b1.Property<Guid>("BasketId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("BasketReferenceNumber")
+                                .IsRequired()
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)");
+
+                            b1.Property<long>("InsertDateTime")
+                                .HasColumnType("bigint");
+
+                            b1.Property<Guid>("InsertedBy")
+                                .HasColumnType("uuid");
+
+                            b1.Property<int>("Ordering")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("integer")
+                                .HasDefaultValue(10000);
+
+                            b1.Property<Guid>("OwnerId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<Guid>("StoreId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<long>("UpdateDateTime")
+                                .HasColumnType("bigint");
+
+                            b1.Property<Guid>("UpdatedBy")
+                                .HasColumnType("uuid");
+
+                            b1.Property<int>("Version")
+                                .HasColumnType("integer");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("BasketId");
+
+                            b1.ToTable("BasketItems", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("BasketId");
+
+                            b1.OwnsOne("Domain.Aggregates.Ordering.ValueObjects.DiscountAmount", "DiscountAmount", b2 =>
+                                {
+                                    b2.Property<Guid>("BasketItemId")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<byte>("DiscountType")
+                                        .HasColumnType("smallint")
+                                        .HasColumnName("DiscountType");
+
+                                    b2.Property<decimal>("Value")
+                                        .HasColumnType("numeric")
+                                        .HasColumnName("DiscountAmount");
+
+                                    b2.HasKey("BasketItemId");
+
+                                    b2.ToTable("BasketItems");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("BasketItemId");
+                                });
+
+                            b1.OwnsOne("Domain.Aggregates.Ordering.ValueObjects.ProductType", "Product", b2 =>
+                                {
+                                    b2.Property<Guid>("BasketItemId")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<Guid>("ProductId")
+                                        .HasColumnType("uuid")
+                                        .HasColumnName("ProductId");
+
+                                    b2.Property<string>("ProductName")
+                                        .IsRequired()
+                                        .HasMaxLength(500)
+                                        .HasColumnType("character varying(500)")
+                                        .HasColumnName("ProductName");
+
+                                    b2.HasKey("BasketItemId");
+
+                                    b2.ToTable("BasketItems");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("BasketItemId");
+                                });
+
+                            b1.OwnsOne("Domain.Aggregates.Ordering.ValueObjects.ProductAmount", "ProductAmount", b2 =>
+                                {
+                                    b2.Property<Guid>("BasketItemId")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<decimal>("BasePrice")
+                                        .HasColumnType("numeric")
+                                        .HasColumnName("ProductBasePrice");
+
+                                    b2.Property<long>("Quantity")
+                                        .HasColumnType("bigint")
+                                        .HasColumnName("ProductQuantity");
+
+                                    b2.Property<decimal>("TotalPrice")
+                                        .HasColumnType("numeric")
+                                        .HasColumnName("ProductTotalPrice");
+
+                                    b2.HasKey("BasketItemId");
+
+                                    b2.ToTable("BasketItems");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("BasketItemId");
+                                });
+
+                            b1.Navigation("DiscountAmount")
+                                .IsRequired();
+
+                            b1.Navigation("Product")
+                                .IsRequired();
+
+                            b1.Navigation("ProductAmount")
+                                .IsRequired();
+                        });
+
+                    b.Navigation("BasketItems");
+
+                    b.Navigation("TotalDiscountAmount")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Aggregates.Ordering.Orders.Order", b =>
+                {
+                    b.OwnsMany("Domain.Aggregates.Ordering.Orders.OrderItem", "OrderItems", b1 =>
+                        {
+                            b1.Property<Guid>("Id")
+                                .HasColumnType("uuid");
+
+                            b1.Property<long>("InsertDateTime")
+                                .HasColumnType("bigint");
+
+                            b1.Property<Guid>("InsertedBy")
+                                .HasColumnType("uuid");
+
+                            b1.Property<Guid>("OrderId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("OrderReferenceNumber")
+                                .IsRequired()
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)");
+
+                            b1.Property<int>("Ordering")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("integer")
+                                .HasDefaultValue(10000);
+
+                            b1.Property<Guid>("OwnerId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<Guid>("StoreId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<long>("UpdateDateTime")
+                                .HasColumnType("bigint");
+
+                            b1.Property<Guid>("UpdatedBy")
+                                .HasColumnType("uuid");
+
+                            b1.Property<int>("Version")
+                                .HasColumnType("integer");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("OrderId");
+
+                            b1.ToTable("OrderItems", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+
+                            b1.OwnsOne("Domain.Aggregates.Ordering.ValueObjects.DiscountAmount", "DiscountAmount", b2 =>
+                                {
+                                    b2.Property<Guid>("OrderItemId")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<byte>("DiscountType")
+                                        .HasColumnType("smallint")
+                                        .HasColumnName("DiscountType");
+
+                                    b2.Property<decimal>("Value")
+                                        .HasColumnType("numeric")
+                                        .HasColumnName("DiscountAmount");
+
+                                    b2.HasKey("OrderItemId");
+
+                                    b2.ToTable("OrderItems");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("OrderItemId");
+                                });
+
+                            b1.OwnsOne("Domain.Aggregates.Ordering.ValueObjects.ProductType", "Product", b2 =>
+                                {
+                                    b2.Property<Guid>("OrderItemId")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<Guid>("ProductId")
+                                        .HasColumnType("uuid")
+                                        .HasColumnName("ProductId");
+
+                                    b2.Property<string>("ProductName")
+                                        .IsRequired()
+                                        .HasMaxLength(500)
+                                        .HasColumnType("character varying(500)")
+                                        .HasColumnName("ProductName");
+
+                                    b2.HasKey("OrderItemId");
+
+                                    b2.ToTable("OrderItems");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("OrderItemId");
+                                });
+
+                            b1.OwnsOne("Domain.Aggregates.Ordering.ValueObjects.ProductAmount", "ProductAmount", b2 =>
+                                {
+                                    b2.Property<Guid>("OrderItemId")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<decimal>("BasePrice")
+                                        .HasColumnType("numeric")
+                                        .HasColumnName("ProductBasePrice");
+
+                                    b2.Property<long>("Quantity")
+                                        .HasColumnType("bigint")
+                                        .HasColumnName("ProductQuantity");
+
+                                    b2.Property<decimal>("TotalPrice")
+                                        .HasColumnType("numeric")
+                                        .HasColumnName("ProductTotalPrice");
+
+                                    b2.HasKey("OrderItemId");
+
+                                    b2.ToTable("OrderItems");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("OrderItemId");
+                                });
+
+                            b1.Navigation("DiscountAmount")
+                                .IsRequired();
+
+                            b1.Navigation("Product")
+                                .IsRequired();
+
+                            b1.Navigation("ProductAmount")
+                                .IsRequired();
+                        });
+
+                    b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("Domain.Aggregates.PriceLists.PriceList", b =>
+                {
+                    b.OwnsMany("Domain.Aggregates.PriceListItems.PriceListItem", "Items", b1 =>
+                        {
+                            b1.Property<Guid>("PriceListId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<Guid>("Id")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("CurrencyCode")
+                                .IsRequired()
+                                .HasMaxLength(4)
+                                .HasColumnType("character varying(4)");
+
+                            b1.Property<long>("InsertDateTime")
+                                .HasColumnType("bigint");
+
+                            b1.Property<Guid>("InsertedBy")
+                                .HasColumnType("uuid");
+
+                            b1.Property<int>("Ordering")
+                                .HasColumnType("integer");
+
+                            b1.Property<Guid>("OwnerId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<decimal>("Price")
+                                .HasColumnType("numeric");
+
+                            b1.Property<Guid>("ProductId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<Guid>("StoreId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<long>("UpdateDateTime")
+                                .HasColumnType("bigint");
+
+                            b1.Property<Guid>("UpdatedBy")
+                                .HasColumnType("uuid");
+
+                            b1.Property<int>("Version")
+                                .HasColumnType("integer");
+
+                            b1.HasKey("PriceListId", "Id");
+
+                            b1.HasIndex("ProductId");
+
+                            b1.ToTable("PriceListItem");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PriceListId");
+
+                            b1.HasOne("Domain.Aggregates.Products.Product", "Product")
+                                .WithMany()
+                                .HasForeignKey("ProductId")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
+
+                            b1.Navigation("Product");
+                        });
+
+                    b.Navigation("Items");
+                });
+
             modelBuilder.Entity("Domain.Aggregates.Products.Product", b =>
                 {
                     b.HasOne("Domain.Aggregates.Categories.Category", "Category")
@@ -782,7 +1379,7 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Aggregates.Products.ProductFeatures.ProductFeature", b =>
                 {
                     b.HasOne("Domain.Aggregates.Products.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductFeatures")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -790,11 +1387,21 @@ namespace Persistence.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Domain.Aggregates.Products.ProductImages.ProductImage", b =>
+                {
+                    b.HasOne("Domain.Aggregates.Products.Product", null)
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Domain.Aggregates.Units.Unit", b =>
                 {
                     b.HasOne("Domain.Aggregates.Units.Unit", "BaseUnit")
                         .WithMany()
-                        .HasForeignKey("BaseUnitId");
+                        .HasForeignKey("BaseUnitId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("BaseUnit");
                 });
@@ -802,6 +1409,13 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Aggregates.Customers.Customer", b =>
                 {
                     b.Navigation("ShippingAddresses");
+                });
+
+            modelBuilder.Entity("Domain.Aggregates.Products.Product", b =>
+                {
+                    b.Navigation("ProductFeatures");
+
+                    b.Navigation("ProductImages");
                 });
 #pragma warning restore 612, 618
         }

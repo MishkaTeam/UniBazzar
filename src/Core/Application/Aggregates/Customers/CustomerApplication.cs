@@ -22,7 +22,7 @@ public class CustomerApplication(ICustomerRepository customerRepository, IUnitOf
             );
 
         await customerRepository.AddAsync(customer);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return customer.Adapt<CustomerViewModel>();
     }
@@ -32,7 +32,7 @@ public class CustomerApplication(ICustomerRepository customerRepository, IUnitOf
         var customer = Customer.Register(mobile, password);
 
         await customerRepository.AddAsync(customer);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return customer.Adapt<CustomerViewModel>();
     }
@@ -49,7 +49,7 @@ public class CustomerApplication(ICustomerRepository customerRepository, IUnitOf
             );
 
         await customerRepository.AddAsync(customer);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return customer.Adapt<CreateCustomerViewModelPos>();
     }
@@ -89,7 +89,7 @@ public class CustomerApplication(ICustomerRepository customerRepository, IUnitOf
             updateViewModel.Mobile
             );
 
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
         return entity.Adapt<UpdateCustomerViewModel>();
     }
 
@@ -103,7 +103,7 @@ public class CustomerApplication(ICustomerRepository customerRepository, IUnitOf
         }
 
         await customerRepository.RemoveAsync(entity);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
     }
 
     public async Task<ResultContract<CustomerViewModel>> LoginWithMobileAsync(LoginViewModel model)

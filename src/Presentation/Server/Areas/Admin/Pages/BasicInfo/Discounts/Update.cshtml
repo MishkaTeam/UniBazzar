@@ -18,11 +18,62 @@
 			<partial name="PartialViews/_DisplayPageMessages" />
 			<input hidden asp-for="ViewModel.Id" dir="ltr" />
 
-			<ub-full-input asp-for="ViewModel.Title" />
+            <ub-full-input asp-for="ViewModel.Title" />
 
-			<ub-full-input asp-for="ViewModel.DiscountCode" />
+            <ub-full-input asp-for="ViewModel.DiscountCode" />
 
-			<ub-full-checkbox asp-for="ViewModel.IsActive" />
+            <ub-full-checkbox asp-for="ViewModel.IsActive" />
+
+            <div class="tab btn-group">
+                <a class="tablinks btn btn-primary" onclick="openTab(event, 'DiscountCode')">@(Resources.DataDictionary.DiscountCode)</a>
+                <a class="tablinks btn btn-primary" onclick="openTab(event, 'Products')">@(Resources.DataDictionary.Products)</a>
+                <a class="tablinks btn btn-primary" onclick="openTab(event, 'Customers')">@(Resources.DataDictionary.Customers)</a>
+            </div>
+
+            <div id="DiscountCode" class="tabcontent col-12 border rounded-2 my-2 p-2">
+                <h3>@(Resources.DataDictionary.DiscountCode)</h3>
+                <div class="d-flex gap-4">
+                    <div class="form-check">
+                        <input asp-for="DiscountType" class="form-check-input" type="radio" value="true" v-model="isTrue" />
+                        <label class="form-check-label" for="Percentage">
+                            @(Resources.DataDictionary.DiscountPercentage)
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input asp-for="DiscountType" class="form-check-input" type="radio" value="false" v-model="isTrue" />
+                        <label class="form-check-label" for="Fixed">
+                            @(Resources.DataDictionary.DiscountFixed)
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <ub-full-input asp-for="ViewModel.Minimum" />
+                <div class="mb-3" v-if="isTrue === 'true'">
+                    <ub-full-input asp-for="ViewModel.Maximum" />
+                </div>
+                <ub-full-input asp-for="ViewModel.Amount" />
+
+                <div class="mb-3">
+                    <label asp-for="ViewModel.Start" class="form-lable"></label>
+                    <input type="datetime-local" class="form-control mt-2" asp-for="ViewModel.Start"  />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ViewModel.End" class="form-lable"></label>
+                    <input type="datetime-local" class="form-control mt-2" asp-for="ViewModel.End"  />
+                </div>
+            </div>
+
+            <div id="Products" class="tabcontent col-12 border rounded-2 my-2 p-2">
+                <h3>@(Resources.DataDictionary.Products)</h3>
+                <p>Products</p>
+            </div>
+
+            <div id="Customers" class="tabcontent col-12 border rounded-2 my-2 p-2">
+                <h3>@(Resources.DataDictionary.Customers)</h3>
+                <p>Customers</p>
+            </div>
 
 		</fieldset>
 

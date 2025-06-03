@@ -23,7 +23,7 @@ namespace Application.Aggregates.Users
 
             userRepository.AddAsync(user);
 
-            await unitOfWork.CommitAsync();
+            await unitOfWork.SaveChangesAsync();
 
             return user.Adapt<CreateUserViewModel>();
         }
@@ -64,7 +64,7 @@ namespace Application.Aggregates.Users
 
             user.SetUserRole(updateViewModel.Role);
 
-            await unitOfWork.CommitAsync();
+            await unitOfWork.SaveChangesAsync();
             return user.Adapt<UpdateUserViewModel>();
         }
         public async Task DeleteAsync(Guid id)
@@ -77,7 +77,7 @@ namespace Application.Aggregates.Users
             }
 
             await userRepository.RemoveAsync(user);
-            await unitOfWork.CommitAsync();
+            await unitOfWork.SaveChangesAsync();
         }
 
         public async Task<ResultContract<UserViewModel>> LoginWithMobileAsync(LoginViewModel model)

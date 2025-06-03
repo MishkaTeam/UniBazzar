@@ -18,7 +18,7 @@ public class CommentApplication(ICommentRepository commentRepository, IUnitOfWor
             );
 
         await commentRepository.AddAsync(comment);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return comment.Adapt<Comment>();
     }
@@ -55,7 +55,7 @@ public class CommentApplication(ICommentRepository commentRepository, IUnitOfWor
              updateViewModel.Text
             );
 
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return comment.Adapt<UpdateCommentViewModel>();
     }
@@ -70,6 +70,6 @@ public class CommentApplication(ICommentRepository commentRepository, IUnitOfWor
         }
 
         await commentRepository.RemoveAsync(comment);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
     }
 }

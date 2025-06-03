@@ -1,6 +1,6 @@
-﻿using Domain.Aggregates.Customers;
+﻿using BuildingBlocks.Domain.Aggregates;
+using Domain.Aggregates.Customers;
 using Domain.Aggregates.Products;
-using Domain.BuildingBlocks.Aggregates;
 using Framework.DataType;
 
 namespace Domain.Aggregates.Comments;
