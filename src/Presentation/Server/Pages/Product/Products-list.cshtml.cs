@@ -1,6 +1,7 @@
 using Application.Aggregates.PriceLists;
 using Application.Aggregates.PriceLists.ViewModels.PriceList;
 using Application.Aggregates.Products;
+using Application.Aggregates.Products.ProductImages;
 using Application.Aggregates.Products.ProductImages.ViewModel;
 using Application.Aggregates.Products.ViewModels;
 using Microsoft.AspNetCore.Mvc.RazorPages;

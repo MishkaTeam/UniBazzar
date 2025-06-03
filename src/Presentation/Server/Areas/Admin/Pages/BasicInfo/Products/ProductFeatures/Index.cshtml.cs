@@ -1,4 +1,5 @@
 using Application.Aggregates.Products;
+using Application.Aggregates.Products.ProductFeatures;
 using Application.Aggregates.Products.ProductFeatures.ViewModels;
 using Application.Aggregates.Products.ViewModels;
 using Infrastructure;

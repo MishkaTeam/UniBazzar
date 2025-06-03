@@ -447,4 +447,10 @@
   <data name="Addto" xml:space="preserve">
     <value>افزودن به</value>
   </data>
+  <data name="Text" xml:space="preserve">
+    <value>متن</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>نظر دادن</value>
+  </data>
 </root>

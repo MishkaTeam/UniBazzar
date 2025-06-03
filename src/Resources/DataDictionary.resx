@@ -447,4 +447,10 @@
 	<data name="Addto" xml:space="preserve">
     <value>Add to</value>
   </data>
+  <data name="Text" xml:space="preserve">
+    <value>text</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>comment</value>
+  </data>
 </root>

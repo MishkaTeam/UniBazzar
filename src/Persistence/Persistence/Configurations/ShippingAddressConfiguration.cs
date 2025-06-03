@@ -1,7 +1,7 @@
-﻿using Domain.Aggregates.Customers.ShippingAddresses;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using BuildingBlocks.Persistence.Configurations;
+using Domain.Aggregates.Customers.ShippingAddresses;
 
 namespace Persistence.Configurations;
 
@@ -35,7 +35,7 @@ internal class ShippingAddressConfiguration : BaseConfiguration<ShippingAddress>
                .IsRequired();
 
         builder.HasOne(a => a.Customers)
-               .WithMany(c => c.ShippingAddresses) 
+               .WithMany(c => c.Addresses) 
                .HasForeignKey(a => a.CustomerId)
                .OnDelete(DeleteBehavior.Cascade); 
 
