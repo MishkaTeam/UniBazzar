@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Application.Aggregates.Comments.ViewModels;
+namespace Application.Aggregates.ProductReviews.ViewModels;
 
-public class CreateCommentViewModel
+public class CreateProductReviewViewModel
 {
     [Display
         (ResourceType = typeof(Resources.DataDictionary),

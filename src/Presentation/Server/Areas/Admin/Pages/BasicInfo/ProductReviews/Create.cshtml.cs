@@ -2,16 +2,16 @@ using Application.Aggregates.Branches.ViewModels;
 using Application.Aggregates.Branches;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Application.Aggregates.Comments;
-using Application.Aggregates.Comments.ViewModels;
+using Application.Aggregates.ProductReviews.ViewModels;
+using Application.Aggregates.ProductReviews;
 
-namespace Server.Areas.Admin.Pages.BasicInfo.Comments
+namespace Server.Areas.Admin.Pages.BasicInfo.ProductReviews
 {
-    public class CreateModel(CommentApplication commentApplication) : PageModel
+    public class CreateModel(ProductReviewApplication commentApplication) : PageModel
     {
 
         [BindProperty]
-        public CreateCommentViewModel ViewModel { get; set; } = new();
+        public CreateProductReviewViewModel ViewModel { get; set; } = new();
 
         public async Task OnGet()
         {

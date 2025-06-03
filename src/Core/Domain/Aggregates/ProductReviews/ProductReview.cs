@@ -3,11 +3,11 @@ using Domain.Aggregates.Customers;
 using Domain.Aggregates.Products;
 using Framework.DataType;
 
-namespace Domain.Aggregates.Comments;
+namespace Domain.Aggregates.ProductReviews;
 
-public class Comment : Entity
+public class ProductReview : Entity
 {
-    public Comment()
+    public ProductReview()
     {
     }
 
@@ -20,9 +20,9 @@ public class Comment : Entity
     public Guid ProductId { get; set; }
     public Product Product { get; set; }
 
-    public static Comment Create(string text, Guid customerId, Guid productId)
+    public static ProductReview Create(string text, Guid customerId, Guid productId)
     {
-        var comment = new Comment(text, customerId, productId)
+        var comment = new ProductReview(text, customerId, productId)
         {
             Text = text.Fix()
         };
@@ -31,13 +31,13 @@ public class Comment : Entity
 
     public void Update(string text)
     {
-        var comment = new Comment()
+        var comment = new ProductReview()
         {
             Text = text
         };
     }
 
-    private Comment(string text, Guid customerId, Guid productId)
+    private ProductReview(string text, Guid customerId, Guid productId)
     {
         Text = text;
     }

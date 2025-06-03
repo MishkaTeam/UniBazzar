@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BuildingBlocks.Domain.Data;
 
-namespace Domain.Aggregates.CheckoutCounter;
+namespace Domain.Aggregates.CheckoutCounters;
 
 public interface ICheckoutCounterRepository : IRepositoryBase<CheckoutCounter>
 {

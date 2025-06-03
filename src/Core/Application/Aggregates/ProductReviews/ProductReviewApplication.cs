@@ -1,16 +1,16 @@
 ﻿using Application.Aggregates.Branches.ViewModels;
-using Application.Aggregates.Comments.ViewModels;
+using Application.Aggregates.ProductReviews.ViewModels;
 using Domain;
-using Domain.Aggregates.Comments;
+using Domain.Aggregates.ProductReviews;
 using Mapster;
 
-namespace Application.Aggregates.Comments;
+namespace Application.Aggregates.ProductReviews;
 
-public class CommentApplication(ICommentRepository commentRepository, IUnitOfWork unitOfWork)
+public class ProductReviewApplication(IProductReviewRepository commentRepository, IUnitOfWork unitOfWork)
 {
-    public async Task<Comment> Create(CreateCommentViewModel viewModel)
+    public async Task<ProductReview> Create(CreateProductReviewViewModel viewModel)
     {
-        var comment = Comment.Create
+        var comment = ProductReview.Create
             (
             viewModel.Text,
             viewModel.CustomerId,
@@ -20,17 +20,17 @@ public class CommentApplication(ICommentRepository commentRepository, IUnitOfWor
         await commentRepository.AddAsync(comment);
         await unitOfWork.SaveChangesAsync();
 
-        return comment.Adapt<Comment>();
+        return comment.Adapt<ProductReview>();
     }
 
-    public async Task<List<UpdateCommentViewModel>> GetAllCommentsAsync()
+    public async Task<List<UpdateProductReviewViewModel>> GetAllCommentsAsync()
     {
         var comment = await commentRepository.GetAllAsync();
 
-        return comment.Adapt<List<UpdateCommentViewModel>>();
+        return comment.Adapt<List<UpdateProductReviewViewModel>>();
     }
 
-    public async Task<UpdateCommentViewModel> GetCommentAsync(Guid id)
+    public async Task<UpdateProductReviewViewModel> GetCommentAsync(Guid id)
     {
         var comment = await commentRepository.GetByIdAsync(id);
 
@@ -38,10 +38,10 @@ public class CommentApplication(ICommentRepository commentRepository, IUnitOfWor
         {
             throw new Exception(Resources.Messages.Errors.NotFound);
         }
-        return comment.Adapt<UpdateCommentViewModel>();
+        return comment.Adapt<UpdateProductReviewViewModel>();
     }
 
-    public async Task<UpdateCommentViewModel> UpdateAsync(UpdateCommentViewModel updateViewModel)
+    public async Task<UpdateProductReviewViewModel> UpdateAsync(UpdateProductReviewViewModel updateViewModel)
     {
         var comment = await commentRepository.GetByIdAsync(updateViewModel.Id);
 
@@ -57,7 +57,7 @@ public class CommentApplication(ICommentRepository commentRepository, IUnitOfWor
 
         await unitOfWork.SaveChangesAsync();
 
-        return comment.Adapt<UpdateCommentViewModel>();
+        return comment.Adapt<UpdateProductReviewViewModel>();
     }
 
     public async Task DeleteAsync(Guid id)

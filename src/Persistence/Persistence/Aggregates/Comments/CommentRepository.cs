@@ -1,15 +1,15 @@
 ﻿using BuildingBlocks.Persistence;
 using BuildingBlocks.Persistence.Extensions;
-using Domain.Aggregates.Comments;
+using Domain.Aggregates.ProductReviews;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Aggregates.Comments;
 
 public class CommentRepository
     (UniBazzarContext uniBazzarContext, IExecutionContextAccessor executionContextAccessor)
-    : RepositoryBase<Comment>(uniBazzarContext, executionContextAccessor), ICommentRepository
+    : RepositoryBase<ProductReview>(uniBazzarContext, executionContextAccessor), IProductReviewRepository
 {
-    public async Task<List<Comment>> GetCommentsByProductIdAsync(Guid productId)
+    public async Task<List<ProductReview>> GetProductReviewsByProductIdAsync(Guid productId)
     {
         return await uniBazzarContext.Comments
             .StoreFilter(executionContextAccessor.StoreId)

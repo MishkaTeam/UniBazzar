@@ -1,5 +1,4 @@
-using System.Data;
-using Application.Aggregates.Orders.ViewModels;
+using Application.Aggregates.Ordering.Baskets.ViewModels.InitializeBasket;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 
 namespace Server.Areas.Pos.Pages;

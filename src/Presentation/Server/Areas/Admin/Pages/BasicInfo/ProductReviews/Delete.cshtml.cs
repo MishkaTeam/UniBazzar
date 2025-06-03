@@ -2,16 +2,16 @@ using Application.Aggregates.Branches.ViewModels;
 using Application.Aggregates.Branches;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Application.Aggregates.Comments.ViewModels;
-using Application.Aggregates.Comments;
+using Application.Aggregates.ProductReviews;
+using Application.Aggregates.ProductReviews.ViewModels;
 
-namespace Server.Areas.Admin.Pages.BasicInfo.Comments
+namespace Server.Areas.Admin.Pages.BasicInfo.ProductReviews
 {
-    public class DeleteModel(CommentApplication commentApplication) : PageModel
+    public class DeleteModel(ProductReviewApplication commentApplication) : PageModel
     {
 
         [BindProperty]
-        public UpdateCommentViewModel DeleteViewModel { get; set; } = new();
+        public UpdateProductReviewViewModel DeleteViewModel { get; set; } = new();
         public async Task OnGet(Guid Id)
         {
             DeleteViewModel = await commentApplication.GetCommentAsync(Id);

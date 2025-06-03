@@ -1,32 +1,32 @@
 ﻿@page
-@model Server.Areas.Admin.Pages.BasicInfo.Comments.UpdateModel
+@model Server.Areas.Admin.Pages.BasicInfo.ProductReviews.DeleteModel
 @{
     var pageTitle =
-    $"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.Comment}";
+    $"{Resources.DataDictionary.DeleteOf} {Resources.DataDictionary.Comment}";
 
     ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 }
+
 <form method="post">
 
     <section-form>
-        <fieldset>
+        <fieldset disabled>
             <section-form-header>
                 @(pageTitle)
             </section-form-header>
 
             <partial name="PartialViews/_DisplayPageMessages" />
-            <input hidden asp-for="UpdateViewModel.Id" dir="ltr" />
 
-            <ub-full-input asp-for="UpdateViewModel.Text" />
+            <input hidden asp-for="DeleteViewModel.Id" dir="ltr" />
+
+            <ub-full-input asp-for="DeleteViewModel.Text" />
 
         </fieldset>
 
         <section-form-buttons>
-            <button-save />
-            <button-reset />
+            <button-delete />
         </section-form-buttons>
 
     </section-form>
 
 </form>
-

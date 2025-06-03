@@ -1,4 +1,4 @@
-namespace Application.Aggregates.Orders.ViewModels;
+namespace Application.Aggregates.Ordering.Baskets.ViewModels.InitializeBasket;
 
 public class InitializeBasketViewModel
 {

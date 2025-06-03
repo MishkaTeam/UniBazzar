@@ -1,14 +1,14 @@
-using Application.Aggregates.Comments;
-using Application.Aggregates.Comments.ViewModels;
+using Application.Aggregates.ProductReviews;
+using Application.Aggregates.ProductReviews.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Server.Areas.Admin.Pages.BasicInfo.Comments
+namespace Server.Areas.Admin.Pages.BasicInfo.ProductReviews
 {
-    public class UpdateModel(CommentApplication commentApplication) : PageModel
+    public class UpdateModel(ProductReviewApplication commentApplication) : PageModel
     {
         [BindProperty]
-        public UpdateCommentViewModel UpdateViewModel { get; set; } = new();
+        public UpdateProductReviewViewModel UpdateViewModel { get; set; } = new();
         public async Task OnGet(Guid Id)
         {
             UpdateViewModel = await commentApplication.GetCommentAsync(Id);
