@@ -10,7 +10,7 @@ public class AuthenticationConstant
     public const string LOGIN_PAGE_PATH = "/account/login";
     public const string REGISTER_PAGE_PATH = "/account/register";
     public const string LOGOUT_PAGE_PATH = "/account/logout";
-    public const string ACCESS_DENIED_PATH = "/account/accessdenied";
+    public const string ACCESS_DENIED_PATH = "/Index";
 
     public const string ADMIN_POLICY_NAME = "Admin";
     public const string POS_POLICY_NAME = "Pos";

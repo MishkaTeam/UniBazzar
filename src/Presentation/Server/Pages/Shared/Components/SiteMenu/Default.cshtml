@@ -1,14 +1,10 @@
 ﻿@using Application.Aggregates.Categories.ViewModels
 @model List<MenuCategoryViewModel>
 
-@{
-}
-
-
 @foreach (var item in Model)
 {
 	<div class="encrypt111212132" id="droopmenutab12">
-		<a class="droopmenu-tabencrypt231432" href="#">@(item.Name)</a>
+		<a class="droopmenu-tabencrypt231432" asp-page="/Product/Search" asp-route-slug="@(item.Slug)">@(item.Name)</a>
 		<div class="unibazzar-main">
 			<div class="droopmenu-row">
 
@@ -17,10 +13,10 @@
 					<ul class="droopmenu-col droopmenu-col4">
 						@foreach (var item1 in chunk)
 						{
-							<li><h4>@(item1.Name)</h4></li>
+							<li><a class="h4" asp-page="/Product/Search" asp-route-slug="@(item1.Slug)">@(item1.Name)</a></li>
 							@foreach (var item2 in item1.ChildCategories)
 							{
-								<li><a asp-page="/Products">@(item2.Name)</a></li>
+								<li><a asp-page="/Product/Search" asp-route-slug="@(item2.Slug)">@(item2.Name)</a></li>
 							}
 						}
 					</ul>

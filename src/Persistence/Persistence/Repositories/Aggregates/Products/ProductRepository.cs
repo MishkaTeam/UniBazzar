@@ -10,13 +10,25 @@ public partial class ProductRepository : RepositoryBase<Product>, IProductReposi
     {
     }
 
+    public Task<List<Product>> GetFullProductData(string? categorySlug, CancellationToken cancellationToken = default)
+    {
+        var query = DbSet
+            .Include(x => x.Category)
+            .Include(x => x.ProductImages)
+            .Include(x => x.ProductFeatures)
+            .Where(x => x.Category.Slug == categorySlug);
+
+        return query.ToListAsync(cancellationToken);
+        
+    }
+
     public Task<List<Product>> GetFullProductData(CancellationToken cancellationToken = default)
     {
         var query = DbSet.Include(x => x.ProductImages)
             .Include(x => x.ProductFeatures)
             .Take(4);
 
-        return query.ToListAsync();
+        return query.ToListAsync(cancellationToken);
            
     }
 

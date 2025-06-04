@@ -447,4 +447,7 @@
   <data name="Addto" xml:space="preserve">
     <value>افزودن به</value>
   </data>
+  <data name="OtpCode" xml:space="preserve">
+    <value>کد</value>
+  </data>
 </root>

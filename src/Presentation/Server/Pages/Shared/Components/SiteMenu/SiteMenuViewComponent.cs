@@ -6,7 +6,7 @@ namespace Server.Pages.Shared.Components.SiteMenu
 {
     public class SiteMenuViewComponent(CategoriesApplication categoriesApplication) : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync(string message)
+        public async Task<IViewComponentResult> InvokeAsync()
         {
             var menuCategories = await categoriesApplication.GetMenuCategoriesAsync();
 

@@ -1,0 +1,43 @@
+@page 
+@model Server.Pages.Account.OTP
+@{
+    Layout = "_Security";
+}
+<style>
+    body, form {
+        height: 100vh;
+    }
+</style>
+<form method="post">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="p-5 border-opacity-25 border border-1 border-secondary col-md-3 col-12 rounded rounded-3">
+            
+            <div class="w-100 py-3 100 d-flex align-items-center justify-content-center">
+                <img class="mx-auto" width="30%" height="30%" src="/images/logo.png" alt="">
+            </div>
+            <partial name="PartialViews/_DisplayPageMessages" />
+            <div class="w-100 py-3 d-flex align-content-start justify-content-start">
+                <p class="h4">
+                    کد تایید را وارد کنید
+                </p>
+            </div>
+            <div class="w-100 py-3">
+                <p>
+                    کد تایید برای شماره <span>@(Model.Mobile)</span> پیامک شد
+                </p>
+            </div>
+            <div>
+                <input asp-for="OtpCode"
+                       class="form-control-lg w-100 my-2 border-1 border-opacity-25 border-secondary"/>
+            </div>
+            <button class="btn btn-primary w-100 my-2">تایید</button>
+            @* <div> *@
+            @*     <small class="text-black-50 mt-4"> *@
+            @*         ورود شما به معنای پذیرش *@
+            @*         <a class="mx-1 inline-block text-secondary" href="/terms/">شرایط </a>و<a *@
+            @*             class="mx-1 inline-block text-secondary" href="/privacy/"> قوانین حریم‌خصوصی </a>است  </p> *@
+            @*     </small> *@
+            @* </div> *@
+        </div>
+    </div>
+</form>

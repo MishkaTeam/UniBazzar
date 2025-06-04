@@ -6,4 +6,5 @@ public interface ICustomerRepository : IRepositoryBase<Customer>
 {
     Task<Customer> GetWithEmail(string userName);
     Task<Customer> GetWithMobile(string userName);
+    Task<bool> IsCustomerExists(string mobile);
 }

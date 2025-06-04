@@ -106,9 +106,9 @@ public class CustomerApplication(ICustomerRepository customerRepository, IUnitOf
         await unitOfWork.SaveChangesAsync();
     }
 
-    public async Task<ResultContract<CustomerViewModel>> LoginWithMobileAsync(LoginViewModel model)
+    public async Task<ResultContract<CustomerViewModel>> LoginWithMobileAsync(string mobile)
     {
-        var user = await customerRepository.GetWithMobile(model.UserName);
+        var user = await customerRepository.GetWithMobile(mobile);
 
         if (user == null || user.Id == Guid.Empty)
         {
@@ -116,11 +116,12 @@ public class CustomerApplication(ICustomerRepository customerRepository, IUnitOf
                 string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.User));
         }
 
-        if (user.Password != model.Password) // Encryption
-        {
-            return (ErrorType.InvalidCredentials, Resources.Messages.Validations.Password);
-        }
-
         return user.Adapt<CustomerViewModel>();
+    }
+
+    public async Task<ResultContract<bool>> IsExistsAsync(string mobile)
+    {
+        var isCustomerExists = await customerRepository.IsCustomerExists(mobile);
+        return isCustomerExists;
     }
 }

@@ -1,111 +1,73 @@
-﻿using Application.Aggregates.Customers;
-using Application.Aggregates.Users;
-using Application.ViewModels.Authentication;
-using Domain.Aggregates.Users.Enums;
+using System.ComponentModel.DataAnnotations;
+using Application.Aggregates.Customers;
+using Constants;
 using Framework.DataType;
 using Infrastructure;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using Server.Infrastructure.Extentions.ServiceCollections;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Claims;
+using Resources;
+using Resources.Messages;
 
 namespace Server.Pages.Account;
 
-public class LoginModel(UserApplication userApplication, CustomerApplication customerApplication) : BasePageModel
+public class LoginModel(CustomerApplication customerApplication) : BasePageModel
 {
     [BindProperty]
-    public LoginViewModel Model { get; set; } = new();
+    [Display
+    (ResourceType = typeof(DataDictionary),
+        Name = nameof(DataDictionary.Mobile))]
+    [Required
+    (AllowEmptyStrings = false,
+        ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+    [RegularExpression
+    (RegularExpression.CellPhoneNumber,
+        ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.CellPhoneNumber))]
+    public string Mobile { get; set; }
 
-    public void OnGet()
+    public string ReturnUrl { get; set; }
+    public void OnGet(string? returnUrl = null)
     {
+        ReturnUrl = returnUrl ?? Url.Content("/");
     }
 
-    public async Task<IActionResult> OnPost(string ReturnUrl)
+    public async Task<IActionResult> OnPost(string? returnUrl = null)
     {
-        if (!ModelState.IsValid)
-            return Page();
-
-        var isMobile = Model.UserName.IsValidMobile();
-        if (isMobile)
+        if (ModelState.IsValid)
         {
-            return await LoginCustomer(null);
-        }
-        return await LoginUser(null);
-
-    }
-    private async Task<IActionResult> LoginUser(string returnUrl)
-    {
-        ResultContract<UserViewModel> userResult = default!;
-        UserViewModel? user = default;
-
-        userResult = await userApplication.LoginWithUserNameAsync(Model);
-
-        if (!userResult.IsSuccessful)
-        {
-            AddPageError(userResult.ErrorMessage?.Message);
-            return Page();
-        }
-
-        user = userResult.Data;
-
-        if (user == null || user.Id == Guid.Empty)
-        {
-            AddPageError("کاربر یافت نشد");
-            return Page();
-        }
-
-        var claims = new List<Claim>
+            try
             {
-                new(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
-                new(ClaimTypes.Sid, user.Id.ToString()),
-                new(ClaimTypes.NameIdentifier, user.Mobile),
-                new(ClaimTypes.GroupSid, user.StoreId.ToString()),
-                new(ClaimTypes.Role,user.Role.ToString())
-            };
-
-        var claimsIdentity = new ClaimsIdentity(claims, AuthenticationConstant.AUTHENTICATION_SCHEME);
-
-        await HttpContext.SignInAsync(AuthenticationConstant.AUTHENTICATION_SCHEME, new ClaimsPrincipal(claimsIdentity));
-
-        return RedirectToPage(returnUrl ?? "/Index");
+                var isCustomerExsists = await customerApplication.IsExistsAsync(Mobile);
+                if (isCustomerExsists is { IsSuccessful: true, Data: true })
+                {
+                    await SendOTP(Mobile);
+                    return RedirectToPage("OTP", new { mobile = Mobile, returnUrl });
+                }
+                else if (isCustomerExsists is { IsSuccessful: true, Data: false })
+                {
+                    await customerApplication.CreateAsync(new CreateCustomerViewModel()
+                    {
+                        Mobile = Mobile,
+                        LastName = Mobile
+                    });
+                    return RedirectToPage("OTP", new { mobile = Mobile, returnUrl });
+                }
+                else if (isCustomerExsists is { IsSuccessful: false })
+                {
+                    
+                }
+            }
+            catch (Exception e)
+            {
+                return Page();
+            }
+        }
+        return Page();
     }
 
-    private async Task<IActionResult> LoginCustomer(string returnUrl)
+    private Task SendOTP(string mobile)
     {
-        ResultContract<CustomerViewModel> userResult = default!;
-        CustomerViewModel? customer = default;
+        return Task.CompletedTask;
 
-        userResult = await customerApplication.LoginWithMobileAsync(Model);
-
-        if (!userResult.IsSuccessful)
-        {
-            AddPageError(userResult.ErrorMessage?.Message);
-            return Page();
-        }
-
-        customer = userResult.Data;
-
-        if (customer == null || customer.Id == Guid.Empty)
-        {
-            AddPageError("کاربر یافت نشد");
-            return Page();
-        }
-
-        var claims = new List<Claim>
-            {
-                new(ClaimTypes.Name, $"{customer.FirstName} {customer.LastName}"),
-                new(ClaimTypes.Sid, customer.Id.ToString()),
-                new(ClaimTypes.NameIdentifier, customer.Mobile),
-                new(ClaimTypes.GroupSid, customer.StoreId.ToString()),
-                new(ClaimTypes.Role,RoleType.Customer.ToString())
-
-            };
-
-        var claimsIdentity = new ClaimsIdentity(claims, AuthenticationConstant.AUTHENTICATION_SCHEME);
-
-        await HttpContext.SignInAsync(AuthenticationConstant.AUTHENTICATION_SCHEME, new ClaimsPrincipal(claimsIdentity));
-
-        return RedirectToPage(returnUrl ?? "/Index");
     }
 }
