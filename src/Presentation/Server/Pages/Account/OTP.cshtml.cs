@@ -82,6 +82,6 @@ public class OTP(CustomerApplication customerApplication) : BasePageModel
         await HttpContext.SignInAsync(AuthenticationConstant.AUTHENTICATION_SCHEME,
             new ClaimsPrincipal(claimsIdentity));
 
-        return RedirectToPage(returnUrl ?? "/");
+        return RedirectToPage(returnUrl ?? "/Index");
     }
 }
