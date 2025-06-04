@@ -13,10 +13,10 @@
 					<ul class="droopmenu-col droopmenu-col4">
 						@foreach (var item1 in chunk)
 						{
-							<li><a class="h4" asp-page="/Product/Search" asp-route-slug="@(item1.Slug)">@(item1.Name)</a></li>
+							<li><a class="fs-5 text-black" asp-page="/Product/Search" asp-route-slug="@(item1.Slug)">@(item1.Name)</a></li>
 							@foreach (var item2 in item1.ChildCategories)
 							{
-								<li><a asp-page="/Product/Search" asp-route-slug="@(item2.Slug)">@(item2.Name)</a></li>
+								<li><a class="text-secondary fs-6" asp-page="/Product/Search" asp-route-slug="@(item2.Slug)">@(item2.Name)</a></li>
 							}
 						}
 					</ul>

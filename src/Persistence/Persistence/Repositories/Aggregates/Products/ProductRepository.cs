@@ -16,7 +16,8 @@ public partial class ProductRepository : RepositoryBase<Product>, IProductReposi
             .Include(x => x.Category)
             .Include(x => x.ProductImages)
             .Include(x => x.ProductFeatures)
-            .Where(x => x.Category.Slug == categorySlug);
+            .Where(x => x.Category.Slug == categorySlug
+            || (x.Category.Parent != null && x.Category.Parent.Slug == categorySlug));
 
         return query.ToListAsync(cancellationToken);
         
