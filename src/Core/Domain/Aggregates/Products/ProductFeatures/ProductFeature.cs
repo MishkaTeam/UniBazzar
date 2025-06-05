@@ -11,7 +11,7 @@ public class ProductFeature : Entity
 	{
 		// FOR EF!
 	}
-
+		
 
 	public static ProductFeature Create
 		(Guid productId, string key, string value,

@@ -1,6 +1,7 @@
 ﻿using Domain.Aggregates.Categories;
 using Domain.Aggregates.PriceLists;
 using Domain.Aggregates.Products.Enums;
+using Domain.Aggregates.Products.ProductAttributes;
 using Domain.Aggregates.Products.ProductFeatures;
 using Domain.Aggregates.Products.ProductImages;
 using Domain.Aggregates.Units;
@@ -77,6 +78,7 @@ public class Product : Entity
 	public Category Category { get; private set; }
 	public List<ProductImage> ProductImages { get; private set; }
     public List<ProductFeature> ProductFeatures { get; private set; }
+    public List<ProductAttribute> ProductAttributes { get; private set; }
 
 	private Product(string name, string shortDescription, string fullDescription,
 		Guid storeId, Guid categoryId, Guid unitId,

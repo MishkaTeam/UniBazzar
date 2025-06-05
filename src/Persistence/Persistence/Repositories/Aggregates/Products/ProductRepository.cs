@@ -35,8 +35,12 @@ public partial class ProductRepository : RepositoryBase<Product>, IProductReposi
 
     public Task<Product> GetFullProductData(string sku)
     {
-        return DbSet.Include(x => x.ProductImages)
+        return DbSet
+            .Include(x => x.ProductImages)
             .Include(x => x.ProductFeatures)
+            .Include(x => x.ProductAttributes)
+            .ThenInclude(x => x.Attribute)
+            .ThenInclude(x => x.AttributeValues)
             .FirstOrDefaultAsync(x => x.SKU == sku);
 
     }
