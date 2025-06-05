@@ -14,11 +14,11 @@
 							<div class="swiper-container gallery-top">
 								<ul class="swiper-wrapper" style="list-style: none">
 
-									@foreach (var item in Model.ProductDetail.Images)
+									@foreach (var (image, i) in Model.ProductDetail.Images.Select((image, i) => (image, i)))
 									{
-										<li id="@(item.Id)" class="swiper-slide">
-											<a  class="h-100 w-100" href="/ProductImage/@(item.ImageUrl)" itemprop="contentUrl" data-size="900x710">
-												<img class="h-100 w-100" src="/ProductImage/@(item.ImageUrl)" itemprop="thumbnail" alt="گوشی موبایل سامسونگ مدل Galaxy A21s" />
+										<li id="@(i)" class="swiper-slide">
+											<a class="h-100 w-100" href="/ProductImage/@(image)" itemprop="contentUrl" data-size="900x710">
+												<img class="h-100 w-100" src="/ProductImage/@(image)" itemprop="thumbnail" alt="@(Model.ProductDetail.Name)" />
 											</a>
 										</li>
 									}
@@ -29,10 +29,10 @@
 
 							<div class="swiper-container gallery-thumbs">
 								<div class="swiper-wrapper">
-									@foreach (var item in Model.ProductDetail.Images)
+									@foreach (var image in Model.ProductDetail.Images)
 									{
 
-										<div class="swiper-slide" style="background-image:url('/ProductImage/@(item.ImageUrl)')"></div>
+										<div class="swiper-slide" style="background-image:url('/ProductImage/@(image)')"></div>
 									}
 								</div>
 							</div>
@@ -81,14 +81,6 @@
 								<i class="fa fa-star"></i>
 								<a href="#tabs-panel"><span>(نقد و بررسی)</span></a>
 							</div>
-							<div class="price-container py-2">
-								@* <span class="pre-price">4.000.000</span> *@
-								@{
-									decimal price = Model.ProductDetail.Price;
-									// decimal price = decimal.Parse(Model.ViewModelProductPrice.Price.ToString(), System.Globalization.NumberStyles.Currency);
-								}
-								<span class="price">@(price.ToString("#,#")) <span>تومان</span></span>
-							</div>
 							<p style="text-align: justify;">
 								@(Model.ProductDetail.ShortDescription)
 							</p>
@@ -103,37 +95,31 @@
 							</div>
 							<!-- Share Links -->
 						</div>
-						<div  id="product-intro" class="col-12 col-lg-3 mt-5 mt-lg-0 pl-lg-0 border border-1 bg-secondary bg-gradient bg-opacity-10 rounded rounded-3 border-secondary border-opacity-25">
+						<div id="product-intro" class="col-12 py-5 col-lg-3 mt-5 mt-lg-0 pl-lg-0 border border-1 bg-secondary bg-gradient bg-opacity-10 rounded rounded-3 border-secondary border-opacity-25">
 							<div class="variables">
 								<div class="row">
-									<div class="col-12">
-										<div class="variable">
-											<div class="sub-title pt-2 pb-3">رنگ</div>
-											<span class="color-variable"><a href="#" class="red"></a></span>
-											<span class="color-variable"><a href="#" class="yellow"></a></span>
-											<span class="color-variable"><a href="#" class="blue"></a></span>
-											<span class="color-variable"><a href="#" class="black"></a></span>
+									@foreach (var attr in Model.ProductDetail.ProductAttributes)
+									{
+										<div class="col-12">
+											<div class="variable">
+												<div class="sub-title pt-2 pb-2">@(attr.Name)</div>
+
+												<select name="" class="form-select">
+													@foreach (var variable in attr.AttributeValues)
+													{
+														<option value="">@(variable.Name)[@(variable.PriceAdjustment != 0  ? variable.PriceAdjustment.ToString("#,#") : "رایگان")]</option>
+													}
+												</select>
+											</div>
 										</div>
-									</div>
-									<div class="col-12">
-										<div class="variable">
-											<div class="sub-title pt-2 pb-2">گارانتی</div>
-											<select name="" class="form-select">
-												<option value="">بدون گارانتی</option>
-												<option value="">گارانتی 6 ماهه</option>
-												<option value="">گارانت 12 ماهه</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-12">
-										<div class="variable">
-											<div class="sub-title pt-2 pb-2">تعداد</div>
-											<input type="number" min="1" max="10" class="form-control" value="1">
-										</div>
-									</div>
+									}
 								</div>
 							</div>
+
 							<div class="cta-container pt-3 pt-md-5">
+								<div class="price-container py-2 d-flex justify-content-end w-100">
+									<span class="price">@(Model.ProductDetail.Price.ToString("#,#")) <span>تومان</span></span>
+								</div>
 								<div class="row">
 									<div class="col-12">
 										<button class="btn btn-success px-4 px-lg-2 px-xl-4 btn-add-to-basket w-100 "><i class="fa fa-shopping-cart"></i> افزودن به سبد خرید</button>
@@ -158,7 +144,7 @@
 									<div class="row">
 										<div class="col-12 pt-2 px-2 px-lg-0">
 											<!-- HTML Tab -->
-											<div  style="text-align: justify;" id="html-tab" class="tabs-container text-justify p-0 p-md-3">
+											<div style="text-align: justify;" id="html-tab" class="tabs-container text-justify p-0 p-md-3">
 												@(Model.ProductDetail.FullDescription)
 											</div>
 											<!-- /HTML Tab -->

@@ -3,6 +3,7 @@ using Application.Aggregates.Products.ProductFeatures.ViewModels;
 using Application.Aggregates.Products.ViewModels;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using ProductFeatureViewModel = Application.Aggregates.Products.ProductFeatures.ViewModels.ProductFeatureViewModel;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductFeatures;
 
