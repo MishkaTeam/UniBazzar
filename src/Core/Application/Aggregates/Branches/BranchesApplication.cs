@@ -15,7 +15,7 @@ public class BranchesApplication(IbranchRepository branchRepository, IUnitOfWork
             );
 
         await branchRepository.AddAsync(branch);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return branch.Adapt<Branch>();
     }
@@ -51,7 +51,7 @@ public class BranchesApplication(IbranchRepository branchRepository, IUnitOfWork
              updateViewModel.Name
             );
 
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return branch.Adapt<UpdateBranchViewModel>();
     }
@@ -65,6 +65,6 @@ public class BranchesApplication(IbranchRepository branchRepository, IUnitOfWork
         }
 
         await branchRepository.RemoveAsync(branch);
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
     }
 }

@@ -1,6 +1,6 @@
 using Domain.Aggregates.Ordering.Baskets;
 using Domain.Aggregates.Ordering.Baskets.Enums;
-using Entity = Domain.BuildingBlocks.Aggregates.Entity;
+using Entity = BuildingBlocks.Domain.Aggregates.Entity;
 
 namespace Domain.Aggregates.Ordering.Orders;
 
@@ -9,6 +9,7 @@ public class Order : Entity
     public string ReferenceNumber { get; private set; }
     public Guid BasketId { get; private set; }
     public string BasketReferenceNumber { get; private set; }
+
 
     public List<OrderItem> OrderItems { get; private set; }
 

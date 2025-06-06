@@ -1,11 +1,13 @@
 using Blazored.LocalStorage;
+using BuildingBlocks.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Server.Infrastructure;
 using Server.Infrastructure.Extensions.ServiceCollections;
 using Server.Infrastructure.Extentions.ServiceCollections;
 using Server.Infrastructure.Middleware;
-
+using BuildingBlocks.Persistence.Extensions;
+using Framework.Storage;
 
 namespace Server
 {
@@ -19,6 +21,7 @@ namespace Server
             var services = builder.Services;
 
             services.AddRazorPagesWithAuth();
+            services.AddControllers();
             services.AddServerSideBlazor()
             .AddInteractiveServerComponents();
             services.AddBlazorBootstrap();
@@ -29,6 +32,14 @@ namespace Server
             services.AddHttpContextAccessor();
             services.AddScoped<IExecutionContextAccessor, ExecutionContextAccessor>();
             services.AddDomainRepositories();
+            services.AddAuditing();
+            services.AddS3Storage(new StorageConfig()
+            {
+                Endpoint = builder.Configuration.GetSection("StorageConfig:Endpoint")?.Value,
+                AccessKey = builder.Configuration.GetSection("StorageConfig:AccessKey")?.Value,
+                SecretKey = builder.Configuration.GetSection("StorageConfig:SecretKey")?.Value,
+
+            });
             services.AddUnitOfWork();
             services.AddDbContext<UniBazzarContext>(opt =>
             {
@@ -48,6 +59,7 @@ namespace Server
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCultureHandler();
+            app.UseTenantResolution();
 
             app.UseRouting();
 
@@ -55,6 +67,8 @@ namespace Server
             app.UseAuthorization();
 
             app.MapBlazorHub();
+
+            app.MapControllers();
             app.MapRazorPages();
 
             app.Run();

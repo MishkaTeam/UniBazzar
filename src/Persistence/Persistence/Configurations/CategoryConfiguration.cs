@@ -1,6 +1,7 @@
 ﻿using Domain.Aggregates.Categories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using BuildingBlocks.Persistence.Configurations;
 
 namespace Persistence.Configurations;
 

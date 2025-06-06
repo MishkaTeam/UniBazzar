@@ -1,6 +1,7 @@
 ﻿using Domain.Aggregates.Ordering.Baskets;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using BuildingBlocks.Persistence.Configurations;
 
 namespace Persistence.Configurations;
 
@@ -15,6 +16,16 @@ internal class BasketConfiguration : BaseConfiguration<Basket>
         builder.Property(s => s.ReferenceNumber)
                .HasMaxLength(150)
                .IsRequired();
+
+        builder.OwnsOne(x => x.TotalDiscountAmount, dBuilder =>
+        {
+            dBuilder.Property(x => x.DiscountType).HasColumnName("TotalDiscountType");
+            dBuilder.Property(x => x.Value).HasColumnName("TotalDiscountAmount");
+
+        });
+        builder.Ignore(x => x.TotalBeforeDiscount);
+
+        builder.Ignore(x => x.Total);
 
         builder.OwnsMany(x => x.BasketItems, basketBuilder =>
         {
@@ -44,6 +55,7 @@ internal class BasketConfiguration : BaseConfiguration<Basket>
             basketBuilder.Property(s => s.UpdateDateTime)
                    .IsRequired();
 
+            basketBuilder.Ignore(x => x.TotalPrice);
             basketBuilder.OwnsOne(x => x.DiscountAmount, dBuilder =>
             {
                 dBuilder.Property(x => x.DiscountType).HasColumnName("DiscountType");

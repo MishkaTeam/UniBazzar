@@ -1,7 +1,7 @@
 ﻿using Framework.DataType;
 using Resources;
 using Resources.Messages;
-using Entity = Domain.BuildingBlocks.Aggregates.Entity;
+using Entity = BuildingBlocks.Domain.Aggregates.Entity;
 
 namespace Domain.Aggregates.Products.ProductFeatures;
 
@@ -11,7 +11,7 @@ public class ProductFeature : Entity
 	{
 		// FOR EF!
 	}
-
+		
 
 	public static ProductFeature Create
 		(Guid productId, string key, string value,

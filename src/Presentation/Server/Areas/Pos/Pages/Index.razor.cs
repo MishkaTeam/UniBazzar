@@ -1,3 +1,4 @@
+using System.Data;
 using Application.Aggregates.Orders.ViewModels;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 
@@ -7,13 +8,24 @@ public partial class Index
 {
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var basket = await basketApplication.InitializeBasket(
-            new InitializeBasketRequestModel()
-            {
-                platform = Platform.POS,
-            });
+        var preBasket = await localStorage.GetItemAsync<InitializeBasketViewModel>("basket");
 
-        await localStorage.SetItemAsync("basket", basket.Data);
+        if (preBasket == null)
+        {
+            preBasket = (await basketApplication.InitializeBasket(
+                new InitializeBasketRequestModel()
+                {
+                    platform = Platform.POS,
+                })).Data;
+
+            await localStorage.SetItemAsync("basket", preBasket);
+        }
+
+        Console.WriteLine(preBasket?.ReferenceNumber);
+
+        var basket = await basketApplication.GetByReferenceNumber(preBasket!.ReferenceNumber);
+
+
     }
 
 

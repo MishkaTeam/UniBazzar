@@ -1,63 +1,77 @@
 ﻿@page
 @model Server.Areas.Admin.Pages.BasicInfo.Products.CreateModel
+@using Application.Aggregates.Categories.ViewModels
 
 @{
-    var pageTitle =
-        $"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.Product}";
+	var pageTitle =
+		$"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.Product}";
 
-    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 }
 
 <form method="post">
 
-    <section-form>
+	<section-form>
 
-        <fieldset>
+		<fieldset>
 
-            <section-form-header>
-                @(pageTitle)
-            </section-form-header>
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
 
-            <partial name="PartialViews/_DisplayPageMessages" /> 
+			<partial name="PartialViews/_DisplayPageMessages" />
 
-            <ub-full-input asp-for="CreateViewModel.Name" />
+			<ub-full-input asp-for="CreateViewModel.Name" />
 
-            <ub-full-input asp-for="CreateViewModel.ShortDescription" />
+			<ub-full-input asp-for="CreateViewModel.ShortDescription" />
 
-            <ub-full-input asp-for="CreateViewModel.FullDescription" />
+			<ub-full-input asp-for="CreateViewModel.FullDescription" />
 
-            @*
+			@*
             <ub-full-input asp-for="CreateViewModel.CategoryId" />
 
             <ub-full-input asp-for="CreateViewModel.StoreId" />
             *@
 
-            <ub-full-select asp-for="CreateViewModel.UnitId" asp-items="Model.BaseUnitList" />
+			<ub-full-select asp-for="CreateViewModel.UnitId" asp-items="Model.BaseUnitList" />
 
-            <ub-full-select asp-for="CreateViewModel.ProductType" asp-items="Model.ProductTypeList" />
+			<ub-full-select asp-for="CreateViewModel.ProductType" asp-items="Model.ProductTypeList" />
 
-            <label class="form-label">@(Resources.DataDictionary.Category)</label>
-            <select class="form-control mb-3">
-                <optgroup label="1">
-                    <option>asd</option>
-                </optgroup>
-                <optgroup label="2">
-                    <option>fds</option>
-                </optgroup>
-                <optgroup label="3">
-                    <option>rs</option>
-                </optgroup>
-            </select>
+			<label class="form-label">@(Resources.DataDictionary.Category)</label>
 
-            <ub-full-input asp-for="CreateViewModel.DownloadUrl" />
+			<select asp-for="CreateViewModel.CategoryId" class="form-control mb-3">
+				@foreach (var level1 in Model.Categories)
+				{
+					<option value="@level1.Id">@level1.Name</option>
 
-        </fieldset>
+					if (level1.ChildCategories != null)
+					{
+						foreach (var level2 in level1.ChildCategories)
+						{
+							<option value="@level2.Id">-- @level2.Name</option>
 
-        <section-form-buttons>
-            <button-create />
-            <button-reset />
-        </section-form-buttons>
+							if (level2.ChildCategories != null)
+							{
+								foreach (var level3 in level2.ChildCategories)
+								{
+									<option value="@level3.Id">---- @level3.Name</option>
+								}
+							}
+						}
+					}
+				}
+			</select>
 
-    </section-form>
+
+			<ub-full-input asp-for="CreateViewModel.DownloadUrl" />
+
+		</fieldset>
+
+		<section-form-buttons>
+			<button-create />
+			<button-reset />
+		</section-form-buttons>
+
+	</section-form>
 
 </form>

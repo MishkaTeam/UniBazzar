@@ -1,5 +1,5 @@
 ﻿using Domain.Aggregates.Units;
-using Domain.BuildingBlocks.Aggregates;
+using BuildingBlocks.Domain.Aggregates;
 using System;
 using System.Collections.Generic;
 using System.Linq;

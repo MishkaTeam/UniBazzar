@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 using Domain.Aggregates.Ordering.ValueObjects;
-using Domain.BuildingBlocks.Aggregates;
+using BuildingBlocks.Domain.Aggregates;
 
 namespace Domain.Aggregates.Ordering.Baskets;
 
@@ -12,8 +12,9 @@ public class BasketItem : Entity
     public ProductAmount ProductAmount { get; private set; }
     public DiscountAmount DiscountAmount { get; private set; }
 
+    public decimal TotalPrice => DiscountAmount.ApplyDiscount(ProductAmount.TotalPrice);
 
-    private BasketItem()
+    protected BasketItem()
     {
         //FOR EF!
     }

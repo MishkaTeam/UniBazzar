@@ -1,10 +1,10 @@
 ﻿using Framework.DataType;
 using Resources.Messages;
 using System.ComponentModel.DataAnnotations.Schema;
-using DateTimeUtility = Domain.BuildingBlocks.SeedWork.DateTimeUtility;
-using IEntityHasOwner = Domain.BuildingBlocks.SeedWork.IEntityHasOwner;
-using IEntityHasUpdateInfo = Domain.BuildingBlocks.SeedWork.IEntityHasUpdateInfo;
-using IsEntityHasVersionControl = Domain.BuildingBlocks.SeedWork.IsEntityHasVersionControl;
+using DateTimeUtility = BuildingBlocks.Domain.SeedWork.DateTimeUtility;
+using IEntityHasOwner = BuildingBlocks.Domain.SeedWork.IEntityHasOwner;
+using IEntityHasUpdateInfo = BuildingBlocks.Domain.SeedWork.IEntityHasUpdateInfo;
+using IsEntityHasVersionControl = BuildingBlocks.Domain.SeedWork.IsEntityHasVersionControl;
 
 namespace Domain.Aggregates.Stores;
 

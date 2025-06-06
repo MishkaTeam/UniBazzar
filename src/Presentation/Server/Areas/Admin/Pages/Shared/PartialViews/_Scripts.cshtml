@@ -20,3 +20,20 @@
 <script src="~/admin/vendors/coreui/utils/js/index.js"></script>
 <script src="~/js/autodirection.js"></script>
 
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    isTrue: 'false',
+                };
+            }
+        }).mount('#DiscountCode');
+    });
+</script>
+
+<script src="~/js/site.js"></script>

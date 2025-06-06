@@ -1,5 +1,5 @@
 ﻿using Domain.Aggregates.Users.Enums;
-using Domain.BuildingBlocks.Aggregates;
+using BuildingBlocks.Domain.Aggregates;
 using Framework.DataType;
 using System.ComponentModel.DataAnnotations;
 
