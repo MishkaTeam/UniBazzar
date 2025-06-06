@@ -17,8 +17,8 @@
 									@foreach (var (image, i) in Model.ProductDetail.Images.Select((image, i) => (image, i)))
 									{
 										<li id="@(i)" class="swiper-slide">
-											<a class="h-100 w-100" href="/ProductImage/@(image)" itemprop="contentUrl" data-size="900x710">
-												<img class="h-100 w-100" src="/ProductImage/@(image)" itemprop="thumbnail" alt="@(Model.ProductDetail.Name)" />
+											<a class="h-100 w-100" href="@(image)" itemprop="contentUrl" data-size="900x710">
+												<img class="h-100 w-100" src="@(image)" itemprop="thumbnail" alt="@(Model.ProductDetail.Name)" />
 											</a>
 										</li>
 									}
@@ -32,7 +32,7 @@
 									@foreach (var image in Model.ProductDetail.Images)
 									{
 
-										<div class="swiper-slide" style="background-image:url('/ProductImage/@(image)')"></div>
+										<div class="swiper-slide" style="background-image:url('@(image)')"></div>
 									}
 								</div>
 							</div>

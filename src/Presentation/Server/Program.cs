@@ -7,6 +7,7 @@ using Server.Infrastructure.Extensions.ServiceCollections;
 using Server.Infrastructure.Extentions.ServiceCollections;
 using Server.Infrastructure.Middleware;
 using BuildingBlocks.Persistence.Extensions;
+using Framework.Storage;
 
 namespace Server
 {
@@ -32,7 +33,13 @@ namespace Server
             services.AddScoped<IExecutionContextAccessor, ExecutionContextAccessor>();
             services.AddDomainRepositories();
             services.AddAuditing();
+            services.AddS3Storage(new StorageConfig()
+            {
+                Endpoint = builder.Configuration.GetSection("StorageConfig:Endpoint")?.Value,
+                AccessKey = builder.Configuration.GetSection("StorageConfig:AccessKey")?.Value,
+                SecretKey = builder.Configuration.GetSection("StorageConfig:SecretKey")?.Value,
 
+            });
             services.AddUnitOfWork();
             services.AddDbContext<UniBazzarContext>(opt =>
             {
