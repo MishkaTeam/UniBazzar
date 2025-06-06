@@ -42,6 +42,7 @@ public class Basket : Entity
     {
         Platform = platform;
         BasketItems = new List<BasketItem>();
+        BasketStatus = BasketStatus.INITIAL;
 
         // For test
         ReferenceNumber = Guid.NewGuid().ToString();
