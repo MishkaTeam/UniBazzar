@@ -124,4 +124,36 @@ public class CustomerApplication(ICustomerRepository customerRepository, IUnitOf
         var isCustomerExists = await customerRepository.IsCustomerExists(mobile);
         return isCustomerExists;
     }
+
+    public async Task<ResultContract<bool>> Exist(Guid id)
+    {
+        var customer =
+            await customerRepository.GetByIdAsync(id);
+
+        return customer != null;
+    }
+
+    public async Task<ResultContract<Guid>> GetPublicCustomer()
+    {
+        var publicCustomer =
+            await customerRepository.GetAsync(x => x.Email == "public-customer@unibazzar.ir");
+
+        if (publicCustomer == null)
+        {
+            var customer = await CreateAsync(new CreateCustomerViewModel()
+            {
+                // Attention!
+                // This information is hard code, and needs to change.
+                NationalCode = "0927421498",
+                LastName = "[ مشتری عمومی ]",
+                Mobile = "09000000000",
+                Email = "public-customer@unibazzar.ir",
+            });
+
+            return customer.Id;
+        }
+
+        return publicCustomer.Id;
+    }
+
 }

@@ -468,48 +468,7 @@ namespace Persistence.Migrations
                     b.Property<Guid>("StoreId")
                         .HasColumnType("uuid");
 
-                    b.Property<long>("UpdateDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Version")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Baskets", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Aggregates.Ordering.Orders.Order", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("BasketId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("BasketReferenceNumber")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<long>("InsertDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("InsertedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Ordering")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(10000);
-
-                    b.Property<Guid>("OwnerId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("ReferenceNumber")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)");

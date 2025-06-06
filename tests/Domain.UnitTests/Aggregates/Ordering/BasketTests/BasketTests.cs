@@ -11,13 +11,15 @@ public class BasketTests
     public void Initialize_ShouldCreateBasketWithCorrectPlatformAndInitialStatus()
     {
         var platform = Platform.POS;
+        var ownerId = Guid.Parse("bc7b0185-9b1e-4c39-a952-24e1cb3dcb28");
 
-        var basket = Basket.Initialize(platform);
+        var basket = Basket.Initialize(platform, ownerId);
 
         basket.Should().NotBeNull();
         basket.Platform.Should().Be(platform);
         basket.BasketStatus.Should().Be(BasketStatus.INITIAL);
         basket.BasketItems.Should().BeEmpty();
+        basket.OwnerId.Should().Be(ownerId);
     }
 
     [Theory]
@@ -31,7 +33,9 @@ public class BasketTests
         decimal discountValue,
         decimal expectedLineTotal)
     {
-        var basket = Basket.Initialize(Platform.POS);
+        var ownerId = Guid.Parse("bc7b0185-9b1e-4c39-a952-24e1cb3dcb28");
+
+        var basket = Basket.Initialize(Platform.POS, ownerId);
         var product = ProductType.Create(Guid.NewGuid(), "Test Product");
 
         var basketItem = BasketItem.Create(
@@ -54,7 +58,9 @@ public class BasketTests
     [Fact]
     public void Checkout_ShouldChangeBasketStatusToCheckout()
     {
-        var basket = Basket.Initialize(Platform.POS);
+        var ownerId = Guid.Parse("bc7b0185-9b1e-4c39-a952-24e1cb3dcb28");
+
+        var basket = Basket.Initialize(Platform.POS, ownerId);
         
         basket.Checkout();
         
