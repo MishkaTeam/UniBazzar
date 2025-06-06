@@ -30,6 +30,45 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         return new InitializeBasketViewModel(basket.Id, basket.ReferenceNumber);
     }
 
+
+    public async Task<ResultContract<BasketViewModel>> UpdateTotalDiscount(Guid basketId, decimal totalDiscountAmount, DiscountType totalDiscountType)
+    {
+        try
+        {
+            var basket = await basketRepository.GetByIdAsync(basketId);
+
+            if (totalDiscountType != DiscountType.None)
+                basket.SetTotalDiscount(totalDiscountAmount, totalDiscountType);
+            else
+                basket.SetTotalDiscount(0m, DiscountType.None);
+
+            await unitOfWork.SaveChangesAsync();
+            return BasketViewModel.FromBasket(basket);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "[BasketApplication] [UpdateTotalDiscount] Error in basketId : {BasketId}", basketId);
+            return (ErrorType.InternalError, Resources.Messages.Errors.InternalError);
+        }
+    }
+
+
+    public async Task<ResultContract> UpdateDescription(Guid basketId, string description)
+    {
+        try
+        {
+            var basket = await basketRepository.GetByIdAsync(basketId);
+            basket.SetDescription(description);
+            await unitOfWork.SaveChangesAsync();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "[BasketApplication] [UpdateDescription] Error in basketId : {BasketId}", basketId);
+            return false;
+        }
+    }
+
     public async Task<ResultContract<BasketViewModel>> AddItem(AddBasketItemRequestModel basketItemRequest)
     {
         var basket = await basketRepository.GetByIdAsync(basketItemRequest.BasketId);
