@@ -8,6 +8,7 @@ public class CreateProductReviewViewModel
         (ResourceType = typeof(Resources.DataDictionary),
         Name = nameof(Resources.DataDictionary.Text))]
     public string Text { get; set; }
+    public byte Rate { get; set; }
 
     public Guid CustomerId { get; set; }
 

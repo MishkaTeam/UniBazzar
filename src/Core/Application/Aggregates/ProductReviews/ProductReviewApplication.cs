@@ -14,7 +14,8 @@ public class ProductReviewApplication(IProductReviewRepository commentRepository
             (
             viewModel.Text,
             viewModel.CustomerId,
-            viewModel.ProductId
+            viewModel.ProductId,
+            viewModel.Rate
             );
 
         await commentRepository.AddAsync(comment);

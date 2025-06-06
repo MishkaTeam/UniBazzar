@@ -9,115 +9,116 @@ using Resources.Messages;
 namespace Application.Aggregates.Products;
 
 public partial class ProductsApplication
-	(IProductRepository productRepository,
-	IPriceListRepository priceListRepository,
-	IUnitOfWork unitOfWork)
+    (IProductRepository productRepository,
+    IPriceListRepository priceListRepository,
+    IUnitOfWork unitOfWork)
 {
-	public async Task<ProductViewModel> CreateProductAsync(CreateProductViewModel viewModel)
-	{
-		var product = Product.Create(viewModel.Name, viewModel.ShortDescription, viewModel.FullDescription,
-									viewModel.StoreId, viewModel.CategoryId, viewModel.UnitId,
-									viewModel.ProductType, viewModel.DownloadUrl);
+    public async Task<ProductViewModel> CreateProductAsync(CreateProductViewModel viewModel)
+    {
+        var product = Product.Create(viewModel.Name, viewModel.ShortDescription, viewModel.FullDescription,
+                                    viewModel.StoreId, viewModel.CategoryId, viewModel.UnitId,
+                                    viewModel.ProductType, viewModel.DownloadUrl);
 
-		await productRepository.AddAsync(product);
-		await unitOfWork.SaveChangesAsync();
+        await productRepository.AddAsync(product);
+        await unitOfWork.SaveChangesAsync();
 
-		return product.Adapt<ProductViewModel>();
-	}
+        return product.Adapt<ProductViewModel>();
+    }
 
-	public async Task<List<ProductViewModel>> GetProducts()
-	{
-		var products =
-			await productRepository.GetAllAsync();
+    public async Task<List<ProductViewModel>> GetProducts()
+    {
+        var products =
+            await productRepository.GetAllAsync();
 
-		return products.Adapt<List<ProductViewModel>>();
-	}
+        return products.Adapt<List<ProductViewModel>>();
+    }
 
-	public async Task<ProductViewModel> GetProductAsync(Guid id)
-	{
-		var product =
-			await productRepository.GetByIdAsync(id);
+    public async Task<ProductViewModel> GetProductAsync(Guid id)
+    {
+        var product =
+            await productRepository.GetByIdAsync(id);
 
-		return product.Adapt<ProductViewModel>();
-	}
-		public async Task<ProductViewModel> GetProductAsync(string Sku)
-	{
-		var product =
-			await productRepository.GetAsync(x => x.SKU == Sku);
+        return product.Adapt<ProductViewModel>();
+    }
+    public async Task<ProductViewModel> GetProductAsync(string Sku)
+    {
+        var product =
+            await productRepository.GetAsync(x => x.SKU == Sku);
 
-		return product.Adapt<ProductViewModel>();
-	}
+        return product.Adapt<ProductViewModel>();
+    }
 
-	public async Task<ProductViewModel> UpdateProductAsync(UpdateProductViewModel updateViewModel)
-	{
-		var productForUpdate =
-			await productRepository.GetByIdAsync(updateViewModel.Id);
+    public async Task<ProductViewModel> UpdateProductAsync(UpdateProductViewModel updateViewModel)
+    {
+        var productForUpdate =
+            await productRepository.GetByIdAsync(updateViewModel.Id);
 
-		if (productForUpdate == null || productForUpdate.Id == Guid.Empty)
-		{
-			var message =
-				string.Format(Errors.NotFound, Resources.DataDictionary.Product);
+        if (productForUpdate == null || productForUpdate.Id == Guid.Empty)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.Product);
 
-			throw new Exception(message);
-		}
+            throw new Exception(message);
+        }
 
-		productForUpdate.Update(updateViewModel.Name, updateViewModel.ShortDescription, updateViewModel.FullDescription,
-								updateViewModel.StoreId, updateViewModel.CategoryId, updateViewModel.UnitId,
-								updateViewModel.ProductType, updateViewModel.DownloadUrl);
+        productForUpdate.Update(updateViewModel.Name, updateViewModel.ShortDescription, updateViewModel.FullDescription,
+                                updateViewModel.StoreId, updateViewModel.CategoryId, updateViewModel.UnitId,
+                                updateViewModel.ProductType, updateViewModel.DownloadUrl);
 
-		await unitOfWork.SaveChangesAsync();
-		return productForUpdate.Adapt<ProductViewModel>();
-	}
+        await unitOfWork.SaveChangesAsync();
+        return productForUpdate.Adapt<ProductViewModel>();
+    }
 
-	public async Task DeleteProductAsync(Guid id)
-	{
-		var productForDelete =
-			await productRepository.GetByIdAsync(id);
+    public async Task DeleteProductAsync(Guid id)
+    {
+        var productForDelete =
+            await productRepository.GetByIdAsync(id);
 
-		if (productForDelete == null || productForDelete.Id == Guid.Empty)
-		{
-			var message =
-				string.Format(Errors.NotFound, Resources.DataDictionary.Product);
+        if (productForDelete == null || productForDelete.Id == Guid.Empty)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.Product);
 
-			throw new Exception(message);
-		}
+            throw new Exception(message);
+        }
 
-		await productRepository.RemoveAsync(productForDelete);
-		await unitOfWork.SaveChangesAsync();
-	}
+        await productRepository.RemoveAsync(productForDelete);
+        await unitOfWork.SaveChangesAsync();
+    }
 
     public async Task<List<ProductCardViewModel>> GetIndexProducts()
     {
         var products = await productRepository.GetFullProductData();
-		var priceLists = await priceListRepository.GetPrice(products.Select(x => x.Id).ToList());
+        var priceLists = await priceListRepository.GetPrice(products.Select(x => x.Id).ToList());
 
-		return products.Select(x => new ProductCardViewModel
-		{
-			Price = priceLists?.FirstOrDefault(p => p.productId == x.Id).price ?? 0,
-			ImageUrl = x.ProductImages.FirstOrDefault()?.ImageUrl,
-			Name = x.Name,
-			SKU = x.SKU,
-			Slug = "Slug",
-		}).ToList();
+        return products.Select(x => new ProductCardViewModel
+        {
+            Price = priceLists?.FirstOrDefault(p => p.productId == x.Id).price ?? 0,
+            ImageUrl = x.ProductImages.FirstOrDefault()?.ImageUrl,
+            Name = x.Name,
+            SKU = x.SKU,
+            Slug = "Slug",
+        }).ToList();
     }
     public async Task<ProductDetailViewModel> GetProductDetails(string sku)
     {
         var products = await productRepository.GetFullProductData(sku);
-		if (products == null)
-			throw new Exception();
+        if (products == null)
+            throw new Exception();
 
         var priceLists = await priceListRepository.GetPrice([products.Id]);
 
-		return new ProductDetailViewModel
+        return new ProductDetailViewModel
         {
-			Price = priceLists?.FirstOrDefault(p => p.productId == products.Id).price ?? 0,
-			Images = products.ProductImages,
-			Name = products.Name,
-			SKU = products.SKU,
+            Id = products.Id,
+            Price = priceLists?.FirstOrDefault(p => p.productId == products.Id).price ?? 0,
+            Images = products.ProductImages,
+            Name = products.Name,
+            SKU = products.SKU,
             ShortDescription = products.ShortDescription,
             FullDescription = products.FullDescription,
-			ProductFeatures = products.ProductFeatures,
+            ProductFeatures = products.ProductFeatures,
             Slug = "Slug",
-		};
+        };
     }
 }

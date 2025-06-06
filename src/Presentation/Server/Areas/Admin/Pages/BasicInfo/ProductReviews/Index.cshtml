@@ -2,14 +2,19 @@
 @model Server.Areas.Admin.Pages.BasicInfo.ProductReviews.IndexModel
 @{
 }
-<div class="my-2 float-end">
+@* <div class="my-2 float-end">
     <a class="btn btn-primary" asp-page="Create" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
-</div>
+</div> *@
+
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">@(Resources.DataDictionary.Comment)</th>
-            <th scope="col"></th>
+            <th scope="col">@(Resources.DataDictionary.Text)</th>
+            <th scope="col">@(Resources.DataDictionary.User)</th>
+            <th scope="col">@(Resources.DataDictionary.Product)</th>
+            @* <th>scope="col">@(Resources.DataDictionary.Rate)</th> *@
+            <th scope="col">@(Resources.DataDictionary.InsertDateTime)</th>
+            @* <th>scope="col">@(Resources.DataDictionary.Status)</th> *@
         </tr>
     </thead>
     <tbody>
@@ -32,3 +37,29 @@
         }
     </tbody>
 </table>
+
+@* <table class="table table-bordered table-striped">
+   
+    <tbody>
+        @foreach (var comment in Model.ViewModel)
+        {
+            <tr>
+                <td>@comment.Text</td>
+                <td>@comment.CustomerName</td>
+                <td>@comment.ProductName</td>
+                <td>@comment.Rate</td>
+                <td>@comment.CreatedAt.ToString("yyyy/MM/dd HH:mm")</td>
+                <td>
+                    @if (comment.IsConfirmed)
+                    {
+                        <span class="text-success">تایید شده</span>
+                    }
+                    else
+                    {
+                        <span class="text-warning">در انتظار تایید</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table> *@

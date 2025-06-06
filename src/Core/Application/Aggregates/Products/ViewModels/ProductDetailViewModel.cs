@@ -5,6 +5,7 @@ namespace Application.Aggregates.Products.ViewModels;
 
 public class ProductDetailViewModel
 {
+    public Guid Id { get; internal set; }
     public decimal Price { get; internal set; }
     public List<ProductImage> Images { get; internal set; }
     public string Name { get; internal set; }

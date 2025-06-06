@@ -11,7 +11,7 @@ public class CommentRepository
 {
     public async Task<List<ProductReview>> GetProductReviewsByProductIdAsync(Guid productId)
     {
-        return await uniBazzarContext.Comments
+        return await uniBazzarContext.ProductReviews
             .StoreFilter(executionContextAccessor.StoreId)
             .AsNoTracking()
             .Include(x => x.Customer)

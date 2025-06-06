@@ -253,23 +253,24 @@
 															</div>
 															<div class="row">
 																<div class="col-12 py-3">
-																	<form method="post" action="https://rubik-market-html.wbrk.ir/">
+																	<form method="post" asp-page-handler="Comment">
+																		<input asp-for="CreateCommentViewModel.ProductId" hidden />
 																		<div id="send-comment-form">
 																			<p>نظر خود را برای این مطلب ارسال کنید. نشانی ایمیل شما منتشر نخواهد شد.</p>
 																			<div class="row">
 																				<div class="col-12 px-3 pl-md-1 col-md-6">
 																					<div class="form-group my-1">
-																						<input type="text" class="form-control" placeholder="* نام شما" required oninvalid="this.setCustomValidity('لطفا نام خود را وارد کنید')" oninput="setCustomValidity('')">
+																						<input @* asp-for="CreateCommentViewModel.FullName" *@ class="form-control" placeholder="* نام شما" required oninvalid="this.setCustomValidity('لطفا نام خود را وارد کنید')" oninput="setCustomValidity('')">
 																					</div>
 																				</div>
 																				<div class="col-12 px-3 pr-md-1 col-md-6">
 																					<div class="form-group my-1">
-																						<input type="email" class="form-control text-start" placeholder="پست الکترونیک *" required oninvalid="this.setCustomValidity('لطفا پست الکترونیک خود را وارد کنید')" oninput="setCustomValidity('')">
+																						<input @* asp-for="CreateCommentViewModel.Email" *@ class="form-control text-start" placeholder="پست الکترونیک *" required oninvalid="this.setCustomValidity('لطفا پست الکترونیک خود را وارد کنید')" oninput="setCustomValidity('')">
 																					</div>
 																				</div>
 																				<div class="col-12">
 																					<div class="form-group my-1">
-																						<textarea class="form-control" id="" rows="4" placeholder="متن دیدگاه"></textarea>
+																						<textarea asp-for="CreateCommentViewModel.Text"  rows="4" placeholder="متن دیدگاه"></textarea>
 																					</div>
 																				</div>
 																				<div class="col-12">

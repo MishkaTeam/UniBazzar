@@ -11,20 +11,23 @@ public class ProductReview : Entity
     {
     }
 
-
     public string Text { get; set; }
 
-    public Guid CutomerId { get; set; }
+    public byte Rate { get; set; }
+    public Guid CustomerId { get; set; }
     public Customer Customer { get; set; }
 
     public Guid ProductId { get; set; }
     public Product Product { get; set; }
 
-    public static ProductReview Create(string text, Guid customerId, Guid productId)
+    public static ProductReview   Create(string text, Guid customerId, Guid productId, byte rate)
     {
-        var comment = new ProductReview(text, customerId, productId)
+        var comment = new ProductReview(text, customerId, productId, rate)
         {
-            Text = text.Fix()
+            Text = text.Fix(),
+            CustomerId = customerId,
+            ProductId = productId,
+            Rate = rate,
         };
         return comment;
     }
@@ -37,8 +40,11 @@ public class ProductReview : Entity
         };
     }
 
-    private ProductReview(string text, Guid customerId, Guid productId)
+    private ProductReview(string text, Guid customerId, Guid productId, byte rate)
     {
         Text = text;
+        CustomerId = customerId;
+        ProductId = productId;
+        Rate = rate;
     }
 }

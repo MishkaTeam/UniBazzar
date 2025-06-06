@@ -62,5 +62,5 @@ public class UniBazzarContext(DbContextOptions options, AuditSaveChangesIntercep
 	public DbSet<Category> Categories { get; set; }
     public DbSet<Discount> Discounts { get; set; }
 
-    public DbSet<ProductReview> Comments { get; set; }
+    public DbSet<ProductReview> ProductReviews { get; set; }
 }
