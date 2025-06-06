@@ -43,8 +43,6 @@ public class Basket : Entity
         Platform = platform;
         BasketItems = new List<BasketItem>();
 
-        SetOwner(ownerId);
-
         // For test
         ReferenceNumber = Guid.NewGuid().ToString();
     }

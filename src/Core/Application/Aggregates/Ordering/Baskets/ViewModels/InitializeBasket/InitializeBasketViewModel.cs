@@ -2,14 +2,14 @@ namespace Application.Aggregates.Orders.ViewModels;
 
 public class InitializeBasketViewModel
 {
-    public InitializeBasketViewModel(Guid id, Guid ownerId)
+    public InitializeBasketViewModel(Guid id, string referenceNumber)
     {
         Id = id;
-        OwnerId = ownerId;
+        ReferenceNumber = referenceNumber;
     }
 
 
     public Guid Id { get; set; }
-    public Guid OwnerId { get; set; }
+    public string ReferenceNumber { get; set; }
 
 }

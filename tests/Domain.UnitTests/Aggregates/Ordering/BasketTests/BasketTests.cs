@@ -11,15 +11,13 @@ public class BasketTests
     public void Initialize_ShouldCreateBasketWithCorrectPlatformAndInitialStatus()
     {
         var platform = Platform.POS;
-        var ownerId = Guid.Parse("bc7b0185-9b1e-4c39-a952-24e1cb3dcb28");
 
-        var basket = Basket.Initialize(platform, ownerId);
+        var basket = Basket.Initialize(platform);
 
         basket.Should().NotBeNull();
         basket.Platform.Should().Be(platform);
         basket.BasketStatus.Should().Be(BasketStatus.INITIAL);
         basket.BasketItems.Should().BeEmpty();
-        basket.OwnerId.Should().Be(ownerId);
     }
 
     [Theory]
@@ -35,7 +33,7 @@ public class BasketTests
     {
         var ownerId = Guid.Parse("bc7b0185-9b1e-4c39-a952-24e1cb3dcb28");
 
-        var basket = Basket.Initialize(Platform.POS, ownerId);
+        var basket = Basket.Initialize(Platform.POS);
         var product = ProductType.Create(Guid.NewGuid(), "Test Product");
 
         var basketItem = BasketItem.Create(
@@ -60,7 +58,7 @@ public class BasketTests
     {
         var ownerId = Guid.Parse("bc7b0185-9b1e-4c39-a952-24e1cb3dcb28");
 
-        var basket = Basket.Initialize(Platform.POS, ownerId);
+        var basket = Basket.Initialize(Platform.POS);
         
         basket.Checkout();
         

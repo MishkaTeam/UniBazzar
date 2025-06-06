@@ -52,21 +52,6 @@ public partial class Index
             return;
         }
 
-        if (localBasket.OwnerId != customerId)
-        {
-            var result =
-                await basketApplication.ChangeOwnerAsync(localBasket!.Id, customerId);
-
-            var basket =
-                new InitializeBasketViewModel(result.Data!.Id, result.Data.OwnerId);
-
-            await localStorage.SetItemAsync(LocalBasketKey, basket);
-
-            Basket = result.Data;
-
-            return;
-        }
-
         Basket = (await basketApplication.GetBasket(localBasket.Id)).Data;
     }
 
@@ -76,7 +61,6 @@ public partial class Index
             new InitializeBasketRequestModel()
             {
                 Platform = Platform.POS,
-                OwnerId = ownerId,
             })).Data;
 
         await localStorage.SetItemAsync(LocalBasketKey, newBasket);

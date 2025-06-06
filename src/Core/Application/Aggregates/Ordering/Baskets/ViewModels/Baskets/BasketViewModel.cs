@@ -1,4 +1,5 @@
 ﻿using Application.Aggregates.Orders.ViewModels.BasketItems;
+using Domain.Aggregates.Ordering.Baskets;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 using Framework.DataType;
 
@@ -17,7 +18,6 @@ public class BasketViewModel
     public string ReferenceNumber { get; set; }
     public Platform Platform { get; set; }
     public BasketStatus BasketStatus { get; set; }
-    public Platform Platform { get; set; }
     public string? Description { get; set; }
     public decimal TotalDiscountAmount { get; set; }
     public DiscountType TotalDiscountType { get; set; }
@@ -25,7 +25,7 @@ public class BasketViewModel
     public decimal BasketTotal { get; set; }
     public List<BasketItemViewModel> BasketItems { get; set; }
 
-    internal static BasketViewModel FormBasket(Basket basket)
+    internal static BasketViewModel FromBasket(Basket basket)
     {
         return new BasketViewModel
         {

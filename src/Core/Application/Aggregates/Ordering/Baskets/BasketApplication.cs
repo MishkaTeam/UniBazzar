@@ -16,7 +16,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
 {
     public async Task<ResultContract<InitializeBasketViewModel>> InitializeBasket(InitializeBasketRequestModel request)
     {
-        var basket = Basket.Initialize(request.platform);
+        var basket = Basket.Initialize(request.Platform);
 
         if (!string.IsNullOrWhiteSpace(request.Description))
             basket.SetDescription(request.Description);
@@ -27,10 +27,10 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         await basketRepository.AddAsync(basket);
         await unitOfWork.SaveChangesAsync();
 
-        return new InitializeBasketViewModel(basket.ReferenceNumber);
+        return new InitializeBasketViewModel(basket.Id, basket.ReferenceNumber);
     }
 
-    public async Task<ResultContract<BasketItemViewModel>> AddItem(AddBasketItemRequestModel basketItemRequest)
+    public async Task<ResultContract<BasketViewModel>> AddItem(AddBasketItemRequestModel basketItemRequest)
     {
         var basket = await basketRepository.GetByIdAsync(basketItemRequest.BasketId);
         var product = ProductType.Create(basketItemRequest.ProductId, basketItemRequest.ProductName);
@@ -39,7 +39,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         var basketItem = BasketItem.Create(basket.Id, basket.ReferenceNumber, product, amount, discount);
         basket.AddItem(basketItem);
         await unitOfWork.SaveChangesAsync();
-        return BasketViewModel.FormBasket(basket);
+        return BasketViewModel.FromBasket(basket);
     }
 
     public async Task<ResultContract> CheckoutBasket(Guid basketId)
@@ -67,7 +67,6 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         {
             Id = basket.Id,
             OwnerId = basket.OwnerId,
-            Platform = basket.PlatForm,
             Platform = basket.Platform,
             BasketStatus = basket.BasketStatus,
             ReferenceNumber = basket.ReferenceNumber,
@@ -123,7 +122,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
 
         basket.SetOwner(ownerId);
 
-        await unitOfWork.CommitAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return basket.Adapt<BasketViewModel>();
     }
