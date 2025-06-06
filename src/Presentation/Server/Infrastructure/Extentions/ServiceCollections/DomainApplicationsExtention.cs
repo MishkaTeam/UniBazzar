@@ -59,6 +59,7 @@ public static class DomainExtensions
         services.AddScoped<ShippingAddressApplication>();
 
         services.AddScoped<BasketApplication>();
+        services.AddScoped<DiscountApplication>();
 
         services.AddScoped<ProductsApplication>();
         services.AddScoped<ProductImagesApplication>();
@@ -69,8 +70,6 @@ public static class DomainExtensions
         services.AddScoped<CategoriesApplication>();
 
         services.AddScoped<DiscountApplication>();
-
-        services.AddScoped<CategoryRepository>();
 
 
         services.AddScoped<ProductSearchApplication>();
@@ -91,6 +90,7 @@ public static class DomainExtensions
         services.AddScoped<IShippingAddressRepository, ShippingAddressRepository>();
 
         services.AddScoped<IBasketRepository, BasketRepository>();
+        services.AddScoped<IDiscountRepository, DiscountRepository>();
 
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IProductImageRepository, ProductImagesRepository>();
@@ -101,7 +101,8 @@ public static class DomainExtensions
         services.AddScoped<IUnitRepository, UnitRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
 
-        services.AddScoped<IDiscountRepository, DiscountRepository>();
+
+
         services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
         services.AddScoped<ICustomerSearchRepository, CustomerSearchRepository>();
 

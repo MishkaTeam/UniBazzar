@@ -7,11 +7,17 @@ namespace Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
 
 public class BasketViewModel
 {
+    public BasketViewModel()
+    {
+        BasketItems = new();
+    }
+
 
     public Guid Id { get; set; }
+    public Guid OwnerId { get; set; }
     public string ReferenceNumber { get; set; }
-    public BasketStatus BasketStatus { get; set; }
     public Platform Platform { get; set; }
+    public BasketStatus BasketStatus { get; set; }
     public string? Description { get; set; }
     public decimal TotalDiscountAmount { get; set; }
     public DiscountType TotalDiscountType { get; set; }
@@ -19,7 +25,7 @@ public class BasketViewModel
     public decimal BasketTotal { get; set; }
     public List<BasketItemViewModel> BasketItems { get; set; }
 
-    internal static BasketViewModel FormBasket(Basket basket)
+    internal static BasketViewModel FromBasket(Basket basket)
     {
         return new BasketViewModel
         {

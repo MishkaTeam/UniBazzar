@@ -45,7 +45,8 @@ namespace Persistence.Migrations
 
                     b.Property<string>("PrimaryKey")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("TableName")
                         .IsRequired()
@@ -467,48 +468,7 @@ namespace Persistence.Migrations
                     b.Property<Guid>("StoreId")
                         .HasColumnType("uuid");
 
-                    b.Property<long>("UpdateDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Version")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Baskets", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Aggregates.Ordering.Orders.Order", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("BasketId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("BasketReferenceNumber")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<long>("InsertDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("InsertedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Ordering")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(10000);
-
-                    b.Property<Guid>("OwnerId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("ReferenceNumber")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)");
@@ -660,6 +620,7 @@ namespace Persistence.Migrations
                     b.Property<Guid>("InsertedBy")
                         .HasColumnType("uuid");
 
+
                     b.Property<int>("Ordering")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
@@ -691,8 +652,8 @@ namespace Persistence.Migrations
                     b.HasIndex("AttributeId");
 
                     b.HasIndex("ProductId");
-
                     b.ToTable("ProductAttributes", (string)null);
+                    b.ToTable("ProductFeatures");
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Products.ProductFeatures.ProductFeature", b =>
@@ -743,10 +704,10 @@ namespace Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductFeatures", (string)null);
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Products.ProductImages.ProductImage", b =>
@@ -1016,7 +977,6 @@ namespace Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
                     b.ToTable("Branches", (string)null);
                 });
 
@@ -1085,6 +1045,7 @@ namespace Persistence.Migrations
                     b.Navigation("AttributeValues");
 
                     b.Navigation("Category");
+                    b.ToTable("Branches");
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Categories.Category", b =>
@@ -1107,7 +1068,6 @@ namespace Persistence.Migrations
 
                     b.Navigation("Customers");
                 });
-
             modelBuilder.Entity("Domain.Aggregates.Ordering.Baskets.Basket", b =>
                 {
                     b.OwnsOne("Domain.Aggregates.Ordering.ValueObjects.DiscountAmount", "TotalDiscountAmount", b1 =>
@@ -1462,6 +1422,7 @@ namespace Persistence.Migrations
                     b.Navigation("Items");
                 });
 
+
             modelBuilder.Entity("Domain.Aggregates.Products.Product", b =>
                 {
                     b.HasOne("Domain.Aggregates.Categories.Category", "Category")
@@ -1524,7 +1485,6 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("BaseUnit");
-                });
 
             modelBuilder.Entity("Domain.Aggregates.Customers.Customer", b =>
                 {
@@ -1538,6 +1498,7 @@ namespace Persistence.Migrations
                     b.Navigation("ProductFeatures");
 
                     b.Navigation("ProductImages");
+                });
                 });
 #pragma warning restore 612, 618
         }

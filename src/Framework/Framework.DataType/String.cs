@@ -38,10 +38,6 @@ public static class String
         if (!nationalCode.All(char.IsDigit))
             return false;
 
-        var allSame = nationalCode.Distinct().Count() == 1;
-        if (allSame)
-            return false;
-
         int checksum = 0;
         for (int i = 0; i < 9; i++)
         {
