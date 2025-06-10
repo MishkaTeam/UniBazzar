@@ -127,15 +127,32 @@ public partial class ProductsApplication
 
         return new ProductDetailViewModel
         {
-            Id = products.Id,
             Price = priceLists?.FirstOrDefault(p => p.productId == products.Id).price ?? 0,
-            Images = products.ProductImages,
+            Images = [.. products.ProductImages.Select(x => x.ImageUrl)],
             Name = products.Name,
             SKU = products.SKU,
             ShortDescription = products.ShortDescription,
             FullDescription = products.FullDescription,
-            ProductFeatures = products.ProductFeatures,
-            Slug = "Slug",
+            ProductFeatures = [.. products.ProductFeatures.Select (x => new ProductFeatureViewModel
+            {
+                IsPinned = x.IsPinned,
+                Key = x.Key,
+                Value = x.Value,
+            })],
+            ProductAttributes = [.. products.ProductAttributes.Select(x => new ProductAttributeViewModel
+            {
+                AttributeValues = [.. x.Attribute.AttributeValues.Select (x => new ProductAttributeValuesViewModel
+                {
+                    IsPreSelected = x.IsPreSelected,
+                    Name = x.Name,
+                    PriceAdjustment = x.PriceAdjustment,
+                    WeightAdjustment = x.WeightAdjustment,
+                })],
+                Name = x.Attribute.Name,
+                Description = x.Attribute.Description,
+                ProductAttributeType = x.ProductAttributeType,
+            })],
+            Slug = products.Slug,
         };
     }
 }

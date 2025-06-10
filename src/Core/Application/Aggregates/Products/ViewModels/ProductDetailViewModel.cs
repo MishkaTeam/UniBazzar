@@ -8,7 +8,6 @@ public class ProductDetailViewModel
 {
     public Guid Id { get; internal set; }
     public decimal Price { get; internal set; }
-    public List<ProductImage> Images { get; internal set; }
     public string Name { get; internal set; }
     public string SKU { get; internal set; }
     public string Slug { get; internal set; }
