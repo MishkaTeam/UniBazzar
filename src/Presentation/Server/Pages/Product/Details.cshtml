@@ -200,46 +200,51 @@
 																<div class="row">
 																	<div class="col-12 pt-2">
 																		<!-- Show Comments -->
-																		<div class="comment p-3 my-2">
-																			<div class="sender-details">
-																				<div class="row">
-																					<div class="col-3 col-sm-2 col-md-1 pl-md-0 pl-lg-2 pl-xl-3">
-																						<img src="/images/user-no-image.jpg" alt="" class="rounded">
-																					</div>
-																					<div class="col-9 col-sm-10 col-md-11 pr-0 pr-md-2 pr-xl-0 pt-0 pt-lg-1">
-																						<div class="name">مصطفی کلانتری</div>
-																						<div class="date">ارسال شده در 18 تیر 1400</div>
-																					</div>
-																					<div class="col-12">
-																						<p>این یک متن آزمایشی است که به زودی توسط نویسنده این سایت، تکمیل یا حذف خواهد شد. اگر شما نویسنده‌ی این سایت هستید، برای حذف یا ویرایش این صفحه، کافی است از طریق مرکز مدیریت سایت خود وارد بخش مربوطه شده و محتوای این صفحه را ویرایش یا حذف کنید.</p>
-																						<span class="reply"><img src="/images/comment-reply.png" alt=""> ارسال پاسخ</span>
+																		@foreach(var item in Model.ViewModel)
+																		{
+																			<div class="comment p-3 my-2">
+																				<div class="sender-details">
+																					<div class="row">
+																						<div class="col-3 col-sm-2 col-md-1 pl-md-0 pl-lg-2 pl-xl-3">
+																							<img src="/images/user-no-image.jpg" alt="" class="rounded">
+																						</div>
+																						<div class="col-9 col-sm-10 col-md-11 pr-0 pr-md-2 pr-xl-0 pt-0 pt-lg-1">
+																							<div class="name">@(item.Customer.LastName)</div>
+																							<div class="date">@(item.InsertDateTimeFa)</div>
+																							<div>@(item.Rate)</div>
+																						</div>
+																						<div class="col-12">
+																							<p>@(item.Text)</p>
+																							@* <span class="reply"><img src="/images/comment-reply.png" alt=""> ارسال پاسخ</span> *@
+																						</div>
 																					</div>
 																				</div>
-																			</div>
 
-																			<!-- Comment Reply -->
-																			<div class="row justify-content-end">
-																				<div class="col-11 pt-2 pr-0">
-																					<div class="comment p-3">
-																						<div class="sender-details">
-																							<div class="row">
-																								<div class="col-3 col-sm-2 col-md-1 pl-md-0 pl-lg-2 pl-xl-3">
-																									<img src="/images/user-no-image.jpg" alt="" class="rounded">
-																								</div>
-																								<div class="col-9 col-sm-10 col-md-11 pr-0 pr-md-2 pr-xl-0 pt-0 pt-lg-1">
-																									<div class="name">امین کیانی</div>
-																									<div class="date">ارسال شده در 18 تیر 1400</div>
-																								</div>
-																								<div class="col-12">
-																									<p>صفحات و محتوای آزمایشی همیشه بخشی از محتوای پیش‌نمایش قالب و افزونه های وب هستند که شما بتوانید ارتباط درستی با پیش نمایش قالب گرفته و تصمیم مناسبی بگیرید. این صفحات معمولا برای اطلاعات کلی در مورد سایت مثل «درباره ما»، «تماس با ما»، «فهرست» یا «نظرات شما» مفید هستند.</p>
+																				@* <!-- Comment Reply -->
+																				<div class="row justify-content-end">
+																					<div class="col-11 pt-2 pr-0">
+																						<div class="comment p-3">
+																							<div class="sender-details">
+																								<div class="row">
+																									<div class="col-3 col-sm-2 col-md-1 pl-md-0 pl-lg-2 pl-xl-3">
+																										<img src="/images/user-no-image.jpg" alt="" class="rounded">
+																									</div>
+																									<div class="col-9 col-sm-10 col-md-11 pr-0 pr-md-2 pr-xl-0 pt-0 pt-lg-1">
+																										<div class="name">امین کیانی</div>
+																										<div class="date">ارسال شده در 18 تیر 1400</div>
+																									</div>
+																									<div class="col-12">
+																										<p>صفحات و محتوای آزمایشی همیشه بخشی از محتوای پیش‌نمایش قالب و افزونه های وب هستند که شما بتوانید ارتباط درستی با پیش نمایش قالب گرفته و تصمیم مناسبی بگیرید. این صفحات معمولا برای اطلاعات کلی در مورد سایت مثل «درباره ما»، «تماس با ما»، «فهرست» یا «نظرات شما» مفید هستند.</p>
+																									</div>
 																								</div>
 																							</div>
 																						</div>
 																					</div>
 																				</div>
+																				<!-- /Comment Reply --> *@
 																			</div>
-																			<!-- /Comment Reply -->
-																		</div>
+																		}
+
 																		<!-- /Show Comments -->
 																	</div>
 																</div>
@@ -256,21 +261,20 @@
 																	<form method="post" asp-page-handler="Comment">
 																		<input asp-for="CreateCommentViewModel.ProductId" hidden />
 																		<div id="send-comment-form">
-																			<p>نظر خود را برای این مطلب ارسال کنید. نشانی ایمیل شما منتشر نخواهد شد.</p>
+																			<p>نظر خود را برای این مطلب ارسال کنید.</p>
 																			<div class="row">
-																				<div class="col-12 px-3 pl-md-1 col-md-6">
-																					<div class="form-group my-1">
-																						<input @* asp-for="CreateCommentViewModel.FullName" *@ class="form-control" placeholder="* نام شما" required oninvalid="this.setCustomValidity('لطفا نام خود را وارد کنید')" oninput="setCustomValidity('')">
-																					</div>
-																				</div>
-																				<div class="col-12 px-3 pr-md-1 col-md-6">
-																					<div class="form-group my-1">
-																						<input @* asp-for="CreateCommentViewModel.Email" *@ class="form-control text-start" placeholder="پست الکترونیک *" required oninvalid="this.setCustomValidity('لطفا پست الکترونیک خود را وارد کنید')" oninput="setCustomValidity('')">
-																					</div>
-																				</div>
 																				<div class="col-12">
 																					<div class="form-group my-1">
 																						<textarea asp-for="CreateCommentViewModel.Text"  rows="4" placeholder="متن دیدگاه"></textarea>
+																						<span asp-validation-for="CreateCommentViewModel.Text"></span>
+																						<select  asp-for="CreateCommentViewModel.Rate">
+																							<option value="">امتیاز بدهید</option>
+																							<option value="1">1</option>
+																							<option value="2">2</option>
+																							<option value="3">3</option>
+																							<option value="4">4</option>
+																							<option value="5">5</option>
+																						</select>
 																					</div>
 																				</div>
 																				<div class="col-12">

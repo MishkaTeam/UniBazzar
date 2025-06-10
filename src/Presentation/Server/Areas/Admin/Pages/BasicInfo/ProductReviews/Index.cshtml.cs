@@ -9,9 +9,19 @@ namespace Server.Areas.Admin.Pages.BasicInfo.ProductReviews;
 
 public class IndexModel(ProductReviewApplication commentApplication) : PageModel
 {
-    public List<UpdateProductReviewViewModel> ViewModel { get; set; }
+    
+    public List<DetailsProductReviewViewModel> ViewModel { get; set; } = new();
+
     public async Task OnGet()
     {
         ViewModel = await commentApplication.GetAllCommentsAsync();
     }
+    //public async Task<IActionResult> OnPostApproveAsync()
+    //{
+    //    var result = await commentApplication.UpdateAsync();
+    //    if (!result)
+    //        return NotFound();
+
+    //    return RedirectToPage();
+    //}
 }

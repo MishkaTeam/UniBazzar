@@ -16,12 +16,13 @@ public class DetailModel(ProductsApplication productsApplication,
                           ProductReviewApplication productReviewApplication,
                           CustomerApplication customerApplication) : PageModel
 {
-    
+
     public ProductDetailViewModel ProductDetail { get; set; } = new();
 
     [BindProperty]
     public CreateProductReviewViewModel CreateCommentViewModel { get; set; } = new();
 
+    public List<DetailsProductReviewViewModel> ViewModel { get; set; }
     public async Task<IActionResult> OnGetAsync(string sku, string slug)
     {
         if (string.IsNullOrWhiteSpace(sku))
@@ -33,11 +34,19 @@ public class DetailModel(ProductsApplication productsApplication,
 
         CreateCommentViewModel.ProductId = ProductDetail.Id;
 
+        ViewModel = await productReviewApplication.GetProductReviewsByProductSkuAsync(sku);
+
+        ViewModel = ViewModel.Where(x => x.IsVerified).ToList();
+
         return Page();
     }
 
-    public async Task<IActionResult> OnPostCommentAsync()
+    public async Task<IActionResult> OnPostCommentAsync(string sku, string slug)
     {
+        if (!User.Identity.IsAuthenticated)
+        {
+            return RedirectToPage("/Account/Login");
+        }
         if (!ModelState.IsValid)
         {
             return Page();
@@ -45,10 +54,12 @@ public class DetailModel(ProductsApplication productsApplication,
 
         CreateCommentViewModel.CustomerId = Guid.Parse("aa46fc7f-11ba-41e6-886e-18a80142819e");
 
+        CreateCommentViewModel.IsVerified = false;
+
         await productReviewApplication.Create(CreateCommentViewModel);
 
         CreateCommentViewModel = new();
 
-        return RedirectToPage("/Index");
+        return RedirectToPage("Details", new { sku = sku, slug = slug });
     }
 }

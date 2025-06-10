@@ -15,7 +15,8 @@ public class ProductReviewApplication(IProductReviewRepository commentRepository
             viewModel.Text,
             viewModel.CustomerId,
             viewModel.ProductId,
-            viewModel.Rate
+            viewModel.Rate,
+            viewModel.IsVerified
             );
 
         await commentRepository.AddAsync(comment);
@@ -24,14 +25,20 @@ public class ProductReviewApplication(IProductReviewRepository commentRepository
         return comment.Adapt<ProductReview>();
     }
 
-    public async Task<List<UpdateProductReviewViewModel>> GetAllCommentsAsync()
+    public async Task<List<DetailsProductReviewViewModel>> GetAllCommentsAsync()
     {
         var comment = await commentRepository.GetAllAsync();
 
-        return comment.Adapt<List<UpdateProductReviewViewModel>>();
+        return comment.Adapt<List<DetailsProductReviewViewModel>>();
+    }
+    public async Task<List<DetailsProductReviewViewModel>> GetProductReviewsByProductSkuAsync(string sku)
+    {
+        var comment = await commentRepository.GetProductReviewsByProductSkuAsync(sku);
+
+        return comment.Adapt<List<DetailsProductReviewViewModel>>();  
     }
 
-    public async Task<UpdateProductReviewViewModel> GetCommentAsync(Guid id)
+    public async Task<DetailsProductReviewViewModel> GetCommentAsync(Guid id)
     {
         var comment = await commentRepository.GetByIdAsync(id);
 
@@ -39,7 +46,7 @@ public class ProductReviewApplication(IProductReviewRepository commentRepository
         {
             throw new Exception(Resources.Messages.Errors.NotFound);
         }
-        return comment.Adapt<UpdateProductReviewViewModel>();
+        return comment.Adapt<DetailsProductReviewViewModel>();
     }
 
     public async Task<UpdateProductReviewViewModel> UpdateAsync(UpdateProductReviewViewModel updateViewModel)
@@ -53,7 +60,8 @@ public class ProductReviewApplication(IProductReviewRepository commentRepository
 
         comment.Update
             (
-             updateViewModel.Text
+             updateViewModel.Text,
+             updateViewModel.IsVerified
             );
 
         await unitOfWork.SaveChangesAsync();

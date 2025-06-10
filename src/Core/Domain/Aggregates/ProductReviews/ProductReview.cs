@@ -20,31 +20,35 @@ public class ProductReview : Entity
     public Guid ProductId { get; set; }
     public Product Product { get; set; }
 
-    public static ProductReview   Create(string text, Guid customerId, Guid productId, byte rate)
+    public bool IsVerified { get; set; }
+
+    
+
+    public static ProductReview Create(string text, Guid customerId, Guid productId, byte rate, bool isVerified)
     {
-        var comment = new ProductReview(text, customerId, productId, rate)
+        var comment = new ProductReview(text, customerId, productId, rate, isVerified)
         {
             Text = text.Fix(),
             CustomerId = customerId,
             ProductId = productId,
             Rate = rate,
+            IsVerified = isVerified
         };
         return comment;
     }
 
-    public void Update(string text)
+    public void Update(string text, bool isVerified)
     {
-        var comment = new ProductReview()
-        {
-            Text = text
-        };
+        Text = text;
+        IsVerified = isVerified;
     }
 
-    private ProductReview(string text, Guid customerId, Guid productId, byte rate)
+    private ProductReview(string text, Guid customerId, Guid productId, byte rate, bool isVerified)
     {
         Text = text;
         CustomerId = customerId;
         ProductId = productId;
         Rate = rate;
+        IsVerified = isVerified;
     }
 }

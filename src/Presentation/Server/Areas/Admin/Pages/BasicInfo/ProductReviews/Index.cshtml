@@ -22,12 +22,21 @@
         {
             <tr>
                 <td>@(model.Text)</td>
+                <td>@(model.IsVerified)</td>
                 <td>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             عملیات
                         </button>
                         <ul class="dropdown-menu">
+
+
+                            @* <form method="post" asp-page-handler="Approve" asp-route-id="@comment.Id" style="display:inline">
+                                <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                            </form>
+                            <form method="post" asp-page-handler="Reject" asp-route-id="@comment.Id" style="display:inline">
+                                <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                            </form> *@
                             <li><a asp-page="Update" asp-route-Id="@(model.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a></li>
                             <li><a asp-page="Delete" asp-route-Id="@(model.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a></li>
                         </ul>
