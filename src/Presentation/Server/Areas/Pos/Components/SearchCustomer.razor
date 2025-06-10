@@ -1,6 +1,10 @@
-﻿@using Application.CustomerSearch
+﻿@using Application.Aggregates.Customers
+@using Application.CustomerSearch
 @using Domain.CustomerSearch
-@inject CustomerSearchApplication customerApplication
+
+@inject CustomerSearchApplication customerSearchApplication
+@inject CustomerApplication customerapplication
+@inject ILocalStorageService localStorage
 @inject IJSRuntime JS
 
 

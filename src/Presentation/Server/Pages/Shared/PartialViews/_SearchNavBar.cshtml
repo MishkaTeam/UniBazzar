@@ -13,15 +13,22 @@
                     <input type="text" placeholder="جستجو کنید...">
                 </div>
             </div>
-            <div class="col-12 col-md-4">
-                <div class="row">
-                    <div class="col-12 col-md-7 col-lg-6 text-center" id="encrypt23235444">
-                        <a asp-page="/Login">ورود</a> /
-                        <a asp-page="/Register">عضویت</a>
+            <div class="col-12 col-md-4 d-none d-lg-block">
+                <div class="row justify-content-end">
+                    <div class="col-6 col-md-7 col-lg-7 col-xl-4 text-center border 
+                                border-secondary border-opacity-50 border-1 
+                                rounded rounded-3" id="encrypt23235444">
+                        <a class="d-flex text-center justify-content-center align-content-center "
+                           asp-page="/Account/Login">
+                            <i class="bi bi-box-arrow-in-left fs-4 pt-1 px-2"></i>
+                            ورود | ثبت نام
+                        </a>
                     </div>
-                    <div class="col-12 col-md-5 col-lg-6">
-                        <a asp-page="/Cart">
-                            <div class="btn btn-warning w-100"><i class="fa fa-shopping-cart"></i>&nbsp;<span class="d-md-none d-lg-inline-block">سبد خرید</span> (2)</div>
+                    <div class="col-6 col-md-2 col-lg-2 text-center" id="encrypt23235444">
+                        <a class="d-flex text-center justify-content-center align-content-center "
+                           asp-page="/Purchase/Cart">
+                            <span class="px-1 fs-2 pt-1">|</span>
+                            <i class="bi bi-cart fs-4 pt-1 px-2"></i>
                         </a>
                     </div>
                 </div>

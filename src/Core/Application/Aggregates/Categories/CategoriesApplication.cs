@@ -120,6 +120,7 @@ public class CategoriesApplication
             {
                 Id = category.Id,
                 Name = category.Name,
+                Slug = category.Slug,
                 ChildCategories = await MapToMenuViewModel(ChildCategories)
             };
             viewModels.Add(viewModel);

@@ -13,6 +13,11 @@ public class CustomerRepository
         return DbSet.FirstOrDefaultAsync(x => x.Mobile == userName);
     }
 
+    public Task<bool> IsCustomerExists(string mobile)
+    {
+        return DbSet.AnyAsync(x => x.Mobile == mobile);
+    }
+
     public Task<Customer> GetWithEmail(string userName)
     {
         return DbSet.FirstOrDefaultAsync(x => x.Email == userName);

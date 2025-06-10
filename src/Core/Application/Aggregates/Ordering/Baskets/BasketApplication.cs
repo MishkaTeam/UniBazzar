@@ -16,7 +16,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
 {
     public async Task<ResultContract<InitializeBasketViewModel>> InitializeBasket(InitializeBasketRequestModel request)
     {
-        var basket = Basket.Initialize(request.platform);
+        var basket = Basket.Initialize(request.Platform);
 
         if (!string.IsNullOrWhiteSpace(request.Description))
             basket.SetDescription(request.Description);
@@ -27,7 +27,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         await basketRepository.AddAsync(basket);
         await unitOfWork.SaveChangesAsync();
 
-        return new InitializeBasketViewModel(basket.ReferenceNumber);
+        return new InitializeBasketViewModel(basket.Id, basket.ReferenceNumber);
     }
 
 
@@ -43,7 +43,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
                 basket.SetTotalDiscount(0m, DiscountType.None);
 
             await unitOfWork.SaveChangesAsync();
-            return BasketViewModel.FormBasket(basket);
+            return BasketViewModel.FromBasket(basket);
         }
         catch (Exception ex)
         {
@@ -78,7 +78,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         var basketItem = BasketItem.Create(basket.Id, basket.ReferenceNumber, product, amount, discount);
         basket.AddItem(basketItem);
         await unitOfWork.SaveChangesAsync();
-        return BasketViewModel.FormBasket(basket);
+        return BasketViewModel.FromBasket(basket);
     }
 
     public async Task<ResultContract> CheckoutBasket(Guid basketId)
@@ -105,6 +105,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         return new BasketViewModel
         {
             Id = basket.Id,
+            OwnerId = basket.OwnerId,
             Platform = basket.Platform,
             BasketStatus = basket.BasketStatus,
             ReferenceNumber = basket.ReferenceNumber,
@@ -151,5 +152,25 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
                 DiscountType = x.DiscountAmount.DiscountType,
             }).ToList()
         };
+    }
+
+    public async Task<ResultContract<BasketViewModel>> ChangeOwnerAsync(Guid basketId, Guid ownerId)
+    {
+        var basket =
+            await basketRepository.GetByIdAsync(basketId);
+
+        basket.SetOwner(ownerId);
+
+        await unitOfWork.SaveChangesAsync();
+
+        return basket.Adapt<BasketViewModel>();
+    }
+
+    public async Task<ResultContract<bool>> Exist(Guid id)
+    {
+        var basket =
+            await basketRepository.GetByIdAsync(id);
+
+        return basket != null;
     }
 }

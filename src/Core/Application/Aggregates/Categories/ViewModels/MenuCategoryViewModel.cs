@@ -11,4 +11,5 @@ public class MenuCategoryViewModel
     public Guid Id { get; set; }
     public string Name { get; set; }
     public List<MenuCategoryViewModel> ChildCategories{ get; set; }
+    public string Slug { get; set; }
 }

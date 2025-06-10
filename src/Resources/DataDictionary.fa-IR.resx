@@ -447,6 +447,12 @@
   <data name="Addto" xml:space="preserve">
     <value>افزودن به</value>
   </data>
+  <data name="Slug" xml:space="preserve">
+    <value>Slug</value>
+  </data>
+  <data name="OtpCode" xml:space="preserve">
+    <value>کد</value>
+  </data>
   <data name="Text" xml:space="preserve">
     <value>متن</value>
   </data>

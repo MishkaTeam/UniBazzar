@@ -1,0 +1,43 @@
+﻿<nav class="d-block d-md-none navbar fixed-bottom bg-light border-top shadow-sm">
+    <div class="container-fluid px-0">
+        <div class="d-flex justify-content-around w-100">
+      
+            <!-- دسته‌بندی‌ها -->
+            <a href="#"  id="bottom-category-btn"  class="text-center text-dark text-decoration-none flex-fill py-2 ">
+                <i class="bi bi-grid fs-5"></i><br>
+                <small>دسته‌ها</small>
+            </a>
+
+            <a  asp-page="/Purchase/Cart" class="text-center text-dark text-decoration-none flex-fill py-2 position-relative">
+                <i class="bi bi-cart fs-5"></i><br>
+                <small>سبد خرید</small>
+                <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
+                    3
+                </span>
+            </a>
+
+            <a asp-page="/Account/Login" class="text-center text-dark text-decoration-none flex-fill py-2">
+                <i class="bi bi-person fs-5"></i><br>
+                <small>پروفایل</small>
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const bottomCategoryBtn = document.getElementById('bottom-category-btn');
+
+    bottomCategoryBtn.addEventListener('click', function (e) {
+      e.preventDefault(); // جلوگیری از اسکرول به anchor
+
+      const dropdownToggle = document.querySelector('.droopmenu-toggle');
+      if (dropdownToggle) {
+        dropdownToggle.click();
+      } else {
+        console.warn('عنصر با کلاس .droopmenu-toggle پیدا نشد');
+      }
+    });
+  });
+</script>

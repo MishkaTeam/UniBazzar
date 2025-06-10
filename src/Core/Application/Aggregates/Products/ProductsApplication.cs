@@ -86,6 +86,22 @@ public partial class ProductsApplication
         await unitOfWork.SaveChangesAsync();
     }
 
+    public async Task<List<ProductCardViewModel>> GetFullProductData(string categorySlug,
+        CancellationToken cancellationToken)
+    {
+        var products = await productRepository.GetFullProductData(categorySlug, cancellationToken);
+        var priceLists = await priceListRepository.GetPrice(products.Select(x => x.Id).ToList());
+
+        return products.Select(x => new ProductCardViewModel
+        {
+            Price = priceLists?.FirstOrDefault(p => p.productId == x.Id).price ?? 0,
+            ImageUrl = x.ProductImages.FirstOrDefault()?.ImageUrl,
+            Name = x.Name,
+            SKU = x.SKU,
+            Slug = x.Slug,
+        }).ToList();
+    }
+
     public async Task<List<ProductCardViewModel>> GetIndexProducts()
     {
         var products = await productRepository.GetFullProductData();
@@ -100,6 +116,7 @@ public partial class ProductsApplication
             Slug = "Slug",
         }).ToList();
     }
+
     public async Task<ProductDetailViewModel> GetProductDetails(string sku)
     {
         var products = await productRepository.GetFullProductData(sku);

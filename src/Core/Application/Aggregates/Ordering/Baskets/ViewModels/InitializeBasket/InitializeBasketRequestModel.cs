@@ -4,7 +4,7 @@ namespace Application.Aggregates.Ordering.Baskets.ViewModels.InitializeBasket;
 
 public class InitializeBasketRequestModel
 {
-    public Platform platform { get; set; }
+    public Platform Platform { get; set; }
     public string? Description { get; set; }
     public DiscountType TotalDiscountType { get; set; }
     public decimal TotalDiscountAmount { get; set; }

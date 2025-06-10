@@ -31,6 +31,7 @@ public class BasketTests
         decimal discountValue,
         decimal expectedLineTotal)
     {
+
         var basket = Basket.Initialize(Platform.POS);
         var product = ProductType.Create(Guid.NewGuid(), "Test Product");
 
@@ -54,6 +55,7 @@ public class BasketTests
     [Fact]
     public void Checkout_ShouldChangeBasketStatusToCheckout()
     {
+
         var basket = Basket.Initialize(Platform.POS);
         
         basket.Checkout();

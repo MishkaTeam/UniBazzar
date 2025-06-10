@@ -7,6 +7,28 @@ public static class String
     static String()
     {
     }
+
+    public static string GenerateSlug(this string phrase)
+    {
+        if (string.IsNullOrWhiteSpace(phrase))
+            return string.Empty;
+
+        var slug = phrase.Trim().ToLowerInvariant();
+
+        slug = Regex.Replace(slug, @"[\s‌]+", "-"); // شامل نیم‌فاصله فارسی (U+200C)
+
+        slug = Regex.Replace(slug, @"[^ء-یa-z0-9\-]", "");
+
+        slug = Regex.Replace(slug, @"-+", "-");
+
+        slug = slug.Trim('-');
+
+        var nanoTimeStr = DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+        var suffix = nanoTimeStr[^5..];
+
+        return $"{slug}-{suffix}";
+    }
+
     public static bool IsValidNationalCode(this string nationalCode)
     {
        
@@ -14,10 +36,6 @@ public static class String
             return false;
 
         if (!nationalCode.All(char.IsDigit))
-            return false;
-
-        var allSame = nationalCode.Distinct().Count() == 1;
-        if (allSame)
             return false;
 
         int checksum = 0;

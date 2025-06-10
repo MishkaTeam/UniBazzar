@@ -20,3 +20,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.container {
+  max-width: 90%;         /* تمام عرض */
+  padding-left: 2rem;      /* سفارشی‌سازی فاصله داخلی */
+  padding-right: 2rem;
+}

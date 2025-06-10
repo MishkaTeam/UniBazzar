@@ -24,6 +24,7 @@
     <ProjectReference Include="..\..\Core\Application\Application.csproj" />
     <ProjectReference Include="..\..\Core\Constants\Constants.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.DataType\Framework.DataType.csproj" />
+    <ProjectReference Include="..\..\Framework\Framework.Storage\Framework.Storage.csproj" />
     <ProjectReference Include="..\..\Persistence\Persistence\Persistence.csproj" />
     <ProjectReference Include="..\..\Resources\Resources.csproj" />
   </ItemGroup>

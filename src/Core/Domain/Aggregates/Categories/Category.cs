@@ -11,47 +11,48 @@ public class Category : Entity
 	}
 
 
-	public static Category Create
-		(string name, Guid? parentId, string iconClass)
-	{
-		var category = new Category(name, parentId, iconClass)
-		{
-			Name = name.Fix() ?? "",
-			ParentId = ValidateParentId(parentId),
-			IconClass = iconClass.Fix() ?? "",
-		};
-
-		return category;
-	}
-
-	public void Update
-		(string name, Guid? parentId, string iconClass)
-	{
-		Name = name.Fix() ?? "";
-		ParentId = ValidateParentId(parentId);
-		IconClass = iconClass.Fix() ?? "";
-
-		SetUpdateDateTime();
-	}
-
-
 	public string Name { get; private set; }
 	public string IconClass { get; private set; }
-
+    public string Slug { get; private set; }
 	public Guid? ParentId { get; private set; }
 	public virtual Category? Parent { get; private set; }
 
-	//public Store Store { get; private set; }
 
-	private Category
-		(string name, Guid? parentId, string iconClass)
-	{
-		Name = name;
-		ParentId = parentId;
-		IconClass = iconClass;
-	}
+    public static Category Create
+        (string name, Guid? parentId, string iconClass, string? slug = null)
+    {
+        slug ??= name.GenerateSlug();
+        var category = new Category(name, parentId, iconClass, slug)
+        {
+            Name = name.Fix() ?? "",
+            ParentId = ValidateParentId(parentId),
+            IconClass = iconClass.Fix() ?? "",
+            Slug = slug
+        };
 
-	private static Guid? ValidateParentId(Guid? parentId)
+        return category;
+    }
+
+    public void Update
+        (string name, Guid? parentId, string iconClass)
+    {
+        Name = name.Fix() ?? "";
+        ParentId = ValidateParentId(parentId);
+        IconClass = iconClass.Fix() ?? "";
+
+        SetUpdateDateTime();
+    }
+
+    private Category
+        (string name, Guid? parentId, string iconClass, string slug)
+    {
+        Name = name;
+        ParentId = parentId;
+        IconClass = iconClass;
+        Slug = slug;
+    }
+
+    private static Guid? ValidateParentId(Guid? parentId)
 	{
 		if (parentId == Guid.Empty)
 		{

@@ -106,9 +106,9 @@ public class CustomerApplication(ICustomerRepository customerRepository, IUnitOf
         await unitOfWork.SaveChangesAsync();
     }
 
-    public async Task<ResultContract<CustomerViewModel>> LoginWithMobileAsync(LoginViewModel model)
+    public async Task<ResultContract<CustomerViewModel>> LoginWithMobileAsync(string mobile)
     {
-        var user = await customerRepository.GetWithMobile(model.UserName);
+        var user = await customerRepository.GetWithMobile(mobile);
 
         if (user == null || user.Id == Guid.Empty)
         {
@@ -116,11 +116,44 @@ public class CustomerApplication(ICustomerRepository customerRepository, IUnitOf
                 string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.User));
         }
 
-        if (user.Password != model.Password) // Encryption
-        {
-            return (ErrorType.InvalidCredentials, Resources.Messages.Validations.Password);
-        }
-
         return user.Adapt<CustomerViewModel>();
     }
+
+    public async Task<ResultContract<bool>> IsExistsAsync(string mobile)
+    {
+        var isCustomerExists = await customerRepository.IsCustomerExists(mobile);
+        return isCustomerExists;
+    }
+
+    public async Task<ResultContract<bool>> Exist(Guid id)
+    {
+        var customer =
+            await customerRepository.GetByIdAsync(id);
+
+        return customer != null;
+    }
+
+    public async Task<ResultContract<Guid>> GetPublicCustomer()
+    {
+        var publicCustomer =
+            await customerRepository.GetAsync(x => x.Email == "public-customer@unibazzar.ir");
+
+        if (publicCustomer == null)
+        {
+            var customer = await CreateAsync(new CreateCustomerViewModel()
+            {
+                // Attention!
+                // This information is hard code, and needs to change.
+                NationalCode = "0927421498",
+                LastName = "[ مشتری عمومی ]",
+                Mobile = "09000000000",
+                Email = "public-customer@unibazzar.ir",
+            });
+
+            return customer.Id;
+        }
+
+        return publicCustomer.Id;
+    }
+
 }
