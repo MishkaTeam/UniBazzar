@@ -24,7 +24,7 @@ public class Customer : Entity
 
 	public string? Password { get; private set; }
 
-    public ICollection<ShippingAddress> ShippingAddresses { get; set; }
+    public ICollection<ShippingAddress> Addresses { get; set; }
 
     public static Customer Register(string mobile, string password)
 	{

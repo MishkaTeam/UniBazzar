@@ -1,7 +1,7 @@
 using Domain.Aggregates.Ordering.Baskets.Enums;
 using Domain.Aggregates.Ordering.ValueObjects;
 
-namespace Application.Aggregates.Orders.ViewModels.BasketItems;
+namespace Application.Aggregates.Ordering.Baskets.ViewModels.BasketItems;
 
 public class BasketItemViewModel
 {

@@ -1,6 +1,6 @@
 ﻿using Application.Aggregates.CheckoutCounter.ViewModels;
 using Domain;
-using Domain.Aggregates.CheckoutCounter;
+using Domain.Aggregates.CheckoutCounters;
 using Mapster;
 
 namespace Application.Aggregates.CheckoutCounter
@@ -9,7 +9,7 @@ namespace Application.Aggregates.CheckoutCounter
     {
         public async Task<CheckoutCounterViewModels> CreateAsync(CreateCheckoutCounterViewModels viewModel)
         {
-            var entity = Domain.Aggregates.CheckoutCounter.CheckoutCounter.Create(viewModel.Name);
+            var entity = Domain.Aggregates.CheckoutCounters.CheckoutCounter.Create(viewModel.Name);
             await checkoutCounterRepository.AddAsync(entity);
             await unitofWork.SaveChangesAsync();
             return entity.Adapt<CheckoutCounterViewModels>();

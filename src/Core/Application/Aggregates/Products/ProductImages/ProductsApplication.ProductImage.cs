@@ -4,7 +4,7 @@ using Domain.Aggregates.Products.ProductImages;
 using Mapster;
 using Resources.Messages;
 
-namespace Application.Aggregates.Products;
+namespace Application.Aggregates.Products.ProductImages;
 
 public class ProductImagesApplication(IProductImageRepository productImageRepository, IUnitOfWork unitOfWork)
 {

@@ -1,6 +1,6 @@
+using Application.Aggregates.Ordering.Baskets.ViewModels.BasketItems;
 using Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
-using Application.Aggregates.Orders.ViewModels;
-using Application.Aggregates.Orders.ViewModels.BasketItems;
+using Application.Aggregates.Ordering.Baskets.ViewModels.InitializeBasket;
 using Domain;
 using Domain.Aggregates.Ordering.Baskets;
 using Domain.Aggregates.Ordering.Baskets.Data;
@@ -10,7 +10,7 @@ using Framework.DataType;
 using Mapster;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Aggregates.Orders;
+namespace Application.Aggregates.Ordering.Baskets;
 
 public class BasketApplication(ILogger<BasketApplication> logger, IBasketRepository basketRepository, IUnitOfWork unitOfWork)
 {

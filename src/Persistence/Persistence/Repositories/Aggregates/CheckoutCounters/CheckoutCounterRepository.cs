@@ -1,5 +1,5 @@
 ﻿using BuildingBlocks.Persistence;
-using Domain.Aggregates.CheckoutCounter;
+using Domain.Aggregates.CheckoutCounters;
 
 namespace Persistence.Repositories.Aggregates.CheckoutCounters;
 
