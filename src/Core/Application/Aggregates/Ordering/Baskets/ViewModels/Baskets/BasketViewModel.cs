@@ -1,4 +1,4 @@
-﻿using Application.Aggregates.Orders.ViewModels.BasketItems;
+﻿using Application.Aggregates.Ordering.Baskets.ViewModels.BasketItems;
 using Domain.Aggregates.Ordering.Baskets;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 using Framework.DataType;

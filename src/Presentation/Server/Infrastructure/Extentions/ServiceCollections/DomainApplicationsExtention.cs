@@ -2,9 +2,7 @@ using Application.Aggregates.Branches;
 using Application.Aggregates.Categories;
 using Application.Aggregates.CheckoutCounter;
 using Application.Aggregates.Customers;
-using Application.Aggregates.Customers.ShippingAddresses;
 using Application.Aggregates.Discounts;
-using Application.Aggregates.Orders;
 using Application.Aggregates.PriceLists;
 using Application.Aggregates.Products;
 using Application.Aggregates.Stores;
@@ -15,9 +13,7 @@ using Application.ProductSearch;
 using Domain;
 using Domain.Aggregates.branches;
 using Domain.Aggregates.Categories;
-using Domain.Aggregates.CheckoutCounter;
 using Domain.Aggregates.Customers;
-using Domain.Aggregates.Customers.ShippingAddresses;
 using Domain.Aggregates.Discounts;
 using Domain.Aggregates.Ordering.Baskets.Data;
 using Domain.Aggregates.PriceLists;
@@ -42,6 +38,15 @@ using Persistence.Repositories.Aggregates.Units;
 using Persistence.Repositories.Aggregates.Users;
 using Persistence.Repositories.CustomerSearch;
 using Persistence.Repositories.ProductSearch;
+using Persistence.Aggregates.Comments;
+using Domain.Aggregates.CheckoutCounters;
+using Domain.Aggregates.ProductReviews;
+using Application.Aggregates.Products.ProductFeatures;
+using Application.Aggregates.Ordering.Baskets;
+using Application.Aggregates.Products.ProductImages;
+using Application.Aggregates.ProductReviews;
+using Domain.Aggregates.Customers.ShippingAddresses;
+using Application.Aggregates.Customers.ShippingAddresses;
 
 namespace Server.Infrastructure.Extensions.ServiceCollections;
 
@@ -75,6 +80,8 @@ public static class DomainExtensions
         services.AddScoped<ProductSearchApplication>();
         services.AddScoped<CustomerSearchApplication>();
 
+        services.AddScoped<ProductReviewApplication>();
+
         return services;
     }
 
@@ -105,6 +112,8 @@ public static class DomainExtensions
 
         services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
         services.AddScoped<ICustomerSearchRepository, CustomerSearchRepository>();
+
+        services.AddScoped<IProductReviewRepository, CommentRepository>();
 
         return services;
     }
