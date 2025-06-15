@@ -247,7 +247,7 @@
 																				<div class="col-12">
 																					<div class="form-group my-1">
 																						<textarea asp-for="CreateCommentViewModel.Text"  rows="4" placeholder="متن دیدگاه"></textarea>
-																						<span asp-validation-for="CreateCommentViewModel.Text"></span>
+																					@* 	<span asp-validation-for="CreateCommentViewModel.Text"></span>
 																						<select  asp-for="CreateCommentViewModel.Rate">
 																							<option value="">امتیاز بدهید</option>
 																							<option value="1">1</option>
@@ -255,7 +255,17 @@
 																							<option value="3">3</option>
 																							<option value="4">4</option>
 																							<option value="5">5</option>
+																						</select> *@
+																						<select asp-for="CreateCommentViewModel.Rate" class="form-select">
+																							<option value="">امتیاز بدهید</option>
+																							@for (int i = 1; i <= 5; i++)
+																							{
+																								var selected = (Model.CreateCommentViewModel.Rate == i) ? "selected" : "";
+																								<option value="@i" selected="@selected">@string.Concat(Enumerable.Repeat("⭐", i))</option>
+																							}
 																						</select>
+
+
 																					</div>
 																				</div>
 																				<div class="col-12">
