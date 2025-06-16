@@ -127,6 +127,7 @@ public partial class ProductsApplication
 
         return new ProductDetailViewModel
         {
+            Id = products.Id,
             Price = priceLists?.FirstOrDefault(p => p.productId == products.Id).price ?? 0,
             Images = [.. products.ProductImages.Select(x => x.ImageUrl)],
             Name = products.Name,
