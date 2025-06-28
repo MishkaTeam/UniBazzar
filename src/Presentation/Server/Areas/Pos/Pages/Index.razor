@@ -4,13 +4,11 @@
 @using Application.Aggregates.Customers
 @using Application.Aggregates.Orders
 @using Application.Aggregates.Products
-@using Server.Areas.Pos.Components
-@using Server.Areas.Pos.Pages.Shared.Layouts.Pos
 
 @inject BasketApplication basketApplication
 @inject CustomerApplication customerApplication
 @inject ProductsApplication productApplication
-@inject ILocalStorageService localStorage
+@inject ISessionStorageService sessionStorage
 
 
 <PageTitle>Pos</PageTitle>

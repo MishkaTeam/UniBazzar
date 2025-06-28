@@ -1,10 +1,12 @@
 ﻿@using Application.Aggregates.Customers
+@using Application.Aggregates.Orders
 @using Application.CustomerSearch
 @using Domain.CustomerSearch
 
 @inject CustomerSearchApplication customerSearchApplication
 @inject CustomerApplication customerapplication
-@inject ILocalStorageService localStorage
+@inject BasketApplication basketApplication
+@inject ISessionStorageService sessionStorage
 @inject IJSRuntime JS
 
 

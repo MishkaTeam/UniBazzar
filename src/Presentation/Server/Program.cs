@@ -1,13 +1,14 @@
 using Blazored.LocalStorage;
+using Blazored.SessionStorage;
 using BuildingBlocks.Persistence;
+using BuildingBlocks.Persistence.Extensions;
+using Framework.Storage;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Server.Infrastructure;
 using Server.Infrastructure.Extensions.ServiceCollections;
 using Server.Infrastructure.Extentions.ServiceCollections;
 using Server.Infrastructure.Middleware;
-using BuildingBlocks.Persistence.Extensions;
-using Framework.Storage;
 
 namespace Server
 {
@@ -20,18 +21,29 @@ namespace Server
 
             var services = builder.Services;
 
+            // Add Razor Pages
             services.AddRazorPagesWithAuth();
+
+            // Add Api Controllers
             services.AddControllers();
+
+            // Add Blazor Server
             services.AddServerSideBlazor()
-            .AddInteractiveServerComponents();
+                    .AddInteractiveServerComponents();
             services.AddBlazorBootstrap();
             services.AddBlazoredLocalStorage();
+            services.AddBlazoredSessionStorage();
+
+            // Add General Services
             services.AddAuthenticationCookie();
-            services.AddHttpClient();
-            services.AddDomainApplications();
             services.AddHttpContextAccessor();
-            services.AddScoped<IExecutionContextAccessor, ExecutionContextAccessor>();
+            services.AddHttpClient();
+
+            services.AddDomainApplications();
             services.AddDomainRepositories();
+            services.AddUnitOfWork();
+            services.AddScoped<IExecutionContextAccessor, ExecutionContextAccessor>();
+
             services.AddAuditing();
             services.AddS3Storage(new StorageConfig()
             {
@@ -40,7 +52,6 @@ namespace Server
                 SecretKey = builder.Configuration.GetSection("StorageConfig:SecretKey")?.Value,
 
             });
-            services.AddUnitOfWork();
             services.AddDbContext<UniBazzarContext>(opt =>
             {
                 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -67,7 +78,6 @@ namespace Server
             app.UseAuthorization();
 
             app.MapBlazorHub();
-
             app.MapControllers();
             app.MapRazorPages();
 

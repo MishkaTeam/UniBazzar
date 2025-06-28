@@ -7,7 +7,6 @@ using Domain.Aggregates.Ordering.Baskets.Data;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 using Domain.Aggregates.Ordering.ValueObjects;
 using Framework.DataType;
-using Mapster;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Aggregates.Orders;
@@ -25,6 +24,12 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
             basket.SetTotalDiscount(request.TotalDiscountAmount, request.TotalDiscountType);
 
         await basketRepository.AddAsync(basket);
+
+        if (request.OwnerId != Guid.Empty)
+        {
+            basket.SetOwner(request.OwnerId);
+        }
+
         await unitOfWork.SaveChangesAsync();
 
         return new InitializeBasketViewModel(basket.Id, basket.ReferenceNumber);
@@ -154,7 +159,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         };
     }
 
-    public async Task<ResultContract<BasketViewModel>> ChangeOwnerAsync(Guid basketId, Guid ownerId)
+    public async Task<ResultContract> ChangeOwnerAsync(Guid basketId, Guid ownerId)
     {
         var basket =
             await basketRepository.GetByIdAsync(basketId);
@@ -163,7 +168,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
 
         await unitOfWork.SaveChangesAsync();
 
-        return basket.Adapt<BasketViewModel>();
+        return true;
     }
 
     public async Task<ResultContract<bool>> Exist(Guid id)

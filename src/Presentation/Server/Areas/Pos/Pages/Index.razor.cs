@@ -8,7 +8,6 @@ namespace Server.Areas.Pos.Pages;
 
 public partial class Index
 {
-    public static string LocalBasketKey { get; } = "Basket";
     private BasketViewModel? Basket { get; set; }
 
 
@@ -28,17 +27,12 @@ public partial class Index
     }
 
     private async Task LoadBasketAsync()
-    {
-        var customerId =
-            await GetLocalCustomer();
-
+    { 
         var localBasket =
-            await localStorage.GetItemAsync<InitializeBasketViewModel>(LocalBasketKey);
+            await sessionStorage.GetItemAsync<InitializeBasketViewModel>(SearchCustomer.LocalBasketKey);
 
         if (localBasket == null)
         {
-            await CreateLocalBasket(customerId);
-
             return;
         }
 
@@ -47,8 +41,6 @@ public partial class Index
 
         if (basketIsExist == false)
         {
-            await CreateLocalBasket(customerId);
-
             return;
         }
 
@@ -61,9 +53,10 @@ public partial class Index
             new InitializeBasketRequestModel()
             {
                 Platform = Platform.POS,
+                OwnerId = ownerId,
             })).Data;
 
-        await localStorage.SetItemAsync(LocalBasketKey, newBasket);
+        await sessionStorage.SetItemAsync(SearchCustomer.LocalBasketKey, newBasket);
 
         return newBasket!;
     }
@@ -71,7 +64,7 @@ public partial class Index
     private async Task<Guid> GetLocalCustomer()
     {
         var customerId =
-            await localStorage.GetItemAsync<Guid?>(SearchCustomer.LocalCustomerKey);
+            await sessionStorage.GetItemAsync<Guid?>(SearchCustomer.LocalCustomerKey);
 
         if (customerId.HasValue == false)
         {
@@ -98,7 +91,7 @@ public partial class Index
         var publicCustomerId =
             (await customerApplication.GetPublicCustomer()).Data;
 
-        await localStorage.SetItemAsync(SearchCustomer.LocalCustomerKey, publicCustomerId);
+        await sessionStorage.SetItemAsync(SearchCustomer.LocalCustomerKey, publicCustomerId);
 
         return publicCustomerId;
     }
@@ -106,19 +99,34 @@ public partial class Index
     private async Task onProductSelection(Guid productId)
     {
         var localBasket =
-            await localStorage.GetItemAsync<InitializeBasketViewModel>(LocalBasketKey);
+            await sessionStorage.GetItemAsync<InitializeBasketViewModel>(SearchCustomer.LocalBasketKey);
 
         if (localBasket == null)
         {
             var customerId =
                 await GetLocalCustomer();
 
-            await CreateLocalBasket(customerId);
+            localBasket =
+                await CreateLocalBasket(customerId);
+        }
+
+        var basketIsExist =
+            (await basketApplication.Exist(localBasket!.Id)).Data;
+
+        if (basketIsExist == false)
+        {
+            var customerId =
+                await GetLocalCustomer();
+
+            localBasket =
+                await CreateLocalBasket(customerId);
         }
 
         var product =
             await productApplication.GetProductAsync(productId);
 
+        // IMPORTANT: Test Data !!
+        // Must get Price from PriceList and Discount
         var basketItem = (await basketApplication.AddItem(new AddBasketItemRequestModel()
         {
             BasketId = localBasket!.Id,
