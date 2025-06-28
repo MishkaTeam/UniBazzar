@@ -1,4 +1,5 @@
 ﻿@page "{sku}/{slug}"
+@using Server.Infrastructure.Extentions
 @model DetailModel
 @{
 }
@@ -248,7 +249,7 @@
                                                                                 <div class="row">
                                                                                     <div class="col-12">
                                                                                         <div class="form-group my-1">
-                                                                                            <textarea asp-for="CreateCommentViewModel.Text" rows="4" placeholder="متن دیدگاه"></textarea>
+                                                                                            <textarea class="form-control" asp-for="CreateCommentViewModel.Text" rows="4" placeholder="متن دیدگاه"></textarea>
 
                                                                                             <select asp-for="CreateCommentViewModel.Rate" class="form-select">
                                                                                                 <option value="" selected>امتیاز بدهید</option>
@@ -272,7 +273,7 @@
                                                             }
                                                             else
                                                             {
-                                                                <a asp-page="/Account/Login" class="btn btn-primary w-100">برای ثبت دیدگاه وارد شوید</a>
+                                                                <a asp-page="/Account/Login" asp-route-returnUrl="@(HttpContext.GetUrl())" class="btn btn-primary w-100">برای ثبت دیدگاه وارد شوید</a>
                                                             }
                                                         </div>
                                                         <!-- /Send Comment Form -->

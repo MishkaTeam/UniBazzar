@@ -5,8 +5,10 @@ using Application.Aggregates.Products;
 using Application.Aggregates.Products.ProductFeatures;
 using Application.Aggregates.Products.ProductImages;
 using Application.Aggregates.Products.ViewModels;
+using BuildingBlocks.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Server.Infrastructure.Extentions;
 
 namespace Server.Pages;
 
@@ -14,7 +16,8 @@ public class DetailModel(ProductsApplication productsApplication,
                           ProductImagesApplication productImagesApplication,
                           ProductFeaturesApplication productFeaturesApplication,
                           ProductReviewApplication productReviewApplication,
-                          CustomerApplication customerApplication) : PageModel
+                          CustomerApplication customerApplication,
+                          IExecutionContextAccessor executionContextAccessor) : PageModel
 {
 
     public ProductDetailViewModel ProductDetail { get; set; } = new();
@@ -43,16 +46,18 @@ public class DetailModel(ProductsApplication productsApplication,
 
     public async Task<IActionResult> OnPostCommentAsync(string sku, string slug)
     {
-        if (!User.Identity.IsAuthenticated)
+        if (User.Identity == null
+           || User.Identity.IsAuthenticated == false
+           || executionContextAccessor.UserId is null)
         {
-            return RedirectToPage("/Account/Login");
+            return RedirectToRoute("/Account/Login", new { returnUrl = HttpContext.GetUrl() });
         }
         if (!ModelState.IsValid)
         {
             return Page();
         }
 
-        CreateCommentViewModel.CustomerId = Guid.Parse("aa46fc7f-11ba-41e6-886e-18a80142819e");
+        CreateCommentViewModel.CustomerId = executionContextAccessor.UserId!.Value;
 
         CreateCommentViewModel.IsVerified = false;
 
