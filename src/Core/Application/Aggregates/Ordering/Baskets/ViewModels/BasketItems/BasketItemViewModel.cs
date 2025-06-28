@@ -1,10 +1,10 @@
 using Domain.Aggregates.Ordering.Baskets.Enums;
-using Domain.Aggregates.Ordering.ValueObjects;
 
 namespace Application.Aggregates.Orders.ViewModels.BasketItems;
 
 public class BasketItemViewModel
 {
+    public Guid Id { get; set; }
     public string ProductName { get; set; }
     public Guid ProductId { get; set; }
     public long Quantity { get; set; }

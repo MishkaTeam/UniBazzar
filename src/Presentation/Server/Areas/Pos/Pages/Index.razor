@@ -29,6 +29,7 @@
 				<th scope="col">قیمت</th>
 				<th scope="col">تخفیف</th>
 				<th scope="col">کل</th>
+				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody class="table-group-divider">
@@ -51,6 +52,11 @@
 						<td>@(basketItem.BasePrice)</td>
 						<td>@(basketItem.DiscountValue)</td>
 						<td>@(basketItem.TotalPrice)</td>
+						<td>
+							<button @onclick="() => RemoveBasketItem(Basket.Id, basketItem.Id)" class="btn btn-danger">
+								<i class="bi bi-trash d-flex py-1"></i>
+							</button>
+						</td>
 					</tr>
 				}
 			}

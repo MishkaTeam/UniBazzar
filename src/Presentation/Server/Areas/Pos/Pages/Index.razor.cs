@@ -127,7 +127,7 @@ public partial class Index
 
         // IMPORTANT: Test Data !!
         // Must get Price from PriceList and Discount
-        var basketItem = (await basketApplication.AddItem(new AddBasketItemRequestModel()
+        var basket = (await basketApplication.AddItem(new AddBasketItemRequestModel()
         {
             BasketId = localBasket!.Id,
             ProductId = productId,
@@ -141,5 +141,10 @@ public partial class Index
         Basket = (await basketApplication.GetBasket(localBasket.Id)).Data;
 
         await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task RemoveBasketItem(Guid basketId, Guid basketItemId)
+    {
+        Basket = (await basketApplication.RemoveItem(basketId, basketItemId)).Data;
     }
 }

@@ -86,6 +86,36 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         return BasketViewModel.FromBasket(basket);
     }
 
+    public async Task<ResultContract<BasketViewModel>> RemoveItem(Guid basketId, Guid basketItemId)
+    {
+        var basket =
+            await basketRepository.GetByIdAsync(basketId);
+
+        if (basket == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var basketItem =
+            basket.BasketItems.FirstOrDefault(x => x.Id == basketItemId);
+
+        if (basketItem == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        basket.BasketItems.Remove(basketItem);
+        await unitOfWork.SaveChangesAsync();
+
+        return BasketViewModel.FromBasket(basket);
+    }
+
     public async Task<ResultContract> CheckoutBasket(Guid basketId)
     {
         var basket = await basketRepository.GetByIdAsync(basketId);
@@ -107,24 +137,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
             return (ErrorType.NotFound, message);
         }
 
-        return new BasketViewModel
-        {
-            Id = basket.Id,
-            OwnerId = basket.OwnerId,
-            Platform = basket.Platform,
-            BasketStatus = basket.BasketStatus,
-            ReferenceNumber = basket.ReferenceNumber,
-            BasketItems = basket.BasketItems.Select(x => new BasketItemViewModel
-            {
-                ProductId = x.Product.ProductId,
-                ProductName = x.Product.ProductName,
-                Quantity = x.ProductAmount.Quantity,
-                BasePrice = x.ProductAmount.BasePrice,
-                TotalPrice = x.ProductAmount.TotalPrice,
-                DiscountValue = x.DiscountAmount.Value,
-                DiscountType = x.DiscountAmount.DiscountType,
-            }).ToList()
-        };
+        return BasketViewModel.FromBasket(basket);
     }
 
     public async Task<ResultContract<BasketViewModel>> GetBasket(Guid basketId)
@@ -140,23 +153,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
             return (ErrorType.NotFound, message);
         }
 
-        return new BasketViewModel
-        {
-            Id = basket.Id,
-            Platform = basket.Platform,
-            BasketStatus = basket.BasketStatus,
-            ReferenceNumber = basket.ReferenceNumber,
-            BasketItems = basket.BasketItems.Select(x => new BasketItemViewModel
-            {
-                ProductId = x.Product.ProductId,
-                ProductName = x.Product.ProductName,
-                Quantity = x.ProductAmount.Quantity,
-                BasePrice = x.ProductAmount.BasePrice,
-                TotalPrice = x.ProductAmount.TotalPrice,
-                DiscountValue = x.DiscountAmount.Value,
-                DiscountType = x.DiscountAmount.DiscountType,
-            }).ToList()
-        };
+        return BasketViewModel.FromBasket(basket);
     }
 
     public async Task<ResultContract> ChangeOwnerAsync(Guid basketId, Guid ownerId)

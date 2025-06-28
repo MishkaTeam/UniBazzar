@@ -40,6 +40,7 @@ public class BasketViewModel
             SubtotalBeforeBasketDiscount = basket.TotalBeforeDiscount,
             BasketItems = basket.BasketItems.Select(x => new BasketItemViewModel
             {
+                Id = x.Id,
                 BasePrice = x.ProductAmount.BasePrice,
                 DiscountType = x.DiscountAmount.DiscountType,
                 DiscountValue = x.DiscountAmount.Value,
