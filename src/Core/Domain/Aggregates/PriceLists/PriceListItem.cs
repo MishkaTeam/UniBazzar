@@ -1,7 +1,7 @@
 ﻿using Domain.Aggregates.Products;
 using Entity = BuildingBlocks.Domain.Aggregates.Entity;
 
-namespace Domain.Aggregates.PriceListItems;
+namespace Domain.Aggregates.PriceLists;
 
 public class PriceListItem : Entity
 {

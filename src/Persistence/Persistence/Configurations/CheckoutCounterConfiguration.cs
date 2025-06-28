@@ -1,6 +1,6 @@
-﻿using Domain.Aggregates.CheckoutCounter;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using BuildingBlocks.Persistence.Configurations;
+using Domain.Aggregates.CheckoutCounters;
 
 namespace Persistence.Configurations;
 

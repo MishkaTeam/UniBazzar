@@ -1,6 +1,6 @@
-﻿using Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
-using Application.Aggregates.Orders.ViewModels;
-using Application.Aggregates.Orders.ViewModels.BasketItems;
+﻿using Application.Aggregates.Ordering.Baskets.ViewModels.BasketItems;
+using Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
+using Application.Aggregates.Ordering.Baskets.ViewModels.InitializeBasket;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 using Server.Areas.Pos.Components;
 

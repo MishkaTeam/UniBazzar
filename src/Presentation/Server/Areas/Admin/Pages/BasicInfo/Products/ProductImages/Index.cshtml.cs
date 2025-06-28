@@ -1,4 +1,5 @@
 using Application.Aggregates.Products;
+using Application.Aggregates.Products.ProductImages;
 using Application.Aggregates.Products.ProductImages.ViewModel;
 using Application.Aggregates.Products.ViewModels;
 using Domain.Aggregates.Products;

@@ -1,4 +1,4 @@
-using Application.Aggregates.Products;
+using Application.Aggregates.Products.ProductFeatures;
 using Application.Aggregates.Products.ProductFeatures.ViewModels;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;

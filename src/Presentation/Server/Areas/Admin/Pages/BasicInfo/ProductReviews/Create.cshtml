@@ -1,0 +1,29 @@
+﻿@page
+@model Server.Areas.Admin.Pages.BasicInfo.ProductReviews.CreateModel
+@{
+    var pageTitle =
+    $"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.Comment}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+<form method="post">
+
+    <section-form>
+        <fieldset>
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+            <ub-full-input asp-for="ViewModel.Text" />
+        </fieldset>
+
+        <section-form-buttons>
+            <button-create />
+            <button-reset />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>
+

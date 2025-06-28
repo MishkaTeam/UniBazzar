@@ -1,6 +1,5 @@
 using Application.Aggregates.Branches;
 using Application.Aggregates.Branches.ViewModels;
-using Application.Aggregates.Customers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

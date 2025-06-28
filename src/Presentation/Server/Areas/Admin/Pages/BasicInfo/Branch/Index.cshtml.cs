@@ -1,6 +1,5 @@
 using Application.Aggregates.Branches;
 using Application.Aggregates.Branches.ViewModels;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Branch

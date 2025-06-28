@@ -4,7 +4,7 @@ using Domain.Aggregates.Products.ProductFeatures;
 using Mapster;
 using Resources.Messages;
 
-namespace Application.Aggregates.Products;
+namespace Application.Aggregates.Products.ProductFeatures;
 
 public class ProductFeaturesApplication(IProductFeatureRepository productFeatureRepository ,IUnitOfWork unitOfWork)
 {

@@ -1,4 +1,4 @@
-using Application.Aggregates.Products;
+using Application.Aggregates.Products.ProductImages;
 using Application.Aggregates.Products.ProductImages.ViewModel;
 using Infrastructure;
 using Microsoft.AspNetCore.Hosting;
