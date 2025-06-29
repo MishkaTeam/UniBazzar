@@ -1,7 +1,8 @@
-using Application.Aggregates.Customers;
+﻿using Application.Aggregates.Customers;
 using Application.Aggregates.ProductReviews;
 using Application.Aggregates.ProductReviews.ViewModels;
 using Application.Aggregates.Products;
+using Application.Aggregates.Products.Basket;
 using Application.Aggregates.Products.ProductFeatures;
 using Application.Aggregates.Products.ProductImages;
 using Application.Aggregates.Products.ViewModels;
@@ -25,6 +26,9 @@ public class DetailModel(ProductsApplication productsApplication,
     [BindProperty]
     public CreateProductReviewViewModel CreateCommentViewModel { get; set; } = new();
 
+    [BindProperty]
+    public AddBasketProductViewModel BasketProduct { get; set; } = new();
+
     public List<DetailsProductReviewViewModel> ViewModel { get; set; }
     public async Task<IActionResult> OnGetAsync(string sku, string slug)
     {
@@ -34,6 +38,9 @@ public class DetailModel(ProductsApplication productsApplication,
         }
 
         ProductDetail = await productsApplication.GetProductDetails(sku);
+
+        ProductDetail.ProductAttributes.ForEach(x => BasketProduct.SelectedAttributes.Add(x.Name, Guid.Empty));
+        BasketProduct.ProductId = ProductDetail.Id;
 
         CreateCommentViewModel.ProductId = ProductDetail.Id;
 
@@ -66,5 +73,12 @@ public class DetailModel(ProductsApplication productsApplication,
         CreateCommentViewModel = new();
 
         return RedirectToPage("Details", new { sku = sku, slug = slug });
+    }
+
+    public async Task<IActionResult> OnPostPurchaseAsync()
+    {
+
+        return Page();
+
     }
 }

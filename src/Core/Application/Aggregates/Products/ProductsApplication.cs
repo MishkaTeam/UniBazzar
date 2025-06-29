@@ -144,11 +144,13 @@ public partial class ProductsApplication
             {
                 AttributeValues = [.. x.Attribute.AttributeValues.Select (x => new ProductAttributeValuesViewModel
                 {
+                    Id = x.Id,
                     IsPreSelected = x.IsPreSelected,
                     Name = x.Name,
                     PriceAdjustment = x.PriceAdjustment,
                     WeightAdjustment = x.WeightAdjustment,
                 })],
+                Id = x.Id,
                 Name = x.Attribute.Name,
                 Description = x.Attribute.Description,
                 ProductAttributeType = x.ProductAttributeType,
