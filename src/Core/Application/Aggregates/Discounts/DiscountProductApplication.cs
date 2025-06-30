@@ -7,7 +7,7 @@ using Resources.Messages;
 
 namespace Application.Aggregates.Discounts;
 
-public class DiscountProductApplication(IDiscountProductRepository repository,IDiscountRepository discountRepository, IUnitOfWork unitOfWork)
+public class DiscountProductApplication(IDiscountProductRepository repository, IUnitOfWork unitOfWork)
 {
 
 	public async Task<DiscountProductViewModel> CreateDiscountProduct(DiscountProductViewModel viewModel)
