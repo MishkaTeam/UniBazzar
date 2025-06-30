@@ -75,7 +75,22 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         var product = ProductType.Create(basketItemRequest.ProductId, basketItemRequest.ProductName);
         var amount = ProductAmount.Create(basketItemRequest.Quantity, basketItemRequest.BasePrice);
         var discount = DiscountAmount.Create(basketItemRequest.DiscountAmount, basketItemRequest.DiscountType);
-        var basketItem = BasketItem.Create(basket.Id, basket.ReferenceNumber, product, amount, discount);
+
+        List<BasketItemAttribute> basketAttributes = null!;
+        if (basketItemRequest.BasketItemAttributes != null
+            && basketItemRequest.BasketItemAttributes.Count != 0)
+        {
+            basketAttributes = basketItemRequest.ToBasketItemAttribute();
+        }
+
+        var basketItem = BasketItem.Create(
+            basket.Id, 
+            basket.ReferenceNumber, 
+            product, 
+            amount, 
+            discount, 
+            basketAttributes);
+
         basket.AddItem(basketItem);
         await unitOfWork.SaveChangesAsync();
         return BasketViewModel.FromBasket(basket);
