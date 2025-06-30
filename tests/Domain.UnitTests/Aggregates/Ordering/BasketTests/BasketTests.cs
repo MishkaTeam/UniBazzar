@@ -74,7 +74,7 @@ public class BasketItemTests
         var product = ProductType.Create(Guid.NewGuid(), "Sample Product");
         var productAmount = ProductAmount.Create(2, 50);
         var discountAmount = DiscountAmount.Create(5, DiscountType.Percent);
-
+        
         var basketItem = BasketItem.Create(basketId, referenceNumber, product, productAmount, discountAmount);
         
         basketItem.Should().NotBeNull();
