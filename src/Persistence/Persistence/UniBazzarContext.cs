@@ -18,6 +18,7 @@ using Persistence.Configurations;
 using Domain.Aggregates.CheckoutCounters;
 using Domain.Aggregates.ProductReviews;
 using Domain.Aggregates.Customers.ShippingAddresses;
+using Domain.Aggregates.Discounts.DsiscounProducts;
 
 namespace Persistence;
 
@@ -61,6 +62,7 @@ public class UniBazzarContext(DbContextOptions options, AuditSaveChangesIntercep
 
 	public DbSet<Category> Categories { get; set; }
     public DbSet<Discount> Discounts { get; set; }
+    public DbSet<DiscountProduct> DiscountProducts { get; set; }
 
     public DbSet<ProductReview> ProductReviews { get; set; }
 }
