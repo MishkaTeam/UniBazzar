@@ -81,7 +81,7 @@ public partial class SearchCustomer
             // Load Customer in CustomerInformation section
             // Show local customer in CustomerInformation [ Have Error ]
             //var customerId =
-            //    await localStorage.GetItemAsync<Guid?>(LocalCustomerKey);
+            //    await sessionStorage.GetItemAsync<Guid?>(LocalCustomerKey);
 
             //if (customerId.HasValue)
             //{
