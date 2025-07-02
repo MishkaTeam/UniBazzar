@@ -12,7 +12,7 @@ public class BasketItem : Entity
     public ProductAmount ProductAmount { get; private set; }
     public DiscountAmount DiscountAmount { get; private set; }
 
-    public decimal TotalPrice => DiscountAmount.ApplyDiscount(ProductAmount.TotalPrice);
+    public decimal TotalPrice => DiscountAmount.ApplyDiscount(ProductAmount.TotalPrice, ProductAmount.Quantity);
 
     protected BasketItem()
     {

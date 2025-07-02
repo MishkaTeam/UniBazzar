@@ -4,7 +4,7 @@ public class ProductAmount : IEquatable<ProductAmount>
 {
     public long Quantity { get; private set; }
     public decimal BasePrice { get; private set; }
-    public decimal TotalPrice { get; private set; }
+    public decimal TotalPrice => Quantity * BasePrice;
 
 
     protected ProductAmount()
@@ -21,13 +21,58 @@ public class ProductAmount : IEquatable<ProductAmount>
 
         Quantity = quantity;
         BasePrice = basePrice;
-        TotalPrice = quantity * basePrice;
-
     }
 
     public static ProductAmount Create(long quantity, decimal basePrice)
     {
         return new ProductAmount(quantity, basePrice);
+    }
+
+    public void PlusQuantity()
+    {
+        Quantity++;
+    }
+
+    public void MinusQuantity()
+    {
+        if (Quantity <= 1)
+        {
+            return;
+        }
+
+        Quantity--;
+    }
+
+    public void SetQuantity(long quantity)
+    {
+        if (quantity <= 0)
+        {
+            return;
+        }
+
+        Quantity = quantity;
+    }
+
+    public void SetAffectedQuantity(long affectedQuantity)
+    {
+        if (Quantity + affectedQuantity <= 0)
+        {
+            Quantity = 1;
+
+            return;
+        }
+
+        Quantity += affectedQuantity;
+    }
+
+    public void SetBasePrice(decimal basePrice)
+    {
+        if (basePrice < 0)
+        {
+            return;
+        }
+
+        BasePrice = basePrice;
     }
 
     public override bool Equals(object? obj) => obj is ProductAmount other && Equals(other);

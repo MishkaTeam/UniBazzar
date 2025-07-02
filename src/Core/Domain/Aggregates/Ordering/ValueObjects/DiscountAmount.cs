@@ -40,11 +40,20 @@ public class DiscountAmount : IEquatable<DiscountAmount>
         return new DiscountAmount(0, DiscountType.None);
     }
 
-    public decimal ApplyDiscount(decimal originalPrice)
+    public void SetValue(decimal value)
+    {
+        if (value < 0)
+            throw new ArgumentException("Discount value cannot be negative.", nameof(value));
+
+        if (DiscountType == DiscountType.Percent && value > 100)
+            throw new ArgumentException("Percentage discount cannot exceed 100%.", nameof(value));
+
+        Value = value;
+    }
     {
         return DiscountType switch
         {
-            DiscountType.Price => Math.Max(0, originalPrice - Value),
+            DiscountType.Price => Math.Max(0, originalPrice - (Value * quantity)),
             DiscountType.Percent => Math.Max(0, originalPrice * (1 - (Value / 100))),
             DiscountType.None => originalPrice,
             _ => throw new InvalidOperationException("Unknown discount type.")
