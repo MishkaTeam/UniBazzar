@@ -1,5 +1,5 @@
 ﻿@page
-@model Server.Areas.Admin.Pages.BasicInfo.Discounts.DiscountProductModel
+@model Server.Areas.Admin.Pages.BasicInfo.Discounts.DiscountCustomerModel
 @{
     var pageTitle =
     $"{Resources.DataDictionary.Addto} {Resources.DataDictionary.DiscountCode}";
@@ -69,7 +69,7 @@
     <section-form>
 
         <fieldset>
-            <input hidden id="productId" asp-for="ViewModel.ProductId" />
+            <input hidden id="productId" asp-for="ViewModel.CustomerId" />
             <input hidden asp-for="ViewModel.DiscountId" />
 
 
@@ -103,15 +103,15 @@
         <table class="table table-hover text-center">
             <thead>
                 <tr>
-                    <th scope="col">@(Resources.DataDictionary.ProductId)</th>
+                    <th scope="col">@(Resources.DataDictionary.Customer)</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var model in Model.DiscountProducts)
+                @foreach (var model in Model.DiscountCustomers)
                 {
                     <tr>
-                        <td>@(model.ProductId)</td>
+                        <td>@(model.CustomerId)</td>
                         <td>
                             <form asp-page-handler="delete" asp-route-Id="@(model.Id)" method="post">
                                 <div class="btn-group" role="group" aria-label="Basic example">

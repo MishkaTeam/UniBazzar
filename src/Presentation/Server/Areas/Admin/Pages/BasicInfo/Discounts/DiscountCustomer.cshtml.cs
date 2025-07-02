@@ -1,23 +1,22 @@
 using Application.Aggregates.Discounts;
 using Application.Aggregates.Discounts.ViewModels;
-using Domain.Aggregates.Discounts.DsiscounProducts;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Discounts;
 
-public class DiscountProductModel(DiscountProductApplication application) : BasePageModel
+public class DiscountCustomerModel(DiscountCustomerApplication application) : BasePageModel
 {
 
 	[BindProperty]
-	public DiscountProductViewModel ViewModel { get; set; } = new();
+	public DiscountCustomerViewModel ViewModel { get; set; } = new();
 
-	public List<DetailsAndDeleteDiscountProductViewModel> DiscountProducts { get; set; } = [];
+	public List<DetailsAndDeleteDiscountCustomerViewModel> DiscountCustomers { get; set; } = [];
 
-	public async Task OnGetAsync(Guid discountId)
+	public async Task OnGet(Guid discountId)
 	{
-		DiscountProducts = await application.GetAllDiscountProductByDiscountId(discountId);
+		DiscountCustomers = await application.GetAllDiscountProductByDiscountId(discountId);
 	}
 
 	public async Task<IActionResult> OnPost(Guid discountId)

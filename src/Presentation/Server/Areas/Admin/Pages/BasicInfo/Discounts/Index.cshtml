@@ -42,7 +42,7 @@
                             <a class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">@(Resources.ButtonCaptions.Actions)</a>
                             <ul class="dropdown-menu">
                                 <li><a asp-page="DiscountProduct" asp-route-DiscountId="@(discount.Id)" class="dropdown-item">@(Resources.ButtonCaptions.ManageOf) @(Resources.DataDictionary.Products)</a></li>
-                                <li><a asp-page="" asp-route-DiscountId="@(discount.Id)" class="dropdown-item">@(Resources.ButtonCaptions.ManageOf) @(Resources.DataDictionary.Customers)</a></li>
+                                <li><a asp-page="DiscountCustomer" asp-route-DiscountId="@(discount.Id)" class="dropdown-item">@(Resources.ButtonCaptions.ManageOf) @(Resources.DataDictionary.Customers)</a></li>
                             </ul>
                         </div>
                     </div>
