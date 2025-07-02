@@ -435,9 +435,9 @@
   <data name="DiscountFixed" xml:space="preserve">
     <value>تخفیف مبلغی</value>
   </data>
-	<data name="DiscountPercentage" xml:space="preserve">
+  <data name="DiscountPercentage" xml:space="preserve">
     <value>تخفیف درصدی</value>
-   </data>
+  </data>
   <data name="Actions" xml:space="preserve">
     <value>عملیات</value>
   </data>
@@ -447,10 +447,25 @@
   <data name="Addto" xml:space="preserve">
     <value>افزودن به</value>
   </data>
-  <data name="Slug" xml:space="preserve">
-    <value>Slug</value>
-  </data>
   <data name="OtpCode" xml:space="preserve">
     <value>کد</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>تعداد</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>قیمت واحد</value>
+  </data>
+  <data name="TotalPrice" xml:space="preserve">
+    <value>قیمت کل</value>
+  </data>
+  <data name="SubTotal" xml:space="preserve">
+    <value>جمع کل</value>
+  </data>
+  <data name="TotalDiscount" xml:space="preserve">
+    <value>تخفیف کل</value>
+  </data>
+  <data name="FinalPrice" xml:space="preserve">
+    <value>قیمت نهایی</value>
   </data>
 </root>
