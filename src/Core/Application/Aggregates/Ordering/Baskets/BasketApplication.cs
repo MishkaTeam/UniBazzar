@@ -57,6 +57,191 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         }
     }
 
+    public async Task<ResultContract<BasketViewModel>> PlusQuantity(Guid basketId, Guid basketItemId)
+    {
+        var basket =
+            await basketRepository.GetByIdAsync(basketId);
+
+        if (basket == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var basketItem =
+            basket.BasketItems.FirstOrDefault(x => x.Id == basketItemId);
+
+        if (basketItem == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        basketItem.ProductAmount.PlusQuantity();
+
+        await unitOfWork.SaveChangesAsync();
+
+        return BasketViewModel.FromBasket(basket);
+    }
+
+    public async Task<ResultContract<BasketViewModel>> MinusQuantity(Guid basketId, Guid basketItemId)
+    {
+        var basket =
+            await basketRepository.GetByIdAsync(basketId);
+
+        if (basket == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var basketItem =
+            basket.BasketItems.FirstOrDefault(x => x.Id == basketItemId);
+
+        if (basketItem == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        basketItem.ProductAmount.MinusQuantity();
+
+        await unitOfWork.SaveChangesAsync();
+
+        return BasketViewModel.FromBasket(basket);
+    }
+
+    public async Task<ResultContract<BasketViewModel>> SetQuantity(Guid basketId, Guid basketItemId, long quantity)
+    {
+        var basket =
+            await basketRepository.GetByIdAsync(basketId);
+
+        if (basket == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var basketItem =
+            basket.BasketItems.FirstOrDefault(x => x.Id == basketItemId);
+
+        if (basketItem == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        basketItem.ProductAmount.SetQuantity(quantity);
+
+        await unitOfWork.SaveChangesAsync();
+
+        return BasketViewModel.FromBasket(basket);
+    }
+
+    public async Task<ResultContract<BasketViewModel>> SetAffectedQuantity(Guid basketId, Guid basketItemId, long affectedQuantity)
+    {
+        var basket =
+            await basketRepository.GetByIdAsync(basketId);
+
+        if (basket == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var basketItem =
+            basket.BasketItems.FirstOrDefault(x => x.Id == basketItemId);
+
+        if (basketItem == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        basketItem.ProductAmount.SetAffectedQuantity(affectedQuantity);
+
+        await unitOfWork.SaveChangesAsync();
+
+        return BasketViewModel.FromBasket(basket);
+    }
+
+    public async Task<ResultContract<BasketViewModel>> SetBasePrice(Guid basketId, Guid basketItemId, decimal basePrice)
+    {
+        var basket =
+            await basketRepository.GetByIdAsync(basketId);
+
+        if (basket == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var basketItem =
+            basket.BasketItems.FirstOrDefault(x => x.Id == basketItemId);
+
+        if (basketItem == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        basketItem.ProductAmount.SetBasePrice(basePrice);
+
+        await unitOfWork.SaveChangesAsync();
+
+        return BasketViewModel.FromBasket(basket);
+    }
+
+    public async Task<ResultContract<BasketViewModel>> SetDiscountValue(Guid basketId, Guid basketItemId, decimal value)
+    {
+        var basket =
+            await basketRepository.GetByIdAsync(basketId);
+
+        if (basket == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var basketItem =
+            basket.BasketItems.FirstOrDefault(x => x.Id == basketItemId);
+
+        if (basketItem == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        basketItem.DiscountAmount.SetValue(value);
+
+        await unitOfWork.SaveChangesAsync();
+
+        return BasketViewModel.FromBasket(basket);
+    }
 
     public async Task<ResultContract> UpdateDescription(Guid basketId, string description)
     {
