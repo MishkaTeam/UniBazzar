@@ -25,12 +25,16 @@ public class DiscountProductModel(DiscountProductApplication application) : Base
 		ViewModel.DiscountId = discountId;
 		await application.CreateDiscountProduct(ViewModel);
 
+		DiscountProducts = await application.GetAllDiscountProductByDiscountId(discountId);
+
 		return Page();
 	}
 
-	public async Task<IActionResult> OnPostDelete(Guid Id)
+	public async Task<IActionResult> OnPostDelete(Guid Id, Guid discountId)
 	{
 		await application.DeleteDiscountProductAsync(Id);
+
+		DiscountProducts = await application.GetAllDiscountProductByDiscountId(discountId);
 
 		return Page();
 	}

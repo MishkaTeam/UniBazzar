@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.Persistence;
+using BuildingBlocks.Persistence.Extensions;
 using Domain.Aggregates.Discounts.DsiscounProducts;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +16,11 @@ public class DiscountProductRepository : RepositoryBase<DiscountProduct>, IDisco
 
 	public async Task<List<DiscountProduct>> GetAllDiscountProductByDiscountId(Guid discountId)
 	{
-		var discountProducts = await _context.DiscountProducts.Where(x => x.DiscountId == discountId).ToListAsync();
+		var discountProducts = await _context.DiscountProducts
+			.Include(x => x.Product)
+			.Where(x => x.DiscountId == discountId)
+			.StoreFilter(ExecutionContext.StoreId)
+			.ToListAsync();
 
 		return discountProducts;
 	}

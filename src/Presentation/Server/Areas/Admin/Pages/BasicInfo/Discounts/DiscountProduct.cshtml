@@ -103,7 +103,7 @@
         <table class="table table-hover text-center">
             <thead>
                 <tr>
-                    <th scope="col">@(Resources.DataDictionary.ProductId)</th>
+                    <th scope="col">@(Resources.DataDictionary.Name)</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -111,11 +111,11 @@
                 @foreach (var model in Model.DiscountProducts)
                 {
                     <tr>
-                        <td>@(model.ProductId)</td>
+                        <td>@(model.ProductName)</td>
                         <td>
-                            <form asp-page-handler="delete" asp-route-Id="@(model.Id)" method="post">
+                            <form asp-page-handler="delete" asp-route-Id="@(model.Id)" asp-route-discountId="@(model.DiscountId)" method="post">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="submit" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</button>
+                                    <button  type="submit" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</button>
                                 </div>
                             </form>
                         </td>

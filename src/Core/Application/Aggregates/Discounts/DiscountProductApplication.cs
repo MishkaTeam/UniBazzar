@@ -2,6 +2,7 @@
 using Domain;
 using Domain.Aggregates.Discounts;
 using Domain.Aggregates.Discounts.DsiscounProducts;
+using Framework.DataType;
 using Mapster;
 using Resources.Messages;
 
@@ -24,7 +25,13 @@ public class DiscountProductApplication(IDiscountProductRepository repository, I
 	{
 		var discountProduct = await repository.GetAllDiscountProductByDiscountId(discountId);
 
-		return discountProduct.Adapt<List<DetailsAndDeleteDiscountProductViewModel>>();
+		return discountProduct.Select(x => new DetailsAndDeleteDiscountProductViewModel
+		{
+			Id = x.Id,
+			ProductId = x.ProductId,
+			DiscountId = x.DiscountId,
+			ProductName = x.Product.Name,
+		}).ToList();
 	}
 
 	public async Task DeleteDiscountProductAsync(Guid id)
