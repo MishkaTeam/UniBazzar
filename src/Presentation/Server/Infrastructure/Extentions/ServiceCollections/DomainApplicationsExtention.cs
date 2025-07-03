@@ -47,6 +47,9 @@ using Application.Aggregates.Products.ProductImages;
 using Application.Aggregates.ProductReviews;
 using Domain.Aggregates.Customers.ShippingAddresses;
 using Application.Aggregates.Customers.ShippingAddresses;
+using Domain.Aggregates.Attributes.Data;
+using Persistence.Repositories.Aggregates.Attributes;
+using Application.Aggregates.Attribute;
 
 namespace Server.Infrastructure.Extensions.ServiceCollections;
 
@@ -70,6 +73,7 @@ public static class DomainExtensions
         services.AddScoped<ProductImagesApplication>();
         services.AddScoped<ProductFeaturesApplication>();
         services.AddScoped<PriceListsApplication>();
+        services.AddScoped<AttributeApplication>();
 
         services.AddScoped<UnitsApplication>();
         services.AddScoped<CategoriesApplication>();
@@ -104,6 +108,7 @@ public static class DomainExtensions
         services.AddScoped<IProductFeatureRepository, ProductFeaturesRepository>();
         services.AddScoped<IPriceListRepository, PriceListsRepository>();
         services.AddScoped<IProductImageRepository, ProductImagesRepository>();
+        services.AddScoped<IAttributeRepository, AttributesRepository>();
 
         services.AddScoped<IUnitRepository, UnitRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();

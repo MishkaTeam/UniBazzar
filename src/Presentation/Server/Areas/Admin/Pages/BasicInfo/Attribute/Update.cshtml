@@ -1,0 +1,56 @@
+﻿@page
+@model Server.Areas.Admin.Pages.BasicInfo.Attribute.UpdateModel
+@{
+	var pageTitle =
+	$"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.Attribute}";
+
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+<form method="post">
+
+	<section-form>
+		<fieldset>
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
+
+			<partial name="PartialViews/_DisplayPageMessages" />
+			<input hidden asp-for="UpdateViewModel.Id" dir="ltr" />
+
+			<ub-full-input asp-for="UpdateViewModel.Name" />
+
+			<ub-full-input asp-for="UpdateViewModel.Description" />
+
+			<select asp-for="UpdateViewModel.CategoryId" class="form-control mb-3">
+				@foreach (var level1 in Model.Categories)
+				{
+					<option value="@level1.Id">@level1.Name</option>
+
+					if (level1.ChildCategories != null)
+					{
+						foreach (var level2 in level1.ChildCategories)
+						{
+							<option value="@level2.Id">-- @level2.Name</option>
+
+							if (level2.ChildCategories != null)
+							{
+								foreach (var level3 in level2.ChildCategories)
+								{
+									<option value="@level3.Id">---- @level3.Name</option>
+								}
+							}
+						}
+					}
+				}
+			</select>
+
+		</fieldset>
+
+		<section-form-buttons>
+			<button-save />
+			<button-reset />
+		</section-form-buttons>
+
+	</section-form>
+
+</form>
