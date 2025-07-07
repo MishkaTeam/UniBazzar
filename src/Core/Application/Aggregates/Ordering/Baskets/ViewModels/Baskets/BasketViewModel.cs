@@ -24,6 +24,7 @@ public class BasketViewModel
     public decimal SubtotalBeforeBasketDiscount { get; set; }
     public decimal BasketTotal { get; set; }
     public List<BasketItemViewModel> BasketItems { get; set; }
+    public decimal TotalItemDiscounts { get; set; }
 
     internal static BasketViewModel FromBasket(Basket basket)
     {
@@ -38,6 +39,7 @@ public class BasketViewModel
             Platform = basket.Platform,
             BasketTotal = basket.Total,
             SubtotalBeforeBasketDiscount = basket.TotalBeforeDiscount,
+            TotalItemDiscounts = basket.TotalItemDiscounts,
             BasketItems = basket.BasketItems.Select(x => new BasketItemViewModel
             {
                 BasePrice = x.ProductAmount.BasePrice,

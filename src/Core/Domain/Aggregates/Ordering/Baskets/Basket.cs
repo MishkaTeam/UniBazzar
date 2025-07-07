@@ -23,6 +23,15 @@ public class Basket : Entity
         }
     }
 
+    public decimal TotalItemDiscounts
+    {
+        get
+        {
+            return BasketItems.Sum(x => x.DiscountPrice);
+        }
+    }
+
+
     public decimal Total
     {
         get
