@@ -14,7 +14,7 @@ public class BasketItem : Entity
     public List<BasketItemAttribute>? BasketItemAttributes { get; private set; }
 
     public decimal TotalPrice => DiscountAmount.ApplyDiscount(ProductAmount.TotalPrice);
-
+    public decimal DiscountPrice => DiscountAmount.ConvertToPrice(ProductAmount.TotalPrice, ProductAmount.Quantity);
     protected BasketItem()
     {
         //FOR EF!
