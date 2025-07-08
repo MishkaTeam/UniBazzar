@@ -5,6 +5,7 @@
 @using Application.Aggregates.Orders
 @using Application.Aggregates.Products
 @using Application.Aggregates.Orders.ViewModels.BasketItems;
+@using Domain.Aggregates.Ordering.Baskets.Enums;
 
 @inject BasketApplication basketApplication
 @inject CustomerApplication customerApplication
@@ -21,80 +22,37 @@
 </div>
 
 <div style="heght: 580px; overlow-y: scroll;" class="row m-0 pt-2">
-	@* 	<table style="margin-bottom: 200px;" class="table overflow-hidden align-middle rounded-3">
-		<thead>
-			<tr>
-				<th scope="col">#</th>
-				<th scope="col">نام</th>
-				<th scope="col">تعداد</th>
-				<th scope="col">قیمت</th>
-				<th scope="col">تخفیف</th>
-				<th scope="col">کل</th>
-				<th scope="col"></th>
-			</tr>
-		</thead>
-		<tbody class="table-group-divider">
-			@if (Basket != null)
-			{
-				@for (int i = 0; i < Basket?.BasketItems.Count; i++)
-				{
-					var basketItem = Basket.BasketItems[i];
 
-					<tr>
-						<th scope="row">@(i + 1)</th>
-						<td>@(basketItem.ProductName)</td>
-						<td>
-							<div class="d-flex justify-content-between bg-primary rounded-5 w-50">
-								<button class="btn btn-light rounded-circle p-0 px-2 m-1">+</button>
-								<span class="d-flex justify-content-between align-items-center text-white">@(basketItem.Quantity)</span>
-								<button class="btn btn-light rounded-circle p-0 px-2 m-1">-</button>
-							</div>
-						</td>
-						<td>@(basketItem.BasePrice)</td>
-						<td>@(basketItem.DiscountValue)</td>
-						<td>@(basketItem.TotalPrice)</td>
-						<td>
-							<button @onclick="() => RemoveBasketItem(Basket.Id, basketItem.Id)" class="btn btn-danger">
-								<i class="bi bi-trash d-flex py-1"></i>
-							</button>
-						</td>
-					</tr>
-				}
-			}
-			else
-			{
-				<tr>
-					<td>
-						<div class="spinner-border mt-2" style="width: 2rem; height: 2rem;" role="status">
-							<span class="visually-hidden"></span>
-						</div>
-					</td>
-				</tr>
-			}
-		</tbody>
-	</table> *@
-
-
-	<BlazorBootstrap.Grid Style="margin-bottom: 150px;" Class="table table-hover table-bordered overflow-hidden rounded-3"
-						  @ref="grid"
-						  TItem="BasketItemViewModel"
-						  DataProvider="EmployeesDataProvider"
-						  AllowFiltering="true"
-						  AllowSorting="true"
-						  FixedHeader="false"
+	<BlazorBootstrap.Grid @ref="grid"
+						  Style="margin-bottom: 150px;"
+						  Class="table table-hover table-bordered overflow-hidden rounded-3"
 						  HeaderRowCssClass="bg-primary bg-opacity-50"
 						  FiltersRowCssClass="bg-primary bg-opacity-25"
+						  Responsive="true"
+						  FixedHeader="false"
+						  AllowSorting="true"
+						  AllowFiltering="true"
 						  Height="700"
 						  Unit="Unit.Px"
-						  Responsive="true">
+						  DataProvider="EmployeesDataProvider"
+						  TItem="BasketItemViewModel">
 
 		<GridColumns>
 
-			<GridColumn TItem="BasketItemViewModel" HeaderText="@(Resources.DataDictionary.Name)" PropertyName="ProductName" Class="text-center align-middle" SortKeySelector="item => item.ProductName">
+			<GridColumn HeaderText="@(Resources.DataDictionary.Name)"
+						Class="text-center align-middle"
+						TItem="BasketItemViewModel"
+						PropertyName="ProductName"
+						SortKeySelector="item => item.ProductName">
 				@(context.ProductName)
 			</GridColumn>
 
-			<GridColumn TItem="BasketItemViewModel" HeaderText="@(Resources.DataDictionary.Quantity)" PropertyName="Quantity" SortKeySelector="item => item.Quantity">
+			<GridColumn HeaderText="@(Resources.DataDictionary.Quantity)"
+						Class="text-center align-middle"
+						TItem="BasketItemViewModel"
+						PropertyName="Quantity"
+						SortKeySelector="item => item.Quantity">
+
 				<ChildContent>
 					<div class="d-flex justify-content-between bg-primary rounded-5 w-100">
 						<button @onclick="() => AffecteQuantity(Basket!.Id, context.Id, 1)" class="btn btn-light rounded-circle p-0 px-2 m-1">+</button>
@@ -111,7 +69,11 @@
 				</ChildContent>
 			</GridColumn>
 
-			<GridColumn TItem="BasketItemViewModel" HeaderText="@(Resources.DataDictionary.UnitPrice)" PropertyName="BasePrice" SortKeySelector="item => item.BasePrice">
+			<GridColumn HeaderText="@(Resources.DataDictionary.UnitPrice)"
+						Class="text-center align-middle"
+						TItem="BasketItemViewModel"
+						PropertyName="BasePrice"
+						SortKeySelector="item => item.BasePrice">
 				<ChildContent>
 					<input @bind="context.BasePrice"
 						   @bind:event="oninput"
@@ -122,11 +84,25 @@
 				</ChildContent>
 			</GridColumn>
 
-			<GridColumn TItem="BasketItemViewModel" HeaderText="@(Resources.DataDictionary.Discount)" PropertyName="DiscountValue" SortKeySelector="item => item.DiscountValue">
+			<GridColumn HeaderText="@(Resources.DataDictionary.Discount)"
+						Class="text-center align-middle"
+						TItem="BasketItemViewModel"
+						PropertyName="DiscountValue"
+						SortKeySelector="item => item.DiscountValue">
 				<ChildContent>
 					<div class="input-group">
-						<div class="input-group-text p-0">
-							<button style="border-radius: 0 .25rem .25rem 0;" class="btn btn-warning">$</button>
+						<div class="input-group-text align-items-stretch p-0">
+							<button @onclick="() => ChangeDiscountType(Basket!.Id, context.Id)"
+									class="btn btn-warning" style="border-radius: 0 .25rem .25rem 0;">
+								@if (context.DiscountType == DiscountType.Price)
+								{
+									<i class="bi bi-currency-dollar d-flex"></i>
+								}
+								else if (context.DiscountType == DiscountType.Percent)
+								{
+									<i class="bi bi-percent d-flex"></i>
+								}
+							</button>
 						</div>
 						<input @bind="context.DiscountValue"
 							   @bind:event="oninput"
@@ -138,11 +114,19 @@
 				</ChildContent>
 			</GridColumn>
 
-			<GridColumn TItem="BasketItemViewModel" HeaderText="@(Resources.DataDictionary.TotalPrice)" PropertyName="TotalPrice" Class="text-center align-middle" SortKeySelector="item => item.TotalPrice">
-				@(context.TotalPrice.ToString("###,#"))
+			<GridColumn HeaderText="@(Resources.DataDictionary.TotalPrice)"
+						Class="text-center align-middle"
+						TItem="BasketItemViewModel"
+						PropertyName="TotalPrice"
+						SortKeySelector="item => item.TotalPrice">
+				@(context.TotalPrice == 0 ? "0" : context.TotalPrice.ToString("###,#"))
 			</GridColumn>
 
-			<GridColumn TItem="BasketItemViewModel" HeaderText="" Filterable="false" Sortable="false">
+			<GridColumn HeaderText=""
+						Class="text-center align-middle"
+						TItem="BasketItemViewModel"
+						Filterable="false"
+						Sortable="false">
 				<ChildContent>
 					<button @onclick="() => RemoveBasketItem(Basket!.Id, context.Id)" class="btn btn-danger">
 						<i class="bi bi-trash d-flex py-1"></i>
@@ -172,7 +156,36 @@
 			<div class="col-8 ps-0">
 				<div class="bg-light h-100 d-flex flex-column justify-content-between rounded-3 border border-1 border-gray p-2">
 
-					<textarea class="form-control" placeholder="توضیحات..." rows="3"></textarea>
+					<div class="input-group mb-2">
+						<div class="input-group-text align-items-stretch p-0">
+							<button class="btn btn-warning" style="border-radius: 0 .25rem .25rem 0;"
+									@onclick="() => ChangeTotalDiscountType(Basket!.Id)">
+								@if (Basket!.TotalDiscountType == DiscountType.Price)
+								{
+									<i class="bi bi-currency-dollar d-flex"></i>
+								}
+								else if (Basket!.TotalDiscountType == DiscountType.Percent)
+								{
+									<i class="bi bi-percent d-flex"></i>
+								}
+							</button>
+						</div>
+						<input @bind="Basket!.TotalDiscountAmount"
+							   @bind:event="oninput"
+							   @onkeydown="(e) => OnEnterTotalDiscountValue(e, Basket!.Id, Basket!.TotalDiscountAmount)"
+							   @onblur="() => SetTotalDiscountValue(Basket!.Id, Basket!.TotalDiscountAmount)"
+							   class="form-control text-center"
+							   dir="ltr" />
+					</div>
+
+					<textarea 
+							  @bind="Basket!.Description"
+							  @bind:event="oninput"
+							  @onkeydown="(e) => OnEnterDescription(e, Basket!.Id, Basket!.Description!)"
+							  @onblur="() => SetDescription(Basket!.Id, Basket!.Description!)"
+							  placeholder="توضیحات..."
+							  class="form-control"
+							  rows="3"></textarea>
 
 					<div class="row align-items-center bg-light rounded-3 border border-1 p-0 py-1 m-0 my-2">
 						<div class="col px-1">
@@ -205,7 +218,7 @@
 							}
 							else
 							{
-								<text>@(Basket.SubtotalBeforeBasketDiscount)</text>
+								@(Basket.SubtotalBeforeBasketDiscount == 0 ? "0" : Basket.SubtotalBeforeBasketDiscount.ToString("###,#"))
 							}
 						</span>
 					</div>
@@ -218,7 +231,17 @@
 							}
 							else
 							{
-								<text>@(Basket.TotalDiscountAmount)</text>
+								<text>
+									@(Basket.TotalDiscountAmount == 0 ? "0" : Basket.TotalDiscountAmount.ToString("###,#"))
+									@if (Basket!.TotalDiscountType == DiscountType.Price)
+									{
+										<text>$</text>
+									}
+									else if (Basket!.TotalDiscountType == DiscountType.Percent)
+									{
+										<text>%</text>
+									}
+								</text>
 							}
 						</span>
 					</div>
@@ -236,7 +259,7 @@
 							}
 							else
 							{
-								<text>@(Basket.BasketTotal)</text>
+								@(Basket.BasketTotal == 0 ? "0" : Basket.BasketTotal.ToString("###,#"))
 							}
 						</span>
 					</div>

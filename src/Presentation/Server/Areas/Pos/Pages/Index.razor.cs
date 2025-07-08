@@ -11,7 +11,7 @@ namespace Server.Areas.Pos.Pages;
 
 public partial class Index
 {
-    private BasketViewModel? Basket { get; set; }
+    private BasketViewModel? Basket { get; set; } = new();
     private Grid<BasketItemViewModel> grid = default!;
     private CancellationTokenSource? debounceCts;
 
@@ -104,14 +104,6 @@ public partial class Index
         return publicCustomerId;
     }
 
-    private async Task<GridDataProviderResult<BasketItemViewModel>> EmployeesDataProvider(GridDataProviderRequest<BasketItemViewModel> request)
-    {
-        if (Basket is null)
-            Basket = new BasketViewModel();
-
-        return await Task.FromResult(request.ApplyTo(Basket.BasketItems));
-    }
-
     private async Task onProductSelection(Guid productId)
     {
         var localBasket =
@@ -183,6 +175,14 @@ public partial class Index
                 .RemoveItem(basketId, basketItemId)).Data;
 
         await grid.RefreshDataAsync();
+    }
+
+    private async Task<GridDataProviderResult<BasketItemViewModel>>EmployeesDataProvider(GridDataProviderRequest<BasketItemViewModel> request)
+    {
+        if (Basket is null)
+            Basket = new BasketViewModel();
+
+        return await Task.FromResult(request.ApplyTo(Basket.BasketItems));
     }
 
     private async Task AffecteQuantity(Guid basketId, Guid basketItemId, int affectedQuantity)
@@ -265,6 +265,29 @@ public partial class Index
 
     private async Task SetDiscountValue(Guid basketId, Guid basketItemId, decimal discountValue)
     {
+        var basket =
+            (await basketApplication.GetBasket(basketId)).Data;
+
+        var basketItem =
+            basket?.BasketItems.FirstOrDefault(x => x.Id == basketItemId);
+
+        if (basketItem?.DiscountType == DiscountType.Price &&
+            discountValue > basketItem.BasePrice)
+        {
+            discountValue = basketItem.BasePrice;
+        }
+
+        if (basketItem?.DiscountType == DiscountType.Percent &&
+            discountValue > 100)
+        {
+            discountValue = 100;
+        }
+        else if (basketItem?.DiscountType == DiscountType.Percent &&
+            discountValue <= 0)
+        {
+            discountValue = 1;
+        }
+
         Basket = (await basketApplication
             .SetDiscountValue(basketId, basketItemId, discountValue)).Data;
 
@@ -280,5 +303,151 @@ public partial class Index
 
             await grid.RefreshDataAsync();
         }
+    }
+
+    private async Task ChangeDiscountType(Guid basketId, Guid basketItemId)
+    {
+        var basket =
+            (await basketApplication.GetBasket(basketId)).Data;
+
+        var basketItem =
+            basket?.BasketItems.FirstOrDefault(x => x.Id == basketItemId);
+
+        var discountType = DiscountType.None;
+        var discountValue = 0m;
+
+        if (basketItem?.DiscountType == DiscountType.Price)
+        {
+            discountType =
+                DiscountType.Percent;
+
+            discountValue =
+                (basketItem.DiscountValue * 100) / basketItem.BasePrice;
+
+            if (discountValue > 100)
+            {
+                discountValue = 100;
+            }
+        }
+        else if (basketItem?.DiscountType == DiscountType.Percent)
+        {
+            discountType =
+                DiscountType.Price;
+
+            discountValue =
+                (basketItem.DiscountValue * basketItem.BasePrice) / 100;
+
+            if (discountValue > basketItem.BasePrice)
+            {
+                discountValue = basketItem.BasePrice;
+            }
+        }
+
+        Basket = (await basketApplication
+            .UpdateDiscount(basketId, basketItemId, discountValue, discountType)).Data;
+
+        await grid.RefreshDataAsync();
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task SetTotalDiscountValue(Guid basketId, decimal discountValue)
+    {
+        var basket =
+            (await basketApplication.GetBasket(basketId)).Data;
+
+        if (basket?.TotalDiscountType == DiscountType.Price &&
+            discountValue > basket.SubtotalBeforeBasketDiscount)
+        {
+            discountValue = basket.SubtotalBeforeBasketDiscount;
+        }
+
+        if (basket?.TotalDiscountType == DiscountType.Percent &&
+            discountValue > 100)
+        {
+            discountValue = 100;
+        }
+        else if (basket?.TotalDiscountType == DiscountType.Percent &&
+            discountValue <= 0)
+        {
+            discountValue = 1;
+        }
+
+        Basket = (await basketApplication
+            .UpdateTotalDiscount(basketId, discountValue, Basket!.TotalDiscountType)).Data;
+
+        await grid.RefreshDataAsync();
+    }
+
+    private async Task OnEnterTotalDiscountValue(KeyboardEventArgs e, Guid basketId, decimal basePrice)
+    {
+        if (e.Key == "Enter")
+        {
+            await SetTotalDiscountValue
+                (basketId, basePrice);
+
+            await grid.RefreshDataAsync();
+        }
+    }
+
+    private async Task ChangeTotalDiscountType(Guid basketId)
+    {
+        var basket =
+            (await basketApplication.GetBasket(basketId)).Data;
+
+        var discountType = DiscountType.None;
+        var discountValue = 0m;
+
+        if (basket?.TotalDiscountType == DiscountType.Price)
+        {
+            discountType =
+                DiscountType.Percent;
+
+            discountValue =
+                (basket.TotalDiscountAmount * 100) / basket.SubtotalBeforeBasketDiscount;
+
+            if (discountValue > 100)
+            {
+                discountValue = 100;
+            }
+        }
+        else if (basket?.TotalDiscountType == DiscountType.Percent)
+        {
+            discountType =
+                DiscountType.Price;
+
+            discountValue =
+                (basket.TotalDiscountAmount * basket.SubtotalBeforeBasketDiscount) / 100;
+
+            if (discountValue > basket.SubtotalBeforeBasketDiscount)
+            {
+                discountValue = basket.SubtotalBeforeBasketDiscount;
+            }
+        }
+
+        Basket = (await basketApplication
+            .UpdateTotalDiscount(basketId, discountValue, discountType)).Data;
+
+        await grid.RefreshDataAsync();
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task SetDescription(Guid basketId, string description)
+    {
+        Basket = (await basketApplication
+            .UpdateDescription(basketId, description)).Data;
+
+        await grid.RefreshDataAsync();
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task OnEnterDescription(KeyboardEventArgs e, Guid basketId, string description)
+    {
+        //if (e.Key == "Enter")
+        //{
+        //    await SetDescription
+        //        (basketId, description);
+
+        //    await grid.RefreshDataAsync();
+        //}
     }
 }
