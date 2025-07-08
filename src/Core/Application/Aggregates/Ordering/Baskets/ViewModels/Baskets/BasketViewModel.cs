@@ -10,6 +10,9 @@ public class BasketViewModel
     public BasketViewModel()
     {
         BasketItems = new();
+
+        TotalDiscountType =
+            DiscountType.Price;
     }
 
 

@@ -35,6 +35,54 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         return new InitializeBasketViewModel(basket.Id, basket.ReferenceNumber);
     }
 
+    public async Task<ResultContract<BasketViewModel>> UpdateDiscount
+        (Guid basketId, Guid basketItemId, decimal discountValue, DiscountType discountType)
+    {
+        var basket =
+            await basketRepository.GetByIdAsync(basketId);
+
+        var basketItem =
+            basket.BasketItems.FirstOrDefault(x => x.Id == basketItemId);
+
+        var discount =
+            DiscountAmount.Create(discountValue, discountType);
+
+        basketItem?.DiscountAmount.UpdateDiscount(discount);
+
+        await unitOfWork.SaveChangesAsync();
+        return BasketViewModel.FromBasket(basket);
+    }
+
+    public async Task<ResultContract<BasketViewModel>> SetDiscountValue(Guid basketId, Guid basketItemId, decimal value)
+    {
+        var basket =
+            await basketRepository.GetByIdAsync(basketId);
+
+        if (basket == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var basketItem =
+            basket.BasketItems.FirstOrDefault(x => x.Id == basketItemId);
+
+        if (basketItem == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        basketItem.DiscountAmount.SetValue(value);
+
+        await unitOfWork.SaveChangesAsync();
+
+        return BasketViewModel.FromBasket(basket);
+    }
 
     public async Task<ResultContract<BasketViewModel>> UpdateTotalDiscount(Guid basketId, decimal totalDiscountAmount, DiscountType totalDiscountType)
     {
@@ -150,7 +198,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         return BasketViewModel.FromBasket(basket);
     }
 
-    public async Task<ResultContract<BasketViewModel>> SetAffectedQuantity(Guid basketId, Guid basketItemId, long affectedQuantity)
+    public async Task<ResultContract<BasketViewModel>> SetAffectedQuantity(Guid basketId, Guid basketItemId, long changedQuantity)
     {
         var basket =
             await basketRepository.GetByIdAsync(basketId);
@@ -174,7 +222,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
             return (ErrorType.NotFound, message);
         }
 
-        basketItem.ProductAmount.SetAffectedQuantity(affectedQuantity);
+        basketItem.ProductAmount.SetAffectedQuantity(changedQuantity);
 
         await unitOfWork.SaveChangesAsync();
 
@@ -212,50 +260,19 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         return BasketViewModel.FromBasket(basket);
     }
 
-    public async Task<ResultContract<BasketViewModel>> SetDiscountValue(Guid basketId, Guid basketItemId, decimal value)
-    {
-        var basket =
-            await basketRepository.GetByIdAsync(basketId);
-
-        if (basket == null)
-        {
-            var message =
-                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
-
-            return (ErrorType.NotFound, message);
-        }
-
-        var basketItem =
-            basket.BasketItems.FirstOrDefault(x => x.Id == basketItemId);
-
-        if (basketItem == null)
-        {
-            var message =
-                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
-
-            return (ErrorType.NotFound, message);
-        }
-
-        basketItem.DiscountAmount.SetValue(value);
-
-        await unitOfWork.SaveChangesAsync();
-
-        return BasketViewModel.FromBasket(basket);
-    }
-
-    public async Task<ResultContract> UpdateDescription(Guid basketId, string description)
+    public async Task<ResultContract<BasketViewModel>> UpdateDescription(Guid basketId, string description)
     {
         try
         {
             var basket = await basketRepository.GetByIdAsync(basketId);
             basket.SetDescription(description);
             await unitOfWork.SaveChangesAsync();
-            return true;
+            return BasketViewModel.FromBasket(basket);
         }
         catch (Exception ex)
         {
             logger.LogError(ex, "[BasketApplication] [UpdateDescription] Error in basketId : {BasketId}", basketId);
-            return false;
+            return (ErrorType.NotFound, "Not Found");
         }
     }
 
