@@ -27,8 +27,6 @@ public class Basket : Entity
     {
         get
         {
-            TotalDiscountAmount ??= DiscountAmount.CreateNoDiscount();
-
             return TotalDiscountAmount.ApplyDiscount(TotalBeforeDiscount);
         }
     }
@@ -43,6 +41,7 @@ public class Basket : Entity
         Platform = platform;
         BasketItems = new List<BasketItem>();
         BasketStatus = BasketStatus.INITIAL;
+        TotalDiscountAmount = DiscountAmount.CreatePriceDiscount(0);
 
         // For test
         ReferenceNumber = Guid.NewGuid().ToString();

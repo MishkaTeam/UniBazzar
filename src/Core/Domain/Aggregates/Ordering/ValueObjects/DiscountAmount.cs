@@ -50,6 +50,20 @@ public class DiscountAmount : IEquatable<DiscountAmount>
 
         Value = value;
     }
+
+    public void UpdateDiscount(DiscountAmount discount)
+    {
+        if (discount.Value < 0)
+            throw new ArgumentException("Discount value cannot be negative.", nameof(discount.Value));
+
+        if (discount.DiscountType == DiscountType.Percent && discount.Value > 100)
+            throw new ArgumentException("Percentage discount cannot exceed 100%.", nameof(discount.Value));
+
+        Value = discount.Value;
+        DiscountType = discount.DiscountType;
+    }
+
+    public decimal ApplyDiscount(decimal originalPrice, long quantity = 1)
     {
         return DiscountType switch
         {
