@@ -1,4 +1,4 @@
-using Application.Aggregates.Orders.ViewModels;
+using Application.Aggregates.Ordering.Baskets.ViewModels.InitializeBasket;
 using Domain.CustomerSearch;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;

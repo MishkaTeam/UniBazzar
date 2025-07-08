@@ -1,9 +1,6 @@
 ﻿using Application.Aggregates.Ordering.Baskets.ViewModels.BasketItems;
 using Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
-using Application.Aggregates.Orders.ViewModels;
-using Application.Aggregates.Orders.ViewModels.BasketItems;
 using BlazorBootstrap;
-using Domain.Aggregates.Ordering.Baskets;
 using Application.Aggregates.Ordering.Baskets.ViewModels.InitializeBasket;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 using Microsoft.AspNetCore.Components.Web;
@@ -369,7 +366,7 @@ public partial class Index
             discountValue = 100;
         }
         else if (basket?.TotalDiscountType == DiscountType.Percent &&
-            discountValue <= 0)
+            discountValue < 0)
         {
             discountValue = 1;
         }
