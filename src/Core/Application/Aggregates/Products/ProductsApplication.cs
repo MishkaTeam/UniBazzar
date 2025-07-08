@@ -8,16 +8,16 @@ using Resources.Messages;
 
 namespace Application.Aggregates.Products;
 
-public partial class ProductsApplication(
-    IProductRepository productRepository,
+public partial class ProductsApplication
+    (IProductRepository productRepository,
     IPriceListRepository priceListRepository,
     IUnitOfWork unitOfWork)
 {
     public async Task<ProductViewModel> CreateProductAsync(CreateProductViewModel viewModel)
     {
         var product = Product.Create(viewModel.Name, viewModel.ShortDescription, viewModel.FullDescription,
-            viewModel.StoreId, viewModel.CategoryId, viewModel.UnitId,
-            viewModel.ProductType, viewModel.DownloadUrl);
+                                    viewModel.StoreId, viewModel.CategoryId, viewModel.UnitId,
+                                    viewModel.ProductType, viewModel.DownloadUrl);
 
         await productRepository.AddAsync(product);
         await unitOfWork.SaveChangesAsync();
@@ -40,7 +40,6 @@ public partial class ProductsApplication(
 
         return product.Adapt<ProductViewModel>();
     }
-
     public async Task<ProductViewModel> GetProductAsync(string Sku)
     {
         var product =
@@ -63,8 +62,8 @@ public partial class ProductsApplication(
         }
 
         productForUpdate.Update(updateViewModel.Name, updateViewModel.ShortDescription, updateViewModel.FullDescription,
-            updateViewModel.StoreId, updateViewModel.CategoryId, updateViewModel.UnitId,
-            updateViewModel.ProductType, updateViewModel.DownloadUrl);
+                                updateViewModel.StoreId, updateViewModel.CategoryId, updateViewModel.UnitId,
+                                updateViewModel.ProductType, updateViewModel.DownloadUrl);
 
         await unitOfWork.SaveChangesAsync();
         return productForUpdate.Adapt<ProductViewModel>();
@@ -128,6 +127,7 @@ public partial class ProductsApplication(
 
         return new ProductDetailViewModel
         {
+            Id = products.Id,
             Price = priceLists?.FirstOrDefault(p => p.productId == products.Id).price ?? 0,
             Images = [.. products.ProductImages.Select(x => x.ImageUrl)],
             Name = products.Name,
@@ -144,13 +144,15 @@ public partial class ProductsApplication(
             {
                 AttributeValues = [.. x.Attribute.AttributeValues.Select (x => new ProductAttributeValuesViewModel
                 {
+                    Id = x.Id,
                     IsPreSelected = x.IsPreSelected,
                     Name = x.Name,
                     PriceAdjustment = x.PriceAdjustment,
                     WeightAdjustment = x.WeightAdjustment,
                 })],
+                Id = x.Id,
                 Name = x.Attribute.Name,
-                Description = x.Attribute.Description,  
+                Description = x.Attribute.Description,
                 ProductAttributeType = x.ProductAttributeType,
             })],
             Slug = products.Slug,

@@ -1,6 +1,7 @@
+using Domain.Aggregates.Ordering.Baskets;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 
-namespace Application.Aggregates.Orders.ViewModels.BasketItems;
+namespace Application.Aggregates.Ordering.Baskets.ViewModels.BasketItems;
 
 public class AddBasketItemRequestModel
 {
@@ -11,4 +12,21 @@ public class AddBasketItemRequestModel
     public decimal BasePrice { get; set; }
     public DiscountType DiscountType { get; set; }
     public decimal DiscountAmount { get; set; }
+    public List<BasketItemAttributeContract>? BasketItemAttributes { get; set; }
+
+    internal List<BasketItemAttribute> ToBasketItemAttribute()
+    {
+        var result = new List<BasketItemAttribute>();
+
+        foreach (var attribute in BasketItemAttributes ?? [])
+        {
+            result.Add(BasketItemAttribute.Create(
+                attribute.ProductAttributeId, 
+                attribute.ProductAttributeName, 
+                attribute.ProductAttributeValue, 
+                attribute.PriceAdjustment,
+                attribute.ProductAttributeValueId));
+        }
+        return result;
+    }
 }

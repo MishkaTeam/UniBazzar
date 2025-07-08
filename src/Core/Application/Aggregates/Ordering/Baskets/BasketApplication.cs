@@ -1,6 +1,6 @@
+using Application.Aggregates.Ordering.Baskets.ViewModels.BasketItems;
 using Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
-using Application.Aggregates.Orders.ViewModels;
-using Application.Aggregates.Orders.ViewModels.BasketItems;
+using Application.Aggregates.Ordering.Baskets.ViewModels.InitializeBasket;
 using Domain;
 using Domain.Aggregates.Ordering.Baskets;
 using Domain.Aggregates.Ordering.Baskets.Data;
@@ -9,7 +9,7 @@ using Domain.Aggregates.Ordering.ValueObjects;
 using Framework.DataType;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Aggregates.Orders;
+namespace Application.Aggregates.Ordering.Baskets;
 
 public class BasketApplication(ILogger<BasketApplication> logger, IBasketRepository basketRepository, IUnitOfWork unitOfWork)
 {
@@ -282,7 +282,22 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         var product = ProductType.Create(basketItemRequest.ProductId, basketItemRequest.ProductName);
         var amount = ProductAmount.Create(basketItemRequest.Quantity, basketItemRequest.BasePrice);
         var discount = DiscountAmount.Create(basketItemRequest.DiscountAmount, basketItemRequest.DiscountType);
-        var basketItem = BasketItem.Create(basket.Id, basket.ReferenceNumber, product, amount, discount);
+
+        List<BasketItemAttribute> basketAttributes = null!;
+        if (basketItemRequest.BasketItemAttributes != null
+            && basketItemRequest.BasketItemAttributes.Count != 0)
+        {
+            basketAttributes = basketItemRequest.ToBasketItemAttribute();
+        }
+
+        var basketItem = BasketItem.Create(
+            basket.Id, 
+            basket.ReferenceNumber, 
+            product, 
+            amount, 
+            discount, 
+            basketAttributes);
+
         basket.AddItem(basketItem);
         await unitOfWork.SaveChangesAsync();
         return BasketViewModel.FromBasket(basket);

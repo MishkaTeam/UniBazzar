@@ -1,0 +1,31 @@
+﻿@page
+@model Server.Areas.Admin.Pages.BasicInfo.ProductReviews.IndexModel
+@{
+}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Text))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.InsertDateTime))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.IsActive))
+            <th scope="col"></th>
+        </tr>
+        
+    </thead>
+    <tbody>
+        @foreach (var model in Model.ViewModel)
+        {
+            <tr>
+                @(Html.Ub_DisplayStringWithTd(model.Text))
+                @(Html.Ub_DisplayStringWithTd(model.InsertDateTimeFa))
+                @(Html.Ub_DisplayBooleanWithTd(model.IsVerified))
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a asp-page="Update" asp-route-Id="@(model.Id)" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
+                        <a asp-page="Delete" asp-route-Id="@(model.Id)" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

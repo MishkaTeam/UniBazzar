@@ -1,3 +1,4 @@
+using System.ComponentModel.Design;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 
 namespace Domain.Aggregates.Ordering.ValueObjects;
@@ -98,4 +99,13 @@ public class DiscountAmount : IEquatable<DiscountAmount>
         };
     }
 
+    internal decimal ConvertToPrice(decimal totalPrice, long quantity)
+    {
+        if (DiscountType == DiscountType.Price)
+            return Value * quantity;
+        else if (DiscountType == DiscountType.Percent)
+            return Math.Truncate((Value / 100 ) * totalPrice);
+        else
+            return 0;
+    }
 }

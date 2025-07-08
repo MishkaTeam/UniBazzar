@@ -6,10 +6,11 @@ namespace Application.Aggregates.Products.ViewModels;
 
 public class ProductDetailViewModel
 {
-    public decimal Price { get; set; }
-    public string Name { get; set; }
-    public string SKU { get; set; }
-    public string Slug { get; set; }
+    public Guid Id { get; internal set; }
+    public decimal Price { get; internal set; }
+    public string Name { get; internal set; }
+    public string SKU { get; internal set; }
+    public string Slug { get; internal set; }
     public decimal PriceAfterDiscount { get; set; }
     public decimal Discount { get; set; }
     public long TotalVoters { get; set; }

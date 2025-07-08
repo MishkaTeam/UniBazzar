@@ -78,6 +78,33 @@ internal class BasketConfiguration : BaseConfiguration<Basket>
                 pBuilder.Property(x => x.ProductName).HasMaxLength(500).HasColumnName("ProductName");
             });
 
+            basketBuilder.OwnsMany(x => x.BasketItemAttributes, attBuilder =>
+            {
+                attBuilder.ToTable("BasketItemAttributes");
+                attBuilder.HasKey(t => t.Id);
+
+                attBuilder.Property(x => x.Ordering)
+                        .HasDefaultValue(10_000);
+
+                attBuilder.Property(s => s.OwnerId)
+                       .IsRequired();
+
+                attBuilder.Property(s => s.InsertedBy)
+                       .IsRequired();
+
+                attBuilder.Property(s => s.UpdatedBy)
+                       .IsRequired();
+
+                attBuilder.Property(s => s.InsertDateTime)
+                       .IsRequired();
+
+                attBuilder.Property(s => s.UpdateDateTime)
+                       .IsRequired();
+
+                attBuilder.Property(x => x.ProductAttributeName).HasMaxLength(2000);
+                attBuilder.Property(x => x.ProductAttributeValue).HasMaxLength(2000);
+            });
+
         });
     }   
 }

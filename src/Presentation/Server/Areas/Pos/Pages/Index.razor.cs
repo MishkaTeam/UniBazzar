@@ -1,8 +1,10 @@
-﻿using Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
+﻿using Application.Aggregates.Ordering.Baskets.ViewModels.BasketItems;
+using Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
 using Application.Aggregates.Orders.ViewModels;
 using Application.Aggregates.Orders.ViewModels.BasketItems;
 using BlazorBootstrap;
 using Domain.Aggregates.Ordering.Baskets;
+using Application.Aggregates.Ordering.Baskets.ViewModels.InitializeBasket;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 using Microsoft.AspNetCore.Components.Web;
 using Server.Areas.Pos.Components;

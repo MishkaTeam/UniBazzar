@@ -1,10 +1,12 @@
 ﻿using Domain.Aggregates.Stores;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Persistence.Repositories.Aggregates.Stores;
 
 public class StoreRepository
-    (UniBazzarContext uniBazzarContext) : IStoreRepository
+    (UniBazzarContext uniBazzarContext,
+    IMemoryCache memoryCache) : IStoreRepository
 {
     public async Task AddStoreAsync(Store entity)
     {
@@ -26,26 +28,38 @@ public class StoreRepository
 
     public Guid GetStoreByHostUrl(string hostUrl)
     {
-        var store = uniBazzarContext.Stores
-                    .Select(x => new { x.Id, x.HostUrl })
-                    .FirstOrDefault(x => x.HostUrl == hostUrl);
+        if (!memoryCache.TryGetValue(hostUrl, out Guid storeId))
+        {
 
-        if (store == null)
-            throw new Exception("Store not found");
+            var store = uniBazzarContext.Stores
+                        .Select(x => new { x.Id, x.HostUrl })
+                        .FirstOrDefault(x => x.HostUrl == hostUrl);
 
-        return store.Id;
+            if (store == null)
+                throw new Exception("Store not found");
+
+            memoryCache.Set(hostUrl, store.Id);
+            return store.Id;
+        }
+        return storeId;
     }
 
     public async Task<Guid> GetStoreByHostUrlAsync(string hostUrl)
     {
-        var store = await uniBazzarContext.Stores
+        if (!memoryCache.TryGetValue(hostUrl, out Guid storeId))
+        {
+
+            var store = await uniBazzarContext.Stores
                     .Select(x => new { x.Id, x.HostUrl })
                     .FirstOrDefaultAsync(x => x.HostUrl == hostUrl);
 
         if (store == null)
             throw new Exception("Store not found");
 
-        return store.Id;
+            memoryCache.Set(hostUrl, store.Id);
+            return store.Id;
+        }
+        return storeId;
     }
 
     public void RemoveStore(Store entity)

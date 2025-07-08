@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Net;
 using System.Security.Claims;
 using Application.Aggregates.Customers;
 using Application.ViewModels.Authentication;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Resources;
 using Resources.Messages;
+using Server.Infrastructure.Extentions;
 using Server.Infrastructure.Extentions.ServiceCollections;
 
 namespace Server.Pages.Account;
@@ -82,6 +84,12 @@ public class OTP(CustomerApplication customerApplication) : BasePageModel
         await HttpContext.SignInAsync(AuthenticationConstant.AUTHENTICATION_SCHEME,
             new ClaimsPrincipal(claimsIdentity));
 
-        return RedirectToPage(returnUrl ?? "/Index");
+        var decoded = WebUtility.UrlDecode(returnUrl);
+        if (!string.IsNullOrWhiteSpace(decoded) && Url.IsLocalUrl(decoded))
+        {
+            return LocalRedirect(returnUrl.PartialDecodeSlashes()); 
+        }
+
+        return Redirect("/Index"); 
     }
 }

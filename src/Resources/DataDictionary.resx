@@ -468,4 +468,13 @@
   <data name="FinalPrice" xml:space="preserve">
     <value>Final Price</value>
   </data>
+  <data name="Text" xml:space="preserve">
+    <value>text</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>comment</value>
+  </data>
+	<data name="OtpCode" xml:space="preserve">
+		<value>Code</value>
+	</data>
 </root>

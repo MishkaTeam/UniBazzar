@@ -18,11 +18,23 @@
                     <div class="col-6 col-md-7 col-lg-7 col-xl-4 text-center border 
                                 border-secondary border-opacity-50 border-1 
                                 rounded rounded-3" id="encrypt23235444">
+                        @if(User is not null &&
+                          User.Identity is not null &&
+                          User.Identity.IsAuthenticated)
+                        {
+                            <a class="d-flex text-center justify-content-center align-content-center "
+                               asp-page="/Account/Profile">
+                                <i class="bi bi-box-arrow-in-left fs-4 pt-1 px-2"></i>
+                                پروفایل کاربری
+                            </a>
+                        }else
+                        {
                         <a class="d-flex text-center justify-content-center align-content-center "
                            asp-page="/Account/Login">
                             <i class="bi bi-box-arrow-in-left fs-4 pt-1 px-2"></i>
                             ورود | ثبت نام
                         </a>
+                        }
                     </div>
                     <div class="col-6 col-md-2 col-lg-2 text-center" id="encrypt23235444">
                         <a class="d-flex text-center justify-content-center align-content-center "
