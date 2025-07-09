@@ -1,7 +1,7 @@
 ﻿using Application.Aggregates.Ordering.Baskets.ViewModels.BasketItems;
 using Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
-using BlazorBootstrap;
 using Application.Aggregates.Ordering.Baskets.ViewModels.InitializeBasket;
+using BlazorBootstrap;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 using Microsoft.AspNetCore.Components.Web;
 using Server.Areas.Pos.Components;
@@ -14,6 +14,7 @@ public partial class Index
     private Grid<BasketItemViewModel> grid = default!;
     private CancellationTokenSource? debounceCts;
 
+    private bool _isLoading = false;
     private long _tempAffectedQuantity = 0;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -31,6 +32,23 @@ public partial class Index
 
             await InvokeAsync(StateHasChanged);
         }
+    }
+
+    private bool TryEnableLoading()
+    {
+        if (_isLoading == true)
+        {
+            return false;
+        }
+
+        _isLoading = true;
+
+        return true;
+    }
+
+    private void DisableLoading()
+    {
+        _isLoading = false;
     }
 
     private async Task LoadBasketAsync()
@@ -103,8 +121,18 @@ public partial class Index
         return publicCustomerId;
     }
 
+    private async Task DeleteLocalBasket()
+    {
+        await sessionStorage.RemoveItemAsync(SearchCustomer.LocalBasketKey);
+    }
+
     private async Task onProductSelection(Guid productId)
     {
+        if (TryEnableLoading() == false)
+        {
+            return;
+        }
+        
         var localBasket =
             await sessionStorage.GetItemAsync<InitializeBasketViewModel>(SearchCustomer.LocalBasketKey);
 
@@ -157,12 +185,14 @@ public partial class Index
             ProductId = productId,
             ProductName = product.Name,
             Quantity = 1,
-            BasePrice = 2000,
-            DiscountAmount = 500,
+            BasePrice = 0,
+            DiscountAmount = 0,
             DiscountType = DiscountType.Price,
         })).Data;
 
         Basket = newBasket;
+
+        DisableLoading();
 
         await grid.RefreshDataAsync();
         await InvokeAsync(StateHasChanged);
@@ -439,14 +469,36 @@ public partial class Index
         await InvokeAsync(StateHasChanged);
     }
 
-    private async Task OnEnterDescription(KeyboardEventArgs e, Guid basketId, string description)
+    private async Task Checkout(Guid basketId)
     {
-        //if (e.Key == "Enter")
-        //{
-        //    await SetDescription
-        //        (basketId, description);
+        if (basketId == Guid.Empty)
+        {
+            return;
+        }
 
-        //    await grid.RefreshDataAsync();
-        //}
+        var result =
+            await basketApplication.CheckoutBasket(basketId);
+
+        if (result.IsSuccessful == false)
+        {
+            return;
+        }
+
+        // Need to complete Treasury module !!!
+
+        //var processOrder =
+        //    new ProcessOrderRequestModel() { BasketId = basketId };
+
+        //var cancellationToken =
+        //    new CancellationToken();
+
+        //await orderApplication.ProcessOrderRequest(processOrder, cancellationToken);
+
+        await DeleteLocalBasket();
+
+        Basket = new();
+
+        await grid.RefreshDataAsync();
+        await InvokeAsync(StateHasChanged);
     }
 }
