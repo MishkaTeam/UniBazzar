@@ -86,7 +86,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
             return (ErrorType.NotFound, message);
         }
 
-        basket.BasketItems.Remove(basketItem);
+        basket.RemoveItem(basketItem);
         await unitOfWork.SaveChangesAsync();
 
         return BasketViewModel.FromBasket(basket);
@@ -94,8 +94,17 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
 
     public async Task<ResultContract> CheckoutBasket(Guid basketId)
     {
-        var basket = await basketRepository.GetByIdAsync(basketId);
-        basket.Checkout();
+        var basket =
+            await basketRepository.GetByIdAsync(basketId);
+
+        var result =
+            basket.Checkout();
+
+        if (result == false)
+        {
+            return false;
+        }
+
         await unitOfWork.SaveChangesAsync();
         return true;
     }

@@ -24,6 +24,7 @@ public class BasketViewModel
     public string? Description { get; set; }
     public decimal TotalDiscountAmount { get; set; }
     public DiscountType TotalDiscountType { get; set; }
+    public decimal TotalWithoutDiscount { get; set; }
     public decimal SubtotalBeforeBasketDiscount { get; set; }
     public decimal BasketTotal { get; set; }
     public List<BasketItemViewModel> BasketItems { get; set; }
@@ -34,6 +35,7 @@ public class BasketViewModel
         return new BasketViewModel
         {
             Id = basket.Id,
+            OwnerId = basket.OwnerId,
             ReferenceNumber = basket.ReferenceNumber,
             BasketStatus = basket.BasketStatus,
             TotalDiscountType = basket.TotalDiscountAmount.DiscountType,
@@ -41,6 +43,7 @@ public class BasketViewModel
             Description = basket.Description,
             Platform = basket.Platform,
             BasketTotal = basket.Total,
+            TotalWithoutDiscount = basket.TotalWithoutDiscount,
             SubtotalBeforeBasketDiscount = basket.TotalBeforeDiscount,
             TotalItemDiscounts = basket.TotalItemDiscounts,
             BasketItems = basket.BasketItems.Select(x => new BasketItemViewModel
