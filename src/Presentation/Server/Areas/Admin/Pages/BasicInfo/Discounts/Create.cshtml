@@ -23,14 +23,14 @@
 
             <ub-full-checkbox asp-for="ViewModel.IsActive" />
 
-            <div class="tab btn-group">
+            @* <div class="tab btn-group">
                 <a class="tablinks btn btn-primary" onclick="openTab(event, 'DiscountCode')">@(Resources.DataDictionary.DiscountCode)</a>
                 <a class="tablinks btn btn-primary" onclick="openTab(event, 'Products')">@(Resources.DataDictionary.Products)</a>
                 <a class="tablinks btn btn-primary" onclick="openTab(event, 'Customers')">@(Resources.DataDictionary.Customers)</a>
-            </div>
+            </div> *@
 
-            <div id="DiscountCode" class="tabcontent col-12 border rounded-2 my-2 p-2">
-                <h3>@(Resources.DataDictionary.DiscountCode)</h3>
+            @* <div id="DiscountCode" class="tabcontent col-12 border rounded-2 my-2 p-2"> *@
+                @* <h3>@(Resources.DataDictionary.DiscountCode)</h3> *@
                 <div class="d-flex gap-4">
                     <div class="form-check">
                         <input asp-for="DiscountType" class="form-check-input" type="radio"  value="true" v-model="isTrue" />
@@ -62,9 +62,9 @@
                     <label asp-for="ViewModel.End" class="form-lable"></label>
                     <input type="datetime-local" class="form-control mt-2" asp-for="ViewModel.End" value="@(Model.ViewModel.End.ToString("yyyy-dd-MMTHH:mm"))" />
                 </div>
-            </div>
+            @* </div> *@
 
-            <div id="Products" class="tabcontent col-12 border rounded-2 my-2 p-2">
+            @* <div id="Products" class="tabcontent col-12 border rounded-2 my-2 p-2">
                 <h3>@(Resources.DataDictionary.Products)</h3>
                 <p>Products</p>
             </div>
@@ -72,7 +72,7 @@
             <div id="Customers" class="tabcontent col-12 border rounded-2 my-2 p-2">
                 <h3>@(Resources.DataDictionary.Customers)</h3>
                 <p>Customers</p>
-            </div>
+            </div> *@
 
         </fieldset>
 

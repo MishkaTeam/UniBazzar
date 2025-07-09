@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Persistence;
@@ -11,9 +12,11 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(UniBazzarContext))]
-    partial class UniBazzarContextModelSnapshot : ModelSnapshot
+    [Migration("20250630125516_AddDiscountProduct")]
+    partial class AddDiscountProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -431,50 +434,6 @@ namespace Persistence.Migrations
                     b.ToTable("Discounts");
                 });
 
-            modelBuilder.Entity("Domain.Aggregates.Discounts.DiscountCustomers.DiscountCustomer", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("DiscountId")
-                        .HasColumnType("uuid");
-
-                    b.Property<long>("InsertDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("InsertedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Ordering")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("OwnerId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("StoreId")
-                        .HasColumnType("uuid");
-
-                    b.Property<long>("UpdateDateTime")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Version")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("DiscountId");
-
-                    b.ToTable("DiscountCustomers");
-                });
-
             modelBuilder.Entity("Domain.Aggregates.Discounts.DsiscounProducts.DiscountProduct", b =>
                 {
                     b.Property<Guid>("Id")
@@ -499,6 +458,7 @@ namespace Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("ProductName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<Guid>("StoreId")
@@ -1253,25 +1213,6 @@ namespace Persistence.Migrations
                     b.Navigation("Customers");
                 });
 
-            modelBuilder.Entity("Domain.Aggregates.Discounts.DiscountCustomers.DiscountCustomer", b =>
-                {
-                    b.HasOne("Domain.Aggregates.Customers.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Aggregates.Discounts.Discount", "Discount")
-                        .WithMany()
-                        .HasForeignKey("DiscountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Discount");
-                });
-
             modelBuilder.Entity("Domain.Aggregates.Discounts.DsiscounProducts.DiscountProduct", b =>
                 {
                     b.HasOne("Domain.Aggregates.Discounts.Discount", "Discount")
@@ -1290,7 +1231,6 @@ namespace Persistence.Migrations
 
                     b.Navigation("Product");
                 });
-
 
             modelBuilder.Entity("Domain.Aggregates.Ordering.Baskets.Basket", b =>
                 {
@@ -1431,71 +1371,6 @@ namespace Persistence.Migrations
                                     b2.WithOwner()
                                         .HasForeignKey("BasketItemId");
                                 });
-
-                            b1.OwnsMany("Domain.Aggregates.Ordering.Baskets.BasketItemAttribute", "BasketItemAttributes", b2 =>
-                                {
-                                    b2.Property<Guid>("Id")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<Guid>("BasketItemId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<long>("InsertDateTime")
-                                        .HasColumnType("bigint");
-
-                                    b2.Property<Guid>("InsertedBy")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<int>("Ordering")
-                                        .ValueGeneratedOnAdd()
-                                        .HasColumnType("integer")
-                                        .HasDefaultValue(10000);
-
-                                    b2.Property<Guid>("OwnerId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<decimal>("PriceAdjustment")
-                                        .HasColumnType("numeric");
-
-                                    b2.Property<Guid>("ProductAttributeId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<string>("ProductAttributeName")
-                                        .IsRequired()
-                                        .HasMaxLength(2000)
-                                        .HasColumnType("character varying(2000)");
-
-                                    b2.Property<string>("ProductAttributeValue")
-                                        .IsRequired()
-                                        .HasMaxLength(2000)
-                                        .HasColumnType("character varying(2000)");
-
-                                    b2.Property<Guid?>("ProductAttributeValueId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<Guid>("StoreId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<long>("UpdateDateTime")
-                                        .HasColumnType("bigint");
-
-                                    b2.Property<Guid>("UpdatedBy")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<int>("Version")
-                                        .HasColumnType("integer");
-
-                                    b2.HasKey("Id");
-
-                                    b2.HasIndex("BasketItemId");
-
-                                    b2.ToTable("BasketItemAttributes", (string)null);
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("BasketItemId");
-                                });
-
-                            b1.Navigation("BasketItemAttributes");
 
                             b1.Navigation("DiscountAmount")
                                 .IsRequired();
