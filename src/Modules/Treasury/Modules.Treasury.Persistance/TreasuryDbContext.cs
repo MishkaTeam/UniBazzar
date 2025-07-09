@@ -1,12 +1,23 @@
 ﻿using BuildingBlocks.Persistence;
+using BuildingBlocks.Persistence.EFCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace Modules.Treasury.Persistence;
 
-public class TreasuryDbContext : BaseDbContext
+public class TreasuryDbContext(DbContextOptions options,
+AuditSaveChangesInterceptor auditInterceptor,
+StoreIdSaveChangesInterceptor storeIdSaveChangesInterceptor,
+OwnerIdSaveChangesInterceptor ownerIdSaveChangesInterceptor,
+StoreQueryInterceptor storeQueryInterceptor) : BaseDbContext(options)
 {
-    public TreasuryDbContext(DbContextOptions options) : base(options)
+    protected override void OnConfiguring
+    (DbContextOptionsBuilder optionsBuilder)
     {
+        optionsBuilder.AddInterceptors(auditInterceptor);
+        optionsBuilder.AddInterceptors(storeIdSaveChangesInterceptor);
+        optionsBuilder.AddInterceptors(ownerIdSaveChangesInterceptor);
+        optionsBuilder.AddInterceptors(storeQueryInterceptor);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
