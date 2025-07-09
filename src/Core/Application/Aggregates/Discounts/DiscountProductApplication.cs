@@ -30,7 +30,7 @@ public class DiscountProductApplication(IDiscountProductRepository repository, I
 			Id = x.Id,
 			ProductId = x.ProductId,
 			DiscountId = x.DiscountId,
-			ProductName = x.Product.Name,
+			ProductName = x.Product?.Name,
 		}).ToList();
 	}
 
@@ -47,7 +47,7 @@ public class DiscountProductApplication(IDiscountProductRepository repository, I
 			throw new Exception(message);
 		}
 
-		repository.RemoveAsync(discountProductForDelete);
+		await repository.RemoveAsync(discountProductForDelete);
 		await unitOfWork.SaveChangesAsync();
 	}
 
