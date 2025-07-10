@@ -61,7 +61,8 @@ internal class OrderConfiguration : BaseConfiguration<Order>
             {
                 pBuilder.Property(x => x.Quantity).HasColumnName("ProductQuantity");
                 pBuilder.Property(x => x.BasePrice).HasColumnName("ProductBasePrice");
-                pBuilder.Property(x => x.TotalPrice).HasColumnName("ProductTotalPrice");
+                //pBuilder.Property(x => x.TotalPrice).HasColumnName("ProductTotalPrice").HasComputedColumnSql("ProductQuantity * ProductBasePrice");
+                pBuilder.Ignore(x => x.TotalPrice);
             });
 
             itemBuilder.OwnsOne(x => x.Product, pBuilder =>
