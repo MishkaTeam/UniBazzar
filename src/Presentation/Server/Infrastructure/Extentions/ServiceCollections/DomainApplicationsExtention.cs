@@ -47,6 +47,17 @@ using Persistence.Repositories.Aggregates.Units;
 using Persistence.Repositories.Aggregates.Users;
 using Persistence.Repositories.CustomerSearch;
 using Persistence.Repositories.ProductSearch;
+using Persistence.Aggregates.Comments;
+using Domain.Aggregates.CheckoutCounters;
+using Domain.Aggregates.ProductReviews;
+using Application.Aggregates.Products.ProductFeatures;
+using Application.Aggregates.Ordering.Baskets;
+using Application.Aggregates.Products.ProductImages;
+using Application.Aggregates.ProductReviews;
+using Domain.Aggregates.Customers.ShippingAddresses;
+using Application.Aggregates.Customers.ShippingAddresses;
+using Domain.Aggregates.Discounts.DsiscounProducts;
+using Domain.Aggregates.Discounts.DiscountCustomers;
 
 namespace Server.Infrastructure.Extensions.ServiceCollections;
 
@@ -75,6 +86,8 @@ public static class DomainExtensions
         services.AddScoped<CategoriesApplication>();
 
         services.AddScoped<DiscountApplication>();
+        services.AddScoped<DiscountProductApplication>();
+        services.AddScoped<DiscountCustomerApplication>();
 
 
         services.AddScoped<ProductSearchApplication>();
@@ -97,7 +110,10 @@ public static class DomainExtensions
         services.AddScoped<IShippingAddressRepository, ShippingAddressRepository>();
 
         services.AddScoped<IBasketRepository, BasketRepository>();
+
         services.AddScoped<IDiscountRepository, DiscountRepository>();
+        services.AddScoped<IDiscountProductRepository, DiscountProductRepository>();
+        services.AddScoped<IDiscountCustomerRepository, DiscountCustomerRepository>();
 
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IProductImageRepository, ProductImagesRepository>();
