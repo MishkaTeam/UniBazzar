@@ -15,6 +15,16 @@
 
 <PageTitle>Pos</PageTitle>
 
+@if (_isLoading)
+{
+	<div id="loading_shadow">
+		<div class="d-flex flex-column align-items-center" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100000;">
+			<div class="spinner-border text-primary" style="width: 5rem; height: 5rem;"></div>
+			<span class="text-white mt-3 fs-5">درحال بارگذاری...</span>
+		</div>
+	</div>
+}
+
 <div class="sticky-top row blur m-0">
 	<div class="input-group p-0">
 		<SearchLookup onSelection="onProductSelection" />
@@ -153,7 +163,7 @@
 		<div class="col-2"></div>
 		<div class="col row blur m-0 p-0 pb-2">
 
-			<div class="col-8 ps-0">
+			<div class="col-8 ps-0 pe-2">
 				<div class="bg-light h-100 d-flex flex-column justify-content-between rounded-3 border border-1 border-gray p-2">
 
 					<div class="input-group mb-2">
@@ -299,3 +309,19 @@
 		</div>
 	</div>
 </div>
+
+
+<style>
+	#loading_shadow::before {
+		content: '';
+		background-color: rgba(0, 0, 0, 0.4);
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		animation: components-reconnect-fadeInOpacity 0.5s ease-in-out;
+		opacity: 1;
+		z-index: 100000;
+	}
+</style>

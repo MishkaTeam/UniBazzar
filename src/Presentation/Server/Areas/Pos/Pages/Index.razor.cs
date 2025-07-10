@@ -34,7 +34,7 @@ public partial class Index
         }
     }
 
-    private bool TryEnableLoading()
+    private async Task<bool> TryEnableLoading()
     {
         if (_isLoading == true)
         {
@@ -43,12 +43,16 @@ public partial class Index
 
         _isLoading = true;
 
+        await InvokeAsync(StateHasChanged);
+
         return true;
     }
 
-    private void DisableLoading()
+    private async Task DisableLoading(bool render = false)
     {
         _isLoading = false;
+        
+        await InvokeAsync(StateHasChanged);
     }
 
     private async Task LoadBasketAsync()
@@ -128,11 +132,11 @@ public partial class Index
 
     private async Task onProductSelection(Guid productId)
     {
-        if (TryEnableLoading() == false)
+        if (await TryEnableLoading() == false)
         {
             return;
         }
-        
+
         var localBasket =
             await sessionStorage.GetItemAsync<InitializeBasketViewModel>(SearchCustomer.LocalBasketKey);
 
@@ -169,7 +173,7 @@ public partial class Index
                 .PlusQuantity(basket!.Id, basketItem.Id)).Data;
 
             await grid.RefreshDataAsync();
-            await InvokeAsync(StateHasChanged);
+            await DisableLoading();
 
             return;
         }
@@ -192,21 +196,25 @@ public partial class Index
 
         Basket = newBasket;
 
-        DisableLoading();
-
         await grid.RefreshDataAsync();
-        await InvokeAsync(StateHasChanged);
+        await DisableLoading();
     }
 
     private async Task RemoveBasketItem(Guid basketId, Guid basketItemId)
     {
+        if (await TryEnableLoading() == false)
+        {
+            return;
+        }
+
         Basket = (await basketApplication
                 .RemoveItem(basketId, basketItemId)).Data;
 
         await grid.RefreshDataAsync();
+        await DisableLoading();
     }
 
-    private async Task<GridDataProviderResult<BasketItemViewModel>>EmployeesDataProvider(GridDataProviderRequest<BasketItemViewModel> request)
+    private async Task<GridDataProviderResult<BasketItemViewModel>> EmployeesDataProvider(GridDataProviderRequest<BasketItemViewModel> request)
     {
         if (Basket is null)
             Basket = new BasketViewModel();
@@ -246,20 +254,32 @@ public partial class Index
         if (token.IsCancellationRequested)
             return;
 
+        if (await TryEnableLoading() == false)
+        {
+            return;
+        }
+
         Basket = (await basketApplication
             .SetAffectedQuantity(basketId, basketItemId, _tempAffectedQuantity)).Data;
 
         _tempAffectedQuantity = 0;
 
         await grid.RefreshDataAsync();
+        await DisableLoading();
     }
 
     private async Task SetQuantity(Guid basketId, Guid basketItemId, long quantity)
     {
+        if (await TryEnableLoading() == false)
+        {
+            return;
+        }
+
         Basket = (await basketApplication
             .SetQuantity(basketId, basketItemId, quantity)).Data;
 
         await grid.RefreshDataAsync();
+        await DisableLoading();
     }
 
     private async Task OnEnterQuantity(KeyboardEventArgs e, Guid basketId, Guid basketItemId, long quantity)
@@ -268,17 +288,21 @@ public partial class Index
         {
             await SetQuantity
                 (basketId, basketItemId, quantity);
-
-            await grid.RefreshDataAsync();
         }
     }
 
     private async Task SetBasePrice(Guid basketId, Guid basketItemId, decimal basePrice)
     {
+        if (await TryEnableLoading() == false)
+        {
+            return;
+        }
+
         Basket = (await basketApplication
             .SetBasePrice(basketId, basketItemId, basePrice)).Data;
 
         await grid.RefreshDataAsync();
+        await DisableLoading();
     }
 
     private async Task OnEnterBasePrice(KeyboardEventArgs e, Guid basketId, Guid basketItemId, decimal basePrice)
@@ -287,13 +311,16 @@ public partial class Index
         {
             await SetBasePrice
                 (basketId, basketItemId, basePrice);
-
-            await grid.RefreshDataAsync();
         }
     }
 
     private async Task SetDiscountValue(Guid basketId, Guid basketItemId, decimal discountValue)
     {
+        if (await TryEnableLoading() == false)
+        {
+            return;
+        }
+
         var basket =
             (await basketApplication.GetBasket(basketId)).Data;
 
@@ -321,6 +348,7 @@ public partial class Index
             .SetDiscountValue(basketId, basketItemId, discountValue)).Data;
 
         await grid.RefreshDataAsync();
+        await DisableLoading();
     }
 
     private async Task OnEnterDiscountValue(KeyboardEventArgs e, Guid basketId, Guid basketItemId, decimal basePrice)
@@ -329,13 +357,16 @@ public partial class Index
         {
             await SetDiscountValue
                 (basketId, basketItemId, basePrice);
-
-            await grid.RefreshDataAsync();
         }
     }
 
     private async Task ChangeDiscountType(Guid basketId, Guid basketItemId)
     {
+        if (await TryEnableLoading() == false)
+        {
+            return;
+        }
+
         var basket =
             (await basketApplication.GetBasket(basketId)).Data;
 
@@ -376,11 +407,16 @@ public partial class Index
             .UpdateDiscount(basketId, basketItemId, discountValue, discountType)).Data;
 
         await grid.RefreshDataAsync();
-        await InvokeAsync(StateHasChanged);
+        await DisableLoading();
     }
 
     private async Task SetTotalDiscountValue(Guid basketId, decimal discountValue)
     {
+        if (await TryEnableLoading() == false)
+        {
+            return;
+        }
+
         var basket =
             (await basketApplication.GetBasket(basketId)).Data;
 
@@ -405,6 +441,7 @@ public partial class Index
             .UpdateTotalDiscount(basketId, discountValue, Basket!.TotalDiscountType)).Data;
 
         await grid.RefreshDataAsync();
+        await DisableLoading();
     }
 
     private async Task OnEnterTotalDiscountValue(KeyboardEventArgs e, Guid basketId, decimal basePrice)
@@ -413,13 +450,16 @@ public partial class Index
         {
             await SetTotalDiscountValue
                 (basketId, basePrice);
-
-            await grid.RefreshDataAsync();
         }
     }
 
     private async Task ChangeTotalDiscountType(Guid basketId)
     {
+        if (await TryEnableLoading() == false)
+        {
+            return;
+        }
+
         var basket =
             (await basketApplication.GetBasket(basketId)).Data;
 
@@ -431,8 +471,11 @@ public partial class Index
             discountType =
                 DiscountType.Percent;
 
-            discountValue =
-                (basket.TotalDiscountAmount * 100) / basket.SubtotalBeforeBasketDiscount;
+            if (basket.TotalDiscountAmount > 0)
+            {
+                discountValue =
+                    (basket.TotalDiscountAmount * 100) / basket.SubtotalBeforeBasketDiscount;
+            }
 
             if (discountValue > 100)
             {
@@ -444,8 +487,11 @@ public partial class Index
             discountType =
                 DiscountType.Price;
 
-            discountValue =
-                (basket.TotalDiscountAmount * basket.SubtotalBeforeBasketDiscount) / 100;
+            if (basket.TotalDiscountAmount > 0)
+            {
+                discountValue =
+                    (basket.TotalDiscountAmount * basket.SubtotalBeforeBasketDiscount) / 100;
+            }
 
             if (discountValue > basket.SubtotalBeforeBasketDiscount)
             {
@@ -457,20 +503,30 @@ public partial class Index
             .UpdateTotalDiscount(basketId, discountValue, discountType)).Data;
 
         await grid.RefreshDataAsync();
-        await InvokeAsync(StateHasChanged);
+        await DisableLoading();
     }
 
     private async Task SetDescription(Guid basketId, string description)
     {
+        if (await TryEnableLoading() == false)
+        {
+            return;
+        }
+
         Basket = (await basketApplication
             .UpdateDescription(basketId, description)).Data;
 
         await grid.RefreshDataAsync();
-        await InvokeAsync(StateHasChanged);
+        await DisableLoading();
     }
 
     private async Task Checkout(Guid basketId)
     {
+        if (await TryEnableLoading() == false)
+        {
+            return;
+        }
+
         if (basketId == Guid.Empty)
         {
             return;
@@ -499,6 +555,6 @@ public partial class Index
         Basket = new();
 
         await grid.RefreshDataAsync();
-        await InvokeAsync(StateHasChanged);
+        await DisableLoading();
     }
 }
