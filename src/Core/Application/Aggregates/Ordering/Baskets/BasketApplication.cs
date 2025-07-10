@@ -260,6 +260,7 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
             return (ErrorType.NotFound, message);
         }
 
+
         var basketItem =
             basket.BasketItems.FirstOrDefault(x => x.Id == basketItemId);
 

@@ -99,7 +99,6 @@
 						<div id="product-intro" class="col-12 py-5 col-lg-3 mt-5 mt-lg-0 pl-lg-0 border border-1 bg-secondary bg-gradient bg-opacity-10 rounded rounded-3 border-secondary border-opacity-25">
 							<form method="post" asp-page-handler="Purchase">
 								<input asp-for="BasketProduct.ProductId" hidden />
-								<input id="basketId" asp-for="BasketProduct.BasketId" hidden />
 
 								<div class="variables">
 									<div class="row">
@@ -109,7 +108,7 @@
 												<div class="variable">
 													<div class="sub-title pt-2 pb-2">@(attr.Name)</div>
 
-													<select asp-for="BasketProduct.SelectedAttributes[attr.Name]" class="form-select">
+													<select asp-for="BasketProduct.SelectedAttributes[attr.Id]" class="form-select">
 														@foreach (var variable in attr.AttributeValues)
 														{
 															<option value="@(variable.Id)">@(variable.Name)[@(variable.PriceAdjustment != 0 ? variable.PriceAdjustment.ToString("#,#") : "رایگان")]</option>
@@ -394,8 +393,3 @@
 		</div>
 	</div>
 </section>
-
-
-<script>
-	document.getElementById("basketId").value = localStorage.getItem("currentWebBasket");
-</script>
