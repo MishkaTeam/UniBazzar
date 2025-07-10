@@ -69,7 +69,8 @@ internal class BasketConfiguration : BaseConfiguration<Basket>
             {
                 pBuilder.Property(x => x.Quantity).HasColumnName("ProductQuantity");
                 pBuilder.Property(x => x.BasePrice).HasColumnName("ProductBasePrice");
-                pBuilder.Property(x => x.TotalPrice).HasColumnName("ProductTotalPrice");
+                //pBuilder.Property(x => x.TotalPrice).HasColumnName("ProductTotalPrice").HasComputedColumnSql("ProductQuantity * ProductBasePrice");
+                pBuilder.Ignore(x => x.TotalPrice);
             });
 
 

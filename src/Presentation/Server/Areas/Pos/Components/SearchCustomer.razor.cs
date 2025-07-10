@@ -1,3 +1,4 @@
+using Application.Aggregates.Ordering.Baskets.ViewModels.InitializeBasket;
 using Domain.CustomerSearch;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -16,6 +17,7 @@ public partial class SearchCustomer
 
     private SuggestionItem suggestion = new();
 
+    public static string LocalBasketKey { get; } = "Basket";
     public static string LocalCustomerKey { get; } = "Customer";
 
 
@@ -50,7 +52,22 @@ public partial class SearchCustomer
             return;
         }
 
-        await localStorage.SetItemAsync(LocalCustomerKey, suggestion.CustomerId);
+        await sessionStorage.SetItemAsync(LocalCustomerKey, suggestion.CustomerId);
+
+        var localBasket =
+            await sessionStorage.GetItemAsync<InitializeBasketViewModel>(LocalBasketKey);
+
+        if (localBasket != null)
+        {
+            var basketIsExist =
+                (await basketApplication.Exist(localBasket!.Id)).Data;
+
+            // If Owener changed do it
+            if (basketIsExist == true /*&& localBasket.OwnerId != suggestion.CustomerId*/)
+            {
+                await basketApplication.ChangeOwnerAsync(localBasket.Id, suggestion.CustomerId);
+            }
+        }
 
         searchMobile = string.Empty;
     }
@@ -61,9 +78,10 @@ public partial class SearchCustomer
         {
             await JS.InvokeVoidAsync("addOutsideClickListenerCustomerSearch", DotNetObjectReference.Create(this));
 
+            // Load Customer in CustomerInformation section
             // Show local customer in CustomerInformation [ Have Error ]
             //var customerId =
-            //    await localStorage.GetItemAsync<Guid?>(LocalCustomerKey);
+            //    await sessionStorage.GetItemAsync<Guid?>(LocalCustomerKey);
 
             //if (customerId.HasValue)
             //{
