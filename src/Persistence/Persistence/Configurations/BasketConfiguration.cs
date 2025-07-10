@@ -56,6 +56,8 @@ internal class BasketConfiguration : BaseConfiguration<Basket>
                    .IsRequired();
 
             basketBuilder.Ignore(x => x.TotalPrice);
+            basketBuilder.Ignore(x => x.TotalPriceWithAdjustment);
+            basketBuilder.Ignore(x => x.PriceAdjustments);
             basketBuilder.OwnsOne(x => x.DiscountAmount, dBuilder =>
             {
                 dBuilder.Property(x => x.DiscountType).HasColumnName("DiscountType");
