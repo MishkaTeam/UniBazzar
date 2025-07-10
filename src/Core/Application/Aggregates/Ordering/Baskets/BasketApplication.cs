@@ -117,24 +117,8 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
             return (ErrorType.NotFound, message);
         }
 
-        return new BasketViewModel
-        {
-            Id = basket.Id,
-            OwnerId = basket.OwnerId,
-            Platform = basket.Platform,
-            BasketStatus = basket.BasketStatus,
-            ReferenceNumber = basket.ReferenceNumber,
-            BasketItems = basket.BasketItems.Select(x => new BasketItemViewModel
-            {
-                ProductId = x.Product.ProductId,
-                ProductName = x.Product.ProductName,
-                Quantity = x.ProductAmount.Quantity,
-                BasePrice = x.ProductAmount.BasePrice,
-                TotalPrice = x.ProductAmount.TotalPrice,
-                DiscountValue = x.DiscountAmount.Value,
-                DiscountType = x.DiscountAmount.DiscountType,
-            }).ToList()
-        };
+        return BasketViewModel.FromBasket(basket);
+       
     }
 
     public async Task<ResultContract<BasketViewModel>> GetBasket(Guid basketId)
@@ -150,23 +134,8 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
             return (ErrorType.NotFound, message);
         }
 
-        return new BasketViewModel
-        {
-            Id = basket.Id,
-            Platform = basket.Platform,
-            BasketStatus = basket.BasketStatus,
-            ReferenceNumber = basket.ReferenceNumber,
-            BasketItems = basket.BasketItems.Select(x => new BasketItemViewModel
-            {
-                ProductId = x.Product.ProductId,
-                ProductName = x.Product.ProductName,
-                Quantity = x.ProductAmount.Quantity,
-                BasePrice = x.ProductAmount.BasePrice,
-                TotalPrice = x.ProductAmount.TotalPrice,
-                DiscountValue = x.DiscountAmount.Value,
-                DiscountType = x.DiscountAmount.DiscountType,
-            }).ToList()
-        };
+        return BasketViewModel.FromBasket(basket);
+
     }
 
     public async Task<ResultContract<BasketViewModel>> ChangeOwnerAsync(Guid basketId, Guid ownerId)

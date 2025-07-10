@@ -49,6 +49,7 @@ public class BasketViewModel
                 ProductName = x.Product.ProductName,
                 Quantity = x.ProductAmount.Quantity,
                 TotalPrice = x.TotalPrice,
+                Attributes = BasketItemAttributeContract.FromBasketItemAttribute(x.BasketItemAttributes),
             }).ToList()
         };
     }

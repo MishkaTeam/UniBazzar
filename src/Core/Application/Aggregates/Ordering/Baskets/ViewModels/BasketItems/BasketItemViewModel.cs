@@ -12,5 +12,5 @@ public class BasketItemViewModel
     public decimal DiscountValue { get; set; }
     public DiscountType DiscountType { get; set; }
     public decimal TotalPrice { get; set; }
-
+    public List<BasketItemAttributeContract> Attributes { get; internal set; }
 }

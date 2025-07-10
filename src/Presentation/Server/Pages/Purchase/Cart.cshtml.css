@@ -1,0 +1,32 @@
+﻿.counter-box {
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 160px;
+}
+
+.icon-button {
+    cursor: pointer;
+    color: #f44336;
+    font-size: 1.25rem;
+}
+
+    .icon-button.disabled {
+        color: #ccc;
+        cursor: not-allowed;
+    }
+
+.counter-number {
+    color: #f44336;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.counter-label {
+    font-size: 0.8rem;
+    color: #999;
+    text-align: center;
+}

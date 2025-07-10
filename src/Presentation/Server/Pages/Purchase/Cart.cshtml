@@ -3,303 +3,235 @@
 @{
 }
 <section class="inner-page" id="cart-page">
-    <div class="container-fluid" id="page-hero">
-        <div class="row">
-            <div class="col-12">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 px-0">
-                            <h1>سبد خرید</h1>
-                            <p>مدیریت و خرید همزمان چند محصول</p>
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a asp-page="/Index">صفحه نخست</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">سبد خرید</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container-fluid" id="page-hero">
+		<div class="row">
+			<div class="col-12">
+				<div class="container">
+					<div class="row">
+						<div class="col-12 px-0">
+							<h1>سبد خرید</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="content">
-                    <div class="row">
-                        <div class="col-12 col-lg-9">
-                            <div id="cart-products">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12 py-3">
-                                            <div class="pb-3" id="return-to-shop">می‌خواهید محصولات دیگری اضافه کنید؟ <a asp-page="/Products">بازگشت به فروشگاه</a></div>
-                                            <div class="d-none d-md-block">
-                                                <div class="row my-2" id="heading">
-                                                    <div class="col-4">
-                                                        <div>کالا</div>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <div>قیمت واحد</div>
-                                                    </div>
-                                                    <div class="col-2 pl-4">
-                                                        <div>تعداد</div>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <div>تخفیف</div>
-                                                    </div>
-                                                    <div class="col-2 pr-0">
-                                                        <div class="pr-3">قیمت نهایی</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Order Product Record -->
-                                            <div class="row product">
-                                                <div class="col-12 col-md-4">
-                                                    <div class="row">
-                                                        <div class="col-2 col-md-4 pl-0">
-                                                            <img src="/images/products/p100.png" alt="">
-                                                        </div>
-                                                        <div class="col-10 col-md-8">
-                                                            <a asp-page="/Product" target="_blank"><div class="title pt-2">گوشی موبایل سامسونگ مدل Galaxy A51 دو سیم کارت</div></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 col-md-2">
-                                                    <div class="d-md-none font-weight-bold">قیمت</div>
-                                                    <div class="pt-1"><span class="product-price">3.200.000</span> <span>تومان</span></div>
-                                                </div>
-                                                <div class="col-6 col-md-2 pl-4 pr-0 pr-md-3">
-                                                    <div class="d-md-none font-weight-bold">تعداد</div>
-                                                    <div class="input-group mb-3 order-number">
-                                                        <div class="input-group-prepend">
-                                                            <button class="btn btn-outline-secondary btn-plus" type="button">+</button>
-                                                        </div>
-                                                        <input type="text" name="order-number[]" value="1" class="form-control text-center order-number" readonly>
-                                                        <div class="input-group-prepend">
-                                                            <button class="btn btn-outline-secondary btn-minus" type="button">_</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 col-md-2">
-                                                    <div class="d-md-none font-weight-bold">تخفیف</div>
-                                                    <div class="pt-1"><span class="product-discount">3.200.000</span> <span>تومان</span></div>
-                                                </div>
-                                                <div class="col-6 col-md-2 pr-0">
-                                                    <div class="d-md-none font-weight-bold">قیمت نهایی</div>
-                                                    <div class="pt-1 pr-2 bg-light"><span class="product-total">3.000.000</span> <span>تومان</span></div>
-                                                    <a href="#" class="product-remove btn-remove-from-basket" data-id="{{$product->id}}"><div class="small pl-2"><i class="fa fa-times"></i> حذف</div></a>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <!-- Order Product Record -->
-                                            <!-- Order Product Record -->
-                                            <div class="row product">
-                                                <div class="col-12 col-md-4">
-                                                    <div class="row">
-                                                        <div class="col-2 col-md-4 pl-0">
-                                                            <img src="/images/products/p200.png" alt="">
-                                                        </div>
-                                                        <div class="col-10 col-md-8">
-                                                            <a asp-page="/Product" target="_blank"><div class="title pt-2">لپ تاپ 15 اینچی ایسوس مدل VivoBook X543MA-DM905</div></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 col-md-2">
-                                                    <div class="d-md-none font-weight-bold">قیمت</div>
-                                                    <div class="pt-1"><span class="product-price">3.200.000</span> <span>تومان</span></div>
-                                                </div>
-                                                <div class="col-6 col-md-2 pl-4 pr-0 pr-md-3">
-                                                    <div class="d-md-none font-weight-bold">تعداد</div>
-                                                    <div class="input-group mb-3 order-number">
-                                                        <div class="input-group-prepend">
-                                                            <button class="btn btn-outline-secondary btn-plus" type="button">+</button>
-                                                        </div>
-                                                        <input type="text" name="order-number[]" value="1" class="form-control text-center order-number" readonly>
-                                                        <div class="input-group-prepend">
-                                                            <button class="btn btn-outline-secondary btn-minus" type="button">_</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 col-md-2">
-                                                    <div class="d-md-none font-weight-bold">تخفیف</div>
-                                                    <div class="pt-1"><span class="product-discount">3.200.000</span> <span>تومان</span></div>
-                                                </div>
-                                                <div class="col-6 col-md-2 pr-0">
-                                                    <div class="d-md-none font-weight-bold">قیمت نهایی</div>
-                                                    <div class="pt-1 pr-2 bg-light"><span class="product-total">3.000.000</span> <span>تومان</span></div>
-                                                    <a href="#" class="product-remove btn-remove-from-basket" data-id="{{$product->id}}"><div class="small pl-2"><i class="fa fa-times"></i> حذف</div></a>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <!-- Order Product Record -->
-                                            <div class="row product">
-                                                <div class="col-12">
-                                                    <a href="#" class="product-remove btn-remove-from-basket" data-id="all"><div class="float-end small pl-2 font-weight-bold">خالی کردن سبد</div></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-3 mt-2 mt-lg-0 pr-3 pr-lg-0">
-                            <div id="factor">
-                                <div class="container">
-                                    <div class="row py-2">
-                                        <div class="col-6">
-                                            <div>جمع کل فاکتور:</div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div><span id="factor-total-price">3.200.000</span> تومان</div>
-                                        </div>
-                                    </div>
-                                    <div class="row py-2 bg-light">
-                                        <div class="col-6">
-                                            <div>جمع تخفیف:</div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div><span id="factor-total-discount">200.000</span> تومان</div>
-                                        </div>
-                                    </div>
-                                    <div class="row py-2" id="total">
-                                        <div class="col-6">
-                                            <div>مبلغ قابل پرداخت:</div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div><span id="factor-total">3.000.000</span> تومان</div>
-                                        </div>
-                                    </div>
-                                    <div class="row py-2">
-                                        <div class="col-12">
-                                            <a asp-page="/Checkout"><input type="submit" value="ادامه ثبت سفارش" class="btn btn-success w-100"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Suggested Products -->
-                        <div class="col-12 pt-5" id="suggested-products">
-                            <div class="title py-3 text-center">سایر محصولات پیشنهادی</div>
-                            <div class="owl-carousel products-carousel">
-                                <!-- Product Item -->
-                                <div class="encrypt263156 item">
-                                    <a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
-                                    <div class="details p-3">
-                                        <div class="category">
-                                            <a asp-page="/Products">گوشی موبایل</a>
-                                            &nbsp;/&nbsp;
-                                            <a asp-page="/Products">سامسونگ</a>
-                                        </div>
-                                        <a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
-                                        <div class="price">4.000.000 تومان</div>
-                                        <div class="rate">
-                                            <i class="fa fa-star-half-alt"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <span class="encrypt89312423451">(14 رای دهنده)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Product Item -->
-                                <!-- Product Item -->
-                                <div class="encrypt263156 item">
-                                    <a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
-                                    <div class="details p-3">
-                                        <div class="category">
-                                            <a asp-page="/Products">گوشی موبایل</a>
-                                            &nbsp;/&nbsp;
-                                            <a asp-page="/Products">سامسونگ</a>
-                                        </div>
-                                        <a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
-                                        <div class="price">4.000.000 تومان</div>
-                                        <div class="rate">
-                                            <i class="fa fa-star-half-alt"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <span class="encrypt89312423451">(14 رای دهنده)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Product Item -->
-                                <!-- Product Item -->
-                                <div class="encrypt263156 item">
-                                    <a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
-                                    <div class="details p-3">
-                                        <div class="category">
-                                            <a asp-page="/Products">گوشی موبایل</a>
-                                            &nbsp;/&nbsp;
-                                            <a asp-page="/Products">سامسونگ</a>
-                                        </div>
-                                        <a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
-                                        <div class="price">4.000.000 تومان</div>
-                                        <div class="rate">
-                                            <i class="fa fa-star-half-alt"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <span class="encrypt89312423451">(14 رای دهنده)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Product Item -->
-                                <!-- Product Item -->
-                                <div class="encrypt263156 item">
-                                    <a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
-                                    <div class="details p-3">
-                                        <div class="category">
-                                            <a asp-page="/Products">گوشی موبایل</a>
-                                            &nbsp;/&nbsp;
-                                            <a asp-page="/Products">سامسونگ</a>
-                                        </div>
-                                        <a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
-                                        <div class="price">4.000.000 تومان</div>
-                                        <div class="rate">
-                                            <i class="fa fa-star-half-alt"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <span class="encrypt89312423451">(14 رای دهنده)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Product Item -->
-                                <!-- Product Item -->
-                                <div class="encrypt263156 item">
-                                    <a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
-                                    <div class="details p-3">
-                                        <div class="category">
-                                            <a asp-page="/Products">گوشی موبایل</a>
-                                            &nbsp;/&nbsp;
-                                            <a asp-page="/Products">سامسونگ</a>
-                                        </div>
-                                        <a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
-                                        <div class="price">4.000.000 تومان</div>
-                                        <div class="rate">
-                                            <i class="fa fa-star-half-alt"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <span class="encrypt89312423451">(14 رای دهنده)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Product Item -->
-                            </div>
-                        </div>
-                        <!-- /Suggested Products -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="content">
+					<div class="row">
+						<div class="col-12 col-lg-9">
+							<div id="cart-products">
+								<div class="container">
+									<div class="row">
+										<div class="col-12 py-3">
+											<!-- Order Product Record -->
+											@foreach (var item in Model.Basket.BasketItems)
+											{
+												<div class="row product">
+													<div class="col-12">
+														<div class="row">
+															<div class="col-12 col-md-2 pl-0">
+																<img src="/images/products/p100.png" alt="">
+																<div class="d-flex flex-column align-items-center">
+																	<div class="counter-box">
+																		<i class="bi bi-trash icon-button"></i>
+																		<div class="d-flex flex-column align-items-center">
+																			<div class="counter-number">۱</div>
+																			<div class="counter-label">حداکثر</div>
+																		</div>
+																		<i class="bi bi-plus icon-button"></i>
+																	</div>
+																</div>
+															</div>
+															<div class="col-10 col-md-7">
+																<a asp-page="/Product" target="_blank"><div class="title pt-2">@(item.ProductName)</div></a>
+																<div class="pt-2"> 
+																	@foreach (var attribute in item.Attributes ?? [])
+																	{
+																		<span>
+																			<i class="bi bi-bag-plus"></i>
+																			<span class="text-black-50">@(attribute.ProductAttributeName) : @(attribute.ProductAttributeValue) (@(attribute.PriceAdjustment))</span>
+																		</span>
+																	}
+																</div>
+																@if (item.DiscountValue > 0)
+																{
+																	<div class="pt-2"><span class="product-discount">@(item.DiscountValue)</span> <span>تومان تخفیف</span></div>
+																}
+																<div class="col-12 pr-0 pt-2">
+																	<div class="pt-1 pr-2"><span class="product-total h3">@(item.TotalPrice.ToString("#,#"))</span> <span>تومان</span></div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											}
+											<div class="row product">
+												<div class="col-12">
+													<a href="#" class="product-remove btn-remove-from-basket" data-id="all"><div class="float-end small pl-2 font-weight-bold">خالی کردن سبد</div></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-3 mt-2 mt-lg-0 pr-3 pr-lg-0">
+							<div id="factor">
+								<div class="container">
+									<div class="row py-2">
+										<div class="col-6">
+											<div>جمع کل فاکتور:</div>
+										</div>
+										<div class="col-6">
+											<div><span id="factor-total-price">@(Model.Basket.SubtotalBeforeBasketDiscount.ToString("#,#"))</span> تومان</div>
+										</div>
+									</div>
+									<div class="row py-2 bg-light">
+										<div class="col-6">
+											<div>جمع تخفیف:</div>
+										</div>
+										<div class="col-6">
+											<div><span id="factor-total-discount">@(Model.Basket.TotalItemDiscounts.ToString("#,#"))</span> تومان</div>
+										</div>
+									</div>
+									<div class="row py-2" id="total">
+										<div class="col-6">
+											<div>مبلغ قابل پرداخت:</div>
+										</div>
+										<div class="col-6">
+											<div><span id="factor-total">@(Model.Basket.BasketTotal.ToString("#,#"))</span> تومان</div>
+										</div>
+									</div>
+									<div class="row py-2">
+										<div class="col-12">
+											<a asp-page="/Checkout"><input type="submit" value="ادامه ثبت سفارش" class="btn btn-success w-100"></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 pt-5" id="suggested-products">
+							<div class="title py-3 text-center">سایر محصولات پیشنهادی</div>
+							<div class="owl-carousel products-carousel">
+								<!-- Product Item -->
+								<div class="encrypt263156 item">
+									<a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
+									<div class="details p-3">
+										<div class="category">
+											<a asp-page="/Products">گوشی موبایل</a>
+											&nbsp;/&nbsp;
+											<a asp-page="/Products">سامسونگ</a>
+										</div>
+										<a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
+										<div class="price">4.000.000 تومان</div>
+										<div class="rate">
+											<i class="fa fa-star-half-alt"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<span class="encrypt89312423451">(14 رای دهنده)</span>
+										</div>
+									</div>
+								</div>
+								<!-- /Product Item -->
+								<!-- Product Item -->
+								<div class="encrypt263156 item">
+									<a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
+									<div class="details p-3">
+										<div class="category">
+											<a asp-page="/Products">گوشی موبایل</a>
+											&nbsp;/&nbsp;
+											<a asp-page="/Products">سامسونگ</a>
+										</div>
+										<a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
+										<div class="price">4.000.000 تومان</div>
+										<div class="rate">
+											<i class="fa fa-star-half-alt"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<span class="encrypt89312423451">(14 رای دهنده)</span>
+										</div>
+									</div>
+								</div>
+								<!-- /Product Item -->
+								<!-- Product Item -->
+								<div class="encrypt263156 item">
+									<a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
+									<div class="details p-3">
+										<div class="category">
+											<a asp-page="/Products">گوشی موبایل</a>
+											&nbsp;/&nbsp;
+											<a asp-page="/Products">سامسونگ</a>
+										</div>
+										<a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
+										<div class="price">4.000.000 تومان</div>
+										<div class="rate">
+											<i class="fa fa-star-half-alt"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<span class="encrypt89312423451">(14 رای دهنده)</span>
+										</div>
+									</div>
+								</div>
+								<!-- /Product Item -->
+								<!-- Product Item -->
+								<div class="encrypt263156 item">
+									<a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
+									<div class="details p-3">
+										<div class="category">
+											<a asp-page="/Products">گوشی موبایل</a>
+											&nbsp;/&nbsp;
+											<a asp-page="/Products">سامسونگ</a>
+										</div>
+										<a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
+										<div class="price">4.000.000 تومان</div>
+										<div class="rate">
+											<i class="fa fa-star-half-alt"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<span class="encrypt89312423451">(14 رای دهنده)</span>
+										</div>
+									</div>
+								</div>
+								<!-- /Product Item -->
+								<!-- Product Item -->
+								<div class="encrypt263156 item">
+									<a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
+									<div class="details p-3">
+										<div class="category">
+											<a asp-page="/Products">گوشی موبایل</a>
+											&nbsp;/&nbsp;
+											<a asp-page="/Products">سامسونگ</a>
+										</div>
+										<a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
+										<div class="price">4.000.000 تومان</div>
+										<div class="rate">
+											<i class="fa fa-star-half-alt"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<span class="encrypt89312423451">(14 رای دهنده)</span>
+										</div>
+									</div>
+								</div>
+								<!-- /Product Item -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
