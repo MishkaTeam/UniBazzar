@@ -55,9 +55,20 @@ public class BasketTests
     [Fact]
     public void Checkout_ShouldChangeBasketStatusToCheckout()
     {
-
         var basket = Basket.Initialize(Platform.POS);
-        
+
+        var product = ProductType.Create(Guid.NewGuid(), "Test Product");
+
+        var basketItem = BasketItem.Create(
+            Guid.NewGuid(),
+            "123456",
+            product,
+            ProductAmount.Create(1, 1000),
+            DiscountAmount.CreatePriceDiscount(0)
+        );
+
+        basket.AddItem(basketItem);
+
         basket.Checkout();
         
         basket.BasketStatus.Should().Be(BasketStatus.CHECKOUT);
