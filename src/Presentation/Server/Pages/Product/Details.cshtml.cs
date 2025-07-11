@@ -1,5 +1,4 @@
-﻿using System.Net.WebSockets;
-using Application.Aggregates.Customers;
+﻿using Application.Aggregates.Customers;
 using Application.Aggregates.Ordering.Baskets;
 using Application.Aggregates.Ordering.Baskets.ViewModels.BasketItems;
 using Application.Aggregates.Ordering.Baskets.ViewModels.InitializeBasket;
@@ -11,10 +10,8 @@ using Application.Aggregates.Products.ProductFeatures;
 using Application.Aggregates.Products.ProductImages;
 using Application.Aggregates.Products.ViewModels;
 using BuildingBlocks.Persistence;
-using Domain.Aggregates.Ordering.Baskets;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Server.Infrastructure.Extentions;
 
@@ -37,7 +34,7 @@ public class DetailModel(ProductsApplication productsApplication,
     [BindProperty]
     public AddBasketProductViewModel BasketProduct { get; set; } = new();
 
-    public List<DetailsProductReviewViewModel> ViewModel { get; set; }
+    public List<DetailsProductReviewViewModel> ViewModel { get; set; } = [];
     public async Task<IActionResult> OnGetAsync(string sku, string slug)
     {
         if (string.IsNullOrWhiteSpace(sku))
