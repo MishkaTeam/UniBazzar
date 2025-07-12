@@ -25,6 +25,7 @@
                         <ul class="dropdown-menu">
                             <li><a asp-page="Update" asp-route-Id="@(model.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a></li>
                             <li><a asp-page="Delete" asp-route-Id="@(model.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a></li>
+                            <li><a asp-page="/BasicInfo/Attribute/AttributeValue/Index" asp-route-attributeId="@(model.Id)" type="button" class="btn btn-info">@(Resources.DataDictionary.AttributeValue)</a></li>
                         </ul>
                     </div>
                 </td>

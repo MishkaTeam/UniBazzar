@@ -2,9 +2,9 @@
 
 namespace Domain.Aggregates.Attributes;
 
-public class AttributeValues : Entity
+public class AttributeValue : Entity
 {
-    public AttributeValues()
+    public AttributeValue()
     {
 
     }
@@ -15,9 +15,9 @@ public class AttributeValues : Entity
     public bool IsPreSelected { get; private set; }
 
 
-    public static AttributeValues Create(string name, decimal priceAdjustment, decimal weightAdjustment, bool isPreSelected)
+    public static AttributeValue Create(string name, decimal priceAdjustment, decimal weightAdjustment, bool isPreSelected)
     {
-        var attributes = new AttributeValues(name, priceAdjustment, weightAdjustment, isPreSelected)
+        var attributes = new AttributeValue(name, priceAdjustment, weightAdjustment, isPreSelected)
         {
             Name = name,
             PriceAdjustment = priceAdjustment,
@@ -33,7 +33,7 @@ public class AttributeValues : Entity
         WeightAdjustment = weightAdjustment;
         IsPreSelected = isPreSelected;
     }
-    private AttributeValues(string name, decimal priceAdjustment, decimal weightAdjustment, bool isPreSelected)
+    private AttributeValue(string name, decimal priceAdjustment, decimal weightAdjustment, bool isPreSelected)
     {
         Name = name;
         PriceAdjustment = priceAdjustment;

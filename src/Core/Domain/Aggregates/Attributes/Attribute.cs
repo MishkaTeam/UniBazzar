@@ -16,10 +16,10 @@ public class Attribute : Entity
     public string Description { get; private set; }
     public Guid CategoryId { get; private set; }
     public Category Category { get; private set; }
-    public List<AttributeValues> AttributeValues { get; private set; }
+    public List<AttributeValue> AttributeValues { get; private set; }
 
 
-    public static Attribute Register(string name, string description, Guid categoryId)
+    public static Attribute Create(string name, string description, Guid categoryId)
     {
         var attributes = new Attribute(name, description, categoryId)
         {
@@ -35,7 +35,7 @@ public class Attribute : Entity
         Description = description.Fix();
         CategoryId=categoryId;
     }
-    public void AddAttributeValues(AttributeValues item)
+    public void AddValue(AttributeValue item)
     {
         AttributeValues.Add(item);
     }

@@ -1,15 +1,18 @@
 ﻿using Application.Aggregates.Attribute.ViewModels;
+using Application.Aggregates.Attribute.ViewModels.AttributeValues;
 using Domain;
+using Domain.Aggregates.Attributes;
 using Domain.Aggregates.Attributes.Data;
+using Framework.DataType;
 using Mapster;
 
 namespace Application.Aggregates.Attribute;
 
 public class AttributeApplication(IAttributeRepository attributeRepository, IUnitOfWork unitOfWork)
 {
-    public async Task<Domain.Aggregates.Attributes.Attribute> CreateAsync(CreateAttributeViewModel viewModel)
+    public async Task<AttributeViewModel> CreateAsync(CreateAttributeViewModel viewModel)
     {
-        var attribute = Domain.Aggregates.Attributes.Attribute.Register
+        var attribute = Domain.Aggregates.Attributes.Attribute.Create
             (
             viewModel.Name,
             viewModel.Description,
@@ -19,7 +22,7 @@ public class AttributeApplication(IAttributeRepository attributeRepository, IUni
         await attributeRepository.AddAsync(attribute);
         await unitOfWork.SaveChangesAsync();
 
-        return attribute.Adapt<Domain.Aggregates.Attributes.Attribute>();
+        return attribute.Adapt<AttributeViewModel>();
     }
 
     public async Task<UpdateAttributeViewModel> GetAttributeAsync(Guid id)
@@ -59,6 +62,7 @@ public class AttributeApplication(IAttributeRepository attributeRepository, IUni
 
         return attribute.Adapt<UpdateAttributeViewModel>();
     }
+
     public async Task DeleteAsync(Guid id)
     {
         var attribute = await attributeRepository.GetByIdAsync(id);
@@ -69,6 +73,75 @@ public class AttributeApplication(IAttributeRepository attributeRepository, IUni
         }
 
         await attributeRepository.RemoveAsync(attribute);
+        await unitOfWork.SaveChangesAsync();
+    }
+
+    public async Task<ResultContract<AttributeViewModel>> AddValue(CreateAttributeItemRequestModel ViewModel)
+    {
+        var attribute = await attributeRepository.GetByIdAsync(ViewModel.AttributeId);
+        var attributeValue = AttributeValue.Create
+            (
+            ViewModel.Name,
+            ViewModel.PriceAdjustment,
+            ViewModel.WeightAdjustment,
+            ViewModel.IsPreSelected
+        );
+
+        attribute.AddValue(attributeValue);
+        await unitOfWork.SaveChangesAsync();
+        return AttributeViewModel.FromAttribute(attribute);
+
+    }
+
+    public async Task<ResultContract<List<AttributeValueViewModel>>> GetAttributeValues(Guid attributeId)
+    {
+        var attribute = await attributeRepository.GetByIdAsync(attributeId);
+        var attributeValues = attribute.AttributeValues.Select(x => new AttributeValueViewModel()
+        {
+            AttributeId=attributeId,
+            Id=x.Id,
+            Name = x.Name,
+            PriceAdjustment = x.PriceAdjustment,
+            WeightAdjustment = x.WeightAdjustment,
+            IsPreSelected = x.IsPreSelected
+
+        }).ToList();
+        return attributeValues;
+    }
+
+    public async Task<ResultContract<AttributeValueViewModel>> GetAttributeValue(Guid attributeId, Guid attributeValueId)
+    {
+        var attribute = await attributeRepository.GetByIdAsync(attributeId);
+        var attributeValue = attribute.AttributeValues.FirstOrDefault(x => x.Id == attributeValueId);
+        return attributeValue.Adapt<AttributeValueViewModel>();
+    }
+
+    public async Task<ResultContract<AttributeValueViewModel>> UpdateAttributeValue(UpdateAttributeValueViewModel updateViewModel)
+    {
+        var attribute = await attributeRepository.GetByIdAsync(updateViewModel.AttributeId);
+
+        var attributeValues = attribute.AttributeValues.FirstOrDefault(x => x.Id == updateViewModel.Id);
+
+        attributeValues.Update
+        (
+            updateViewModel.Name,
+            updateViewModel.PriceAdjustment,
+            updateViewModel.WeightAdjustment,
+            updateViewModel.IsPreSelected
+        );
+
+        await unitOfWork.SaveChangesAsync();
+
+        return attributeValues.Adapt<AttributeValueViewModel>();
+    }
+
+    public async Task RemoveAttributeValue(Guid attributeId, Guid attributeValueId)
+    {
+        var attribute = await attributeRepository.GetByIdAsync(attributeId);
+        var attributeValue = attribute.AttributeValues.FirstOrDefault(x => x.Id == attributeValueId);
+
+        attribute.AttributeValues.Remove(attributeValue);
+
         await unitOfWork.SaveChangesAsync();
     }
 }

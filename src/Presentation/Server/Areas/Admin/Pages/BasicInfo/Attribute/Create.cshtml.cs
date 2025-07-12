@@ -11,9 +11,7 @@ namespace Server.Areas.Admin.Pages.BasicInfo.Attribute;
 
 public class CreateModel(
     AttributeApplication attributeApplication,
-    CategoriesApplication categoriesApplication,
-    UnitsApplication unitsApplication,
-    IExecutionContextAccessor execution) : BasePageModel
+    CategoriesApplication categoriesApplication ) : BasePageModel
 {
 
     [BindProperty]

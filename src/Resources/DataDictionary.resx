@@ -459,4 +459,16 @@
   <data name="Attribute" xml:space="preserve">
     <value>attribute</value>
   </data>
+  <data name="AttributeValue" xml:space="preserve">
+    <value>attribute value</value>
+  </data>
+  <data name="PriceAdjustment" xml:space="preserve">
+    <value>price adjustment</value>
+  </data>
+  <data name="WeightAdjustment" xml:space="preserve">
+    <value>weight adjustment</value>
+  </data>
+  <data name="IsPreSelected" xml:space="preserve">
+    <value>is pre selected</value>
+  </data>
 </root>
