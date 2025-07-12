@@ -19,15 +19,24 @@ using Domain.Aggregates.CheckoutCounters;
 using Domain.Aggregates.ProductReviews;
 using Domain.Aggregates.Customers.ShippingAddresses;
 using Attribute = Domain.Aggregates.Attributes.Attribute;
+using Domain.Aggregates.Discounts.DsiscounProducts;
+using Domain.Aggregates.Discounts.DiscountCustomers;
 
 namespace Persistence;
 
-public class UniBazzarContext(DbContextOptions options, AuditSaveChangesInterceptor auditInterceptor) : BaseDbContext(options)
+public class UniBazzarContext(DbContextOptions options, 
+    AuditSaveChangesInterceptor auditInterceptor,
+    StoreIdSaveChangesInterceptor storeIdSaveChangesInterceptor,
+    OwnerIdSaveChangesInterceptor ownerIdSaveChangesInterceptor,
+    StoreQueryInterceptor storeQueryInterceptor) : BaseDbContext(options)
 {
     protected override void OnConfiguring
         (DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.AddInterceptors(auditInterceptor);
+        optionsBuilder.AddInterceptors(storeIdSaveChangesInterceptor);
+        optionsBuilder.AddInterceptors(ownerIdSaveChangesInterceptor);
+        optionsBuilder.AddInterceptors(storeQueryInterceptor);
 
         optionsBuilder.UseLazyLoadingProxies
             (options => options.IgnoreNonVirtualNavigations(true));
@@ -63,6 +72,8 @@ public class UniBazzarContext(DbContextOptions options, AuditSaveChangesIntercep
 
 	public DbSet<Category> Categories { get; set; }
     public DbSet<Discount> Discounts { get; set; }
+    public DbSet<DiscountProduct> DiscountProducts { get; set; }
+    public DbSet<DiscountCustomer> DiscountCustomers { get; set; }
 
     public DbSet<ProductReview> ProductReviews { get; set; }
 }

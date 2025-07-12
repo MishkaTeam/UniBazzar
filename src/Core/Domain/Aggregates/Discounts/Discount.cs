@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
 using BuildingBlocks.Domain.SeedWork;
+using Domain.Aggregates.Discounts.DsiscounProducts;
 using Framework.DataType;
 
 namespace Domain.Aggregates.Discounts;
@@ -78,6 +79,7 @@ public class Discount : Entity, IEntityHasIsActive
 	public DateTime Start { get; set; }
 	public DateTime End { get; set; }
 	public DateTime? DeactivateDate { get; set; }
+	public List<DiscountProduct> DiscountProducts { get; set; }
 
 	private Discount(string title, string discountCode, bool isActive, string type,
 					 int minimum, int maximum, DateTime start, DateTime end, int amount)

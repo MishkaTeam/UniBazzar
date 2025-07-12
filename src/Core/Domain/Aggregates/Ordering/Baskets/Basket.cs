@@ -15,20 +15,35 @@ public class Basket : Entity
     public List<BasketItem> BasketItems  { get; private set; }
 
 
+    public decimal TotalWithoutDiscount
+    {
+        get
+        {
+            return BasketItems.Sum(x => x.TotalBeforeDiscount);
+        }
+    }
+
     public decimal TotalBeforeDiscount
     {
         get
         {
-            return BasketItems.Sum(x => x.TotalPrice);
+            return BasketItems.Sum(x => x.TotalPriceWithAdjustment);
         }
     }
+
+    public decimal TotalItemDiscounts
+    {
+        get
+        {
+            return BasketItems.Sum(x => x.DiscountPrice);
+        }
+    }
+
 
     public decimal Total
     {
         get
         {
-            TotalDiscountAmount ??= DiscountAmount.CreateNoDiscount();
-
             return TotalDiscountAmount.ApplyDiscount(TotalBeforeDiscount);
         }
     }
@@ -43,6 +58,7 @@ public class Basket : Entity
         Platform = platform;
         BasketItems = new List<BasketItem>();
         BasketStatus = BasketStatus.INITIAL;
+        TotalDiscountAmount = DiscountAmount.CreatePriceDiscount(0);
 
         // For test
         ReferenceNumber = Guid.NewGuid().ToString();
@@ -59,11 +75,23 @@ public class Basket : Entity
         BasketItems.Add(basketItem);
     }
 
+    public void RemoveItem(BasketItem basketItem)
+    {
+        BasketItems.Remove(basketItem);
+    }
+
     public void SetDescription(string description) => Description = description;
     public void SetTotalDiscount(decimal amount, DiscountType type) => TotalDiscountAmount = DiscountAmount.Create(amount, type);
 
-    public void Checkout()
+    public bool Checkout()
     {
+        if (BasketItems.Count == 0)
+        {
+            return false;
+        }
+
         BasketStatus = BasketStatus.CHECKOUT;
+
+        return true;
     }
 }

@@ -447,6 +447,27 @@
   <data name="Addto" xml:space="preserve">
     <value>Add to</value>
   </data>
+  <data name="OtpCode" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>Unit Price</value>
+  </data>
+  <data name="TotalPrice" xml:space="preserve">
+    <value>Total Price</value>
+  </data>
+  <data name="SubTotal" xml:space="preserve">
+    <value>Sub Total</value>
+  </data>
+  <data name="TotalDiscount" xml:space="preserve">
+    <value>Total Discount</value>
+  </data>
+  <data name="FinalPrice" xml:space="preserve">
+    <value>Final Price</value>
+  </data>
   <data name="Text" xml:space="preserve">
     <value>text</value>
   </data>

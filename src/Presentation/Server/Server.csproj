@@ -13,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Blazor.Bootstrap" Version="3.3.1" />
     <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+	<PackageReference Include="Blazored.SessionStorage" Version="2.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -28,5 +29,10 @@
     <ProjectReference Include="..\..\Persistence\Persistence\Persistence.csproj" />
     <ProjectReference Include="..\..\Resources\Resources.csproj" />
   </ItemGroup>
+
+
+	<Target Name="RunViteBuild" BeforeTargets="Build">
+		<Exec Command="npm run build" WorkingDirectory="$(ProjectDir)/ClientApp" />
+	</Target>
 
 </Project>

@@ -1,10 +1,10 @@
 using Domain.Aggregates.Ordering.Baskets.Enums;
-using Domain.Aggregates.Ordering.ValueObjects;
 
 namespace Application.Aggregates.Ordering.Baskets.ViewModels.BasketItems;
 
 public class BasketItemViewModel
 {
+    public Guid Id { get; set; }
     public string ProductName { get; set; }
     public Guid ProductId { get; set; }
     public long Quantity { get; set; }
@@ -12,5 +12,7 @@ public class BasketItemViewModel
     public decimal DiscountValue { get; set; }
     public DiscountType DiscountType { get; set; }
     public decimal TotalPrice { get; set; }
-
+    public List<BasketItemAttributeContract> Attributes { get; internal set; }
+    public decimal PriceAdjustments { get; internal set; }
+    public decimal TotalPriceWithAdjustment { get; internal set; }
 }

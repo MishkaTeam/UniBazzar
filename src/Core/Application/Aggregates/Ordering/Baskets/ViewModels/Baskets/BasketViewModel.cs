@@ -10,6 +10,9 @@ public class BasketViewModel
     public BasketViewModel()
     {
         BasketItems = new();
+
+        TotalDiscountType =
+            DiscountType.Price;
     }
 
 
@@ -21,15 +24,18 @@ public class BasketViewModel
     public string? Description { get; set; }
     public decimal TotalDiscountAmount { get; set; }
     public DiscountType TotalDiscountType { get; set; }
+    public decimal TotalWithoutDiscount { get; set; }
     public decimal SubtotalBeforeBasketDiscount { get; set; }
     public decimal BasketTotal { get; set; }
     public List<BasketItemViewModel> BasketItems { get; set; }
+    public decimal TotalItemDiscounts { get; set; }
 
     internal static BasketViewModel FromBasket(Basket basket)
     {
         return new BasketViewModel
         {
             Id = basket.Id,
+            OwnerId = basket.OwnerId,
             ReferenceNumber = basket.ReferenceNumber,
             BasketStatus = basket.BasketStatus,
             TotalDiscountType = basket.TotalDiscountAmount.DiscountType,
@@ -37,9 +43,12 @@ public class BasketViewModel
             Description = basket.Description,
             Platform = basket.Platform,
             BasketTotal = basket.Total,
+            TotalWithoutDiscount = basket.TotalWithoutDiscount,
             SubtotalBeforeBasketDiscount = basket.TotalBeforeDiscount,
+            TotalItemDiscounts = basket.TotalItemDiscounts,
             BasketItems = basket.BasketItems.Select(x => new BasketItemViewModel
             {
+                Id = x.Id,
                 BasePrice = x.ProductAmount.BasePrice,
                 DiscountType = x.DiscountAmount.DiscountType,
                 DiscountValue = x.DiscountAmount.Value,
@@ -47,6 +56,9 @@ public class BasketViewModel
                 ProductName = x.Product.ProductName,
                 Quantity = x.ProductAmount.Quantity,
                 TotalPrice = x.TotalPrice,
+                TotalPriceWithAdjustment = x.TotalPriceWithAdjustment,
+                PriceAdjustments = x.PriceAdjustments,
+                Attributes = BasketItemAttributeContract.FromBasketItemAttribute(x.BasketItemAttributes),
             }).ToList()
         };
     }
