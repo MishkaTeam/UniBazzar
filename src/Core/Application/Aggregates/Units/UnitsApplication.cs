@@ -13,7 +13,7 @@ public class UnitsApplication(IUnitRepository unitRepository, IUnitOfWork unitOf
                                  viewModel.BaseUnitId,
                                  viewModel.Ratio);
 
-        unitRepository.AddAsync(unit);
+        await unitRepository.AddAsync(unit);
 
         await unitOfWork.SaveChangesAsync();
 

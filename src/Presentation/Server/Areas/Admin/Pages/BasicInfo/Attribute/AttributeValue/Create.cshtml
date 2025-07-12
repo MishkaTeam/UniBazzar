@@ -1,0 +1,35 @@
+﻿@page
+@model Server.Areas.Admin.Pages.BasicInfo.Attribute.AttributeValue.CreateModel
+@{
+    
+    var pageTitle =
+    $"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.AttributeValue}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+<form method="post">
+
+    <section-form>
+        <fieldset>
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+			<partial name="PartialViews/_DisplayPageMessages" />
+			<input hidden asp-for="CreateViewModel.AttributeId" dir="ltr" />
+			<ub-full-input asp-for="CreateViewModel.Name" />
+			<ub-full-input asp-for="CreateViewModel.PriceAdjustment" />
+			<ub-full-input asp-for="CreateViewModel.WeightAdjustment" />
+			<ub-full-input asp-for="CreateViewModel.IsPreSelected" />
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-create />
+            <button-reset />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>
+

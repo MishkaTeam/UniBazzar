@@ -1,0 +1,37 @@
+﻿@page 
+@model Server.Areas.Admin.Pages.BasicInfo.Attribute.AttributeValue.UpdateModel
+@{
+	
+	var pageTitle =
+	$"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.AttributeValue}";
+
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+<form method="post">
+
+	<section-form>
+		<fieldset>
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
+
+			<partial name="PartialViews/_DisplayPageMessages" />
+
+			<input hidden asp-for="UpdateViewModel.Id" dir="ltr" />
+			<input hidden asp-for="UpdateViewModel.AttributeId" dir="ltr" />
+
+			<ub-full-input asp-for="UpdateViewModel.Name" />
+			<ub-full-input asp-for="UpdateViewModel.PriceAdjustment" />
+			<ub-full-input asp-for="UpdateViewModel.WeightAdjustment" />
+			<ub-full-input asp-for="UpdateViewModel.IsPreSelected" />
+
+		</fieldset>
+
+		<section-form-buttons>
+			<button-save />
+			<button-reset />
+		</section-form-buttons>
+
+	</section-form>
+
+</form>

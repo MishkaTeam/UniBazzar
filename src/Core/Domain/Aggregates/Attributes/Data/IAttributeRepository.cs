@@ -4,4 +4,5 @@ namespace Domain.Aggregates.Attributes.Data;
 
 public interface IAttributeRepository : IRepositoryBase<Attribute>
 {
+    
 }

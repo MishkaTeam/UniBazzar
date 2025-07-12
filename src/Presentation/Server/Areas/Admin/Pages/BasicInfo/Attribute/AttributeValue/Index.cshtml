@@ -1,0 +1,42 @@
+﻿@page
+@model Server.Areas.Admin.Pages.BasicInfo.Attribute.AttributeValue.IndexModel
+@{
+    var attributeId =
+        Request.Query["attributeId"];
+}
+<div class="my-2 float-end">
+    <a class="btn btn-primary" asp-page="Create" asp-route-attributeId="@(attributeId)" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">@(Resources.DataDictionary.Name)</th>
+            <th scope="col">@(Resources.DataDictionary.PriceAdjustment)</th>
+            <th scope="col">@(Resources.DataDictionary.WeightAdjustment)</th>
+            <th scope="col">@(Resources.DataDictionary.IsPreSelected)</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ViewModel)
+        {
+            <tr>
+                <td>@(item.Name)</td>
+                <td>@(item.PriceAdjustment)</td>
+                <td>@(item.WeightAdjustment)</td>
+                <td>@(item.IsPreSelected)</td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            عملیات
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a asp-page="Update" asp-route-attributeId="@(item.AttributeId)" asp-route-attributeValueId="@(item.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a></li>
+                            <li><a asp-page="Delete" asp-route-attributeId="@(item.AttributeId)" asp-route-attributeValueId="@(item.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

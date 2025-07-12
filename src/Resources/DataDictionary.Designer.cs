@@ -133,6 +133,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to attribute.
+        /// </summary>
+        public static string Attribute {
+            get {
+                return ResourceManager.GetString("Attribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to attribute value.
+        /// </summary>
+        public static string AttributeValue {
+            get {
+                return ResourceManager.GetString("AttributeValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Base Unit.
         /// </summary>
         public static string BaseUnit {
@@ -538,6 +556,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to is pre selected.
+        /// </summary>
+        public static string IsPreSelected {
+            get {
+                return ResourceManager.GetString("IsPreSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LogIn.
         /// </summary>
         public static string LogIn {
@@ -705,6 +732,15 @@ namespace Resources {
         public static string Price {
             get {
                 return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to price adjustment.
+        /// </summary>
+        public static string PriceAdjustment {
+            get {
+                return ResourceManager.GetString("PriceAdjustment", resourceCulture);
             }
         }
         
@@ -1128,6 +1164,15 @@ namespace Resources {
         public static string Value {
             get {
                 return ResourceManager.GetString("Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to weight adjustment.
+        /// </summary>
+        public static string WeightAdjustment {
+            get {
+                return ResourceManager.GetString("WeightAdjustment", resourceCulture);
             }
         }
     }
