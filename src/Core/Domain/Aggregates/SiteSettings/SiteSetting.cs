@@ -1,0 +1,68 @@
+﻿using BuildingBlocks.Domain.Aggregates;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Framework.DataType;
+using System.ComponentModel.DataAnnotations;
+
+namespace Domain.Aggregates.SiteSettings
+{
+    public class SiteSetting : Entity
+    {
+        public SiteSetting() { }
+
+        public string Desciption { get; private set; }
+        public string Name { get; private set; }
+        public string PhoneNumber { get; private set; }
+        public string LogoURL { get; private set; }
+        public Guid? PriceList { get; private set; }
+        public string Address { get; private set; }
+
+        private SiteSetting(string name, string discription, string phonenumber, string logourl
+            , Guid? pricelist, string address)
+        {
+            Desciption = discription;
+            Name = name;
+            PhoneNumber = phonenumber;
+            Address = address;
+            LogoURL = logourl;
+            PriceList = pricelist;
+        }
+
+        public static SiteSetting Create(string description, string name, string phonenumber, string logourl
+            , Guid? pricelist, string address)
+        {
+            if (!phonenumber.IsValidMobile())
+                throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
+
+            var sitesetting = new SiteSetting(description, name, phonenumber, logourl, pricelist, address)
+            {
+                Desciption = description,
+                Name = name
+                ,
+                LogoURL = logourl
+                ,
+                PriceList = ValidatePriceListID(pricelist)
+                ,
+                Address = address
+                ,
+
+
+            };
+            return sitesetting;
+        }
+
+        private static Guid? ValidatePriceListID(Guid? priceList)
+        {
+            if (priceList == Guid.Empty)
+            {
+                priceList = null;
+            }
+
+            return priceList;
+        }
+
+    }
+}
