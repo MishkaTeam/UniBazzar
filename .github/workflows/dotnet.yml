@@ -39,11 +39,11 @@ jobs:
       #    فرض می‌کنیم ClientApp زیر src است؛ مسیر دقیق را تنظیم کنید
       - name: Install frontend dependencies
         run: npm ci
-        working-directory: ./src/ClientApp
+        working-directory: ./src/Presentation/Server/ClientApp
 
       - name: Build frontend
         run: npm run build
-        working-directory: ./src/ClientApp
+        working-directory: ./src/Presentation/Server/ClientApp
 
       # 5) restore / build / test بک‌اند
       - name: Restore .NET dependencies
