@@ -22,7 +22,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
-          cache: true                  # NuGet cache
 
       # 3) setup Node.js (برای npm)
       - name: Setup Node
