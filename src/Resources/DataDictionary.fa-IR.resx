@@ -477,4 +477,22 @@
   <data name="Comment" xml:space="preserve">
     <value>نظرات</value>
   </data>
+  <data name="OtpCode" xml:space="preserve">
+    <value>کد</value>
+  </data>
+  <data name="Attribute" xml:space="preserve">
+    <value>ویژگی</value>
+  </data>
+  <data name="AttributeValue" xml:space="preserve">
+    <value>سایر ویژگی ها</value>
+  </data>
+  <data name="PriceAdjustment" xml:space="preserve">
+    <value>تنظیم قیمت</value>
+  </data>
+  <data name="WeightAdjustment" xml:space="preserve">
+    <value>تنظیم وزن</value>
+  </data>
+  <data name="IsPreSelected" xml:space="preserve">
+    <value>تنظیم پیش فرض</value>
+  </data>
 </root>
