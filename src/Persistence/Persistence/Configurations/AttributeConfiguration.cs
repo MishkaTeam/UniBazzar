@@ -17,6 +17,8 @@ internal class AttributeConfiguration : BaseConfiguration<Attribute>
 
         builder.OwnsMany(x => x.AttributeValues, abuilder =>
         {
+            abuilder.ToTable("AttributeValues");
+            abuilder.HasKey(x => x.Id);
             abuilder.Property(x => x.Name).HasMaxLength(100);
         });
 

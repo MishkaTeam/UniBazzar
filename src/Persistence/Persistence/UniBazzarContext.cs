@@ -18,6 +18,7 @@ using Persistence.Configurations;
 using Domain.Aggregates.CheckoutCounters;
 using Domain.Aggregates.ProductReviews;
 using Domain.Aggregates.Customers.ShippingAddresses;
+using Attribute = Domain.Aggregates.Attributes.Attribute;
 using Domain.Aggregates.Discounts.DsiscounProducts;
 using Domain.Aggregates.Discounts.DiscountCustomers;
 
@@ -65,6 +66,7 @@ public class UniBazzarContext(DbContextOptions options,
     public DbSet<ProductImage> ProductImages { get; set; }
     public DbSet<ProductFeature> ProductFeatures { get; set; }
     public DbSet<PriceList> ProductPriceLists { get; set; }
+    public DbSet<Attribute> Attributes { get; set; }
 
     public DbSet<Unit> Units { get; set; }
 
