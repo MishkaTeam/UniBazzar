@@ -36,14 +36,13 @@
 															<div class="col-12 col-md-2 pl-0">
 																<img src="/images/products/p100.png" alt="">
 																<div class="d-flex flex-column align-items-center">
-																	<div class="counter-box">
-																		<i class="bi bi-trash icon-button"></i>
-																		<div class="d-flex flex-column align-items-center">
-																			<div class="counter-number">۱</div>
-																			<div class="counter-label">حداکثر</div>
-																		</div>
-																		<i class="bi bi-plus icon-button"></i>
-																	</div>
+																	<div data-vue-component="PurchaseCounter"
+																		 data-initial-value="@(item.Quantity)"
+																		 data-basket-item-id="@(item.Id)"
+																		 data-basket-id="@(Model.Basket.Id)"
+																		 data-max-value="10"
+																		 data-is-disabled="false"></div>
+
 																</div>
 															</div>
 															<div class="col-10 col-md-7">

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="ClientApp\src\components\purchase\PurchaseCounter.vue" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\Admin\assets\.DS_Store" />
   </ItemGroup>
 
@@ -34,5 +38,8 @@
 	<Target Name="RunViteBuild" BeforeTargets="Build">
 		<Exec Command="npm run build" WorkingDirectory="$(ProjectDir)/ClientApp" />
 	</Target>
-
+	
+	<ItemGroup>
+		<Compile Remove="**\*.vue" />
+	</ItemGroup>
 </Project>
