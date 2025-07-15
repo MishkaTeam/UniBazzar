@@ -17,51 +17,45 @@ namespace Domain.Aggregates.SiteSettings
         public string Name { get; private set; }
         public string PhoneNumber { get; private set; }
         public string LogoURL { get; private set; }
-        public Guid? PriceList { get; private set; }
+        public Guid? PriceListID { get; private set; }
         public string Address { get; private set; }
 
         private SiteSetting(string name, string discription, string phonenumber, string logourl
-            , Guid? pricelist, string address)
+            , Guid? priceListID, string address)
         {
             Desciption = discription;
             Name = name;
             PhoneNumber = phonenumber;
             Address = address;
             LogoURL = logourl;
-            PriceList = pricelist;
+            PriceListID = priceListID;
         }
 
         public static SiteSetting Create(string description, string name, string phonenumber, string logourl
-            , Guid? pricelist, string address)
+            , Guid? priceListID, string address)
         {
             if (!phonenumber.IsValidMobile())
                 throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
 
-            var sitesetting = new SiteSetting(description, name, phonenumber, logourl, pricelist, address)
+            var sitesetting = new SiteSetting()
             {
                 Desciption = description,
-                Name = name
-                ,
-                LogoURL = logourl
-                ,
-                PriceList = ValidatePriceListID(pricelist)
-                ,
+                Name = name,
+                LogoURL = logourl,
+                PriceListID = ValidatePriceListID(priceListID),
                 Address = address
-                ,
-
-
             };
             return sitesetting;
         }
 
-        private static Guid? ValidatePriceListID(Guid? priceList)
+        private static Guid? ValidatePriceListID(Guid? PriceListID)
         {
-            if (priceList == Guid.Empty)
+            if (PriceListID == Guid.Empty)
             {
-                priceList = null;
+                PriceListID = null;
             }
 
-            return priceList;
+            return PriceListID;
         }
 
     }
