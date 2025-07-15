@@ -475,11 +475,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        public static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full Description.
         /// </summary>
         public static string FullDescription {
             get {
                 return ResourceManager.GetString("FullDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FullName.
+        /// </summary>
+        public static string FullName {
+            get {
+                return ResourceManager.GetString("FullName", resourceCulture);
             }
         }
         
@@ -534,6 +552,15 @@ namespace Resources {
         public static string IsPinned {
             get {
                 return ResourceManager.GetString("IsPinned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LastName.
+        /// </summary>
+        public static string LastName {
+            get {
+                return ResourceManager.GetString("LastName", resourceCulture);
             }
         }
         
@@ -606,6 +633,15 @@ namespace Resources {
         public static string NothingFound {
             get {
                 return ResourceManager.GetString("NothingFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Registered.
+        /// </summary>
+        public static string NotRegistered {
+            get {
+                return ResourceManager.GetString("NotRegistered", resourceCulture);
             }
         }
         
@@ -970,20 +1006,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to text.
-        /// </summary>
-        public static string Text {
-            get {
-                return ResourceManager.GetString("Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Sub Total.
         /// </summary>
         public static string SubTotal {
             get {
                 return ResourceManager.GetString("SubTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to text.
+        /// </summary>
+        public static string Text {
+            get {
+                return ResourceManager.GetString("Text", resourceCulture);
             }
         }
         
