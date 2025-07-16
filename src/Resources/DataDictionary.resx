@@ -474,7 +474,7 @@
   <data name="Comment" xml:space="preserve">
     <value>comment</value>
   </data>
-	<data name="OtpCode" xml:space="preserve">
-		<value>Code</value>
-	</data>
+  <data name="SiteSetting" xml:space="preserve">
+    <value>SiteSetting</value>
+  </data>
 </root>

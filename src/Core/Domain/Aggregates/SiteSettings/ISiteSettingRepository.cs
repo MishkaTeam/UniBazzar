@@ -9,6 +9,6 @@ namespace Domain.Aggregates.SiteSettings
 {
     public interface ISiteSettingRepository : IRepositoryBase<SiteSetting>
     {
-
+        
     }
 }
