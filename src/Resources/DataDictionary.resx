@@ -486,4 +486,13 @@
   <data name="LastName" xml:space="preserve">
     <value>LastName</value>
   </data>
+  <data name="MyAddress" xml:space="preserve">
+    <value>My Address</value>
+  </data>
+  <data name="LogoutOfAccount" xml:space="preserve">
+    <value>Logout of account</value>
+  </data>
+  <data name="AccountInformation" xml:space="preserve">
+    <value>AccountInformation</value>
+  </data>
 </root>

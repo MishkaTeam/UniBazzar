@@ -207,4 +207,7 @@
   <data name="UserAccountIsNotActive" xml:space="preserve">
     <value>Your account is not active!</value>
   </data>
+  <data name="YouHaveNotRegisteredAnAddressYet" xml:space="preserve">
+    <value>You have not registered an address yet.</value>
+  </data>
 </root>

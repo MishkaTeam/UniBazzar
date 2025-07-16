@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AccountInformation.
+        /// </summary>
+        public static string AccountInformation {
+            get {
+                return ResourceManager.GetString("AccountInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Actions.
         /// </summary>
         public static string Actions {
@@ -583,6 +592,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logout of account.
+        /// </summary>
+        public static string LogoutOfAccount {
+            get {
+                return ResourceManager.GetString("LogoutOfAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maximum.
         /// </summary>
         public static string Maximum {
@@ -606,6 +624,15 @@ namespace Resources {
         public static string Mobile {
             get {
                 return ResourceManager.GetString("Mobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Address.
+        /// </summary>
+        public static string MyAddress {
+            get {
+                return ResourceManager.GetString("MyAddress", resourceCulture);
             }
         }
         

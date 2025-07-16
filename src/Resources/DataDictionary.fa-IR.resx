@@ -486,4 +486,13 @@
   <data name="LastName" xml:space="preserve">
     <value>نام خانوادگی</value>
   </data>
+  <data name="MyAddress" xml:space="preserve">
+    <value>آدرس های من</value>
+  </data>
+  <data name="LogoutOfAccount" xml:space="preserve">
+    <value>خروج از حساب کاربری</value>
+  </data>
+  <data name="AccountInformation" xml:space="preserve">
+    <value>اطلاعات حساب کاربری</value>
+  </data>
 </root>
