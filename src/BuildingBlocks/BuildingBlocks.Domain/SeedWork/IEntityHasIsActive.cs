@@ -3,7 +3,7 @@
 public interface IEntityHasIsActive
 {
     bool IsActive { get; }
-    DateTime? DeactivateDate { get; }
+    long DeactivateDate { get; }
     void Activate();
     void Deactivate();
     void SetDeactivateTime();
