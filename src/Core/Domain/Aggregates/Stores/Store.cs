@@ -23,7 +23,7 @@ public class Store :
         (string name, string? description, string phoneNumber,
         string address, string? culture, string? logoUrl, bool isActive)
     {
-        Id = Guid.NewGuid();
+        Id = Guid.CreateVersion7();
 
         Name = name;
         Description = description;

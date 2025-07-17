@@ -12,6 +12,8 @@ public class BasketItem : Entity
     public ProductAmount ProductAmount { get; private set; }
     public DiscountAmount DiscountAmount { get; private set; }
     public List<BasketItemAttribute>? BasketItemAttributes { get; private set; }
+    public decimal TotalPriceWithAdjustment => DiscountAmount.ApplyDiscount(ProductAmount.TotalPrice) + PriceAdjustments;
+    public decimal PriceAdjustments => (BasketItemAttributes?.Sum(x => x.PriceAdjustment) ?? 0);
     
     public decimal TotalPrice => DiscountAmount.ApplyDiscount(ProductAmount.TotalPrice, ProductAmount.Quantity);
 
