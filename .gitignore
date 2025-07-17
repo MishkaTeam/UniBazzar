@@ -368,3 +368,4 @@ FodyWeavers.xsd
 /DocProject
 /src/nuget.config
 /dist
+/src/Presentation/Server/wwwroot/dist/
