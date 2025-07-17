@@ -2,6 +2,7 @@ using Application.Aggregates.Customers.ShippingAddresses;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 
 namespace Server.Pages.Profile
 {
@@ -14,10 +15,17 @@ namespace Server.Pages.Profile
 
         public List<UpdateShippingAddressViewModel> ViewModel { get; set; } = new();
 
-		public async Task<IActionResult> OnGetAsync(Guid Id)
+		public async Task<IActionResult> OnGetAsync()
         {
-            CustomerId = Id;
-            ViewModel = await shippingAddress.GetAllAddress(Id);
+            CustomerId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid).Value);
+
+			if (CustomerId == Guid.Empty)
+			{
+                AddToastError(message: Resources.Messages.Errors.IdIsNull);
+                return RedirectToPage("/Index");
+			}
+
+			ViewModel = await shippingAddress.GetAllAddress(CustomerId);
 
             return Page();
         }

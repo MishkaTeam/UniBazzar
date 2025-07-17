@@ -1,14 +1,4 @@
-﻿@using System.Security.Claims
-
-@{
-    string customerId = string.Empty;
-    if (User.Identity.IsAuthenticated != false)
-    {
-        customerId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid).Value;
-    }
-}
-
-<div id="main-nav">
+﻿<div id="main-nav">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -70,13 +60,13 @@
                                             </ul>
                                         </li>
                                         <li class="encrypt233211244" aria-haspopup="true">
-                                            <a asp-page="/Profile/Personal-Info" asp-route-Id="@(customerId)" aria-expanded="false">پروفایل کاربری<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
+                                            <a asp-page="/Profile/Personal-Info" aria-expanded="false">پروفایل کاربری<em class="encrypt2344"></em></a><div class="dm-arrow"></div>
                                             <ul style="">
                                                 <li><a asp-page="/Register">عضویت در سایت</a></li>
                                                 <li><a asp-page="/Login">ورود به سایت</a></li>
                                                 <li><a asp-page="/Forget-Password">بازنشانی رمز عبور</a></li>
                                                 <li class="dm-bottom-separator"></li>
-                                                <li><a asp-page="/Profile/Personal-Info" asp-route-Id="@(customerId)">مشخصات کاربری</a></li>
+                                                <li><a asp-page="/Profile/Personal-Info">مشخصات کاربری</a></li>
                                                 <li><a asp-page="/Profile/Factors">سفارشات</a></li>
                                                 <li><a asp-page="/Profile/Factor-View">مشاهده فاکتور</a></li>
                                                 <li><a asp-page="/Profile/Addresses">آدرس ها</a></li>
