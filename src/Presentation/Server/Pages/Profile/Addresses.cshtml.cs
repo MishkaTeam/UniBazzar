@@ -26,11 +26,8 @@ namespace Server.Pages.Profile
         {
             CreateAddress.CustomerId = CustomerId;
             await shippingAddress.CreateAsync(CreateAddress);
-            CreateAddress = new();
 
-			ViewModel = await shippingAddress.GetAllAddress(CustomerId);
-
-			return Page();
+			return RedirectToPage(new { Id = CustomerId });
         }
 
         public async Task<IActionResult> OnPostDelete(Guid Id)
