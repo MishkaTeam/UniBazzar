@@ -474,6 +474,27 @@
   <data name="Comment" xml:space="preserve">
     <value>comment</value>
   </data>
+  <data name="FullName" xml:space="preserve">
+    <value>FullName</value>
+  </data>
+  <data name="NotRegistered" xml:space="preserve">
+    <value>Not Registered</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>LastName</value>
+  </data>
+  <data name="MyAddress" xml:space="preserve">
+    <value>My Address</value>
+  </data>
+  <data name="LogoutOfAccount" xml:space="preserve">
+    <value>Logout of account</value>
+  </data>
+  <data name="AccountInformation" xml:space="preserve">
+    <value>AccountInformation</value>
+  </data>
   <data name="OtpCode" xml:space="preserve">
     <value>Code</value>
   </data>
