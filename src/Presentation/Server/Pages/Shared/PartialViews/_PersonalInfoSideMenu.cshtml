@@ -1,8 +1,11 @@
 ﻿@using System.Security.Claims
 @{
-    string Id = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid).Value;
-    string FullName = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
-    string Mobile = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+    if (User is null || User.Claims is null || User.Identity?.IsAuthenticated == false)
+        return;
+
+    string Id = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value ?? string.Empty;
+    string FullName = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value ?? string.Empty;
+    string Mobile = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
 }
 
 <div class="accordion" id="side-panel">
