@@ -26,7 +26,7 @@ namespace Server.Pages.Profile
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(Guid Id)
+        public async Task<IActionResult> OnPostAsync()
         {
 			await customerApplication.UpdateAsync(ViewModel);
 

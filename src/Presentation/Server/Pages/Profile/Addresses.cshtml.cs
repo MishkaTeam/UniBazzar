@@ -39,7 +39,7 @@ namespace Server.Pages.Profile
             CreateAddress.CustomerId = CustomerId;
             await shippingAddress.CreateAsync(CreateAddress);
 
-			return RedirectToPage(new { Id = CustomerId });
+			return RedirectToPage();
         }
 
         public async Task<IActionResult> OnPostDelete(Guid Id)
@@ -63,6 +63,8 @@ namespace Server.Pages.Profile
                 UpdateAddress.CustomerId = CustomerId;
                 await shippingAddress.UpdateAsync(UpdateAddress);
                 UpdateAddress = new();
+
+                return RedirectToPage();
 			}
 
 			ViewModel = await shippingAddress.GetAllAddress(CustomerId);
