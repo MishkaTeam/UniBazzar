@@ -29,7 +29,7 @@ public class HomeView :
     public int Sorting { get; private set; }
     public bool IsActive { get; private set; }
 
-    public long DeactivateDate { get; private set; }
+    public DateTime? DeactivateDate { get; private set; }
 
     public List<SlideViewItem> SliderViews { get; private set; }
     public List<ProductViewItem> ProductViews { get; private set; } = new();
@@ -113,12 +113,17 @@ public class HomeView :
 
     public void SetDeactivateTime()
     {
+        //DeactivateDate =
+        //    DateTimeUtility.GetCurrentUnixUTCTimeSeconds();
+
         DeactivateDate =
-            DateTimeUtility.GetCurrentUnixUTCTimeSeconds();
+            DateTime.UtcNow;
     }
 
     public void RemoveDeactivateTime()
     {
-        DeactivateDate = 0;
+        //DeactivateDate = 0;
+
+        DeactivateDate = null;
     }
 }
