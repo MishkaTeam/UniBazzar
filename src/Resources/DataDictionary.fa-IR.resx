@@ -447,9 +447,6 @@
   <data name="Addto" xml:space="preserve">
     <value>افزودن به</value>
   </data>
-  <data name="Slug" xml:space="preserve">
-    <value>Slug</value>
-  </data>
   <data name="OtpCode" xml:space="preserve">
     <value>کد</value>
   </data>
@@ -476,6 +473,27 @@
   </data>
   <data name="Comment" xml:space="preserve">
     <value>نظرات</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>نام و نام خانوادگی</value>
+  </data>
+  <data name="NotRegistered" xml:space="preserve">
+    <value>ثبت نشده</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="MyAddress" xml:space="preserve">
+    <value>آدرس های من</value>
+  </data>
+  <data name="LogoutOfAccount" xml:space="preserve">
+    <value>خروج از حساب کاربری</value>
+  </data>
+  <data name="AccountInformation" xml:space="preserve">
+    <value>اطلاعات حساب کاربری</value>
   </data>
   <data name="OtpCode" xml:space="preserve">
     <value>کد</value>
