@@ -13,13 +13,13 @@ namespace Server.Pages.Profile
 
 		public async Task<IActionResult> OnGetAsync()
         {
-            Guid CustomerId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid).Value);
-
-			if (CustomerId == Guid.Empty)
+			if (User == null || User.Identity == null || User.Identity.IsAuthenticated == false)
 			{
 				AddToastError(message: Resources.Messages.Errors.IdIsNull);
 				return RedirectToPage("/Index");
 			}
+
+            Guid CustomerId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid).Value);
 
 			ViewModel = await customerApplication.GetCustomerAsync(CustomerId);
 
