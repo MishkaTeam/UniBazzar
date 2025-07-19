@@ -52,11 +52,13 @@ public class Discount : Entity, IEntityHasIsActive
 	public void Activate()
 	{
 		IsActive = true;
+		RemoveDeactivateTime();
 	}
 
 	public void Deactivate()
 	{
 		IsActive = false;
+		SetDeactivateTime();
 	}
 
 	public void SetDeactivateTime()
