@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
 using BuildingBlocks.Domain.Validations;
+using Domain.Aggregates.Products;
 
 namespace Domain.Aggregates.Cms.HomeViews;
 
@@ -19,6 +20,7 @@ public class ProductViewItem : Entity
     }
 
 
+    public Product Product { get; private set; }
     public Guid ProductId { get; private set; }
     public Guid HomeViewId { get; private set; }
 
