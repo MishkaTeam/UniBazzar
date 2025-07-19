@@ -1,21 +1,22 @@
 {
-  "name": "clientapp",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build "
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "@vitejs/plugin-vue": "^5.2.4",
-    "vite": "^6.3.5",
-    "vue": "^3.5.17"
-  },
-  "devDependencies": {
-    "eslint": "^9.30.1"
-  }
+    "name": "clientapp",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "dev": "vite",
+        "build-debug": "vite build --sourcemap",
+        "build-prod": "vite build"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "@vitejs/plugin-vue": "^5.2.4",
+        "vite": "^6.3.5",
+        "vue": "^3.5.17"
+    },
+    "devDependencies": {
+        "eslint": "^9.30.1"
+    }
 }

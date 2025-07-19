@@ -5,7 +5,9 @@
 
         <div class="d-flex flex-column align-items-center">
             <input type="hidden" name="Quantity" :value="quantity" />
-            <div class="counter-number">{{ quantity }}</div>
+            <span v-if="loading == true" class="spinner-border spinner-border-sm text-danger" role="status"
+                aria-hidden="true"></span>
+            <div v-if="loading == false" class="counter-number">{{ quantity }}</div>
             <!-- <div class="counter-label">حداکثر</div> -->
         </div>
         <i @click="quantity++" class="bi bi-plus icon-button"></i>
@@ -16,49 +18,47 @@
 import { ref, watch } from 'vue'
 
 const props = defineProps({
-    initialValue: {
-        type: Number,
-        default: 1
-    },
-    basketItemId: {
-        type: String,
-        default: ''
-    },
-    basketId: {
-        type: String,
-        default: ''
-    },
-    maxValue: {
-        type: Number,
-        default: 0
-    },
-    isDisabled: {
-        type: Boolean,
-        default: false
-    }
+    initialValue: Number,
+    basketItemId: String,
+    basketId: String,
+    maxValue: Number,
+    isDisabled: Boolean
 })
 
+const loading = ref(false)
 const quantity = ref(props.initialValue)
-const basketId = ref(props.basketId)
-const basketItemId = ref(props.basketItemId)
-
 const postUrl = '/Purchase/Cart?handler=UpdateQuantity'
 
-watch(quantity, async (newVal) => {
-    await fetch(postUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ quantity: newVal, basketItemId: basketItemId.value, basketId: basketId.value })
-    }).then(res => {
-        var qun = quantity;
-        res.json().then(x => qun = x.quantity)
-        quantity.value = qun
-        // quantity = ref(res.json)
-    })
+
+async function updateQuantity(newVal) {
+    loading.value = true
+    try {
+        const res = await fetch(postUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                quantity: newVal,
+                basketItemId: props.basketItemId,
+                basketId: props.basketId
+            })
+        })
+
+        const data = await res.json()
+
+        if (data.quantity !== quantity.value) quantity.value = data.quantity
+    } catch (err) {
+        console.error(err)
+    } finally {
+        loading.value = false
+    }
+}
+
+
+watch(quantity, (newVal, oldVal) => {
+    if (newVal !== oldVal) updateQuantity(newVal)
 })
 </script>
+
 
 <style scoped>
 .counter-box {
