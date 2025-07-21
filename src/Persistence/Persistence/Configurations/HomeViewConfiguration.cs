@@ -27,8 +27,8 @@ internal class HomeViewConfiguration : BaseConfiguration<HomeView>
         builder.Property(x => x.IsActive)
                 .IsRequired();
 
-        builder.Property(x => x.DeactivateDate)
-               .IsRequired();
+        builder.Property(x => x.IsSystemic)
+                .IsRequired();
 
         builder.OwnsMany(x => x.SliderViews, itemBuilder =>
         {
