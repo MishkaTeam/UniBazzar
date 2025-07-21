@@ -6,8 +6,8 @@ using Framework.DataType;
 
 namespace Domain.Aggregates.Cms.HomeViews;
 
-public class HomeView :
-    Entity, IEntityHasIsActive
+public class HomeView : Entity,
+    IEntityHasIsActive, IEntityHasIsSystemic
 {
     private HomeView()
     {
@@ -28,6 +28,7 @@ public class HomeView :
     public ViewType Type { get; private set; }
     public int Sorting { get; private set; }
     public bool IsActive { get; private set; }
+    public bool IsSystemic { get; private set; }
 
     public DateTime? DeactivateDate { get; private set; }
 
@@ -125,5 +126,10 @@ public class HomeView :
         //DeactivateDate = 0;
 
         DeactivateDate = null;
+    }
+
+    public void MakeSystemic()
+    {
+        IsSystemic = true;
     }
 }
