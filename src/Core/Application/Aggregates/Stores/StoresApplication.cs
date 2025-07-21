@@ -1,4 +1,5 @@
-﻿using Application.Aggregates.Stores.ViewModels;
+﻿using Application.Aggregates.HomeViews;
+using Application.Aggregates.Stores.ViewModels;
 using Domain;
 using Domain.Aggregates.Stores;
 using Mapster;
@@ -7,7 +8,9 @@ using Resources.Messages;
 namespace Application.Aggregates.Stores;
 
 public class StoresApplication
-	(IStoreRepository storeRepository, IUnitOfWork unitOfWork)
+	(IStoreRepository storeRepository,
+	HomeViewApplication homeViewApplication,
+	IUnitOfWork unitOfWork)
 {
 	public async Task<StoreViewModel> CreateStoreAsync(CreateStoreViewModel viewModel)
 	{
@@ -16,6 +19,8 @@ public class StoresApplication
 
 		await storeRepository.AddStoreAsync(store);
 		await unitOfWork.SaveChangesAsync();
+
+		await homeViewApplication.CreateSystemicViews(store.Id);
 
 		return store.Adapt<StoreViewModel>();
 	}
