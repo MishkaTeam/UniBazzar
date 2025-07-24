@@ -13,7 +13,7 @@ public class Order : Entity
 
     public List<OrderItem> OrderItems { get; private set; }
 
-    private Order()
+    protected Order()
     {
         //FOR EF!
     }

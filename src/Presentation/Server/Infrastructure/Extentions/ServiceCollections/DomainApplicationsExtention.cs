@@ -61,6 +61,8 @@ using Persistence.Repositories.Aggregates.Attributes;
 using Application.Aggregates.Attribute;
 using Domain.Aggregates.Discounts.DsiscounProducts;
 using Domain.Aggregates.Discounts.DiscountCustomers;
+using Application.Aggregates.Ordering.Orders;
+using Domain.Aggregates.Ordering.Orders.Data;
 
 namespace Server.Infrastructure.Extensions.ServiceCollections;
 
@@ -77,6 +79,7 @@ public static class DomainExtensions
         services.AddScoped<CustomerApplication>();
         services.AddScoped<ShippingAddressApplication>();
 
+        services.AddScoped<OrderApplication>();
         services.AddScoped<BasketApplication>();
         services.AddScoped<DiscountApplication>();
 
@@ -113,6 +116,7 @@ public static class DomainExtensions
         services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<IShippingAddressRepository, ShippingAddressRepository>();
 
+        services.AddScoped<IOrderRepository, OrderRepository>();
         services.AddScoped<IBasketRepository, BasketRepository>();
 
         services.AddScoped<IDiscountRepository, DiscountRepository>();
