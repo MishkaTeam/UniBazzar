@@ -17,7 +17,7 @@ public static class TreasuryModuleServiceCollection
         services.AddDbContext<TreasuryDbContext>(opt =>
         {
             var connection = connectionString;
-            opt.UseSqlite(connection);
+            opt.UseNpgsql(connection);
             opt.EnableSensitiveDataLogging();
         });
 
