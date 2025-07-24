@@ -495,9 +495,6 @@
   <data name="AccountInformation" xml:space="preserve">
     <value>AccountInformation</value>
   </data>
-  <data name="OtpCode" xml:space="preserve">
-    <value>Code</value>
-  </data>
   <data name="Attribute" xml:space="preserve">
     <value>attribute</value>
   </data>
@@ -512,5 +509,20 @@
   </data>
   <data name="IsPreSelected" xml:space="preserve">
     <value>is pre selected</value>
+  </data>
+  <data name="HomeView" xml:space="preserve">
+    <value>Home View</value>
+  </data>
+  <data name="HomeViews" xml:space="preserve">
+    <value>Home Views</value>
+  </data>
+  <data name="Slider" xml:space="preserve">
+    <value>Slider</value>
+  </data>
+  <data name="ProductView" xml:space="preserve">
+    <value>Product View</value>
+  </data>
+  <data name="ImageView" xml:space="preserve">
+    <value>Image View</value>
   </data>
 </root>

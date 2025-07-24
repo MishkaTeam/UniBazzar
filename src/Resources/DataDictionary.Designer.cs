@@ -529,6 +529,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Home View.
+        /// </summary>
+        public static string HomeView {
+            get {
+                return ResourceManager.GetString("HomeView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home Views.
+        /// </summary>
+        public static string HomeViews {
+            get {
+                return ResourceManager.GetString("HomeViews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Icon Class.
         /// </summary>
         public static string IconClass {
@@ -543,6 +561,15 @@ namespace Resources {
         public static string Id {
             get {
                 return ResourceManager.GetString("Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image View.
+        /// </summary>
+        public static string ImageView {
+            get {
+                return ResourceManager.GetString("ImageView", resourceCulture);
             }
         }
         
@@ -583,19 +610,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LastName.
-        /// </summary>
-        public static string LastName {
-            get {
-                return ResourceManager.GetString("LastName", resourceCulture);
-               }
-         }
-         
         ///   Looks up a localized string similar to is pre selected.
         /// </summary>
         public static string IsPreSelected {
             get {
                 return ResourceManager.GetString("IsPreSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LastName.
+        /// </summary>
+        public static string LastName {
+            get {
+                return ResourceManager.GetString("LastName", resourceCulture);
             }
         }
         
@@ -906,6 +934,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product View.
+        /// </summary>
+        public static string ProductView {
+            get {
+                return ResourceManager.GetString("ProductView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to province.
         /// </summary>
         public static string Province {
@@ -992,6 +1029,15 @@ namespace Resources {
         public static string SKU {
             get {
                 return ResourceManager.GetString("SKU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slider.
+        /// </summary>
+        public static string Slider {
+            get {
+                return ResourceManager.GetString("Slider", resourceCulture);
             }
         }
         

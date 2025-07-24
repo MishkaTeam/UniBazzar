@@ -495,9 +495,6 @@
   <data name="AccountInformation" xml:space="preserve">
     <value>اطلاعات حساب کاربری</value>
   </data>
-  <data name="OtpCode" xml:space="preserve">
-    <value>کد</value>
-  </data>
   <data name="Attribute" xml:space="preserve">
     <value>ویژگی</value>
   </data>
@@ -512,5 +509,20 @@
   </data>
   <data name="IsPreSelected" xml:space="preserve">
     <value>تنظیم پیش فرض</value>
+  </data>
+  <data name="HomeView" xml:space="preserve">
+    <value>آلبوم</value>
+  </data>
+  <data name="HomeViews" xml:space="preserve">
+    <value>آلبوم ها</value>
+  </data>
+  <data name="Slider" xml:space="preserve">
+    <value>آلبوم اسلاید</value>
+  </data>
+  <data name="ProductView" xml:space="preserve">
+    <value>آلبوم کالا</value>
+  </data>
+  <data name="ImageView" xml:space="preserve">
+    <value>آلبوم عکس</value>
   </data>
 </root>
