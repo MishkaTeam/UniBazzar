@@ -87,7 +87,7 @@ public static class DomainExtensions
         services.AddScoped<DiscountProductApplication>();
         services.AddScoped<DiscountCustomerApplication>();
 
-        services.AddScoped<HomeViewApplication>();
+        services.AddScoped<HomeViewsApplication>();
 
 
         services.AddScoped<ProductSearchApplication>();
