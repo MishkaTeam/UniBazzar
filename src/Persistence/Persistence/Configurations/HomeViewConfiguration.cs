@@ -13,6 +13,8 @@ internal class HomeViewConfiguration : BaseConfiguration<HomeView>
 
         builder.ToTable("HomeViews");
 
+        builder.Property(x => x.Ordering);
+
         builder.Property(x => x.Title)
                .HasMaxLength(150)
                .IsRequired();
@@ -20,9 +22,6 @@ internal class HomeViewConfiguration : BaseConfiguration<HomeView>
         builder.Property(x => x.Type)
                 .IsRequired()
                 .HasConversion<int>();
-
-        builder.Property(x => x.Sorting)
-                .IsRequired();
 
         builder.Property(x => x.IsActive)
                 .IsRequired();
@@ -97,6 +96,9 @@ internal class HomeViewConfiguration : BaseConfiguration<HomeView>
                    .WithMany()
                    .HasForeignKey(x => x.ProductId)
                    .OnDelete(DeleteBehavior.Cascade);
+
+            itemBuilder.Navigation(x => x.Product)
+                   .AutoInclude();
         });
 
         builder.OwnsMany(x => x.ImageViews, itemBuilder =>
