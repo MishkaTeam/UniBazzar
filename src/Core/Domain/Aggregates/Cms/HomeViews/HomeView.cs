@@ -1,4 +1,6 @@
-﻿using BuildingBlocks.Domain.Aggregates;
+﻿using System.Text.RegularExpressions;
+using System.Xml.Linq;
+using BuildingBlocks.Domain.Aggregates;
 using BuildingBlocks.Domain.SeedWork;
 using BuildingBlocks.Domain.Validations;
 using Domain.Aggregates.Cms.HomeViews.Enums;
@@ -9,24 +11,23 @@ namespace Domain.Aggregates.Cms.HomeViews;
 public class HomeView : Entity,
     IEntityHasIsActive, IEntityHasIsSystemic
 {
-    private HomeView()
+    protected HomeView()
     {
         // FOR EF!
     }
 
     private HomeView
-        (string title, ViewType type, int sorting, bool isActive)
+        (string title, ViewType type, int ordering, bool isActive)
     {
         Title = title;
         Type = type;
-        Sorting = sorting;
+        Ordering = ordering;
         IsActive = isActive;
     }
 
 
     public string Title { get; private set; }
     public ViewType Type { get; private set; }
-    public int Sorting { get; private set; }
     public bool IsActive { get; private set; }
     public bool IsSystemic { get; private set; }
 
@@ -37,12 +38,12 @@ public class HomeView : Entity,
     public List<ImageViewItem> ImageViews { get; private set; }
 
     public static HomeView Create
-        (string title, ViewType type, int sorting, bool isActive = true)
+        (string title, ViewType type, int ordering, bool isActive = true)
     {
         var homeView = new HomeView(
             title.Fix() ?? "",
             type,
-            sorting.NotNegativeInt(nameof(Sorting)),
+            ordering.NotNegativeInt(nameof(Ordering)),
             isActive);
 
         switch (type)
@@ -61,6 +62,14 @@ public class HomeView : Entity,
         }
 
         return homeView;
+    }
+
+    public void Update(string title, int ordering)
+    {
+        Title = title.Fix() ?? "";
+        Ordering = ordering.NotNegativeInt(nameof(Ordering));
+
+        SetUpdateDateTime();
     }
 
     public bool AddSlide(SlideViewItem slide)
