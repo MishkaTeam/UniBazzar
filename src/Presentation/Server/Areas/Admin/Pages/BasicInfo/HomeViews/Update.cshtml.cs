@@ -1,5 +1,6 @@
 using Application.Aggregates.HomeViews;
 using Application.Aggregates.HomeViews.ViewModels;
+using Application.Aggregates.Stores;
 using Domain.Aggregates.Cms.HomeViews.Enums;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -8,19 +9,32 @@ using Resources;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.HomeViews;
 
-public class CreateModel
+public class UpdateModel
     (HomeViewsApplication homeViewsApplication) : BasePageModel
 {
     [BindProperty]
-    public CreateHomeViewViewModel CreateViewModel { get; set; } = new();
+    public HomeViewViewModel UpdateViewModel { get; set; } = new();
     public List<SelectListItem> ViewTypeList { get; set; } = [];
 
-    public void OnGet()
+    public async Task<IActionResult> OnGetAsync(Guid id)
     {
-        FillSelectTag();
+        if (id == Guid.Empty)
+        {
+            return RedirectToPage("Index");
+        }
+
+        UpdateViewModel =
+            (await homeViewsApplication.GetHomeViewAsync(id)).Data!;
+
+        if (UpdateViewModel == null)
+        {
+            return RedirectToPage("Index");
+        }
+
+        return Page();
     }
 
-    public async Task<IActionResult> OnPost()
+    public async Task<IActionResult> OnPostAsync()
     {
         if (!ModelState.IsValid)
         {
@@ -30,7 +44,7 @@ public class CreateModel
         }
 
         var result =
-            await homeViewsApplication.AddHomeView(CreateViewModel);
+            await homeViewsApplication.UpdateHomeView(UpdateViewModel);
 
         if (result.IsSuccessful == false)
         {
