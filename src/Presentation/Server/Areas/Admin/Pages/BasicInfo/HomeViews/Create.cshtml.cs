@@ -1,5 +1,5 @@
 using Application.Aggregates.HomeViews;
-using Application.Aggregates.HomeViews.ViewModels;
+using Application.Aggregates.HomeViews.ViewModels.HomeViews;
 using Domain.Aggregates.Cms.HomeViews.Enums;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;

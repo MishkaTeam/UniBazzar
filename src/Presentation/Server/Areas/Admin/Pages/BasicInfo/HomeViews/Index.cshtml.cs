@@ -1,5 +1,5 @@
 using Application.Aggregates.HomeViews;
-using Application.Aggregates.HomeViews.ViewModels;
+using Application.Aggregates.HomeViews.ViewModels.HomeViews;
 using Infrastructure;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.HomeViews;

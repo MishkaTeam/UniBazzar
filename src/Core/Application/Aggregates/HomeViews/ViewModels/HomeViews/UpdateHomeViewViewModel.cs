@@ -1,4 +1,4 @@
-﻿namespace Application.Aggregates.HomeViews.ViewModels;
+﻿namespace Application.Aggregates.HomeViews.ViewModels.HomeViews;
 
 public class UpdateHomeViewViewModel : CreateHomeViewViewModel
 {

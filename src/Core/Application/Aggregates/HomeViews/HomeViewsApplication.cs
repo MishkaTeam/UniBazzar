@@ -1,4 +1,4 @@
-﻿using Application.Aggregates.HomeViews.ViewModels;
+﻿using Application.Aggregates.HomeViews.ViewModels.HomeViews;
 using Domain;
 using Domain.Aggregates.Cms.HomeViews;
 using Domain.Aggregates.Cms.HomeViews.Data;

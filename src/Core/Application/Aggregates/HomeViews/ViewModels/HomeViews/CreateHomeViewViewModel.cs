@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Domain.Aggregates.Cms.HomeViews.Enums;
 
-namespace Application.Aggregates.HomeViews.ViewModels;
+namespace Application.Aggregates.HomeViews.ViewModels.HomeViews;
 
 public class CreateHomeViewViewModel
 {

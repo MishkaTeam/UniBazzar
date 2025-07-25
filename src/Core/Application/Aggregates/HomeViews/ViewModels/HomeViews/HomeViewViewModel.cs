@@ -2,7 +2,7 @@
 using Domain.Aggregates.Cms.HomeViews.Enums;
 using Resources;
 
-namespace Application.Aggregates.HomeViews.ViewModels;
+namespace Application.Aggregates.HomeViews.ViewModels.HomeViews;
 
 public class HomeViewViewModel : UpdateHomeViewViewModel
 {
@@ -15,8 +15,8 @@ public class HomeViewViewModel : UpdateHomeViewViewModel
     public bool IsSystemic { get; set; }
 
     [Display
-        (ResourceType = typeof(Resources.DataDictionary),
-        Name = nameof(Resources.DataDictionary.Type))]
+        (ResourceType = typeof(DataDictionary),
+        Name = nameof(DataDictionary.Type))]
     public string TypeName
     {
         get

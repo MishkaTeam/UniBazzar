@@ -1,5 +1,5 @@
 using Application.Aggregates.HomeViews;
-using Application.Aggregates.HomeViews.ViewModels;
+using Application.Aggregates.HomeViews.ViewModels.HomeViews;
 using Application.Aggregates.Stores;
 using Domain.Aggregates.Cms.HomeViews.Enums;
 using Infrastructure;
