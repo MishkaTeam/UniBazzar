@@ -525,4 +525,10 @@
   <data name="ImageView" xml:space="preserve">
     <value>Image View</value>
   </data>
+  <data name="Interval" xml:space="preserve">
+    <value>Interval</value>
+  </data>
+  <data name="NavigationUrl" xml:space="preserve">
+    <value>Navigation URL</value>
+  </data>
 </root>

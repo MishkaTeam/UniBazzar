@@ -592,6 +592,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Interval.
+        /// </summary>
+        public static string Interval {
+            get {
+                return ResourceManager.GetString("Interval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active.
         /// </summary>
         public static string IsActive {
@@ -705,6 +714,15 @@ namespace Resources {
         public static string NationalCode {
             get {
                 return ResourceManager.GetString("NationalCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navigation URL.
+        /// </summary>
+        public static string NavigationUrl {
+            get {
+                return ResourceManager.GetString("NavigationUrl", resourceCulture);
             }
         }
         

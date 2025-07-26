@@ -525,4 +525,10 @@
   <data name="ImageView" xml:space="preserve">
     <value>آلبوم عکس</value>
   </data>
+  <data name="Interval" xml:space="preserve">
+    <value>فاصله زمانی</value>
+  </data>
+  <data name="NavigationUrl" xml:space="preserve">
+    <value>لینک</value>
+  </data>
 </root>
