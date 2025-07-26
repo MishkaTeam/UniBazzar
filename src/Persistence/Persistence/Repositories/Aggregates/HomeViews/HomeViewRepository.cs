@@ -39,4 +39,20 @@ public class HomeViewRepository
 
         return result;
     }
+
+    public async Task<List<SlideViewItem>> GetSliderItemsByIdAsync(Guid homeViewId)
+    {
+        var homeView = await uniBazzarContext.HomeViews
+                    .StoreFilter(ExecutionContext.StoreId)
+                    .Include(x => x.SliderViews)
+                    .Where(x => x.Type == ViewType.Slider)
+                    .FirstOrDefaultAsync(x => x.Id == homeViewId);
+
+        if (homeView == null)
+        {
+            return null!;
+        }
+
+        return homeView.SliderViews;
+    }
 }

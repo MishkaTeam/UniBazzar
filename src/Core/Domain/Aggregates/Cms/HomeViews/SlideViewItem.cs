@@ -43,4 +43,15 @@ public class SlideViewItem : Entity
 
         return slideViewItem;
     }
+
+    public void Update
+        (string title, string? navigationUrl, int interval, int ordering)
+    {
+        Title = title.Fix() ?? "";
+        NavigationUrl = navigationUrl.Fix() ?? "";
+        Interval = interval.NotNegativeInt(nameof(Interval));
+        Ordering = ordering.NotNegativeInt(nameof(Ordering));
+
+        SetUpdateDateTime();
+    }
 }
