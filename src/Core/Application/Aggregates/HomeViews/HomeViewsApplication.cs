@@ -1,4 +1,5 @@
 ﻿using Application.Aggregates.HomeViews.ViewModels.HomeViews;
+using Application.Aggregates.HomeViews.ViewModels.SliderViewItems;
 using Domain;
 using Domain.Aggregates.Cms.HomeViews;
 using Domain.Aggregates.Cms.HomeViews.Data;
@@ -53,8 +54,10 @@ public class HomeViewsApplication
     public async Task<ResultContract<List<HomeViewViewModel>>> GetHomeViews()
     {
         var homeViews =
-            (await homeViewRepository.GetAllAsync())
-            .OrderBy(x => x.Ordering);
+            (await homeViewRepository
+            .GetAllAsync())
+            .OrderBy(x => x.Ordering)
+            .ToList();
 
         return homeViews.Adapt<List<HomeViewViewModel>>();
     }
@@ -97,10 +100,10 @@ public class HomeViewsApplication
 
     public async Task<ResultContract> DeleteHomeView(Guid homeViewId)
     {
-        var homeViewForUpdate =
+        var homeViewForDelete =
             await homeViewRepository.GetByIdAsync(homeViewId);
 
-        if (homeViewForUpdate == null || homeViewForUpdate.Id == Guid.Empty)
+        if (homeViewForDelete == null || homeViewForDelete.Id == Guid.Empty)
         {
             var message =
                 string.Format(Errors.NotFound, Resources.DataDictionary.HomeView);
@@ -108,7 +111,144 @@ public class HomeViewsApplication
             return (ErrorType.NotFound, message);
         }
 
-        await homeViewRepository.RemoveAsync(homeViewForUpdate);
+        await homeViewRepository.RemoveAsync(homeViewForDelete);
+        await unitOfWork.SaveChangesAsync();
+
+        return true;
+    }
+
+    public async Task<ResultContract<SliderViewItemViewModel>> AddSliderItem(CreateSliderViewItemViewModel viewModel)
+    {
+        var homeView =
+            await homeViewRepository.GetByIdAsync(viewModel.HomeViewId);
+
+        if (homeView == null || homeView.Id == Guid.Empty)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.HomeView);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var sliderItem =
+            SlideViewItem.Create(
+                viewModel.HomeViewId,
+                viewModel.Title,
+                viewModel.ImageUrl,
+                viewModel.NavigationUrl,
+                viewModel.Interval,
+                viewModel.Ordering);
+
+        var result =
+            homeView.AddSlide(sliderItem);
+
+        if (result == false)
+        {
+            return (ErrorType.InvalidFormat, "Error type.");
+        }
+
+        await unitOfWork.SaveChangesAsync();
+
+        return sliderItem.Adapt<SliderViewItemViewModel>();
+    }
+
+    public async Task<ResultContract<List<SliderViewItemViewModel>>> GetSliderItems(Guid homeViewId)
+    {
+        var sliderItems =
+            (await homeViewRepository
+            .GetSliderItemsByIdAsync(homeViewId))
+            .OrderBy(x => x.Ordering)
+            .ToList();
+
+        return sliderItems.Adapt<List<SliderViewItemViewModel>>();
+    }
+
+    public async Task<ResultContract<SliderViewItemViewModel>> GetSliderItem(Guid homeViewId, Guid sliderItemId)
+    {
+        var sliderItems =
+            (await GetSliderItems(homeViewId)).Data;
+
+        if (sliderItems == null)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.HomeView);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var sliderItem =
+            sliderItems.FirstOrDefault(x => x.Id == sliderItemId);
+
+        return sliderItem.Adapt<SliderViewItemViewModel>();
+    }
+
+    public async Task<ResultContract<SliderViewItemViewModel>> UpdateSliderItem(UpdateSliderViewItemViewModel viewModel)
+    {
+        var homeView =
+            await homeViewRepository.GetByIdAsync(viewModel.HomeViewId);
+
+        if (homeView == null ||
+            homeView.Id == Guid.Empty ||
+            homeView.Type != ViewType.Slider)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.HomeView);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var sliderItemForUpdate =
+            homeView.SliderViews
+            .FirstOrDefault(x => x.Id != viewModel.Id);
+
+        if (sliderItemForUpdate == null ||
+            sliderItemForUpdate.Id == Guid.Empty)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.Slider);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        sliderItemForUpdate.Update(
+            viewModel.Title,
+            viewModel.NavigationUrl,
+            viewModel.Interval,
+            viewModel.Ordering);
+
+        await unitOfWork.SaveChangesAsync();
+        return sliderItemForUpdate.Adapt<SliderViewItemViewModel>();
+    }
+
+    public async Task<ResultContract> DeleteSliderItem(Guid homeViewId, Guid sliderItemId)
+    {
+        var homeView =
+            await homeViewRepository.GetByIdAsync(homeViewId);
+
+        if (homeView == null ||
+            homeView.Id == Guid.Empty ||
+            homeView.Type != ViewType.Slider)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.HomeView);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var sliderItemForDelete =
+            homeView.SliderViews
+            .FirstOrDefault(x => x.Id != sliderItemId);
+
+        if (sliderItemForDelete == null ||
+            sliderItemForDelete.Id == Guid.Empty)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.Slider);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        homeView.SliderViews.Remove(sliderItemForDelete);
         await unitOfWork.SaveChangesAsync();
 
         return true;
