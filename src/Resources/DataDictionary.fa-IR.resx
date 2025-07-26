@@ -516,9 +516,6 @@
   <data name="HomeViews" xml:space="preserve">
     <value>آلبوم ها</value>
   </data>
-  <data name="Slider" xml:space="preserve">
-    <value>آلبوم اسلاید</value>
-  </data>
   <data name="ProductView" xml:space="preserve">
     <value>آلبوم کالا</value>
   </data>
@@ -530,5 +527,11 @@
   </data>
   <data name="NavigationUrl" xml:space="preserve">
     <value>لینک</value>
+  </data>
+  <data name="SliderItems" xml:space="preserve">
+    <value>اسلاید ها</value>
+  </data>
+  <data name="SliderView" xml:space="preserve">
+    <value>آلبوم اسلاید</value>
   </data>
 </root>

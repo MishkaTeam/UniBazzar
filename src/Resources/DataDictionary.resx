@@ -516,9 +516,6 @@
   <data name="HomeViews" xml:space="preserve">
     <value>Home Views</value>
   </data>
-  <data name="Slider" xml:space="preserve">
-    <value>Slider</value>
-  </data>
   <data name="ProductView" xml:space="preserve">
     <value>Product View</value>
   </data>
@@ -530,5 +527,11 @@
   </data>
   <data name="NavigationUrl" xml:space="preserve">
     <value>Navigation URL</value>
+  </data>
+  <data name="SliderItems" xml:space="preserve">
+    <value>Slider Items</value>
+  </data>
+  <data name="SliderView" xml:space="preserve">
+    <value>Slider View</value>
   </data>
 </root>

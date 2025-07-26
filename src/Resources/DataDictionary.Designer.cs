@@ -1051,11 +1051,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Slider.
+        ///   Looks up a localized string similar to Slider Items.
         /// </summary>
-        public static string Slider {
+        public static string SliderItems {
             get {
-                return ResourceManager.GetString("Slider", resourceCulture);
+                return ResourceManager.GetString("SliderItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slider View.
+        /// </summary>
+        public static string SliderView {
+            get {
+                return ResourceManager.GetString("SliderView", resourceCulture);
             }
         }
         

@@ -66,7 +66,7 @@ public class UpdateModel
         {
             var typeNmae = type switch
             {
-                ViewType.Slider => DataDictionary.Slider,
+                ViewType.Slider => DataDictionary.SliderView,
                 ViewType.Product => DataDictionary.ProductView,
                 ViewType.Image => DataDictionary.ImageView,
                 _ => throw new InvalidOperationException("Unknown view type.")
