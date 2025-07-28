@@ -1,4 +1,5 @@
 ﻿@page
+@using Domain.Aggregates.Cms.HomeViews.Enums
 @model Server.Areas.Admin.Pages.BasicInfo.HomeViews.IndexModel
 
 @{
@@ -8,33 +9,55 @@
 	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 }
 
+@{
+	string GetPageName(ViewType type)
+	{
+
+		if (type == ViewType.Slider)
+		{
+			return "SliderViewItems";
+		}
+		else if (type == ViewType.Product)
+		{
+			return "ProductViewItems";
+		}
+		else if (type == ViewType.Image)
+		{
+			return "ImageViewItems";
+		}
+
+		return string.Empty;
+	}
+}
+
 
 <div class="my-2 float-end">
-    <a class="btn btn-primary" asp-page="Create" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
+	<a class="btn btn-primary" asp-page="Create" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
 </div>
 <table class="table table-hover">
-    <thead>
-        <tr>
-            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Title))
-            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Order))
-            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Type))
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var homeView in Model.ViewModel)
-        {
-            <tr>
-                @(Html.Ub_DisplayStringWithTd(homeView.Title))
-                @(Html.Ub_DisplayIntegerWithTd(homeView.Ordering))
-                @(Html.Ub_DisplayStringWithTd(homeView.TypeName))
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <a asp-page="Update" asp-route-Id="@(homeView.Id)" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
-                        <a asp-page="Delete" asp-route-Id="@(homeView.Id)" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
+	<thead>
+		<tr>
+			@(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Title))
+			@(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Order))
+			@(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Type))
+			<th scope="col"></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var homeView in Model.ViewModel)
+		{
+			<tr>
+				@(Html.Ub_DisplayStringWithTd(homeView.Title))
+				@(Html.Ub_DisplayIntegerWithTd(homeView.Ordering))
+				@(Html.Ub_DisplayStringWithTd(homeView.TypeName))
+				<td>
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<a asp-page="Update" asp-route-Id="@(homeView.Id)" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
+						<a asp-page="Delete" asp-route-Id="@(homeView.Id)" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+						<a asp-page="@(GetPageName(homeView.Type))/Index" asp-route-homeViewId="@(homeView.Id)" class="btn btn-secondary">@(Resources.DataDictionary.Items)</a>
+					</div>
+				</td>
+			</tr>
+		}
+	</tbody>
 </table>

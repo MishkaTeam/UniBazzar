@@ -20,7 +20,7 @@ public class CreateModel
         FillSelectTag();
     }
 
-    public async Task<IActionResult> OnPost()
+    public async Task<IActionResult> OnPostAsync()
     {
         if (!ModelState.IsValid)
         {
