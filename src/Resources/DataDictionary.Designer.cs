@@ -628,6 +628,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Items.
+        /// </summary>
+        public static string Items {
+            get {
+                return ResourceManager.GetString("Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LastName.
         /// </summary>
         public static string LastName {
@@ -1047,6 +1056,15 @@ namespace Resources {
         public static string SKU {
             get {
                 return ResourceManager.GetString("SKU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slider Item.
+        /// </summary>
+        public static string SliderItem {
+            get {
+                return ResourceManager.GetString("SliderItem", resourceCulture);
             }
         }
         

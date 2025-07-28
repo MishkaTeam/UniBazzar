@@ -534,4 +534,10 @@
   <data name="SliderView" xml:space="preserve">
     <value>آلبوم اسلاید</value>
   </data>
+  <data name="Items" xml:space="preserve">
+    <value>آیتم‌ها</value>
+  </data>
+  <data name="SliderItem" xml:space="preserve">
+    <value>اسلاید</value>
+  </data>
 </root>
