@@ -6,7 +6,7 @@ namespace Domain.Aggregates.Cms.HomeViews;
 
 public class SlideViewItem : Entity
 {
-    private SlideViewItem()
+    protected SlideViewItem()
     {
         // FOR EF!
     }
