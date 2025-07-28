@@ -17,7 +17,7 @@ public class CreateSliderViewItemViewModel
         Name = nameof(DataDictionary.Title))]
     public string Title { get; set; }
 
-    public string ImageUrl { get; set; }
+    public string? ImageUrl { get; set; }
 
     [Display
         (ResourceType = typeof(DataDictionary),

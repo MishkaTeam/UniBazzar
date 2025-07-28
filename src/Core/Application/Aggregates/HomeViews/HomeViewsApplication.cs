@@ -205,7 +205,7 @@ public class HomeViewsApplication
             sliderItemForUpdate.Id == Guid.Empty)
         {
             var message =
-                string.Format(Errors.NotFound, Resources.DataDictionary.Slider);
+                string.Format(Errors.NotFound, Resources.DataDictionary.SliderView);
 
             return (ErrorType.NotFound, message);
         }
@@ -243,7 +243,7 @@ public class HomeViewsApplication
             sliderItemForDelete.Id == Guid.Empty)
         {
             var message =
-                string.Format(Errors.NotFound, Resources.DataDictionary.Slider);
+                string.Format(Errors.NotFound, Resources.DataDictionary.SliderView);
 
             return (ErrorType.NotFound, message);
         }
