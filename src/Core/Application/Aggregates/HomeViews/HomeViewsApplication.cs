@@ -199,7 +199,7 @@ public class HomeViewsApplication
 
         var sliderItemForUpdate =
             homeView.SliderViews
-            .FirstOrDefault(x => x.Id != viewModel.Id);
+            .FirstOrDefault(x => x.Id == viewModel.Id);
 
         if (sliderItemForUpdate == null ||
             sliderItemForUpdate.Id == Guid.Empty)
@@ -212,6 +212,7 @@ public class HomeViewsApplication
 
         sliderItemForUpdate.Update(
             viewModel.Title,
+            viewModel.ImageUrl,
             viewModel.NavigationUrl,
             viewModel.Interval,
             viewModel.Ordering);
@@ -237,7 +238,7 @@ public class HomeViewsApplication
 
         var sliderItemForDelete =
             homeView.SliderViews
-            .FirstOrDefault(x => x.Id != sliderItemId);
+            .FirstOrDefault(x => x.Id == sliderItemId);
 
         if (sliderItemForDelete == null ||
             sliderItemForDelete.Id == Guid.Empty)
