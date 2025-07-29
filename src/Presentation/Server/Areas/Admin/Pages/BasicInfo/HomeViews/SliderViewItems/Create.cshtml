@@ -23,7 +23,11 @@
 
             <input hidden asp-for="CreateViewModel.HomeViewId" />
 
-            <input class="m-2" asp-for="SliderImage" />
+            <div class="mb-3">
+                <label asp-for="SliderImage" class="form-label"></label>
+                <input class="form-control" asp-for="SliderImage" />
+                <span asp-validation-for="SliderImage" class="field-validation-valid text-danger"></span>
+            </div>
 
             <ub-full-input asp-for="CreateViewModel.Title" />
 

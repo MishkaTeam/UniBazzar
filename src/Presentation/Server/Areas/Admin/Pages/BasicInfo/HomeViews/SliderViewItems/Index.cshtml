@@ -9,9 +9,11 @@
 }
 
 
-<div class="my-2 float-end">
-    <a class="btn btn-primary" asp-page="Create" asp-route-homeViewId="@(Model.HomeViewId)" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
+<div class="row justify-content-between px-2 my-2">
+    <a class="col-auto btn btn-primary" asp-page="../Index" asp-area="Admin">@(Resources.ButtonCaptions.Back)</a>
+    <a class="col-auto btn btn-primary" asp-page="Create" asp-route-homeViewId="@(Model.HomeViewId)" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
 </div>
+
 <table class="table table-hover">
     <thead>
         <tr>
@@ -30,8 +32,13 @@
                 @(Html.Ub_DisplayIntegerWithTd(sliderView.Interval))
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a asp-page="Update" asp-route-Id="@(sliderView.Id)" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
-                        <a asp-page="Delete" asp-route-Id="@(sliderView.Id)" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+
+                        <a asp-page="Update" asp-route-homeViewId="@(Model.HomeViewId)"
+                            asp-route-sliderItemId="@(sliderView.Id)" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
+
+                        <a asp-page="Delete" asp-route-homeViewId="@(Model.HomeViewId)"
+                            asp-route-sliderItemId="@(sliderView.Id)" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+
                     </div>
                 </td>
             </tr>
