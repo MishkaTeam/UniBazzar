@@ -45,12 +45,17 @@ public class SlideViewItem : Entity
     }
 
     public void Update
-        (string title, string? navigationUrl, int interval, int ordering)
+        (string title, string? imageUrl, string? navigationUrl, int interval, int ordering)
     {
         Title = title.Fix() ?? "";
         NavigationUrl = navigationUrl.Fix() ?? "";
         Interval = interval.NotNegativeInt(nameof(Interval));
         Ordering = ordering.NotNegativeInt(nameof(Ordering));
+
+        if (string.IsNullOrWhiteSpace(imageUrl) == false)
+        {
+            ImageUrl = imageUrl;
+        }
 
         SetUpdateDateTime();
     }
