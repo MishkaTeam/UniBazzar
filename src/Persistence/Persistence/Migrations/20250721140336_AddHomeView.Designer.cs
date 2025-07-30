@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Persistence;
@@ -11,9 +12,11 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(UniBazzarContext))]
-    partial class UniBazzarContextModelSnapshot : ModelSnapshot
+    [Migration("20250721140336_AddHomeView")]
+    partial class AddHomeView
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,7 +223,7 @@ namespace Persistence.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime?>("DeactivateDate")
+                    b.Property<DateTime>("DeactivateDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<long>("InsertDateTime")
@@ -242,6 +245,9 @@ namespace Persistence.Migrations
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
+
+                    b.Property<int>("Sorting")
+                        .HasColumnType("integer");
 
                     b.Property<Guid>("StoreId")
                         .HasColumnType("uuid");
