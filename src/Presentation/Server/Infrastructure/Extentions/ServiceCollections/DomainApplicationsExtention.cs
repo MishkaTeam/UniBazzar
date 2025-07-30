@@ -1,9 +1,11 @@
+using Application.Aggregates.Attribute;
 using Application.Aggregates.Branches;
 using Application.Aggregates.Categories;
 using Application.Aggregates.CheckoutCounter;
 using Application.Aggregates.Customers;
 using Application.Aggregates.Customers.ShippingAddresses;
 using Application.Aggregates.Discounts;
+using Application.Aggregates.HomeViews;
 using Application.Aggregates.Ordering.Baskets;
 using Application.Aggregates.PriceLists;
 using Application.Aggregates.ProductReviews;
@@ -16,12 +18,16 @@ using Application.Aggregates.Users;
 using Application.CustomerSearch;
 using Application.ProductSearch;
 using Domain;
+using Domain.Aggregates.Attributes.Data;
 using Domain.Aggregates.branches;
 using Domain.Aggregates.Categories;
 using Domain.Aggregates.CheckoutCounters;
+using Domain.Aggregates.Cms.HomeViews.Data;
 using Domain.Aggregates.Customers;
 using Domain.Aggregates.Customers.ShippingAddresses;
 using Domain.Aggregates.Discounts;
+using Domain.Aggregates.Discounts.DiscountCustomers;
+using Domain.Aggregates.Discounts.DsiscounProducts;
 using Domain.Aggregates.Ordering.Baskets.Data;
 using Domain.Aggregates.PriceLists;
 using Domain.Aggregates.ProductReviews;
@@ -35,11 +41,13 @@ using Domain.CustomerSearch.Data;
 using Domain.ProductSearch.Data;
 using Persistence;
 using Persistence.Aggregates.Comments;
+using Persistence.Repositories.Aggregates.Attributes;
 using Persistence.Repositories.Aggregates.Branches;
 using Persistence.Repositories.Aggregates.Categories;
 using Persistence.Repositories.Aggregates.CheckoutCounters;
 using Persistence.Repositories.Aggregates.Customers;
 using Persistence.Repositories.Aggregates.Discounts;
+using Persistence.Repositories.Aggregates.HomeViews;
 using Persistence.Repositories.Aggregates.Ordering;
 using Persistence.Repositories.Aggregates.Products;
 using Persistence.Repositories.Aggregates.Stores;
@@ -61,8 +69,6 @@ using Persistence.Repositories.Aggregates.Attributes;
 using Application.Aggregates.Attribute;
 using Domain.Aggregates.Discounts.DsiscounProducts;
 using Domain.Aggregates.Discounts.DiscountCustomers;
-using Application.Aggregates.Ordering.Orders;
-using Domain.Aggregates.Ordering.Orders.Data;
 
 namespace Server.Infrastructure.Extensions.ServiceCollections;
 
@@ -95,6 +101,8 @@ public static class DomainExtensions
         services.AddScoped<DiscountApplication>();
         services.AddScoped<DiscountProductApplication>();
         services.AddScoped<DiscountCustomerApplication>();
+
+        services.AddScoped<HomeViewsApplication>();
 
 
         services.AddScoped<ProductSearchApplication>();
@@ -133,6 +141,7 @@ public static class DomainExtensions
         services.AddScoped<IUnitRepository, UnitRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+        services.AddScoped<IHomeViewRepository, HomeViewRepository>();
 
 
         services.AddScoped<IProductSearchRepository, ProductSearchRepository>();

@@ -7,7 +7,8 @@ using Resources.Messages;
 namespace Application.Aggregates.Stores;
 
 public class StoresApplication
-	(IStoreRepository storeRepository, IUnitOfWork unitOfWork)
+	(IStoreRepository storeRepository,
+	IUnitOfWork unitOfWork)
 {
 	public async Task<StoreViewModel> CreateStoreAsync(CreateStoreViewModel viewModel)
 	{

@@ -10,6 +10,7 @@ using Server.Infrastructure;
 using Server.Infrastructure.Extensions.ServiceCollections;
 using Server.Infrastructure.Extentions.ServiceCollections;
 using Server.Infrastructure.Middleware;
+using Server.Infrastructure.Services;
 
 namespace Server
 {
@@ -44,6 +45,7 @@ namespace Server
             services.AddDomainRepositories();
             services.AddUnitOfWork();
             services.AddScoped<IExecutionContextAccessor, ExecutionContextAccessor>();
+            services.AddScoped<StorageService>();
 
             services.AddAuditing();
             services.AddS3Storage(new StorageConfig()
