@@ -33,6 +33,7 @@ public class OrderApplication(
             await orderRepository.AddAsync(order, cancellationToken);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
+            // Should use CustomerId in query !!!
             var customer = await customerApplication.GetCustomerAsync(basket.OwnerId);
             var recCustomer = new ReceiptCustomer(customer.Id, string.Join(customer.FirstName, ' ', customer.LastName));
             var receiptRes = receipts.CreateCashReceiptAsync(customer: recCustomer, price: basket.Total, orderId: order.Id, cancellationToken: cancellationToken);

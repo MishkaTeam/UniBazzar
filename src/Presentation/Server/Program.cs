@@ -62,7 +62,10 @@ namespace Server
                 opt.EnableSensitiveDataLogging();
             });
 
-            services.AddTreasuryModule("Data Source=TreasuryDbContext.db;");
+            // Add Treasury Database
+            var treasuryConnection =
+                builder.Configuration.GetConnectionString("TreasuryConnection");
+            services.AddTreasuryModule(treasuryConnection!);
 
             var app = builder.Build();
 

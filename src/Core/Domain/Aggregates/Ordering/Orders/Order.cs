@@ -59,6 +59,9 @@ public class Order : Entity
     {
         BasketId = basketId;
         BasketReferenceNumber = basketReferenceNumber;
+
+        // For test
+        ReferenceNumber = Guid.NewGuid().ToString();
     }
 
     public void AddOrderItem(List<OrderItem> orderItems)
