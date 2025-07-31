@@ -1,4 +1,5 @@
 ﻿using Application.Aggregates.HomeViews.ViewModels.HomeViews;
+using Application.Aggregates.HomeViews.ViewModels.ImageViewItems;
 using Application.Aggregates.HomeViews.ViewModels.SliderViewItems;
 using Domain;
 using Domain.Aggregates.Cms.HomeViews;
@@ -117,12 +118,15 @@ public class HomeViewsApplication
         return true;
     }
 
+
     public async Task<ResultContract<SliderViewItemViewModel>> AddSliderItem(CreateSliderViewItemViewModel viewModel)
     {
         var homeView =
             await homeViewRepository.GetByIdAsync(viewModel.HomeViewId);
 
-        if (homeView == null || homeView.Id == Guid.Empty)
+        if (homeView == null ||
+            homeView.Id == Guid.Empty ||
+            homeView.Type != ViewType.Slider)
         {
             var message =
                 string.Format(Errors.NotFound, Resources.DataDictionary.HomeView);
@@ -250,6 +254,147 @@ public class HomeViewsApplication
         }
 
         homeView.SliderViews.Remove(sliderItemForDelete);
+        await unitOfWork.SaveChangesAsync();
+
+        return true;
+    }
+
+
+    public async Task<ResultContract<ImageViewItemViewModel>> AddImageItem(CreateImageViewItemViewModel viewModel)
+    {
+        var homeView =
+            await homeViewRepository.GetByIdAsync(viewModel.HomeViewId);
+
+        if (homeView == null ||
+            homeView.Id == Guid.Empty ||
+            homeView.Type != ViewType.Image)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.HomeView);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var imageItem =
+            ImageViewItem.Create(
+                viewModel.HomeViewId,
+                viewModel.Title,
+                viewModel.ImageUrl,
+                viewModel.NavigationUrl,
+                viewModel.Column,
+                viewModel.Ordering);
+
+        var result =
+            homeView.AddImage(imageItem);
+
+        if (result == false)
+        {
+            return (ErrorType.InvalidFormat, "Error type.");
+        }
+
+        await unitOfWork.SaveChangesAsync();
+
+        return imageItem.Adapt<ImageViewItemViewModel>();
+    }
+
+    public async Task<ResultContract<List<ImageViewItemViewModel>>> GetImageItems(Guid homeViewId)
+    {
+        var mageItems =
+            (await homeViewRepository
+            .GetImageItemsByIdAsync(homeViewId))
+            .OrderBy(x => x.Ordering)
+            .ToList();
+
+        return mageItems.Adapt<List<ImageViewItemViewModel>>();
+    }
+
+    public async Task<ResultContract<ImageViewItemViewModel>> GetImageItem(Guid homeViewId, Guid imageItemId)
+    {
+        var imageItems =
+            (await GetImageItems(homeViewId)).Data;
+
+        if (imageItems == null)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.HomeView);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var imageItem =
+            imageItems.FirstOrDefault(x => x.Id == imageItemId);
+
+        return imageItem.Adapt<ImageViewItemViewModel>();
+    }
+
+    public async Task<ResultContract<ImageViewItemViewModel>> UpdateImageItem(UpdateImageViewItemViewModel viewModel)
+    {
+        var homeView =
+            await homeViewRepository.GetByIdAsync(viewModel.HomeViewId);
+
+        if (homeView == null ||
+            homeView.Id == Guid.Empty ||
+            homeView.Type != ViewType.Image)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.HomeView);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var imageItemForUpdate =
+            homeView.ImageViews
+            .FirstOrDefault(x => x.Id == viewModel.Id);
+
+        if (imageItemForUpdate == null ||
+            imageItemForUpdate.Id == Guid.Empty)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.ImageView);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        imageItemForUpdate.Update(
+            viewModel.Title,
+            viewModel.ImageUrl,
+            viewModel.NavigationUrl,
+            viewModel.Column,
+            viewModel.Ordering);
+
+        await unitOfWork.SaveChangesAsync();
+        return imageItemForUpdate.Adapt<ImageViewItemViewModel>();
+    }
+
+    public async Task<ResultContract> DeleteImageItem(Guid homeViewId, Guid imageItemId)
+    {
+        var homeView =
+            await homeViewRepository.GetByIdAsync(homeViewId);
+
+        if (homeView == null ||
+            homeView.Id == Guid.Empty ||
+            homeView.Type != ViewType.Image)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.HomeView);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        var imageItemForDelete =
+            homeView.ImageViews
+            .FirstOrDefault(x => x.Id == imageItemId);
+
+        if (imageItemForDelete == null ||
+            imageItemForDelete.Id == Guid.Empty)
+        {
+            var message =
+                string.Format(Errors.NotFound, Resources.DataDictionary.ImageView);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        homeView.ImageViews.Remove(imageItemForDelete);
         await unitOfWork.SaveChangesAsync();
 
         return true;
