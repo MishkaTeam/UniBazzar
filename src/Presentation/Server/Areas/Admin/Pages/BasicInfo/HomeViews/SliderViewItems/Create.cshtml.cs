@@ -1,18 +1,17 @@
 using System.ComponentModel.DataAnnotations;
 using Application.Aggregates.HomeViews;
 using Application.Aggregates.HomeViews.ViewModels.SliderViewItems;
-using BuildingBlocks.Persistence;
-using Framework.Storage;
+using Constants;
+using Framework.Picture;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Server.Infrastructure;
+using Server.Infrastructure.Services;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.HomeViews.SliderViewItems;
 
 public class CreateModel(
     HomeViewsApplication homeViewsApplication,
-    IExecutionContextAccessor executionContextAccessor,
-    IStorage storage) : BasePageModel
+    StorageService storageService) : BasePageModel
 {
     [BindProperty]
     public CreateSliderViewItemViewModel CreateViewModel { get; set; } = new();
@@ -51,16 +50,43 @@ public class CreateModel(
             return Page();
         }
 
-        var imageUrl =
-            await UploadImageAsync(SliderImage);
+        using var memoryStream =
+            new MemoryStream();
 
-        CreateViewModel.ImageUrl = imageUrl;
+        await SliderImage.CopyToAsync(memoryStream);
+
+        var checkSize = await ImageHelper
+            .CheckImageSizeAsync(memoryStream, 300, 200);
+
+        if (checkSize == false)
+        {
+            var message =
+                "image size is incorrect.";
+
+            AddPageError(message);
+            return Page();
+        }
+
+        var uploadResult = await storageService.UploadImageAsync
+            (SliderImage, Storage.SliderPrefix, Storage.SliderPath);
+
+        if (uploadResult.IsSuccessful == false)
+        {
+            AddPageError
+                (uploadResult.ErrorMessage!.Message);
+
+            return Page();
+        }
+
+        CreateViewModel.ImageUrl = uploadResult.Data;
 
         var result =
             await homeViewsApplication.AddSliderItem(CreateViewModel);
 
         if (result.IsSuccessful == false)
         {
+            // Delete image from bucket
+
             AddPageError
                 (result.ErrorMessage!.Message);
 
@@ -69,36 +95,5 @@ public class CreateModel(
 
         return RedirectToPage("Index",
             new { homeViewId = CreateViewModel.HomeViewId.ToString() });
-    }
-
-
-    private async Task<string> UploadImageAsync(IFormFile formFile)
-    {
-        var size =
-            formFile.Length;
-
-        // Check Image Length
-
-        using var memoryStream = new MemoryStream();
-
-        await formFile.CopyToAsync
-            (memoryStream).ConfigureAwait(false);
-
-        string objectKey =
-            $"SLD_IMG_{executionContextAccessor.StoreId}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}";
-
-        var folder =
-            $"{executionContextAccessor.StoreId}/SliderImages";
-
-        var fileType =
-            formFile.ContentType;
-
-        await storage.UploadAsync
-            ("unibazzar", objectKey, memoryStream, folder, fileType);
-
-        var link = storage.GetPublicUrl
-            ("unibazzar", objectKey, folder);
-
-        return link;
     }
 }

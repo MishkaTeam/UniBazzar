@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using Application.Aggregates.HomeViews;
 using Application.Aggregates.HomeViews.ViewModels.SliderViewItems;
 using Constants;
+using Framework.Picture;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Server.Infrastructure.Services;
@@ -67,7 +68,24 @@ public class UpdateModel(
 
         if (SliderImage != null)
         {
-            // Delete image from bucket
+            // Delete old image from bucket
+
+            using var memoryStream =
+                new MemoryStream();
+
+            await SliderImage.CopyToAsync(memoryStream);
+
+            var checkSize = await ImageHelper
+                .CheckImageSizeAsync(memoryStream, 300, 200);
+
+            if (checkSize == false)
+            {
+                var message =
+                    "image size is incorrect.";
+
+                AddPageError(message);
+                return Page();
+            }
 
             var uploadResult = await storageService.UploadImageAsync
                 (SliderImage, Storage.SliderPrefix, Storage.SliderPath);
@@ -88,6 +106,11 @@ public class UpdateModel(
 
         if (result.IsSuccessful == false)
         {
+            if (SliderImage != null)
+            {
+                // Delete new image from bucket
+            }
+
             AddPageError
                 (result.ErrorMessage!.Message);
 

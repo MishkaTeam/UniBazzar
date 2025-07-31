@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Persistence"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Storage", "Framework\Framework.Storage\Framework.Storage.csproj", "{3E828336-B080-4353-90F5-4C11562DD8C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Picture", "Framework\Framework.Image\Framework.Picture.csproj", "{55B099EE-7E27-4022-B6B5-2E4726A99AF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{3E828336-B080-4353-90F5-4C11562DD8C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E828336-B080-4353-90F5-4C11562DD8C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E828336-B080-4353-90F5-4C11562DD8C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55B099EE-7E27-4022-B6B5-2E4726A99AF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55B099EE-7E27-4022-B6B5-2E4726A99AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55B099EE-7E27-4022-B6B5-2E4726A99AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55B099EE-7E27-4022-B6B5-2E4726A99AF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -143,6 +149,7 @@ Global
 		{0A5B4E15-C921-4C2B-95C1-87189423C075} = {2C05763A-B879-4329-9198-8A0590F4B5CE}
 		{3CC93B7D-67FB-4C86-B3B7-FC6AD42F319B} = {DD7E6C32-9A83-4FC4-957B-2E5A0886C092}
 		{3E828336-B080-4353-90F5-4C11562DD8C2} = {13F33FF1-A8F0-4E2B-A374-224FBEB16F7F}
+		{55B099EE-7E27-4022-B6B5-2E4726A99AF4} = {13F33FF1-A8F0-4E2B-A374-224FBEB16F7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EA33793-7EFA-42CE-9534-6C1328556A2F}
