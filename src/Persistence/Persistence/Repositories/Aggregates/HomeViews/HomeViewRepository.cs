@@ -55,4 +55,20 @@ public class HomeViewRepository
 
         return homeView.SliderViews;
     }
+
+    public async Task<List<ImageViewItem>> GetImageItemsByIdAsync(Guid homeViewId)
+    {
+        var homeView = await uniBazzarContext.HomeViews
+                    .StoreFilter(ExecutionContext.StoreId)
+                    .Include(x => x.ImageViews)
+                    .Where(x => x.Type == ViewType.Image)
+                    .FirstOrDefaultAsync(x => x.Id == homeViewId);
+
+        if (homeView == null)
+        {
+            return null!;
+        }
+
+        return homeView.ImageViews;
+    }
 }
