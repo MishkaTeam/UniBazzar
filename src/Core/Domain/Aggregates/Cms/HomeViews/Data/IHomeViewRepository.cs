@@ -6,4 +6,5 @@ public interface IHomeViewRepository : IRepositoryBase<HomeView>
 {
     Task<List<HomeView>> GetAllWithIncludeAsync();
     Task<List<SlideViewItem>> GetSliderItemsByIdAsync(Guid homeViewId);
+    Task<List<ImageViewItem>> GetImageItemsByIdAsync(Guid homeViewId);
 }
