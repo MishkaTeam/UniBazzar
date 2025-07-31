@@ -540,4 +540,7 @@
   <data name="SliderItem" xml:space="preserve">
     <value>اسلاید</value>
   </data>
+  <data name="Orders" xml:space="preserve">
+    <value>سفارشات</value>
+  </data>
 </root>

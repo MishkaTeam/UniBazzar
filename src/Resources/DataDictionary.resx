@@ -540,4 +540,8 @@
   <data name="SliderItem" xml:space="preserve">
     <value>Slider Item</value>
   </data>
+  <data name="Orders" xml:space="preserve">
+    <value>orders</value>
+  </data>
+
 </root>

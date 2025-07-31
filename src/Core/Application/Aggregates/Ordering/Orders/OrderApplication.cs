@@ -1,10 +1,13 @@
 using Application.Aggregates.Customers;
 using Application.Aggregates.Ordering.Orders.ProcessOrder;
+using Application.Aggregates.Ordering.Orders.ViewModels.Orders;
+using Application.Aggregates.Ordering.Orders.ViewModels.OrdersItems;
 using Domain;
 using Domain.Aggregates.Ordering.Baskets.Data;
 using Domain.Aggregates.Ordering.Orders;
 using Domain.Aggregates.Ordering.Orders.Data;
 using Framework.DataType;
+using Mapster;
 using Modules.Treasury.Api.TreasuryAbstraction;
 using Modules.Treasury.Application.Contracts;
 
@@ -44,5 +47,21 @@ public class OrderApplication(
         {
             return (ErrorType.InternalError, ex.Message);
         }
+    }
+
+    public async Task<ResultContract<List<OrderViewModel>>> GetAllOrderAsync()
+    {
+        var orders =
+            (await orderRepository.GetAllAsync()).ToList();
+
+        return OrderViewModel.FromOrderList(orders);
+    }
+
+    public async Task<ResultContract<List<OrderItemViewModel>>> GetOrderItems(Guid orderId)
+    {
+        var orderItems =
+            await orderRepository.GetAllOrderItem(orderId);
+
+        return OrderItemViewModel.FromOrderItems(orderItems);
     }
 }
