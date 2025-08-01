@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Resources;
+﻿using Resources;
+using System.ComponentModel.DataAnnotations;
 
 namespace Application.Aggregates.HomeViews.ViewModels.SliderViewItems;
 

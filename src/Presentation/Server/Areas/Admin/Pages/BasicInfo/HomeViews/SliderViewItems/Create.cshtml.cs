@@ -71,7 +71,7 @@ public class CreateModel(
             (SliderImage, Storage.SliderPrefix, Storage.SliderPath);
 
         if (uploadResult.IsSuccessful == false)
-        {
+    {
             AddPageError
                 (uploadResult.ErrorMessage!.Message);
 

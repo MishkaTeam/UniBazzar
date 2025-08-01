@@ -7,7 +7,7 @@ namespace Domain.Aggregates.Cms.HomeViews;
 public class ProductViewItem : Entity
 {
     protected ProductViewItem()
-    {
+     {
         // FOR EF!
     }
 
