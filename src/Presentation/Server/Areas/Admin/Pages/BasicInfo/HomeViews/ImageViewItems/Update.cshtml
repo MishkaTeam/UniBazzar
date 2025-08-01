@@ -1,0 +1,52 @@
+﻿@page "{homeViewId:guid}/{imageItemId:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.HomeViews.ImageViewItems.UpdateModel
+@{
+	var pageTitle =
+		$"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.ImageItem}";
+
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+
+<form method="post" enctype="multipart/form-data">
+
+	<section-form>
+
+		<fieldset>
+
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
+
+			<partial name="PartialViews/_DisplayPageMessages" />
+
+			<input hidden asp-for="UpdateViewModel.Id" />
+			<input hidden asp-for="UpdateViewModel.HomeViewId" />
+
+			@* Show image !!! *@
+
+			<div class="mb-3">
+				<label asp-for="Image" class="form-label"></label>
+				<input class="form-control" asp-for="Image" />
+				<span asp-validation-for="Image" class="field-validation-valid text-danger"></span>
+			</div>
+
+			<ub-full-input asp-for="UpdateViewModel.Title" />
+
+			<ub-full-input asp-for="UpdateViewModel.Column" />
+
+			<ub-full-input asp-for="UpdateViewModel.NavigationUrl" />
+
+			<ub-full-input asp-for="UpdateViewModel.Ordering" />
+
+		</fieldset>
+
+		<section-form-buttons>
+			<button-save />
+			<button-reset />
+		</section-form-buttons>
+
+	</section-form>
+
+</form>
+

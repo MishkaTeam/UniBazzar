@@ -1,0 +1,99 @@
+using Application.Aggregates.HomeViews;
+using Application.Aggregates.HomeViews.ViewModels.ImageViewItems;
+using Constants;
+using Framework.Picture;
+using Infrastructure;
+using Microsoft.AspNetCore.Mvc;
+using Server.Infrastructure.Services;
+using System.ComponentModel.DataAnnotations;
+
+namespace Server.Areas.Admin.Pages.BasicInfo.HomeViews.ImageViewItems;
+
+public class CreateModel(
+    HomeViewsApplication homeViewsApplication,
+    StorageService storageService) : BasePageModel
+{
+    [BindProperty]
+    public CreateImageViewItemViewModel CreateViewModel { get; set; } = new();
+
+    [BindProperty]
+    [DataType(DataType.Upload)]
+    [Display
+        (ResourceType = typeof(Resources.DataDictionary),
+        Name = nameof(Resources.DataDictionary.Picture))]
+    public IFormFile Image { get; set; }
+
+    public async Task<IActionResult> OnGet(Guid homeViewId)
+    {
+        if (homeViewId == Guid.Empty)
+        {
+            return RedirectToPage("../Index");
+        }
+
+        var result =
+            await homeViewsApplication.GetHomeViewAsync(homeViewId);
+
+        if (result.IsSuccessful == false)
+        {
+            return RedirectToPage("../Index");
+        }
+
+        CreateViewModel.HomeViewId = homeViewId;
+
+        return Page();
+    }
+
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (!ModelState.IsValid)
+        {
+            return Page();
+        }
+
+        using var memoryStream =
+            new MemoryStream();
+
+        await Image.CopyToAsync(memoryStream);
+
+        var checkSize = await ImageHelper
+            .CheckImageSizeAsync(memoryStream, 300, 200);
+
+        if (checkSize == false)
+        {
+            var message =
+                "image size is incorrect.";
+
+            AddPageError(message);
+            return Page();
+        }
+
+        var uploadResult = await storageService.UploadImageAsync
+            (Image, Storage.ImagePrefix, Storage.ImagePath);
+
+        if (uploadResult.IsSuccessful == false)
+        {
+            AddPageError
+                (uploadResult.ErrorMessage!.Message);
+
+            return Page();
+        }
+
+        CreateViewModel.ImageUrl = uploadResult.Data;
+
+        var result =
+            await homeViewsApplication.AddImageItem(CreateViewModel);
+
+        if (result.IsSuccessful == false)
+        {
+            // Delete image from bucket
+
+            AddPageError
+                (result.ErrorMessage!.Message);
+
+            return Page();
+        }
+
+        return RedirectToPage("Index",
+            new { homeViewId = CreateViewModel.HomeViewId.ToString() });
+    }
+}
