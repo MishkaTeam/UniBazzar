@@ -27,7 +27,7 @@ public class CreateImageViewItemViewModel
 
     [Display
         (ResourceType = typeof(DataDictionary),
-        Name = nameof(DataDictionary.Interval))]
+        Name = nameof(DataDictionary.Column))]
     [Range
         (minimum: 1, 2,
         ErrorMessageResourceType = typeof(Resources.Messages.Validations),
