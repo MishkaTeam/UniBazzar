@@ -32,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Pages\BasicInfo\HomeViews\ImageViewItems\" />
     <Folder Include="Areas\Admin\Pages\BasicInfo\HomeViews\ProductViewItems\" />
   </ItemGroup>
 

@@ -1,0 +1,49 @@
+﻿@page "{homeViewId:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.HomeViews.ImageViewItems.CreateModel
+@{
+    var pageTitle =
+        $"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.ImageItem}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+
+<form method="post" enctype="multipart/form-data">
+
+    <section-form>
+
+        <fieldset>
+
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+
+            <input hidden asp-for="CreateViewModel.HomeViewId" />
+
+            <div class="mb-3">
+                <label asp-for="Image" class="form-label"></label>
+                <input class="form-control" asp-for="Image" />
+                <span asp-validation-for="Image" class="field-validation-valid text-danger"></span>
+            </div>
+
+            <ub-full-input asp-for="CreateViewModel.Title" />
+
+            <ub-full-input asp-for="CreateViewModel.Column" />
+
+            <ub-full-input asp-for="CreateViewModel.NavigationUrl" />
+
+            <ub-full-input asp-for="CreateViewModel.Ordering" />
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-create />
+            <button-reset />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>
+

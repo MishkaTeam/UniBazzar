@@ -540,4 +540,13 @@
   <data name="SliderItem" xml:space="preserve">
     <value>اسلاید</value>
   </data>
+  <data name="Column" xml:space="preserve">
+    <value>اندازه در صفحه</value>
+  </data>
+  <data name="ImageItem" xml:space="preserve">
+    <value>عکس</value>
+  </data>
+  <data name="ImageItems" xml:space="preserve">
+    <value>عکس‌ها</value>
+  </data>
 </root>
