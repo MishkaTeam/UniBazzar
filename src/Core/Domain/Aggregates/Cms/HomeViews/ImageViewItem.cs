@@ -6,7 +6,7 @@ namespace Domain.Aggregates.Cms.HomeViews;
 
 public class ImageViewItem : Entity
 {
-    private ImageViewItem()
+    protected ImageViewItem()
     {
         // FOR EF!
     }
@@ -33,7 +33,7 @@ public class ImageViewItem : Entity
     public static ImageViewItem Create
         (Guid homeViewId, string title, string imageUrl, string? navigationUrl, string column, int ordering)
     {
-        if (column != "1" || column != "2")
+        if (column != "1" && column != "2")
         {
             throw new ArgumentException
                 ($"column should be 1 or 2.", nameof(Column));
@@ -54,7 +54,7 @@ public class ImageViewItem : Entity
     public void Update
         (string title, string? imageUrl, string? navigationUrl, string column, int ordering)
     {
-        if (column != "1" || column != "2")
+        if (column != "1" && column != "2")
         {
             throw new ArgumentException
                 ($"column should be 1 or 2.", nameof(Column));
