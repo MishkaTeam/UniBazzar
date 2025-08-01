@@ -1,12 +1,13 @@
-﻿using Resources;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Resources;
 
-namespace Application.Aggregates.HomeViews.ViewModels.SliderViewItems;
+namespace Application.Aggregates.HomeViews.ViewModels.ImageViewItems;
 
-public class CreateSliderViewItemViewModel
+public class CreateImageViewItemViewModel
 {
-    public CreateSliderViewItemViewModel()
+    public CreateImageViewItemViewModel()
     {
+        Column = "2";
     }
 
 
@@ -26,12 +27,12 @@ public class CreateSliderViewItemViewModel
 
     [Display
         (ResourceType = typeof(DataDictionary),
-        Name = nameof(DataDictionary.Interval))]
+        Name = nameof(DataDictionary.Column))]
     [Range
-        (minimum: 0, 60_000,
+        (minimum: 1, 2,
         ErrorMessageResourceType = typeof(Resources.Messages.Validations),
         ErrorMessageResourceName = nameof(Resources.Messages.Validations.Range))]
-    public int Interval { get; set; }
+    public string Column { get; set; }
 
     [Display
         (ResourceType = typeof(DataDictionary),

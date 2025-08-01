@@ -1,36 +1,36 @@
 using System.ComponentModel.DataAnnotations;
 using Application.Aggregates.HomeViews;
-using Application.Aggregates.HomeViews.ViewModels.SliderViewItems;
+using Application.Aggregates.HomeViews.ViewModels.ImageViewItems;
 using Constants;
 using Framework.Picture;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Server.Infrastructure.Services;
 
-namespace Server.Areas.Admin.Pages.BasicInfo.HomeViews.SliderViewItems;
+namespace Server.Areas.Admin.Pages.BasicInfo.HomeViews.ImageViewItems;
 
 public class UpdateModel(
     HomeViewsApplication homeViewsApplication,
     StorageService storageService) : BasePageModel
 {
     [BindProperty]
-    public UpdateSliderViewItemViewModel UpdateViewModel { get; set; } = new();
+    public UpdateImageViewItemViewModel UpdateViewModel { get; set; } = new();
 
     [BindProperty]
     [DataType(DataType.Upload)]
     [Display
         (ResourceType = typeof(Resources.DataDictionary),
         Name = nameof(Resources.DataDictionary.Picture))]
-    public IFormFile? SliderImage { get; set; }
+    public IFormFile? Image { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(Guid homeViewId, Guid sliderItemId)
+    public async Task<IActionResult> OnGetAsync(Guid homeViewId, Guid imageItemId)
     {
         if (homeViewId == Guid.Empty)
         {
             return RedirectToPage("../Index");
         }
 
-        if (sliderItemId == Guid.Empty)
+        if (imageItemId == Guid.Empty)
         {
             return RedirectToPage("Index",
                 new { homeViewId = homeViewId.ToString() });
@@ -44,17 +44,17 @@ public class UpdateModel(
             return RedirectToPage("../Index");
         }
 
-        var sliderItemResult =
-            await homeViewsApplication.GetSliderItem(homeViewId, sliderItemId);
+        var imageItemResult =
+            await homeViewsApplication.GetImageItem(homeViewId, imageItemId);
 
-        if (sliderItemResult.IsSuccessful == false)
+        if (imageItemResult.IsSuccessful == false)
         {
             return RedirectToPage("Index",
                 new { homeViewId = homeViewId.ToString() });
         }
 
         UpdateViewModel =
-            sliderItemResult.Data!;
+            imageItemResult.Data!;
 
         return Page();
     }
@@ -66,14 +66,14 @@ public class UpdateModel(
             return Page();
         }
 
-        if (SliderImage != null)
+        if (Image != null)
         {
             // Delete old image from bucket
 
             using var memoryStream =
                 new MemoryStream();
 
-            await SliderImage.CopyToAsync(memoryStream);
+            await Image.CopyToAsync(memoryStream);
 
             var checkSize = await ImageHelper
                 .CheckImageSizeAsync(memoryStream, 300, 200);
@@ -88,7 +88,7 @@ public class UpdateModel(
             }
 
             var uploadResult = await storageService.UploadImageAsync
-                (SliderImage, Storage.SliderPrefix, Storage.SliderPath);
+                (Image, Storage.ImagePrefix, Storage.ImagePath);
 
             if (uploadResult.IsSuccessful == false)
             {
@@ -102,11 +102,11 @@ public class UpdateModel(
         }
 
         var result =
-            await homeViewsApplication.UpdateSliderItem(UpdateViewModel);
+            await homeViewsApplication.UpdateImageItem(UpdateViewModel);
 
         if (result.IsSuccessful == false)
         {
-            if (SliderImage != null)
+            if (Image != null)
             {
                 // Delete new image from bucket
             }

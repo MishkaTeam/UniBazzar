@@ -268,6 +268,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to column.
+        /// </summary>
+        public static string Column {
+            get {
+                return ResourceManager.GetString("Column", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to comment.
         /// </summary>
         public static string Comment {
@@ -561,6 +570,24 @@ namespace Resources {
         public static string Id {
             get {
                 return ResourceManager.GetString("Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to image item.
+        /// </summary>
+        public static string ImageItem {
+            get {
+                return ResourceManager.GetString("ImageItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to image items.
+        /// </summary>
+        public static string ImageItems {
+            get {
+                return ResourceManager.GetString("ImageItems", resourceCulture);
             }
         }
         
