@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Server.Areas.Admin.Pages.BasicInfo.HomeViews.ImageViewItems;
 
 public class IndexModel
-(HomeViewsApplication homeViewsApplication) : BasePageModel
+    (HomeViewsApplication homeViewsApplication) : BasePageModel
 {
     public List<ImageViewItemViewModel> ViewModel { get; set; } = [];
     public Guid HomeViewId { get; set; }
@@ -25,5 +25,4 @@ public class IndexModel
 
         return Page();
     }
-
 }

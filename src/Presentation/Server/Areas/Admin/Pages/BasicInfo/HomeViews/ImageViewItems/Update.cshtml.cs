@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Application.Aggregates.HomeViews;
 using Application.Aggregates.HomeViews.ViewModels.ImageViewItems;
 using Constants;
@@ -5,13 +6,12 @@ using Framework.Picture;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Server.Infrastructure.Services;
-using System.ComponentModel.DataAnnotations;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.HomeViews.ImageViewItems;
 
-public class UpdateModel
-    (HomeViewsApplication homeViewsApplication,
-     StorageService storageService) : BasePageModel
+public class UpdateModel(
+    HomeViewsApplication homeViewsApplication,
+    StorageService storageService) : BasePageModel
 {
     [BindProperty]
     public UpdateImageViewItemViewModel UpdateViewModel { get; set; } = new();
@@ -33,7 +33,7 @@ public class UpdateModel
         if (imageItemId == Guid.Empty)
         {
             return RedirectToPage("Index",
-                new { homeViewId = homeViewId.ToString()});
+                new { homeViewId = homeViewId.ToString() });
         }
 
         var homeViewResult =

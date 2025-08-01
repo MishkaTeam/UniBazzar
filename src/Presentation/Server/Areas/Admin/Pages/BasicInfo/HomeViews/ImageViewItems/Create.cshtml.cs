@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Application.Aggregates.HomeViews;
 using Application.Aggregates.HomeViews.ViewModels.ImageViewItems;
 using Constants;
@@ -5,7 +6,6 @@ using Framework.Picture;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Server.Infrastructure.Services;
-using System.ComponentModel.DataAnnotations;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.HomeViews.ImageViewItems;
 
