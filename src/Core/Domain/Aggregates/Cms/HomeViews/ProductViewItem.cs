@@ -6,7 +6,7 @@ namespace Domain.Aggregates.Cms.HomeViews;
 
 public class ProductViewItem : Entity
 {
-    private ProductViewItem()
+    protected ProductViewItem()
     {
         // FOR EF!
     }
@@ -33,5 +33,14 @@ public class ProductViewItem : Entity
             ordering.NotNegativeInt(nameof(Ordering)));
 
         return productViewItem;
+    }
+
+    public void Update
+        (Guid productId, int ordering)
+    {
+        ProductId = productId.RequierdGuid(nameof(ProductId));
+        Ordering = ordering.NotNegativeInt(nameof(Ordering));
+
+        SetUpdateDateTime();
     }
 }
