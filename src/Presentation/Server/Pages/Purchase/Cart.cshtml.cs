@@ -50,7 +50,7 @@ namespace Server.Pages
 
             var quantity = res?.Data?.BasketItems.FirstOrDefault(x => x.Id == Guid.Parse(request.BasketItemId))?.Quantity ?? 1;
 
-            return new JsonResult(new { IsSuccessful = true, Quantity = quantity }); ;
+            return new JsonResult(res);
         }
     }
     public class UpdateQuantityRequestModel
