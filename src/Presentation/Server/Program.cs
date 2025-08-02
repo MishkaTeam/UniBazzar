@@ -4,6 +4,7 @@ using BuildingBlocks.Persistence;
 using BuildingBlocks.Persistence.Extensions;
 using Framework.Storage;
 using Microsoft.EntityFrameworkCore;
+using Modules.Treasury.Api.ServiceCollection;
 using Persistence;
 using Server.Infrastructure;
 using Server.Infrastructure.Extensions.ServiceCollections;
@@ -60,6 +61,11 @@ namespace Server
                 opt.UseNpgsql(connection);
                 opt.EnableSensitiveDataLogging();
             });
+
+            // Add Treasury Database
+            var treasuryConnection =
+                builder.Configuration.GetConnectionString("TreasuryConnection");
+            services.AddTreasuryModule(treasuryConnection!);
 
             var app = builder.Build();
 

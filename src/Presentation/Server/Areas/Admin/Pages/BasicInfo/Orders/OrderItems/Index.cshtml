@@ -1,0 +1,38 @@
+﻿@page "{orderId:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.Orders.OrderItems.IndexModel
+@{
+    
+}
+<div class="row justify-content-between px-2 my-2">
+    <a class="col-auto btn btn-primary" asp-page="../Index" asp-area="Admin">@(Resources.ButtonCaptions.Back)</a>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">@(Resources.DataDictionary.Name)</th>
+            <th scope="col">@(Resources.DataDictionary.Quantity)</th>
+            <th scope="col">@(Resources.DataDictionary.UnitPrice)</th>
+            <th scope="col">@(Resources.DataDictionary.Discount)</th>
+            <th scope="col">@(Resources.DataDictionary.DiscountType)</th>
+            <th scope="col">@(Resources.DataDictionary.TotalPrice)</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var model in Model.viewModel)
+        {
+            <tr>
+                <td>@(model.ProductName)</td>
+                <td>@(model.Quantity)</td>
+                <td>@(model.BasePrice)</td>
+                <td>@(model.DiscountValue)</td>
+                <td>@(model.DiscountType)</td>
+                <td>@(model.TotalPrice)</td>
+                <td>
+                     
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
