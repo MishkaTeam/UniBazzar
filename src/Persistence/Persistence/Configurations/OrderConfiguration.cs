@@ -21,7 +21,6 @@ internal class OrderConfiguration : BaseConfiguration<Order>
                .HasMaxLength(150)
                .IsRequired();
 
-
         builder.OwnsMany(x => x.OrderItems, itemBuilder =>
         {
             itemBuilder.ToTable("OrderItems");
@@ -31,6 +30,13 @@ internal class OrderConfiguration : BaseConfiguration<Order>
             itemBuilder.Property(s => s.OrderReferenceNumber)
                    .HasMaxLength(150)
                    .IsRequired();
+
+            builder.OwnsOne(x => x.TotalDiscountAmount, dBuilder =>
+            {
+                dBuilder.Property(x => x.DiscountType).HasColumnName("TotalDiscountType");
+                dBuilder.Property(x => x.Value).HasColumnName("TotalDiscountAmount");
+
+            });
 
             itemBuilder.Property(x => x.Ordering)
                    .HasDefaultValue(10_000);
@@ -56,12 +62,10 @@ internal class OrderConfiguration : BaseConfiguration<Order>
                 dBuilder.Property(x => x.Value).HasColumnName("DiscountAmount");
             });
 
-
             itemBuilder.OwnsOne(x => x.ProductAmount, pBuilder =>
             {
                 pBuilder.Property(x => x.Quantity).HasColumnName("ProductQuantity");
                 pBuilder.Property(x => x.BasePrice).HasColumnName("ProductBasePrice");
-                //pBuilder.Property(x => x.TotalPrice).HasColumnName("ProductTotalPrice").HasComputedColumnSql("ProductQuantity * ProductBasePrice");
                 pBuilder.Ignore(x => x.TotalPrice);
             });
 
@@ -71,7 +75,32 @@ internal class OrderConfiguration : BaseConfiguration<Order>
                 pBuilder.Property(x => x.ProductName).HasMaxLength(500).HasColumnName("ProductName");
             });
 
-        });
+            itemBuilder.OwnsMany(x => x.OrderItemAttribute, attBuilder =>
+            {
+                attBuilder.ToTable("OrderItemAttributes");
+                attBuilder.HasKey(t => t.Id);
 
+                attBuilder.Property(x => x.Ordering)
+                        .HasDefaultValue(10_000);
+
+                attBuilder.Property(s => s.OwnerId)
+                       .IsRequired();
+
+                attBuilder.Property(s => s.InsertedBy)
+                       .IsRequired();
+
+                attBuilder.Property(s => s.UpdatedBy)
+                       .IsRequired();
+
+                attBuilder.Property(s => s.InsertDateTime)
+                       .IsRequired();
+
+                attBuilder.Property(s => s.UpdateDateTime)
+                       .IsRequired();
+
+                attBuilder.Property(x => x.ProductAttributeName).HasMaxLength(2000);
+                attBuilder.Property(x => x.ProductAttributeValue).HasMaxLength(2000);
+            });
+        });
     }
 }

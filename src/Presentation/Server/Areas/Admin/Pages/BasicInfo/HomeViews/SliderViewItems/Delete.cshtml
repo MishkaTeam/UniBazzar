@@ -1,0 +1,45 @@
+﻿@page "{homeViewId:guid}/{sliderItemId:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.HomeViews.SliderViewItems.DeleteModel
+
+@{
+	var pageTitle =
+		$"{Resources.DataDictionary.DeleteOf} {Resources.DataDictionary.SliderItem}";
+
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+
+<form method="post">
+
+	<section-form>
+
+		<input hidden asp-for="DeleteViewModel.Id" dir="ltr" />
+		<input hidden asp-for="DeleteViewModel.HomeViewId" dir="ltr" />
+
+		<fieldset disabled>
+
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
+
+			<partial name="PartialViews/_DisplayPageMessages" />
+
+			@* Show image of slider !!! *@
+
+			<ub-full-input asp-for="DeleteViewModel.Title" />
+
+			<ub-full-input asp-for="DeleteViewModel.Interval" />
+
+			<ub-full-input asp-for="DeleteViewModel.NavigationUrl" />
+
+			<ub-full-input asp-for="DeleteViewModel.Ordering" />
+
+		</fieldset>
+
+		<section-form-buttons>
+			<button-delete />
+		</section-form-buttons>
+
+	</section-form>
+
+</form>
