@@ -24,44 +24,90 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-12 pt-3">
-                                            <form method="post" asp-page-handler="create">
-                                                <div class="row">
-                                                    <input asp-for="CustomerId" hidden />
-                                                    <div class="col-12 col-md-4 pl-2">
-                                                        <div class="form-group m-1">
-                                                            <label for="province">@(Resources.DataDictionary.Country) :</label>
-                                                            <input asp-for="CreateAddress.Country" class="form-control" />
+                                            @if (Model.UpdateAddress.Id != Guid.Empty)
+                                            {
+                                                <form method="post" asp-page-handler="update" asp-route-Id="@(Model.UpdateAddress.Id)" asp-route-check="Update">
+                                                    <div class="row">
+                                                        <input asp-for="UpdateAddress.Id" hidden />
+                                                        <input asp-for="CustomerId" hidden />
+                                                        <div class="col-12 col-md-4 pl-2">
+                                                            <div class="form-group m-1">
+                                                                <label for="province">@(Resources.DataDictionary.Country) :</label>
+                                                                <input asp-for="UpdateAddress.Country" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-4 pl-2">
+                                                            <div class="form-group m-1">
+                                                                <label for="city">@(Resources.DataDictionary.Province) :</label>
+                                                                <input asp-for="UpdateAddress.Province" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-4 pl-2">
+                                                            <div class="form-group m-1">
+                                                                <label for="city">@(Resources.DataDictionary.City) :</label>
+                                                                <input asp-for="UpdateAddress.City" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-8 pl-2">
+                                                            <div class="form-grou m-1">
+                                                                <label for="address">@(Resources.DataDictionary.Address) :</label>
+                                                                <textarea type="text" asp-for="UpdateAddress.Address" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-4 pl-2">
+                                                            <div class="form-group m-1">
+                                                                <label for="postal_code">@(Resources.DataDictionary.PostalCode) :</label>
+                                                                <input type="text" asp-for="UpdateAddress.PostalCode" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="submit" class="btn btn-warning m-1">@(Resources.ButtonCaptions.Update) @(Resources.DataDictionary.Address)</button>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 col-md-4 pl-2">
-                                                        <div class="form-group m-1">
-                                                            <label for="city">@(Resources.DataDictionary.Province) :</label>
-                                                            <input asp-for="CreateAddress.Province" class="form-control" />
+                                                </form>
+                                            }
+                                            else
+                                            {
+                                                <form method="post" asp-page-handler="create">
+                                                    <div class="row">
+                                                        <input asp-for="CustomerId" hidden />
+                                                        <div class="col-12 col-md-4 pl-2">
+                                                            <div class="form-group m-1">
+                                                                <label for="province">@(Resources.DataDictionary.Country) :</label>
+                                                                <input asp-for="CreateAddress.Country" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-4 pl-2">
+                                                            <div class="form-group m-1">
+                                                                <label for="city">@(Resources.DataDictionary.Province) :</label>
+                                                                <input asp-for="CreateAddress.Province" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-4 pl-2">
+                                                            <div class="form-group m-1">
+                                                                <label for="city">@(Resources.DataDictionary.City) :</label>
+                                                                <input asp-for="CreateAddress.City" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-8 pl-2">
+                                                            <div class="form-grou m-1">
+                                                                <label for="address">@(Resources.DataDictionary.Address) :</label>
+                                                                <textarea type="text" asp-for="CreateAddress.Address" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-4 pl-2">
+                                                            <div class="form-group m-1">
+                                                                <label for="postal_code">@(Resources.DataDictionary.PostalCode) :</label>
+                                                                <input type="text" asp-for="CreateAddress.PostalCode" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="submit" class="btn btn-primary m-1">@(Resources.ButtonCaptions.Create) @(Resources.DataDictionary.Address)</button>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 col-md-4 pl-2">
-                                                        <div class="form-group m-1">
-                                                            <label for="city">@(Resources.DataDictionary.City) :</label>
-                                                            <input asp-for="CreateAddress.City" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-md-8 pl-2">
-                                                        <div class="form-grou m-1">
-                                                            <label for="address">@(Resources.DataDictionary.Address) :</label>
-                                                            <textarea type="text" asp-for="CreateAddress.Address" class="form-control"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-md-4 pl-2">
-                                                        <div class="form-group m-1">
-                                                            <label for="postal_code">@(Resources.DataDictionary.PostalCode) :</label>
-                                                            <input type="text" asp-for="CreateAddress.PostalCode" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <button type="submit" class="btn btn-primary m-1">@(Resources.ButtonCaptions.Create) @(Resources.DataDictionary.Address)</button>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            }
+
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +134,10 @@
                                                         <div class="sub-title">@(Resources.DataDictionary.PostalCode) : @(item.PostalCode)</div>
                                                     </div>
                                                     <div class="col-12 col-sm-3 col-lg-2">
-                                                        <button class="my-2 w-100 btn btn-sm btn-warning">@(Resources.ButtonCaptions.Edit)</button>
+                                                        <form method="post" asp-page-handler="update" asp-route-Id="@(item.Id)" asp-route-check="Get">
+                                                            <input asp-for="CustomerId" hidden />
+                                                            <button type="submit" class="my-2 w-100 btn btn-sm btn-warning">@(Resources.ButtonCaptions.Edit)</button>
+                                                        </form>
                                                         <form method="post" asp-page-handler="delete" asp-route-Id="@(item.Id)">
                                                             <input asp-for="CustomerId" hidden />
                                                             <button type="submit" class="my-2 w-100 btn btn-sm btn-danger">@(Resources.ButtonCaptions.Delete)</button>
