@@ -30,6 +30,7 @@
 											<!-- Order Product Record -->
 											@foreach (var item in Model.Basket.BasketItems)
 											{
+												
 												<div data-vue-component="PurchaseProduct"
 													 data-item-json="@(System.Text.Json.JsonSerializer.Serialize(item))"
 													 data-basket-id="@(Model.Basket.Id)"></div>
