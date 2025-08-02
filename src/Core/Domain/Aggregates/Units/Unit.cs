@@ -30,15 +30,15 @@ public class Unit : Entity
 		SetUpdateDateTime();
 	}
 
-	private static Guid? ValidateBaseUnit(Guid? baseUnitId)
-    {
-        if (baseUnitId == Guid.Empty)
+	    private static Guid? ValidateBaseUnit(Guid? baseUnitId)
         {
-            baseUnitId = null;
-        }
+            if (baseUnitId == Guid.Empty)
+            {
+                baseUnitId = null;
+            }
 
-        return baseUnitId;
-    }
+            return baseUnitId;
+        }
 
     public string Title { get; private set; }
     public Guid? BaseUnitId { get; private set; }
