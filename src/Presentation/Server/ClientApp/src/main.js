@@ -1,13 +1,9 @@
 import { createApp } from 'vue';
-import Counter from './components/Counter.vue';
-import PurchaseCounter from './components/purchase/PurchaseCounter.vue';
-import PurchaseProduct from './components/purchase/PurchaseProduct.vue';
+import Cart from './components/purchase/Cart.vue';
 
 // لیستی از تمام کامپوننت‌های موجود
 const components = {
-  'Counter': Counter,
-	'PurchaseCounter': PurchaseCounter,
-	'PurchaseProduct': PurchaseProduct
+  'Cart': Cart,
 };
 
 function getPropsFromDataset(dataset) {

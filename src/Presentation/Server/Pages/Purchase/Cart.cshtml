@@ -1,6 +1,14 @@
 ﻿@page
+@using System.Text.Json
 @model Server.Pages.CartModel
 @{
+
+	var options = new JsonSerializerOptions
+			{
+				PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+				WriteIndented = true // For readable output
+			};
+	var basketJson = System.Text.Json.JsonSerializer.Serialize(Model.Basket, options);
 }
 <section class="inner-page" id="cart-page">
 	<div class="container-fluid" id="page-hero">
@@ -21,174 +29,121 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="content">
-					<div class="row">
-						<div class="col-12 col-lg-9">
-							<div id="cart-products">
-								<div class="container">
-									<div class="row">
-										<div class="col-12 py-3">
-											<!-- Order Product Record -->
-											@foreach (var item in Model.Basket.BasketItems)
-											{
-												
-												<div data-vue-component="PurchaseProduct"
-													 data-item-json="@(System.Text.Json.JsonSerializer.Serialize(item))"
-													 data-basket-id="@(Model.Basket.Id)"></div>
-											}
-										</div>
+					<div data-vue-component="Cart"
+						 data-basket-json="@(basketJson)"></div>
+					<div class="pt-5" id="suggested-products">
+						<div class="title py-3 text-center">سایر محصولات پیشنهادی</div>
+						<div class="owl-carousel products-carousel">
+							<!-- Product Item -->
+							<div class="encrypt263156 item">
+								<a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
+								<div class="details p-3">
+									<div class="category">
+										<a asp-page="/Products">گوشی موبایل</a>
+										&nbsp;/&nbsp;
+										<a asp-page="/Products">سامسونگ</a>
+									</div>
+									<a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
+									<div class="price">4.000.000 تومان</div>
+									<div class="rate">
+										<i class="fa fa-star-half-alt"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="encrypt89312423451">(14 رای دهنده)</span>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-12 col-lg-3 mt-2 mt-lg-0 pr-3 pr-lg-0">
-							<div id="factor">
-								<div class="container">
-									<div class="row py-2">
-										<div class="col-6">
-											<div>جمع کل فاکتور:</div>
-										</div>
-										<div class="col-6">
-											<div><span id="factor-total-price">@(Model.Basket.SubtotalBeforeBasketDiscount.ToString("#,#"))</span> تومان</div>
-										</div>
+							<!-- /Product Item -->
+							<!-- Product Item -->
+							<div class="encrypt263156 item">
+								<a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
+								<div class="details p-3">
+									<div class="category">
+										<a asp-page="/Products">گوشی موبایل</a>
+										&nbsp;/&nbsp;
+										<a asp-page="/Products">سامسونگ</a>
 									</div>
-									<div class="row py-2 bg-light">
-										<div class="col-6">
-											<div>جمع تخفیف:</div>
-										</div>
-										<div class="col-6">
-											<div><span id="factor-total-discount">@(Model.Basket.TotalItemDiscounts.ToString("#,#"))</span> تومان</div>
-										</div>
-									</div>
-									<div class="row py-2" id="total">
-										<div class="col-6">
-											<div>مبلغ قابل پرداخت:</div>
-										</div>
-										<div class="col-6">
-											<div><span id="factor-total">@(Model.Basket.BasketTotal.ToString("#,#"))</span> تومان</div>
-										</div>
-									</div>
-									<div class="row py-2">
-										<div class="col-12">
-											<a asp-page="/Checkout"><input type="submit" value="ادامه ثبت سفارش" class="btn btn-success w-100"></a>
-										</div>
+									<a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
+									<div class="price">4.000.000 تومان</div>
+									<div class="rate">
+										<i class="fa fa-star-half-alt"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="encrypt89312423451">(14 رای دهنده)</span>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-12 pt-5" id="suggested-products">
-							<div class="title py-3 text-center">سایر محصولات پیشنهادی</div>
-							<div class="owl-carousel products-carousel">
-								<!-- Product Item -->
-								<div class="encrypt263156 item">
-									<a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
-									<div class="details p-3">
-										<div class="category">
-											<a asp-page="/Products">گوشی موبایل</a>
-											&nbsp;/&nbsp;
-											<a asp-page="/Products">سامسونگ</a>
-										</div>
-										<a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
-										<div class="price">4.000.000 تومان</div>
-										<div class="rate">
-											<i class="fa fa-star-half-alt"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<span class="encrypt89312423451">(14 رای دهنده)</span>
-										</div>
+							<!-- /Product Item -->
+							<!-- Product Item -->
+							<div class="encrypt263156 item">
+								<a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
+								<div class="details p-3">
+									<div class="category">
+										<a asp-page="/Products">گوشی موبایل</a>
+										&nbsp;/&nbsp;
+										<a asp-page="/Products">سامسونگ</a>
+									</div>
+									<a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
+									<div class="price">4.000.000 تومان</div>
+									<div class="rate">
+										<i class="fa fa-star-half-alt"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="encrypt89312423451">(14 رای دهنده)</span>
 									</div>
 								</div>
-								<!-- /Product Item -->
-								<!-- Product Item -->
-								<div class="encrypt263156 item">
-									<a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
-									<div class="details p-3">
-										<div class="category">
-											<a asp-page="/Products">گوشی موبایل</a>
-											&nbsp;/&nbsp;
-											<a asp-page="/Products">سامسونگ</a>
-										</div>
-										<a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
-										<div class="price">4.000.000 تومان</div>
-										<div class="rate">
-											<i class="fa fa-star-half-alt"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<span class="encrypt89312423451">(14 رای دهنده)</span>
-										</div>
-									</div>
-								</div>
-								<!-- /Product Item -->
-								<!-- Product Item -->
-								<div class="encrypt263156 item">
-									<a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
-									<div class="details p-3">
-										<div class="category">
-											<a asp-page="/Products">گوشی موبایل</a>
-											&nbsp;/&nbsp;
-											<a asp-page="/Products">سامسونگ</a>
-										</div>
-										<a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
-										<div class="price">4.000.000 تومان</div>
-										<div class="rate">
-											<i class="fa fa-star-half-alt"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<span class="encrypt89312423451">(14 رای دهنده)</span>
-										</div>
-									</div>
-								</div>
-								<!-- /Product Item -->
-								<!-- Product Item -->
-								<div class="encrypt263156 item">
-									<a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
-									<div class="details p-3">
-										<div class="category">
-											<a asp-page="/Products">گوشی موبایل</a>
-											&nbsp;/&nbsp;
-											<a asp-page="/Products">سامسونگ</a>
-										</div>
-										<a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
-										<div class="price">4.000.000 تومان</div>
-										<div class="rate">
-											<i class="fa fa-star-half-alt"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<span class="encrypt89312423451">(14 رای دهنده)</span>
-										</div>
-									</div>
-								</div>
-								<!-- /Product Item -->
-								<!-- Product Item -->
-								<div class="encrypt263156 item">
-									<a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
-									<div class="details p-3">
-										<div class="category">
-											<a asp-page="/Products">گوشی موبایل</a>
-											&nbsp;/&nbsp;
-											<a asp-page="/Products">سامسونگ</a>
-										</div>
-										<a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
-										<div class="price">4.000.000 تومان</div>
-										<div class="rate">
-											<i class="fa fa-star-half-alt"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<span class="encrypt89312423451">(14 رای دهنده)</span>
-										</div>
-									</div>
-								</div>
-								<!-- /Product Item -->
 							</div>
+							<!-- /Product Item -->
+							<!-- Product Item -->
+							<div class="encrypt263156 item">
+								<a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
+								<div class="details p-3">
+									<div class="category">
+										<a asp-page="/Products">گوشی موبایل</a>
+										&nbsp;/&nbsp;
+										<a asp-page="/Products">سامسونگ</a>
+									</div>
+									<a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
+									<div class="price">4.000.000 تومان</div>
+									<div class="rate">
+										<i class="fa fa-star-half-alt"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="encrypt89312423451">(14 رای دهنده)</span>
+									</div>
+								</div>
+							</div>
+							<!-- /Product Item -->
+							<!-- Product Item -->
+							<div class="encrypt263156 item">
+								<a asp-page="/Product"><div class="image" style="background-image: url('/images/products/p102.png')"></div></a>
+								<div class="details p-3">
+									<div class="category">
+										<a asp-page="/Products">گوشی موبایل</a>
+										&nbsp;/&nbsp;
+										<a asp-page="/Products">سامسونگ</a>
+									</div>
+									<a asp-page="/Product"><h2>گوشی موبایل سامسونگ مدل Galaxy A21s دو سیم کارت ظرفیت 128 گیگابایت</h2></a>
+									<div class="price">4.000.000 تومان</div>
+									<div class="rate">
+										<i class="fa fa-star-half-alt"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="encrypt89312423451">(14 رای دهنده)</span>
+									</div>
+								</div>
+							</div>
+							<!-- /Product Item -->
 						</div>
 					</div>
 				</div>
