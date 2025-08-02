@@ -12,6 +12,9 @@ public class CreateProductViewItemViewModel
 
     public Guid HomeViewId { get; set; }
 
+    [Display
+        (ResourceType = typeof(DataDictionary),
+        Name = nameof(DataDictionary.Product))]
     public Guid ProductId { get; set; }
 
     [Display
