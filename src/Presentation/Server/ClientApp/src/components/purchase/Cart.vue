@@ -14,6 +14,7 @@
                                                 <div class="d-flex flex-column align-items-center mt-2">
                                                     <div class="counter-box">
                                                         <i v-if="item.quantity <= 1"
+                                                            @click="removeProduct(item.id)"
                                                             class="bi bi-trash icon-button"></i>
                                                         <i v-if="item.quantity > 1"
                                                             @click="updateQuantity(item.id, --item.quantity)"
@@ -82,6 +83,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div v-if="basket.basketItems && basket.basketItems.length == 0">
+                                    سبد خرید شما خالی می باشد
                                 </div>
                             </div>
                             <div v-else>
@@ -152,13 +156,40 @@ function formatCurrency(val: number): string {
 }
 
 const loading = ref(false)
-const postUrl = '/Purchase/Cart?handler=UpdateQuantity'
+const postUrl = '/Purchase/Cart?handler='
+
+
+async function removeProduct(itemId) {
+    loading.value = true
+    try {
+        const res = await fetch(postUrl + "RemoveProduct", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                basketItemId: itemId,
+                basketId: basket.value.id
+            })
+        })
+
+        const response = await res.json()
+
+        if (response && response.isSuccessful) {
+            const basketRes = response.data as Basket;
+            basket.value = basketRes;
+        }
+
+    } catch (err) {
+        console.error(err)
+    } finally {
+        loading.value = false
+    }
+}
 
 
 async function updateQuantity(itemId, quantity) {
     loading.value = true
     try {
-        const res = await fetch(postUrl, {
+        const res = await fetch(postUrl + "UpdateQuantity", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

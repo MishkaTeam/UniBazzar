@@ -51,11 +51,36 @@ namespace Server.Pages
             var quantity = res?.Data?.BasketItems.FirstOrDefault(x => x.Id == Guid.Parse(request.BasketItemId))?.Quantity ?? 1;
 
             return new JsonResult(res);
+        }    
+        
+        public async Task<IActionResult> OnPostRemoveProductAsync([FromBody] RemoveProductRequestModel request)
+        {
+            if(request == null)
+                return BadRequest();
+
+            if(string.IsNullOrEmpty(request.BasketItemId) && string.IsNullOrEmpty(request.BasketItemId))
+                return BadRequest(new { message = "Invalid BasketId" });
+
+            var res = await basketApplication.RemoveItem(Guid.Parse(request.BasketId), Guid.Parse(request.BasketItemId));
+
+            if (res == null || res.IsSuccessful == false)
+                return new JsonResult(new { IsSuccessful = false, ErrorMessage = res?.ErrorMessage?.Message }); ;
+
+            var quantity = res?.Data?.BasketItems.FirstOrDefault(x => x.Id == Guid.Parse(request.BasketItemId))?.Quantity ?? 1;
+
+            return new JsonResult(res); 
         }
     }
     public class UpdateQuantityRequestModel
     {
         public int Quantity { get; set; }
+        public string BasketId { get; set; }
+        public string BasketItemId { get; set; }
+
+    }   
+    
+    public class RemoveProductRequestModel
+    {
         public string BasketId { get; set; }
         public string BasketItemId { get; set; }
 
