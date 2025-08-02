@@ -1,7 +1,11 @@
 ﻿@using System.Security.Claims
 @{
-    string FullName = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
-    string Mobile = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+    if (User is null || User.Claims is null || User.Identity?.IsAuthenticated == false)
+        return;
+
+    string Id = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value ?? string.Empty;
+    string FullName = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value ?? string.Empty;
+    string Mobile = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
 }
 
 <div class="accordion" id="side-panel">
@@ -23,7 +27,7 @@
             <div class="accordion-body">
                 <ul>
                     <li>
-                        <a asp-page="/Profile/Personal-Info" class="active">
+                        <a asp-page="/Profile/Personal-Info" asp-route-Id="@(Id)" class="active">
                             <div>
                                 <div class="icon d-inline-block"><img src="/images/icons/profile-menu/profile.webp" class="pl-2"></div> @(Resources.DataDictionary.AccountInformation)
                             </div>
@@ -37,7 +41,7 @@
                         </a>
                     </li>
                     <li>
-                        <a asp-page="/Profile/Addresses">
+                        <a asp-page="/Profile/Addresses" asp-route-Id="@(Id)">
                             <div>
                                 <div class="icon d-inline-block"><img src="/images/icons/profile-menu/addresses.webp" class="pl-2"></div> @(Resources.DataDictionary.MyAddress)
                             </div>

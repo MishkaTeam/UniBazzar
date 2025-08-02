@@ -27,7 +27,7 @@ public class Basket : Entity
     {
         get
         {
-            return BasketItems.Sum(x => x.TotalPrice);
+            return BasketItems.Sum(x => x.TotalPriceWithAdjustment);
         }
     }
 

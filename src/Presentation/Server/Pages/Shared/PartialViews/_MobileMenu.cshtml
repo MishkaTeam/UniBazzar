@@ -1,4 +1,13 @@
-﻿<nav class="d-block d-md-none navbar fixed-bottom bg-light border-top shadow-sm">
+﻿@using System.Security.Claims
+@{
+    string customerId = string.Empty;
+    if (User.Identity.IsAuthenticated != false)
+    {
+        customerId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid).Value;
+    }
+}
+
+<nav class="d-block d-md-none navbar fixed-bottom bg-light border-top shadow-sm">
     <div class="container-fluid px-0">
         <div class="d-flex justify-content-around w-100">
       
@@ -16,7 +25,7 @@
                 </span>
             </a>
 
-            <a asp-page="/Profile/Personal-Info" class="text-center text-dark text-decoration-none flex-fill py-2">
+            <a asp-page="/Profile/Personal-Info" asp-route-Id="@(customerId)" class="text-center text-dark text-decoration-none flex-fill py-2">
                 <i class="bi bi-person fs-5"></i><br>
                 <small>پروفایل</small>
             </a>

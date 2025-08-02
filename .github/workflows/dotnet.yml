@@ -1,4 +1,4 @@
-# This workflow will build a .NET project
+﻿# This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
 name: .NET
@@ -11,18 +11,45 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 9.0.x
-    - name: Restore dependencies
-      run: dotnet restore ./src/UniBazzar.sln
-    - name: Build
-      run: dotnet build ./src/UniBazzar.sln --no-restore
-    - name: Test
-      run: dotnet test ./src/UniBazzar.sln --no-build --verbosity normal
+      # 1) checkout
+      - uses: actions/checkout@v4
+
+      # 2) setup .NET (با کش NuGet)
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      # 3) setup Node.js (برای npm)
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'           # LTS فعلی
+          cache: 'npm'                 # npm cache
+          cache-dependency-path: |
+            **/package-lock.json
+            **/pnpm-lock.yaml
+            **/yarn.lock
+
+      # 4) اگر فرانت مجزاست (اختیاری ولی توصیه می‌شود)
+      #    فرض می‌کنیم ClientApp زیر src است؛ مسیر دقیق را تنظیم کنید
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: ./src/Presentation/Server/ClientApp
+
+      - name: Build frontend
+        run: npm run build
+        working-directory: ./src/Presentation/Server/ClientApp
+
+      # 5) restore / build / test بک‌اند
+      - name: Restore .NET dependencies
+        run: dotnet restore ./src/UniBazzar.sln
+
+      - name: Build .NET (Release)
+        run: dotnet build ./src/UniBazzar.sln --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test ./src/UniBazzar.sln --configuration Release --no-build --verbosity normal

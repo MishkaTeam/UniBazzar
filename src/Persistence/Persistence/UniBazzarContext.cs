@@ -18,12 +18,14 @@ using Persistence.Configurations;
 using Domain.Aggregates.CheckoutCounters;
 using Domain.Aggregates.ProductReviews;
 using Domain.Aggregates.Customers.ShippingAddresses;
+using Attribute = Domain.Aggregates.Attributes.Attribute;
 using Domain.Aggregates.Discounts.DsiscounProducts;
 using Domain.Aggregates.Discounts.DiscountCustomers;
+using Domain.Aggregates.Cms.HomeViews;
 
 namespace Persistence;
 
-public class UniBazzarContext(DbContextOptions options, 
+public class UniBazzarContext(DbContextOptions<UniBazzarContext> options, 
     AuditSaveChangesInterceptor auditInterceptor,
     StoreIdSaveChangesInterceptor storeIdSaveChangesInterceptor,
     OwnerIdSaveChangesInterceptor ownerIdSaveChangesInterceptor,
@@ -65,6 +67,8 @@ public class UniBazzarContext(DbContextOptions options,
     public DbSet<ProductImage> ProductImages { get; set; }
     public DbSet<ProductFeature> ProductFeatures { get; set; }
     public DbSet<PriceList> ProductPriceLists { get; set; }
+    public DbSet<ProductReview> ProductReviews { get; set; }
+    public DbSet<Attribute> Attributes { get; set; }
 
     public DbSet<Unit> Units { get; set; }
 
@@ -73,5 +77,5 @@ public class UniBazzarContext(DbContextOptions options,
     public DbSet<DiscountProduct> DiscountProducts { get; set; }
     public DbSet<DiscountCustomer> DiscountCustomers { get; set; }
 
-    public DbSet<ProductReview> ProductReviews { get; set; }
+    public DbSet<HomeView> HomeViews { get; set; }
 }

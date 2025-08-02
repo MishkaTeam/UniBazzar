@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 
 namespace Modules.Treasury.Persistence;
 
-public class TreasuryDbContext(DbContextOptions options,
+public class TreasuryDbContext(DbContextOptions<TreasuryDbContext> options,
 AuditSaveChangesInterceptor auditInterceptor,
 StoreIdSaveChangesInterceptor storeIdSaveChangesInterceptor,
 OwnerIdSaveChangesInterceptor ownerIdSaveChangesInterceptor,
