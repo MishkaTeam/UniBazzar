@@ -1,0 +1,46 @@
+﻿@page "{homeViewId:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.HomeViews.ProductViewItems.IndexModel
+
+@{
+    var pageTitle =
+        Resources.DataDictionary.ProductItems;
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+
+<div class="row justify-content-between px-2 my-2">
+    <a class="col-auto btn btn-primary" asp-page="../Index" asp-area="Admin">@(Resources.ButtonCaptions.Back)</a>
+    <a class="col-auto btn btn-primary" asp-page="Create" asp-route-homeViewId="@(Model.HomeViewId)" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Name))
+            @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Order))
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var productView in Model.ViewModel)
+        {
+            <tr>
+                @(Html.Ub_DisplayStringWithTd(productView.ProductName))
+                @(Html.Ub_DisplayIntegerWithTd(productView.Ordering))
+
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+
+                        <a asp-page="Update" asp-route-homeViewId="@(Model.HomeViewId)"
+                           asp-route-productItemId="@(productView.Id)" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
+
+                        <a asp-page="Delete" asp-route-homeViewId="@(Model.HomeViewId)"
+                           asp-route-productItemId="@(productView.Id)" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
