@@ -41,7 +41,7 @@ jobs:
         working-directory: ./src/Presentation/Server/ClientApp
 
       - name: Build frontend
-        run: npm run build
+        run: npm run build-prod
         working-directory: ./src/Presentation/Server/ClientApp
 
       # 5) restore / build / test بک‌اند
