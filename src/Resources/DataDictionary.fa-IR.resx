@@ -555,4 +555,7 @@
   <data name="ProductItems" xml:space="preserve">
     <value>کالاها</value>
   </data>
+  <data name="Orders" xml:space="preserve">
+    <value>سفارشات</value>
+  </data>
 </root>

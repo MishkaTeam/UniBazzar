@@ -555,4 +555,8 @@
   <data name="ProductItems" xml:space="preserve">
     <value>product items</value>
   </data>
+  <data name="Orders" xml:space="preserve">
+    <value>orders</value>
+  </data>
+
 </root>

@@ -7,6 +7,7 @@ using Application.Aggregates.Customers.ShippingAddresses;
 using Application.Aggregates.Discounts;
 using Application.Aggregates.HomeViews;
 using Application.Aggregates.Ordering.Baskets;
+using Application.Aggregates.Ordering.Orders;
 using Application.Aggregates.PriceLists;
 using Application.Aggregates.ProductReviews;
 using Application.Aggregates.Products;
@@ -29,6 +30,7 @@ using Domain.Aggregates.Discounts;
 using Domain.Aggregates.Discounts.DiscountCustomers;
 using Domain.Aggregates.Discounts.DsiscounProducts;
 using Domain.Aggregates.Ordering.Baskets.Data;
+using Domain.Aggregates.Ordering.Orders.Data;
 using Domain.Aggregates.PriceLists;
 using Domain.Aggregates.ProductReviews;
 using Domain.Aggregates.Products;
@@ -71,6 +73,7 @@ public static class DomainExtensions
         services.AddScoped<CustomerApplication>();
         services.AddScoped<ShippingAddressApplication>();
 
+        services.AddScoped<OrderApplication>();
         services.AddScoped<BasketApplication>();
         services.AddScoped<DiscountApplication>();
 
@@ -109,6 +112,7 @@ public static class DomainExtensions
         services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<IShippingAddressRepository, ShippingAddressRepository>();
 
+        services.AddScoped<IOrderRepository, OrderRepository>();
         services.AddScoped<IBasketRepository, BasketRepository>();
 
         services.AddScoped<IDiscountRepository, DiscountRepository>();

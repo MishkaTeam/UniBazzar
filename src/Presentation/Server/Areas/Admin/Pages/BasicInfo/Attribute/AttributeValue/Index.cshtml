@@ -1,12 +1,17 @@
 ﻿@page
 @model Server.Areas.Admin.Pages.BasicInfo.Attribute.AttributeValue.IndexModel
+
 @{
     var attributeId =
         Request.Query["attributeId"];
 }
-<div class="my-2 float-end">
-    <a class="btn btn-primary" asp-page="Create" asp-route-attributeId="@(attributeId)" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
+
+
+<div class="row justify-content-between px-2 my-2">
+    <a class="col-auto btn btn-primary" asp-page="../Index" asp-area="Admin">@(Resources.ButtonCaptions.Back)</a>
+    <a class="col-auto btn btn-primary" asp-page="Create" asp-route-attributeId="@(attributeId)" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
 </div>
+
 <table class="table table-hover">
     <thead>
         <tr>

@@ -367,4 +367,5 @@ FodyWeavers.xsd
 /src/Presentation/Server/Database.db-wal
 /DocProject
 /src/nuget.config
-/src/Presentation/Server/wwwroot/dist
+/dist
+/src/Presentation/Server/wwwroot/dist/

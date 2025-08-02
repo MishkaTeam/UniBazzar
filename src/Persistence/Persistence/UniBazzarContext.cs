@@ -25,7 +25,7 @@ using Domain.Aggregates.Cms.HomeViews;
 
 namespace Persistence;
 
-public class UniBazzarContext(DbContextOptions options, 
+public class UniBazzarContext(DbContextOptions<UniBazzarContext> options, 
     AuditSaveChangesInterceptor auditInterceptor,
     StoreIdSaveChangesInterceptor storeIdSaveChangesInterceptor,
     OwnerIdSaveChangesInterceptor ownerIdSaveChangesInterceptor,

@@ -1,5 +1,6 @@
-using Domain.Aggregates.Ordering.ValueObjects;
 using BuildingBlocks.Domain.Aggregates;
+using Domain.Aggregates.Ordering.Baskets;
+using Domain.Aggregates.Ordering.ValueObjects;
 
 namespace Domain.Aggregates.Ordering.Orders;
 
@@ -11,18 +12,36 @@ public class OrderItem : Entity
     public ProductAmount ProductAmount { get; private set; }
     public DiscountAmount DiscountAmount { get; private set; }
 
-    private OrderItem()
+    public List<OrderItemAttribute>? OrderItemAttribute { get; private set; }
+
+    public decimal TotalPriceWithAdjustment =>
+        DiscountAmount.ApplyDiscount(ProductAmount.TotalPrice) + PriceAdjustments;
+
+    public decimal PriceAdjustments =>
+        (OrderItemAttribute?.Sum(x => x.PriceAdjustment) ?? 0);
+
+    public decimal TotalPrice =>
+        DiscountAmount.ApplyDiscount(ProductAmount.TotalPrice, ProductAmount.Quantity);
+
+    public decimal TotalBeforeDiscount =>
+        ProductAmount.TotalPrice;
+
+    public decimal DiscountPrice =>
+        DiscountAmount.ConvertToPrice(ProductAmount.TotalPrice, ProductAmount.Quantity);
+
+    protected OrderItem()
     {
-        //FOR EF!
+        // FOR EF!
     }
 
-    public OrderItem(Guid orderId, string orderReferenceNumber, ProductType product, ProductAmount productAmount,
-        DiscountAmount discountAmount)
+    public OrderItem(Guid orderId, string orderReferenceNumber, ProductType product,
+        ProductAmount productAmount, DiscountAmount discountAmount)
     {
         OrderId = orderId;
         OrderReferenceNumber = orderReferenceNumber;
         Product = product;
         ProductAmount = productAmount;
         DiscountAmount = discountAmount;
+        OrderItemAttribute = new(); // Ã·Êê?—? «“ null
     }
 }

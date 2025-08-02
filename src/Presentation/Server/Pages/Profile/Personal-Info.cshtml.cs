@@ -2,6 +2,7 @@ using Application.Aggregates.Customers;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 
 namespace Server.Pages.Profile
 {
@@ -10,14 +11,22 @@ namespace Server.Pages.Profile
         [BindProperty]
 		public UpdateCustomerViewModel ViewModel { get; set; }
 
-		public async Task<IActionResult> OnGetAsync(Guid Id)
+		public async Task<IActionResult> OnGetAsync()
         {
-            ViewModel = await customerApplication.GetCustomerAsync(Id);
+			if (User == null || User.Identity == null || User.Identity.IsAuthenticated == false)
+			{
+				AddToastError(message: Resources.Messages.Errors.IdIsNull);
+				return RedirectToPage("/Index");
+			}
+
+            Guid CustomerId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid).Value);
+
+			ViewModel = await customerApplication.GetCustomerAsync(CustomerId);
 
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(Guid Id)
+        public async Task<IActionResult> OnPostAsync()
         {
 			await customerApplication.UpdateAsync(ViewModel);
 
