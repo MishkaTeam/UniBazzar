@@ -961,6 +961,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to product item.
+        /// </summary>
+        public static string ProductItem {
+            get {
+                return ResourceManager.GetString("ProductItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to product items.
+        /// </summary>
+        public static string ProductItems {
+            get {
+                return ResourceManager.GetString("ProductItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Products.
         /// </summary>
         public static string Products {

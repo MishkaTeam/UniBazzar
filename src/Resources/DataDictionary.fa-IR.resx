@@ -549,4 +549,10 @@
   <data name="ImageItems" xml:space="preserve">
     <value>عکس‌ها</value>
   </data>
+  <data name="ProductItem" xml:space="preserve">
+    <value>کالا</value>
+  </data>
+  <data name="ProductItems" xml:space="preserve">
+    <value>کالاها</value>
+  </data>
 </root>

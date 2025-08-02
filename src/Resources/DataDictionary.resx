@@ -549,4 +549,10 @@
   <data name="ImageItems" xml:space="preserve">
     <value>image items</value>
   </data>
+  <data name="ProductItem" xml:space="preserve">
+    <value>product item</value>
+  </data>
+  <data name="ProductItems" xml:space="preserve">
+    <value>product items</value>
+  </data>
 </root>
