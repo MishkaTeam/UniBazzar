@@ -10,4 +10,7 @@ public static class Storage
     public const string SliderPrefix = "SLD";
     public const string SliderPath = "SliderImages";
 
+    public const string ImagePrefix = "IMG";
+    public const string ImagePath = "ImageViews";
+
 }

@@ -1,28 +1,27 @@
 using System.ComponentModel.DataAnnotations;
 using Application.Aggregates.HomeViews;
-using Application.Aggregates.HomeViews.ViewModels.SliderViewItems;
+using Application.Aggregates.HomeViews.ViewModels.ImageViewItems;
 using Constants;
 using Framework.Picture;
-using Framework.Storage;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Server.Infrastructure.Services;
 
-namespace Server.Areas.Admin.Pages.BasicInfo.HomeViews.SliderViewItems;
+namespace Server.Areas.Admin.Pages.BasicInfo.HomeViews.ImageViewItems;
 
 public class CreateModel(
     HomeViewsApplication homeViewsApplication,
     StorageService storageService) : BasePageModel
 {
     [BindProperty]
-    public CreateSliderViewItemViewModel CreateViewModel { get; set; } = new();
+    public CreateImageViewItemViewModel CreateViewModel { get; set; } = new();
 
     [BindProperty]
     [DataType(DataType.Upload)]
     [Display
         (ResourceType = typeof(Resources.DataDictionary),
         Name = nameof(Resources.DataDictionary.Picture))]
-    public IFormFile SliderImage { get; set; }
+    public IFormFile Image { get; set; }
 
     public async Task<IActionResult> OnGet(Guid homeViewId)
     {
@@ -54,7 +53,7 @@ public class CreateModel(
         using var memoryStream =
             new MemoryStream();
 
-        await SliderImage.CopyToAsync(memoryStream);
+        await Image.CopyToAsync(memoryStream);
 
         var checkSize = await ImageHelper
             .CheckImageSizeAsync(memoryStream, 300, 200);
@@ -69,10 +68,10 @@ public class CreateModel(
         }
 
         var uploadResult = await storageService.UploadImageAsync
-            (SliderImage, Storage.SliderPrefix, Storage.SliderPath);
+            (Image, Storage.ImagePrefix, Storage.ImagePath);
 
         if (uploadResult.IsSuccessful == false)
-    {
+        {
             AddPageError
                 (uploadResult.ErrorMessage!.Message);
 
@@ -82,7 +81,7 @@ public class CreateModel(
         CreateViewModel.ImageUrl = uploadResult.Data;
 
         var result =
-            await homeViewsApplication.AddSliderItem(CreateViewModel);
+            await homeViewsApplication.AddImageItem(CreateViewModel);
 
         if (result.IsSuccessful == false)
         {

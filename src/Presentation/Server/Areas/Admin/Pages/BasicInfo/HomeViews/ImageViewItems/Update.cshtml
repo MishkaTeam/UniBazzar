@@ -1,9 +1,9 @@
-﻿@page "{homeViewId:guid}/{sliderItemId:guid}"
-@model Server.Areas.Admin.Pages.BasicInfo.HomeViews.SliderViewItems.UpdateModel
+﻿@page "{homeViewId:guid}/{imageItemId:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.HomeViews.ImageViewItems.UpdateModel
 
 @{
 	var pageTitle =
-		$"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.SliderItem}";
+		$"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.ImageItem}";
 
 	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 }
@@ -24,17 +24,17 @@
 			<input hidden asp-for="UpdateViewModel.Id" />
 			<input hidden asp-for="UpdateViewModel.HomeViewId" />
 
-			@* Show image of slider !!! *@
+			@* Show image !!! *@
 
 			<div class="mb-3">
-				<label asp-for="SliderImage" class="form-label"></label>
-				<input class="form-control" asp-for="SliderImage" />
-				<span asp-validation-for="SliderImage" class="field-validation-valid text-danger"></span>
+				<label asp-for="Image" class="form-label"></label>
+				<input class="form-control" asp-for="Image" />
+				<span asp-validation-for="Image" class="field-validation-valid text-danger"></span>
 			</div>
 
 			<ub-full-input asp-for="UpdateViewModel.Title" />
 
-			<ub-full-input asp-for="UpdateViewModel.Interval" />
+			<ub-full-input asp-for="UpdateViewModel.Column" />
 
 			<ub-full-input asp-for="UpdateViewModel.NavigationUrl" />
 

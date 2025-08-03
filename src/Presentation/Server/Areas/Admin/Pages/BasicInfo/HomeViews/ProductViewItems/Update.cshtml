@@ -1,0 +1,44 @@
+﻿@page "{homeViewId:guid}/{productItemId:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.HomeViews.ProductViewItems.UpdateModel
+
+@{
+    var pageTitle =
+        $"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.ProductItem}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+
+<form method="post" enctype="multipart/form-data">
+
+    <section-form>
+
+        <fieldset>
+
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+
+            <input hidden asp-for="UpdateViewModel.Id" />
+            <input hidden asp-for="UpdateViewModel.HomeViewId" />
+
+            <div class="mb-3">
+                <label asp-for="UpdateViewModel.ProductId" class="form-label"></label>
+                <select asp-for="UpdateViewModel.ProductId" asp-items="Model.ProductList" class="form-select"></select>
+                <span asp-validation-for="UpdateViewModel.ProductId" class="field-validation-valid text-danger"></span>
+            </div>
+
+            <ub-full-input asp-for="UpdateViewModel.Ordering" />
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-save />
+            <button-reset />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>
