@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Application.Aggregates.HomeViews;
 using Application.Aggregates.HomeViews.ViewModels.SliderViewItems;
-using BuildingBlocks.Persistence;
+using BuildingBlocks.Domain.Context;
 using Framework.Storage;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;

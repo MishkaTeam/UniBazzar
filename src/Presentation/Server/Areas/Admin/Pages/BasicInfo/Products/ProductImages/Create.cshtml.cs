@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
-using BuildingBlocks.Persistence;
 using Framework.Storage;
+using BuildingBlocks.Domain.Context;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.Products.ProductImages;
 

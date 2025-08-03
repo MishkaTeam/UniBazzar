@@ -1,7 +1,7 @@
 using Application.Aggregates.Products;
 using Application.Aggregates.Products.ViewModels;
 using Application.Aggregates.Units;
-using BuildingBlocks.Persistence;
+using BuildingBlocks.Domain.Context;
 using Domain.Aggregates.Products.Enums;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;

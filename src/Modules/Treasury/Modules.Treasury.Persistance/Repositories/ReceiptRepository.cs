@@ -1,4 +1,5 @@
-﻿using BuildingBlocks.Persistence;
+﻿using BuildingBlocks.Domain.Context;
+using BuildingBlocks.Persistence;
 using Modules.Treasury.Domain.Aggregates.Receipts;
 using Modules.Treasury.Domain.Aggregates.Receipts.Data;
 
