@@ -51,6 +51,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Persistence"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Storage", "Framework\Framework.Storage\Framework.Storage.csproj", "{3E828336-B080-4353-90F5-4C11562DD8C2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wallet", "Wallet", "{539A311E-1E73-43CB-A224-57B2AB4A18DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modules.Wallet.Domain", "Modules\Wallet\Modules.Wallet.Domain\Modules.Wallet.Domain.csproj", "{630DA02E-B30E-4AA5-8525-CA1C740A8FB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +125,10 @@ Global
 		{3E828336-B080-4353-90F5-4C11562DD8C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E828336-B080-4353-90F5-4C11562DD8C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E828336-B080-4353-90F5-4C11562DD8C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{630DA02E-B30E-4AA5-8525-CA1C740A8FB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{630DA02E-B30E-4AA5-8525-CA1C740A8FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{630DA02E-B30E-4AA5-8525-CA1C740A8FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{630DA02E-B30E-4AA5-8525-CA1C740A8FB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -143,6 +151,8 @@ Global
 		{0A5B4E15-C921-4C2B-95C1-87189423C075} = {2C05763A-B879-4329-9198-8A0590F4B5CE}
 		{3CC93B7D-67FB-4C86-B3B7-FC6AD42F319B} = {DD7E6C32-9A83-4FC4-957B-2E5A0886C092}
 		{3E828336-B080-4353-90F5-4C11562DD8C2} = {13F33FF1-A8F0-4E2B-A374-224FBEB16F7F}
+		{539A311E-1E73-43CB-A224-57B2AB4A18DC} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{630DA02E-B30E-4AA5-8525-CA1C740A8FB4} = {539A311E-1E73-43CB-A224-57B2AB4A18DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EA33793-7EFA-42CE-9534-6C1328556A2F}
