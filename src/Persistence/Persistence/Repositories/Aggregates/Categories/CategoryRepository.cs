@@ -25,6 +25,7 @@ public class CategoryRepository
                     .ThenInclude(x => x.Parent)
                     .ThenInclude(x => x.Parent)
                     .StoreFilter(contextAccessor.StoreId)
+                    .AsSplitQuery()
                     .AsNoTracking()
                     .ToListAsync();
 

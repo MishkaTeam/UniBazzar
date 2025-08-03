@@ -14,6 +14,7 @@ public class AuthenticationConstant
 
     public const string ADMIN_POLICY_NAME = "Admin";
     public const string POS_POLICY_NAME = "Pos";
+    public const string CUSTOMER_POLICY_NAME = "Customer";
 
 }
 public static class AuthenticationExtensions
@@ -39,6 +40,10 @@ public static class AuthenticationExtensions
             {
                 policy.RequireRole(RoleType.GetPosRoles());
             });
+            options.AddPolicy(AuthenticationConstant.CUSTOMER_POLICY_NAME, policy =>
+            {
+                policy.RequireRole(RoleType.GetCustomerRoles());
+            });
         });
         return services;
     }
@@ -47,6 +52,7 @@ public static class AuthenticationExtensions
     {
         services.AddRazorPages(opt =>
         {
+            opt.Conventions.AuthorizePage("/Purchase/Checkout", AuthenticationConstant.CUSTOMER_POLICY_NAME);
             opt.Conventions.AuthorizeAreaFolder("Admin", "/", AuthenticationConstant.ADMIN_POLICY_NAME);
             opt.Conventions.AuthorizeAreaFolder("Pos", "/", AuthenticationConstant.POS_POLICY_NAME);
 
