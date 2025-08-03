@@ -25,4 +25,9 @@ public struct RoleType
         var posRoles = adminRoles.Append(PosCounter.ToString());
         return [.. posRoles];
     }
+
+    public static string[] GetCustomerRoles()
+    {
+        return [Customer.ToString()];
+    }
 }

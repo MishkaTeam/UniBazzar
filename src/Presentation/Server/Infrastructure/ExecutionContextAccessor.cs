@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using BuildingBlocks.Persistence;
+using BuildingBlocks.Domain.Context;
 
 namespace Server.Infrastructure
 {
