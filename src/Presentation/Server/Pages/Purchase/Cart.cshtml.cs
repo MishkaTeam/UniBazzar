@@ -2,6 +2,7 @@
 using System.Reflection.Metadata.Ecma335;
 using Application.Aggregates.Ordering.Baskets;
 using Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
+using Constants;
 using Framework.DataType;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -21,7 +22,7 @@ namespace Server.Pages
 
         private async Task GetBasketAsync()
         {
-            var basketCookie = Request.Cookies.FirstOrDefault(x => x.Key == "basketId");
+            var basketCookie = Request.Cookies.FirstOrDefault(x => x.Key == BasketConstants.BASKET);
             if (basketCookie.Value != null)
             {
                 var parseResult = Guid.TryParse(basketCookie.Value, out var basketId);

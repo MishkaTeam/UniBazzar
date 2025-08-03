@@ -1,4 +1,4 @@
-namespace BuildingBlocks.Persistence;
+namespace BuildingBlocks.Domain.Context;
 
 public interface IExecutionContextAccessor
 {
