@@ -18,6 +18,18 @@ public class CategoryRepository
                     .ToListAsync();
     }
 
+    public async Task<List<Category>> GetCurrentStoreCategoriesAsync()
+    {
+        return await uniBazzarContext.Categories
+                    .Include(x => x.Parent)
+                    .ThenInclude(x => x.Parent)
+                    .ThenInclude(x => x.Parent)
+                    .StoreFilter(contextAccessor.StoreId)
+                    .AsNoTracking()
+                    .ToListAsync();
+
+    }
+
     public async Task<List<Category>> GetRootCategoriesAsync()
     {
         var user = contextAccessor.UserId;
@@ -28,6 +40,7 @@ public class CategoryRepository
                     .Where(x => x.ParentId == null || x.ParentId == Guid.Empty)
                     .AsNoTracking()
                     .ToListAsync();
+
     }
 
     public async Task<List<Category>> GetSubCategoriesAsync(Guid parentId)

@@ -104,29 +104,37 @@ public class CategoriesApplication
 
     public async Task<List<MenuCategoryViewModel>> GetMenuCategoriesAsync()
     {
-        var rootCategories = await categoryRepository.GetRootCategoriesAsync();
-        return await MapToMenuViewModel(rootCategories);
+        var menuCategories = await categoryRepository.GetCurrentStoreCategoriesAsync();
+
+        var rootCategories = menuCategories.Where(c => c.ParentId == null).ToList();
+
+        return rootCategories.Select(c => MapCategoryToViewModel(c, menuCategories)).ToList();
     }
 
-    
-    private async Task<List<MenuCategoryViewModel>> MapToMenuViewModel(List<Category> categories)
+
+    private MenuCategoryViewModel MapCategoryToViewModel(Category category, List<Category> allCategories, int currentLevel = 1)
     {
-        var viewModels = new List<MenuCategoryViewModel>();
+        if (category == null || currentLevel > 3) // توقف در سطح سوم
+            return null;
 
-        foreach (var category in categories)
+        var viewModel = new MenuCategoryViewModel
         {
-            var ChildCategories = await categoryRepository.GetSubCategoriesAsync(category.Id);
-            var viewModel = new MenuCategoryViewModel
-            {
-                Id = category.Id,
-                Name = category.Name,
-                Slug = category.Slug,
-                ChildCategories = await MapToMenuViewModel(ChildCategories)
-            };
-            viewModels.Add(viewModel);
-        }
+            Id = category.Id,
+            Name = category.Name,
+            Slug = category.Slug,
+            ChildCategories = new List<MenuCategoryViewModel>()
+        };
 
-        return viewModels;
+        // پیدا کردن فرزندان این دسته‌بندی از لیست کل دسته‌بندی‌ها
+        var children = allCategories
+            .Where(c => c.ParentId == category.Id)
+            .Select(c => MapCategoryToViewModel(c, allCategories, currentLevel + 1))
+            .Where(vm => vm != null)
+            .ToList();
+
+        viewModel.ChildCategories.AddRange(children);
+
+        return viewModel;
     }
 
     private async Task<List<CategoryViewModel>> SetSubCategoriesCount(List<CategoryViewModel> categories)
