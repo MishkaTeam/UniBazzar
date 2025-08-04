@@ -8,6 +8,7 @@ using Domain.Aggregates.Cms.HomeViews.Data;
 using Domain.Aggregates.Cms.HomeViews.Enums;
 using Framework.DataType;
 using Mapster;
+using Microsoft.EntityFrameworkCore;
 using Resources.Messages;
 
 namespace Application.Aggregates.HomeViews;
@@ -120,6 +121,17 @@ public class HomeViewsApplication
         await unitOfWork.SaveChangesAsync();
 
         return true;
+    }
+
+    public async Task<ResultContract<List<IndexHomeViewViewModel>>> GetIndexHomeViews()
+    {
+        var homeViewsQuery = homeViewRepository
+            .GetAllHomeViews()
+            .OrderBy(x => x.Ordering);
+
+        return await homeViewsQuery
+            .ProjectToType<IndexHomeViewViewModel>()
+            .ToListAsync();
     }
 
     #endregion
@@ -301,7 +313,7 @@ public class HomeViewsApplication
         }
 
         await unitOfWork.SaveChangesAsync();
-        return ProductViewItemViewModel.FromProductViewItem(productItem);
+        return productItem.Adapt<ProductViewItemViewModel>();
     }
 
     public async Task<ResultContract<List<ProductViewItemViewModel>>> GetProductItems(Guid homeViewId)
@@ -312,7 +324,7 @@ public class HomeViewsApplication
             .OrderBy(x => x.Ordering)
             .ToList();
 
-        return ProductViewItemViewModel.FromProductViewItemList(productItems);
+        return productItems.Adapt<List<ProductViewItemViewModel>>();
     }
 
     public async Task<ResultContract<ProductViewItemViewModel>> GetProductItem(Guid homeViewId, Guid productItemId)
@@ -367,7 +379,7 @@ public class HomeViewsApplication
             viewModel.Ordering);
 
         await unitOfWork.SaveChangesAsync();
-        return ProductViewItemViewModel.FromProductViewItem(productItemForUpdate);
+        return productItemForUpdate.Adapt<ProductViewItemViewModel>();
     }
 
     public async Task<ResultContract> DeleteProductItem(Guid homeViewId, Guid productItemId)
