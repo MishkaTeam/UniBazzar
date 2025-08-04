@@ -1,0 +1,62 @@
+﻿@using Application.Aggregates.HomeViews.ViewModels.HomeViews
+@model IndexHomeViewViewModel
+
+@{
+	var sliderViews =
+		Model.SliderViews;
+}
+
+
+<!-- Slider Section -->
+<section id="slider" class="mt-3">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12" data-aos="fade-zoom-in" data-aos-duration="700">
+				<div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+					<div class="carousel-indicators">
+						@for (int index = 0; index < sliderViews.Count; index++)
+						{
+							var activeClass = index == 0 ? "active" : "";
+
+							<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@(index)"
+									aria-label="Slide @(index)" class="@(activeClass)" aria-current="@((index == 0).ToString().ToLower())"></button>
+						}
+					</div>
+
+					<div class="carousel-inner">
+						@for (int index = 0; index < sliderViews.Count; index++)
+						{
+							var sliderView = sliderViews[index];
+							var activeClass = index == 0 ? "active" : "";
+
+							<div class="carousel-item @(activeClass)" data-bs-interval="@(sliderView.Interval)">
+								@if (string.IsNullOrWhiteSpace(sliderView.NavigationUrl))
+								{
+									<img src="@(sliderView.ImageUrl)" class="d-block img-fluid" alt="@(sliderView.Title)">
+								}
+								else
+								{
+									<a href="@(sliderView.NavigationUrl)" target="_blank">
+										<img src="@(sliderView.ImageUrl)" class="d-block img-fluid" alt="@(sliderView.Title)">
+									</a>
+								}
+							</div>
+						}
+					</div>
+
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">قبلی</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">بعدی</span>
+					</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- /Slider Section -->

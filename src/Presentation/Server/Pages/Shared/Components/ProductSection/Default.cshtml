@@ -1,0 +1,28 @@
+﻿@using Application.Aggregates.HomeViews.ViewModels.HomeViews
+@using Application.Aggregates.Products.ViewModels
+@using Domain.Aggregates.Cms.HomeViews.Enums
+@using Server.Pages.Shared.Components.ProductCard
+@model (IndexHomeViewViewModel, List<ProductCardViewModel>)
+
+@{
+	var homeView = Model.Item1;
+	var products = Model.Item2;
+}
+
+
+<section id="encrypt4721256" class="pt-4">
+
+	<h1 class="encrypt45121256">@(homeView.Title)</h1>
+
+	<div class="container pt-0">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 most-sales-product mobile" data-aos="fade-up" data-aos-duration="1000">
+			@foreach (var product in products)
+			{
+				<div class="col">
+					@await Component.InvokeAsync(ProductCardViewComponent.KEY, product)
+				</div>
+			}
+		</div>
+	</div>
+
+</section>
