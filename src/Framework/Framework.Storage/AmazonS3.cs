@@ -17,6 +17,25 @@ internal class AmazonS3 : IStorage
        return $"{_storageConfig.Endpoint.TrimEnd('/')}/{bucketName}/{pathOfBucketFolder}/{objectKey}";
     }
 
+    public async Task DeleteAsync(string bucketName, string objectKey, string pathOfBucketFolder = "")
+    {
+        var config = new AmazonS3Config
+        {
+            ServiceURL = _storageConfig.Endpoint,
+            ForcePathStyle = true
+        };
+        var credentials = new Amazon.Runtime.BasicAWSCredentials(_storageConfig.AccessKey, _storageConfig.SecretKey);
+        using var client = new AmazonS3Client(credentials, config);
+
+
+        if (!string.IsNullOrWhiteSpace(pathOfBucketFolder))
+        {
+            objectKey = $"{pathOfBucketFolder}/{objectKey}";
+        }
+
+        var res = await client.DeleteObjectAsync(bucketName, objectKey);
+    }
+
     public async Task<string?> GetUrl(string bucketName, string objectKey, string pathOfBucketFolder = "")
     {
         var config = new AmazonS3Config
