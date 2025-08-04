@@ -8,4 +8,5 @@ public interface ICategoryRepository : IRepositoryBase<Category>
     Task<List<Category>> GetRootCategoriesAsync();
     Task<List<Category>> GetSubCategoriesAsync(Guid parentId);
     Task<int> GetSubCategoriesCountAsync(Guid parentId);
+    Task<List<Category>> GetCurrentStoreCategoriesAsync();
 }

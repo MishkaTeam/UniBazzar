@@ -2,6 +2,7 @@
 using Domain.Aggregates.Categories;
 using Microsoft.EntityFrameworkCore;
 using BuildingBlocks.Persistence.Extensions;
+using BuildingBlocks.Domain.Context;
 
 namespace Persistence.Repositories.Aggregates.Categories;
 
@@ -18,6 +19,19 @@ public class CategoryRepository
                     .ToListAsync();
     }
 
+    public async Task<List<Category>> GetCurrentStoreCategoriesAsync()
+    {
+        return await uniBazzarContext.Categories
+                    .Include(x => x.Parent)
+                    .ThenInclude(x => x.Parent)
+                    .ThenInclude(x => x.Parent)
+                    .StoreFilter(contextAccessor.StoreId)
+                    .AsSplitQuery()
+                    .AsNoTracking()
+                    .ToListAsync();
+
+    }
+
     public async Task<List<Category>> GetRootCategoriesAsync()
     {
         var user = contextAccessor.UserId;
@@ -28,6 +42,7 @@ public class CategoryRepository
                     .Where(x => x.ParentId == null || x.ParentId == Guid.Empty)
                     .AsNoTracking()
                     .ToListAsync();
+
     }
 
     public async Task<List<Category>> GetSubCategoriesAsync(Guid parentId)

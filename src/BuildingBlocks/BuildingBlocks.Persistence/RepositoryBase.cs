@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using BuildingBlocks.Domain.Context;
 using BuildingBlocks.Domain.Data;
 using BuildingBlocks.Domain.SeedWork;
 using BuildingBlocks.Persistence.Exceptions;
@@ -31,9 +32,9 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
 
 		entity.IncreaseVersion();
 
-		entity.SetInsertBy(ExecutionContext.UserId ?? Guid.Empty);
+		entity.SetInsertBy(ExecutionContext.UserId ?? throw new Exception("User Is Empty"));
 
-		entity.SetOwner(ExecutionContext.UserId ?? Guid.Empty);
+		entity.SetOwner(ExecutionContext.UserId ?? throw new Exception("User Is Empty"));
 
 		entity.SetStore(ExecutionContext.StoreId);
 
@@ -123,7 +124,7 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
 
 		entity.SetVersionAndIncrease(oldentity.Version);
 
-		entity.SetUpdateBy(ExecutionContext.UserId ?? Guid.Empty);
+		entity.SetUpdateBy(ExecutionContext.UserId ?? throw new Exception("User Is Empty"));
 
 		entity.SetUpdateDateTime();
 

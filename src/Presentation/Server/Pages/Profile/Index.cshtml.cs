@@ -9,7 +9,7 @@ namespace Server.Pages.Profile
     public class Personal_InfoModel(CustomerApplication customerApplication) : BasePageModel
     {
         [BindProperty]
-		public UpdateCustomerViewModel ViewModel { get; set; }
+        public UpdateCustomerViewModel ViewModel { get; set; } = new();
 
 		public async Task<IActionResult> OnGetAsync()
         {

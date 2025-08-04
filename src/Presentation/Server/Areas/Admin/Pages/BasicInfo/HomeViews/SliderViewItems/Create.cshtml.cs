@@ -3,6 +3,7 @@ using Application.Aggregates.HomeViews;
 using Application.Aggregates.HomeViews.ViewModels.SliderViewItems;
 using Constants;
 using Framework.Picture;
+using Framework.Storage;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Server.Infrastructure.Services;

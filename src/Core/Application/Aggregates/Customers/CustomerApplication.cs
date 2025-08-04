@@ -54,14 +54,14 @@ public class CustomerApplication(ICustomerRepository customerRepository, IUnitOf
         return customer.Adapt<CreateCustomerViewModelPos>();
     }
 
-    public async Task<List<UpdateCustomerViewModel>> GetAllCustomer()
+    public async Task<List<CustomerViewModel>> GetAllCustomer()
     {
         var customers = await customerRepository.GetAllAsync();
 
-        return customers.Adapt<List<UpdateCustomerViewModel>>();
+        return customers.Adapt<List<CustomerViewModel>>();
     }
 
-    public async Task<UpdateCustomerViewModel> GetCustomerAsync(Guid id)
+    public async Task<CustomerViewModel> GetCustomerAsync(Guid id)
     {
         var customer = await customerRepository.GetByIdAsync(id);
 
@@ -70,10 +70,10 @@ public class CustomerApplication(ICustomerRepository customerRepository, IUnitOf
             throw new Exception(Resources.Messages.Errors.NotFound);
         }
 
-        return customer.Adapt<UpdateCustomerViewModel>();
+        return customer.Adapt<CustomerViewModel>();
     }
 
-    public async Task<UpdateCustomerViewModel> UpdateAsync(UpdateCustomerViewModel updateViewModel)
+    public async Task<CustomerViewModel> UpdateAsync(UpdateCustomerViewModel updateViewModel)
     {
         var entity = await customerRepository.GetByIdAsync(updateViewModel.Id);
 
@@ -90,7 +90,7 @@ public class CustomerApplication(ICustomerRepository customerRepository, IUnitOf
             );
 
         await unitOfWork.SaveChangesAsync();
-        return entity.Adapt<UpdateCustomerViewModel>();
+        return entity.Adapt<CustomerViewModel>();
     }
 
     public async Task DeleteAsync(Guid id)
