@@ -134,7 +134,6 @@ public partial class ProductsApplication
             Name = x.Name,
             SKU = x.SKU,
             Slug = x.Slug,
-            
         }).ToList();
     }
 
