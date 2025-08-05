@@ -1,26 +1,24 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
-using Modules.Wallet.Domain.ValueObjects;
+using Modules.WalletOps.Domain.ValueObjects;
 
-namespace Modules.Wallet.Domain.Entities;
+namespace Modules.WalletOps.Domain.Aggregates.WalletTrx;
 
 // Domain/Entities/Transaction.cs
 public enum TransactionType
 {
     Deposit,
     Withdrawal,
-    TransferOut,
-    TransferIn
+    Hold
 }
 
 public class Transaction : Entity
 {
     public Guid WalletId { get; private set; }
     public Money Amount { get; private set; }
-    public DateTime OccurredOnUtc { get; private set; }
     public TransactionType Type { get; private set; }
-    public Guid? AssociatedTransferId { get; private set; }
+    public Wallet Wallet { get; private set; }
 
-    private Transaction(TransactionId id, Guid walletId, Money amount, TransactionType type, Guid? transferId) : base(id)
+    private Transaction(TransactionId id, Guid walletId, Money amount, TransactionType type, Guid? transferId) 
     {
         if (amount.Amount <= 0)
             throw new ArgumentException("Transaction amount must be positive.", nameof(amount));
@@ -38,13 +36,9 @@ public class Transaction : Entity
     public static Transaction CreateWithdrawal(Guid walletId, Money amount) =>
         new(TransactionId.CreateNew(), walletId, amount, TransactionType.Withdrawal, null);
 
-    public static Transaction CreateTransfer(Guid walletId, Money amount, TransactionType type, Guid transferId)
-    {
-        if (type != TransactionType.TransferIn && type != TransactionType.TransferOut)
-            throw new ArgumentException("Invalid transaction type for a transfer.");
+    public static Transaction CreateHold(Guid walletId, Money amount) =>
+    new(TransactionId.CreateNew(), walletId, amount, TransactionType.Hold, null);
 
-        return new(TransactionId.CreateNew(), walletId, amount, type, transferId);
-    }
 
     // For EF Core
     private Transaction() { }

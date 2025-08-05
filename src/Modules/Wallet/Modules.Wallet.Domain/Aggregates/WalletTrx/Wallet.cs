@@ -1,9 +1,9 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
-using Modules.Wallet.Domain.Entities;
 using Modules.Wallet.Domain.Exceptions;
-using Modules.Wallet.Domain.ValueObjects;
+using Modules.WalletOps.Domain.Exceptions;
+using Modules.WalletOps.Domain.ValueObjects;
 
-namespace Modules.Wallet.Domain.Aggregates;
+namespace Modules.WalletOps.Domain.Aggregates.WalletTrx;
 
 // Domain/Aggregates/Wallet.cs
 public enum WalletStatus
@@ -21,21 +21,24 @@ public enum WalletOwnerType
 public class Wallet : Entity
 {
     private readonly List<Transaction> _transactions = new();
+    private readonly List<HeldFund> _heldFunds = new();
 
     public WalletOwnerType OwnerType { get; private set; }
     public Money Balance { get; private set; }
     public WalletStatus Status { get; private set; }
     public IReadOnlyCollection<Transaction> Transactions => _transactions.AsReadOnly();
+    public IReadOnlyCollection<HeldFund> HeldFunds => _heldFunds.AsReadOnly();
 
-    private Wallet(WalletOwnerType ownerType, Money initialBalance) 
+    private Wallet(WalletOwnerType ownerType, Money initialBalance)
     {
         OwnerType = ownerType;
         Balance = initialBalance;
         Status = WalletStatus.Active;
     }
 
-    public static Wallet CreatePersonalWallet(Money initialBalance)
+    public static Wallet CreatePersonalWallet(Money? initialBalance = null)
     {
+        initialBalance ??= Money.Create(0, "IRR");
         var wallet = new Wallet(WalletOwnerType.Personal, initialBalance);
         return wallet;
     }
@@ -57,28 +60,21 @@ public class Wallet : Entity
         _transactions.Add(Transaction.CreateWithdrawal(Id, amount));
     }
 
-    internal void HoldFundsForTransfer(Money amount, Guid transferId)
+    internal void HoldFundsForTransfer(Money amount)
     {
         EnsureWalletIsActive();
         EnsureSufficientFunds(amount);
 
         Balance -= amount;
-        _transactions.Add(Transaction.CreateTransfer(Id, amount, TransactionType.TransferOut, transferId));
+        _transactions.Add(Transaction.CreateHold(Id, amount));
     }
 
-    internal void ReceiveTransferredFunds(Money amount, Guid transferId)
-    {
-        EnsureWalletIsActive();
 
-        Balance += amount;
-        _transactions.Add(Transaction.CreateTransfer(Id, amount, TransactionType.TransferIn, transferId));
-    }
-
-    internal void RevertHeldFunds(Money amount, Guid transferId)
+    internal void RevertHeldFunds(Money amount)
     {
         // This operation can be performed even on a frozen wallet to ensure consistency
         Balance += amount;
-        // Optionally, add a reversing transaction or log this event
+        _transactions.Add(Transaction.CreateHold(Id, amount));
     }
 
     public void Freeze()

@@ -51,9 +51,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Persistence"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Storage", "Framework\Framework.Storage\Framework.Storage.csproj", "{3E828336-B080-4353-90F5-4C11562DD8C2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wallet", "Wallet", "{539A311E-1E73-43CB-A224-57B2AB4A18DC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WalletOps", "WalletOps", "{539A311E-1E73-43CB-A224-57B2AB4A18DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modules.Wallet.Domain", "Modules\Wallet\Modules.Wallet.Domain\Modules.Wallet.Domain.csproj", "{630DA02E-B30E-4AA5-8525-CA1C740A8FB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modules.WalletOps.Domain", "Modules\Wallet\Modules.Wallet.Domain\Modules.WalletOps.Domain.csproj", "{630DA02E-B30E-4AA5-8525-CA1C740A8FB4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modules.Wallet.UnitTests", "..\tests\Modules.Wallet.UnitTests\Modules.Wallet.UnitTests.csproj", "{0DAE20DD-BCE4-42D7-80E4-5525B1674AAC}"
 EndProject

@@ -1,4 +1,4 @@
-﻿namespace Modules.Wallet.Domain.ValueObjects;
+﻿namespace Modules.WalletOps.Domain.ValueObjects;
 
 // Domain/ValueObjects/OrganizationId.cs
 public record OrganizationId(Guid Value)

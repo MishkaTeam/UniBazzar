@@ -1,4 +1,4 @@
-﻿namespace Modules.Wallet.Domain.ValueObjects;
+﻿namespace Modules.WalletOps.Domain.ValueObjects;
 
 // Domain/ValueObjects/Money.cs
 public record Money
@@ -32,6 +32,6 @@ public record Money
         return new Money(a.Amount - b.Amount, a.Currency);
     }
 
-    public bool IsGreaterThan(Money other) => this.Amount > other.Amount && this.Currency == other.Currency;
-    public bool IsGreaterThanOrEqualTo(Money other) => this.Amount >= other.Amount && this.Currency == other.Currency;
+    public bool IsGreaterThan(Money other) => Amount > other.Amount && Currency == other.Currency;
+    public bool IsGreaterThanOrEqualTo(Money other) => Amount >= other.Amount && Currency == other.Currency;
 }

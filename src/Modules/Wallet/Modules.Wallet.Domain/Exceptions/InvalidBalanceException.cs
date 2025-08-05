@@ -1,4 +1,4 @@
-﻿namespace Modules.Wallet.Domain.Exceptions;
+﻿namespace Modules.WalletOps.Domain.Exceptions;
 
 internal class InvalidBalanceException(string? message) : Exception(message ?? "Insufficient funds for this operation.")
 {
