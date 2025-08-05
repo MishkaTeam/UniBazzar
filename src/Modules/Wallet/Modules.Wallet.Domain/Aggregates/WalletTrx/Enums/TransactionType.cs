@@ -2,7 +2,7 @@
 
 public enum TransactionType : byte
 {
-    Deposit,
-    Withdrawal,
-    Hold
+    Withdrawable_Deposit,
+    Non_Withdrawable_Deposit,
+    Withdrawal
 }

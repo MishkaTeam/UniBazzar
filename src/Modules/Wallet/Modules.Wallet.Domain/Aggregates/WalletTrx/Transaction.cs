@@ -11,26 +11,23 @@ public class Transaction : Entity
     public TransactionType Type { get; private set; }
     public Wallet Wallet { get; private set; }
 
-    private Transaction(TransactionId id, Guid walletId, Money amount, TransactionType type, Guid? transferId) 
+    private Transaction(Guid walletId, Money amount, TransactionType type, Guid? transferId) 
     {
-        if (amount.Amount <= 0)
-            throw new ArgumentException("Transaction amount must be positive.", nameof(amount));
-
         WalletId = walletId;
         Amount = amount;
         Type = type;
-        OccurredOnUtc = DateTime.UtcNow;
-        AssociatedTransferId = transferId;
     }
 
-    public static Transaction CreateDeposit(Guid walletId, Money amount) =>
-        new(TransactionId.CreateNew(), walletId, amount, TransactionType.Deposit, null);
+    public static Transaction NonWithdrawableDeposit(Guid walletId, Money amount) => new(walletId, amount, TransactionType.Non_Withdrawable_Deposit, null);
+    
+    public static Transaction WithdrawableDeposit(Guid walletId, Money amount) => new(walletId, amount, TransactionType.Withdrawable_Deposit, null);
 
-    public static Transaction CreateWithdrawal(Guid walletId, Money amount) =>
-        new(TransactionId.CreateNew(), walletId, amount, TransactionType.Withdrawal, null);
+    public static Transaction Withdrawal(Guid walletId, Money amount) => new(walletId, amount, TransactionType.Withdrawal, null);
 
-    public static Transaction CreateHold(Guid walletId, Money amount) =>
-    new(TransactionId.CreateNew(), walletId, amount, TransactionType.Hold, null);
+    internal static Money NonWithdrawableBalance()
+    {
+        throw new NotImplementedException();
+    }
 
 
     // For EF Core

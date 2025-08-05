@@ -55,7 +55,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WalletOps", "WalletOps", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modules.WalletOps.Domain", "Modules\Wallet\Modules.Wallet.Domain\Modules.WalletOps.Domain.csproj", "{630DA02E-B30E-4AA5-8525-CA1C740A8FB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modules.Wallet.UnitTests", "..\tests\Modules.Wallet.UnitTests\Modules.Wallet.UnitTests.csproj", "{0DAE20DD-BCE4-42D7-80E4-5525B1674AAC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modules.WalletOps.UnitTests", "..\tests\Modules.Wallet.UnitTests\Modules.WalletOps.UnitTests.csproj", "{0DAE20DD-BCE4-42D7-80E4-5525B1674AAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

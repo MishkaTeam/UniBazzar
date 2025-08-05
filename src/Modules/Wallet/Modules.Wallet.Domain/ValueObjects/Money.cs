@@ -11,6 +11,9 @@ public record Money
         if (string.IsNullOrWhiteSpace(currency))
             throw new ArgumentException("Currency must be specified.", nameof(currency));
 
+        if (amount < 0)
+            throw new ArgumentException("Transaction amount must be positive.", nameof(amount));
+
         Amount = amount;
         Currency = currency.ToUpper();
     }

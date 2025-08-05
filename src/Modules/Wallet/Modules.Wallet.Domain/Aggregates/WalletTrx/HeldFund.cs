@@ -1,5 +1,4 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
-using Modules.WalletOps.Domain.Aggregates.WalletTrx.Enums;
 using Modules.WalletOps.Domain.ValueObjects;
 
 namespace Modules.WalletOps.Domain.Aggregates.WalletTrx;

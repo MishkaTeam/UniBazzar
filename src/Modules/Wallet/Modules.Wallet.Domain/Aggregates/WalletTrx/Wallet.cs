@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
 using Modules.WalletOps.Domain.Aggregates.WalletTrx.Enums;
+using Modules.WalletOps.Domain.Aggregates.WalletTrx.Extenstions;
 using Modules.WalletOps.Domain.Exceptions;
 using Modules.WalletOps.Domain.ValueObjects;
 
@@ -7,35 +8,42 @@ namespace Modules.WalletOps.Domain.Aggregates.WalletTrx;
 
 public class Wallet : Entity
 {
-    private readonly List<Transaction> _transactions = new();
-    private readonly List<HeldFund> _heldFunds = new();
+    private readonly List<Transaction> _transactions = [];
+    private readonly List<HeldFund> _heldFunds = [];
 
-    public WalletOwnerType OwnerType { get; private set; }
-    public Money Balance { get; private set; }
+    public Money Balance { get; private set; } = Money.Zero("IRR");
+    public Money WithdrawableBalance  => Transactions.WithdrawableBalance();
+    public Money HeldBalance => HeldFunds.HeldBalance();
+    public Money NonWithdrawableBalance => Transactions.NonWithdrawableBalance();
+
+
     public WalletStatusType Status { get; private set; }
     public IReadOnlyCollection<Transaction> Transactions => _transactions.AsReadOnly();
     public IReadOnlyCollection<HeldFund> HeldFunds => _heldFunds.AsReadOnly();
 
-    private Wallet(WalletOwnerType ownerType, Money initialBalance)
+    private Wallet()
     {
-        OwnerType = ownerType;
-        Balance = initialBalance;
         Status = WalletStatusType.Active;
     }
 
-    public static Wallet CreateWallet(Money? initialBalance = null)
-    {
-        initialBalance ??= Money.Create(0, "IRR");
-        var wallet = new Wallet(WalletOwnerType.Personal, initialBalance);
+    public static Wallet CreateWallet()
+    {        
+        var wallet = new Wallet();
         return wallet;
     }
 
-    public void Deposit(Money amount)
+    public void WithdrawableDeposit(Money amount)
     {
         EnsureWalletIsActive();
 
-        Balance += amount;
-        _transactions.Add(Transaction.CreateDeposit(Id, amount));
+        _transactions.Add(Transaction.WithdrawableDeposit(Id, amount));
+    }
+
+    public void NonWithdrawableDeposit(Money amount)
+    {
+        EnsureWalletIsActive();
+
+        _transactions.Add(Transaction.NonWithdrawableDeposit(Id, amount));
     }
 
     public void Withdraw(Money amount)
@@ -43,26 +51,10 @@ public class Wallet : Entity
         EnsureWalletIsActive();
         EnsureSufficientFunds(amount);
 
-        Balance -= amount;
-        _transactions.Add(Transaction.CreateWithdrawal(Id, amount));
-    }
-
-    internal void HoldFundsForTransfer(Money amount)
-    {
-        EnsureWalletIsActive();
-        EnsureSufficientFunds(amount);
-
-        Balance -= amount;
-        _transactions.Add(Transaction.CreateHold(Id, amount));
+        _transactions.Add(Transaction.Withdrawal(Id, amount));
     }
 
 
-    internal void RevertHeldFunds(Money amount)
-    {
-        // This operation can be performed even on a frozen wallet to ensure consistency
-        Balance += amount;
-        _transactions.Add(Transaction.CreateHold(Id, amount));
-    }
 
     public void Freeze()
     {
@@ -89,6 +81,5 @@ public class Wallet : Entity
         throw new InvalidBalanceException("Insufficient funds for this operation.");
     }
 
-    // For EF Core
-    private Wallet() { }
+
 }
