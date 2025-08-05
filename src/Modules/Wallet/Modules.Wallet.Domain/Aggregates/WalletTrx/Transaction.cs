@@ -1,15 +1,8 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
+using Modules.WalletOps.Domain.Aggregates.WalletTrx.Enums;
 using Modules.WalletOps.Domain.ValueObjects;
 
 namespace Modules.WalletOps.Domain.Aggregates.WalletTrx;
-
-// Domain/Entities/Transaction.cs
-public enum TransactionType
-{
-    Deposit,
-    Withdrawal,
-    Hold
-}
 
 public class Transaction : Entity
 {

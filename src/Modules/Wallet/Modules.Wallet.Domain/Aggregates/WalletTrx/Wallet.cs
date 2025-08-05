@@ -1,22 +1,9 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
-using Modules.Wallet.Domain.Exceptions;
+using Modules.WalletOps.Domain.Aggregates.WalletTrx.Enums;
 using Modules.WalletOps.Domain.Exceptions;
 using Modules.WalletOps.Domain.ValueObjects;
 
 namespace Modules.WalletOps.Domain.Aggregates.WalletTrx;
-
-// Domain/Aggregates/Wallet.cs
-public enum WalletStatus
-{
-    Active,
-    Frozen
-}
-
-public enum WalletOwnerType
-{
-    Personal,       // B2C
-    Organization    // B2B
-}
 
 public class Wallet : Entity
 {
@@ -25,7 +12,7 @@ public class Wallet : Entity
 
     public WalletOwnerType OwnerType { get; private set; }
     public Money Balance { get; private set; }
-    public WalletStatus Status { get; private set; }
+    public WalletStatusType Status { get; private set; }
     public IReadOnlyCollection<Transaction> Transactions => _transactions.AsReadOnly();
     public IReadOnlyCollection<HeldFund> HeldFunds => _heldFunds.AsReadOnly();
 
@@ -33,10 +20,10 @@ public class Wallet : Entity
     {
         OwnerType = ownerType;
         Balance = initialBalance;
-        Status = WalletStatus.Active;
+        Status = WalletStatusType.Active;
     }
 
-    public static Wallet CreatePersonalWallet(Money? initialBalance = null)
+    public static Wallet CreateWallet(Money? initialBalance = null)
     {
         initialBalance ??= Money.Create(0, "IRR");
         var wallet = new Wallet(WalletOwnerType.Personal, initialBalance);
@@ -79,19 +66,19 @@ public class Wallet : Entity
 
     public void Freeze()
     {
-        if (Status == WalletStatus.Frozen) return;
-        Status = WalletStatus.Frozen;
+        if (Status == WalletStatusType.Frozen) return;
+        Status = WalletStatusType.Frozen;
     }
 
     public void Activate()
     {
-        if (Status == WalletStatus.Active) return;
-        Status = WalletStatus.Active;
+        if (Status == WalletStatusType.Active) return;
+        Status = WalletStatusType.Active;
     }
 
     private void EnsureWalletIsActive()
     {
-        if (Status != WalletStatus.Active)
+        if (Status != WalletStatusType.Active)
             throw new WalletDeactivateException("Operation cannot be performed on a non-active wallet.");
     }
 
