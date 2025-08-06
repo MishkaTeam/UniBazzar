@@ -64,6 +64,20 @@ public class WalletTests
         wallet.Transactions.Last().Type.Should().Be(TransactionType.Withdrawal);
     }
 
+
+    [Fact]
+    public void Withdraw_Should_ThrowError_For_NonWithdrawableBalance()
+    {
+        var wallet = Wallet.CreateWallet();
+        var depositAmount = Money.Create(1000, "IRR");
+        wallet.DepositNonWithdrawable(depositAmount, "Gift");
+
+        var withdrawAmount = Money.Create(700, "IRR");
+        Action withdraw = () => wallet.Withdraw(withdrawAmount);
+
+        withdraw.Should().Throw<InvalidBalanceException>();
+    }
+
     [Fact]
     public void Withdraw_Should_Throw_Exception_When_Funds_Are_Insufficient()
     {
