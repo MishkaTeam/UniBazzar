@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Modules\Wallet\Modules.Wallet.Domain\Modules.WalletOps.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Modules\WalletOps\Modules.WalletOps.Domain\Modules.WalletOps.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
