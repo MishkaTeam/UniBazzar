@@ -1,6 +1,8 @@
-﻿namespace Modules.WalletOps.Application.Aggregates.WalletTrx;
+﻿using Modules.WalletOps.Domain.Aggregates.WalletTrx.Data;
 
-public class WalletApplication
+namespace Modules.WalletOps.Application.Aggregates.WalletTrx;
+
+public class WalletApplication(IWalletRepository walletRepository)
 {
 
 }
