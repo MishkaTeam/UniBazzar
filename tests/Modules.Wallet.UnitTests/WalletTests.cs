@@ -6,88 +6,81 @@ using Modules.WalletOps.Domain.ValueObjects;
 
 namespace Modules.WalletOps.UnitTests;
 
+using FluentAssertions;
+using System;
+using System.Linq;
+using Xunit;
 
 public class WalletTests
 {
-    private const string CurrencyIRR = "IRR";
-
     [Fact]
-    public void CreateWallet_Should_CreateWallet_WithCorrectInitialState()
+    public void CreateWallet_Should_Initialize_Wallet_With_Zero_Balances()
     {
-        var userId = Guid.NewGuid();
-        var initialBalance = Money.Create(10000, CurrencyIRR);
-
         var wallet = Wallet.CreateWallet();
-        wallet.WithdrawableDeposit(initialBalance);
-        wallet.SetOwner(userId);
 
-        wallet.Should().NotBeNull();
-        wallet.OwnerId.Should().Be(userId);
-        wallet.Balance.Should().Be(initialBalance);
+        wallet.WithdrawableBalance.Should().Be(Money.Zero("IRR"));
+        wallet.NonWithdrawableBalance.Should().Be(Money.Zero("IRR"));
+        wallet.TotalBalance.Should().Be(Money.Zero("IRR"));
+        wallet.AvailableBalance.Should().Be(Money.Zero("IRR"));
         wallet.Status.Should().Be(WalletStatusType.Active);
     }
 
     [Fact]
-    public void Deposit_ToActiveWallet_ShouldIncreaseBalance_And_AddTransaction()
+    public void DepositWithdrawable_Should_Increase_WithdrawableBalance()
     {
         var wallet = Wallet.CreateWallet();
-        var depositAmount = Money.Create(50000, CurrencyIRR);
+        var depositAmount = Money.Create(1000, "IRR");
 
-        wallet.WithdrawableDeposit(depositAmount);
+        wallet.DepositWithdrawable(depositAmount, "Test deposit");
 
-        wallet.Balance.Amount.Should().Be(50000);
-        wallet.Transactions.Should().ContainSingle(t => t.Type == TransactionType.Withdrawable_Deposit && t.Amount == depositAmount);
+        wallet.WithdrawableBalance.Should().Be(depositAmount);
+        wallet.TotalBalance.Should().Be(depositAmount);
+        wallet.Transactions.Should().HaveCount(1);
+        wallet.Transactions.First().Type.Should().Be(TransactionType.Withdrawable_Deposit);
     }
 
     [Fact]
-    public void Deposit_ToFrozenWallet_ShouldThrowDomainException()
+    public void DepositNonWithdrawable_Should_Increase_NonWithdrawableBalance()
     {
         var wallet = Wallet.CreateWallet();
-        wallet.Freeze();
+        var depositAmount = Money.Create(500, "IRR");
 
-        Action act = () => wallet.WithdrawableDeposit(Money.Create(1000, CurrencyIRR));
+        wallet.DepositNonWithdrawable(depositAmount, "Gift");
 
-        act.Should().Throw<WalletDeactivateException>();
+        wallet.NonWithdrawableBalance.Should().Be(depositAmount);
+        wallet.TotalBalance.Should().Be(depositAmount);
     }
 
     [Fact]
-    public void Withdraw_WithSufficientFunds_ShouldDecreaseBalance_And_AddTransaction()
+    public void Withdraw_Should_Decrease_WithdrawableBalance()
     {
-        var depositAmount = Money.Create(100000, CurrencyIRR);
-        var withdrawAmount = Money.Create(40000, CurrencyIRR);
-
         var wallet = Wallet.CreateWallet();
-        wallet.WithdrawableDeposit(depositAmount);
+        wallet.DepositWithdrawable(Money.Create(1000, "IRR"), "Initial deposit");
+        var withdrawAmount = Money.Create(700, "IRR");
 
         wallet.Withdraw(withdrawAmount);
 
-        wallet.Balance.Amount.Should().Be(60000);
-        wallet.Transactions.Should().Contain(t => t.Type == TransactionType.Withdrawable_Deposit && t.Amount == depositAmount);
-        wallet.Transactions.Should().Contain(t => t.Type == TransactionType.Withdrawal && t.Amount == withdrawAmount);
+        wallet.WithdrawableBalance.Should().Be(Money.Create(300, "IRR"));
+        wallet.Transactions.Last().Type.Should().Be(TransactionType.Withdrawal);
     }
 
     [Fact]
-    public void Withdraw_WithInsufficientFunds_ShouldThrowDomainException()
+    public void Withdraw_Should_Throw_Exception_When_Funds_Are_Insufficient()
     {
-        var withdrawAmount = Money.Create(30000, CurrencyIRR);
-        var depositAmount = Money.Create(10000, CurrencyIRR);
-
         var wallet = Wallet.CreateWallet();
-        wallet.WithdrawableDeposit(depositAmount);
+        wallet.DepositWithdrawable(Money.Create(500, "IRR"), "Initial deposit");
+        Action action = () => wallet.Withdraw(Money.Create(600, "IRR"));
 
-        Action act = () => wallet.Withdraw(withdrawAmount);
-
-        act.Should().Throw<InvalidBalanceException>();
-        wallet.Balance.Amount.Should().Be(depositAmount.Amount); 
+        action.Should().Throw<Exception>().WithMessage("Insufficient withdrawable funds.");
     }
 
     [Fact]
-    public void FreezeWallet_ShouldChangeStatusToFrozen()
+    public void Performing_Operation_On_Frozen_Wallet_Should_Throw_Exception()
     {
         var wallet = Wallet.CreateWallet();
-
         wallet.Freeze();
+        Action action = () => wallet.DepositWithdrawable(Money.Create(100, "IRR"), "deposit");
 
-        wallet.Status.Should().Be(WalletStatusType.Frozen);
+        action.Should().Throw<Exception>().WithMessage("Wallet is not active.");
     }
 }

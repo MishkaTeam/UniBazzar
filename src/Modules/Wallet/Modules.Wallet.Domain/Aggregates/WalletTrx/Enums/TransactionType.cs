@@ -4,5 +4,6 @@ public enum TransactionType : byte
 {
     Withdrawable_Deposit,
     Non_Withdrawable_Deposit,
-    Withdrawal
+    Withdrawal,
+    Purchase
 }

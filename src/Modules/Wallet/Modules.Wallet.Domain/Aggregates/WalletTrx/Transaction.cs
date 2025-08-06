@@ -9,26 +9,20 @@ public class Transaction : Entity
     public Guid WalletId { get; private set; }
     public Money Amount { get; private set; }
     public TransactionType Type { get; private set; }
-    public Wallet Wallet { get; private set; }
+    public string Description { get; private set; }
 
-    private Transaction(Guid walletId, Money amount, TransactionType type, Guid? transferId) 
+    private Transaction(Guid walletId, Money amount, TransactionType type, string description)
     {
         WalletId = walletId;
         Amount = amount;
         Type = type;
+        Description = description;
     }
 
-    public static Transaction NonWithdrawableDeposit(Guid walletId, Money amount) => new(walletId, amount, TransactionType.Non_Withdrawable_Deposit, null);
-    
-    public static Transaction WithdrawableDeposit(Guid walletId, Money amount) => new(walletId, amount, TransactionType.Withdrawable_Deposit, null);
-
-    public static Transaction Withdrawal(Guid walletId, Money amount) => new(walletId, amount, TransactionType.Withdrawal, null);
-
-    internal static Money NonWithdrawableBalance()
+    public static Transaction Create(Guid walletId, Money amount, TransactionType type, string description)
     {
-        throw new NotImplementedException();
+        return new Transaction(walletId, amount, type, description);
     }
-
 
     // For EF Core
     private Transaction() { }
