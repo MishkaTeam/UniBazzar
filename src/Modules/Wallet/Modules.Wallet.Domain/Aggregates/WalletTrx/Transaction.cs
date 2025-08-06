@@ -19,9 +19,24 @@ public class Transaction : Entity
         Description = description;
     }
 
-    public static Transaction Create(Guid walletId, Money amount, TransactionType type, string description)
+    public static Transaction CreateDepositWithdrawable(Guid walletId, Money amount, string description)
     {
-        return new Transaction(walletId, amount, type, description);
+        return new Transaction(walletId, amount, TransactionType.Withdrawable_Deposit, description);
+    }
+
+    internal static Transaction CreateNonWithdrawableDeposit(Guid walletId, Money amount, string description)
+    {
+        return new Transaction(walletId, amount, TransactionType.Non_Withdrawable_Deposit, description);
+    }
+
+    internal static Transaction CreateWithdrawal(Guid walletId, Money amount, string description)
+    {
+        return new Transaction(walletId, amount, TransactionType.Withdrawal, description);
+    }
+
+    internal static Transaction CreatePurchase(Guid walletId, Money amount, string description)
+    {
+        return new Transaction(walletId, amount, TransactionType.Purchase, description);
     }
 
     // For EF Core
