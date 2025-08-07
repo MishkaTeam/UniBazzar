@@ -6,6 +6,8 @@
         $"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.SliderItem}";
 
     ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+
+    string imagePreviewId = "image-preview";
 }
 
 
@@ -23,9 +25,21 @@
 
             <input hidden asp-for="CreateViewModel.HomeViewId" />
 
+            <section-form-field>
+                @if (string.IsNullOrWhiteSpace(Model.CreateViewModel.ImageUrl))
+                {
+                    <img class="w-100 rounded-3" id="@(imagePreviewId)" />
+                }
+                else
+                {
+                    <img class="w-100 rounded-3" id="@(imagePreviewId)" src="@(Model.CreateViewModel.ImageUrl)" />
+                }
+            </section-form-field>
+
             <div class="mb-3">
                 <label asp-for="SliderImage" class="form-label"></label>
-                <input class="form-control" asp-for="SliderImage" />
+                <input class="form-control" asp-for="SliderImage"
+                       onchange="showPreview(this);" accept="image/jpeg, image/png" />
                 <span asp-validation-for="SliderImage" class="field-validation-valid text-danger"></span>
             </div>
 
@@ -47,3 +61,8 @@
     </section-form>
 
 </form>
+
+
+@section Scripts {
+    <partial name="PartialViews/_ScriptImagePreview" model="@(imagePreviewId)" />
+}
