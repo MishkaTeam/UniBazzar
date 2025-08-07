@@ -268,6 +268,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cms.
+        /// </summary>
+        public static string Cms {
+            get {
+                return ResourceManager.GetString("Cms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to column.
         /// </summary>
         public static string Column {
@@ -534,6 +543,15 @@ namespace Resources {
         public static string FullName {
             get {
                 return ResourceManager.GetString("FullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full Screen.
+        /// </summary>
+        public static string FullScreen {
+            get {
+                return ResourceManager.GetString("FullScreen", resourceCulture);
             }
         }
         
@@ -1146,6 +1164,15 @@ namespace Resources {
         public static string Slug {
             get {
                 return ResourceManager.GetString("Slug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split Screen.
+        /// </summary>
+        public static string SplitScreen {
+            get {
+                return ResourceManager.GetString("SplitScreen", resourceCulture);
             }
         }
         

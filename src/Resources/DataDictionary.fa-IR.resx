@@ -558,4 +558,13 @@
   <data name="Orders" xml:space="preserve">
     <value>سفارشات</value>
   </data>
+  <data name="FullScreen" xml:space="preserve">
+    <value>کل صفحه</value>
+  </data>
+  <data name="SplitScreen" xml:space="preserve">
+    <value>نصف صفحه</value>
+  </data>
+  <data name="Cms" xml:space="preserve">
+    <value>مدیریت محتوا</value>
+  </data>
 </root>
