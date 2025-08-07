@@ -1,6 +1,7 @@
 ﻿@page
 @model Server.Pages.IndexModel
 @using Domain.Aggregates.Cms.HomeViews.Enums
+@using Server.Pages.Shared.Components.ImageSection
 @using Server.Pages.Shared.Components.ProductSection
 @using Server.Pages.Shared.Components.SliderSection
 
@@ -27,8 +28,8 @@
 
 		if (homeView.Type == ViewType.Image)
 		{
-@* 			@(await Component.InvokeAsync
-				(ImageSectionViewComponent.KEY, homeView)) *@
+			@(await Component.InvokeAsync
+				(ImageSectionViewComponent.KEY, homeView))
 		}
 	}
 
