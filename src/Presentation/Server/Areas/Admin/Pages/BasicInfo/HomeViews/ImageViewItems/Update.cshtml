@@ -6,6 +6,8 @@
 		$"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.ImageItem}";
 
 	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+
+	string imagePreviewId = "image-preview";
 }
 
 
@@ -24,17 +26,31 @@
 			<input hidden asp-for="UpdateViewModel.Id" />
 			<input hidden asp-for="UpdateViewModel.HomeViewId" />
 
-			@* Show image !!! *@
+			<section-form-field>
+				@if (string.IsNullOrWhiteSpace(Model.UpdateViewModel.ImageUrl))
+				{
+					<img class="w-100 rounded-3" id="@(imagePreviewId)" />
+				}
+				else
+				{
+					<img class="w-100 rounded-3" id="@(imagePreviewId)" src="@(Model.UpdateViewModel.ImageUrl)" />
+				}
+			</section-form-field>
 
 			<div class="mb-3">
 				<label asp-for="Image" class="form-label"></label>
-				<input class="form-control" asp-for="Image" />
+				<input class="form-control" asp-for="Image"
+					   onchange="showPreview(this);" accept="image/jpeg, image/png" />
 				<span asp-validation-for="Image" class="field-validation-valid text-danger"></span>
 			</div>
 
 			<ub-full-input asp-for="UpdateViewModel.Title" />
 
-			<ub-full-input asp-for="UpdateViewModel.Column" />
+			<div class="mb-3">
+				<label asp-for="UpdateViewModel.Column" class="form-label"></label>
+				<select asp-for="UpdateViewModel.Column" asp-items="Model.ColumnTypes" class="form-select"></select>
+				<span asp-validation-for="UpdateViewModel.Column" class="field-validation-valid text-danger"></span>
+			</div>
 
 			<ub-full-input asp-for="UpdateViewModel.NavigationUrl" />
 
@@ -50,3 +66,8 @@
 	</section-form>
 
 </form>
+
+
+@section Scripts {
+	<partial name="PartialViews/_ScriptImagePreview" model="@(imagePreviewId)" />
+}

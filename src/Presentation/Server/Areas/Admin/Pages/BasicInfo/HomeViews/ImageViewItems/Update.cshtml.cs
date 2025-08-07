@@ -1,10 +1,12 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Application.Aggregates.HomeViews;
 using Application.Aggregates.HomeViews.ViewModels.ImageViewItems;
 using Constants;
 using Framework.Picture;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Resources;
 using Server.Infrastructure.Services;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.HomeViews.ImageViewItems;
@@ -15,6 +17,8 @@ public class UpdateModel(
 {
     [BindProperty]
     public UpdateImageViewItemViewModel UpdateViewModel { get; set; } = new();
+    public List<SelectListItem> ColumnTypes { get; set; } = new();
+
 
     [BindProperty]
     [DataType(DataType.Upload)]
@@ -56,6 +60,8 @@ public class UpdateModel(
         UpdateViewModel =
             imageItemResult.Data!;
 
+        FillSelectTag();
+
         return Page();
     }
 
@@ -63,6 +69,8 @@ public class UpdateModel(
     {
         if (!ModelState.IsValid)
         {
+            FillSelectTag();
+
             return Page();
         }
 
@@ -84,7 +92,10 @@ public class UpdateModel(
                     "image size is incorrect.";
 
                 AddPageError(message);
+
+                FillSelectTag();
                 return Page();
+
             }
 
             var uploadResult = await storageService.UploadImageAsync
@@ -94,6 +105,8 @@ public class UpdateModel(
             {
                 AddPageError
                     (uploadResult.ErrorMessage!.Message);
+
+                FillSelectTag();
 
                 return Page();
             }
@@ -114,10 +127,32 @@ public class UpdateModel(
             AddPageError
                 (result.ErrorMessage!.Message);
 
+            FillSelectTag();
+
             return Page();
         }
 
         return RedirectToPage("Index",
             new { homeViewId = UpdateViewModel.HomeViewId.ToString() });
+    }
+
+
+    private void FillSelectTag()
+    {
+        var columnTypes =
+            new Dictionary<string, string>()
+            {
+                {"1", DataDictionary.FullScreen},
+                {"2", DataDictionary.SplitScreen},
+            };
+
+        foreach (var columnType in columnTypes)
+        {
+            ColumnTypes.Add(new SelectListItem()
+            {
+                Text = columnType.Value,
+                Value = columnType.Key,
+            });
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿@page "{homeViewId:guid}"
+@using Resources
 @model Server.Areas.Admin.Pages.BasicInfo.HomeViews.ImageViewItems.IndexModel
 
 @{
@@ -11,12 +12,14 @@
 
 <div class="row justify-content-between px-2 my-2">
     <a class="col-auto btn btn-primary" asp-page="../Index" asp-area="Admin">@(Resources.ButtonCaptions.Back)</a>
-    <a class="col-auto btn btn-primary" asp-page="Create" asp-route-homeViewId="@(Model.HomeViewId)" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
+    <h5 class="col-auto">[@(Model.HomeView.TypeName)] @(Model.HomeView.Title)</h5>
+    <a class="col-auto btn btn-primary" asp-page="Create" asp-route-homeViewId="@(Model.HomeView.Id)" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
 </div>
 
 <table class="table table-hover">
     <thead>
         <tr>
+            <th scope="col"></th>
             @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Title))
             @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Order))
             @(Html.Ub_DisplayStringWithTh(Resources.DataDictionary.Column))
@@ -26,22 +29,34 @@
     <tbody>
         @foreach (var imageView in Model.ViewModel)
         {
-            <tr>
+            <tr class="align-middle">
+                <td>
+                    <img class="rounded-3" width="100" src="@(imageView.ImageUrl)" />
+                </td>
                 @(Html.Ub_DisplayStringWithTd(imageView.Title))
                 @(Html.Ub_DisplayIntegerWithTd(imageView.Ordering))
-                @(Html.Ub_DisplayStringWithTh(imageView.Column))
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
 
-                        <a asp-page="Update" asp-route-homeViewId="@(Model.HomeViewId)"
-                           asp-route-imageItemId="@(imageView.Id)" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
+                @if (imageView.Column == "1")
+                {
+                    @(Html.Ub_DisplayStringWithTh(DataDictionary.FullScreen))
+                }
+				else if (imageView.Column == "2")
+				{
+                    @(Html.Ub_DisplayStringWithTh(DataDictionary.SplitScreen))
+				}
 
-                        <a asp-page="Delete" asp-route-homeViewId="@(Model.HomeViewId)"
-                           asp-route-imageItemId="@(imageView.Id)" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+				<td>
+					<div class="btn-group" role="group" aria-label="Basic example">
 
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
+						<a asp-page="Update" asp-route-homeViewId="@(Model.HomeView.Id)"
+						   asp-route-imageItemId="@(imageView.Id)" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
+
+						<a asp-page="Delete" asp-route-homeViewId="@(Model.HomeView.Id)"
+						   asp-route-imageItemId="@(imageView.Id)" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+
+					</div>
+				</td>
+			</tr>
+		}
+	</tbody>
 </table>
