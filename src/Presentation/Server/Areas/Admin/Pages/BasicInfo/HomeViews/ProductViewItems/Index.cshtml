@@ -11,7 +11,8 @@
 
 <div class="row justify-content-between px-2 my-2">
     <a class="col-auto btn btn-primary" asp-page="../Index" asp-area="Admin">@(Resources.ButtonCaptions.Back)</a>
-    <a class="col-auto btn btn-primary" asp-page="Create" asp-route-homeViewId="@(Model.HomeViewId)" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
+    <h5 class="col-auto">[@(Model.HomeView.TypeName)] @(Model.HomeView.Title)</h5>
+    <a class="col-auto btn btn-primary" asp-page="Create" asp-route-homeViewId="@(Model.HomeView.Id)" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
 </div>
 
 <table class="table table-hover">
@@ -32,10 +33,10 @@
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
 
-                        <a asp-page="Update" asp-route-homeViewId="@(Model.HomeViewId)"
+                        <a asp-page="Update" asp-route-homeViewId="@(Model.HomeView.Id)"
                            asp-route-productItemId="@(productView.Id)" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
 
-                        <a asp-page="Delete" asp-route-homeViewId="@(Model.HomeViewId)"
+                        <a asp-page="Delete" asp-route-homeViewId="@(Model.HomeView.Id)"
                            asp-route-productItemId="@(productView.Id)" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
 
                     </div>
