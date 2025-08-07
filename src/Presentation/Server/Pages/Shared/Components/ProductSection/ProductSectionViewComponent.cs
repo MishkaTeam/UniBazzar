@@ -29,7 +29,8 @@ public class ProductSectionViewComponent
         var productCardsNotOrdered = await productsApplication
             .GetFullProductData(productsIds);
 
-        var orderedProductCards = new List<ProductCardViewModel>();
+        var orderedProductCards =
+            new List<ProductCardViewModel>();
 
         foreach (var product in homeView.ProductViews)
         {
