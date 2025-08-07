@@ -298,6 +298,22 @@ public class HomeViewsApplication
             return (ErrorType.NotFound, message);
         }
 
+        var productItems =
+            (await homeViewRepository
+            .GetProductItemsByIdAsync(viewModel.HomeViewId))
+            .ToList();
+
+        var isExistProduct =
+            productItems.Any(x => x.ProductId ==  viewModel.ProductId);
+
+        if (isExistProduct)
+        {
+            var message =
+                string.Format(Errors.AlreadyExists, Resources.DataDictionary.Product);
+
+            return (ErrorType.DuplicateRecord, message);
+        }
+
         var productItem =
             ProductViewItem.Create(
                 viewModel.HomeViewId,
@@ -372,6 +388,23 @@ public class HomeViewsApplication
                 string.Format(Errors.NotFound, Resources.DataDictionary.ProductView);
 
             return (ErrorType.NotFound, message);
+        }
+
+        var productItems =
+            (await homeViewRepository
+            .GetProductItemsByIdAsync(viewModel.HomeViewId))
+            .ToList();
+
+        var isExistProduct = productItems.Any
+            (x => x.ProductId == viewModel.ProductId &&
+             x.ProductId != productItemForUpdate.ProductId);
+
+        if (isExistProduct)
+        {
+            var message =
+                string.Format(Errors.AlreadyExists, Resources.DataDictionary.Product);
+
+            return (ErrorType.DuplicateRecord, message);
         }
 
         productItemForUpdate.Update(
