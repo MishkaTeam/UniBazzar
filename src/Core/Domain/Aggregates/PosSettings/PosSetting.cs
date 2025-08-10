@@ -19,68 +19,68 @@ namespace Domain.Aggregates.PosSettings
         public string Description { get; private set; }
         public string PhoneNumber { get; private set; }
         public string LogoUrl { get; private set; }
-        public Guid? PricelistID { get; set; }
+        public Guid? PriceListId { get; set; }
         public Guid? PublicCustomer { get; set; }
         public string Address { get; set; }
 
-        private PosSetting(string name, string description, string phonenumber, string logourl, Guid? pricelistID,
-            Guid? publiccustomer, string address)
+        private PosSetting(string name, string description, string phoneNumber, string logoUrl, Guid? priceListId,
+            Guid? publicCustomer, string address)
         {
             Name = name;
             Description = description;
-            PhoneNumber = phonenumber;
-            LogoUrl = logourl;
-            PricelistID = pricelistID;
-            PublicCustomer = publiccustomer;
+            PhoneNumber = phoneNumber;
+            LogoUrl = logoUrl;
+            PriceListId = PriceListId;
+            PublicCustomer = publicCustomer;
             Address = address;
 
         }
 
-        public static PosSetting Create(string name, string description, string phonenumber, string logourl, Guid? pricelistID,
-            Guid? publiccustomer, string address)
+        public static PosSetting Create(string name, string description, string phoneNumber, string logoUrl, Guid? priceListId,
+            Guid? publicCustomer, string address)
         {
-            if (!phonenumber.IsValidMobile())
+            if (!phoneNumber.IsValidMobile())
                 throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
             var possetting = new PosSetting()
             {
                 Description = description,
                 Name = name,
-                PhoneNumber = phonenumber,
-                LogoUrl = logourl,
-                PublicCustomer = ValidatePriceListID(publiccustomer),
-                PricelistID = ValidatePriceListID(pricelistID),
+                PhoneNumber = phoneNumber,
+                LogoUrl = logoUrl,
+                PublicCustomer = ValidatePriceListID(publicCustomer),
+                PriceListId = ValidatePriceListID(priceListId),
                 Address = address
             };
             return possetting;
         }
-        private static Guid? ValidatePriceListID(Guid? priceListID)
+        private static Guid? ValidatePriceListID(Guid? priceListId)
         {
-            if (priceListID == Guid.Empty)
+            if (priceListId == Guid.Empty)
             {
-                priceListID = null;
+                priceListId = null;
             }
-            return priceListID;
+            return priceListId;
         }
-        private static Guid? ValidatePublicCustomerID(Guid? puliccustomerID)
+        private static Guid? ValidatePublicCustomerID(Guid? pulicCustomerId)
         {
-            if (puliccustomerID == Guid.Empty)
+            if (pulicCustomerId == Guid.Empty)
             {
-                puliccustomerID = null;
+                pulicCustomerId = null;
             }
-            return puliccustomerID;
+            return pulicCustomerId;
         }
 
-        public void Update (string name, string description, string phonenumber, string logourl, Guid? pricelistID,
-            Guid? publiccustomer, string address)
+        public void Update (string name, string description, string phoneNumber, string logoUrl, Guid? priceListId,
+            Guid? publicCustomer, string address)
             {
-            if (!phonenumber.IsValidMobile())
+            if (!phoneNumber.IsValidMobile())
                 throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
             Name = name;
             Description = description;
-            PhoneNumber = phonenumber;
-            LogoUrl = logourl;
-            PricelistID=ValidatePriceListID(pricelistID);
-            PublicCustomer=ValidatePublicCustomerID(publiccustomer);
+            PhoneNumber = phoneNumber;
+            LogoUrl = logoUrl;
+            PriceListId =ValidatePriceListID(priceListId);
+            PublicCustomer=ValidatePublicCustomerID(publicCustomer);
             Address=address;
             SetUpdateDateTime();
             }
