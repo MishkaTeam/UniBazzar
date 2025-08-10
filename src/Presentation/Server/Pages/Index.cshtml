@@ -6,7 +6,7 @@
 @using Server.Pages.Shared.Components.SliderSection
 
 @{
-	ViewData["Title"] = "Home page";
+	ViewData[Constants.ViewDataKeyName.PageTitle] = "UniBazzar - Home";
 }
 
 
@@ -32,8 +32,6 @@
 				(ImageSectionViewComponent.KEY, homeView))
 		}
 	}
-
-	@* <partial name="PartialViews/_SliderSection" /> *@
 
 	<partial name="PartialViews/_FeaturedProductsSection" />
 
