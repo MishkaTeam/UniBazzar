@@ -57,12 +57,12 @@ public class CreateModel(
         await SliderImage.CopyToAsync(memoryStream);
 
         var checkSize = await ImageHelper
-            .CheckImageSizeAsync(memoryStream, 300, 200);
+            .CheckImageSizeAsync(memoryStream, ratio: 4);
 
         if (checkSize == false)
         {
             var message =
-                "image size is incorrect.";
+                "image size should in ratio 4.";
 
             AddPageError(message);
             return Page();
@@ -72,7 +72,7 @@ public class CreateModel(
             (SliderImage, Storage.SliderPrefix, Storage.SliderPath);
 
         if (uploadResult.IsSuccessful == false)
-    {
+        {
             AddPageError
                 (uploadResult.ErrorMessage!.Message);
 

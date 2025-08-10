@@ -76,12 +76,12 @@ public class UpdateModel(
             await SliderImage.CopyToAsync(memoryStream);
 
             var checkSize = await ImageHelper
-                .CheckImageSizeAsync(memoryStream, 300, 200);
+                .CheckImageSizeAsync(memoryStream, ratio: 4);
 
             if (checkSize == false)
             {
                 var message =
-                    "image size is incorrect.";
+                    "image size should in ratio 4.";
 
                 AddPageError(message);
                 return Page();

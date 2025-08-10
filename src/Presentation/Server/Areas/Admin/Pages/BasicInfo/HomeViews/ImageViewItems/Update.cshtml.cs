@@ -83,20 +83,19 @@ public class UpdateModel(
 
             await Image.CopyToAsync(memoryStream);
 
-            var checkSize = await ImageHelper
-                .CheckImageSizeAsync(memoryStream, 300, 200);
+            //var checkSize = await ImageHelper
+            //    .CheckImageSizeAsync(memoryStream, 300, 200);
 
-            if (checkSize == false)
-            {
-                var message =
-                    "image size is incorrect.";
+            //if (checkSize == false)
+            //{
+            //    var message =
+            //        "image size is incorrect.";
 
-                AddPageError(message);
+            //    AddPageError(message);
 
-                FillSelectTag();
-                return Page();
-
-            }
+            //    FillSelectTag();
+            //    return Page();
+            //}
 
             var uploadResult = await storageService.UploadImageAsync
                 (Image, Storage.ImagePrefix, Storage.ImagePath);
