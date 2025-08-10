@@ -53,4 +53,29 @@ public static class ImageHelper
 
         return true;
     }
+
+    public static async Task<bool> CheckImageSizeAsync(Stream imageStream, float ratio)
+    {
+        imageStream.Seek
+            (0, SeekOrigin.Begin);
+
+        var image =
+            await Image.LoadAsync(imageStream);
+
+        int imageWidth =
+            image.Width;
+
+        int imageHeight =
+            image.Height;
+
+        float imageRatio =
+            (float)imageWidth / imageHeight;
+
+        if (imageRatio != ratio)
+        {
+            return false;
+        }
+
+        return true;
+    }
 }
