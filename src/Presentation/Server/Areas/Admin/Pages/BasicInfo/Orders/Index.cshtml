@@ -8,26 +8,25 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">@(Resources.DataDictionary.Name)</th>
+            <th scope="col">@(Resources.DataDictionary.FirstName)</th>
+            <th scope="col">@(Resources.DataDictionary.LastName)</th>
+            <th scope="col">@(Resources.DataDictionary.Mobile)</th>
+            <th scope="col">شماره فاکتور</th>
+            <th scope="col">@(Resources.DataDictionary.InsertDateTime)</th>
             <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var model in Model.ViewModel)
         {
-            <tr>
+            <tr class="align-middle">
+                <td>@(model.Customer.FirstName)</td>
+                <td>@(model.Customer.LastName)</td>
+                <td>@(model.Customer.Mobile)</td>
                 <td>@(model.ReferenceNumber)</td>
+                <td>@(model.InsertDateTimeFa)</td>
                 <td>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            عملیات
-                        </button>
-                        <ul class="dropdown-menu">
-                            @* <li><a asp-page="Update" asp-route-Id="@(model.Id)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a></li>
-                            <li><a asp-page="Delete" asp-route-Id="@(model.Id)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a></li> *@
-                            <li><a asp-page="OrderItems/Index" asp-route-orderId="@(model.Id)" type="button" class="btn btn-info">@(Resources.DataDictionary.Items)</a></li>
-                        </ul>
-                    </div>
+                    <a asp-page="OrderItems/Index" asp-route-orderId="@(model.Id)" type="button" class="btn btn-secondary">@(Resources.DataDictionary.Items)</a>
                 </td>
             </tr>
         }

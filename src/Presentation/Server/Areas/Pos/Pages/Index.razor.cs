@@ -1,6 +1,7 @@
 ﻿using Application.Aggregates.Ordering.Baskets.ViewModels.BasketItems;
 using Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
 using Application.Aggregates.Ordering.Baskets.ViewModels.InitializeBasket;
+using Application.Aggregates.Ordering.Orders.ProcessOrder;
 using BlazorBootstrap;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 using Microsoft.AspNetCore.Components.Web;
@@ -76,13 +77,13 @@ public partial class Index
         Basket = (await basketApplication.GetBasket(localBasket.Id)).Data;
     }
 
-    private async Task<InitializeBasketViewModel> CreateLocalBasket(Guid ownerId)
+    private async Task<InitializeBasketViewModel> CreateLocalBasket(Guid customerId)
     {
         var newBasket = (await basketApplication.InitializeBasket(
             new InitializeBasketRequestModel()
             {
                 Platform = Platform.POS,
-                OwnerId = ownerId,
+                CustomerId = customerId,
             })).Data;
 
         await sessionStorage.SetItemAsync(SearchCustomer.LocalBasketKey, newBasket);
@@ -182,7 +183,7 @@ public partial class Index
             await productApplication.GetProductAsync(productId);
 
         // IMPORTANT: Test Data !!
-        // Must get Price from PriceList and Discount
+        // Must get Price from PriceList and Discount of Pos Setting
         var newBasket = (await basketApplication.AddItem(new AddBasketItemRequestModel()
         {
             BasketId = localBasket!.Id,
@@ -540,15 +541,14 @@ public partial class Index
             return;
         }
 
-        // Need to complete Treasury module !!!
+        var processOrder =
+            new ProcessOrderRequestModel() { BasketId = basketId };
 
-        //var processOrder =
-        //    new ProcessOrderRequestModel() { BasketId = basketId };
+        var cancellationToken =
+            new CancellationToken();
 
-        //var cancellationToken =
-        //    new CancellationToken();
-
-        //await orderApplication.ProcessOrderRequest(processOrder, cancellationToken);
+        await orderApplication
+            .ProcessOrderRequest(processOrder, cancellationToken);
 
         await DeleteLocalBasket();
 
