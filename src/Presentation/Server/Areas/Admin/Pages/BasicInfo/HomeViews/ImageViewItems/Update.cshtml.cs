@@ -2,7 +2,6 @@
 using Application.Aggregates.HomeViews;
 using Application.Aggregates.HomeViews.ViewModels.ImageViewItems;
 using Constants;
-using Framework.Picture;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -74,9 +73,21 @@ public class UpdateModel(
             return Page();
         }
 
+        string oldImageUrl = "";
+
         if (Image != null)
         {
-            // Delete old image from bucket
+            var oldImageItem = await homeViewsApplication
+                .GetImageItem(UpdateViewModel.HomeViewId, UpdateViewModel.Id);
+
+            if (oldImageItem.IsSuccessful == false)
+            {
+                return RedirectToPage("Index",
+                    new { homeViewId = UpdateViewModel.HomeViewId.ToString() });
+            }
+
+            oldImageUrl =
+                oldImageItem.Data!.ImageUrl!;
 
             using var memoryStream =
                 new MemoryStream();
@@ -120,7 +131,8 @@ public class UpdateModel(
         {
             if (Image != null)
             {
-                // Delete new image from bucket
+                await storageService.DeleteImageAsync
+                    (UpdateViewModel.ImageUrl!, Storage.ImagePath);
             }
 
             AddPageError
@@ -129,6 +141,12 @@ public class UpdateModel(
             FillSelectTag();
 
             return Page();
+        }
+
+        if (Image != null)
+        {
+            await storageService.DeleteImageAsync
+                (oldImageUrl!, Storage.ImagePath);
         }
 
         return RedirectToPage("Index",

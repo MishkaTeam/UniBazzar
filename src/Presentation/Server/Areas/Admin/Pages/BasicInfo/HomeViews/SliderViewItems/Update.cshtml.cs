@@ -66,9 +66,21 @@ public class UpdateModel(
             return Page();
         }
 
+        string oldImageUrl = "";
+
         if (SliderImage != null)
         {
-            // Delete old image from bucket
+            var oldSlideItem = await homeViewsApplication
+                .GetSliderItem(UpdateViewModel.HomeViewId, UpdateViewModel.Id);
+
+            if (oldSlideItem.IsSuccessful == false)
+            {
+                return RedirectToPage("Index",
+                    new { homeViewId = UpdateViewModel.HomeViewId.ToString() });
+            }
+
+            oldImageUrl =
+                oldSlideItem.Data!.ImageUrl!;
 
             using var memoryStream =
                 new MemoryStream();
@@ -108,7 +120,8 @@ public class UpdateModel(
         {
             if (SliderImage != null)
             {
-                // Delete new image from bucket
+                await storageService.DeleteImageAsync
+                    (UpdateViewModel.ImageUrl!, Storage.SliderPath);
             }
 
             AddPageError
@@ -116,6 +129,15 @@ public class UpdateModel(
 
             return Page();
         }
+
+        if (SliderImage != null)
+        {
+            await storageService.DeleteImageAsync
+                (oldImageUrl!, Storage.SliderPath);
+        }
+
+        await storageService.DeleteImageAsync
+            (oldImageUrl!, Storage.SliderPath);
 
         return RedirectToPage("Index",
             new { homeViewId = UpdateViewModel.HomeViewId.ToString() });

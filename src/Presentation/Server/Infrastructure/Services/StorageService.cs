@@ -9,6 +9,8 @@ public class StorageService(
     IExecutionContextAccessor executionContextAccessor,
     IStorage storage)
 {
+    public readonly string _bucket = "unibazzar";
+
     public async Task<ResultContract<string>> UploadImageAsync(IFormFile imageFile, string prefix, string path)
     {
         if (imageFile.ContentType != "image/jpeg"
@@ -59,11 +61,30 @@ public class StorageService(
             $"{executionContextAccessor.StoreId}/{path}";
 
         await storage.UploadAsync
-            ("unibazzar", objectKey, newImage, folder, fileType);
+            (_bucket, objectKey, newImage, folder, fileType);
 
         var link = storage.GetPublicUrl
-            ("unibazzar", objectKey, folder);
+            (_bucket, objectKey, folder);
 
         return link;
+    }
+
+    public async Task<ResultContract<bool>> DeleteImageAsync(string link, string path)
+    {
+        if (string.IsNullOrWhiteSpace(link))
+        {
+            return false;
+        }
+
+        var objectKey =
+            link.Split('/').Last();
+
+        var folder =
+            $"{executionContextAccessor.StoreId}/{path}";
+
+        await storage.DeleteAsync
+            (_bucket, objectKey, folder);
+
+        return true;
     }
 }

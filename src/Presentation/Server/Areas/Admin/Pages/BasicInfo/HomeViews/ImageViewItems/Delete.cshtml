@@ -15,6 +15,7 @@
 
 		<input hidden asp-for="DeleteViewModel.Id" dir="ltr" />
 		<input hidden asp-for="DeleteViewModel.HomeViewId" dir="ltr" />
+		<input hidden asp-for="DeleteViewModel.ImageUrl" dir="ltr" />
 
 		<fieldset disabled>
 
@@ -24,11 +25,17 @@
 
 			<partial name="PartialViews/_DisplayPageMessages" />
 
-			@* Show image !!! *@
+			<section-form-field>
+				<img class="w-100 rounded-3" src="@(Model.DeleteViewModel.ImageUrl)" />
+			</section-form-field>
 
 			<ub-full-input asp-for="DeleteViewModel.Title" />
 
-			<ub-full-input asp-for="DeleteViewModel.Column" />
+			<div class="mb-3">
+				<label asp-for="DeleteViewModel.Column" class="form-label"></label>
+				<select asp-for="DeleteViewModel.Column" asp-items="Model.ColumnTypes" class="form-select"></select>
+				<span asp-validation-for="DeleteViewModel.Column" class="field-validation-valid text-danger"></span>
+			</div>
 
 			<ub-full-input asp-for="DeleteViewModel.NavigationUrl" />
 

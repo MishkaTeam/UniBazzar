@@ -86,7 +86,8 @@ public class CreateModel(
 
         if (result.IsSuccessful == false)
         {
-            // Delete image from bucket
+            await storageService.DeleteImageAsync
+                (CreateViewModel.ImageUrl!, Storage.SliderPath);
 
             AddPageError
                 (result.ErrorMessage!.Message);

@@ -2,7 +2,6 @@
 using Application.Aggregates.HomeViews;
 using Application.Aggregates.HomeViews.ViewModels.ImageViewItems;
 using Constants;
-using Framework.Picture;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -22,8 +21,8 @@ public class CreateModel(
     [BindProperty]
     [DataType(DataType.Upload)]
     [Display
-        (ResourceType = typeof(Resources.DataDictionary),
-        Name = nameof(Resources.DataDictionary.Picture))]
+        (ResourceType = typeof(DataDictionary),
+        Name = nameof(DataDictionary.Picture))]
     public IFormFile Image { get; set; }
 
     public async Task<IActionResult> OnGet(Guid homeViewId)
@@ -97,7 +96,8 @@ public class CreateModel(
 
         if (result.IsSuccessful == false)
         {
-            // Delete image from bucket
+            await storageService.DeleteImageAsync
+                (CreateViewModel.ImageUrl!, Storage.ImagePath);
 
             AddPageError
                 (result.ErrorMessage!.Message);
