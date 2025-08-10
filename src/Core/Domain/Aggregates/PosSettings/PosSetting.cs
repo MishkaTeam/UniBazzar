@@ -30,7 +30,7 @@ namespace Domain.Aggregates.PosSettings
             Description = description;
             PhoneNumber = phoneNumber;
             LogoUrl = logoUrl;
-            PriceListId = PriceListId;
+            PriceListId = priceListId;
             PublicCustomer = publicCustomer;
             Address = address;
 
