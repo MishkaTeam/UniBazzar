@@ -42,7 +42,7 @@ namespace Server
             services.AddDomainApplications();
             services.AddDomainRepositories();
             services.AddUnitOfWork();
-            services.AddScoped<IExecutionContextAccessor, ExecutionContextAccessor>();
+            services.AddScoped<IExecutionContextAccessor, Server.Infrastructure.ExecutionContextAccessor>();
 
             services.AddAuditing();
             services.AddS3Storage(new StorageConfig()

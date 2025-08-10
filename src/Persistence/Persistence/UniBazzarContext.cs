@@ -20,6 +20,7 @@ using Domain.Aggregates.ProductReviews;
 using Domain.Aggregates.Customers.ShippingAddresses;
 using Domain.Aggregates.Discounts.DsiscounProducts;
 using Domain.Aggregates.Discounts.DiscountCustomers;
+using Domain.Aggregates.SiteSettings;
 
 namespace Persistence;
 
@@ -74,4 +75,6 @@ public class UniBazzarContext(DbContextOptions options,
     public DbSet<DiscountCustomer> DiscountCustomers { get; set; }
 
     public DbSet<ProductReview> ProductReviews { get; set; }
+    
+    public DbSet<SiteSetting> SiteSettings { get; set; }
 }

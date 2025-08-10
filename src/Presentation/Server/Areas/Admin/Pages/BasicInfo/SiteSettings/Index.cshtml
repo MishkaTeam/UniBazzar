@@ -1,0 +1,36 @@
+@page
+@model Server.Areas.Admin.Pages.BasicInfo.SiteSettings.IndexModel
+@{
+    ViewData[Constants.ViewDataKeyName.PageTitle] = Resources.DataDictionary.SiteSetting;
+}
+<div class="my-2 float-end">  
+    <a class="btn btn-primary" asp-page="Create" asp-area="Admin">@(Resources.ButtonCaptions.Create)</a>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">@(Resources.DataDictionary.Name)</th>
+            <th scope="col">@(Resources.DataDictionary.FullDescription)</th>
+            <th scope="col">@(Resources.DataDictionary.CellPhonenumber)</th>
+            <th scope="col">@(Resources.DataDictionary.Address)</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var model in Model.ViewModel)
+        {
+            <tr>
+                <td>@(model.Name)</td>
+                <td>@(model.Description.Length > 50 ? model.Description.Substring(0, 50) + "..." : model.Description)</td>
+                <td>@(model.PhoneNumber)</td>
+                <td>@(model.Address.Length > 30 ? model.Address.Substring(0, 30) + "..." : model.Address)</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a asp-page="Update" asp-route-Id="@(model.ID)" type="button" class="btn btn-warning">@(Resources.ButtonCaptions.Edit)</a>
+                        <a asp-page="Delete" asp-route-Id="@(model.ID)" type="button" class="btn btn-danger">@(Resources.ButtonCaptions.Delete)</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

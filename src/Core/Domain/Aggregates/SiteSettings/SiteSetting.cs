@@ -1,77 +1,104 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Framework.DataType;
+using Resources;
+using Resources.Messages;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Aggregates.SiteSettings
+namespace Domain.Aggregates.SiteSettings;
+
+public class SiteSetting : Entity
 {
-    public class SiteSetting : Entity
+    public SiteSetting() 
     {
-        public SiteSetting() { }
+        // FOR EF!
+    }
 
-        public string Desciption { get; private set; }
-        public string Name { get; private set; }
-        public string PhoneNumber { get; private set; }
-        public string LogoURL { get; private set; }
-        public Guid? PriceListID { get; private set; }
-        public string Address { get; private set; }
+    public string Description { get; private set; }
+    public string Name { get; private set; }
+    public string PhoneNumber { get; private set; }
+    public string LogoURL { get; private set; }
+    public Guid? PriceListID { get; private set; }
+    public string Address { get; private set; }
 
-        private SiteSetting(string name, string discription, string phonenumber, string logourl
-            , Guid? priceListID, string address)
+    private SiteSetting(string name, string description, string phoneNumber, string logoUrl, 
+        Guid? priceListId, string address)
+    {
+        Name = name;
+        Description = description;
+        PhoneNumber = phoneNumber;
+        LogoURL = logoUrl;
+        PriceListID = priceListId;
+        Address = address;
+    }
+
+    public static SiteSetting Create(string name, string description, string phoneNumber, 
+        string logoUrl, Guid? priceListId, string address)
+    {
+        ValidatePhoneNumber(phoneNumber);
+        ValidateRequiredFields(name, description, address);
+
+        var siteSetting = new SiteSetting(name, description, phoneNumber, logoUrl, 
+            ValidatePriceListId(priceListId), address)
         {
-            Desciption = discription;
-            Name = name;
-            PhoneNumber = phonenumber;
-            Address = address;
-            LogoURL = logourl;
-            PriceListID = priceListID;
+            Name = name.Fix() ?? "",
+            Description = description.Fix() ?? "",
+            PhoneNumber = phoneNumber.Fix() ?? "",
+            LogoURL = logoUrl.Fix() ?? "",
+            Address = address.Fix() ?? "",
+            PriceListID = ValidatePriceListId(priceListId)
+        };
+
+        return siteSetting;
+    }
+
+    public void Update(string name, string description, string phoneNumber, 
+        string logoUrl, Guid? priceListId, string address)
+    {
+        ValidatePhoneNumber(phoneNumber);
+        ValidateRequiredFields(name, description, address);
+
+        Name = name.Fix() ?? "";
+        Description = description.Fix() ?? "";
+        PhoneNumber = phoneNumber.Fix() ?? "";
+        LogoURL = logoUrl.Fix() ?? "";
+        Address = address.Fix() ?? "";
+        PriceListID = ValidatePriceListId(priceListId);
+
+        SetUpdateDateTime();
+    }
+
+    private static void ValidatePhoneNumber(string phoneNumber)
+    {
+        if (!phoneNumber.IsValidMobile())
+        {
+            var message = string.Format(Validations.Required, DataDictionary.CellPhonenumber);
+            throw new ValidationException(message);
+        }
+    }
+
+    private static void ValidateRequiredFields(string name, string description, string address)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            var message = string.Format(Validations.Required, DataDictionary.Name);
+            throw new ArgumentException(message);
         }
 
-        public static SiteSetting Create(string description, string name, string phonenumber, string logourl
-            , Guid? priceListID, string address)
+        if (string.IsNullOrWhiteSpace(description))
         {
-            if (!phonenumber.IsValidMobile())
-                throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
-
-            var sitesetting = new SiteSetting()
-            {
-                Desciption = description,
-                Name = name,
-                LogoURL = logourl,
-                PriceListID = ValidatePriceListID(priceListID),
-                Address = address
-            };
-            return sitesetting;
+            var message = string.Format(Validations.Required, DataDictionary.FullDescription);
+            throw new ArgumentException(message);
         }
 
-        private static Guid? ValidatePriceListID(Guid? PriceListID)
+        if (string.IsNullOrWhiteSpace(address))
         {
-            if (PriceListID == Guid.Empty)
-            {
-                PriceListID = null;
-            }
-
-            return PriceListID;
+            var message = string.Format(Validations.Required, DataDictionary.Address);
+            throw new ArgumentException(message);
         }
+    }
 
-        public void Update(string description, string name, string phonenumber, string logourl
-            , Guid? priceListID, string address)
-        {
-            if (!phonenumber.IsValidMobile())
-                throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
-            Desciption = description;
-            Name = name;
-            PhoneNumber = phonenumber;
-            LogoURL = logourl;
-            PriceListID = ValidatePriceListID(priceListID);
-            Address = address;
-            SetUpdateDateTime();
-
-        }
-
+    private static Guid? ValidatePriceListId(Guid? priceListId)
+    {
+        return priceListId == Guid.Empty ? null : priceListId;
     }
 }

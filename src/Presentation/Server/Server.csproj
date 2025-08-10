@@ -31,8 +31,10 @@
   </ItemGroup>
 
 
-	<Target Name="RunViteBuild" BeforeTargets="Build">
-		<Exec Command="npm run build" WorkingDirectory="$(ProjectDir)/ClientApp" />
+	<!-- Optional npm build - only runs if npm is available -->
+	<Target Name="RunViteBuild" BeforeTargets="Build" Condition="Exists('$(ProjectDir)/ClientApp/package.json')">
+		<Exec Command="npm install" WorkingDirectory="$(ProjectDir)/ClientApp" ContinueOnError="true" />
+		<Exec Command="npm run build" WorkingDirectory="$(ProjectDir)/ClientApp" ContinueOnError="true" />
 	</Target>
 
 </Project>

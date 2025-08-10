@@ -58,6 +58,9 @@ using Domain.Aggregates.Customers.ShippingAddresses;
 using Application.Aggregates.Customers.ShippingAddresses;
 using Domain.Aggregates.Discounts.DsiscounProducts;
 using Domain.Aggregates.Discounts.DiscountCustomers;
+using Domain.Aggregates.SiteSettings;
+using Application.Aggregates.SiteSettings;
+using Persistence.Repositories;
 
 namespace Server.Infrastructure.Extensions.ServiceCollections;
 
@@ -94,6 +97,8 @@ public static class DomainExtensions
         services.AddScoped<CustomerSearchApplication>();
 
         services.AddScoped<ProductReviewApplication>();
+        
+        services.AddScoped<SiteSettingApplication>();
 
         return services;
     }
@@ -130,6 +135,8 @@ public static class DomainExtensions
         services.AddScoped<ICustomerSearchRepository, CustomerSearchRepository>();
 
         services.AddScoped<IProductReviewRepository, CommentRepository>();
+        
+        services.AddScoped<ISiteSettingRepository, SiteSettingRepository>();
 
         return services;
     }

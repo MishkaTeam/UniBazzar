@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.Persistence\BuildingBlocks.Persistence.csproj" />
     <ProjectReference Include="..\..\Core\Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\Core\Constants\Constants.csproj" />
   </ItemGroup>
 
 </Project>

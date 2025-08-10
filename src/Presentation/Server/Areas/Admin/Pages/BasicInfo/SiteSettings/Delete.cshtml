@@ -1,0 +1,60 @@
+@page
+@model Server.Areas.Admin.Pages.BasicInfo.SiteSettings.DeleteModel
+@{
+    var pageTitle =
+    $"{Resources.DataDictionary.DeleteOf} {Resources.DataDictionary.SiteSetting}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+    <section-form>
+        <fieldset>
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+
+            <div class="alert alert-warning" role="alert">
+                آیا از حذف این تنظیمات سایت اطمینان دارید؟
+            </div>
+
+            <input type="hidden" asp-for="ViewModel.ID" />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">@(Resources.DataDictionary.Name)</label>
+                    <input class="form-control" value="@Model.ViewModel.Name" readonly />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">@(Resources.DataDictionary.CellPhonenumber)</label>
+                    <input class="form-control" value="@Model.ViewModel.PhoneNumber" readonly />
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <label class="form-label">@(Resources.DataDictionary.FullDescription)</label>
+                    <textarea class="form-control" rows="3" readonly>@Model.ViewModel.Description</textarea>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <label class="form-label">@(Resources.DataDictionary.Address)</label>
+                    <textarea class="form-control" rows="2" readonly>@Model.ViewModel.Address</textarea>
+                </div>
+            </div>
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-delete />
+            <button-back asp-page="Index" />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>

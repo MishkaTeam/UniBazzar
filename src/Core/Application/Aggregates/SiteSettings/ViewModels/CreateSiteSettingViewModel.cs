@@ -28,14 +28,14 @@ namespace Application.Aggregates.SiteSettings.ViewModels
         [Display
         (ResourceType = typeof(Resources.DataDictionary),
         Name = nameof(Resources.DataDictionary.Logo))]
-        public string LogoURL { get; private set; }
+        public string LogoURL { get; set; }
         [Display
         (ResourceType = typeof(Resources.DataDictionary),
         Name = nameof(Resources.DataDictionary.PriceList))]
-        public Guid? PriceListID { get; private set; }
+        public Guid? PriceListID { get; set; }
         [Display
         (ResourceType = typeof(Resources.DataDictionary),
         Name = nameof(Resources.DataDictionary.Address))]
-        public string Address { get; private set; }
+        public string Address { get; set; }
     }
 }

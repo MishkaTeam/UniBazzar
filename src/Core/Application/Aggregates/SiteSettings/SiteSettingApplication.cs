@@ -1,6 +1,6 @@
 ﻿using Application.Aggregates.SiteSettings.ViewModels;
-using BuildingBlocks.Domain.Data;
 using Domain.Aggregates.SiteSettings;
+using Domain;
 using Mapster;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace Application.Aggregates.SiteSettings
     {
         public async Task<SiteSettingViewModel> CreateSiteSettingAsync(CreateSiteSettingViewModel siteSettingViewModel)
         {
-            var siteSetting = SiteSetting.Create(siteSettingViewModel.Description, siteSettingViewModel.Name
+            var siteSetting = SiteSetting.Create(siteSettingViewModel.Name, siteSettingViewModel.Description
                 , siteSettingViewModel.PhoneNumber, siteSettingViewModel.LogoURL
                 , siteSettingViewModel.PriceListID, siteSettingViewModel.Address);
             await siteSettingRepository.AddAsync(siteSetting);
@@ -40,7 +40,7 @@ namespace Application.Aggregates.SiteSettings
             {
                 throw new Exception(string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.SiteSetting));
             }
-            siteSettingForUpdate.Update(updateViewModel.Description, updateViewModel.Name
+            siteSettingForUpdate.Update(updateViewModel.Name, updateViewModel.Description
                 , updateViewModel.PhoneNumber, updateViewModel.LogoURL
                 , updateViewModel.PriceListID, updateViewModel.Address);
             await unitOfWork.SaveChangesAsync();
