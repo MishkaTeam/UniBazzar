@@ -2,42 +2,127 @@
 @model Server.Areas.Admin.Pages.BasicInfo.HomeViews.ProductViewItems.CreateModel
 
 @{
-    var pageTitle =
-        $"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.ProductItem}";
+	var pageTitle =
+		$"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.ProductItem}";
 
-    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 }
 
 
 <form method="post" enctype="multipart/form-data">
 
-    <section-form>
+	<section-form>
 
-        <fieldset>
+		<fieldset>
 
-            <section-form-header>
-                @(pageTitle)
-            </section-form-header>
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
 
-            <partial name="PartialViews/_DisplayPageMessages" />
+			<partial name="PartialViews/_DisplayPageMessages" />
 
-            <input hidden asp-for="CreateViewModel.HomeViewId" />
+			<input hidden asp-for="CreateViewModel.HomeViewId" />
+			<input hidden id="productId" asp-for="CreateViewModel.ProductId" />
 
-            <div class="mb-3">
-                <label asp-for="CreateViewModel.ProductId" class="form-label"></label>
-                <select asp-for="CreateViewModel.ProductId" asp-items="Model.ProductList" class="form-select"></select>
-                <span asp-validation-for="CreateViewModel.ProductId" class="field-validation-valid text-danger"></span>
-            </div>
+			<div class="row">
+				<div class="col" id="lookupApp">
+					<search-lookup v-on:selected="onItemSelected"></search-lookup>
+				</div>
+				<div class="col-md-3">
+					<ub-full-input asp-for="CreateViewModel.Ordering" />
+				</div>
+			</div>
 
-            <ub-full-input asp-for="CreateViewModel.Ordering" />
+		</fieldset>
 
-        </fieldset>
+		<section-form-buttons>
+			<button-create />
+			<button-reset />
+		</section-form-buttons>
 
-        <section-form-buttons>
-            <button-create />
-            <button-reset />
-        </section-form-buttons>
-
-    </section-form>
+	</section-form>
 
 </form>
+
+
+<style>
+
+	.search-box {
+		position: relative;
+	}
+
+	.search-suggestions {
+		position: absolute;
+		top: 100%;
+		right: 0;
+		left: 0;
+		z-index: 1000;
+		border: 1px solid #dee2e6;
+		background: var(--cui-body-bg);
+		border-radius: 12px;
+		margin-top: 5px;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		max-height: 400px;
+		overflow-y: auto;
+		animation: fadeIn 0.3s ease;
+	}
+
+	.suggestion-item {
+		padding: 12px 16px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+
+		.suggestion-item:hover {
+			background-color: #f1f3f5;
+		}
+
+	.suggestion-text {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.suggestion-title {
+		font-weight: 500;
+	}
+
+	.suggestion-category {
+		font-size: 0.85rem;
+		color: #6c757d;
+	}
+
+	.divider {
+		height: 1px;
+		background-color: #e9ecef;
+		margin: 8px 0;
+	}
+
+</style>
+
+@section Scripts {
+	<script src="~/js/components/productsearchlookup.vue.js"></script>
+	<script type="module">
+		const { createApp, ref } = Vue
+		const app = createApp({
+		  setup() {
+			const selectedItem = ref(null)
+
+			function onItemSelected(item) {
+			  console.log("آیتم انتخاب شد:", item)
+			  document.getElementById("productId").value = item.productId;
+			  selectedItem.value = item
+			}
+
+			return {
+			  selectedItem,
+			  onItemSelected
+			}
+		  }
+		})
+		app.component('search-lookup', SearchLookup);
+		app.mount('#lookupApp');
+	</script>
+}
