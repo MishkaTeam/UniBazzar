@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Persistence;
@@ -11,9 +12,11 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(UniBazzarContext))]
-    partial class UniBazzarContextModelSnapshot : ModelSnapshot
+    [Migration("20250810130435_AddCustomerIdInBasket")]
+    partial class AddCustomerIdInBasket
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -643,9 +646,6 @@ namespace Persistence.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)");
 
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
@@ -684,8 +684,6 @@ namespace Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
 
                     b.ToTable("Orders", (string)null);
                 });
@@ -1556,8 +1554,7 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Domain.Aggregates.Customers.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("CustomerId");
 
                     b.OwnsOne("Domain.Aggregates.Ordering.ValueObjects.DiscountAmount", "TotalDiscountAmount", b1 =>
                         {
@@ -1778,12 +1775,6 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Aggregates.Ordering.Orders.Order", b =>
                 {
-                    b.HasOne("Domain.Aggregates.Customers.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.OwnsOne("Domain.Aggregates.Ordering.ValueObjects.DiscountAmount", "TotalDiscountAmount", b1 =>
                         {
                             b1.Property<Guid>("OrderId")
@@ -1995,8 +1986,6 @@ namespace Persistence.Migrations
                             b1.Navigation("ProductAmount")
                                 .IsRequired();
                         });
-
-                    b.Navigation("Customer");
 
                     b.Navigation("OrderItems");
 

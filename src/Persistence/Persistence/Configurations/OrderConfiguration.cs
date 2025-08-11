@@ -21,6 +21,22 @@ internal class OrderConfiguration : BaseConfiguration<Order>
                .HasMaxLength(150)
                .IsRequired();
 
+        builder.HasOne(x => x.Customer)
+               .WithMany()
+               .HasForeignKey(x => x.CustomerId)
+               .OnDelete(DeleteBehavior.Restrict)
+               .IsRequired();
+
+        builder.Ignore(x => x.TotalBeforeDiscount);
+        builder.Ignore(x => x.Total);
+
+        builder.OwnsOne(x => x.TotalDiscountAmount, dBuilder =>
+        {
+            dBuilder.Property(x => x.DiscountType).HasColumnName("TotalDiscountType");
+            dBuilder.Property(x => x.Value).HasColumnName("TotalDiscountAmount");
+
+        });
+
         builder.OwnsMany(x => x.OrderItems, itemBuilder =>
         {
             itemBuilder.ToTable("OrderItems");
@@ -30,13 +46,6 @@ internal class OrderConfiguration : BaseConfiguration<Order>
             itemBuilder.Property(s => s.OrderReferenceNumber)
                    .HasMaxLength(150)
                    .IsRequired();
-
-            builder.OwnsOne(x => x.TotalDiscountAmount, dBuilder =>
-            {
-                dBuilder.Property(x => x.DiscountType).HasColumnName("TotalDiscountType");
-                dBuilder.Property(x => x.Value).HasColumnName("TotalDiscountAmount");
-
-            });
 
             itemBuilder.Property(x => x.Ordering)
                    .HasDefaultValue(10_000);
@@ -55,6 +64,10 @@ internal class OrderConfiguration : BaseConfiguration<Order>
 
             itemBuilder.Property(s => s.UpdateDateTime)
                    .IsRequired();
+
+            itemBuilder.Ignore(x => x.TotalPrice);
+            itemBuilder.Ignore(x => x.TotalPriceWithAdjustment);
+            itemBuilder.Ignore(x => x.PriceAdjustments);
 
             itemBuilder.OwnsOne(x => x.DiscountAmount, dBuilder =>
             {

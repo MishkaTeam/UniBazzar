@@ -10,6 +10,8 @@ using Framework.DataType;
 using Mapster;
 using Modules.Treasury.Api.TreasuryAbstraction;
 using Modules.Treasury.Application.Contracts;
+using Resources;
+using Resources.Messages;
 
 namespace Application.Aggregates.Ordering.Orders;
 
@@ -27,16 +29,36 @@ public class OrderApplication(
             var basket = await basketRepository.GetWithItemsByIdAsync(request.BasketId);
 
             if (basket == null)
-                return (ErrorType.NotFound, string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket));
+            {
+                var message =
+                    string.Format(Errors.NotFound, DataDictionary.Basket);
 
-            var order = Order.CreateFromBasket(basket);
+                return (ErrorType.NotFound, message);
+            }
+
+            if (basket.CustomerId == null ||
+                basket.CustomerId.Value == Guid.Empty)
+            {
+                var message =
+                    string.Format(Errors.NotFound, DataDictionary.Customer);
+
+                return (ErrorType.NotFound, message);
+            }
+
+            var order =
+                Order.CreateFromBasket(basket);
+
             await orderRepository.AddAsync(order, cancellationToken);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
-            // Should use CustomerId in query !!!
-            var customer = await customerApplication.GetCustomerAsync(basket.OwnerId);
-            var recCustomer = new ReceiptCustomer(customer.Id, string.Join(customer.FirstName, ' ', customer.LastName));
-            var receiptRes = receipts.CreateCashReceiptAsync(customer: recCustomer, price: basket.Total, orderId: order.Id, cancellationToken: cancellationToken);
+            var customer =
+                await customerApplication.GetCustomerAsync(basket.CustomerId!.Value);
+
+            var recCustomer = new ReceiptCustomer
+                (customer.Id, string.Join(customer.FirstName, ' ', customer.LastName));
+
+            var receiptRes = receipts.CreateCashReceiptAsync
+                (customer: recCustomer, price: basket.Total, orderId: order.Id, cancellationToken: cancellationToken);
 
             return new ProcessOrderResponseModel
             {
@@ -53,7 +75,9 @@ public class OrderApplication(
     public async Task<ResultContract<List<OrderViewModel>>> GetAllOrderAsync()
     {
         var orders =
-            (await orderRepository.GetAllAsync()).ToList();
+            (await orderRepository.GetAllAsync())
+            .OrderByDescending(x => x.InsertDateTime)
+            .ToList();
 
         return OrderViewModel.FromOrderList(orders);
     }

@@ -3,6 +3,7 @@
 
 @using Application.Aggregates.Ordering.Baskets
 @using Application.Aggregates.Customers
+@using Application.Aggregates.Ordering.Orders
 @using Application.Aggregates.Products
 @using Application.Aggregates.Ordering.Baskets.ViewModels.BasketItems;
 @using Blazored.SessionStorage
@@ -11,6 +12,7 @@
 @inject BasketApplication basketApplication
 @inject CustomerApplication customerApplication
 @inject ProductsApplication productApplication
+@inject OrderApplication orderApplication
 @inject ISessionStorageService sessionStorage
 
 
