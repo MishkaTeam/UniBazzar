@@ -1,9 +1,10 @@
-﻿using Domain.Aggregates.Products;
+﻿using BuildingBlocks.Domain.Aggregates;
+using Domain.Aggregates.Products;
 using Domain.Aggregates.Units;
 
 namespace Modules.Inventory.Domain.Aggreates.Receipts.ReceiptItems
 {
-    public class ReceiptItem
+    public class ReceiptItem : Entity
     {
         public Guid ReceiptId { get; set; }
         public Receipt Receipt { get; set; }

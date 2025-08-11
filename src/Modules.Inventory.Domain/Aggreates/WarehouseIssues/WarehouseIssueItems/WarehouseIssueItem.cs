@@ -1,9 +1,10 @@
-﻿using Domain.Aggregates.Products;
+﻿using BuildingBlocks.Domain.Aggregates;
+using Domain.Aggregates.Products;
 using Domain.Aggregates.Units;
 
 namespace Modules.Inventory.Domain.Aggreates.WarehouseIssues.WarehouseIssueItems
 {
-    public class WarehouseIssueItem 
+    public class WarehouseIssueItem : Entity
     {
         public Guid WarehouseIssueId { get; set; }
         public WarehouseIssue WarehouseIssue { get; set; }

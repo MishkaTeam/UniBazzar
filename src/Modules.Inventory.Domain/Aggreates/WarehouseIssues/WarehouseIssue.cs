@@ -1,8 +1,9 @@
-﻿using Domain.Aggregates.Customers;
+﻿using BuildingBlocks.Domain.Aggregates;
+using Domain.Aggregates.Customers;
 
 namespace Modules.Inventory.Domain.Aggreates.WarehouseIssues
 {
-    public class WarehouseIssue
+    public class WarehouseIssue : Entity
     {
         public Guid CustomerId { get; set; }
         public Customer Customer { get; set; }
