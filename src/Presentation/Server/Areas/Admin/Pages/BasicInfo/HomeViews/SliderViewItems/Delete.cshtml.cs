@@ -1,12 +1,15 @@
 using Application.Aggregates.HomeViews;
 using Application.Aggregates.HomeViews.ViewModels.SliderViewItems;
+using Constants;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Server.Infrastructure.Services;
 
 namespace Server.Areas.Admin.Pages.BasicInfo.HomeViews.SliderViewItems;
 
-public class DeleteModel
-    (HomeViewsApplication homeViewsApplication) : BasePageModel
+public class DeleteModel(
+    HomeViewsApplication homeViewsApplication,
+    StorageService storageService) : BasePageModel
 {
     [BindProperty]
     public SliderViewItemViewModel DeleteViewModel { get; set; } = new();
@@ -49,7 +52,8 @@ public class DeleteModel
 
     public async Task<IActionResult> OnPostAsync()
     {
-        // Delete image from bucket
+        await storageService.DeleteImageAsync
+            (DeleteViewModel.ImageUrl!, Storage.SliderPath);
 
         await homeViewsApplication.DeleteSliderItem
             (DeleteViewModel.HomeViewId, DeleteViewModel.Id);

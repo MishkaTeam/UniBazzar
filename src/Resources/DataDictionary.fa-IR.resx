@@ -540,7 +540,31 @@
   <data name="SliderItem" xml:space="preserve">
     <value>اسلاید</value>
   </data>
+  <data name="Column" xml:space="preserve">
+    <value>اندازه در صفحه</value>
+  </data>
+  <data name="ImageItem" xml:space="preserve">
+    <value>عکس</value>
+  </data>
+  <data name="ImageItems" xml:space="preserve">
+    <value>عکس‌ها</value>
+  </data>
+  <data name="ProductItem" xml:space="preserve">
+    <value>کالا</value>
+  </data>
+  <data name="ProductItems" xml:space="preserve">
+    <value>کالاها</value>
+  </data>
   <data name="Orders" xml:space="preserve">
     <value>سفارشات</value>
+  </data>
+  <data name="FullScreen" xml:space="preserve">
+    <value>کل صفحه</value>
+  </data>
+  <data name="SplitScreen" xml:space="preserve">
+    <value>نصف صفحه</value>
+  </data>
+  <data name="Cms" xml:space="preserve">
+    <value>مدیریت محتوا</value>
   </data>
 </root>

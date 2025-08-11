@@ -29,6 +29,7 @@
     <ProjectReference Include="..\..\Core\Application\Application.csproj" />
     <ProjectReference Include="..\..\Core\Constants\Constants.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.DataType\Framework.DataType.csproj" />
+    <ProjectReference Include="..\..\Framework\Framework.Image\Framework.Picture.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.Storage\Framework.Storage.csproj" />
     <ProjectReference Include="..\..\Persistence\Persistence\Persistence.csproj" />
     <ProjectReference Include="..\..\Resources\Resources.csproj" />
@@ -36,7 +37,7 @@
 
 
 	<Target Name="RunViteBuild" BeforeTargets="Build" Condition="'$(Configuration)' != 'Debug'">
-		<Exec Command="npm run build-prod" WorkingDirectory=    "$(ProjectDir)/ClientApp" />
+		<Exec Command="npm run build-prod" WorkingDirectory="$(ProjectDir)/ClientApp" />
 	</Target>
 
 	<Target Name="RunViteDev" BeforeTargets="Build" Condition="'$(Configuration)' == 'Debug'">

@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using Application.Aggregates.HomeViews;
 using Application.Aggregates.HomeViews.ViewModels.SliderViewItems;
 using Constants;
+using Framework.Picture;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Server.Infrastructure.Services;
@@ -65,9 +66,38 @@ public class UpdateModel(
             return Page();
         }
 
+        string oldImageUrl = "";
+
         if (SliderImage != null)
         {
-            // Delete image from bucket
+            var oldSlideItem = await homeViewsApplication
+                .GetSliderItem(UpdateViewModel.HomeViewId, UpdateViewModel.Id);
+
+            if (oldSlideItem.IsSuccessful == false)
+            {
+                return RedirectToPage("Index",
+                    new { homeViewId = UpdateViewModel.HomeViewId.ToString() });
+            }
+
+            oldImageUrl =
+                oldSlideItem.Data!.ImageUrl!;
+
+            using var memoryStream =
+                new MemoryStream();
+
+            await SliderImage.CopyToAsync(memoryStream);
+
+            var checkSize = await ImageHelper
+                .CheckImageSizeAsync(memoryStream, ratio: 4);
+
+            if (checkSize == false)
+            {
+                var message =
+                    "image size should in ratio 4.";
+
+                AddPageError(message);
+                return Page();
+            }
 
             var uploadResult = await storageService.UploadImageAsync
                 (SliderImage, Storage.SliderPrefix, Storage.SliderPath);
@@ -88,11 +118,26 @@ public class UpdateModel(
 
         if (result.IsSuccessful == false)
         {
+            if (SliderImage != null)
+            {
+                await storageService.DeleteImageAsync
+                    (UpdateViewModel.ImageUrl!, Storage.SliderPath);
+            }
+
             AddPageError
                 (result.ErrorMessage!.Message);
 
             return Page();
         }
+
+        if (SliderImage != null)
+        {
+            await storageService.DeleteImageAsync
+                (oldImageUrl!, Storage.SliderPath);
+        }
+
+        await storageService.DeleteImageAsync
+            (oldImageUrl!, Storage.SliderPath);
 
         return RedirectToPage("Index",
             new { homeViewId = UpdateViewModel.HomeViewId.ToString() });

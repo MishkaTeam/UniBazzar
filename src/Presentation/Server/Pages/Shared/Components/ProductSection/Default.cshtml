@@ -1,0 +1,80 @@
+﻿@using Application.Aggregates.HomeViews.ViewModels.HomeViews
+@using Application.Aggregates.Products.ViewModels
+@using Domain.Aggregates.Cms.HomeViews.Enums
+@using Server.Pages.Shared.Components.ProductCard
+@model (IndexHomeViewViewModel, List<ProductCardViewModel>)
+
+@{
+	var homeView = Model.Item1;
+
+	var products =
+		Model.Item2.Take(8).ToList();
+}
+
+
+<section id="encrypt4721256" class="pt-4">
+
+	@* <h1 class="encrypt45121256 fs-3">@(homeView.Title)</h1> *@
+
+	<div class="container pt-2">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 rounded-3 flex-nowrap overflow-x-auto products-scroll"
+			 style="background-color: #ebebeb;" data-aos="fade-up" data-aos-duration="1000">
+
+			@for (int index = 0; index < products.Count; index++)
+			{
+				if (index == 0)
+				{
+					<a asp-page="/Product/ProductView" asp-route-id="@(homeView.Id)"
+					   style="width: 18rem;" class="d-flex flex-column bg-white text-dark border border-3 rounded-4 m-2">
+
+						<div class="text-center pt-3 mb-auto">
+							<h4>@(homeView.Title)</h4>
+						</div>
+						<div class="text-center pb-2">
+							<h6 class="d-flex justify-content-center">
+								<span>مشاهده همه</span>
+								<i class="bi bi-chevron-left d-flex align-items-center ps-1"></i>
+							</h6>
+						</div>
+					</a>
+				}
+
+				var product = products[index];
+
+				<div class="col ps-0 py-2">
+					@await Component.InvokeAsync(ProductCardViewComponent.KEY, product)
+				</div>
+
+				if (index == products.Count - 1)
+				{
+					<a asp-page="/Product/ProductView" asp-route-id="@(homeView.Id)"
+					   style="width: 18rem;" class="d-flex flex-column justify-content-center bg-white text-dark border border-3 rounded-4 m-2 ms-0">
+
+						<div class="d-flex flex-column align-items-center">
+							<i class="bi bi-arrow-left-circle display-3 text-primary d-flex align-items-center ps-1"></i>
+							<h6 class="d-flex justify-content-center pt-3">مشاهده همه</h6>
+						</div>
+					</a>
+				}
+			}
+		</div>
+	</div>
+
+</section>
+
+
+<style>
+	.products-scroll::-webkit-scrollbar {
+		width: 10px;
+		height: 8px;
+	}
+
+	.products-scroll::-webkit-scrollbar-track {
+		background-color: #dbdbdb;
+	}
+
+	.products-scroll::-webkit-scrollbar-thumb {
+		border-radius: 20px;
+		background: #878787;
+	}
+</style>

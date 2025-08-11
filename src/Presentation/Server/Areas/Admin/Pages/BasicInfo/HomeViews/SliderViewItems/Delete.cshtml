@@ -15,6 +15,7 @@
 
 		<input hidden asp-for="DeleteViewModel.Id" dir="ltr" />
 		<input hidden asp-for="DeleteViewModel.HomeViewId" dir="ltr" />
+		<input hidden asp-for="DeleteViewModel.ImageUrl" dir="ltr" />
 
 		<fieldset disabled>
 
@@ -24,7 +25,9 @@
 
 			<partial name="PartialViews/_DisplayPageMessages" />
 
-			@* Show image of slider !!! *@
+			<section-form-field>
+				<img class="w-100 rounded-3" src="@(Model.DeleteViewModel.ImageUrl)" />
+			</section-form-field>
 
 			<ub-full-input asp-for="DeleteViewModel.Title" />
 

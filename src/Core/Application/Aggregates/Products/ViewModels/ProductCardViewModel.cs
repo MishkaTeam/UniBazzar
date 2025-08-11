@@ -2,6 +2,7 @@
 
 public class ProductCardViewModel
 {
+    public Guid Id { get; set; }
     public string SKU { get; set; }
     public string Slug { get; set; }
     public decimal Price { get; set; }
