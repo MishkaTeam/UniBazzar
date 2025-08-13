@@ -1,14 +1,15 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
 using Domain.Aggregates.Products;
 using Domain.Aggregates.Units;
+using Modules.Inventory.Domain.Aggreates.Warehouses;
 using System.Security.AccessControl;
 
 namespace Modules.Inventory.Domain.Aggreates.Cardexs
 {
     public class Cardex : Entity
     {
-        public Guid InventoryId { get; set; }
-        public Inventories.Inventory Inventory { get; set; }
+        public Guid WarehouseId { get; set; }
+        public Warehouse Warehouse { get; set; }
 
         public Guid ProductId { get; set; }
         public Product Product { get; set; }
@@ -26,10 +27,10 @@ namespace Modules.Inventory.Domain.Aggreates.Cardexs
 
         public string? Description { get; set; }
 
-        private Cardex(Guid inventoryId, Guid productId, Guid unitId, decimal unitPrice,
+        private Cardex(Guid warehouseId, Guid productId, Guid unitId, decimal unitPrice,
                        string referenceNumber, decimal quantityIn, decimal quantityOut, string? description)
         {
-            InventoryId = inventoryId;
+            WarehouseId = warehouseId;
             ProductId = productId;
             UnitId = unitId;
             UnitPrice = unitPrice;
@@ -39,16 +40,16 @@ namespace Modules.Inventory.Domain.Aggreates.Cardexs
             Description = description;
         }
 
-        public static Cardex Create(Guid inventoryId, Guid productId, Guid unitId, decimal unitPrice,
+        public static Cardex Create(Guid warehouseId, Guid productId, Guid unitId, decimal unitPrice,
                        string referenceNumber, decimal quantityIn, decimal quantityOut, string? description)
         {
-            return new Cardex(inventoryId, productId, unitId, unitPrice, referenceNumber, quantityIn, quantityOut, description);
+            return new Cardex(warehouseId, productId, unitId, unitPrice, referenceNumber, quantityIn, quantityOut, description);
         }
 
-        public void Update(Guid inventoryId, Guid productId, Guid unitId, decimal unitPrice,
+        public void Update(Guid warehouseId, Guid productId, Guid unitId, decimal unitPrice,
                        string referenceNumber, decimal quantityIn, decimal quantityOut, string? description)
         {
-            InventoryId = inventoryId;
+            WarehouseId = warehouseId;
             ProductId = productId;
             UnitId = unitId;
             UnitPrice = unitPrice;

@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
 using Domain.Aggregates.Customers;
+using Modules.Inventory.Domain.Aggreates.Warehouses;
 
 namespace Modules.Inventory.Domain.Aggreates.WarehouseIssues
 {
@@ -8,8 +9,8 @@ namespace Modules.Inventory.Domain.Aggreates.WarehouseIssues
         public Guid CustomerId { get; set; }
         public Customer Customer { get; set; }
 
-        public Guid InventoryId { get; set; }
-        public Inventories.Inventory Inventory { get; set; }
+        public Guid WarehouseId { get; set; }
+        public Warehouse Warehouse { get; set; }
 
         public string? Description { get; set; }
 
@@ -17,24 +18,24 @@ namespace Modules.Inventory.Domain.Aggreates.WarehouseIssues
 
         public DateTime WarehouseIssueDate { get; set; }
 
-        private WarehouseIssue(Guid customerId, Guid inventoryId, string? description, string warehouseIssueNumber, DateTime warehouseIssueDate)
+        private WarehouseIssue(Guid customerId, Guid warehouseId, string? description, string warehouseIssueNumber, DateTime warehouseIssueDate)
         {
             CustomerId = customerId;
-            InventoryId = inventoryId;
+            WarehouseId = warehouseId;
             Description = description;
             WarehouseIssueDate = warehouseIssueDate;
             WarehouseIssueNumber = warehouseIssueNumber;
         }
 
-        public static WarehouseIssue Create(Guid customerId, Guid inventoryId, string? description, string warehouseIssueNumber, DateTime warehouseIssueDate)
+        public static WarehouseIssue Create(Guid customerId, Guid warehouseId, string? description, string warehouseIssueNumber, DateTime warehouseIssueDate)
         {
-            return new WarehouseIssue(customerId, inventoryId, description, warehouseIssueNumber, warehouseIssueDate);
+            return new WarehouseIssue(customerId, warehouseId, description, warehouseIssueNumber, warehouseIssueDate);
         }
 
-        public void Update(Guid customerId, Guid inventoryId, string? description, string warehouseIssueNumber, DateTime warehouseIssueDate)
+        public void Update(Guid customerId, Guid warehouseId, string? description, string warehouseIssueNumber, DateTime warehouseIssueDate)
         {
             CustomerId = customerId;
-            InventoryId = inventoryId;
+            WarehouseId = warehouseId;
             Description = description;
             WarehouseIssueDate = warehouseIssueDate;
             WarehouseIssueNumber = warehouseIssueNumber;

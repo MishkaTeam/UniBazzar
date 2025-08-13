@@ -1,21 +1,21 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
 
-namespace Modules.Inventory.Domain.Aggreates.Inventories
+namespace Modules.Inventory.Domain.Aggreates.Warehouses
 {
-    public class Inventory : Entity
+    public class Warehouse : Entity
     {
         public string Name { get; set; }
         public string? Location { get; set; }
 
-        private Inventory(string name, string? location)
+        private Warehouse(string name, string? location)
         {
             Name = name;
             Location = location;
         }
 
-        public static Inventory Create(string name, string? location)
+        public static Warehouse Create(string name, string? location)
         {
-            var inventory = new Inventory(name, location)
+            var inventory = new Warehouse(name, location)
             {
                 Name = name,
                 Location = location,
