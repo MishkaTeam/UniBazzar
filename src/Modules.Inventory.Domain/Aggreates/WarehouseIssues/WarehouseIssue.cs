@@ -7,7 +7,6 @@ namespace Modules.Inventory.Domain.Aggreates.WarehouseIssues
     public class WarehouseIssue : Entity
     {
         public Guid CustomerId { get; set; }
-        public Customer Customer { get; set; }
 
         public Guid WarehouseId { get; set; }
         public Warehouse Warehouse { get; set; }
