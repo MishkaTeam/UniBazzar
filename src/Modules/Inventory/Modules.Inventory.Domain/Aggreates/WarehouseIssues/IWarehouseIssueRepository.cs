@@ -5,6 +5,5 @@ namespace Modules.Inventory.Domain.Aggreates.WarehouseIssues
 {
     public interface IWarehouseIssueRepository : IRepositoryBase<WarehouseIssue>
     {
-        Task<List<WarehouseIssueItem>> GetWarehouseIssueItems(Guid warehouseIssueId);
     }
 }
