@@ -979,6 +979,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PublicCustomer.
+        /// </summary>
+        public static string PublicCustomer {
+            get {
+                return ResourceManager.GetString("PublicCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quantity.
         /// </summary>
         public static string Quantity {
