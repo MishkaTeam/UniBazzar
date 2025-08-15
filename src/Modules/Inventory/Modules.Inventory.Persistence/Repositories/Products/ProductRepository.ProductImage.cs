@@ -2,21 +2,23 @@
 using BuildingBlocks.Persistence;
 using Domain.Aggregates.Products.ProductImages;
 using Microsoft.EntityFrameworkCore;
+using Modules.Inventory.Persistence;
 
 namespace Persistence.Repositories.Aggregates.Products;
 
 public class ProductImagesRepository : RepositoryBase<ProductImage> ,IProductImageRepository
 {
 
-    private readonly UniBazzarContext _context;
+    private readonly InventoryDbContext _INVdbcontext;
 
-    public ProductImagesRepository(UniBazzarContext context, IExecutionContextAccessor execution) : base(context, execution)
+    public ProductImagesRepository(InventoryDbContext INVdbcontext, IExecutionContextAccessor execution) : base(INVdbcontext, execution)
     {
-        _context = context;
+        _INVdbcontext = INVdbcontext;
     }
 
     public async Task<List<ProductImage>> GetImageByProductIdAsync(Guid productid)
     {
-        return await _context.ProductImages.Where(x => x.ProductId == productid).ToListAsync();
+        return await DbSet
+                    .Where(x => x.ProductId == productid).ToListAsync();
     }
 }

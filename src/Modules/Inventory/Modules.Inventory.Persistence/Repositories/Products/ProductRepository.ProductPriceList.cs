@@ -3,13 +3,14 @@ using Domain.Aggregates.PriceLists;
 using Microsoft.EntityFrameworkCore;
 using BuildingBlocks.Persistence.Extensions;
 using BuildingBlocks.Domain.Context;
+using Modules.Inventory.Persistence;
 
 namespace Persistence.Repositories.Aggregates.Products;
 
 public class PriceListsRepository : RepositoryBase<PriceList> ,IPriceListRepository
 {
 
-    public PriceListsRepository(UniBazzarContext context, IExecutionContextAccessor execution) : base(context, execution)
+    public PriceListsRepository(InventoryDbContext INVdbcontext, IExecutionContextAccessor execution) : base(INVdbcontext, execution)
     {
     }
 

@@ -2,12 +2,13 @@ using BuildingBlocks.Domain.Context;
 using BuildingBlocks.Persistence;
 using Domain.Aggregates.Products;
 using Microsoft.EntityFrameworkCore;
+using Modules.Inventory.Persistence;
 
 namespace Persistence.Repositories.Aggregates.Products;
 
 public partial class ProductRepository : RepositoryBase<Product>, IProductRepository
 {
-    public ProductRepository(UniBazzarContext context, IExecutionContextAccessor execution) : base(context, execution)
+    public ProductRepository(InventoryDbContext INVdbcontext, IExecutionContextAccessor execution) : base(INVdbcontext, execution)
     {
     }
 
