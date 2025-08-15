@@ -5,6 +5,5 @@ namespace Modules.Inventory.Domain.Aggreates.Receipts
 {
     public interface IReceiptRepository : IRepositoryBase<Receipt>
     {
-        Task<List<ReceiptItem>> GetAllReceiptItem(Guid receiptId);
     }
 }
