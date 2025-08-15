@@ -15,6 +15,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks.Persistence\BuildingBlocks.Persistence.csproj" />
+	  <ProjectReference Include="..\Modules.Inventory.Domain\Modules.Inventory.Domain.csproj" />
 	</ItemGroup>
 
 </Project>
