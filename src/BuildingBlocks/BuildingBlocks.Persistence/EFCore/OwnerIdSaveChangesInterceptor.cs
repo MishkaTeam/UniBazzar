@@ -43,7 +43,7 @@ public class OwnerIdSaveChangesInterceptor : SaveChangesInterceptor
         {
             if (entry.State == EntityState.Added || entry.Property(nameof(IEntityHasOwner.OwnerId)).CurrentValue is Guid id && id == Guid.Empty)
             {
-                entry.Property(nameof(IEntityHasOwner.OwnerId)).CurrentValue = _executionContext.UserId;
+                entry.Property(nameof(IEntityHasOwner.OwnerId)).CurrentValue = _executionContext.UserId ?? Guid.Empty;
             }
         }
     }
