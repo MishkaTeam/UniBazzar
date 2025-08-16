@@ -1,0 +1,52 @@
+﻿@page "{homeViewId:guid}/{imageItemId:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.HomeViews.ImageViewItems.DeleteModel
+
+@{
+	var pageTitle =
+		$"{Resources.DataDictionary.DeleteOf} {Resources.DataDictionary.ImageItem}";
+
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+
+<form method="post">
+
+	<section-form>
+
+		<input hidden asp-for="DeleteViewModel.Id" dir="ltr" />
+		<input hidden asp-for="DeleteViewModel.HomeViewId" dir="ltr" />
+		<input hidden asp-for="DeleteViewModel.ImageUrl" dir="ltr" />
+
+		<fieldset disabled>
+
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
+
+			<partial name="PartialViews/_DisplayPageMessages" />
+
+			<section-form-field>
+				<img class="w-100 rounded-3" src="@(Model.DeleteViewModel.ImageUrl)" />
+			</section-form-field>
+
+			<ub-full-input asp-for="DeleteViewModel.Title" />
+
+			<div class="mb-3">
+				<label asp-for="DeleteViewModel.Column" class="form-label"></label>
+				<select asp-for="DeleteViewModel.Column" asp-items="Model.ColumnTypes" class="form-select"></select>
+				<span asp-validation-for="DeleteViewModel.Column" class="field-validation-valid text-danger"></span>
+			</div>
+
+			<ub-full-input asp-for="DeleteViewModel.NavigationUrl" />
+
+			<ub-full-input asp-for="DeleteViewModel.Ordering" />
+
+		</fieldset>
+
+		<section-form-buttons>
+			<button-delete />
+		</section-form-buttons>
+
+	</section-form>
+
+</form>

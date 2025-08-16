@@ -1,9 +1,6 @@
-﻿using System.Data;
-using System.Reflection.Metadata.Ecma335;
-using Application.Aggregates.Ordering.Baskets;
+﻿using Application.Aggregates.Ordering.Baskets;
 using Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
 using Constants;
-using Framework.DataType;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

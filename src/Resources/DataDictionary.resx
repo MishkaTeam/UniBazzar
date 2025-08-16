@@ -540,8 +540,31 @@
   <data name="SliderItem" xml:space="preserve">
     <value>Slider Item</value>
   </data>
+  <data name="Column" xml:space="preserve">
+    <value>column</value>
+  </data>
+  <data name="ImageItem" xml:space="preserve">
+    <value>image item</value>
+  </data>
+  <data name="ImageItems" xml:space="preserve">
+    <value>image items</value>
+  </data>
+  <data name="ProductItem" xml:space="preserve">
+    <value>product item</value>
+  </data>
+  <data name="ProductItems" xml:space="preserve">
+    <value>product items</value>
+  </data>
   <data name="Orders" xml:space="preserve">
     <value>orders</value>
   </data>
-
+  <data name="FullScreen" xml:space="preserve">
+    <value>Full Screen</value>
+  </data>
+  <data name="SplitScreen" xml:space="preserve">
+    <value>Split Screen</value>
+  </data>
+  <data name="Cms" xml:space="preserve">
+    <value>Cms</value>
+  </data>
 </root>

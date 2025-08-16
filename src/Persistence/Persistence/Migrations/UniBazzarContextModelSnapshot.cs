@@ -583,6 +583,9 @@ namespace Persistence.Migrations
                     b.Property<byte>("BasketStatus")
                         .HasColumnType("smallint");
 
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
@@ -621,6 +624,8 @@ namespace Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Baskets", (string)null);
                 });
@@ -638,6 +643,9 @@ namespace Persistence.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)");
 
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
@@ -676,6 +684,8 @@ namespace Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Orders", (string)null);
                 });
@@ -1544,6 +1554,11 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Aggregates.Ordering.Baskets.Basket", b =>
                 {
+                    b.HasOne("Domain.Aggregates.Customers.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.OwnsOne("Domain.Aggregates.Ordering.ValueObjects.DiscountAmount", "TotalDiscountAmount", b1 =>
                         {
                             b1.Property<Guid>("BasketId")
@@ -1755,12 +1770,20 @@ namespace Persistence.Migrations
 
                     b.Navigation("BasketItems");
 
+                    b.Navigation("Customer");
+
                     b.Navigation("TotalDiscountAmount")
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Ordering.Orders.Order", b =>
                 {
+                    b.HasOne("Domain.Aggregates.Customers.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.OwnsOne("Domain.Aggregates.Ordering.ValueObjects.DiscountAmount", "TotalDiscountAmount", b1 =>
                         {
                             b1.Property<Guid>("OrderId")
@@ -1972,6 +1995,8 @@ namespace Persistence.Migrations
                             b1.Navigation("ProductAmount")
                                 .IsRequired();
                         });
+
+                    b.Navigation("Customer");
 
                     b.Navigation("OrderItems");
 

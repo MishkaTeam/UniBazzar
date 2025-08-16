@@ -1,0 +1,28 @@
+﻿@page "{id:guid}"
+@using Server.Pages.Shared.Components.ProductCard
+@model Server.Pages.Product.ProductViewModel
+
+@{
+	var pageTitle =
+		Model.HomeView.Title;
+
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+
+<section id="encrypt231212189" class="my-5">
+	<div class="container">
+
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 encrypt89345 featured" data-aos="fade-up" data-aos-duration="1000">
+
+			@foreach (var product in Model.ProductsViewModel)
+			{
+				<div class="col">
+					@await Component.InvokeAsync(ProductCardViewComponent.KEY, product)
+				</div>
+			}
+
+		</div>
+
+	</div>
+</section>

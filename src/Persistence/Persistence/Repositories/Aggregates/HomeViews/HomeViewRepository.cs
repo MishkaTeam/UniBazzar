@@ -13,32 +13,11 @@ public class HomeViewRepository
     IExecutionContextAccessor executionContext)
     : RepositoryBase<HomeView>(uniBazzarContext, executionContext), IHomeViewRepository
 {
-    public async Task<List<HomeView>> GetAllWithIncludeAsync()
+    public IQueryable<HomeView> GetAllHomeViews()
     {
-        var sliderViews = uniBazzarContext.HomeViews
-                    .StoreFilter(ExecutionContext.StoreId)
-                    .Where(x => x.Type == ViewType.Slider)
-                    .Include(x => x.SliderViews)
-                    .AsNoTracking();
-
-        var productViews = uniBazzarContext.HomeViews
-                    .StoreFilter(ExecutionContext.StoreId)
-                    .Where(x => x.Type == ViewType.Product)
-                    .Include(x => x.ProductViews)
-                    .AsNoTracking();
-
-        var imageViews = uniBazzarContext.HomeViews
-                    .StoreFilter(ExecutionContext.StoreId)
-                    .Where(x => x.Type == ViewType.Image)
-                    .Include(x => x.ImageViews)
-                    .AsNoTracking();
-
-        var result = await sliderViews
-                    .Union(productViews)
-                    .Union(imageViews)
-                    .ToListAsync();
-
-        return result;
+        return uniBazzarContext.HomeViews
+            .StoreFilter(ExecutionContext.StoreId)
+            .AsNoTracking();
     }
 
     public async Task<List<SlideViewItem>> GetSliderItemsByIdAsync(Guid homeViewId)
@@ -55,5 +34,37 @@ public class HomeViewRepository
         }
 
         return homeView.SliderViews;
+    }
+
+    public async Task<List<ImageViewItem>> GetImageItemsByIdAsync(Guid homeViewId)
+    {
+        var homeView = await uniBazzarContext.HomeViews
+                    .StoreFilter(ExecutionContext.StoreId)
+                    .Include(x => x.ImageViews)
+                    .Where(x => x.Type == ViewType.Image)
+                    .FirstOrDefaultAsync(x => x.Id == homeViewId);
+
+        if (homeView == null)
+        {
+            return null!;
+        }
+
+        return homeView.ImageViews;
+    }
+
+    public async Task<List<ProductViewItem>> GetProductItemsByIdAsync(Guid homeViewId)
+    {
+        var homeView = await uniBazzarContext.HomeViews
+                    .StoreFilter(ExecutionContext.StoreId)
+                    .Include(x => x.ProductViews)
+                    .Where(x => x.Type == ViewType.Product)
+                    .FirstOrDefaultAsync(x => x.Id == homeViewId);
+
+        if (homeView == null)
+        {
+            return null!;
+        }
+
+        return homeView.ProductViews;
     }
 }

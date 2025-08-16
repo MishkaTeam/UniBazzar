@@ -62,10 +62,10 @@ public partial class SearchCustomer
             var basketIsExist =
                 (await basketApplication.Exist(localBasket!.Id)).Data;
 
-            // If Owener changed do it
-            if (basketIsExist == true /*&& localBasket.OwnerId != suggestion.CustomerId*/)
+            // If Customer changed do it
+            if (basketIsExist == true /*&& localBasket.CustomerId != suggestion.CustomerId*/)
             {
-                await basketApplication.ChangeOwnerAsync(localBasket.Id, suggestion.CustomerId);
+                await basketApplication.SetCustomerAsync(localBasket.Id, suggestion.CustomerId);
             }
         }
 

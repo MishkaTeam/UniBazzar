@@ -268,6 +268,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cms.
+        /// </summary>
+        public static string Cms {
+            get {
+                return ResourceManager.GetString("Cms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to column.
+        /// </summary>
+        public static string Column {
+            get {
+                return ResourceManager.GetString("Column", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to comment.
         /// </summary>
         public static string Comment {
@@ -529,6 +547,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full Screen.
+        /// </summary>
+        public static string FullScreen {
+            get {
+                return ResourceManager.GetString("FullScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home View.
         /// </summary>
         public static string HomeView {
@@ -561,6 +588,24 @@ namespace Resources {
         public static string Id {
             get {
                 return ResourceManager.GetString("Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to image item.
+        /// </summary>
+        public static string ImageItem {
+            get {
+                return ResourceManager.GetString("ImageItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to image items.
+        /// </summary>
+        public static string ImageItems {
+            get {
+                return ResourceManager.GetString("ImageItems", resourceCulture);
             }
         }
         
@@ -943,6 +988,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to product item.
+        /// </summary>
+        public static string ProductItem {
+            get {
+                return ResourceManager.GetString("ProductItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to product items.
+        /// </summary>
+        public static string ProductItems {
+            get {
+                return ResourceManager.GetString("ProductItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Products.
         /// </summary>
         public static string Products {
@@ -1101,6 +1164,15 @@ namespace Resources {
         public static string Slug {
             get {
                 return ResourceManager.GetString("Slug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split Screen.
+        /// </summary>
+        public static string SplitScreen {
+            get {
+                return ResourceManager.GetString("SplitScreen", resourceCulture);
             }
         }
         

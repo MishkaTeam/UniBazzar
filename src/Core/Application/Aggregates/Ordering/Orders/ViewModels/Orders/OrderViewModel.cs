@@ -1,6 +1,8 @@
-﻿using Application.Aggregates.Ordering.Orders.ViewModels.OrdersItems;
+﻿using Application.Aggregates.Customers;
+using Application.Aggregates.Ordering.Orders.ViewModels.OrdersItems;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 using Domain.Aggregates.Ordering.Orders;
+using Mapster;
 
 namespace Application.Aggregates.Ordering.Orders.ViewModels.Orders;
 
@@ -8,11 +10,12 @@ public class OrderViewModel
 {
     public OrderViewModel()
     {
-        
+
     }
 
 
     public Guid Id { get; set; }
+    public Guid CustomerId { get; set; }
     public Guid OwnerId { get; set; }
     public string BasketReferenceNumber { get; set; }
     public string ReferenceNumber { get; set; }
@@ -26,13 +29,28 @@ public class OrderViewModel
     public decimal OrderTotal { get; set; }
     public List<OrderItemViewModel> OrderItems { get; set; }
     public decimal TotalItemDiscounts { get; set; }
+    public long InsertDateTime { get; set; }
+
+    public string InsertDateTimeFa
+    {
+        get
+        {
+            return DateTimeOffset.FromUnixTimeMilliseconds(InsertDateTime)
+                .ToString("yyyy/MM/dd HH:ss", new System.Globalization.CultureInfo("fa-IR"));
+        }
+    }
+
+    public CustomerViewModel Customer { get; set; }
+
 
     internal static OrderViewModel FromOrder(Order order)
     {
         return new OrderViewModel
         {
             Id = order.Id,
+            CustomerId = order.CustomerId,
             OwnerId = order.OwnerId,
+            BasketReferenceNumber = order.BasketReferenceNumber,
             ReferenceNumber = order.ReferenceNumber,
             TotalDiscountType = order.TotalDiscountAmount.DiscountType,
             TotalDiscountAmount = order.TotalDiscountAmount.Value,
@@ -42,6 +60,8 @@ public class OrderViewModel
             TotalWithoutDiscount = order.TotalWithoutDiscount,
             SubtotalBeforeBasketDiscount = order.TotalBeforeDiscount,
             TotalItemDiscounts = order.TotalItemDiscounts,
+            InsertDateTime = order.InsertDateTime,
+            Customer = order.Customer.Adapt<CustomerViewModel>(),
             OrderItems = order.OrderItems.Select(x => new OrderItemViewModel
             {
                 Id = x.Id,
@@ -64,7 +84,9 @@ public class OrderViewModel
         return orders.Select(x => new OrderViewModel()
         {
             Id = x.Id,
+            CustomerId = x.CustomerId,
             OwnerId = x.OwnerId,
+            BasketReferenceNumber = x.BasketReferenceNumber,
             ReferenceNumber = x.ReferenceNumber,
             TotalDiscountType = x.TotalDiscountAmount.DiscountType,
             TotalDiscountAmount = x.TotalDiscountAmount.Value,
@@ -74,6 +96,8 @@ public class OrderViewModel
             TotalWithoutDiscount = x.TotalWithoutDiscount,
             SubtotalBeforeBasketDiscount = x.TotalBeforeDiscount,
             TotalItemDiscounts = x.TotalItemDiscounts,
+            InsertDateTime = x.InsertDateTime,
+            Customer = x.Customer.Adapt<CustomerViewModel>(),
             OrderItems = x.OrderItems.Select(orderItem => new OrderItemViewModel
             {
                 Id = orderItem.Id,

@@ -1,5 +1,6 @@
 using BuildingBlocks.Domain.Context;
 using BuildingBlocks.Persistence;
+using BuildingBlocks.Persistence.Extensions;
 using Domain.Aggregates.Ordering.Orders;
 using Domain.Aggregates.Ordering.Orders.Data;
 using Microsoft.EntityFrameworkCore;
@@ -23,4 +24,14 @@ public class OrderRepository(
         return orderItems;
     }
 
+    public override async Task<IEnumerable<Order>> GetAllAsync(CancellationToken cancellationToken = default)
+    {
+        var orders = await context.Orders
+            .StoreFilter(ExecutionContext.StoreId)
+            .Include(x => x.Customer)
+            .AsNoTracking()
+            .ToListAsync(cancellationToken);
+
+        return orders;
+    }
 }
