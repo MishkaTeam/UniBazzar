@@ -32,12 +32,6 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
 
 		entity.IncreaseVersion();
 
-		entity.SetInsertBy(ExecutionContext.UserId ?? throw new Exception("User Is Empty"));
-
-		entity.SetOwner(ExecutionContext.UserId ?? throw new Exception("User Is Empty"));
-
-		entity.SetStore(ExecutionContext.StoreId);
-
 		entity.SetInsertDateTime();
 
 		await DbSet.AddAsync(entity, cancellationToken);
@@ -53,12 +47,6 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
         foreach (var entity in entities)
         {
             entity.IncreaseVersion();
-
-            entity.SetInsertBy(ExecutionContext.UserId ?? throw new Exception("User Is Empty"));
-
-            entity.SetOwner(ExecutionContext.UserId ?? throw new Exception("User Is Empty"));
-
-            entity.SetStore(ExecutionContext.StoreId);
 
             entity.SetInsertDateTime();
         }
