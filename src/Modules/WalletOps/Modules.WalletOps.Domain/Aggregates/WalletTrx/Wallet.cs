@@ -21,7 +21,7 @@ public class Wallet : Entity
     public IReadOnlyCollection<HeldFund> HeldFunds => _heldFunds.AsReadOnly();
     public string CurrencyCode { get; private set; }
 
-    public Wallet()
+    protected Wallet()
     {
 
     }
@@ -37,6 +37,15 @@ public class Wallet : Entity
     public static Wallet CreateWallet(string currencyCode = "IRR")
     {
         return new Wallet(currencyCode);
+    }
+
+    public static Wallet EmptyWallet()
+    {
+        var wallet = new Wallet("IRR")
+        {
+            Status = WalletStatusType.DeActivate
+        };
+        return wallet;
     }
 
     public void DepositWithdrawable(Money amount, string description)
