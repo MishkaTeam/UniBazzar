@@ -1,8 +1,8 @@
 ﻿using BuildingBlocks.Domain.Data;
 
-namespace Persistence;
+namespace Modules.WalletOps.Persistence;
 
-public class UnitOfWork(WalletOpsContext walletOpsContext) : IUnitOfWork
+public class UnitOfWork(WalletOpsDbContext walletOpsContext) : IUnitOfWork
 {
     public Task<int> SaveChangesAsync(CancellationToken? cancellationToken = null)
     {

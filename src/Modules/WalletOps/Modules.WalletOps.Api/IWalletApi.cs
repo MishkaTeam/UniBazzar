@@ -5,6 +5,6 @@ namespace Modules.WalletOps.Api
 {
     public interface IWalletApi
     {
-        Task<ResultContract<WalletBalanceResponseContract>> GetCurrentUserBalance();
+        Task<ResultContract<WalletBalanceResponseContract>> TryGetCurrentUserBalanceAsync();
     }
 }
