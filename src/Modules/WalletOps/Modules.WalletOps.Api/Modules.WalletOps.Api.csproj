@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\Framework.DataType\Framework.DataType.csproj" />
+    <ProjectReference Include="..\Modules.WalletOps.Application\Modules.WalletOps.Application.csproj" />
+  </ItemGroup>
+
 </Project>
