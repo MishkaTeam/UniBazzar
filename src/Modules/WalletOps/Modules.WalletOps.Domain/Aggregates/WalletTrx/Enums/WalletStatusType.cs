@@ -1,7 +1,8 @@
 ﻿namespace Modules.WalletOps.Domain.Aggregates.WalletTrx.Enums;
 
-public enum WalletStatusType
+public enum WalletStatusType: byte
 {
-    Active,
-    Frozen
+    Active = 1,
+    Frozen = 2,
+    DeActivate = 3,
 }
