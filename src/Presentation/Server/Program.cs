@@ -11,6 +11,7 @@ using Server.Infrastructure.Extensions.ServiceCollections;
 using Server.Infrastructure.Extentions.ServiceCollections;
 using Server.Infrastructure.Middleware;
 using Server.Infrastructure.Services;
+using Modules.WalletOps.Api.ServiceCollection;
 
 namespace Server
 {
@@ -55,18 +56,16 @@ namespace Server
                 SecretKey = builder.Configuration.GetSection("StorageConfig:SecretKey")?.Value,
 
             });
+            string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<UniBazzarContext>(opt =>
             {
-                var connection = builder.Configuration.GetConnectionString("DefaultConnection");
+                var connection = connectionString;
                 opt.UseNpgsql(connection);
                 opt.EnableSensitiveDataLogging();
             });
 
-            // Add Treasury Database
-            var treasuryConnection =
-                builder.Configuration.GetConnectionString("TreasuryConnection");
-            services.AddTreasuryModule(treasuryConnection!);
-
+            services.AddTreasuryModule(connectionString);
+            services.AddWalletOpsModule(connectionString);
             var app = builder.Build();
 
             if (!app.Environment.IsDevelopment())

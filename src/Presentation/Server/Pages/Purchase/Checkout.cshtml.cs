@@ -4,15 +4,20 @@ using Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
 using BuildingBlocks.Domain.Context;
 using Constants;
 using Infrastructure;
+using Modules.WalletOps.Api;
+using Modules.WalletOps.Application.Contracts;
 
 namespace Server.Pages;
 
 public class CheckoutModel(BasketApplication basketApplication, 
     CustomerApplication customerApplication, 
+    IWalletApi walletApi,
     IExecutionContextAccessor executionContextAccessor) : BasePageModel
 {
     public BasketViewModel Basket { get; set; } = new();
     public CustomerViewModel Customer { get; set; } = new();
+    public WalletBalanceResponseContract WalletBalance { get; set; } = new();
+
     public async Task OnGetAsync()
     {
         var basketIdValue = Request.Cookies.FirstOrDefault(x => x.Key == BasketConstants.BASKET).Value;
@@ -33,6 +38,7 @@ public class CheckoutModel(BasketApplication basketApplication,
         }
 
         Customer = await customerApplication.GetCustomerAsync(executionContextAccessor.UserId.Value);
-
+        var walletResult = await walletApi.TryGetCurrentUserBalanceAsync();
+        WalletBalance = walletResult?.Data ?? new();
     }
 }

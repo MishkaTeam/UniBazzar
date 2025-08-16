@@ -129,11 +129,29 @@
 								</div>
 								<hr>
 								<div class="container">
-										<div class="col-12 my-2">
-											<a asp-page="/Thankyou">
-												<input type="submit" value="پرداخت و تکمیل خرید" class="btn btn-success w-100">
-											</a>
+									<div class="row py-2">
+										<div class="col-6">
+											<div>موجودی کیف پول شما:</div>
 										</div>
+										<div class="col-6">
+											<div>
+												@{
+													if (Model.WalletBalance.AvailableBalance.Amount == 0)
+													{
+														<text>0</text>
+													}
+													else
+														Model.WalletBalance.AvailableBalance.Amount.ToString("#,#");
+												} تومان
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="container">
+									<div class="col-12 my-2">
+										<a asp-page="/Thankyou">
+											<input type="submit" value="پرداخت و تکمیل خرید" class="btn btn-success w-100">
+										</a>
 									</div>
 								</div>
 							</div>
@@ -142,4 +160,5 @@
 				</div>
 			</div>
 		</div>
+	</div>
 </section>
