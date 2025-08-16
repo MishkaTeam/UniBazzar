@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\Framework.DataType\Framework.DataType.csproj" />
     <ProjectReference Include="..\Modules.WalletOps.Domain\Modules.WalletOps.Domain.csproj" />
   </ItemGroup>
 
