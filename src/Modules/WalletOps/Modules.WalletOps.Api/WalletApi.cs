@@ -6,6 +6,12 @@ namespace Modules.WalletOps.Api;
 
 internal class WalletApi(WalletApplication walletApplication) : IWalletApi
 {
+    public Task<ResultContract<WalletPurchaseResponseContract>> PurchaseAsync(WalletPurchaseRequestContract requestContract)
+    {
+        return walletApplication.PurchaseAsync(requestContract);
+
+    }
+
     public Task<ResultContract<WalletBalanceResponseContract>> TryGetCurrentUserBalanceAsync()
     {
         return walletApplication.TryGetCurrentUserBalance();

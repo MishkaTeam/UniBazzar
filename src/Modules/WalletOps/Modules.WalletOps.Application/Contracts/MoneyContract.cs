@@ -15,4 +15,9 @@ public record MoneyContract
             Currency = availableBalance.Currency,
         };
     }
+
+    internal Money ToMoney()
+    {
+      return Money.Create(Amount,Currency);
+    }
 }
