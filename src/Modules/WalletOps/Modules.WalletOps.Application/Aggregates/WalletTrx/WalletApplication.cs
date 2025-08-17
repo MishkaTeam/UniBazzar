@@ -39,19 +39,18 @@ public class WalletApplication
         if (requestContract.Amount.ToMoney() > wallet.AvailableBalance)
         {
             // TODO : LOG
-            bankAmount = wallet.AvailableBalance;
+            bankAmount = requestContract.Amount.ToMoney() - wallet.AvailableBalance;
             heldAmount = wallet.AvailableBalance;
             generateBankLink = true;
         }
         else
         {
-
             // TODO : LOG
             heldAmount = requestContract.Amount.ToMoney();
         }
 
         // TODO : LOG
-        wallet.BlockFunds(heldAmount, $"بلوکه کردن پول برای خرید رفرنس {requestContract.ReferenceId}");
+        var fund = wallet.BlockFunds(heldAmount, $"بلوکه کردن پول برای خرید رفرنس {requestContract.ReferenceId}");
         // TODO : LOG
 
         await unitOfWork.SaveChangesAsync();
@@ -65,6 +64,11 @@ public class WalletApplication
             return new WalletPurchaseResponseContract { RedirectLink = link };
 
         }
+
+        // TODO : LOG
+        wallet.SettleBlockedFund(fund.Id);
+        await unitOfWork.SaveChangesAsync();
+        // TODO : LOG
 
         return new WalletPurchaseResponseContract { RedirectLink = null };
     }

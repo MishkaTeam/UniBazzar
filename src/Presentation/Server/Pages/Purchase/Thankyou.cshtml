@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{orderId:guid}"
 @model Server.Pages.ThankyouModel
 @{
 }
@@ -12,12 +12,6 @@
                         <div class="col-12 px-0">
                             <h1>پرداخت موفق</h1>
                             <p>پرداخت شما با موفقیت انجام شد.</p>
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a asp-page="/Index">صفحه نخست</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">پرداخت موفق</li>
-                                </ol>
-                            </nav>
                         </div>
                     </div>
                 </div>

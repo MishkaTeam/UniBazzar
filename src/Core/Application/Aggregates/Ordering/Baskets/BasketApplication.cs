@@ -437,6 +437,7 @@ public class BasketApplication(ILogger<BasketApplication> logger,
         }
 
         basket.SetOwner(executionContextAccessor.UserId.Value);
+        basket.SetCustomer(executionContextAccessor.UserId.Value);
 
         await unitOfWork.SaveChangesAsync();
 

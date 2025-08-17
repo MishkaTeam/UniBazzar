@@ -41,6 +41,10 @@ public class CheckoutModel(BasketApplication basketApplication,
         {
             return Page() ;
         }
+        var basketCheckout  = await basketApplication.CheckoutBasket(Basket.Id);
+
+        if(basketCheckout is { IsSuccessful:false  })
+            return Page();
 
         var orderProcessResult = await orderApplication.ProcessOrderRequest(new ProcessOrderRequestModel {  BasketId = Basket.Id }, cancellationToken);
 
@@ -69,7 +73,8 @@ public class CheckoutModel(BasketApplication basketApplication,
         if (walletResult.Data.ShouldRedirect)
             return Redirect(walletResult.Data.RedirectLink);
 
-        return RedirectToPagePermanent("/Thankyou");
+        Response.Cookies.Delete(BasketConstants.BASKET);
+        return RedirectToPagePermanent("Thankyou");
     }
 
     private async Task<bool> TryGetCheckoutData()
