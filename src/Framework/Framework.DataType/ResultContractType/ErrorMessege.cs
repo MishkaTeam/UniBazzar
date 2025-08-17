@@ -80,4 +80,6 @@ public enum ErrorType
     UnhandledException = 803,
     NotFound = 804,
 
+    //Custom
+    BalanceIsNotEnough = 900
 }
