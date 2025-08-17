@@ -9,7 +9,7 @@ namespace Modules.Inventory.Application.Aggregates.Suppliers;
 public class SupplierApplication(ISupplierRepository supplierRepository, IUnitOfWork unitOfWork)
 {
 
-    public async Task<SupplierViewModel> CreateAsync(SupplierViewModel model)
+    public async Task<CreateSupplierViewModel> CreateAsync(CreateSupplierViewModel model)
     {
         var supplier = Supplier.Create(model.FullName, model.NationalID, model.EconomicCode,
                                        model.Phone, model.Address, model.SupplierType);
@@ -18,7 +18,7 @@ public class SupplierApplication(ISupplierRepository supplierRepository, IUnitOf
 
         await unitOfWork.SaveChangesAsync();
 
-        return supplier.Adapt<SupplierViewModel>();
+        return supplier.Adapt<CreateSupplierViewModel>();
 
     }
 
