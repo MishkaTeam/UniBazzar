@@ -50,7 +50,7 @@ public class WalletApplication
         }
 
         // TODO : LOG
-        var fund = wallet.BlockFunds(heldAmount, $"بلوکه کردن پول برای خرید رفرنس {requestContract.ReferenceId}");
+        var fund = wallet.BlockFunds(heldAmount, $"بلوکه کردن پول برای خرید رفرنس {requestContract.ReferenceId}", requestContract.OperationId);
         // TODO : LOG
 
         await unitOfWork.SaveChangesAsync();
@@ -66,7 +66,7 @@ public class WalletApplication
         }
 
         // TODO : LOG
-        wallet.SettleBlockedFund(fund.Id);
+        wallet.SettleBlockedFund(fund.Id, requestContract.OperationId);
         await unitOfWork.SaveChangesAsync();
         // TODO : LOG
 

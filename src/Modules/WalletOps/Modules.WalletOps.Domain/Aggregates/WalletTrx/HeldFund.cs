@@ -11,26 +11,35 @@ public class HeldFund : Entity
     public string Reason { get; private set; }
     public HeldStatusType Status { get; private set; }
 
+    /// <summary>
+    /// این پراپرتی میتواند نال باشد
+    /// اما وقتی پر میشود نمیتواند تکراری باشد
+    /// </summary>
+    public string? OperationId { get; private set; }
+
     private HeldFund() { } // For EF Core
 
-    public HeldFund(Guid walletId, Money amount, string reason)
+    public HeldFund(Guid walletId, Money amount, string reason, string? operationId)
     {
         WalletId = walletId;
         Amount = amount;
         Reason = reason;
         Status = HeldStatusType.Held;
+        OperationId = operationId;
     }
 
-    public void Release()
+    public void Release(string? operationId)
     {
         EnsureIsHeld();
         Status = HeldStatusType.Released;
+        OperationId = operationId;
     }
 
-    public void FinalizeFund()
+    public void FinalizeFund(string? operationId)
     {
         EnsureIsHeld();
         Status = HeldStatusType.Finalized;
+        OperationId = operationId;
     }
 
     private void EnsureIsHeld()

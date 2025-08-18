@@ -23,4 +23,5 @@ public class WalletPurchaseRequestContract
     public Guid ReferenceId { get; set; }
     public MoneyContract Amount { get; set; }
     public PurchaseType PurchaseType { get; set; }
+    public string? OperationId { get; set; } = null;
 }

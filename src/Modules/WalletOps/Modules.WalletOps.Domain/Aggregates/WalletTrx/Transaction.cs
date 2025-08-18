@@ -11,32 +11,39 @@ public class Transaction : Entity
     public TransactionType Type { get; private set; }
     public string Description { get; private set; }
 
-    private Transaction(Guid walletId, Money amount, TransactionType type, string description)
+    /// <summary>
+    /// این پراپرتی میتواند نال باشد
+    /// اما وقتی پر میشود نمیتواند تکراری باشد
+    /// </summary>
+    public string? OperationId { get; private set; }
+
+    private Transaction(Guid walletId, Money amount, TransactionType type, string description, string? operationId)
     {
         WalletId = walletId;
         Amount = amount;
         Type = type;
         Description = description;
+        OperationId = operationId;
     }
 
-    public static Transaction CreateDepositWithdrawable(Guid walletId, Money amount, string description)
+    public static Transaction CreateDepositWithdrawable(Guid walletId, Money amount, string description, string? operationId)
     {
-        return new Transaction(walletId, amount, TransactionType.Withdrawable_Deposit, description);
+        return new Transaction(walletId, amount, TransactionType.Withdrawable_Deposit, description, operationId);
     }
 
-    internal static Transaction CreateNonWithdrawableDeposit(Guid walletId, Money amount, string description)
+    internal static Transaction CreateNonWithdrawableDeposit(Guid walletId, Money amount, string description, string? operationId)
     {
-        return new Transaction(walletId, amount, TransactionType.Non_Withdrawable_Deposit, description);
+        return new Transaction(walletId, amount, TransactionType.Non_Withdrawable_Deposit, description, operationId);
     }
 
-    internal static Transaction CreateWithdrawal(Guid walletId, Money amount, string description)
+    internal static Transaction CreateWithdrawal(Guid walletId, Money amount, string description, string? operationId)
     {
-        return new Transaction(walletId, amount, TransactionType.Withdrawal, description);
+        return new Transaction(walletId, amount, TransactionType.Withdrawal, description, operationId);
     }
 
-    internal static Transaction CreatePurchase(Guid walletId, Money amount, string description)
+    internal static Transaction CreatePurchase(Guid walletId, Money amount, string description, string? operationId)
     {
-        return new Transaction(walletId, amount, TransactionType.Purchase, description);
+        return new Transaction(walletId, amount, TransactionType.Purchase, description, operationId);
     }
 
     // For EF Core

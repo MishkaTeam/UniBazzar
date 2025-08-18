@@ -48,7 +48,7 @@ public class Wallet : Entity
         return wallet;
     }
 
-    public void DepositWithdrawable(Money amount, string description)
+    public void DepositWithdrawable(Money amount, string description, string? operationId)
     {
         EnsureWalletIsActive();
 
@@ -56,32 +56,32 @@ public class Wallet : Entity
             throw new ArgumentException("Deposit amount cannot be zero.", nameof(amount));
 
         WithdrawableBalance += amount;
-        _transactions.Add(Transaction.CreateDepositWithdrawable(Id, amount, description));
+        _transactions.Add(Transaction.CreateDepositWithdrawable(Id, amount, description, operationId));
     }
 
 
-    public void DepositNonWithdrawable(Money amount, string description)
+    public void DepositNonWithdrawable(Money amount, string description, string? operationId)
     {
         EnsureWalletIsActive();
         if (amount is null || amount.Amount == 0)
             throw new ArgumentException("Deposit amount cannot be zero.", nameof(amount));
 
         NonWithdrawableBalance += amount;
-        _transactions.Add(Transaction.CreateNonWithdrawableDeposit(Id, amount, description));
+        _transactions.Add(Transaction.CreateNonWithdrawableDeposit(Id, amount, description, operationId));
     }
 
 
-    public void Withdraw(Money amount)
+    public void Withdraw(Money amount, string? operationId)
     {
         EnsureWalletIsActive();
         EnsureSufficientWithdrawableFunds(amount);
 
         WithdrawableBalance -= amount;
 
-        _transactions.Add(Transaction.CreateWithdrawal(Id, amount, "Withdrawal from wallet"));
+        _transactions.Add(Transaction.CreateWithdrawal(Id, amount, "Withdrawal from wallet", operationId));
     }
 
-    public void Purchase(Money amount)
+    public void Purchase(Money amount, string? operationId)
     {
         EnsureWalletIsActive();
         EnsureSufficientAvailableBalance(amount);
@@ -92,16 +92,16 @@ public class Wallet : Entity
         NonWithdrawableBalance -= nonWithdrawableToSpend;
         WithdrawableBalance -= withdrawableToSpend;
 
-        _transactions.Add(Transaction.CreatePurchase(Id, amount, "Purchase"));
+        _transactions.Add(Transaction.CreatePurchase(Id, amount, "Purchase", operationId));
     }
 
 
-    public HeldFund BlockFunds(Money amount, string reason)
+    public HeldFund BlockFunds(Money amount, string reason, string? operationId)
     {
         EnsureWalletIsActive();
         EnsureSufficientAvailableBalance(amount);
 
-        var heldFund = new HeldFund(Id, amount, reason);
+        var heldFund = new HeldFund(Id, amount, reason, operationId);
         _heldFunds.Add(heldFund);
         HeldBalance += amount;
 
@@ -109,7 +109,7 @@ public class Wallet : Entity
     }
 
 
-    public void SettleBlockedFund(Guid heldFundId)
+    public void SettleBlockedFund(Guid heldFundId, string? operationId)
     {
         var heldFund = GetActiveHeldFund(heldFundId);
 
@@ -121,17 +121,17 @@ public class Wallet : Entity
         WithdrawableBalance -= withdrawableToSpend;
 
         HeldBalance -= amountToSettle;
-        heldFund.FinalizeFund();
+        heldFund.FinalizeFund(operationId);
 
-        _transactions.Add(Transaction.CreatePurchase(Id, amountToSettle, $"Settlement for hold: {heldFund.Id}"));
+        _transactions.Add(Transaction.CreatePurchase(Id, amountToSettle, $"Settlement for hold: {heldFund.Id}", operationId));
     }
 
-    public void ReleaseBlockedFund(Guid heldFundId)
+    public void ReleaseBlockedFund(Guid heldFundId, string? operationId)
     {
         var heldFund = GetActiveHeldFund(heldFundId);
 
         HeldBalance -= heldFund.Amount;
-        heldFund.Release();
+        heldFund.Release(operationId);
     }
 
     public void Freeze()

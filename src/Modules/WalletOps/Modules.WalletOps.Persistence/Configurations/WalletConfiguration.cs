@@ -37,35 +37,44 @@ namespace Modules.WalletOps.Persistence.Configurations
             });
 
 
-            builder.OwnsMany(x => x.HeldFunds, itemBuilder =>
+            builder.OwnsMany(x => x.HeldFunds, heldBuilder =>
             {
-                itemBuilder.ToTable("HeldFunds");
+                heldBuilder.ToTable("HeldFunds");
 
-                itemBuilder.HasKey(t => t.Id);
+                heldBuilder.HasKey(t => t.Id);
 
-                itemBuilder.Property(x => x.Ordering)
+                heldBuilder.Property(x => x.Ordering)
                        .HasDefaultValue(10_000);
 
-                itemBuilder.Property(s => s.OwnerId)
+                heldBuilder.Property(s => s.OwnerId)
                        .IsRequired();
 
-                itemBuilder.Property(s => s.InsertedBy)
+                heldBuilder.Property(s => s.InsertedBy)
                        .IsRequired();
 
-                itemBuilder.Property(s => s.UpdatedBy)
+                heldBuilder.Property(s => s.UpdatedBy)
                        .IsRequired();
 
-                itemBuilder.Property(s => s.InsertDateTime)
+                heldBuilder.Property(s => s.InsertDateTime)
                        .IsRequired();
 
-                itemBuilder.Property(s => s.UpdateDateTime)
+                heldBuilder.Property(s => s.UpdateDateTime)
                        .IsRequired();   
                 
-                itemBuilder.Property(s => s.Reason)
+                heldBuilder.Property(s => s.Reason)
                        .HasMaxLength(255)
                        .IsRequired(false);
 
-                itemBuilder.OwnsOne(x => x.Amount, dBuilder =>
+                heldBuilder
+                .Property(x => x.OperationId)
+                .HasMaxLength(255)
+                .IsRequired(false);
+
+                heldBuilder.HasIndex(x => x.OperationId)
+                .HasFilter("\"OperationId\" IS NOT NULL")
+                .IsUnique(true);
+
+                heldBuilder.OwnsOne(x => x.Amount, dBuilder =>
                 {
                     dBuilder.Property(x => x.Amount).HasColumnName("Amount");
                     dBuilder.Property(x => x.Currency).HasColumnName("AmountCurrency").HasMaxLength(3);
@@ -73,35 +82,45 @@ namespace Modules.WalletOps.Persistence.Configurations
             });
 
 
-            builder.OwnsMany(x => x.Transactions, itemBuilder =>
+            builder.OwnsMany(x => x.Transactions, trxBuilder =>
             {
-                itemBuilder.ToTable("Transactions");
+                trxBuilder.ToTable("Transactions");
 
-                itemBuilder.HasKey(t => t.Id);
+                trxBuilder.HasKey(t => t.Id);
 
-                itemBuilder.Property(x => x.Ordering)
+                trxBuilder.Property(x => x.Ordering)
                        .HasDefaultValue(10_000);
 
-                itemBuilder.Property(s => s.OwnerId)
+                trxBuilder.Property(s => s.OwnerId)
                        .IsRequired();
 
-                itemBuilder.Property(s => s.InsertedBy)
+                trxBuilder.Property(s => s.InsertedBy)
                        .IsRequired();
 
-                itemBuilder.Property(s => s.UpdatedBy)
+                trxBuilder.Property(s => s.UpdatedBy)
                        .IsRequired();
 
-                itemBuilder.Property(s => s.InsertDateTime)
+                trxBuilder.Property(s => s.InsertDateTime)
                        .IsRequired();
 
-                itemBuilder.Property(s => s.UpdateDateTime)
+                trxBuilder.Property(s => s.UpdateDateTime)
                        .IsRequired();
 
-                itemBuilder.Property(s => s.Description)
+                trxBuilder.Property(s => s.Description)
                        .HasMaxLength(255)
                        .IsRequired(false);
 
-                itemBuilder.OwnsOne(x => x.Amount, dBuilder =>
+                trxBuilder
+                .Property(x => x.OperationId)
+                .HasMaxLength(255)
+                .IsRequired(false);
+
+                trxBuilder.HasIndex(x => x.OperationId)
+                .HasFilter("\"OperationId\" IS NOT NULL")
+                .IsUnique(true);
+
+
+                trxBuilder.OwnsOne(x => x.Amount, dBuilder =>
                 {
                     dBuilder.Property(x => x.Amount).HasColumnName("Amount");
                     dBuilder.Property(x => x.Currency).HasColumnName("AmountCurrency").HasMaxLength(3);
