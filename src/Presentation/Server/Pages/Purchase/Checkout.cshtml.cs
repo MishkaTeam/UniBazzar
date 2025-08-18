@@ -74,7 +74,7 @@ public class CheckoutModel(BasketApplication basketApplication,
             return Redirect(walletResult.Data.RedirectLink);
 
         Response.Cookies.Delete(BasketConstants.BASKET);
-        return RedirectToPagePermanent("Thankyou");
+        return RedirectToPagePermanent("Thankyou", new { orderId = order.Data.Id });
     }
 
     private async Task<bool> TryGetCheckoutData()
