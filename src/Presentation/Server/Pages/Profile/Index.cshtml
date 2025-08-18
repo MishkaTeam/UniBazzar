@@ -1,0 +1,174 @@
+﻿@page 
+@model Server.Pages.Profile.Personal_InfoModel
+@{
+    // string FullName = $"{Model.ViewModel.FirstName} {Model.ViewModel.LastName}";
+}
+
+<section class="inner-page" id="profile-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-12 col-lg-3">
+                            <!-- Side Panel -->
+                            <partial name="PartialViews/_PersonalInfoSideMenu" />
+                            <!-- /Side Panel -->
+                        </div>
+                        <div class="col-12 col-lg-9 pl-lg-0 pr-lg-2 mt-2 mt-lg-0">
+                            <!-- Profile Fields -->
+                            <form method="post">
+                                <div class="custom-container bg-light" id="profile-fields">
+                                    <input asp-for="ViewModel.Id" hidden />
+                                    <div class="p-3 d-flex">
+                                        <div><h1>اطلاعات شخصی</h1></div>
+                                        <button type="button" id="editBtn" onclick="EditInformation()" class="btn btn-sm btn-secondary ms-auto">ویرایش مشخصات</button>
+                                        <div id="subBtn" class="ms-auto" hidden>
+                                            <button type="submit" class="btn btn-sm btn-success">@(Resources.ButtonCaptions.Edit)</button>
+                                            <button type="button" onclick="CancelInformation()" class="btn btn-sm btn-danger">@(Resources.ButtonCaptions.Cancel)</button>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6 profile-field py-2">
+                                                <div class="row">
+                                                    <div class="col-10">
+                                                        <div class="title">@(Resources.DataDictionary.FirstName)</div>
+                                                        <div id="FirstNameLable" class="value">@(Model.ViewModel.FirstName)</div>
+                                                        <input id="FirstNameInput" asp-for="ViewModel.FirstName" class="form-control" hidden />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 profile-field py-2">
+                                                <div class="row">
+                                                    <div class="col-10">
+                                                        <div class="title">@(Resources.DataDictionary.LastName)</div>
+                                                        <div id="LastNameLable" class="value">@(Model.ViewModel.LastName)</div>
+                                                        <input id="LastNameInput" asp-for="ViewModel.LastName" class="form-control" hidden />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 profile-field py-2">
+                                                <div class="row">
+                                                    <div class="col-10">
+                                                        <div class="title">@(Resources.DataDictionary.NationalCode)</div>
+                                                        @if (Model.ViewModel.NationalCode == null)
+                                                        {
+                                                            <div id="NationalCodeLable" class="value">@(Resources.DataDictionary.NotRegistered)</div>
+                                                            <input id="NationalCodeInput" asp-for="ViewModel.NationalCode" class="form-control" hidden />
+                                                        }
+                                                        else
+                                                        {
+                                                            <div id="NationalCodeLable" class="value">@(Model.ViewModel.NationalCode)</div>
+                                                            <input id="NationalCodeInput" asp-for="ViewModel.NationalCode" class="form-control" hidden />
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 profile-field py-2">
+                                                <div class="row">
+                                                    <div class="col-10">
+                                                        <div class="title">@(Resources.DataDictionary.CellPhonenumber)</div>
+                                                        @if (Model.ViewModel.Mobile == null)
+                                                        {
+                                                            <div id="MobileLable" class="value">@(Resources.DataDictionary.NotRegistered)</div>
+                                                            <input id="MobileInput" asp-for="ViewModel.Mobile" class="form-control" hidden />
+                                                        }
+                                                        else
+                                                        {
+                                                            <div id="MobileLable" class="value">@(Model.ViewModel.Mobile)</div>
+                                                            <input id="MobileInput" asp-for="ViewModel.Mobile" class="form-control" hidden />
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 profile-field py-2">
+                                                <div class="row">
+                                                    <div class="col-10">
+                                                        <div class="title">@(Resources.DataDictionary.Email)</div>
+                                                        @if (Model.ViewModel.Email == null)
+                                                        {
+                                                            <div id="EmailLable" class="value">@(Resources.DataDictionary.NotRegistered)</div>
+                                                            <input id="EmailInput" asp-for="ViewModel.Email" class="form-control" hidden />
+                                                        }
+                                                        else
+                                                        {
+                                                            <div id="EmailLable" class="value">@(Model.ViewModel.Email)</div>
+                                                            <input id="EmailInput" asp-for="ViewModel.Email" class="form-control" hidden />
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- /Profile Fields -->
+                            <!-- Latest Orders -->
+                            <div class="mt-2 order">
+                                <div class="row pt-2 px-3">
+                                    <div class="col-12"><h2>آخرین سفارش ها</h2></div>
+                                </div>
+                            </div>
+                            <div class="custom-container mt-2 order">
+                                <div class="row pt-2 px-3">
+                                    <div class="col-12 col-sm-6"><h2>سفارش شماره #1234</h2></div>
+                                    <div class="col-12 col-sm-6 text-sm-end"><span>20 مرداد 1400</span> - <span>پرداخت شده</span></div>
+                                </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row py-2">
+                                        <div class="col-12">
+                                            <div>
+                                                <div class="encrypt231432">
+                                                    <div class="total py-1"><span>مبلغ کل:</span> 3.000.000 تومان</div>
+                                                </div>
+                                                <div class="container products px-0">
+                                                    <div class="row">
+                                                        <!-- Order Record -->
+                                                        <span class="col-12 col-sm-6 col-lg-4 col-xl-3 px-1">
+                                                            <a href="../product.html" target="_blank">
+                                                                <div class="encrypt263156">
+                                                                    <div class="image" style="background-image: url('/images/products/p100.png')"></div>
+                                                                    <div class="text-center px-1 px-sm-3">
+                                                                        <h2>گوشی موبایل سامسونگ مدل Galaxy A21s</h2>
+                                                                        <div class="number">تعداد: 1 عدد</div>
+                                                                        <div class="price">مبلغ: 3.000.000 عدد</div>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </span>
+                                                        <!-- /Order Record -->
+                                                        <!-- Order Record -->
+                                                        <span class="col-12 col-sm-6 col-lg-4 col-xl-3 px-1">
+                                                            <a href="../product.html" target="_blank">
+                                                                <div class="encrypt263156">
+                                                                    <div class="image" style="background-image: url('/images/products/p100.png')"></div>
+                                                                    <div class="text-center px-1 px-sm-3">
+                                                                        <h2>گوشی موبایل سامسونگ مدل Galaxy A21s</h2>
+                                                                        <div class="number">تعداد: 1 عدد</div>
+                                                                        <div class="price">مبلغ: 3.000.000 عدد</div>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </span>
+                                                        <!-- /Order Record -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Latest Orders -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="/js/Personal-Info.js"></script>

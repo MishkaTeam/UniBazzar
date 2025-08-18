@@ -1,12 +1,38 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using Application.Aggregates.Customers;
+using Application.Aggregates.Ordering.Baskets;
+using Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
+using BuildingBlocks.Domain.Context;
+using Constants;
+using Infrastructure;
 
-namespace Server.Pages
+namespace Server.Pages;
+
+public class CheckoutModel(BasketApplication basketApplication, 
+    CustomerApplication customerApplication, 
+    IExecutionContextAccessor executionContextAccessor) : BasePageModel
 {
-    public class CheckoutModel : PageModel
+    public BasketViewModel Basket { get; set; } = new();
+    public CustomerViewModel Customer { get; set; } = new();
+    public async Task OnGetAsync()
     {
-        public void OnGet()
+        var basketIdValue = Request.Cookies.FirstOrDefault(x => x.Key == BasketConstants.BASKET).Value;
+        if (basketIdValue == null)
+            return;
+
+        var isBasketIdValid = Guid.TryParse(basketIdValue, out var basketId);
+        var basketResult = await basketApplication.TryUpdateBasketInfo(basketId);
+
+        if (!basketResult.IsSuccessful)
+            return;
+
+        Basket = basketResult?.Data ?? new();
+
+        if(executionContextAccessor.UserId == null)
         {
+            return;
         }
+
+        Customer = await customerApplication.GetCustomerAsync(executionContextAccessor.UserId.Value);
+
     }
 }

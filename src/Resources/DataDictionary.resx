@@ -474,7 +474,97 @@
   <data name="Comment" xml:space="preserve">
     <value>comment</value>
   </data>
-	<data name="OtpCode" xml:space="preserve">
-		<value>Code</value>
-	</data>
+  <data name="FullName" xml:space="preserve">
+    <value>FullName</value>
+  </data>
+  <data name="NotRegistered" xml:space="preserve">
+    <value>Not Registered</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>LastName</value>
+  </data>
+  <data name="MyAddress" xml:space="preserve">
+    <value>My Address</value>
+  </data>
+  <data name="LogoutOfAccount" xml:space="preserve">
+    <value>Logout of account</value>
+  </data>
+  <data name="AccountInformation" xml:space="preserve">
+    <value>AccountInformation</value>
+  </data>
+  <data name="Attribute" xml:space="preserve">
+    <value>attribute</value>
+  </data>
+  <data name="AttributeValue" xml:space="preserve">
+    <value>attribute value</value>
+  </data>
+  <data name="PriceAdjustment" xml:space="preserve">
+    <value>price adjustment</value>
+  </data>
+  <data name="WeightAdjustment" xml:space="preserve">
+    <value>weight adjustment</value>
+  </data>
+  <data name="IsPreSelected" xml:space="preserve">
+    <value>is pre selected</value>
+  </data>
+  <data name="HomeView" xml:space="preserve">
+    <value>Home View</value>
+  </data>
+  <data name="HomeViews" xml:space="preserve">
+    <value>Home Views</value>
+  </data>
+  <data name="ProductView" xml:space="preserve">
+    <value>Product View</value>
+  </data>
+  <data name="ImageView" xml:space="preserve">
+    <value>Image View</value>
+  </data>
+  <data name="Interval" xml:space="preserve">
+    <value>Interval</value>
+  </data>
+  <data name="NavigationUrl" xml:space="preserve">
+    <value>Navigation URL</value>
+  </data>
+  <data name="SliderItems" xml:space="preserve">
+    <value>Slider Items</value>
+  </data>
+  <data name="SliderView" xml:space="preserve">
+    <value>Slider View</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="SliderItem" xml:space="preserve">
+    <value>Slider Item</value>
+  </data>
+  <data name="Column" xml:space="preserve">
+    <value>column</value>
+  </data>
+  <data name="ImageItem" xml:space="preserve">
+    <value>image item</value>
+  </data>
+  <data name="ImageItems" xml:space="preserve">
+    <value>image items</value>
+  </data>
+  <data name="ProductItem" xml:space="preserve">
+    <value>product item</value>
+  </data>
+  <data name="ProductItems" xml:space="preserve">
+    <value>product items</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>orders</value>
+  </data>
+  <data name="FullScreen" xml:space="preserve">
+    <value>Full Screen</value>
+  </data>
+  <data name="SplitScreen" xml:space="preserve">
+    <value>Split Screen</value>
+  </data>
+  <data name="Cms" xml:space="preserve">
+    <value>Cms</value>
+  </data>
 </root>

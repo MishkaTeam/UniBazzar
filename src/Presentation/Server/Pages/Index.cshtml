@@ -1,25 +1,48 @@
 ﻿@page
 @model Server.Pages.IndexModel
+@using Domain.Aggregates.Cms.HomeViews.Enums
+@using Server.Pages.Shared.Components.ImageSection
+@using Server.Pages.Shared.Components.ProductSection
+@using Server.Pages.Shared.Components.SliderSection
+
 @{
-    ViewData["Title"] = "Home page";
+	ViewData[Constants.ViewDataKeyName.PageTitle] = "UniBazzar - Home";
 }
+
 
 <section id="encrypt231432">
 
-   
+	@foreach (var homeView in Model.HomeViews)
+	{
+		if (homeView.Type == ViewType.Slider)
+		{
+			@(await Component.InvokeAsync
+				(SliderSectionViewComponent.KEY, homeView))
+		}
 
-    <partial name="PartialViews/_SliderSection" />
+		if (homeView.Type == ViewType.Product)
+		{
+			@(await Component.InvokeAsync
+				(ProductSectionViewComponent.KEY, homeView))
+		}
 
-    <partial name="PartialViews/_FeaturedProductsSection" />
+		if (homeView.Type == ViewType.Image)
+		{
+			@(await Component.InvokeAsync
+				(ImageSectionViewComponent.KEY, homeView))
+		}
+	}
 
-    <partial name="PartialViews/_OnSaleProducts" />
+	<partial name="PartialViews/_FeaturedProductsSection" />
 
-    <partial name="PartialViews/_WarrantyTitles" />
+	<partial name="PartialViews/_OnSaleProducts" />
 
-    <partial name="PartialViews/_MostSalesProducts" />
+	<partial name="PartialViews/_WarrantyTitles" />
 
-    <partial name="PartialViews/_PromoImages" />
+	<partial name="PartialViews/_MostSalesProducts" />
 
-    <partial name="PartialViews/_BlogSection" />
- 
+	<partial name="PartialViews/_PromoImages" />
+
+	<partial name="PartialViews/_BlogSection" />
+
 </section>

@@ -329,5 +329,14 @@ namespace Resources.Messages {
                 return ResourceManager.GetString("UserAccountIsNotActive", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have not registered an address yet..
+        /// </summary>
+        public static string YouHaveNotRegisteredAnAddressYet {
+            get {
+                return ResourceManager.GetString("YouHaveNotRegisteredAnAddressYet", resourceCulture);
+            }
+        }
     }
 }

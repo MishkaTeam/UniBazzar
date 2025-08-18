@@ -1,6 +1,8 @@
 using Application.Aggregates.Ordering.Baskets.ViewModels.BasketItems;
 using Application.Aggregates.Ordering.Baskets.ViewModels.Baskets;
 using Application.Aggregates.Ordering.Baskets.ViewModels.InitializeBasket;
+using BuildingBlocks.Domain.Context;
+using BuildingBlocks.Persistence;
 using Domain;
 using Domain.Aggregates.Ordering.Baskets;
 using Domain.Aggregates.Ordering.Baskets.Data;
@@ -11,7 +13,10 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Aggregates.Ordering.Baskets;
 
-public class BasketApplication(ILogger<BasketApplication> logger, IBasketRepository basketRepository, IUnitOfWork unitOfWork)
+public class BasketApplication(ILogger<BasketApplication> logger,
+    IBasketRepository basketRepository, 
+    IUnitOfWork unitOfWork,
+    IExecutionContextAccessor executionContextAccessor)
 {
     public async Task<ResultContract<InitializeBasketViewModel>> InitializeBasket(InitializeBasketRequestModel request)
     {
@@ -23,13 +28,12 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         if (request.TotalDiscountType != DiscountType.None)
             basket.SetTotalDiscount(request.TotalDiscountAmount, request.TotalDiscountType);
 
-        await basketRepository.AddAsync(basket);
-
-        if (request.OwnerId != Guid.Empty)
+        if (request.CustomerId != Guid.Empty)
         {
-            basket.SetOwner(request.OwnerId);
+            basket.SetCustomer(request.CustomerId);
         }
 
+        await basketRepository.AddAsync(basket);
         await unitOfWork.SaveChangesAsync();
 
         return new InitializeBasketViewModel(basket.Id, basket.ReferenceNumber);
@@ -146,12 +150,20 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         }
     }
 
-    public async Task<ResultContract> ChangeOwnerAsync(Guid basketId, Guid ownerId)
+    public async Task<ResultContract> SetCustomerAsync(Guid basketId, Guid customerId)
     {
         var basket =
             await basketRepository.GetByIdAsync(basketId);
 
-        basket.SetOwner(ownerId);
+        if (basket == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        basket.SetCustomer(customerId);
 
         await unitOfWork.SaveChangesAsync();
 
@@ -397,6 +409,34 @@ public class BasketApplication(ILogger<BasketApplication> logger, IBasketReposit
         }
 
         basketItem.ProductAmount.MinusQuantity();
+
+        await unitOfWork.SaveChangesAsync();
+
+        return BasketViewModel.FromBasket(basket);
+    }
+
+    public async Task<ResultContract<BasketViewModel>> TryUpdateBasketInfo(Guid basketId)
+    {
+        var basket =
+            await basketRepository.GetByIdAsync(basketId);
+
+        if (basket == null)
+        {
+            var message =
+                string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.Basket);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        if(executionContextAccessor.UserId == null)
+        {
+            var message =
+               string.Format(Resources.Messages.Errors.NotFound, Resources.DataDictionary.User);
+
+            return (ErrorType.NotFound, message);
+        }
+
+        basket.SetOwner(executionContextAccessor.UserId.Value);
 
         await unitOfWork.SaveChangesAsync();
 

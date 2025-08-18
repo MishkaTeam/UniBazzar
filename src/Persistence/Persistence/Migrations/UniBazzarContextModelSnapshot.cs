@@ -215,6 +215,59 @@ namespace Persistence.Migrations
                     b.ToTable("CheckoutCounters");
                 });
 
+            modelBuilder.Entity("Domain.Aggregates.Cms.HomeViews.HomeView", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("DeactivateDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("InsertDateTime")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("InsertedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsSystemic")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("Ordering")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(10000);
+
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("StoreId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.Property<long>("UpdateDateTime")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Version")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("HomeViews", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Aggregates.Customers.Customer", b =>
                 {
                     b.Property<Guid>("Id")
@@ -530,6 +583,9 @@ namespace Persistence.Migrations
                     b.Property<byte>("BasketStatus")
                         .HasColumnType("smallint");
 
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
@@ -569,6 +625,8 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CustomerId");
+
                     b.ToTable("Baskets", (string)null);
                 });
 
@@ -585,6 +643,12 @@ namespace Persistence.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)");
 
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
                     b.Property<long>("InsertDateTime")
                         .HasColumnType("bigint");
 
@@ -598,6 +662,9 @@ namespace Persistence.Migrations
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
+
+                    b.Property<byte>("Platform")
+                        .HasColumnType("smallint");
 
                     b.Property<string>("ReferenceNumber")
                         .IsRequired()
@@ -617,6 +684,8 @@ namespace Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Orders", (string)null);
                 });
@@ -1173,12 +1242,12 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsMany("Domain.Aggregates.Attributes.AttributeValues", "AttributeValues", b1 =>
+                    b.OwnsMany("Domain.Aggregates.Attributes.AttributeValue", "AttributeValues", b1 =>
                         {
-                            b1.Property<Guid>("AttributeId")
+                            b1.Property<Guid>("Id")
                                 .HasColumnType("uuid");
 
-                            b1.Property<Guid>("Id")
+                            b1.Property<Guid>("AttributeId")
                                 .HasColumnType("uuid");
 
                             b1.Property<long>("InsertDateTime")
@@ -1219,9 +1288,11 @@ namespace Persistence.Migrations
                             b1.Property<decimal>("WeightAdjustment")
                                 .HasColumnType("numeric");
 
-                            b1.HasKey("AttributeId", "Id");
+                            b1.HasKey("Id");
 
-                            b1.ToTable("AttributeValues");
+                            b1.HasIndex("AttributeId");
+
+                            b1.ToTable("AttributeValues", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("AttributeId");
@@ -1240,6 +1311,196 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Parent");
+                });
+
+            modelBuilder.Entity("Domain.Aggregates.Cms.HomeViews.HomeView", b =>
+                {
+                    b.OwnsMany("Domain.Aggregates.Cms.HomeViews.ImageViewItem", "ImageViews", b1 =>
+                        {
+                            b1.Property<Guid>("Id")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("Column")
+                                .IsRequired()
+                                .HasMaxLength(10)
+                                .HasColumnType("character varying(10)");
+
+                            b1.Property<Guid>("HomeViewId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("ImageUrl")
+                                .IsRequired()
+                                .HasMaxLength(500)
+                                .HasColumnType("character varying(500)");
+
+                            b1.Property<long>("InsertDateTime")
+                                .HasColumnType("bigint");
+
+                            b1.Property<Guid>("InsertedBy")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("NavigationUrl")
+                                .HasMaxLength(500)
+                                .HasColumnType("character varying(500)");
+
+                            b1.Property<int>("Ordering")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("integer")
+                                .HasDefaultValue(10000);
+
+                            b1.Property<Guid>("OwnerId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<Guid>("StoreId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("Title")
+                                .IsRequired()
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)");
+
+                            b1.Property<long>("UpdateDateTime")
+                                .HasColumnType("bigint");
+
+                            b1.Property<Guid>("UpdatedBy")
+                                .HasColumnType("uuid");
+
+                            b1.Property<int>("Version")
+                                .HasColumnType("integer");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("HomeViewId");
+
+                            b1.ToTable("ImageViewItems", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("HomeViewId");
+                        });
+
+                    b.OwnsMany("Domain.Aggregates.Cms.HomeViews.ProductViewItem", "ProductViews", b1 =>
+                        {
+                            b1.Property<Guid>("Id")
+                                .HasColumnType("uuid");
+
+                            b1.Property<Guid>("HomeViewId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<long>("InsertDateTime")
+                                .HasColumnType("bigint");
+
+                            b1.Property<Guid>("InsertedBy")
+                                .HasColumnType("uuid");
+
+                            b1.Property<int>("Ordering")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("integer")
+                                .HasDefaultValue(10000);
+
+                            b1.Property<Guid>("OwnerId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<Guid>("ProductId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<Guid>("StoreId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<long>("UpdateDateTime")
+                                .HasColumnType("bigint");
+
+                            b1.Property<Guid>("UpdatedBy")
+                                .HasColumnType("uuid");
+
+                            b1.Property<int>("Version")
+                                .HasColumnType("integer");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("HomeViewId");
+
+                            b1.HasIndex("ProductId");
+
+                            b1.ToTable("ProductViewItems", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("HomeViewId");
+
+                            b1.HasOne("Domain.Aggregates.Products.Product", "Product")
+                                .WithMany()
+                                .HasForeignKey("ProductId")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
+
+                            b1.Navigation("Product");
+                        });
+
+                    b.OwnsMany("Domain.Aggregates.Cms.HomeViews.SlideViewItem", "SliderViews", b1 =>
+                        {
+                            b1.Property<Guid>("Id")
+                                .HasColumnType("uuid");
+
+                            b1.Property<Guid>("HomeViewId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("ImageUrl")
+                                .IsRequired()
+                                .HasMaxLength(500)
+                                .HasColumnType("character varying(500)");
+
+                            b1.Property<long>("InsertDateTime")
+                                .HasColumnType("bigint");
+
+                            b1.Property<Guid>("InsertedBy")
+                                .HasColumnType("uuid");
+
+                            b1.Property<int>("Interval")
+                                .HasColumnType("integer");
+
+                            b1.Property<string>("NavigationUrl")
+                                .HasMaxLength(500)
+                                .HasColumnType("character varying(500)");
+
+                            b1.Property<int>("Ordering")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("integer")
+                                .HasDefaultValue(10000);
+
+                            b1.Property<Guid>("OwnerId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<Guid>("StoreId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("Title")
+                                .IsRequired()
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)");
+
+                            b1.Property<long>("UpdateDateTime")
+                                .HasColumnType("bigint");
+
+                            b1.Property<Guid>("UpdatedBy")
+                                .HasColumnType("uuid");
+
+                            b1.Property<int>("Version")
+                                .HasColumnType("integer");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("HomeViewId");
+
+                            b1.ToTable("SliderViewItems", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("HomeViewId");
+                        });
+
+                    b.Navigation("ImageViews");
+
+                    b.Navigation("ProductViews");
+
+                    b.Navigation("SliderViews");
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Customers.ShippingAddresses.ShippingAddress", b =>
@@ -1291,9 +1552,13 @@ namespace Persistence.Migrations
                     b.Navigation("Product");
                 });
 
-
             modelBuilder.Entity("Domain.Aggregates.Ordering.Baskets.Basket", b =>
                 {
+                    b.HasOne("Domain.Aggregates.Customers.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.OwnsOne("Domain.Aggregates.Ordering.ValueObjects.DiscountAmount", "TotalDiscountAmount", b1 =>
                         {
                             b1.Property<Guid>("BasketId")
@@ -1420,10 +1685,6 @@ namespace Persistence.Migrations
                                         .HasColumnType("bigint")
                                         .HasColumnName("ProductQuantity");
 
-                                    b2.Property<decimal>("TotalPrice")
-                                        .HasColumnType("numeric")
-                                        .HasColumnName("ProductTotalPrice");
-
                                     b2.HasKey("BasketItemId");
 
                                     b2.ToTable("BasketItems");
@@ -1509,12 +1770,41 @@ namespace Persistence.Migrations
 
                     b.Navigation("BasketItems");
 
+                    b.Navigation("Customer");
+
                     b.Navigation("TotalDiscountAmount")
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Aggregates.Ordering.Orders.Order", b =>
                 {
+                    b.HasOne("Domain.Aggregates.Customers.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.OwnsOne("Domain.Aggregates.Ordering.ValueObjects.DiscountAmount", "TotalDiscountAmount", b1 =>
+                        {
+                            b1.Property<Guid>("OrderId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<byte>("DiscountType")
+                                .HasColumnType("smallint")
+                                .HasColumnName("TotalDiscountType");
+
+                            b1.Property<decimal>("Value")
+                                .HasColumnType("numeric")
+                                .HasColumnName("TotalDiscountAmount");
+
+                            b1.HasKey("OrderId");
+
+                            b1.ToTable("Orders");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+                        });
+
                     b.OwnsMany("Domain.Aggregates.Ordering.Orders.OrderItem", "OrderItems", b1 =>
                         {
                             b1.Property<Guid>("Id")
@@ -1562,6 +1852,72 @@ namespace Persistence.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("OrderId");
+
+                            b1.OwnsMany("Domain.Aggregates.Ordering.Baskets.OrderItemAttribute", "OrderItemAttribute", b2 =>
+                                {
+                                    b2.Property<Guid>("Id")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<Guid>("BasketItemId")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<long>("InsertDateTime")
+                                        .HasColumnType("bigint");
+
+                                    b2.Property<Guid>("InsertedBy")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<Guid>("OrderItemId")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<int>("Ordering")
+                                        .ValueGeneratedOnAdd()
+                                        .HasColumnType("integer")
+                                        .HasDefaultValue(10000);
+
+                                    b2.Property<Guid>("OwnerId")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<decimal>("PriceAdjustment")
+                                        .HasColumnType("numeric");
+
+                                    b2.Property<Guid>("ProductAttributeId")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<string>("ProductAttributeName")
+                                        .IsRequired()
+                                        .HasMaxLength(2000)
+                                        .HasColumnType("character varying(2000)");
+
+                                    b2.Property<string>("ProductAttributeValue")
+                                        .IsRequired()
+                                        .HasMaxLength(2000)
+                                        .HasColumnType("character varying(2000)");
+
+                                    b2.Property<Guid?>("ProductAttributeValueId")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<Guid>("StoreId")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<long>("UpdateDateTime")
+                                        .HasColumnType("bigint");
+
+                                    b2.Property<Guid>("UpdatedBy")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<int>("Version")
+                                        .HasColumnType("integer");
+
+                                    b2.HasKey("Id");
+
+                                    b2.HasIndex("OrderItemId");
+
+                                    b2.ToTable("OrderItemAttributes", (string)null);
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("OrderItemId");
+                                });
 
                             b1.OwnsOne("Domain.Aggregates.Ordering.ValueObjects.DiscountAmount", "DiscountAmount", b2 =>
                                 {
@@ -1620,10 +1976,6 @@ namespace Persistence.Migrations
                                         .HasColumnType("bigint")
                                         .HasColumnName("ProductQuantity");
 
-                                    b2.Property<decimal>("TotalPrice")
-                                        .HasColumnType("numeric")
-                                        .HasColumnName("ProductTotalPrice");
-
                                     b2.HasKey("OrderItemId");
 
                                     b2.ToTable("OrderItems");
@@ -1635,6 +1987,8 @@ namespace Persistence.Migrations
                             b1.Navigation("DiscountAmount")
                                 .IsRequired();
 
+                            b1.Navigation("OrderItemAttribute");
+
                             b1.Navigation("Product")
                                 .IsRequired();
 
@@ -1642,7 +1996,12 @@ namespace Persistence.Migrations
                                 .IsRequired();
                         });
 
+                    b.Navigation("Customer");
+
                     b.Navigation("OrderItems");
+
+                    b.Navigation("TotalDiscountAmount")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Aggregates.PriceLists.PriceList", b =>

@@ -9,7 +9,8 @@ using Application.Aggregates.Products.Basket;
 using Application.Aggregates.Products.ProductFeatures;
 using Application.Aggregates.Products.ProductImages;
 using Application.Aggregates.Products.ViewModels;
-using BuildingBlocks.Persistence;
+using BuildingBlocks.Domain.Context;
+using Constants;
 using Domain.Aggregates.Ordering.Baskets.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -127,7 +128,7 @@ public class DetailModel(ProductsApplication productsApplication,
 
     private async Task<Guid?> TryGetBasketId()
     {
-        var basketId = Request.Cookies.FirstOrDefault(x => x.Key == "basketId");
+        var basketId = Request.Cookies.FirstOrDefault(x => x.Key == BasketConstants.BASKET);
         if (string.IsNullOrEmpty(basketId.Value))
         {
             var basket = await basketApplication.InitializeBasket(new InitializeBasketRequestModel
@@ -137,7 +138,7 @@ public class DetailModel(ProductsApplication productsApplication,
 
             if (basket != null && basket.IsSuccessful && basket.Data is not null)
             {
-                Response.Cookies.Append("basketId", basket.Data.Id.ToString(), new CookieOptions
+                Response.Cookies.Append(BasketConstants.BASKET, basket.Data.Id.ToString(), new CookieOptions
                 {
                     HttpOnly = false,
                     Expires = DateTimeOffset.UtcNow.AddDays(7),

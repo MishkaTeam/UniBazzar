@@ -207,4 +207,7 @@
   <data name="UserAccountIsNotActive" xml:space="preserve">
     <value>دسترسی شما به سامانه تا اطلاع ثانوی مسدود می‌باشد!</value>
   </data>
+  <data name="YouHaveNotRegisteredAnAddressYet" xml:space="preserve">
+    <value>هنوز آدرس ثبت نکرده اید</value>
+  </data>
 </root>

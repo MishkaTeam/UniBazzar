@@ -17,15 +17,21 @@ internal class BasketConfiguration : BaseConfiguration<Basket>
                .HasMaxLength(150)
                .IsRequired();
 
+        builder.HasOne(x => x.Customer)
+               .WithMany()
+               .HasForeignKey(x => x.CustomerId)
+               .OnDelete(DeleteBehavior.Restrict)
+               .IsRequired(false);
+
+        builder.Ignore(x => x.TotalBeforeDiscount);
+        builder.Ignore(x => x.Total);
+
         builder.OwnsOne(x => x.TotalDiscountAmount, dBuilder =>
         {
             dBuilder.Property(x => x.DiscountType).HasColumnName("TotalDiscountType");
             dBuilder.Property(x => x.Value).HasColumnName("TotalDiscountAmount");
 
         });
-        builder.Ignore(x => x.TotalBeforeDiscount);
-
-        builder.Ignore(x => x.Total);
 
         builder.OwnsMany(x => x.BasketItems, basketBuilder =>
         {
@@ -58,21 +64,19 @@ internal class BasketConfiguration : BaseConfiguration<Basket>
             basketBuilder.Ignore(x => x.TotalPrice);
             basketBuilder.Ignore(x => x.TotalPriceWithAdjustment);
             basketBuilder.Ignore(x => x.PriceAdjustments);
+
             basketBuilder.OwnsOne(x => x.DiscountAmount, dBuilder =>
             {
                 dBuilder.Property(x => x.DiscountType).HasColumnName("DiscountType");
                 dBuilder.Property(x => x.Value).HasColumnName("DiscountAmount");
             });
 
-
             basketBuilder.OwnsOne(x => x.ProductAmount, pBuilder =>
             {
                 pBuilder.Property(x => x.Quantity).HasColumnName("ProductQuantity");
                 pBuilder.Property(x => x.BasePrice).HasColumnName("ProductBasePrice");
-                //pBuilder.Property(x => x.TotalPrice).HasColumnName("ProductTotalPrice").HasComputedColumnSql("ProductQuantity * ProductBasePrice");
                 pBuilder.Ignore(x => x.TotalPrice);
             });
-
 
             basketBuilder.OwnsOne(x => x.Product, pBuilder =>
             {
@@ -108,5 +112,5 @@ internal class BasketConfiguration : BaseConfiguration<Basket>
             });
 
         });
-    }   
+    }
 }

@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.Persistence;
+﻿using BuildingBlocks.Domain.Context;
 using Domain.ProductSearch;
 using Domain.ProductSearch.Data;
 using Microsoft.EntityFrameworkCore;

@@ -1,4 +1,5 @@
-﻿using BuildingBlocks.Persistence;
+﻿using BuildingBlocks.Domain.Context;
+using BuildingBlocks.Persistence;
 using Domain.Aggregates.Products.ProductImages;
 using Microsoft.EntityFrameworkCore;
 
