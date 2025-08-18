@@ -28,7 +28,6 @@ public static class ObservabilityExtensions
         builder.Services.AddHttpContextAccessor();
 
         var enrichmentOptions = new EnrichmentOptions();
-        // Execute the configuration action provided by the consumer (SampleWebApp)
         configureEnrichment?.Invoke(enrichmentOptions);
 
         builder.Host.UseSerilog((context, services, loggerConfig) =>
