@@ -20,4 +20,9 @@ public record MoneyContract
     {
       return Money.Create(Amount,Currency);
     }
+
+    public override string ToString()
+    {
+        return $"{Amount} {Currency}";
+    }
 }

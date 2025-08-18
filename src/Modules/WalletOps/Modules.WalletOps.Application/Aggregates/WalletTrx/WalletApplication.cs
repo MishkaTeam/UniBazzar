@@ -1,17 +1,20 @@
 ﻿using BuildingBlocks.Domain.Context;
 using BuildingBlocks.Domain.Data;
 using Framework.DataType;
+using Microsoft.Extensions.Logging;
 using Modules.WalletOps.Application.Contracts;
 using Modules.WalletOps.Domain.Aggregates.WalletTrx;
 using Modules.WalletOps.Domain.Aggregates.WalletTrx.Data;
 using Modules.WalletOps.Domain.ValueObjects;
+using OpenTelemetry.Trace;
 
 namespace Modules.WalletOps.Application.Aggregates.WalletTrx;
 
 public class WalletApplication
     (IExecutionContextAccessor executionContextAccessor,
     IWalletRepository walletRepository,
-    IUnitOfWork unitOfWork)
+    IUnitOfWork unitOfWork,
+    ILogger<WalletApplication> logger)
 {
     public async Task<ResultContract<WalletPurchaseResponseContract>> PurchaseAsync(WalletPurchaseRequestContract requestContract)
     {
@@ -32,43 +35,49 @@ public class WalletApplication
     {
         // TODO: ADD LOCK
         var wallet = await GetCurrentUserWallet();
-        // TODO : LOG
+        logger.LogInformation("Get Current User Wallet with Id {UserId} and {WalletId}", executionContextAccessor.UserId, wallet.Id);
         Money heldAmount;
         Money bankAmount = Money.Zero(requestContract.Amount.Currency);
         bool generateBankLink = false;
         if (requestContract.Amount.ToMoney() > wallet.AvailableBalance)
         {
-            // TODO : LOG
+            logger
+                .LogInformation("Available balance is less than purchase amount | AvailableBalance: {AvailableBalance}, | purchase amount: {PurchaseAmount}"
+                , wallet.AvailableBalance
+                , requestContract.Amount);
+
             bankAmount = requestContract.Amount.ToMoney() - wallet.AvailableBalance;
             heldAmount = wallet.AvailableBalance;
             generateBankLink = true;
         }
         else
         {
-            // TODO : LOG
+            logger
+                .LogInformation("All Available Balance will be held | AvailableBalance: {AvailableBalance}", wallet.AvailableBalance);
+            
             heldAmount = requestContract.Amount.ToMoney();
         }
 
-        // TODO : LOG
         var fund = wallet.BlockFunds(heldAmount, $"بلوکه کردن پول برای خرید رفرنس {requestContract.ReferenceId}", requestContract.OperationId);
-        // TODO : LOG
+
+        logger
+            .LogInformation("{HeldFundAmount} will be held", fund.Amount);
 
         await unitOfWork.SaveChangesAsync();
 
         if (generateBankLink)
         {
-            // TODO : LOG    
             var link = $"https://localhost:7052/Bank?Amount={bankAmount.Amount}";
-            // TODO : LOG    
+            logger
+                .LogInformation("GenerateBankLink is {GenerateBankLink} Link Generated : {Link}", generateBankLink, link);
 
             return new WalletPurchaseResponseContract { RedirectLink = link };
-
         }
 
-        // TODO : LOG
         wallet.SettleBlockedFund(fund.Id, requestContract.OperationId);
         await unitOfWork.SaveChangesAsync();
-        // TODO : LOG
+        logger
+            .LogInformation("SettleBlockedFund For {RequestId} With {Amount}", requestContract.ReferenceId, fund.Amount);
 
         return new WalletPurchaseResponseContract { RedirectLink = null };
     }
