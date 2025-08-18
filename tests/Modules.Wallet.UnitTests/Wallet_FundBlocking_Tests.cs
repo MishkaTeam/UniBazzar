@@ -10,8 +10,8 @@ public class Wallet_FundBlocking_Tests
     public Wallet_FundBlocking_Tests()
     {
         _wallet = Wallet.CreateWallet();
-        _wallet.DepositWithdrawable(Money.Create(1000, "IRR"), "Salary");
-        _wallet.DepositNonWithdrawable(Money.Create(200, "IRR"), "Bonus");
+        _wallet.DepositWithdrawable(Money.Create(1000, "IRR"), "Salary", null);
+        _wallet.DepositNonWithdrawable(Money.Create(200, "IRR"), "Bonus", null);
     }
 
     [Fact]
@@ -19,7 +19,7 @@ public class Wallet_FundBlocking_Tests
     {
         var blockAmount = Money.Create(300, "IRR");
 
-        var heldFund = _wallet.BlockFunds(blockAmount, "Payment hold");
+        var heldFund = _wallet.BlockFunds(blockAmount, "Payment hold", null);
 
         _wallet.TotalBalance.Should().Be(Money.Create(1200, "IRR")); // Unchanged
         _wallet.HeldBalance.Should().Be(blockAmount);
@@ -31,9 +31,9 @@ public class Wallet_FundBlocking_Tests
     public void SettleBlockedFund_Should_Permanently_Decrease_Balances()
     {
         var blockAmount = Money.Create(500, "IRR");
-        var heldFund = _wallet.BlockFunds(blockAmount, "Payment hold");
+        var heldFund = _wallet.BlockFunds(blockAmount, "Payment hold", null);
 
-        _wallet.SettleBlockedFund(heldFund.Id);
+        _wallet.SettleBlockedFund(heldFund.Id, null);
 
         _wallet.NonWithdrawableBalance.Should().Be(Money.Zero("IRR"));
         _wallet.WithdrawableBalance.Should().Be(Money.Create(700, "IRR"));
@@ -47,9 +47,9 @@ public class Wallet_FundBlocking_Tests
     public void ReleaseBlockedFund_Should_Return_Funds_To_AvailableBalance()
     {
         var blockAmount = Money.Create(400, "IRR");
-        var heldFund = _wallet.BlockFunds(blockAmount, "Payment hold");
+        var heldFund = _wallet.BlockFunds(blockAmount, "Payment hold", null);
 
-        _wallet.ReleaseBlockedFund(heldFund.Id);
+        _wallet.ReleaseBlockedFund(heldFund.Id  , null);
 
         _wallet.HeldBalance.Should().Be(Money.Zero("IRR"));
         _wallet.AvailableBalance.Should().Be(Money.Create(1200, "IRR"));

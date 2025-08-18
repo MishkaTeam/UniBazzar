@@ -31,7 +31,7 @@ public class WalletTests
         var wallet = Wallet.CreateWallet();
         var depositAmount = Money.Create(1000, "IRR");
 
-        wallet.DepositWithdrawable(depositAmount, "Test deposit");
+        wallet.DepositWithdrawable(depositAmount, "Test deposit", null);
 
         wallet.WithdrawableBalance.Should().Be(depositAmount);
         wallet.TotalBalance.Should().Be(depositAmount);
@@ -45,7 +45,7 @@ public class WalletTests
         var wallet = Wallet.CreateWallet();
         var depositAmount = Money.Create(500, "IRR");
 
-        wallet.DepositNonWithdrawable(depositAmount, "Gift");
+        wallet.DepositNonWithdrawable(depositAmount, "Gift", null);
 
         wallet.NonWithdrawableBalance.Should().Be(depositAmount);
         wallet.TotalBalance.Should().Be(depositAmount);
@@ -55,10 +55,10 @@ public class WalletTests
     public void Withdraw_Should_Decrease_WithdrawableBalance()
     {
         var wallet = Wallet.CreateWallet();
-        wallet.DepositWithdrawable(Money.Create(1000, "IRR"), "Initial deposit");
+        wallet.DepositWithdrawable(Money.Create(1000, "IRR"), "Initial deposit", null);
         var withdrawAmount = Money.Create(700, "IRR");
 
-        wallet.Withdraw(withdrawAmount);
+        wallet.Withdraw(withdrawAmount, null);
 
         wallet.WithdrawableBalance.Should().Be(Money.Create(300, "IRR"));
         wallet.Transactions.Last().Type.Should().Be(TransactionType.Withdrawal);
@@ -70,10 +70,10 @@ public class WalletTests
     {
         var wallet = Wallet.CreateWallet();
         var depositAmount = Money.Create(1000, "IRR");
-        wallet.DepositNonWithdrawable(depositAmount, "Gift");
+        wallet.DepositNonWithdrawable(depositAmount, "Gift", null);
 
         var withdrawAmount = Money.Create(700, "IRR");
-        Action withdraw = () => wallet.Withdraw(withdrawAmount);
+        Action withdraw = () => wallet.Withdraw(withdrawAmount, null);
 
         withdraw.Should().Throw<InvalidBalanceException>();
     }
@@ -82,8 +82,8 @@ public class WalletTests
     public void Withdraw_Should_Throw_Exception_When_Funds_Are_Insufficient()
     {
         var wallet = Wallet.CreateWallet();
-        wallet.DepositWithdrawable(Money.Create(500, "IRR"), "Initial deposit");
-        Action action = () => wallet.Withdraw(Money.Create(600, "IRR"));
+        wallet.DepositWithdrawable(Money.Create(500, "IRR"), "Initial deposit", null);
+        Action action = () => wallet.Withdraw(Money.Create(600, "IRR"), null);
 
         action.Should().Throw<Exception>().WithMessage("Insufficient withdrawable funds.");
     }
@@ -93,7 +93,7 @@ public class WalletTests
     {
         var wallet = Wallet.CreateWallet();
         wallet.Freeze();
-        Action action = () => wallet.DepositWithdrawable(Money.Create(100, "IRR"), "deposit");
+        Action action = () => wallet.DepositWithdrawable(Money.Create(100, "IRR"), "deposit", null);
 
         action.Should().Throw<Exception>().WithMessage("Wallet is not active.");
     }
