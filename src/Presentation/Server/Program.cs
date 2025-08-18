@@ -2,6 +2,7 @@ using Blazored.LocalStorage;
 using Blazored.SessionStorage;
 using BuildingBlocks.Domain.Context;
 using BuildingBlocks.Persistence.Extensions;
+using Framework.Observability;
 using Framework.Storage;
 using Microsoft.EntityFrameworkCore;
 using Modules.Treasury.Api.ServiceCollection;
@@ -12,6 +13,7 @@ using Server.Infrastructure.Extentions.ServiceCollections;
 using Server.Infrastructure.Middleware;
 using Server.Infrastructure.Services;
 using Modules.WalletOps.Api.ServiceCollection;
+using System.Reflection;
 
 namespace Server
 {
@@ -20,6 +22,29 @@ namespace Server
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            Assembly entryAssembly = Assembly.GetExecutingAssembly();
+
+            builder.AddObservability(entryAssembly.GetName().Name ?? "UniBazzar", entryAssembly.GetName().Version?.ToString() ?? "1.0.0",
+                enrichment =>
+            {
+                enrichment.WithCustomContext(serviceProvider =>
+                {
+                    var executionContext = serviceProvider.GetService<IExecutionContextAccessor>();
+
+                    if (executionContext != null)
+                    {
+                        return new Dictionary<string, object?>
+                        {
+                            { "StoreId", executionContext.StoreId },
+                            { "UserId", executionContext.UserId.HasValue ? executionContext.UserId.Value : "NotAuthenticated" }
+                        };
+                    }
+
+                    return new Dictionary<string, object?>();
+                });
+            });
+
+
             builder.AddConfiguration();
 
             var services = builder.Services;
@@ -75,6 +100,8 @@ namespace Server
             }
 
             app.UseHttpsRedirection();
+            app.UseObservability();
+
             app.UseStaticFiles();
             app.UseCultureHandler();
             app.UseTenantResolution();
