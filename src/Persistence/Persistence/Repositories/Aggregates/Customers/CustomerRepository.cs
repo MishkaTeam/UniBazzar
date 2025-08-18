@@ -1,4 +1,6 @@
-﻿using BuildingBlocks.Persistence;
+﻿using BuildingBlocks.Domain.Context;
+using BuildingBlocks.Persistence;
+using BuildingBlocks.Persistence.Extensions;
 using Domain.Aggregates.Customers;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,5 +23,13 @@ public class CustomerRepository
     public Task<Customer> GetWithEmail(string userName)
     {
         return DbSet.FirstOrDefaultAsync(x => x.Email == userName);
+    }
+
+    public async override Task<Customer> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        return await DbSet
+            .Include(x => x.Addresses)
+            .StoreFilter(tenantId: ExecutionContext.StoreId)
+            .FirstOrDefaultAsync(x => x.Id.Equals(id), cancellationToken);
     }
 }

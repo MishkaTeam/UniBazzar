@@ -1,0 +1,40 @@
+﻿@using Application.Aggregates.HomeViews.ViewModels.HomeViews
+@model IndexHomeViewViewModel
+
+@{
+	var imageViews =
+		Model.ImageViews;
+}
+
+
+<section id="blog" class="pt-5">
+
+	<h1 class="encrypt45121256 fs-3">@(Model.Title)</h1>
+
+	<div class="container pt-2">
+		<div class="row row-cols-1">
+			@{
+				foreach (var image in imageViews)
+				{
+					var columnClass = image.Column == "1" ? "col-12" : "col-6";
+
+					<div class="@(columnClass) mb-4">
+						<div class="encrypt471213921256" data-aos="fade-up" data-aos-duration="1000">
+							@if (string.IsNullOrWhiteSpace(image.NavigationUrl))
+							{
+								<div class="post-image" style="background-image: url('@(image.ImageUrl)')"></div>
+							}
+							else
+							{
+								<a href="@(image.NavigationUrl)" target="_blank">
+									<div class="post-image" style="background-image: url('@(image.ImageUrl)')"></div>
+								</a>
+							}
+						</div>
+					</div>
+				}
+			}
+		</div>
+	</div>
+
+</section>

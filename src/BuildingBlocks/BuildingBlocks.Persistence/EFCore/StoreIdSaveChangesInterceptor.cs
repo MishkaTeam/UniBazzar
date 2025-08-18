@@ -1,4 +1,5 @@
-﻿using BuildingBlocks.Domain.SeedWork;
+﻿using BuildingBlocks.Domain.Context;
+using BuildingBlocks.Domain.SeedWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 

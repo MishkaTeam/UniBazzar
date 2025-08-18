@@ -474,6 +474,99 @@
   <data name="Comment" xml:space="preserve">
     <value>نظرات</value>
   </data>
+  <data name="FullName" xml:space="preserve">
+    <value>نام و نام خانوادگی</value>
+  </data>
+  <data name="NotRegistered" xml:space="preserve">
+    <value>ثبت نشده</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="MyAddress" xml:space="preserve">
+    <value>آدرس های من</value>
+  </data>
+  <data name="LogoutOfAccount" xml:space="preserve">
+    <value>خروج از حساب کاربری</value>
+  </data>
+  <data name="AccountInformation" xml:space="preserve">
+    <value>اطلاعات حساب کاربری</value>
+  </data>
+  <data name="Attribute" xml:space="preserve">
+    <value>ویژگی</value>
+  </data>
+  <data name="AttributeValue" xml:space="preserve">
+    <value>سایر ویژگی ها</value>
+  </data>
+  <data name="PriceAdjustment" xml:space="preserve">
+    <value>تنظیم قیمت</value>
+  </data>
+  <data name="WeightAdjustment" xml:space="preserve">
+    <value>تنظیم وزن</value>
+  </data>
+  <data name="IsPreSelected" xml:space="preserve">
+    <value>تنظیم پیش فرض</value>
+  </data>
+  <data name="HomeView" xml:space="preserve">
+    <value>آلبوم</value>
+  </data>
+  <data name="HomeViews" xml:space="preserve">
+    <value>آلبوم ها</value>
+  </data>
+  <data name="ProductView" xml:space="preserve">
+    <value>آلبوم کالا</value>
+  </data>
+  <data name="ImageView" xml:space="preserve">
+    <value>آلبوم عکس</value>
+  </data>
+  <data name="Interval" xml:space="preserve">
+    <value>فاصله زمانی</value>
+  </data>
+  <data name="NavigationUrl" xml:space="preserve">
+    <value>لینک</value>
+  </data>
+  <data name="SliderItems" xml:space="preserve">
+    <value>اسلاید ها</value>
+  </data>
+  <data name="SliderView" xml:space="preserve">
+    <value>آلبوم اسلاید</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>آیتم‌ها</value>
+  </data>
+  <data name="SliderItem" xml:space="preserve">
+    <value>اسلاید</value>
+  </data>
+  <data name="Column" xml:space="preserve">
+    <value>اندازه در صفحه</value>
+  </data>
+  <data name="ImageItem" xml:space="preserve">
+    <value>عکس</value>
+  </data>
+  <data name="ImageItems" xml:space="preserve">
+    <value>عکس‌ها</value>
+  </data>
+  <data name="ProductItem" xml:space="preserve">
+    <value>کالا</value>
+  </data>
+  <data name="ProductItems" xml:space="preserve">
+    <value>کالاها</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>سفارشات</value>
+  </data>
+  <data name="FullScreen" xml:space="preserve">
+    <value>کل صفحه</value>
+  </data>
+  <data name="SplitScreen" xml:space="preserve">
+    <value>نصف صفحه</value>
+  </data>
+  <data name="Cms" xml:space="preserve">
+    <value>مدیریت محتوا</value>
+  </data>
   <data name="SiteSetting" xml:space="preserve">
     <value>تنظیمات سایت</value>
   </data>

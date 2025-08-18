@@ -18,6 +18,7 @@ public class BasketViewModel
 
     public Guid Id { get; set; }
     public Guid OwnerId { get; set; }
+    public Guid? CustomerId { get; set; }
     public string ReferenceNumber { get; set; }
     public Platform Platform { get; set; }
     public BasketStatus BasketStatus { get; set; }
@@ -35,6 +36,7 @@ public class BasketViewModel
         return new BasketViewModel
         {
             Id = basket.Id,
+            CustomerId = basket.CustomerId,
             OwnerId = basket.OwnerId,
             ReferenceNumber = basket.ReferenceNumber,
             BasketStatus = basket.BasketStatus,

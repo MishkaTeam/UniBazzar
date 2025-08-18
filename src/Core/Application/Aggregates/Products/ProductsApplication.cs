@@ -2,7 +2,6 @@
 using Domain;
 using Domain.Aggregates.PriceLists;
 using Domain.Aggregates.Products;
-using Domain.Aggregates.Products.ProductFeatures;
 using Mapster;
 using Resources.Messages;
 
@@ -94,6 +93,26 @@ public partial class ProductsApplication
 
         return products.Select(x => new ProductCardViewModel
         {
+            Id = x.Id,
+            Price = priceLists?.FirstOrDefault(p => p.productId == x.Id).price ?? 0,
+            ImageUrl = x.ProductImages.FirstOrDefault()?.ImageUrl,
+            Name = x.Name,
+            SKU = x.SKU,
+            Slug = x.Slug,
+        }).ToList();
+    }
+
+    public async Task<List<ProductCardViewModel>> GetFullProductData(List<Guid> productIds, CancellationToken cancellationToken = default)
+    {
+        var products = await productRepository
+            .GetFullProductData(productIds, cancellationToken);
+
+        var priceLists = await priceListRepository
+            .GetPrice(products.Select(x => x.Id).ToList());
+
+        return products.Select(x => new ProductCardViewModel
+        {
+            Id= x.Id,
             Price = priceLists?.FirstOrDefault(p => p.productId == x.Id).price ?? 0,
             ImageUrl = x.ProductImages.FirstOrDefault()?.ImageUrl,
             Name = x.Name,
@@ -109,6 +128,7 @@ public partial class ProductsApplication
 
         return products.Select(x => new ProductCardViewModel
         {
+            Id = x.Id,
             Price = priceLists?.FirstOrDefault(p => p.productId == x.Id).price ?? 0,
             ImageUrl = x.ProductImages.FirstOrDefault()?.ImageUrl,
             Name = x.Name,

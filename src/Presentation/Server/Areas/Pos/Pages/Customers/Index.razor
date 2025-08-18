@@ -45,13 +45,10 @@
 
 @code {
 
-    List<UpdateCustomerViewModel>? ViewModel = null;
+    List<CustomerViewModel>? ViewModel = null;
 
     protected override async Task OnInitializedAsync()
     {
-        // Test loading text
-        await Task.Run(() => Thread.Sleep(2000));
-
         ViewModel = await CustomerApplication.GetAllCustomer();
     }
 

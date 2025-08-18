@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using BuildingBlocks.Domain.Context;
 using BuildingBlocks.Domain.Data;
 using BuildingBlocks.Domain.SeedWork;
 using BuildingBlocks.Persistence.Exceptions;
@@ -46,10 +47,23 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
 	{
 		if (entities == null)
 		{
-			throw new ArgumentNullException("entities");
+			throw new ArgumentNullException("entities is null");
 		}
 
-		await DbSet.AddRangeAsync(entities, cancellationToken);
+        foreach (var entity in entities)
+        {
+            entity.IncreaseVersion();
+
+            entity.SetInsertBy(ExecutionContext.UserId ?? throw new Exception("User Is Empty"));
+
+            entity.SetOwner(ExecutionContext.UserId ?? throw new Exception("User Is Empty"));
+
+            entity.SetStore(ExecutionContext.StoreId);
+
+            entity.SetInsertDateTime();
+        }
+
+        await DbSet.AddRangeAsync(entities, cancellationToken);
 	}
 
 	public virtual async Task RemoveAsync(TEntity entity, CancellationToken cancellationToken = default)

@@ -9,6 +9,7 @@ public class BaseConfiguration<TEntity> : IEntityTypeConfiguration<TEntity> wher
     public virtual void Configure(EntityTypeBuilder<TEntity> builder)
     {
         builder.HasKey(t => t.Id);
+
         builder.Property(x => x.Ordering)
         .HasDefaultValue(10_000);
 
@@ -27,6 +28,7 @@ public class BaseConfiguration<TEntity> : IEntityTypeConfiguration<TEntity> wher
         builder.Property(s => s.UpdateDateTime)
                .IsRequired();
 
-
+        // StoreId ???
+        // Version ???
     }
 }

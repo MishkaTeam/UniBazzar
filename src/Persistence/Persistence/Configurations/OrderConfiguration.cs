@@ -21,6 +21,21 @@ internal class OrderConfiguration : BaseConfiguration<Order>
                .HasMaxLength(150)
                .IsRequired();
 
+        builder.HasOne(x => x.Customer)
+               .WithMany()
+               .HasForeignKey(x => x.CustomerId)
+               .OnDelete(DeleteBehavior.Restrict)
+               .IsRequired();
+
+        builder.Ignore(x => x.TotalBeforeDiscount);
+        builder.Ignore(x => x.Total);
+
+        builder.OwnsOne(x => x.TotalDiscountAmount, dBuilder =>
+        {
+            dBuilder.Property(x => x.DiscountType).HasColumnName("TotalDiscountType");
+            dBuilder.Property(x => x.Value).HasColumnName("TotalDiscountAmount");
+
+        });
 
         builder.OwnsMany(x => x.OrderItems, itemBuilder =>
         {
@@ -50,18 +65,20 @@ internal class OrderConfiguration : BaseConfiguration<Order>
             itemBuilder.Property(s => s.UpdateDateTime)
                    .IsRequired();
 
+            itemBuilder.Ignore(x => x.TotalPrice);
+            itemBuilder.Ignore(x => x.TotalPriceWithAdjustment);
+            itemBuilder.Ignore(x => x.PriceAdjustments);
+
             itemBuilder.OwnsOne(x => x.DiscountAmount, dBuilder =>
             {
                 dBuilder.Property(x => x.DiscountType).HasColumnName("DiscountType");
                 dBuilder.Property(x => x.Value).HasColumnName("DiscountAmount");
             });
 
-
             itemBuilder.OwnsOne(x => x.ProductAmount, pBuilder =>
             {
                 pBuilder.Property(x => x.Quantity).HasColumnName("ProductQuantity");
                 pBuilder.Property(x => x.BasePrice).HasColumnName("ProductBasePrice");
-                //pBuilder.Property(x => x.TotalPrice).HasColumnName("ProductTotalPrice").HasComputedColumnSql("ProductQuantity * ProductBasePrice");
                 pBuilder.Ignore(x => x.TotalPrice);
             });
 
@@ -71,7 +88,32 @@ internal class OrderConfiguration : BaseConfiguration<Order>
                 pBuilder.Property(x => x.ProductName).HasMaxLength(500).HasColumnName("ProductName");
             });
 
-        });
+            itemBuilder.OwnsMany(x => x.OrderItemAttribute, attBuilder =>
+            {
+                attBuilder.ToTable("OrderItemAttributes");
+                attBuilder.HasKey(t => t.Id);
 
+                attBuilder.Property(x => x.Ordering)
+                        .HasDefaultValue(10_000);
+
+                attBuilder.Property(s => s.OwnerId)
+                       .IsRequired();
+
+                attBuilder.Property(s => s.InsertedBy)
+                       .IsRequired();
+
+                attBuilder.Property(s => s.UpdatedBy)
+                       .IsRequired();
+
+                attBuilder.Property(s => s.InsertDateTime)
+                       .IsRequired();
+
+                attBuilder.Property(s => s.UpdateDateTime)
+                       .IsRequired();
+
+                attBuilder.Property(x => x.ProductAttributeName).HasMaxLength(2000);
+                attBuilder.Property(x => x.ProductAttributeValue).HasMaxLength(2000);
+            });
+        });
     }
 }

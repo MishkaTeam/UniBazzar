@@ -1,0 +1,34 @@
+﻿@page
+@model Server.Areas.Admin.Pages.BasicInfo.Orders.IndexModel
+@{
+}
+<div class="my-2 float-end">
+    <a class="btn btn-primary" asp-page="Index" asp-area="Admin">@(Resources.ButtonCaptions.Details)</a>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">@(Resources.DataDictionary.FirstName)</th>
+            <th scope="col">@(Resources.DataDictionary.LastName)</th>
+            <th scope="col">@(Resources.DataDictionary.Mobile)</th>
+            <th scope="col">شماره فاکتور</th>
+            <th scope="col">@(Resources.DataDictionary.InsertDateTime)</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var model in Model.ViewModel)
+        {
+            <tr class="align-middle">
+                <td>@(model.Customer.FirstName)</td>
+                <td>@(model.Customer.LastName)</td>
+                <td>@(model.Customer.Mobile)</td>
+                <td>@(model.ReferenceNumber)</td>
+                <td>@(model.InsertDateTimeFa)</td>
+                <td>
+                    <a asp-page="OrderItems/Index" asp-route-orderId="@(model.Id)" type="button" class="btn btn-secondary">@(Resources.DataDictionary.Items)</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

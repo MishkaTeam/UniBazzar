@@ -1,0 +1,68 @@
+﻿@page "{homeViewId:guid}"
+@model Server.Areas.Admin.Pages.BasicInfo.HomeViews.SliderViewItems.CreateModel
+
+@{
+    var pageTitle =
+        $"{Resources.DataDictionary.CreateOf} {Resources.DataDictionary.SliderItem}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+
+    string imagePreviewId = "image-preview";
+}
+
+
+<form method="post" enctype="multipart/form-data">
+
+    <section-form>
+
+        <fieldset>
+
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+
+            <input hidden asp-for="CreateViewModel.HomeViewId" />
+
+            <section-form-field>
+                @if (string.IsNullOrWhiteSpace(Model.CreateViewModel.ImageUrl))
+                {
+                    <img class="w-100 rounded-3" id="@(imagePreviewId)" />
+                }
+                else
+                {
+                    <img class="w-100 rounded-3" id="@(imagePreviewId)" src="@(Model.CreateViewModel.ImageUrl)" />
+                }
+            </section-form-field>
+
+            <div class="mb-3">
+                <label asp-for="SliderImage" class="form-label"></label>
+                <input class="form-control" asp-for="SliderImage"
+                       onchange="showPreview(this);" accept="image/jpeg, image/png" />
+                <span asp-validation-for="SliderImage" class="field-validation-valid text-danger"></span>
+            </div>
+
+            <ub-full-input asp-for="CreateViewModel.Title" />
+
+            <ub-full-input asp-for="CreateViewModel.Interval" />
+
+            <ub-full-input asp-for="CreateViewModel.NavigationUrl" />
+
+            <ub-full-input asp-for="CreateViewModel.Ordering" />
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-create />
+            <button-reset />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>
+
+
+@section Scripts {
+    <partial name="PartialViews/_ScriptImagePreview" model="@(imagePreviewId)" />
+}

@@ -3,7 +3,7 @@
     template: `
     <div class="search-box position-relative w-100">
       <label class="form-label" for="product-search">کالا</label>
-      <input id="product-search" class="form-control"
+      <input id="product-search" class="form-control" autocomplete="off"
              v-model="searchText"
              @input="onInputChanged"
              @keydown.down.prevent="moveSelection(1)"

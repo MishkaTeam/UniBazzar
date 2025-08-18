@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Framework.Observability\Framework.Observability.csproj" />
+  </ItemGroup>
+
 </Project>

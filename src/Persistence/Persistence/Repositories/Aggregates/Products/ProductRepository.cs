@@ -1,3 +1,4 @@
+using BuildingBlocks.Domain.Context;
 using BuildingBlocks.Persistence;
 using Domain.Aggregates.Products;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,17 @@ public partial class ProductRepository : RepositoryBase<Product>, IProductReposi
             || (x.Category.Parent != null && x.Category.Parent.Slug == categorySlug));
 
         return query.ToListAsync(cancellationToken);
-        
+    }
+
+    public Task<List<Product>> GetFullProductData(List<Guid> productIds, CancellationToken cancellationToken = default)
+    {
+        var query = DbSet
+            .Include(x => x.Category)
+            .Include(x => x.ProductImages)
+            .Include(x => x.ProductFeatures)
+            .Where(x => productIds.Contains(x.Id));
+
+        return query.ToListAsync(cancellationToken);
     }
 
     public Task<List<Product>> GetFullProductData(CancellationToken cancellationToken = default)
@@ -30,7 +41,6 @@ public partial class ProductRepository : RepositoryBase<Product>, IProductReposi
             .Take(4);
 
         return query.ToListAsync(cancellationToken);
-           
     }
 
     public Task<Product> GetFullProductData(string sku)
@@ -42,6 +52,5 @@ public partial class ProductRepository : RepositoryBase<Product>, IProductReposi
             .ThenInclude(x => x.Attribute)
             .ThenInclude(x => x.AttributeValues)
             .FirstOrDefaultAsync(x => x.SKU == sku);
-
     }
 }
