@@ -8,7 +8,6 @@ namespace Framework.Observability
 {
     public class EnrichmentOptions
     {
-        // This property will hold the function that provides context data.
         public Func<IServiceProvider, IDictionary<string, object?>>? CustomContextProvider { get; private set; }
 
         public void WithCustomContext(Func<IServiceProvider, IDictionary<string, object?>> provider)
