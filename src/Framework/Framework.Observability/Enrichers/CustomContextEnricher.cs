@@ -20,6 +20,7 @@ public class CustomContextEnricher : ILogEventEnricher
     {
         var httpContext = _httpContextAccessor.HttpContext;
         if (httpContext is null) return;
+        if (httpContext.RequestServices is null) return;
 
         var contextData = _contextProvider.Invoke(httpContext.RequestServices);
 
