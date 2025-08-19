@@ -21,27 +21,27 @@ namespace Server
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            Assembly entryAssembly = Assembly.GetExecutingAssembly();
+            //Assembly entryAssembly = Assembly.GetExecutingAssembly();
 
-            builder.AddObservability(entryAssembly.GetName().Name ?? "UniBazzar", entryAssembly.GetName().Version?.ToString() ?? "1.0.0",
-                enrichment =>
-            {
-                enrichment.WithCustomContext(serviceProvider =>
-                {
-                    var executionContext = serviceProvider.GetService<IExecutionContextAccessor>();
+            //builder.AddObservability(entryAssembly.GetName().Name ?? "UniBazzar", entryAssembly.GetName().Version?.ToString() ?? "1.0.0",
+            //    enrichment =>
+            //{
+            //    enrichment.WithCustomContext(serviceProvider =>
+            //    {
+            //        var executionContext = serviceProvider.GetService<IExecutionContextAccessor>();
 
-                    if (executionContext != null)
-                    {
-                        return new Dictionary<string, object?>
-                        {
-                            { "StoreId", executionContext.StoreId },
-                            { "UserId", executionContext.UserId.HasValue ? executionContext.UserId.Value : "NotAuthenticated" }
-                        };
-                    }
+            //        if (executionContext != null)
+            //        {
+            //            return new Dictionary<string, object?>
+            //            {
+            //                { "StoreId", executionContext.StoreId },
+            //                { "UserId", executionContext.UserId.HasValue ? executionContext.UserId.Value : "NotAuthenticated" }
+            //            };
+            //        }
 
-                    return new Dictionary<string, object?>();
-                });
-            });
+            //        return new Dictionary<string, object?>();
+            //    });
+            //});
 
 
             builder.AddConfiguration();
@@ -101,7 +101,7 @@ namespace Server
             }
 
             app.UseHttpsRedirection();
-            app.UseObservability();
+            //app.UseObservability();
 
             app.UseStaticFiles();
             app.UseCultureHandler();
