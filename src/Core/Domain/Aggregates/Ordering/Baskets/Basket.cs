@@ -101,6 +101,9 @@ public class Basket : Entity
             return false;
         }
 
+        if (BasketStatus != BasketStatus.INITIAL)
+            return false;
+
         BasketStatus =
             BasketStatus.CHECKOUT;
 

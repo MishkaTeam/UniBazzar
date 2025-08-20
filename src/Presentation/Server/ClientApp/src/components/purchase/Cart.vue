@@ -1,11 +1,11 @@
 <template>
-    <div class="row">
-        <div class="col-12 col-lg-9">
-            <div id="cart-products">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 py-3">
-                            <div v-if="basket">
+    <div v-if="basket && basket.basketItems && basket.basketItems.length != 0">
+        <div class="row">
+            <div class="col-12 col-lg-9">
+                <div id="cart-products">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 py-3">
                                 <div v-for="item in basket.basketItems" class="row product">
                                     <div class="col-12">
                                         <div class="row">
@@ -13,8 +13,7 @@
                                                 <img :src="'/images/products/p100.png'" :alt="item.productName" />
                                                 <div class="d-flex flex-column align-items-center mt-2">
                                                     <div class="counter-box">
-                                                        <i v-if="item.quantity <= 1"
-                                                            @click="removeProduct(item.id)"
+                                                        <i v-if="item.quantity <= 1" @click="removeProduct(item.id)"
                                                             class="bi bi-trash icon-button"></i>
                                                         <i v-if="item.quantity > 1"
                                                             @click="updateQuantity(item.id, --item.quantity)"
@@ -77,6 +76,7 @@
                                                         <span class="product-total h3">
                                                             {{ formatCurrency(item.totalPriceWithAdjustment) }}
                                                         </span>
+                                                        &nbsp;
                                                         <span>تومان</span>
                                                     </div>
                                                 </div>
@@ -84,58 +84,71 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div v-if="basket.basketItems && basket.basketItems.length == 0">
-                                    سبد خرید شما خالی می باشد
-                                </div>
                             </div>
-                            <div v-else>
-                                <div class="spinner-border text-primary" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 mt-2 mt-lg-0 pr-3 pr-lg-0">
+                <div id="factor">
+                    <div class="container">
+                        <div class="row py-2">
+                            <div class="col-6">
+                                <div>جمع کل فاکتور:</div>
+                            </div>
+                            <div class="col-6">
+                                <div><span id="factor-total-price">{{ formatCurrency(basket.totalWithoutDiscount)
+                                }}</span>
+                                    تومان</div>
+                            </div>
+                        </div>
+                        <div class="row py-2 bg-light">
+                            <div class="col-6">
+                                <div>جمع تخفیف:</div>
+                            </div>
+                            <div class="col-6">
+                                <div><span id="factor-total-discount">{{ formatCurrency(basket.totalItemDiscounts)
+                                }}</span>
+                                    تومان</div>
+                            </div>
+                        </div>
+                        <div class="row py-2" id="total">
+                            <div class="col-6">
+                                <div>مبلغ قابل پرداخت:</div>
+                            </div>
+                            <div class="col-6">
+                                <div><span id="factor-total">{{ formatCurrency(basket.basketTotal) }}</span> تومان</div>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-12">
+                                <a href="/Purchase/Checkout" class="btn btn-success w-100">
+                                    ادامه ثبت سفارش</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-3 mt-2 mt-lg-0 pr-3 pr-lg-0">
-            <div id="factor">
-                <div class="container">
-                    <div class="row py-2">
-                        <div class="col-6">
-                            <div>جمع کل فاکتور:</div>
-                        </div>
-                        <div class="col-6">
-                            <div><span id="factor-total-price">{{ formatCurrency(basket.totalWithoutDiscount) }}</span>
-                                تومان</div>
-                        </div>
-                    </div>
-                    <div class="row py-2 bg-light">
-                        <div class="col-6">
-                            <div>جمع تخفیف:</div>
-                        </div>
-                        <div class="col-6">
-                            <div><span id="factor-total-discount">{{ formatCurrency(basket.totalItemDiscounts) }}</span>
-                                تومان</div>
-                        </div>
-                    </div>
-                    <div class="row py-2" id="total">
-                        <div class="col-6">
-                            <div>مبلغ قابل پرداخت:</div>
-                        </div>
-                        <div class="col-6">
-                            <div><span id="factor-total">{{ formatCurrency(basket.basketTotal) }}</span> تومان</div>
-                        </div>
-                    </div>
-                    <div class="row py-2">
-                        <div class="col-12">
-                            <a href="/Purchase/Checkout"
-                                    class="btn btn-success w-100">
-                                ادامه ثبت سفارش</a>
+    </div>
+    <div v-else-if="basket && basket.basketItems && basket.basketItems.length == 0">
+        <div class="row">
+            <div class="col-12">
+                <div id="cart-products">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 py-3">
+                                سبد خرید شما خالی می باشد
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div v-else>
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
         </div>
     </div>
 </template>

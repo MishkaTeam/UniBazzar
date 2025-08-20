@@ -89,4 +89,12 @@ public class OrderApplication(
 
         return OrderItemViewModel.FromOrderItems(orderItems);
     }
+
+    public async Task<ResultContract<OrderViewModel>> GetOrderAsync(Guid orderId)
+    {
+        var orderItems =
+            await orderRepository.GetByIdAsync(orderId);
+
+        return OrderViewModel.FromOrder(orderItems);
+    }
 }

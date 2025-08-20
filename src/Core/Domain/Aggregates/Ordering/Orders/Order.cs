@@ -37,7 +37,8 @@ public class Order : Entity
 
     public Customer Customer { get; private set; }
     public List<OrderItem> OrderItems { get; private set; }
-
+    public OrderShippingAddress ShippingAddress { get; private set; }
+    public OrderPaymentInfo PaymentInfo { get; private set; }
 
     public decimal TotalWithoutDiscount
     {

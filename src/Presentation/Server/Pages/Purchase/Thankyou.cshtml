@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{orderId:guid}"
 @model Server.Pages.ThankyouModel
 @{
 }
@@ -12,12 +12,6 @@
                         <div class="col-12 px-0">
                             <h1>پرداخت موفق</h1>
                             <p>پرداخت شما با موفقیت انجام شد.</p>
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a asp-page="/Index">صفحه نخست</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">پرداخت موفق</li>
-                                </ol>
-                            </nav>
                         </div>
                     </div>
                 </div>
@@ -50,9 +44,9 @@
                                                         </div>
                                                         <hr>
                                                         <div class="row">
-                                                            <div class="col-12 col-md-3 my-1">مبلغ پرداختی: <strong>300,000,000 تومان</strong></div>
+                                                            <div class="col-12 col-md-3 my-1">مبلغ پرداختی: <strong>@(Model.Order.OrderTotal.ToString("#,#")) تومان</strong></div>
                                                             <div class="col-12 col-md-9 my-1">پرداخت اینترنتی توسط درگاه ملت</div>
-                                                            <div class="col-12 col-md-3 my-1">جمع تخفیف: <strong>100,000 تومان</strong></div>
+                                                            <div class="col-12 col-md-3 my-1">جمع تخفیف: <strong>@(Model.Order.TotalDiscountAmount.ToString("#,#")) تومان</strong></div>
                                                             <div class="col-12 col-md-3 my-1">هزینه ارسال: <strong>30,000 تومان</strong></div>
                                                         </div>
                                                         <hr>

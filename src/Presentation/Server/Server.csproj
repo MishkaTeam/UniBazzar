@@ -32,6 +32,7 @@
     <ProjectReference Include="..\..\Framework\Framework.Image\Framework.Picture.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.Observability\Framework.Observability.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.Storage\Framework.Storage.csproj" />
+    <ProjectReference Include="..\..\Modules\WalletOps\Modules.WalletOps.Api\Modules.WalletOps.Api.csproj" />
     <ProjectReference Include="..\..\Persistence\Persistence\Persistence.csproj" />
     <ProjectReference Include="..\..\Resources\Resources.csproj" />
   </ItemGroup>
