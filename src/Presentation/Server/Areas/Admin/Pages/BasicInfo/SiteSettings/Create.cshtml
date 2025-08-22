@@ -1,0 +1,116 @@
+@page
+@model UniBazzar.Server.Areas.Admin.Pages.BasicInfo.SiteSettings.CreateModel
+@{
+    ViewData["Title"] = "افزودن تنظیمات جدید";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"]</h3>
+                    <div class="card-tools">
+                        <a href="./Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> بازگشت
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="SiteSetting.Name" class="form-label">نام سایت *</label>
+                                    <input asp-for="SiteSetting.Name" class="form-control" required />
+                                    <span asp-validation-for="SiteSetting.Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="SiteSetting.PhoneNumber" class="form-label">شماره تماس *</label>
+                                    <input asp-for="SiteSetting.PhoneNumber" class="form-control" required />
+                                    <span asp-validation-for="SiteSetting.PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="SiteSetting.Description" class="form-label">توضیحات</label>
+                            <textarea asp-for="SiteSetting.Description" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="SiteSetting.Description" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="SiteSetting.Address" class="form-label">آدرس</label>
+                            <textarea asp-for="SiteSetting.Address" class="form-control" rows="2"></textarea>
+                            <span asp-validation-for="SiteSetting.Address" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="SiteSetting.LogoURL" class="form-label">آدرس لوگو</label>
+                            <input asp-for="SiteSetting.LogoURL" type="url" class="form-control" />
+                            <span asp-validation-for="SiteSetting.LogoURL" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="SiteSetting.PriceListID" class="form-label">لیست قیمت</label>
+                            <select asp-for="SiteSetting.PriceListID" class="form-control">
+                                <option value="">انتخاب کنید</option>
+                                @if (Model.PriceLists != null && Model.PriceLists.Any())
+                                {
+                                    @foreach (var priceList in Model.PriceLists)
+                                    {
+                                        <option value="@priceList.Id">@priceList.Title</option>
+                                    }
+                                }
+                                else
+                                {
+                                    <option value="" disabled>هیچ لیست قیمتی یافت نشد</option>
+                                }
+                            </select>
+                            <span asp-validation-for="SiteSetting.PriceListID" class="text-danger"></span>
+                            @if (Model.PriceLists != null)
+                            {
+                                <small class="form-text text-muted">تعداد لیست‌های قیمت: @Model.PriceLists.Count</small>
+                            }
+                            else
+                            {
+                                <small class="form-text text-warning">PriceLists is null</small>
+                            }
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> ذخیره
+                            </button>
+                            <a href="./Index" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> انصراف
+                            </a>
+                        </div>
+                        
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger mt-3">
+                                <h6>خطاهای اعتبارسنجی:</h6>
+                                <ul>
+                                    @foreach (var modelState in ViewData.ModelState.Values)
+                                    {
+                                        foreach (var error in modelState.Errors)
+                                        {
+                                            <li>@error.ErrorMessage</li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

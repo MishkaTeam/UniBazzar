@@ -58,5 +58,19 @@ namespace Domain.Aggregates.SiteSettings
             return PriceListID;
         }
 
+        public void Update(string description, string name, string phoneNumber, string logoUrl, Guid? priceListId, string address)
+        {
+            if (!phoneNumber.IsValidMobile())
+                throw new ValidationException(Resources.Messages.Validations.CellPhoneNumber);
+
+            Desciption = description;
+            Name = name;
+            PhoneNumber = phoneNumber;
+            Address = address;
+            LogoURL = logoUrl;
+            PriceListID = ValidatePriceListID(priceListId);
+
+            SetUpdateDateTime();
+        }
     }
 }

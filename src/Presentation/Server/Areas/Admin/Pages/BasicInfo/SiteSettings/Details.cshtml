@@ -1,0 +1,214 @@
+@page "{id:guid}"
+@model UniBazzar.Server.Areas.Admin.Pages.BasicInfo.SiteSettings.DetailsModel
+@{
+    ViewData["Title"] = "جزئیات تنظیمات سایت";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"]</h3>
+                    <div class="card-tools">
+                        <a href="./Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> بازگشت
+                        </a>
+                        <button type="button" class="btn btn-warning" onclick="editSiteSetting()">
+                            <i class="fas fa-edit"></i> ویرایش
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @if (Model.SiteSetting != null)
+                    {
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="info-box">
+                                    <h5>اطلاعات پایه</h5>
+                                    <table class="table table-borderless">
+                                        <tr>
+                                            <td><strong>نام سایت:</strong></td>
+                                            <td>@Model.SiteSetting.Name</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>شماره تماس:</strong></td>
+                                            <td>@Model.SiteSetting.PhoneNumber</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>توضیحات:</strong></td>
+                                            <td>@(string.IsNullOrEmpty(Model.SiteSetting.Description) ? "بدون توضیحات" : Model.SiteSetting.Description)</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-box">
+                                    <h5>اطلاعات تکمیلی</h5>
+                                    <table class="table table-borderless">
+                                        <tr>
+                                            <td><strong>آدرس:</strong></td>
+                                            <td>@(string.IsNullOrEmpty(Model.SiteSetting.Address) ? "بدون آدرس" : Model.SiteSetting.Address)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>لوگو:</strong></td>
+                                            <td>
+                                                @if (!string.IsNullOrEmpty(Model.SiteSetting.LogoURL))
+                                                {
+                                                    <img src="@Model.SiteSetting.LogoURL" alt="لوگو" style="max-width: 100px; max-height: 100px;" class="img-thumbnail" />
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">بدون لوگو</span>
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>لیست قیمت:</strong></td>
+                                            <td>@(Model.SiteSetting.PriceListID.HasValue ? "دارد" : "ندارد")</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="info-box">
+                                    <h5>اطلاعات سیستمی</h5>
+                                    <table class="table table-borderless">
+                                        <tr>
+                                            <td><strong>شناسه:</strong></td>
+                                            <td>@Model.SiteSetting.Id</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>فروشگاه:</strong></td>
+                                            <td>@Model.SiteSetting.StoreId</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>مالک:</strong></td>
+                                            <td>@Model.SiteSetting.OwnerId</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>تاریخ ایجاد:</strong></td>
+                                            <td>@Model.SiteSetting.InsertDateTime.ToString("yyyy/MM/dd HH:mm")</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>تاریخ آخرین ویرایش:</strong></td>
+                                            <td>@Model.SiteSetting.UpdateDateTime.ToString("yyyy/MM/dd HH:mm")</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            تنظیمات مورد نظر یافت نشد.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">ویرایش تنظیمات</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="editForm">
+                <div class="modal-body">
+                    <input type="hidden" id="editId" name="id" value="@Model.SiteSetting?.Id">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="editName" class="form-label">نام سایت *</label>
+                                <input type="text" class="form-control" id="editName" name="name" value="@Model.SiteSetting?.Name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="editPhoneNumber" class="form-label">شماره تماس *</label>
+                                <input type="text" class="form-control" id="editPhoneNumber" name="phoneNumber" value="@Model.SiteSetting?.PhoneNumber" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editDescription" class="form-label">توضیحات</label>
+                        <textarea class="form-control" id="editDescription" name="description" rows="3">@Model.SiteSetting?.Description</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editAddress" class="form-label">آدرس</label>
+                        <textarea class="form-control" id="editAddress" name="address" rows="2">@Model.SiteSetting?.Address</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editLogoURL" class="form-label">آدرس لوگو</label>
+                        <input type="url" class="form-control" id="editLogoURL" name="logoURL" value="@Model.SiteSetting?.LogoURL">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editPriceListID" class="form-label">لیست قیمت</label>
+                        <select class="form-control" id="editPriceListID" name="priceListID">
+                            <option value="">انتخاب کنید</option>
+                            @if (Model.PriceLists != null)
+                            {
+                                @foreach (var priceList in Model.PriceLists)
+                                {
+                                    <option value="@priceList.Id">@priceList.Title</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">انصراف</button>
+                    <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function editSiteSetting() {
+            $('#editModal').modal('show');
+        }
+
+        // Edit form submission
+        $('#editForm').on('submit', function (e) {
+            e.preventDefault();
+            
+            const id = $('#editId').val();
+            const formData = {
+                id: id,
+                name: $('#editName').val(),
+                phoneNumber: $('#editPhoneNumber').val(),
+                description: $('#editDescription').val(),
+                address: $('#editAddress').val(),
+                logoURL: $('#editLogoURL').val(),
+                priceListID: $('#editPriceListID').val() || null
+            };
+
+            $.ajax({
+                url: `/api/v1/SiteSettings/${id}`,
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(formData),
+                success: function (response) {
+                    $('#editModal').modal('hide');
+                    location.reload();
+                },
+                error: function (xhr) {
+                    alert('خطا در ویرایش تنظیمات: ' + xhr.responseJSON?.error || 'خطای نامشخص');
+                }
+            });
+        });
+    </script>
+}
