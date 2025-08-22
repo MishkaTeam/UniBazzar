@@ -1,0 +1,90 @@
+@page "{id:guid}"
+@model UniBazzar.Server.Areas.Admin.Pages.BasicInfo.SiteSettings.EditModel
+@{
+    ViewData["Title"] = "ویرایش تنظیمات سایت";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"]</h3>
+                    <div class="card-tools">
+                        <a href="./Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> بازگشت
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <input type="hidden" asp-for="SiteSetting.Id" />
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="SiteSetting.Name" class="form-label">نام سایت *</label>
+                                    <input asp-for="SiteSetting.Name" class="form-control" required />
+                                    <span asp-validation-for="SiteSetting.Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="SiteSetting.PhoneNumber" class="form-label">شماره تماس *</label>
+                                    <input asp-for="SiteSetting.PhoneNumber" class="form-control" required />
+                                    <span asp-validation-for="SiteSetting.PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="SiteSetting.Description" class="form-label">توضیحات</label>
+                            <textarea asp-for="SiteSetting.Description" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="SiteSetting.Description" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="SiteSetting.Address" class="form-label">آدرس</label>
+                            <textarea asp-for="SiteSetting.Address" class="form-control" rows="2"></textarea>
+                            <span asp-validation-for="SiteSetting.Address" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="SiteSetting.LogoURL" class="form-label">آدرس لوگو</label>
+                            <input asp-for="SiteSetting.LogoURL" type="url" class="form-control" />
+                            <span asp-validation-for="SiteSetting.LogoURL" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="SiteSetting.PriceListID" class="form-label">لیست قیمت</label>
+                            <select asp-for="SiteSetting.PriceListID" class="form-control">
+                                <option value="">انتخاب کنید</option>
+                                @if (Model.PriceLists != null)
+                                {
+                                    @foreach (var priceList in Model.PriceLists)
+                                    {
+                                        <option value="@priceList.Id">@priceList.Title</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="SiteSetting.PriceListID" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> ذخیره تغییرات
+                            </button>
+                            <a href="./Index" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> انصراف
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

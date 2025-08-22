@@ -11,14 +11,14 @@ namespace BuildingBlocks.Persistence;
 public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
 	where TEntity : class, IEntity
 {
-	public RepositoryBase(DbContext context, IExecutionContextAccessor executionContext)
+    public RepositoryBase(DbContext context, IExecutionContextAccessor executionContext)
 	{
 		DatabaseContext = context ?? throw new ArgumentNullException("databaseContext");
 		ExecutionContext = executionContext;
 		DbSet = DatabaseContext.Set<TEntity>();
 	}
 
-	protected DbSet<TEntity> DbSet { get; }
+    protected DbSet<TEntity> DbSet { get; }
 
 	protected DbContext DatabaseContext { get; }
 	public IExecutionContextAccessor ExecutionContext { get; }

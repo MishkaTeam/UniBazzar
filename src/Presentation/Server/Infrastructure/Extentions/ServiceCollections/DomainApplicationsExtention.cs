@@ -16,6 +16,7 @@ using Application.Aggregates.Products.ProductImages;
 using Application.Aggregates.Stores;
 using Application.Aggregates.Units;
 using Application.Aggregates.Users;
+using Application.Aggregates.SiteSettings;
 using Application.CustomerSearch;
 using Application.ProductSearch;
 using Domain;
@@ -39,6 +40,7 @@ using Domain.Aggregates.Products.ProductImages;
 using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
 using Domain.Aggregates.Users;
+using Domain.Aggregates.SiteSettings;
 using Domain.CustomerSearch.Data;
 using Domain.ProductSearch.Data;
 using Persistence;
@@ -55,6 +57,7 @@ using Persistence.Repositories.Aggregates.Products;
 using Persistence.Repositories.Aggregates.Stores;
 using Persistence.Repositories.Aggregates.Units;
 using Persistence.Repositories.Aggregates.Users;
+using Persistence.Repositories.Aggregates.SiteSettings;
 using Persistence.Repositories.CustomerSearch;
 using Persistence.Repositories.ProductSearch;
 
@@ -97,6 +100,7 @@ public static class DomainExtensions
         services.AddScoped<CustomerSearchApplication>();
 
         services.AddScoped<ProductReviewApplication>();
+        services.AddScoped<SiteSettingsApplication>();
 
         return services;
     }
@@ -136,6 +140,7 @@ public static class DomainExtensions
         services.AddScoped<ICustomerSearchRepository, CustomerSearchRepository>();
 
         services.AddScoped<IProductReviewRepository, CommentRepository>();
+        services.AddScoped<ISiteSettingRepository, SiteSettingRepository>();
 
         return services;
     }

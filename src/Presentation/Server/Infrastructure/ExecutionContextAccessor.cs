@@ -43,8 +43,23 @@ namespace Server.Infrastructure
                 return null;
             }
         }
-        public Guid StoreId =>
-                      Guid.Parse(httpContextAccessor.HttpContext?.Items["TenantId"]?.ToString() ??
-                      "00000000-0000-0000-0000-000000000000");
+        public Guid StoreId
+        {
+            get
+            {
+                var httpContext = httpContextAccessor.HttpContext;
+                if (httpContext?.Items.ContainsKey("TenantId") == true)
+                {
+                    var tenantIdValue = httpContext.Items["TenantId"]?.ToString();
+                    if (Guid.TryParse(tenantIdValue, out var storeId))
+                    {
+                        return storeId;
+                    }
+                }
+                
+                // Fallback to default store ID for development/testing
+                return Guid.Parse("00000000-0000-0000-0000-000000000000");
+            }
+        }
     }
 }

@@ -2,26 +2,27 @@
 using BuildingBlocks.Persistence.EFCore;
 using Domain.Aggregates.branches;
 using Domain.Aggregates.Categories;
+using Domain.Aggregates.CheckoutCounters;
+using Domain.Aggregates.Cms.HomeViews;
 using Domain.Aggregates.Customers;
+using Domain.Aggregates.Customers.ShippingAddresses;
 using Domain.Aggregates.Discounts;
+using Domain.Aggregates.Discounts.DiscountCustomers;
+using Domain.Aggregates.Discounts.DsiscounProducts;
 using Domain.Aggregates.Ordering.Baskets;
 using Domain.Aggregates.Ordering.Orders;
 using Domain.Aggregates.PriceLists;
 using Domain.Aggregates.Products;
 using Domain.Aggregates.Products.ProductFeatures;
 using Domain.Aggregates.Products.ProductImages;
+using Domain.Aggregates.ProductReviews;
+using Domain.Aggregates.SiteSettings;
 using Domain.Aggregates.Stores;
 using Domain.Aggregates.Units;
 using Domain.Aggregates.Users;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Configurations;
-using Domain.Aggregates.CheckoutCounters;
-using Domain.Aggregates.ProductReviews;
-using Domain.Aggregates.Customers.ShippingAddresses;
 using Attribute = Domain.Aggregates.Attributes.Attribute;
-using Domain.Aggregates.Discounts.DsiscounProducts;
-using Domain.Aggregates.Discounts.DiscountCustomers;
-using Domain.Aggregates.Cms.HomeViews;
 
 namespace Persistence;
 
@@ -78,4 +79,5 @@ public class UniBazzarContext(DbContextOptions<UniBazzarContext> options,
     public DbSet<DiscountCustomer> DiscountCustomers { get; set; }
 
     public DbSet<HomeView> HomeViews { get; set; }
+    public DbSet<SiteSetting> SiteSettings { get; set; }
 }
