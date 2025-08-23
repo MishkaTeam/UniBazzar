@@ -51,7 +51,7 @@ namespace Modules.Inventory.Domain.Aggreates.Receipts
             ReceiptItem.Add(receiptItems);
 
             var cardex = Cardex.Create(WarehouseId, receiptItems.ProductId, receiptItems.UnitId, receiptItems.UnitPrice, CardexType.Receipt,
-                          ReceiptNumber, receiptItems.Quantity, receiptItems.Description);
+                          ReceiptNumber, receiptItems.Quantity, 0, receiptItems.Description, DateTime.Now);
 
             return cardex;
         }
