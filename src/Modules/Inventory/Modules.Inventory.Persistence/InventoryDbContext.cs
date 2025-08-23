@@ -1,6 +1,7 @@
 ﻿using BuildingBlocks.Persistence;
 using BuildingBlocks.Persistence.EFCore;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Modules.Inventory.Persistence;
 
@@ -24,6 +25,8 @@ public class InventoryDbContext(DbContextOptions<InventoryDbContext> options,
     {
         modelBuilder.HasDefaultSchema("INV");
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(InventoryDbContext).Assembly);
     }
 
 }
