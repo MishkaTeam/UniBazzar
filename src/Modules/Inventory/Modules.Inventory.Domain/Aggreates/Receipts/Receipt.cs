@@ -1,4 +1,7 @@
 ﻿using BuildingBlocks.Domain.Aggregates;
+using Modules.Inventory.Domain.Aggreates.Cardexs;
+using Modules.Inventory.Domain.Aggreates.Cardexs.Enums;
+using Modules.Inventory.Domain.Aggreates.Receipts.ReceiptItems;
 using Modules.Inventory.Domain.Aggreates.Suppliers;
 using Modules.Inventory.Domain.Aggreates.Warehouses;
 
@@ -11,6 +14,8 @@ namespace Modules.Inventory.Domain.Aggreates.Receipts
 
         public Guid WarehouseId { get; set; }
         public Warehouse Warehouse { get; set; }
+
+        public List<ReceiptItem> ReceiptItem { get; set; }
 
         public string? Description { get; set; }
 
@@ -39,6 +44,16 @@ namespace Modules.Inventory.Domain.Aggreates.Receipts
             Description = description;
             ReceiptDate = receiptDate;
             ReceiptNumber = receiptNumber;
+        }
+
+        public Cardex AddItem(ReceiptItem receiptItems)
+        {
+            ReceiptItem.Add(receiptItems);
+
+            var cardex = Cardex.Create(WarehouseId, receiptItems.ProductId, receiptItems.UnitId, receiptItems.UnitPrice, CardexType.Receipt,
+                          ReceiptNumber, receiptItems.Quantity, receiptItems.Description);
+
+            return cardex;
         }
     }
 }
