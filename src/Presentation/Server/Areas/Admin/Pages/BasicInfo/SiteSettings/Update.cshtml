@@ -1,0 +1,44 @@
+@page
+@model Server.Areas.Admin.Pages.BasicInfo.SiteSettings.UpdateModel
+@{
+    var pageTitle =
+    $"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.SiteSetting}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+    <section-form>
+        <fieldset>
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+
+            <input type="hidden" asp-for="UpdateViewModel.ID" />
+
+            <ub-full-input asp-for="UpdateViewModel.Name"/>
+
+            <ub-full-textarea asp-for="UpdateViewModel.Description"/>
+
+            <ub-full-input asp-for="UpdateViewModel.PhoneNumber"/>
+
+            <ub-full-input asp-for="UpdateViewModel.LogoURL"/>
+
+            <ub-full-select asp-for="UpdateViewModel.PriceListID" asp-items="Model.PriceListOptions" />
+
+            <ub-full-textarea asp-for="UpdateViewModel.Address"/>
+
+        </fieldset>
+
+        <section-form-buttons>
+            <button-update />
+            <button-reset />
+            <button-back asp-page="Index" />
+        </section-form-buttons>
+
+    </section-form>
+
+</form>

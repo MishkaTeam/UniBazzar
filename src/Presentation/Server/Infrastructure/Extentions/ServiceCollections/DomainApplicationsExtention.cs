@@ -97,6 +97,8 @@ public static class DomainExtensions
         services.AddScoped<CustomerSearchApplication>();
 
         services.AddScoped<ProductReviewApplication>();
+        
+        services.AddScoped<SiteSettingApplication>();
 
         return services;
     }
@@ -136,6 +138,8 @@ public static class DomainExtensions
         services.AddScoped<ICustomerSearchRepository, CustomerSearchRepository>();
 
         services.AddScoped<IProductReviewRepository, CommentRepository>();
+        
+        services.AddScoped<ISiteSettingRepository, SiteSettingRepository>();
 
         return services;
     }

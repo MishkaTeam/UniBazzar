@@ -567,4 +567,7 @@
   <data name="Cms" xml:space="preserve">
     <value>Cms</value>
   </data>
+  <data name="SiteSetting" xml:space="preserve">
+    <value>SiteSetting</value>
+  </data>
 </root>

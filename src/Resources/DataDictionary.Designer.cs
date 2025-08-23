@@ -1123,6 +1123,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SiteSetting.
+        /// </summary>
+        public static string SiteSetting {
+            get {
+                return ResourceManager.GetString("SiteSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SKU.
         /// </summary>
         public static string SKU {
