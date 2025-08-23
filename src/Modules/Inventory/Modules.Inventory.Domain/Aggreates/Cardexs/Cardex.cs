@@ -30,8 +30,12 @@ namespace Modules.Inventory.Domain.Aggreates.Cardexs
 
         public string? Description { get; set; }
 
+        public decimal Balance { get; set; }
+
+        public DateTime Date { get; set; }
+
         private Cardex(Guid warehouseId, Guid productId, Guid unitId, decimal unitPrice, CardexType cardexType,
-                       string referenceNumber, decimal quantityIn, decimal quantityOut, string? description)
+                       string referenceNumber, decimal quantityIn, decimal quantityOut, string? description, decimal balance, DateTime date)
         {
             WarehouseId = warehouseId;
             ProductId = productId;
@@ -42,16 +46,19 @@ namespace Modules.Inventory.Domain.Aggreates.Cardexs
             QuantityIn = quantityIn;
             QuantityOut = quantityOut;
             Description = description;
+            Balance = balance;
+            Date = date;
         }
 
         public static Cardex Create(Guid warehouseId, Guid productId, Guid unitId, decimal unitPrice, CardexType cardexType,
-                       string referenceNumber, decimal quantityIn, decimal quantityOut, string? description)
+                       string referenceNumber, decimal quantityIn, decimal quantityOut, string? description, decimal balance, DateTime date)
         {
-            return new Cardex(warehouseId, productId, unitId, unitPrice, cardexType, referenceNumber, quantityIn, quantityOut, description);
+            return new Cardex(warehouseId, productId, unitId, unitPrice, cardexType, referenceNumber,
+                              quantityIn, quantityOut, description, balance, date);
         }
 
         public void Update(Guid warehouseId, Guid productId, Guid unitId, decimal unitPrice, CardexType cardexType,
-                       string referenceNumber, decimal quantityIn, decimal quantityOut, string? description)
+                       string referenceNumber, decimal quantityIn, decimal quantityOut, string? description, decimal balance, DateTime date)
         {
             WarehouseId = warehouseId;
             ProductId = productId;
@@ -62,6 +69,8 @@ namespace Modules.Inventory.Domain.Aggreates.Cardexs
             QuantityIn = quantityIn;
             QuantityOut = quantityOut;
             Description = description;
+            Balance = balance;
+            Date = date;
         }
     }
 }
